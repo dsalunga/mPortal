@@ -1,0 +1,61 @@
+<?xml version="1.0" standalone="yes"?>
+<BibleReader>
+  <xs:schema id="BibleReader" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="BibleReader" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Book">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="BookCode" type="xs:int" />
+                <xs:element name="TranslationCode" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Book" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <Book>
+    <Id>1</Id>
+    <BookCode>1</BookCode>
+    <TranslationCode>1</TranslationCode>
+    <Name>Genesis</Name>
+  </Book>
+  <Book>
+    <Id>2</Id>
+    <BookCode>2</BookCode>
+    <TranslationCode>1</TranslationCode>
+    <Name>Exodus</Name>
+  </Book>
+  <Book>
+    <Id>3</Id>
+    <BookCode>3</BookCode>
+    <TranslationCode>1</TranslationCode>
+    <Name>Leviticus</Name>
+  </Book>
+  <Book>
+    <Id>4</Id>
+    <BookCode>4</BookCode>
+    <TranslationCode>1</TranslationCode>
+    <Name>Numbers</Name>
+  </Book>
+  <Book>
+    <Id>5</Id>
+    <BookCode>5</BookCode>
+    <TranslationCode>1</TranslationCode>
+    <Name>Deuteronomy</Name>
+  </Book>
+</BibleReader>
