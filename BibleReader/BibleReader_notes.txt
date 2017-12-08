@@ -1,0 +1,5 @@
+UPDATE Bible_KJV
+SET
+	BookCode = SUBSTRING(CAST(CompositeCode AS VARCHAR),2,2),
+	ChapterCode = SUBSTRING(CAST(CompositeCode AS VARCHAR),4,3),
+	VerseCode = SUBSTRING(CAST(CompositeCode AS VARCHAR),7,3)
