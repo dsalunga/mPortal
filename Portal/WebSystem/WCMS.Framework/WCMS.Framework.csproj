@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9A259659-82E0-4FA7-8B43-786D92F72E53}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WCMS.Framework</RootNamespace>
+    <AssemblyName>WCMS.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\WCMS.Framework.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Agent\FrameworkAgent.cs" />
+    <Compile Include="Caching\DataSetCache.cs" />
+    <Compile Include="Caching\ICacheable.cs" />
+    <Compile Include="Caching\ICacheManager.cs" />
+    <Compile Include="Caching\MemoryCache.cs" />
+    <Compile Include="Caching\NullCache.cs" />
+    <Compile Include="Core\Shared\ICountryProvider.cs" />
+    <Compile Include="Core\WebDirectoryEntry.cs" />
+    <Compile Include="Data\DataAccess.cs" />
+    <Compile Include="Core\WebAttachment.cs" />
+    <Compile Include="Core\WebComment.cs" />
+    <Compile Include="Data\SqlDataProviderBase.cs" />
+    <Compile Include="Diagnostics\PerformanceLog.cs" />
+    <Compile Include="ISharableContent.cs" />
+    <Compile Include="IWebCategoryProvider.cs" />
+    <Compile Include="Manager\WebSubscriptionManager.cs" />
+    <Compile Include="Manager\WebConstantManager.cs" />
+    <Compile Include="Manager\UserProviderManager.cs" />
+    <Compile Include="Manager\WebSkinManager.cs" />
+    <Compile Include="Manager\WebPageManager.cs" />
+    <Compile Include="Manager\WebShareManager.cs" />
+    <Compile Include="Manager\WebShortUrlManager.cs" />
+    <Compile Include="Net\FileSyncInfo.cs" />
+    <Compile Include="Security\IUserProvider.cs" />
+    <Compile Include="Security\IUserProviderProvider.cs" />
+    <Compile Include="Security\IWebAccount.cs" />
+    <Compile Include="Security\IWebAddressProvider.cs" />
+    <Compile Include="IWebAttachmentProvider.cs" />
+    <Compile Include="IWebCommentProvider.cs" />
+    <Compile Include="IWebConstantProvider.cs" />
+    <Compile Include="IWebFileProvider.cs" />
+    <Compile Include="IWebFolderProvider.cs" />
+    <Compile Include="Security\IWebGlobalPolicyProvider.cs" />
+    <Compile Include="Security\IWebGroupProvider.cs" />
+    <Compile Include="IWebJobProvider.cs" />
+    <Compile Include="Security\IWebShareProvider.cs" />
+    <Compile Include="Security\LoginCookieManager.cs" />
+    <Compile Include="Security\OtpCache.cs" />
+    <Compile Include="Security\UserInfo.cs" />
+    <Compile Include="Security\UserProvider.cs" />
+    <Compile Include="Security\UserSessionBrowser.cs" />
+    <Compile Include="Security\WebShare.cs" />
+    <Compile Include="Security\WSUserInfo.cs" />
+    <Compile Include="SiteModel\IWebThemeProvider.cs" />
+    <Compile Include="SiteModel\WebTheme.cs" />
+    <Compile Include="SiteModel\IWebMasterPageProvider.cs" />
+    <Compile Include="IWebObjectHeaderProvider.cs" />
+    <Compile Include="IWebObjectIPAddressProvider.cs" />
+    <Compile Include="IWebObjectProvider.cs" />
+    <Compile Include="Security\IWebObjectSecurityPermissionProvider.cs" />
+    <Compile Include="Security\IWebObjectSecurityProvider.cs" />
+    <Compile Include="SiteModel\IWebPageElementProvider.cs" />
+    <Compile Include="SiteModel\IWebPagePanelProvider.cs" />
+    <Compile Include="SiteModel\IWebPageProvider.cs" />
+    <Compile Include="IWebParameterProvider.cs" />
+    <Compile Include="IWebParameterSetProvider.cs" />
+    <Compile Include="PartModel\IWebPartAdminProvider.cs" />
+    <Compile Include="PartModel\IWebPartConfigProvider.cs" />
+    <Compile Include="PartModel\IWebPartControlProvider.cs" />
+    <Compile Include="PartModel\IWebPartControlTemplateProvider.cs" />
+    <Compile Include="PartModel\IWebPartProvider.cs" />
+    <Compile Include="Security\IWebPermissionProvider.cs" />
+    <Compile Include="Security\IWebPermissionSetProvider.cs" />
+    <Compile Include="IWebRegistryProvider.cs" />
+    <Compile Include="Security\IWebRoleProvider.cs" />
+    <Compile Include="IWebSiteIdentityProvider.cs" />
+    <Compile Include="SiteModel\IWebShortUrlProvider.cs" />
+    <Compile Include="SiteModel\IWebSiteProvider.cs" />
+    <Compile Include="IWebSubscriptionProvider.cs" />
+    <Compile Include="SiteModel\IWebTemplatePanelProvider.cs" />
+    <Compile Include="SiteModel\IWebTemplateProvider.cs" />
+    <Compile Include="IWebTextResourceProvider.cs" />
+    <Compile Include="SiteModel\IWebSkinProvider.cs" />
+    <Compile Include="Security\IWebUserGroupProvider.cs" />
+    <Compile Include="Security\IWebUserProvider.cs" />
+    <Compile Include="Security\IWebUserRoleProvider.cs" />
+    <Compile Include="Manager\WebThemeManager.cs" />
+    <Compile Include="Manager\WebGlobalPolicyManager.cs" />
+    <Compile Include="Manager\WebGroupManager.cs" />
+    <Compile Include="Manager\WebMasterPageManager.cs" />
+    <Compile Include="Manager\WebObjectHeaderManager.cs" />
+    <Compile Include="Manager\WebObjectManager.cs" />
+    <Compile Include="Manager\WebObjectSecurityManager.cs" />
+    <Compile Include="Manager\WebObjectSecurityPermissionManager.cs" />
+    <Compile Include="Manager\WebPageElementManager.cs" />
+    <Compile Include="Manager\WebPagePanelManager.cs" />
+    <Compile Include="Manager\WebParameterManager.cs" />
+    <Compile Include="Manager\WebParameterSetManager.cs" />
+    <Compile Include="Manager\WebPartControlManager.cs" />
+    <Compile Include="Manager\WebPartControlTemplateManager.cs" />
+    <Compile Include="Manager\WebPartManager.cs" />
+    <Compile Include="Manager\WebPermissionManager.cs" />
+    <Compile Include="Manager\WebRegistryManager.cs" />
+    <Compile Include="Manager\WebSiteIdentityManager.cs" />
+    <Compile Include="Manager\WebSiteManager.cs" />
+    <Compile Include="Manager\WebTemplateManager.cs" />
+    <Compile Include="Manager\WebTemplatePanelManager.cs" />
+    <Compile Include="Manager\WebTextResourceManager.cs" />
+    <Compile Include="Manager\WebUserGroupManager.cs" />
+    <Compile Include="Manager\WebUserManager.cs" />
+    <Compile Include="PartModel\IPartDataManager.cs" />
+    <Compile Include="PartModel\PartDataManagerModel.cs" />
+    <Compile Include="Security\WebPermissionSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\GenericSqlDataProviderBase.cs" />
+    <Compile Include="Data\DataSource.cs" />
+    <Compile Include="Data\DataStoreEntity.cs" />
+    <Compile Include="Data\DataStoreManager.cs" />
+    <Compile Include="Core\IQueryFilterElement.cs" />
+    <Compile Include="Core\LinkedPart.cs" />
+    <Compile Include="Security\WebAddress.cs" />
+    <Compile Include="Core\ObjectColumnAttribute.cs" />
+    <Compile Include="Core\QueryFilter.cs" />
+    <Compile Include="Core\QueryFilterElement.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Data\IDataManager.cs" />
+    <Compile Include="Data\IDataProvider.cs" />
+    <Compile Include="Data\IDataSourceManager.cs" />
+    <Compile Include="Core\INameWebObject.cs" />
+    <Compile Include="IPageElement.cs" />
+    <Compile Include="Security\IPublicSecurable.cs" />
+    <Compile Include="Core\ISelfManager.cs" />
+    <Compile Include="Core\IVersionDataManager.cs" />
+    <Compile Include="Core\IVersionDataProvider.cs" />
+    <Compile Include="Core\IVersionWebObject.cs" />
+    <Compile Include="Core\IWebHeaderTarget.cs" />
+    <Compile Include="IWebObject.cs" />
+    <Compile Include="Core\ModelBase.cs" />
+    <Compile Include="Core\WebFolder.cs" />
+    <Compile Include="Core\WebFile.cs" />
+    <Compile Include="Security\WebGlobalPolicy.cs" />
+    <Compile Include="Core\WebJob.cs" />
+    <Compile Include="Core\WebOffice.cs" />
+    <Compile Include="Core\WebParameterSet.cs" />
+    <Compile Include="SiteModel\WebShortUrl.cs" />
+    <Compile Include="SiteModel\WebSiteIdentity.cs" />
+    <Compile Include="Core\WebSubscription.cs" />
+    <Compile Include="Core\NamedWebObject.cs" />
+    <Compile Include="Core\PageElementBase.cs" />
+    <Compile Include="Security\PublicSecurableObject.cs" />
+    <Compile Include="Core\WebConstant.cs" />
+    <Compile Include="Security\WebGroup.cs" />
+    <Compile Include="Core\WebObjectLink.cs" />
+    <Compile Include="SiteModel\WebMasterPage.cs" />
+    <Compile Include="Core\WebObject.cs" />
+    <Compile Include="Core\WebObjectHeader.cs" />
+    <Compile Include="Core\WebObjectIPAddress.cs" />
+    <Compile Include="Core\WebObjectSecurity.cs" />
+    <Compile Include="Core\WebObjectSecurityPermission.cs" />
+    <Compile Include="SiteModel\WebPage.cs" />
+    <Compile Include="SiteModel\WebPageElement.cs" />
+    <Compile Include="SiteModel\WebPagePanel.cs" />
+    <Compile Include="Core\WebParameter.cs" />
+    <Compile Include="PartModel\WebPart.cs" />
+    <Compile Include="PartModel\WebPartAdmin.cs" />
+    <Compile Include="PartModel\WebPartConfig.cs" />
+    <Compile Include="PartModel\WebPartControl.cs" />
+    <Compile Include="PartModel\WebPartControlTemplate.cs" />
+    <Compile Include="Security\WebPermission.cs" />
+    <Compile Include="Core\WebRegistry.cs" />
+    <Compile Include="Security\WebRole.cs" />
+    <Compile Include="SiteModel\WebSite.cs" />
+    <Compile Include="SiteModel\WebTemplate.cs" />
+    <Compile Include="SiteModel\WebTemplatePanel.cs" />
+    <Compile Include="Core\WebTextResource.cs" />
+    <Compile Include="Security\WebUser.cs" />
+    <Compile Include="Security\WebUserGroup.cs" />
+    <Compile Include="Core\ObjectManager.cs" />
+    <Compile Include="Core\ParameterizedWebObject.cs" />
+    <Compile Include="Security\SecurableObject.cs" />
+    <Compile Include="Core\Shared\Country.cs" />
+    <Compile Include="Core\Shared\CountryProvider.cs" />
+    <Compile Include="Core\Shared\CountryState.cs" />
+    <Compile Include="Core\Shared\CountryStateProvider.cs" />
+    <Compile Include="Data\GenericSqlDataProvider.cs" />
+    <Compile Include="Data\SqlQueryGenerator.cs" />
+    <Compile Include="Core\StandardDataManager.cs" />
+    <Compile Include="Core\StandardVersionDataManager.cs" />
+    <Compile Include="Data\VersionSqlDataProvider.cs" />
+    <Compile Include="Core\WebObjectAttribute.cs" />
+    <Compile Include="Core\WebObjectBase.cs" />
+    <Compile Include="Core\XmlDataProvider.cs" />
+    <Compile Include="Diagnostics\EventLog.cs" />
+    <Compile Include="Diagnostics\IEventLogProvider.cs" />
+    <Compile Include="Net\IWebMessageQueueProvider.cs" />
+    <Compile Include="Net\MessageProcessorTask.cs" />
+    <Compile Include="Net\SmsConfig.cs" />
+    <Compile Include="Net\SmsMessage.cs" />
+    <Compile Include="Net\WebMessageQueue.cs" />
+    <Compile Include="ObjectKey.cs" />
+    <Compile Include="Agent\ITask.cs" />
+    <Compile Include="Agent\ITaskRequest.cs" />
+    <Compile Include="Security\OtpCodeGenerator.cs" />
+    <Compile Include="Security\UserSession.cs" />
+    <Compile Include="Security\UserSessionManager.cs" />
+    <Compile Include="SiteModel\WebSkin.cs" />
+    <Compile Include="Utilities\AccountHelper.cs" />
+    <Compile Include="Net\CmsEmail.cs" />
+    <Compile Include="Utilities\HtmlHelper.cs" />
+    <Compile Include="Net\WebMailMessage.cs" />
+    <Compile Include="Utilities\LoginSecurity.cs" />
+    <Compile Include="Utilities\ParameterHelper.cs" />
+    <Compile Include="Utilities\SecurityHelper.cs" />
+    <Compile Include="Utilities\SyncHelper.cs" />
+    <Compile Include="Utilities\UserDataTag.cs" />
+    <Compile Include="Utilities\UserIdEqualityComparer.cs" />
+    <Compile Include="Utilities\UserNameEqualityComparer.cs" />
+    <Compile Include="Utilities\UserTagEqualityComparer.cs" />
+    <Compile Include="WApproval.cs">
+      <DependentUpon>WFrameworkModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WApprovalPartial.cs" />
+    <Compile Include="WebCategory.cs" />
+    <Compile Include="WConfig.cs" />
+    <Compile Include="Utilities\WebCryptography.cs" />
+    <Compile Include="Utilities\WebRedirector.cs" />
+    <Compile Include="WFrameworkModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WFrameworkModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WFrameworkModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WFrameworkModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WFrameworkModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WFrameworkModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="WQuery.cs" />
+    <Compile Include="WebRewriter.cs" />
+    <Compile Include="Utilities\WebSetup.cs" />
+    <Compile Include="Utilities\WHelper.cs" />
+    <Compile Include="SiteModel\WebContextBase.cs" />
+    <Compile Include="Agent\AgentTaskBase.cs" />
+    <Compile Include="IO\PathResolver.cs" />
+    <Compile Include="Net\AttachmentManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WContext.cs" />
+    <Compile Include="WSession.cs" />
+    <Compile Include="WebUserContainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WCMS.Common\WCMS.Common.csproj">
+      <Project>{1881CF9F-2771-49D6-993B-EEF7B40F698C}</Project>
+      <Name>WCMS.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="WFrameworkModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WFrameworkModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="WFrameworkModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WFrameworkModel.edmx</DependentUpon>
+      <LastGenOutput>WFrameworkModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="WFrameworkModel.edmx.diagram">
+      <DependentUpon>WFrameworkModel.edmx</DependentUpon>
+    </None>
+    <None Include="WFrameworkModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WFrameworkModel.edmx</DependentUpon>
+      <LastGenOutput>WFrameworkModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
