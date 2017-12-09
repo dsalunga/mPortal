@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0802EBA9-6536-4858-A532-1FF7103D0151}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WCMS.Framework.Core.SqlProvider</RootNamespace>
+    <AssemblyName>WCMS.Framework.Core.SqlProvider</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\WCMS.Framework.Core.SqlProvider.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="UserProviderProvider.cs" />
+    <Compile Include="WebCategoryProvider.cs" />
+    <Compile Include="WebThemeProvider.cs" />
+    <Compile Include="Diagnostics\EventLogProvider.cs" />
+    <Compile Include="WebAddressProvider.cs" />
+    <Compile Include="WebAttachmentProvider.cs" />
+    <Compile Include="WebCommentProvider.cs" />
+    <Compile Include="WebFileProvider.cs" />
+    <Compile Include="WebFolderProvider.cs" />
+    <Compile Include="WebGlobalPolicyProvider.cs" />
+    <Compile Include="WebGroupProvider.cs" />
+    <Compile Include="WebJobProvider.cs" />
+    <Compile Include="WebMessageQueueProvider.cs" />
+    <Compile Include="WebObjectIPAddressProvider.cs" />
+    <Compile Include="WebObjectSecurityProvider.cs" />
+    <Compile Include="WebObjectSecurityPermissionProvider.cs" />
+    <Compile Include="WebPageElementProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebConstantProvider.cs" />
+    <Compile Include="WebMasterPageProvider.cs" />
+    <Compile Include="WebObjectProvider.cs" />
+    <Compile Include="WebObjectHeaderProvider.cs" />
+    <Compile Include="WebPageProvider.cs" />
+    <Compile Include="WebPagePanelProvider.cs" />
+    <Compile Include="WebParameterProvider.cs" />
+    <Compile Include="WebParameterSetProvider.cs" />
+    <Compile Include="WebPartAdminProvider.cs" />
+    <Compile Include="WebPartConfigProvider.cs" />
+    <Compile Include="WebPartControlProvider.cs" />
+    <Compile Include="WebPartControlTemplateProvider.cs" />
+    <Compile Include="WebPartProvider.cs" />
+    <Compile Include="WebPermissionProvider.cs" />
+    <Compile Include="WebPermissionSetProvider.cs" />
+    <Compile Include="WebRegistryProvider.cs" />
+    <Compile Include="WebRoleProvider.cs" />
+    <Compile Include="WebShareProvider.cs" />
+    <Compile Include="WebShortUrlProvider.cs" />
+    <Compile Include="WebSiteIdentityProvider.cs" />
+    <Compile Include="WebSiteProvider.cs" />
+    <Compile Include="WebSubscriptionProvider.cs" />
+    <Compile Include="WebTemplateProvider.cs" />
+    <Compile Include="WebTemplatePanelProvider.cs" />
+    <Compile Include="WebTextResourceProvider.cs" />
+    <Compile Include="WebSkinProvider.cs" />
+    <Compile Include="WebUserGroupProvider.cs" />
+    <Compile Include="WebUserProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WCMS.Common\WCMS.Common.csproj">
+      <Project>{1881CF9F-2771-49D6-993B-EEF7B40F698C}</Project>
+      <Name>WCMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCMS.Framework\WCMS.Framework.csproj">
+      <Project>{9A259659-82E0-4FA7-8B43-786D92F72E53}</Project>
+      <Name>WCMS.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
