@@ -1,0 +1,534 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WCMS.Framework</name>
+    </assembly>
+    <members>
+        <member name="F:WCMS.Framework.Agent.FrameworkAgent.TASK_FORCE">
+            <summary>
+            For single-job execution. Ignores all status and force execution.
+            </summary>
+        </member>
+        <member name="F:WCMS.Framework.Agent.FrameworkAgent.TASK_INTERACTIVE">
+            <summary>
+            Allows user to terminate the Agent thru console.
+            </summary>
+        </member>
+        <member name="F:WCMS.Framework.Agent.FrameworkAgent.execInterval">
+            <summary>
+            Value in seconds
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.Core.DataAccess.CreateProvider``1">
+            <summary>
+            Creates a specific provider instance based on the defined value in the configuration.
+            It uses the default provider defined
+            </summary>
+            <typeparam name="T">Interface of the provider</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Core.DataAccess.CreateXmlProvider``1">
+            <summary>
+            Creates an Xml provider for a specific class. Should support passing the object
+            as parameter to help in resolving the correct provider.
+            </summary>
+            <typeparam name="T">interface of the provider</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Core.DataAccess.CreateWebObjectProvider">
+            <summary>
+            Create an instance of the WebObject provider based on configuration
+            Might need to removed this something and support only the XML provider
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WCMS.Framework.Core.IDataManager">
+            <summary>
+            For now, used only in WebObject.
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.Core.WebGlobalPolicy.IsUserPermitted(System.Int32,System.Int32)">
+            <summary>
+            Check if the current user is permitted
+            </summary>
+            <param name="globalPolicyId"></param>
+            <param name="permissionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Core.WebGlobalPolicy.IsUserAdded(System.Int32)">
+            <summary>
+            Check the current user is added to Global Policy
+            </summary>
+            <param name="globalPolicyId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WCMS.Framework.Core.WebJob.RecurrenceId">
+            <summary>
+            Please refer to WCMS.Framework.RecurrenceType enum
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Core.WebJob.ExecutionStatus">
+            <summary>
+            Refer to WCMS.Framework.ExecutionStatus
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Core.WebJob.ExecutionMessage">
+            <summary>
+            A Warning or an Error Message
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Core.WebObject.MaxHistoryCount">
+            <summary>
+            Number of record versions to retain before considering as "old" and deleting
+            </summary>
+        </member>
+        <member name="T:WCMS.Framework.Core.WebObjectSecurity">
+            <summary>
+            Represents a security link between an Object and a User or Group (Role)
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Core.WebObjectSecurity.ObjectId">
+            <summary>
+            ObjectId of the Object. e.g. WebSite, WebPage, etc
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Core.WebObjectSecurity.RecordId">
+            <summary>
+            RecordId of the Object. e.g. WebSite, WebPage, etc
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Core.WebObjectSecurity.SecurityObjectId">
+            <summary>
+            ObjectId of the security object. i.e. User and Group
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Core.WebObjectSecurity.SecurityRecordId">
+            <summary>
+            RecordId of the security object. i.e. User and Group
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Core.WebObjectSecurity.SecurityEntity">
+            <summary>
+            Returns the User or Group
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.Core.WebObjectSecurity.IsUserPermitted(System.Int32,WCMS.Framework.IWebObject,System.Int32)">
+            <summary>
+            Check if the current user is permitted
+            </summary>
+            <param name="permissionId"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Core.WebObjectSecurity.IsUserPermitted(System.Int32,System.Int32,WCMS.Framework.IWebObject,System.Int32)">
+            <summary>
+            Checks permission directly, does not include inheritance.
+            </summary>
+            <param name="userId"></param>
+            <param name="permissionId"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WCMS.Framework.Core.WebObjectSecurityPermission">
+            <summary>
+            Represents the permissions applied to a User or Group (Role) in relation to an Object
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Core.WebTextResource.DatePersisted">
+            <summary>
+            Utc
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.Core.SecurableObject.GetObjectSecurities">
+            <summary>
+            Security for Objects tagged to User and Groups
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Core.SecurableObject.GetObjectSecurityPermissions">
+            <summary>
+            Object Security (Objects tagged to User and Groups) permissions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Core.SecurableObject.TryGetUserPermission(System.Int32)">
+            <summary>
+            Get current user's permission
+            </summary>
+            <param name="permissionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Core.SecurableObject.TryFindUser">
+            <summary>
+            Check if current user has permission entries.
+            </summary>
+            <returns>True if user has</returns>
+        </member>
+        <member name="M:WCMS.Framework.Core.SecurableObject.IsUserPermitted(System.Int32,System.Int32)">
+            <summary>
+            Check if the current user is permitted
+            </summary>
+            <param name="permissionId"></param>
+            <param name="isPublic">Specifies if for Public/Front-End access (not Admin)</param>
+            <returns>True if user is permitted</returns>
+        </member>
+        <member name="M:WCMS.Framework.Core.SecurableObject.IsHighestPermission(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Checks the highest permission granter to current user
+            </summary>
+            <param name="highestPermissionId">Hishest permission that the user is supposed to be granted</param>
+            <param name="nextNotPermittedId">Permission the user is not supposed to have</param>
+            <returns></returns>
+        </member>
+        <member name="T:WCMS.Framework.Core.StandardDataManager">
+            <summary>
+            For now, used only by WebObject.
+            </summary>
+        </member>
+        <member name="T:WCMS.Framework.Core.StandardVersionDataManager">
+            <summary>
+            For now, used only by WebObject.
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Net.WebMessageQueue.ToOrBcc">
+            <summary>
+            MessageToOrBccStatus
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Net.WebMessageQueue.Status">
+            <summary>
+            MessageQueueStatus
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.Net.WebMessageQueue.SendVia">
+            <summary>
+            MessageSendOptions
+            </summary>
+        </member>
+        <member name="T:WCMS.Framework.Security.ExternalLoginResult">
+            <summary>
+            If not null, login is successful
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:WCMS.Framework.WebPermissionSet" -->
+        <member name="F:WCMS.Framework.RecurrenceType.None">
+            <summary>
+            Run Once
+            </summary>
+        </member>
+        <member name="T:WCMS.Framework.CacheStatus">
+            <summary>
+            This is a runtime state only. Gets set after loading of cache.
+            </summary>
+        </member>
+        <member name="F:WCMS.Framework.CentralPages.CentrlHome">
+            <summary>
+            Central Admin's Home
+            </summary>
+        </member>
+        <member name="F:WCMS.Framework.CentralPages.LoaderMain">
+            <summary>
+            Loader Main: WebParts/Central/Default.aspx
+            </summary>
+        </member>
+        <member name="F:WCMS.Framework.PanelUsage.Inherit">
+            <summary>
+            Inherit all elements from MasterPage. Exclude Page elements.
+            </summary>
+        </member>
+        <member name="F:WCMS.Framework.PanelUsage.Add">
+            <summary>
+            Inherit all elements from MasterPage and combine Page elements.
+            </summary>
+        </member>
+        <member name="F:WCMS.Framework.PanelUsage.Override">
+            <summary>
+            Use only Page elements.
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.PublicSecurableObject.GetPublicAccessPartial(WCMS.Framework.WSession)">
+            <summary>
+            Returns true when allowed, false when not
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.PublicSecurableObject.GetPublicAccountPermMaxPartial">
+            <summary>
+            
+            </summary>
+            <returns>Permissions value</returns>
+        </member>
+        <member name="M:WCMS.Framework.WebGroup.SelectNode(System.String)">
+            <summary>
+            Most comprehensive, also calls GetByAny
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.WebGroup.GetByAny(System.String)">
+            <summary>
+            Accepts whether unique or simple format name. For a more comprehensive call, use SelectNode
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.WebGroup.Get(System.String)">
+            <summary>
+            Straight-forward group search by name. Better performance
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.WPage.GetPublicAccess(WCMS.Framework.WSession)">
+            <summary>
+            Returns true when allowed, false when not
+            </summary>
+            <returns>Should return a Permission int value?</returns>
+        </member>
+        <member name="M:WCMS.Framework.WPage.SelectNode(System.Int32,System.String)">
+            <summary>
+            Tries to resolve the path to a WebPage. Path should not contain the site name.
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WCMS.Framework.WebPageElement">
+            <summary>
+            Note: Use ObjectId to determine the owner if Page or MasterPage
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.WebPageElement.ObjectId">
+            <summary>
+            Can be used to determine if this is owned by a Page or a MasterPage
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.WebPageElement.GetPublicAccess(WCMS.Framework.WSession)">
+            <summary>
+            Returns true when allowed, false when not
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.WPart.GetTemplateFromIdentity(System.String)">
+            <summary>
+            A method for locating the requested template specified in the "Open"
+            query key
+            </summary>
+            <param name="identityPath">Example: Open=Article/ShortList</param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.WPart.GetTemplateFromIdentity(System.Int32,System.String)">
+            <summary>
+            A method for locating the requested template specified in the "Open"
+            query key. It will base the search from the supplied sourceTemplateId
+            </summary>
+            <param name="sourceTemplateId"></param>
+            <param name="identityPath"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WCMS.Framework.WebPartConfig.Id">
+            <summary>
+            PartConfigId
+            </summary>
+        </member>
+        <member name="T:WCMS.Framework.WSite">
+            <summary>
+            Summary description for Site
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.WSite.GetPublicAccess(WCMS.Framework.WSession)">
+            <summary>
+            Returns true when allowed, false when not
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.WSite.GetPrimaryIdentity">
+            <summary>
+            All websites should have a default identity if they have at least 1
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:WCMS.Framework.WebTemplatePanel.Id">
+            <summary>
+            TemplatePanelId
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.WebUser.IsLoginLockedOut">
+            <summary>
+            Login lock-out check: 5 failed retries, locked for 15mins
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.WebUser.Delete(System.Int32)">
+            <summary>
+            Includes validation checks and removes user's membership to groups
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WCMS.Framework.UserSession.SessionId">
+            <summary>
+            Internal reference used by Portal
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.UserSession.AuthKey">
+            <summary>
+            Volatile, one time-use reference used by Portal
+            </summary>
+        </member>
+        <member name="T:WCMS.Framework.Utilities.AccountHelper">
+            <summary>
+            Account formats: username_or_groupname, USER\username, GROUP\groupname, objectid\recordid
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.Utilities.AccountHelper.FormatForDisplay(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="accountsString"></param>
+            <param name="userFormatString">Format: {0} = Id, {1} = FirstNameAndLastName</param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Utilities.AccountHelper.FormatForDisplay(WCMS.Framework.Core.NamedWebObject,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="userFormatString">Format: {0} = Id, {1} = FirstNameAndLastName</param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Utilities.AccountHelper.CollectEmails(System.String,System.Boolean)">
+            <summary>
+            Supports UniqueName and UniqueShortName
+            </summary>
+            <param name="emailUserGroupsString"></param>
+            <param name="includeEmailsOnly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Utilities.AccountHelper.CollectMobileNumbers(System.String,System.Boolean)">
+            <summary>
+            Supports UniqueName and UniqueShortName
+            </summary>
+            <param name="mobileNumberUserGroupsString"></param>
+            <param name="includeMobileNumbersOnly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Utilities.AccountHelper.IsPresentOrMember(System.Int32,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Checks current user is if he/she is included in the list (string). 
+            The list can be a list of users in unique format or list of groups
+            either in unique format or not. 
+            </summary>
+            <param name="userGroupsString">List of users or groups in unique format separated
+            by account delimeter like semi-color. If not in unique format they are treated as group.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="P:WCMS.Framework.Utilities.WebMailMessage.SubjectAutoPrefix">
+            <summary>
+            Subject will be prefixed automatically with the defined system prefix.
+            </summary>
+        </member>
+        <member name="T:WCMS.Framework.WebRedirector">
+            <summary>
+            Use this class in Admin section to manage redirection. For controls also.
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.WQuery.SetOpen(System.Object)">
+            <summary>
+            Sets which webpart to load (in relation to the configured part for current element). This is used only in front-end. 
+            In Admin, Load parameter is the one required.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:WCMS.Framework.WQuery.LoadAndRedirect(System.String)">
+            <summary>
+            Loads an admin control
+            </summary>
+            <param name="partAdmin"></param>
+        </member>
+        <member name="M:WCMS.Framework.WQuery.SetCmd(System.String)">
+            <summary>
+            Sets the "Load" key parameter (for Admin loading of components)
+            </summary>
+            <param name="cmd"></param>
+        </member>
+        <member name="M:WCMS.Framework.WQuery.UnloadAndRedirect">
+            <summary>
+            Removes the loaded control and redirects the page to admin control loader
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.WQuery.RemoveOpen">
+            <summary>
+            Open is used in the Front-End modules
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.WQuery.RemoveLoad">
+            <summary>
+            Load is used in Central/Admin
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.WebRewriter.BuildUrl(WCMS.Framework.WPage,System.Web.HttpContext)">
+            <summary>
+            Builds only the parts related to a page, leaves out all related to site
+            </summary>
+            <param name="page"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WCMS.Framework.AgentTaskBase.RecurrenceId">
+            <summary>
+            Please refer to WCMS.Framework.RecurrenceType enum
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.AgentTaskBase.ExecutionStatus">
+            <summary>
+            Refer to WCMS.Framework.ExecutionStatus
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.WContext.ParameterizedObject">
+            <summary>
+            Returns the main object involved in the context. i.e. Page, Element or PartAdmin
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.WContext.UserHostAddress">
+            <summary>
+            IP Address of the client
+            </summary>
+        </member>
+        <member name="P:WCMS.Framework.WContext.PageId">
+            <summary>
+            What is the purpose of this?
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.WContext.SetOpen(System.Object)">
+            <summary>
+            Sets which webpart to load (in relation to the configured part for current element). This is used only in front-end. 
+            In Admin, Load parameter is the one required.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:WCMS.Framework.WContext.Open(System.Object)">
+            <summary>
+            Sets Open parameter and Redirects the page.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:WCMS.Framework.WContext.Open">
+            <summary>
+            Removes Open parameter and Redirects the page.
+            </summary>
+        </member>
+        <member name="M:WCMS.Framework.WContext.GetParameterSet">
+            <summary>
+            Calls GetChild() with no fallback. Returns the default set "ParameterSet".
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:WCMS.Framework.WSession.IsAdministrator">
+            <summary>
+            Using this as a basis for most permissions should be depreciated in the near future. Specific permissions should be checked.
+            </summary>
+        </member>
+    </members>
+</doc>
