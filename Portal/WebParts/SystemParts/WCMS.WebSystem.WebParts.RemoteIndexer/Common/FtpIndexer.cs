@@ -166,8 +166,8 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Common
         private FileStruct ParseWindowsStyleRecord(string record)
         {
             ///Assuming the record style as 
-            /// 06-19-10  10:26AM               264258 2nd QTR _ITG Day 3 - 008.JPG
-            /// 05-29-10  02:22AM       <DIR>          ams
+            /// 06-19-10  10:26AM               264258 photo.JPG
+            /// 05-29-10  02:22AM       <DIR>          some folder
 
             var fileStruct = new FileStruct();
 
