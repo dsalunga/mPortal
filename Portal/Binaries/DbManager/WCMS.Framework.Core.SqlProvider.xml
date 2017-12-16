@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WCMS.Framework.Core.SqlProvider</name>
+    </assembly>
+    <members>
+        <member name="M:WCMS.Framework.Core.SqlProvider.WebPageElementProvider.GetList(System.Int32,System.Int32)">
+            <summary>
+            GetByParentObjectId
+            </summary>
+            <param name="recordId"></param>
+            <param name="objectId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCMS.Framework.Core.SqlProvider.WebPageElementProvider.GetList(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            GetByPanelId
+            </summary>
+            <param name="recordId"></param>
+            <param name="objectId"></param>
+            <param name="templatePanelId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
