@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>$(Title)</title>
+    <style type="text/css">
+        h3
+        {
+            font-size: 150%;
+        }
+        
+        input, select, textarea
+        {
+            font: 11px/18px 'Lucida Grande' , 'Lucida Sans Unicode' ,Verdana,Arial,Helvetica,sans-serif;
+        }
+        
+        body, p, li, dt, dd, label
+        {
+            color: #000000;
+            font-family: 'Lucida Sans' , 'Lucida Grande' , 'Lucida Sans Unicode' ,sans-serif;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img border="0" alt="" src="$(BaseAddress)/Content/Themes/website/assets/images/logo.png" />
+        <br />
+        <h3>
+            $(Title)</h3>
+        <em>
+            <div>
+                Published:&nbsp;$(PublishedDate)</div>
+        </em>
+        <table width="100%" border="0">
+            <tbody>
+                <tr>
+                    <td style="height: 5px;">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            $(Content)
+                        </div>
+                        <br />
+                        <br />
+                        <em>Permalink:</em>
+                        <br />
+                        <a href="$(Permalink)">$(Permalink)</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

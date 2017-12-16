@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Portal-Template Name="Weeky-Scheduler-Default">
+  <Template-Sections>
+    <Section Name="Styles">
+      <![CDATA[
+<style type="text/css">
+    .weekly-scheduler
+    {
+        margin-left: 4.65pt;
+        border-collapse: collapse;
+    }
+    
+    .weekly-scheduler .day-wrapper
+    {
+        border-width: 1.5pt 1.5pt medium medium;
+        border-style: solid solid none none;
+        background: none repeat scroll 0% 0% rgb(217, 217, 217);
+        padding: 0in 5.4pt;
+        height: 19.5pt;
+        vertical-align: bottom;
+        white-space: nowrap;
+    }
+    
+    .weekly-scheduler .subject-label
+    {
+        border-width: 1.5pt;
+        border-style: solid;
+        vertical-align: middle;
+        border-color: windowtext windowtext black;
+    }
+    
+    .weekly-scheduler .day-wrapper div
+    {
+        margin-bottom: 0.0001pt;
+        text-align: center;
+        line-height: normal;
+        font-weight: bold;
+        font-size: 14pt;
+        color: black;
+    }
+    
+    .weekly-scheduler .date-wrapper
+    {
+        white-space: nowrap;
+        vertical-align: bottom;
+        border-width: medium 1.5pt 1.5pt medium;
+        border-style: none solid solid none;
+        background: none repeat scroll 0% 0% rgb(217, 217, 217);
+        padding: 0in 5.4pt;
+    }
+    
+    .weekly-scheduler .date-wrapper div
+    {
+        margin-bottom: 0.0001pt;
+        text-align: center;
+        line-height: normal;
+        color: black;
+        font-weight: bold;
+    }
+    
+    .weekly-scheduler .column-filler
+    {
+        padding: 0in 5.4pt;
+        vertical-align: bottom;
+        white-space: nowrap;
+    }
+    
+    .weekly-scheduler .schedule-header
+    {
+        white-space: nowrap;
+        vertical-align: bottom;
+        padding: 0in 5.4pt;
+    }
+    
+    .weekly-scheduler .schedule-header div
+    {
+        margin-bottom: 0.0001pt;
+        text-align: center;
+        line-height: normal;
+        font-weight: bold;
+        font-size: 14pt;
+        color: black;
+    }
+    
+    .weekly-scheduler .schedule-date
+    {
+        white-space: nowrap;
+        vertical-align: bottom;
+        padding: 0in 5.4pt;
+    }
+    
+    .weekly-scheduler .schedule-date div
+    {
+        margin-bottom: 0.0001pt;
+        text-align: center;
+        line-height: normal;
+        color: black;
+        font-weight: bold;
+        font-style: italic;
+    }
+    
+    .weekly-scheduler .schedule-topic
+    {
+        white-space: nowrap;
+        border-width: medium 1pt 1pt 1.5pt;
+        border-style: none solid solid;
+        border-color: -moz-use-text-color windowtext black;
+        background: none repeat scroll 0% 0% rgb(217, 217, 217);
+        padding: 0in 5.4pt;
+    }
+    
+    .weekly-scheduler .schedule-topic div
+    {
+        margin-bottom: 0.0001pt;
+        line-height: normal;
+        color: black;
+        font-weight: bold;
+    }
+    
+    .weekly-scheduler .schedule-entry-container
+    {
+        border-width: 1pt;
+        border-style: solid;
+        padding: 0in 1pt;
+        white-space: nowrap;
+    }
+    
+    .weekly-scheduler .schedule-entry
+    {
+        text-align: center;
+        margin-bottom: 0.0001pt;
+        line-height: normal;
+        color: black;
+    }
+    
+    .weekly-scheduler .schedule-entry-successor
+    {
+        border-style: dashed none none none;
+        border-width: 1pt medium medium medium;
+    }
+    
+    .weekly-scheduler .footer-note
+    {
+        padding: 0in 5.4pt;
+        vertical-align: bottom;
+        white-space: nowrap;
+    }
+    
+    .weekly-scheduler .footer-note div
+    {
+        margin-bottom: 0.0001pt;
+        line-height: normal;
+        color: black;
+        font-weight: bold;
+    }
+</style>
+      ]]>
+    </Section>
+    <Section Name="HEADER">
+      <![CDATA[
+      <tr>
+            <td class="schedule-header" colspan="4">
+                <div>
+                    KNC Destino
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="schedule-date" colspan="4">
+                <div>
+                    $(DATE-RANGE)</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            $(TOPIC-HEADER)
+            $(DAY-CONTAINER)
+        </tr>
+        <tr>
+            $(DATE-CONTAINER)
+        </tr>
+      ]]>
+    </Section>
+    <Section Name="TOPIC-HEADER">
+      <![CDATA[<td class="day-wrapper subject-label" rowspan="2" style="">
+                <div>
+                    SUBJECT</div>
+            </td>]]>
+    </Section>
+    <Section Name="DAY-HEADER">
+      <![CDATA[<td class="day-wrapper">
+                <div>
+                    $(DAY-LABEL)</div>
+            </td>]]>
+    </Section>
+    <Section Name="DATE-HEADER">
+      <![CDATA[<td class="date-wrapper">
+                <div>
+                    $(DATE-LABEL)</div>
+            </td>]]>
+    </Section>
+    <Section Name="CONTAINER">
+      <![CDATA[
+      <table cellspacing="0" cellpadding="0" border="0" class="weekly-scheduler">
+      <tbody>
+      $(CONTENT)
+      $(FOOTER)
+      </tbody>
+      </table>
+      ]]>
+    </Section>
+    <Section Name="TOPIC-ROW">
+      <![CDATA[<tr style="">$(TOPIC-ROW)</tr>]]>
+    </Section>
+    <Section Name="TOPIC-ITEM">
+      <![CDATA[<td class="schedule-topic">
+                    <div>
+                        $(CONTENT)</div>
+                </td>]]>
+    </Section>
+    <Section Name="CELL-CONTAINER">
+      <![CDATA[<td class="schedule-entry-container">
+                    $(ITEM-LIST)
+                </td>]]>
+    </Section>
+    <Section Name="FIRST-CELL">
+      <![CDATA[<div class="schedule-entry">
+                        $(CONTENT)</div>]]>
+    </Section>
+    <Section Name="SUCCEEDING-CELL">
+      <![CDATA[<div class="schedule-entry schedule-entry-successor">
+                        $(CONTENT)</div>]]>
+    </Section>
+    <Section Name="FOOTER">
+      <![CDATA[<tr>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+        </tr>
+        <tr style="">
+            <td class="column-filler">
+                &nbsp;
+            </td>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+            <td class="column-filler">
+                &nbsp;
+            </td>
+        </tr>
+        <tr style="">
+            <td class="footer-note">
+                <div>
+                    Prepared by:</div>
+            </td>
+            <td class="footer-note">
+                &nbsp;
+            </td>
+            <td class="footer-note">
+                <div>
+                    Noted by:</div>
+            </td>
+            <td class="footer-note">
+                &nbsp;
+            </td>
+        </tr>
+        <tr style="">
+            <td class="footer-note" colspan="2">
+                <div>
+                    <em>Bro. Jun Gundayao</em></div>
+            </td>
+            <td class="footer-note" colspan="2">
+                <div>
+                    <em>Bro. Robert Navoa</em></div>
+            </td>
+        </tr>]]>
+    </Section>
+  </Template-Sections>
+</Portal-Template>

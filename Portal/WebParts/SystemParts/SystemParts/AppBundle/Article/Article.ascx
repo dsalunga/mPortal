@@ -1,0 +1,1 @@
+<%@ Control Language="C#" AutoEventWireup="true" Inherits="WCMS.WebSystem.WebParts.Article.ArticleController" Codebehind="Article.ascx.cs" %>

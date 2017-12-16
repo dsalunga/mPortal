@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WebPart Name="" Identity="">
+  <Controls>
+    <Control Name="" Path=""></Control>
+  </Controls>
+  <AdminControls>
+    <AdminControl Name="" Path=""></AdminControl>
+  </AdminControls>
+</WebPart>
