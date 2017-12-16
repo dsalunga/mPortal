@@ -1,0 +1,1 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" EnableTheming="false" CodeBehind="RemoteIndexerDownload.ascx.cs" Inherits="WCMS.WebSystem.Content.Parts.FileManager.IndexerDownload" %>

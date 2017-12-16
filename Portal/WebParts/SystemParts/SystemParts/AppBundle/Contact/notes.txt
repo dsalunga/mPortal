@@ -1,0 +1,20 @@
+Settings:
+
+
+CONTACT.ReplyMsg
+	{0} = Full name
+
+CONTACT.ThankYouMsg
+
+
+
+LAST UPDATED:
+Oct. 5, 2006
+
+NEXT FEATURES:
+- selected contact recipient
+
+
+
+PARAMETERS:
+- RequireCode: Disable the captcha code
