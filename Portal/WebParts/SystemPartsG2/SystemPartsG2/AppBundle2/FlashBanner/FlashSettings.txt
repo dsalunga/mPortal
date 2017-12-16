@@ -1,0 +1,6 @@
+
+noborder
+exactfit
+noscale
+
+<param name="scale" value="noborder" />

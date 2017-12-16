@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A1B42D5B-5031-4936-B53A-F7F1151993D2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WCMS.WebSystem.WebParts.Incident</RootNamespace>
+    <AssemblyName>WCMS.WebSystem.WebParts.Incident</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WCMS.Common">
+      <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WCMS.Framework">
+      <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="IncidentInstance.cs" />
+    <Compile Include="IncidentType.cs" />
+    <Compile Include="IncidentCategory.cs" />
+    <Compile Include="IncidentHelper.cs" />
+    <Compile Include="IncidentTicket.cs" />
+    <Compile Include="IncidentTicketHistory.cs" />
+    <Compile Include="Managers\IncidentCategoryManager.cs" />
+    <Compile Include="Managers\IncidentTypeManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\IIncidentCategoryProvider.cs" />
+    <Compile Include="Providers\IIncidentTypeProvider.cs" />
+    <Compile Include="Providers\IncidentInstanceProvider.cs" />
+    <Compile Include="Providers\IncidentTypeProvider.cs" />
+    <Compile Include="Providers\IIncidentTicketHistoryProvider.cs" />
+    <Compile Include="Providers\IIncidentTicketProvider.cs" />
+    <Compile Include="Providers\IncidentCategoryProvider.cs" />
+    <Compile Include="Providers\IncidentTicketHistoryProvider.cs" />
+    <Compile Include="Providers\IncidentTicketProvider.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

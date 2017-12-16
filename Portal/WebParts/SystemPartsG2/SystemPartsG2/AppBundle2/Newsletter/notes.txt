@@ -1,0 +1,17 @@
+Settings:
+
+ENL.From
+ENL.Message
+	{0} = email
+	{1} = subscribe
+	{2} = unsubscribe
+	
+ENL.UnsubscribeMsgURL
+ENL.VerifyMsgURL
+ENL.FormatString
+
+System.WebPath
+
+
+NEXT FEATURES:
+- set textbox size / instance

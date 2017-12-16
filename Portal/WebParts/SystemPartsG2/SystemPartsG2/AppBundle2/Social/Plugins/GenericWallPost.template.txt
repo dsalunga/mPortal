@@ -1,0 +1,20 @@
+﻿<div>
+    <a href="/Singapore/Member-Profile.aspx?UserId=$(POSTER_USER_ID)" style="float: left; margin-right: 8px;">
+        <img src="$(POSTER_IMAGE_URL)" style="width: 50px;" alt="" />
+    </a>
+    <div class="mainWrapper" style="padding-left: 58px;">
+        <div class="postHeading">
+            <a href="/Singapore/Member-Profile.aspx?UserId=$(POSTER_USER_ID)" style="color: #3B5998; font-weight: bold;">$(POSTER_NAME)</a>
+        </div>
+        <div>
+            <span class="messageBody" style="color: #000;">$(POST_MESSAGE)</span>
+        </div>
+        <div class="postActions">
+            <a class="" href="#" style="color: #6B84B4">Comment</a>&nbsp;&middot;&nbsp;<span
+                style="color: #999">$(DATE_POSTED)</span>
+        </div>
+		$(COMMENTS_CONTROL)
+    </div>
+</div>
+<div>
+    &nbsp;</div>

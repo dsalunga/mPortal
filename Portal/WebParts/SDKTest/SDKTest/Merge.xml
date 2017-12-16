@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WebPart Name="" Identity="">
+  <CopyBin>
+    <Directories>
+      <Directory Name="test2" />
+    </Directories>
+    <Files>
+      <!--<File Name="SDKTest.*" />-->
+    </Files>
+  </CopyBin>
+</WebPart>
