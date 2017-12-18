@@ -1,0 +1,120 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem
+@using WCMS.WebSystem.Apps.BranchLocator
+@{
+    var loggedIn = WSession.Current.IsLoggedIn;
+    var isAdmin = WSession.Current.IsAdministrator;
+    MChapter chapter = null;
+    
+    var query = new WQuery(this);
+    var chapterId = query.GetId("id");
+    query.Remove(WConstants.Open);
+    query.Remove("id");
+    
+    if (chapterId <= 0 || (chapter = MChapter.Provider.Get(chapterId)) == null || !FALHelper.IsAllowed(chapter, loggedIn, isAdmin))
+    {
+        query.Redirect();
+        return;
+    }
+
+    var address = string.IsNullOrEmpty(chapter.Address) ? "Please contact the assigned coordinator." : chapter.Address;
+}
+<link href="@WebUtil.Version("~/content/parts/branchlocator/res/css/fal.min.css")" type="text/css" rel="stylesheet" />
+<style type="text/css">
+    .pic {
+        border: solid 1px #000000;
+    }
+</style>
+
+@Html.Hidden("lat", chapter.Latitude)
+@Html.Hidden("lng", chapter.Longitude)
+@Html.Hidden("name", chapter.Name)
+
+<div class="container">
+    <h1 class="page-header">@chapter.Name <small>@(chapter.ChapterType == (int)ChapterTypes.Division ? "Division" : chapter.ChapterType == (int)ChapterTypes.District ? "District" : "Chapter")</small></h1>
+    @Html.Raw(FALHelper.BuildBreadcrumb(query, chapterId))
+    <br />
+    <br />
+    <div class="map-overlay" onclick="style.display = 'none'"><div>Click or touch map to activate</div></div>
+    <div id="mapContainer" class="map-container"></div>
+    <hr />
+
+    <div class="row">
+        @*<div class="col-lg-4">
+            <canvas id="localPicture" class="pic"></canvas>
+            <br />
+            <canvas id="contactPicture" class="pic"></canvas>
+        </div>*@
+        <div class="col-lg-12">
+            @if (!string.IsNullOrEmpty(chapter.Address))
+            {
+                <h4>Address</h4>
+                <p><span class="glyphicon glyphicon-map-marker"></span> @chapter.Address</p>
+                @*<p><span class="glyphicon glyphicon-map-marker"></span> How to get there details/landmarks.</p>*@
+                <br />
+            }
+
+            @if(false){
+                <h4>Assigned Coordinators</h4>
+                var assignedCoordinator = new[] { "Coordinator1", "Coordinator2", "Coordinator3" };
+                foreach (var item in assignedCoordinator)
+                {
+                    <p><i class="glyphicon glyphicon-user"></i> @item</p>
+                }
+                <br />
+            }
+
+            <h4>Contact Info</h4>
+            @if (!string.IsNullOrEmpty(chapter.Mobile))
+            {
+                <p>
+                    <span class="glyphicon glyphicon-phone"></span> Mobile: @chapter.Mobile
+                </p>
+            }
+            @if (!string.IsNullOrEmpty(chapter.Telephone))
+            {
+                <p><i class="glyphicon glyphicon-earphone"></i> Telephone: @chapter.Telephone</p>
+            }
+            @if (!string.IsNullOrEmpty(chapter.Email))
+            {
+                <p><i class="glyphicon glyphicon-envelope"></i> Email: @chapter.Email</p>
+            }
+
+            @if (!string.IsNullOrEmpty(chapter.ServiceSchedule))
+            {
+                <br />
+                <h4>Schedule of Services</h4>
+                <p>@chapter.ServiceSchedule</p>
+            }
+
+            @if (!string.IsNullOrEmpty(chapter.MoreInfo))
+            {
+                <br />
+                <h4>More Info</h4>
+                <p>@chapter.MoreInfo</p>
+            }
+            <br />
+            @*<br />*@
+            @*<a class="btn btn-default btn-sm" href="@query">Back to Dashboard</a>*@
+            ><br />
+            <h6 class="text-muted">Last updated: @chapter.LastUpdate.ToLongDateString() @@ @chapter.LastUpdate.ToLongTimeString()</h6>
+        </div>
+    </div>
+</div>
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="@WebUtil.Version("~/content/parts/branchlocator/res/js/fal.min.js")"></script>
+<script type="text/javascript">
+    function initialize() {
+        var latlng = new google.maps.LatLng($('#lat').val(), $('#lng').val());
+        var mapOptions = {
+            zoom: 15,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(document.getElementById('mapContainer'), mapOptions);
+        setMapMarker(map, latlng, false, '@chapter.Name', buildInfoWindow('@chapter.Name', "@Html.Raw(RazorHelper.FormatJsString(address))", '@query.Set("id", chapter.Id)'));
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>

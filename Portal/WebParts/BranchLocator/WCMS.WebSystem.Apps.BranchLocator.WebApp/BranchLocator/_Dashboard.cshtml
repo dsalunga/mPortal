@@ -1,0 +1,226 @@
+﻿@using System.Linq
+@using System.Collections.Generic
+@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.Framework.Core.Shared
+@using WCMS.WebSystem
+@using WCMS.WebSystem.Apps.BranchLocator
+@{
+    var query = new WQuery(this);
+    var chapterParents = MChapter.Provider.GetList(-1);
+    IEnumerable<MChapter> chapters = null;// chapterParents.Take(3);
+    double dlat = 0;
+    double dlng = 0;
+    var hasLoc = false;
+    var loggedIn = WSession.Current.IsLoggedIn;
+    var isAdmin = WSession.Current.IsAdministrator;
+
+    var lat = Request["lat"];
+    var lng = Request["lng"];
+    if (!string.IsNullOrEmpty(lat) && !string.IsNullOrEmpty(lng))
+    {
+        var chapterType = (int)ChapterTypes.Regular;
+        dlat = double.Parse(lat);
+        dlng = double.Parse(lng);
+
+        chapters = (from c in MChapter.Provider.GetList()
+                    where c.ChapterType == chapterType
+                        && FALHelper.IsAllowed(c, loggedIn, isAdmin)
+                        && !(c.Latitude == 0 && c.Longitude == 0)
+                    orderby Math.Sqrt(
+                        Math.Pow(69.1 * (c.Latitude - dlat), 2) +
+                        Math.Pow(69.1 * (dlng - c.Longitude) * Math.Cos(c.Latitude / 57.3), 2))
+                    select c).Take(10);
+
+        hasLoc = true;
+    }
+}
+<link href="@WebUtil.Version("~/content/parts/branchlocator/res/css/fal.min.css")" type="text/css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Locale Chapters <small style="font-size: 13px">BETA</small></h1>
+            @*<button id="btnShowMap" class="btn btn-info" type="button" style="display: none"
+                        onclick="$('#mapContainer').toggle();$('#btnShowMap').hide();">
+                    Show Map
+                </button>*@
+            @if (hasLoc)
+            {
+                <div class="map-overlay" onclick="style.display = 'none'"><div>Click or touch map to activate</div></div>
+                <div id="mapContainer" class="map-container"></div>
+                <hr />
+                <div class="alert alert-warning fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>This is still in beta.</strong> Please take caution in the accuracy of the addresses, contact info and make sure to contact the numbers before finalizing your travel.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form class="form-search" method="get" action="@query">
+                        <input type="hidden" name="open" value="search" />
+                        <input type="hidden" class="lat" name="lat" value="@lat" />
+                        <input type="hidden" class="lng" name="lng" value="@lng" />
+                        <div class="input-group">
+                            <input id="txtSearch" name="search" type="text" class="search-query form-control" placeholder="What locale are you searching?">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">Search</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            @if (hasLoc)
+            {
+                <h3>Nearby Chapters</h3>
+                <div>
+                    <span class="glyphicon glyphicon-map-marker"></span> Your location: <span id="currentLocation"></span>
+                </div>
+                <br />
+            }
+            else
+            {
+                <br />
+                <div class="loading-content">
+                    <span>Loading nearby chapters...</span>
+                    <img src="/content/assets/images/loading.gif" />
+                    <br />
+                    <br />
+                </div>
+            }
+            <form id="frmDashboard" method="get">
+                <input type="hidden" class="lat" name="lat" value="@lat" />
+                <input type="hidden" class="lng" name="lng" value="@lng" />
+
+                @if (chapters != null && chapters.Count() > 0)
+                {
+                    foreach (var item in chapters)
+                    {
+                        query.Set(WConstants.Open, "details");
+                        var distanceKM = FALHelper.GetCoordinatesDistance(dlat, dlng, item.Latitude, item.Longitude) * 0.001;
+                        var distanceMI = distanceKM * 0.621371;
+                        <div>
+                            <div class="alert alert-info chapter-title-block">
+                                <a href="@query.Set("id", item.Id)">@item.Name</a>
+                                <span class="label label-default pull-right">@string.Format("{0:N2}", distanceKM) km @*<span class="text-muted2">|</span> @string.Format("{0:N2}", distanceMI) mi*@</span>
+                            </div>
+                            @if (!string.IsNullOrEmpty(item.Address))
+                            {
+                                <p>
+                                    <span class="glyphicon glyphicon-map-marker"></span> Address: @item.Address
+                                </p>
+                            }
+                            @if (!string.IsNullOrEmpty(item.Mobile))
+                            {
+                                <p>
+                                    <span class="glyphicon glyphicon-phone"></span> Mobile: @item.Mobile
+                                </p>
+                            }
+                            @if (!string.IsNullOrEmpty(item.Telephone))
+                            {
+                                <p><span class="glyphicon glyphicon-earphone"></span> Telephone: @item.Telephone</p>
+                            }
+                            @if (!string.IsNullOrEmpty(item.Email))
+                            {
+                                <p><span class="glyphicon glyphicon-envelope"></span> Email: @item.Email</p>
+                            }
+                            <br />
+                        </div>
+                    }
+                    query.Set(WConstants.Open, "browse");
+                    <a href="@query.Remove("id")" class="btn btn-info">See more...</a>
+                }
+            </form>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="well">
+                @if (chapterParents != null)
+                {
+                    //query.Set(WConstants.Open, "browse");
+                    <h4>Browse Chapters</h4>
+                    <hr style="margin-top: 0" />
+                    foreach (var item in chapterParents)
+                    {
+                        <p><i class="glyphicon glyphicon-map-marker"></i> <a href="@query.Set("id", item.Id)">@item.Name</a></p>
+                    }
+                    <br />
+                    <a href="@query.Remove("id")" class="btn btn-info">See more...</a>
+                    <br />
+                    <br />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
+<script src="@WebUtil.Version("~/content/parts/branchlocator/res/js/fal.min.js")"></script>
+<script type="text/javascript">
+    function initialize() {
+        var hasLoc = @(hasLoc ? "true" : "false");
+        if (hasLoc) {
+            var lat = parseFloat($('.lat').val());
+            var lng = parseFloat($('.lng').val());
+            var latLng = new google.maps.LatLng(lat, lng);
+            var map = initializeMap(latLng);
+            var bounds = new google.maps.LatLngBounds ();
+
+            setCurrentLocation(map, latLng);
+
+            @if (chapters != null && chapters.Count() > 0)
+            {
+                foreach (var item in chapters)
+                {
+                    query.Set(WConstants.Open, "details");
+                    var address = string.IsNullOrEmpty(item.Address) ? "Please contact the assigned coordinator." : item.Address;
+                    <text>
+                    latLng = new google.maps.LatLng('@item.Latitude', '@item.Longitude');
+                    setMapMarker(map, latLng, false, '@item.Name', buildInfoWindow('@item.Name', "@Html.Raw(RazorHelper.FormatJsString(address))", '@query.Set("id", item.Id)'));
+                    bounds.extend (latLng);
+                    </text>
+                }
+
+                <text>
+                //  Fit these bounds to the map
+                map.fitBounds(bounds);
+                </text>
+            }
+        } else {
+            // Read the location only if not currently set in the URL
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    $('.lat').val(lat);
+                    $('.lng').val(lng);
+                    $('#frmDashboard').submit();
+
+                }, function(error) {
+                    // Do geoip
+                    $.getJSON("//www.telize.com/geoip?callback=?", function(json) {
+                        //alert(JSON.stringify(json));
+                        //json.ip, json.country
+                        if(json.longitude == null || json.latitude == null){
+                            $('.loading-content').hide(); //.html('Unable to get your current location.');
+                        }else{
+                            $('.lat').val(json.latitude);
+                            $('.lng').val(json.longitude);
+                            $('#frmDashboard').submit();
+                        }
+                    }).fail(function() {
+                        $('.loading-content').hide(); //.html('Error getting your current location.');
+                    });
+
+                }, {timeout:3000});
+            }
+        }
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
