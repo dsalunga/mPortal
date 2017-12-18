@@ -35,11 +35,18 @@ bin
 /Portal/WebSystem/WebSystem-MVC/Content/Assets/Resources
 
 /Portal/WebParts/SystemParts/SystemParts/Content
+/Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle
 /Portal/WebParts/SystemPartsG2/SystemPartsG2/Content
+/Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle2
 /Portal/WebParts/SystemPartsG3/SystemPartsG3/Content
+/Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle3
 
 /Portal/WebParts/IntegrationParts/BibleReader.Database/Import Schema Logs
 /Portal/WebParts/IntegrationParts/IntegrationParts/Content
+/Portal/WebSystem/WebSystem-MVC/Content/Parts/Integration
+/Portal/WebSystem/WebSystem-MVC/Content/Themes/Integration
+
 /Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/Content
+/Portal/WebSystem/WebSystem-MVC/Content/Parts/BranchLocator
 
 /LessonReviewer/LessonReviewer/Admin/Data/Logs

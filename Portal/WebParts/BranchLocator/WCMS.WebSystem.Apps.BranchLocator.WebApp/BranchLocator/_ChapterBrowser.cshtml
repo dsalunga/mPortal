@@ -1,0 +1,279 @@
+﻿@using System.Text
+@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.Framework.Core.Shared
+@using WCMS.WebSystem
+@using WCMS.WebSystem.Apps.BranchLocator
+@{
+    var regularType = (int)ChapterTypes.Regular;
+    var districtType = (int)ChapterTypes.District;
+    var divisionType = (int)ChapterTypes.Division;
+
+    var loggedIn = WSession.Current.IsLoggedIn;
+    var isAdmin = WSession.Current.IsAdministrator;
+    
+    double dlat = 0;
+    double dlng = 0;
+    bool hasLoc = false;
+    var lat = Request["lat"];
+    var lng = Request["lng"];
+    if (!string.IsNullOrEmpty(lat) && !string.IsNullOrEmpty(lng))
+    {
+        dlat = double.Parse(lat);
+        dlng = double.Parse(lng);
+        hasLoc = true;
+    }
+    
+    var query = new WQuery(this);
+    var parentId = query.GetId(WebColumns.Id);
+    var countryCode = query.GetInt32("country");
+    MChapter parent = parentId > 0 ? MChapter.Provider.Get(parentId) : null;
+    
+    // Setup marker items
+    IEnumerable<MChapter> childrenMarkers = null;
+    IEnumerable<MChapter> children = null;
+    if (parent != null)
+    {
+        children = from c in parent.Children
+                   where FALHelper.IsAllowed(c, loggedIn, isAdmin)
+                       select c;
+
+        if (parent.ChapterType == divisionType)
+        {
+            // Children are districts. Plot top 50
+            if (hasLoc) {
+                childrenMarkers =   (from c in MChapter.Provider.GetList()
+                                     where c.ChapterType == regularType && c.DivisionId == parentId
+                                     orderby Math.Sqrt(
+                                         Math.Pow(69.1 * (c.Latitude - dlat), 2) +
+                                         Math.Pow(69.1 * (dlng - c.Longitude) * Math.Cos(c.Latitude / 57.3), 2))
+                                     select c).Take(50);
+            }
+            else
+            {
+                childrenMarkers = (from c in MChapter.Provider.GetList()
+                                   where c.ChapterType == regularType && c.DivisionId == parentId
+                                   select c).Take(50);
+            }
+        }
+        else
+        {
+            // Parent is District, so children are regular chapters
+            childrenMarkers = children;
+        }
+    }
+    else if (countryCode > 0)
+    {
+        children = from c in MChapter.Provider.GetList()
+                   where c.CountryCode == countryCode && c.ChapterType == regularType
+                    && FALHelper.IsAllowed(c, loggedIn, isAdmin)
+                   select c;
+        childrenMarkers = children;
+    }
+    else
+    {
+        // Divisions (no parent)
+        children = from c in MChapter.Provider.GetList(parentId)
+                   where
+                    FALHelper.IsAllowed(c, loggedIn, isAdmin)
+                   select c;
+
+        if (hasLoc)
+        {
+            childrenMarkers = (from c in MChapter.Provider.GetList()
+                               where c.ChapterType == regularType
+                               orderby Math.Sqrt(
+                                   Math.Pow(69.1 * (c.Latitude - dlat), 2) +
+                                   Math.Pow(69.1 * (dlng - c.Longitude) * Math.Cos(c.Latitude / 57.3), 2))
+                               select c).Take(50);
+        }
+        else
+        {
+            childrenMarkers = (from c in MChapter.Provider.GetList()
+                               where c.ChapterType == regularType
+                               select c).Take(50);
+        }
+    }
+    
+}
+<link href="@WebUtil.Version("~/content/parts/branchlocator/res/css/fal.min.css")" type="text/css" rel="stylesheet" />
+@Html.Hidden("lat", lat)
+@Html.Hidden("lng", lng)
+@Html.Hidden("name", parent == null ? "" : parent.Name)
+@Html.Hidden("zoom", parent == null ? 2 : parent.ChapterType == divisionType ? 5 : parent.ChapterType == districtType ? 10 : 15)
+
+<div class="container">
+    @if (parent == null)
+    {
+        <h1 class="page-header">Browse Chapters</h1>
+    }
+    else
+    {
+        <h1 class="page-header">@parent.Name <small>@(parent.ChapterType == divisionType ? "Division" : parent.ChapterType == districtType ? "District" : "Chapter")</small></h1>
+    }
+    <div>
+        @Html.Raw(FALHelper.BuildBreadcrumb(query, parentId))
+        <br />
+        <br />
+        <div class="map-overlay" onclick="style.display = 'none'"><div>Click or touch map to activate</div></div>
+        <div id="mapContainer" class="map-container"></div>
+    </div>
+    @if (children.Count() > 0)
+    {
+        var countries = Country.Provider.GetList();
+        Country country = countryCode > 0 ? countries.FirstOrDefault(i => i.CountryCode == countryCode) : null;
+        query.Set(WConstants.Open, "browse");
+        <hr />
+        <h3>@(countryCode > 0 && parentId == -1 && country != null ? "Chapters in " + country.CountryName : parent == null ? "Divisions" : parent.ChapterType == divisionType ? "Districts in " + parent.Name : "Chapters in " + parent.Name)</h3>
+        <div>
+            @if (parent != null && parent.ChapterType == districtType || countryCode > 0)
+            {
+                <br />
+                foreach (var item in children)
+                {
+                    query.Set(WConstants.Open, "details");
+                    var distanceKM = hasLoc ? FALHelper.GetCoordinatesDistance(dlat, dlng, item.Latitude, item.Longitude) * 0.001 : 0;
+                    var distanceMI = distanceKM * 0.621371;
+                    <div>
+                        <div class="alert alert-info chapter-title-block" id="nearbyName">
+                            <a href="@query.Set("id", item.Id)">@item.Name</a>
+                            @if (hasLoc) {
+                            <span class="label label-default pull-right">@string.Format("{0:N2}", distanceKM) km @*<span class="text-muted2">|</span> @string.Format("{0:N2}", distanceMI) mi*@></span>
+                            }
+                        </div>
+                        @if (!string.IsNullOrEmpty(item.Address))
+                        {
+                            <p>
+                                <span class="glyphicon glyphicon-map-marker"></span> Address: @item.Address
+                            </p>
+                        }
+                        @if (!string.IsNullOrEmpty(item.Mobile))
+                        {
+                            <p>
+                                <span class="glyphicon glyphicon-phone"></span> Mobile: @item.Mobile
+                            </p>
+                        }
+                        @if (!string.IsNullOrEmpty(item.Telephone))
+                        {
+                            <p><span class="glyphicon glyphicon-earphone"></span> Telephone: @item.Telephone</p>
+                        }
+                        @if (!string.IsNullOrEmpty(item.Email))
+                        {
+                            <p><span class="glyphicon glyphicon-envelope"></span> Email: @item.Email</p>
+                        }
+                        <br />
+                    </div>
+                }
+            }
+            else
+            {
+                <table class="table table-borderless">
+                    @foreach (var chapter in children)
+                    {
+                        query.SetOpen(chapter.HasChildren ? "browse" : "details");
+                        <tr>
+                            <td>
+                                <strong><i class="glyphicon glyphicon-map-marker"></i> <a href="@query.Set("id", chapter.Id)">@chapter.Name</a></strong>
+                            </td>
+                            @if (countryCode <= 0)
+                            {
+                                <td>@((country = countries.FirstOrDefault(i => i.CountryCode == chapter.CountryCode)) == null ? "" : country.CountryName)</td>
+                            }
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+    }
+
+    @if (countryCode <= 0)
+    {
+        IEnumerable<int> localeCountries = null;
+
+        if (parent == null)
+        {
+            localeCountries = (from i in MChapter.Provider.GetList()
+                               where i.ChapterType == regularType
+                               select i.CountryCode).Distinct();
+        }
+        else if (parent.ChapterType == divisionType)
+        {
+            localeCountries = (from i in MChapter.Provider.GetList()
+                               where i.ChapterType == regularType && i.DivisionId == parent.Id
+                               select i.CountryCode).Distinct();
+        }
+        else
+        {
+            // Parent is District
+            localeCountries = (from i in MChapter.Provider.GetList(parentId)
+                               where i.ChapterType == regularType /* && i.DistrictNo == parent.Id*/
+                               select i.CountryCode).Distinct();
+        }
+
+        var countries = from c in Country.Provider.GetList()
+                        where localeCountries.Contains(c.CountryCode)
+                        select c;
+
+        query.SetOpen("browse");
+        query.Remove("id");
+        <br />
+        <h3>Chapters by Country</h3>
+        <div>
+            <table class="table table-borderless">
+                @foreach (var country in countries)
+                {
+                    <tr>
+                        <td>
+                            <strong><span class="glyphicon glyphicon-map-marker"></span> <a href="@query.Set("country", country.CountryCode)">@country.CountryName</a></strong>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+</div>
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="@WebUtil.Version("~/content/parts/branchlocator/res/js/fal.min.js")"></script>
+<script type="text/javascript">
+    function initialize() {
+        var lat = $('#lat').val();
+        var lng = $('#lng').val();
+        var latLng = new google.maps.LatLng(lat, lng);
+        var mapOptions = {
+            zoom: parseInt($('#zoom').val()),
+            center: latLng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(document.getElementById('mapContainer'), mapOptions);
+
+        var bounds = new google.maps.LatLngBounds();
+        @if (childrenMarkers != null && childrenMarkers.Count() > 0)
+        {
+            var markers = 0;
+            foreach (var item in childrenMarkers)
+            {
+                if(!(item.Latitude == 0 && item.Longitude == 0)){
+                    markers++;
+                    var address = string.IsNullOrEmpty(item.Address) ? "Please contact the assigned coordinator." : item.Address;
+                    query.Set(WConstants.Open, "details");
+                    <text>
+                    latLng = new google.maps.LatLng('@item.Latitude', '@item.Longitude');
+                    setMapMarker(map, latLng, false, '@item.Name', buildInfoWindow('@item.Name', "@Html.Raw(RazorHelper.FormatJsString(address))", '@query.Set("id", item.Id)'));
+                    bounds.extend(latLng);
+                    </text>
+                }
+
+            }
+
+            if (markers > 1)
+            {
+                <text>
+        //  Fit these bounds to the map
+        map.fitBounds(bounds);
+        </text>
+            }
+        }
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
