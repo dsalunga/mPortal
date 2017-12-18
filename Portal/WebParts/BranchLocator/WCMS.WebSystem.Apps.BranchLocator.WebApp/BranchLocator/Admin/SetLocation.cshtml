@@ -1,0 +1,306 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.BranchLocator
+@{
+    string lt = "";
+    string lg = "";
+    string address = "";
+    double lat = 0;
+    double lng = 0;
+    MChapter item = null;
+    bool updateSuccess = false;
+    
+    var chapterUrl = "";
+    var announcementsUrl = "";
+    var query = new WQuery(this);
+    var id = query.GetId(WebColumns.Id);
+    var q = query.Clone();
+    query.BasePath = CentralPages.LoaderMain;
+    
+    if (id > 0 && (item = MChapter.Provider.Get(id)) != null)
+    {
+        if (IsPost)
+        {
+            lt = Request.Form["lat"];
+            lg = Request.Form["lng"];
+            address = Request.Form["address"];
+            var currAddress = Request.Form["currAddress"];
+            var updateAddr = Request.Form["updateAddr"];
+
+            if (!string.IsNullOrEmpty(address))
+            {
+                lat = Convert.ToDouble(lt);
+                lng = Convert.ToDouble(lg);
+
+                item.Latitude = lat;
+                item.Longitude = lng;
+                if (updateAddr == "1")
+                {
+                    item.Address = address;
+                }
+                else
+                {
+                    item.Address = currAddress;
+                }
+                item.LastUpdate = DateTime.Now;
+                item.Update();
+                updateSuccess = true;
+            }
+        }
+
+        if (item.Latitude != 0 && item.Longitude != 0)
+        {
+            lat = item.Latitude;
+            lng = item.Longitude;
+            address = item.Address;
+        }
+        else if (!string.IsNullOrEmpty(item.Address))
+        {
+            address = item.Address;
+        }
+
+        q.SetLoad("FindALocale/Admin/Announcements");
+        announcementsUrl = q.BuildQuery();
+        
+        query.SetLoad("FindALocale/Admin/Chapter");
+        chapterUrl = query.BuildQuery();
+    }
+
+    query.Remove(WConstants.Load);
+    query.Remove(WebColumns.Id);
+}
+
+<style type="text/css">
+    .popup-title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    #map_canvas {
+        height: 500px;
+        margin-top: 5px;
+    }
+
+    div#latlng-control {
+        background: #ffc;
+        border: 1px solid #676767;
+        padding: 2px 4px;
+        position: absolute;
+    }
+</style>
+
+<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="@WebUtil.Version("~/content/assets/scripts/jquery.gmap3.min.js")"></script>
+<script type="text/javascript">
+
+    function handleNoGeolocation(errorFlag) {
+        var content = "";
+        if (errorFlag) {
+            content = "Error: The Geolocation service failed.";
+        } else {
+            content = "Error: Your browser doesn\'t support geolocation.";
+        }
+        alert(content);
+    }
+
+    $(document).ready(function () {
+        var map = null;
+        var displayAddress = function (latlng, foundAddress) {
+            var str = "Latitude = " + latlng.lat() + "\nLongitude = " + latlng.lng() + "\nAddress = " + foundAddress;
+            $('#lat').val(latlng.lat());
+            $('#lng').val(latlng.lng());
+            $("#address").val(foundAddress);
+
+            hideShowAcceptButton();
+            map.addMarkerByLatLng(latlng.lat(), latlng.lng(), foundAddress, createInfo(foundAddress, str.replace(/\n/gi, "<br />")));
+            map.map.panTo(latlng); // Center the map // setCenter, panTo
+        }
+        var hideShowAcceptButton = function () {
+            $("#btnAccept").css("display", ""); //currLatlng == "" ? "none" : "");
+            $('#updateAddrOpt').css("display", ""); // currLatlng == "" ? "none" : "");
+        }
+        var allowDetectCurrent = function () {
+            $("#btnDetectLocation").show();
+        }
+        var resolveDisplayFromAddr = function () {
+            var address = $("#addressToAdd").val();
+            if (address != undefined && address != null && address != "") {
+                $.fn.gmap3.geoCodeAddress(address, function (latlng) {
+                    $.fn.gmap3.geoCodeLatLng(latlng.lat(), latlng.lng(), function (foundAddress) {
+                        displayAddress(latlng, foundAddress);
+                    });
+                });
+            }
+        }
+
+        var setupLocation = function (_lat, _lng) {
+            map = $("#map_canvas").gmap3({
+                lat: _lat,
+                lng: _lng,
+                zoom: 14
+            });
+
+            // turn on mouse hover debug helper
+            map.toggleDebug();
+
+            // add markers by address
+            //map.addMarkerByAddress("Madison, WI", "Madison", createInfo("Madison", "This point was added by geo-coding an address."));
+            //map.addMarkerByAddress("312 Monte Cristo Circle, Verona, WI", "Home2", createInfo("Madison", "This point was added by geo-coding an address."));
+
+            // add markers by lat / long
+            //map.addMarkerByLatLng(43.0747, -89.3845, "State Capital", createInfo("State Capital", "This is the capital of the State of Wisconsin."));
+            //map.addMarkerByLatLng(43.0849, -89.5349, "Work", createInfo("TomoTherapy", "This is where I work."));
+            //map.addMarkerByLatLng(43.0068, -89.5376, "Home", createInfo("Home", "This is where I live."));
+
+            map.addMarkerByLatLng(_lat, _lng, "Your Location", createInfo("Your Location", "You are here."));
+
+            // add click handlers
+            map.onclickReverseGeocode(function (address) {
+                $("#address").val(address);
+            });
+            map.onclickGetLatLng(function (latlng) {
+                $('#lat').val(latlng[0]);
+                $('#lng').val(latlng[1]);
+                hideShowAcceptButton();
+            });
+            // set up the button
+            $("#addMarker").click(resolveDisplayFromAddr);
+            hideShowAcceptButton();
+            // Center Map if there is existing db value
+        }
+
+        var lt = $('#lat').val();
+        var lg = $('#lng').val();
+        if (lt != '0' || lg != '0') {
+            setupLocation(lt, lg);
+            if (navigator.geolocation) {
+                allowDetectCurrent();
+            }
+        }
+        else {
+            // Try HTML5 geolocation
+            if (navigator.geolocation) {
+                // browser capable
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    setupLocation(position.coords.latitude, position.coords.longitude);
+                    /*$.fn.gmap3.geoCodeLatLng(position.coords.latitude, position.coords.longitude, function (address) {
+                        $('#addressToAdd').val(address);
+                    });*/
+                    allowDetectCurrent();
+                }, function () {
+                    // failed detection
+                    handleNoGeolocation(true);
+                    setupLocation(43.0566, -89.4511);
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleNoGeolocation(false);
+                setupLocation(43.0566, -89.4511);
+            }
+        }
+
+        $("#btnDetectLocation").click(function () {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                $.fn.gmap3.geoCodeLatLng(position.coords.latitude, position.coords.longitude, function (address) {
+                    displayAddress(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), address);
+                });
+            }, function () {
+                handleNoGeolocation(true);
+            });
+        });
+    });
+
+    function createInfo(title, content) {
+        return '<div id="popup"><div class="popup-title">' + title + '</div><div id="popup-body"><p>' + content + '</p></div></div>';
+    }
+</script>
+
+<div id="content" class="container-fluid" style="padding: 0">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>@item.Name</h3>
+        </div>
+    </div>
+    <div role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation"><a href="@query.BuildQuery()" role="tab">Chapters</a></li>
+            <li role="presentation"><a href="@chapterUrl" role="tab" data-toggle1="tab">Chapter</a></li>
+            <li role="presentation" class="active"><a href="#" aria-controls="location" role="tab" data-toggle1="tab">Location</a></li>
+            <li role="presentation"><a href="@announcementsUrl" role="tab" data-toggle1="tab">Announcements</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="location">
+                <br />
+                <form class="form-horizontal" method="post">
+                    <div class="form-group">
+                        <label for="lat" class="col-sm-2 col-md-1 control-label">Address:</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" placeholder="Address" rows="4" name="currAddress" id="currAddress">@item.Address</textarea>
+                            <label id="updateAddrOpt" class="checkbox-inline" style="display: none">
+                                <input type="checkbox" id="updateAddr" name="updateAddr" value="1" @(string.IsNullOrEmpty(item.Address) ? "checked" : "") />Use Map Address
+                            </label>
+                            <br />
+                            <br />
+                            Map Address:
+                            <input type="text" title="The address suggested by Google Maps" readonly="readonly" id="address" name="address" class="form-control" value="@address" placeholder="Location Name (click the map)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lat" class="col-sm-2 col-md-1 control-label">Latitude:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="lat" name="lat" value="@lat" placeholder="Latitude">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lng" class="col-sm-2 col-md-1 control-label">Longitude:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="lng" name="lng" value="@lng" placeholder="Longitude">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lng" class="col-sm-2 col-md-1 control-label"></label>
+                        <div class="col-sm-10">
+                            <input type="submit" id="btnAccept" style="display: none" class="btn btn-primary" value="Update" />
+                            <a href="@query.BuildQuery()" class="btn btn-default">Cancel</a>&nbsp;
+                            @if (updateSuccess)
+                            {
+                                <span class="label label-warning">Update success!</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="input-group" style="margin-top: 5px;">
+                                <input id="addressToAdd" class="form-control" type="text" style="font-weight: bold" value="@address" title="Enter your address or select from the map." placeholder="" />
+                                <span class="input-group-btn">
+                                    <button id="addMarker" type="button" title="Search" value="Find" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Find</span></button>&nbsp;<button id="btnDetectLocation" style="display: none" title="Detect my location" type="button" value="My location" class="btn btn-default"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="row" style="margin-top: 5px;">
+                                            <div class="col-md-4 col-sm-5">
+                                    <div>
+                                        <input type="text" style="margin-bottom: 2px" readonly="readonly" id="latlng" class="form-control" name="latlng" placeholder="Latitude, Longitude (click the map)" value="@latlng" />
+                                    </div>
+                                </div>
+                            <div class="col-md-8 col-md-offset-4 col-sm-7 col-sm-offset-5">
+                                <div>
+                                    <input type="text" style="margin-bottom: 2px" title="The address suggested by Google Maps" readonly="readonly" id="address" name="address" class="form-control" value="@address" placeholder="Location Name (click the map)" />
+                                </div>
+                            </div>
+                        </div>*@
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="map_canvas"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br />
+    </div>
+</div>

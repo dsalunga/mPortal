@@ -1,0 +1,180 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.Integration
+@using WCMS.WebSystem.Apps.BranchLocator
+@using Newtonsoft.Json.Linq
+@{
+    if (!WSession.Current.IsLoggedIn)
+    {
+        return;
+    }
+
+    var link = MemberLink.Provider.GetByUserId(WSession.Current.UserId);
+
+    var slides = "";
+    var id = link == null || link.LocaleId <= 0 ? -1 : link.LocaleId; //DataHelper.GetId(Request, "id");
+    var show = DataUtil.GetInt32(Request, "show", 3);
+    MChapter item = null;
+
+    if (id <= 0 && show == 3)
+    {
+        show = 2;
+    }
+
+    if (show == 3 || show == 1)
+    {
+        // Fetch Locale
+        if (id > 0 && (item = MChapter.Provider.GetByLocaleId(id)) != null && item.HasExtra)
+        {
+            var announcement = item.GetExtra().Announcement;
+            if (announcement.Enabled)
+            {
+                slides = announcement.Slides;
+            }
+        }
+    }
+
+    if (item == null)
+    {
+        if (!WSession.Current.IsLoggedIn || !WSession.Current.User.IsMemberOf(IntegrationConstants.MEMBERS_GROUP_NAME))
+        {
+            return;
+        }
+    }
+
+    if (show == 3 || show == 2)
+    {
+        // Fetch Central
+        var central = MChapter.GetCentral();
+        if (central != null && central.HasExtra)
+        {
+            var announcement = central.GetExtra().Announcement;
+            if (announcement.Enabled)
+            {
+                slides += announcement.Slides;
+            }
+        }
+    }
+
+    if (string.IsNullOrEmpty(slides))
+    {
+        return;
+    }
+}
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9">*@
+<link href="@WebUtil.Version("~/content/parts/branchlocator/res/locale-ads/css/swiper.min.css")" rel="stylesheet" />
+<link href="@WebUtil.Version("~/content/parts/branchlocator/res/locale-ads/css/full-slider-page.min.css")" rel="stylesheet" />
+
+<link href='//fonts.googleapis.com/css?family=Playfair+Display:900' rel='stylesheet' type='text/css' />
+<link href='//fonts.googleapis.com/css?family=Domine' rel='stylesheet' type='text/css' />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<!--[if IE]>
+    <link href="@WebUtil.Version("~/content/parts/branchlocator/res/locale-ads/css/full-slider-page-ie.min.css")" rel="stylesheet" />
+<![endif]-->
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        @Html.Raw(slides)
+        @*<div class="swiper-slide">
+                <div class="fill"><img src="/content/parts/branchlocator/res/locale-ads/img/pnk.jpg" class="img-responsive" /></div>
+                <div class="carousel-caption">
+                    <h1 class="itg-title">Advanced Happy International<br /> Thanksgiving!</h1>
+                    <h2 class="itg-content">Be with us this July 3, 4 and 5!</h2>
+                    <h3>MC na! Or submit your leave applications!</h3>
+                </div>
+            </div>
+            <div class="swiper-slide fill" style="background-image:url('/content/parts/branchlocator/res/locale-ads/img/staroftheweek.jpg');">
+                <div class="carousel-caption">
+                    <h1 class="starofweek-title">STAR OF THE WEEK</h1>
+                    <h2 class="starofweek-content">North 1 &amp; North 2</h2>
+                    <h3>Always keep our locale clean!</h3>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                    <div class="fill" style="background-image:url('/content/parts/branchlocator/res/locale-ads/img/staroftheweek.jpg');"></div>
+                    <div class="carousel-caption">
+                        <h1 class="starofweek-title">STAR OF THE WEEK</h1>
+                        <h2 class="starofweek-content">North 1 &amp; North 2</h2>
+                        <h3>Always keep our locale clean!</h3>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="fill" style="background-image:url('/content/parts/branchlocator/res/locale-ads/img/controversyextraordinary_bg.jpg');"></div>
+                    <div class="carousel-caption">
+                        <img src="/content/parts/branchlocator/res/locale-ads/img/controversyextraordinary.png" class="img-responsive col-xs-12 img-insert" alt="controversyextraordinary" />
+                        <h2>
+                            Use 1 minute of your time to follow the blog with GMAIL. Now.
+                        </h2>
+                        <h3 style="background:black; padding:5px;">www.controversyextraordinary.com</h3>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="fill" style="background-image:url('/content/parts/branchlocator/res/locale-ads/img/australia.jpg');"></div>
+                    <div class="carousel-caption">
+                        <h1 class="starofweek-title">Australia Concert is almost here!</h1>
+                        <h2>Let's make it happen! Contact your treasurer now.</h2>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="fill" style="background-image:url('/content/parts/branchlocator/res/locale-ads/img/schedule.jpg');"></div>
+                    <div class="carousel-caption schedule-texts">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h1 class="itg-title">SG Service Schedule</h1>
+                            </div>
+                        </div>
+                        <div class="row service-box">
+                            <div class="col-sm-6">
+                                <h2 class="col-xs-9 col-xs-offset-3 text-left schedule-content">Regular Service</h2>
+                                <b class="col-xs-2 col-xs-offset-1 text-right label label-success">SPM</b><i class="col-xs-9 text-left">: Tue 5:30pm (live)</i><br />
+                                <b class="col-xs-2 col-xs-offset-1 text-right label label-info">PM</b><i class="col-xs-9 text-left">: Wed 7:30pm/Thu 8:30am</i><br />
+                                <b class="col-xs-2 col-xs-offset-1 text-right label label-warning">WS</b><i class="col-xs-9 text-left">: Sat 8:30 am / 12:30 pm / Sun 8am</i><br />
+                                <b class="col-xs-2 col-xs-offset-1 text-right label label-danger">TG</b><i class="col-xs-9 text-left">: Sat 3pm (live) / Sun 10am (viewing)</i>
+                            </div>
+                            <div class="col-sm-6">
+                                <h2 class="col-xs-9 col-xs-offset-3 text-left schedule-content">Make Up Service</h2>
+                                <div class="row">
+                                    <b class="col-xs-2 col-xs-offset-1 label label-primary">PM &amp; WS</b>
+                                    <i class="col-xs-9 text-left ">
+                                        Mon / Tue / Thu / Fri<br />
+                                        <em>10am, 12pm, 2pm, 4pm, 6pm, 8pm</em><br />
+                                        Wednesday <br />
+                                        <em>10am, 12pm, 2pm, 5pm</em><br />
+                                    </i>
+                                </div>
+                                <div class="row">
+                                    <b class="col-xs-2 col-xs-offset-1 label label-success">TG Makeup</b>
+                                    <i class="col-xs-9 text-left">Mon-Fri. 10am</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<script src="@WebUtil.Version("~/content/parts/branchlocator/res/locale-ads/js/swiper.jquery.min.js")"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        slidesPerView: 1,
+        paginationClickable: true,
+        autoplay: 10000,
+        autoplayDisableOnInteraction: true,
+        loop: true
+    });
+</script>
+@*</div>
+        </div>
+    </div>*@

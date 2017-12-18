@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ED9995AD-9620-43AF-B2B8-959A00487614}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WCMS.WebSystem</RootNamespace>
+    <AssemblyName>WCMS.WebSystem.WebParts.BranchLocator.WebApp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Media-Player-ASP.NET-Control">
+      <HintPath>..\..\..\Binaries\Externals\Media-Player-ASP.NET-Control.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WCMS.Common">
+      <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WCMS.Framework">
+      <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="WCMS.Framework.Social">
+      <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.Framework.Social.dll</HintPath>
+    </Reference>
+    <Reference Include="WCMS.WebSystem">
+      <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.WebSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="WCMS.WebSystem.WebApp">
+      <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.WebSystem.WebApp.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Parts\BranchLocator\Assets\css\fal.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\js\fal.js" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\css\full-slider-ie.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\css\full-slider-ie.min.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\css\full-slider-page-ie.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\css\full-slider-page-ie.min.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\css\full-slider-page.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\css\full-slider-page.min.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\css\full-slider.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\css\full-slider.min.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\css\swiper.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\css\swiper.min.css" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\australia.jpg" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\australia2.jpg" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\Clock-Time-Quotes-1024x576.jpg" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\controversyextraordinary.png" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\controversyextraordinary_bg.jpg" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\pnk.jpg" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\pnk2.jpg" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\schedule.jpg" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\staroftheweek.jpg" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\wwbe.jpg" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\img\wwbe2.jpg" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\js\caman.full.min.js" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\js\swiper.jquery.js" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\js\swiper.jquery.min.js" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\js\swiper.js" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\js\swiper.min.js" />
+    <Content Include="Content\Parts\BranchLocator\Admin\Chapter.ascx" />
+    <Content Include="Content\Parts\BranchLocator\Admin\ChapterHome.ascx" />
+    <Content Include="Content\Parts\BranchLocator\Admin\Chapters.ascx" />
+    <Content Include="Content\Parts\BranchLocator\Admin\ChapterTree.ascx" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WCMS.WebSystem.Apps.BranchLocator\WCMS.WebSystem.Apps.BranchLocator.csproj">
+      <Project>{b51f3680-bb84-4bd8-9064-f541ded5112e}</Project>
+      <Name>WCMS.WebSystem.Apps.BranchLocator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Content\Parts\BranchLocator\Controllers\ChapterController.cs" />
+    <Compile Include="Content\Parts\BranchLocator\Admin\Chapter.ascx.cs">
+      <DependentUpon>Chapter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\BranchLocator\Admin\Chapter.ascx.designer.cs">
+      <DependentUpon>Chapter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\BranchLocator\Admin\ChapterHome.ascx.cs">
+      <DependentUpon>ChapterHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\BranchLocator\Admin\ChapterHome.ascx.designer.cs">
+      <DependentUpon>ChapterHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\BranchLocator\Admin\Chapters.ascx.cs">
+      <DependentUpon>Chapters.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\BranchLocator\Admin\Chapters.ascx.designer.cs">
+      <DependentUpon>Chapters.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\BranchLocator\Admin\ChapterTree.ascx.cs">
+      <DependentUpon>ChapterTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\BranchLocator\Admin\ChapterTree.ascx.designer.cs">
+      <DependentUpon>ChapterTree.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Parts\BranchLocator\_ChapterBrowser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Parts\BranchLocator\_ChapterDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Parts\BranchLocator\_Dashboard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Parts\BranchLocator\_SearchResults.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Parts\BranchLocator\Admin\SetLocation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Parts\BranchLocator\Admin\Announcements.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Parts\BranchLocator\Announcements-Fullscreen.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Parts\BranchLocator\Announcements.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\js\maps\swiper.jquery.min.js.map" />
+    <Content Include="Content\Parts\BranchLocator\Assets\locale-ads\js\maps\swiper.min.js.map" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1880</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)..\..\Binaries\PostBuildManager\PostBuildManager.exe $(ProjectDir)</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

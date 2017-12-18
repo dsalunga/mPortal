@@ -1,0 +1,12 @@
+.blur-me {
+    filter: blur(2px) grayscale(10%) brightness(30%);
+}
+
+.carousel-caption {
+    margin: 10vmax 0 !important;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
