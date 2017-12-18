@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCMS.Framework" />
+  <xs:import schemaLocation="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/WCMS.Framework.Net" />
+  <xs:import schemaLocation="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCMS.Framework.Core" />
+  <xs:element name="DoWork">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DoWorkResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetObject">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetObjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCMS.Framework" minOccurs="0" name="GetObjectResult" nillable="true" type="q1:WebUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetObjectList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="objectId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetObjectListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCMS.Framework" minOccurs="0" name="GetObjectListResult" nillable="true" type="q2:ArrayOfWebUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserComplete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserCompleteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCMS.Framework" minOccurs="0" name="GetUserCompleteResult" nillable="true" type="q3:WebUserContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserComplete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCMS.Framework" minOccurs="0" name="container" nillable="true" type="q4:WebUserContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserCompleteResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="relativePath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recursive" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCMS.Framework.Net" minOccurs="0" name="GetFilesResult" nillable="true" type="q5:ArrayOfFileSyncInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBindings">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBindingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCMS.Framework.Core" minOccurs="0" name="GetBindingsResult" nillable="true" type="q6:ArrayOfWebSiteIdentity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

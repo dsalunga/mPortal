@@ -1,0 +1,156 @@
+﻿@using WCMS.Framework
+@using WCMS.Framework.Core;
+@using System.Threading
+@using WCMS.WebSystem.WebParts.Integration;
+@using WCMS.WebSystem.WebParts.Integration.IntegrationMemberWS;
+@{
+    /*var link = MemberLink.Provider.Get("ADD00139");
+    if (link != null)
+    {
+        link.UserId = 2480;
+        link.Update();
+    }
+    */
+
+    /*var commonClient = new WCMS.WebSystem.WebParts.Integration.CommonWS.CommonWSSoapClient();
+    var amsGroups = commonClient.GetLocaleGroups(IntegrationConstants.SGLocale, -1, "");
+    var sgGroup = WebGroup.SelectNode(MemberConstants.LocaleGroupPath);
+    var localeGroups = sgGroup.Children;
+    foreach (var amsGroup in amsGroups)
+    {
+        var localeGroup = localeGroups.FirstOrDefault(i => i.Name.Equals(amsGroup.LocaleGroupName, StringComparison.InvariantCultureIgnoreCase));
+        if (localeGroup != null)
+        {
+            // Check if inactive
+        }
+        else if(amsGroup.IsActive == 1)
+        {
+            var group = new WebGroup();
+            group.Name = amsGroup.LocaleGroupName;
+            group.ParentId = sgGroup.Id;
+            group.RequireApproval = true;
+            group.Update();
+        }
+    }
+
+    var parameters = WebParameter.GetList();
+    for (int i = 0; i < parameters.Count(); i++ )
+    {
+        var p = parameters.ElementAt(i);
+        bool hasUpdate = false;
+        if (p.Value.Contains("Integration/Singapore/Groups"))
+        {
+            p.Value = p.Value.Replace("Integration/Singapore/Locale Groups", "Integration/Chapters/Singapore/Groups");
+            hasUpdate = true;
+        }
+
+        if (p.Value.Contains("Integration/Singapore/Special Groups"))
+        {
+            p.Value = p.Value.Replace("Integration/Singapore/Special Groups", "Integration/Chapters/Singapore/Special-Groups");
+            hasUpdate = true;
+        }
+
+        if (p.Value.Contains("Integration/Singapore"))
+        {
+            p.Value = p.Value.Replace("Integration/Singapore", "Integration/Chapters/Singapore");
+            hasUpdate = true;
+        }
+
+        if (hasUpdate)
+        {
+            p.Update();
+        }
+    }
+    */
+
+    /*
+    var client = MemberSoapClient.GetNewClientInstance();
+    var links = MemberLink.Provider.GetList();
+    for (var i = 0; i < links.Count(); i++)
+    {
+        var link = links.ElementAt(i);
+        if (link != null) {
+            link.TryLinkToAms();
+            Thread.Sleep(25);
+        }
+    }
+    */
+
+    /* var baseUrls = new Dictionary<string, string>();
+    baseUrls.Add("http://service.someorg.org/", "https://service.someorg.com/");
+    baseUrls.Add("http://portal.someorg.org/Images/", "/content/assets/images/");
+
+    var users = MemberLink.Provider.GetList();
+    var updated = 0;
+    for (var i = 0; i < users.Count(); i++)
+    {
+        var user = users.ElementAt(i);
+        foreach (var baseUrl in baseUrls) {
+            if (user.PhotoPath.IndexOf(baseUrl.Key) > -1)
+            {
+                user.PhotoPath = user.PhotoPath.Replace(baseUrl.Key, baseUrl.Value);
+                user.Update();
+                updated++;
+
+                Thread.Sleep(25);
+            }
+        }
+    }*/
+
+    /*
+    var users = WebUser.GetList();
+    var updated = 0;
+    for (var i = 0; i < users.Count(); i++)
+    {
+        var user = users.ElementAt(i);
+        if (user.PhotoPath.IndexOf(baseUrl) > -1)
+        {
+            user.PhotoPath = user.PhotoPath.Replace(baseUrl, newUrl);
+            user.Update();
+            updated++;
+
+            Thread.Sleep(25);
+        }
+    }
+    */
+
+    var memberId = 12239;
+    var serviceScheduleId = 16408;
+    var timeIn = new DateTime(2015, 7, 24, 13, 0, 0);
+    var status = IntegrationAttendanceStatus.HookUp;
+    var result = new LogAttendanceResult();
+    var attendanceClient = new WCMS.WebSystem.Apps.Integration.AttendanceWS.AttendanceSoapClient(false);
+    var commonClient = new WCMS.WebSystem.Apps.Integration.CommonWS.CommonWSSoapClient();
+    var serviceSchedule = commonClient.GetServiceSchedule(serviceScheduleId);
+    result.Schedule = serviceSchedule;
+
+    if (attendanceClient.Insert3((long)memberId, serviceSchedule.LocaleID, serviceScheduleId, serviceSchedule.ServiceID, serviceSchedule.WeekNo, timeIn.ToString("u"), serviceSchedule.LateDateTime.ToString("u"), status, true))
+    {
+        result.Status = 200;
+    }
+}
+
+@*<h1>@updated Updated.</h1>*@
+
+<h1>
+    @serviceSchedule.ServiceScheduleID
+    <br />
+</h1>
+
+<a href="@(Request.ServerVariables["HTTP_HOST"] + Request.RawUrl)">
+    Link
+</a>
+
+@{
+    if (IsPost && Request.Form["Download"] != null)
+    {
+        Response.ContentType = "application/octet-stream";
+        Response.AddHeader("Content-Disposition",
+                          "attachment; filename=http://cdn.someorg.org/tmp.mp4");
+        Response.End();
+    }
+}
+
+<form method="post">
+    <input type="submit" name="Download" value="Download" />
+</form>

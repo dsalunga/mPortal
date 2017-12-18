@@ -1,0 +1,30 @@
+
+-- Procedure Contact_CMS
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[Contact_CMS]
+	(
+		@ContactID INT = NULL
+	)
+AS
+	SET NOCOUNT ON
+	
+	IF(@ContactID IS NULL)
+		BEGIN
+			SELECT * FROM Contacts ORDER BY Rank DESC
+		END
+	ELSE
+		BEGIN
+			SELECT * FROM Contacts WHERE ContactID = @ContactID
+		END
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

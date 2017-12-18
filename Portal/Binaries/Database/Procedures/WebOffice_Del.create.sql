@@ -1,0 +1,26 @@
+
+-- Procedure WebOffice_Del
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE dbo.WebOffice_Del
+	(
+		@OfficeId int
+	)
+AS
+	SET NOCOUNT ON
+	
+	IF(@OfficeId > 0)
+		DELETE FROM WebOffice
+		WHERE OfficeId= @OfficeId
+	
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

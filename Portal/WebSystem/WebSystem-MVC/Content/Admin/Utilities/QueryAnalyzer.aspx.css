@@ -1,0 +1,330 @@
+body
+{
+    padding: 3px;
+}
+
+/* BEGIN: NEW */
+
+.linkw, a.linkw:link
+{
+    font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    text-decoration: none;
+}
+a.linkw:hover
+{
+    font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.content
+{
+    font: 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #000000;
+    text-decoration: none;
+}
+.contentw
+{
+    font: 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.contentb
+{
+    font: bold 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #000000;
+    text-decoration: none;
+}
+.contentwb
+{
+    font: bold 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    text-decoration: none;
+}
+.linkcontent, a.linkcontent:link, a.linkcontent:active
+{
+    font: 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #0072bc;
+    text-decoration: none;
+}
+a.linkcontent:hover
+{
+    font: 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #0072bc;
+    text-decoration: underline;
+}
+.bullets
+{
+    list-style-image: url(/Images/Common/bullet.gif);
+}
+
+.header
+{
+    font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+TD.header
+{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.welcome
+{
+    font: bold 20px Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+/* END: NEW */
+
+
+.flat_table
+{
+    position: relative;
+    top: -2px;
+    left: 4px;
+    padding: 0px 0px 0px 0px;
+}
+
+.flat_table td
+{
+    padding: 1px 0px 1px 0px;
+}
+
+.left_panel
+{
+    background-color: #fafafa;
+}
+
+SELECT.combo_nav
+{
+    font-family: Arial, Tahoma, Verdana;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+input, textarea
+{
+    font-family: Verdana, Arial;
+    font-size: 12px; /* color: #333333; */ /* filter: alpha(opacity=50); */
+}
+
+.login_input
+{
+    font-family: Verdana, Arial;
+    font-size: 13px; /* color: #333333; */
+}
+
+td, div, select
+{
+    font-family: Verdana, Tahoma, Arial;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.menubackgr
+{
+    background: #F1F3F5;
+    border-bottom: 1px solid #cccccc;
+}
+
+a.header_link:active, a.header_link:visited, a.header_link:link
+{
+    font-weight: bold;
+    font-size: 9pt;
+    color: brown;
+    font-family: Tahoma, Verdana, Arial, Trebuchet MS;
+    text-decoration: none;
+}
+
+a.header_link:hover
+{
+    font-weight: bold;
+    font-size: 9pt;
+    color: brown;
+    font-family: Tahoma, Verdana, Arial;
+    text-decoration: underline;
+}
+
+.section_link, a.section_link:active, a.section_link:visited, a.section_link:link
+{
+    font-weight: bold;
+    font-size: 12px;
+    color: #ffffff;
+    font-family: Verdana;
+    text-decoration: none;
+}
+
+a.section_link:hover
+{
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a.section_item_link:active, a.section_item_link:visited, a.section_item_link:link
+{
+    font-family: Verdana;
+    font-size: 11px;
+    color: #026db5;
+    text-decoration: none;
+}
+
+a.section_item_link:hover
+{
+    font-family: Verdana;
+    font-size: 11px;
+    color: #026db5;
+    text-decoration: underline;
+}
+
+a:hover
+{
+    /* color: #0000aa; */
+    text-decoration: underline;
+}
+
+.cms_header
+{
+    font-size: 16pt;
+    color: #ff0003;
+    font-family: Trebuchet MS, Verdana;
+    font-weight: bold;
+}
+
+.help_link
+{
+    cursor: help;
+}
+
+.drop_shadow
+{
+    filter: progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#A7A596,strength=5);
+}
+
+.grid_header
+{
+    background-color: #1374c3; /* #009e8f /* #0eafa7; */
+    color: #ffffff;
+}
+
+.grid_pager
+{
+    background-color: #fafafa; /*#ffffff; /* #0eafa7; */
+    color: #000000;
+    font-weight: bold;
+}
+
+.grid_pager a
+{
+    background-color: #fafafa; /* #ffffff; /* #0eafa7; */
+    color: #000000;
+    font-weight: normal;
+}
+
+.panel_bar
+{
+    background-color: #0eafa7;
+}
+
+.panel_bar_strong
+{
+    background-color: #1374c3; /* #cc0066; */
+}
+
+TD.control_box
+{
+    padding: 5px;
+    background-image: url(/Images/Common/backyellow.gif); /* height: 30px; */
+}
+
+TD.ControlBoxRed
+{
+    padding: 5px;
+    background-image: url(/Images/Common/backred.gif); /* height: 30px; */
+}
+
+.ControlBox
+{
+    padding: 5px;
+    background-image: url(/Images/Common/backyellow.gif); /* height: 30px; */
+}
+
+.ControlBox_Flat
+{
+    background-image: url(/Images/Common/backyellow.gif);
+}
+
+.ControlBoxRed
+{
+    padding: 5px;
+    background-image: url(i/backred.gif); /* height: 30px; */
+}
+
+
+DIV.tab_button, DIV.tab_button A
+{
+    width: 120px;
+    background-color: #3366cc;
+    font-weight: bold;
+    color: White;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+}
+
+DIV.tab_button_blur, DIV.tab_button_blur A
+{
+    width: 120px;
+    background-color: #1145ae;
+    font-weight: bold;
+    color: gray;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+}
+
+DIV.tab_bar
+{
+    background-color: #3366cc;
+    height: 5px;
+}
+
+A.module_treenode
+{
+    color: #3366cc;
+    text-decoration: none;
+}
+
+A.module_treenode:hover
+{
+    text-decoration: underline;
+}
+
+
+.callOutStyle
+{
+    background-color: #6699CC;
+    font-family: tahoma;
+    font-size: 10pt;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+.callOutHeaderStyle
+{
+    background-color: #6699CC;
+    padding-left: 7;
+    font-family: tahoma;
+    font-size: 0.9em;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}

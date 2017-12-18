@@ -1,0 +1,28 @@
+
+-- Procedure WebPage_Del
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[WebPage_Del]
+	(
+		@PageId int
+	)
+AS
+	SET NOCOUNT ON
+	
+	if(@PageId > 0)
+		BEGIN
+			DELETE FROM WebPage
+			WHERE PageId=@PageId
+		END
+	
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

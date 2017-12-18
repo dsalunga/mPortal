@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WebPart Name="Administration" Identity="Central">
+  <Controls>
+    <Control Name="WebPart Template Panels" Identity="Central" IsEntryPoint="true">
+      <Templates>
+        <Template Name="WebPart Template Panels" Identity="Central" Path="WebPart/WebPartTemplatePanels.ascx" />
+      </Templates>
+    </Control>
+    <Control Name="WebPart Template Panel" Identity="Central" IsEntryPoint="true" TemplatePath="WebPart/WebPartTemplatePanel.ascx" />
+  </Controls>
+  <AdminControls>
+
+  </AdminControls>
+</WebPart>

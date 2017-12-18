@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WCMS.WebSystem.Handlers.DataSync" CodeBehind="DataSync.svc.cs" %>

@@ -1,0 +1,28 @@
+
+-- Procedure WebUserRole_Del
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[WebUserRole_Del]
+	(
+		@UserRoleId int
+	)
+AS
+	SET NOCOUNT ON
+	
+	IF(@UserRoleId > 0)
+		BEGIN
+			DELETE FROM WebUserRole
+			WHERE UserRoleId = @UserRoleId
+		END
+	
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

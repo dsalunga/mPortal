@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[ContactInquiry] (
+    [InquiryId]   INT            NOT NULL,
+    [SenderName]  NVARCHAR (256) NOT NULL,
+    [Subject]     NVARCHAR (256) NOT NULL,
+    [Message]     NTEXT          NOT NULL,
+    [Email]       NVARCHAR (256) NOT NULL,
+    [Address1]    NVARCHAR (256) NOT NULL,
+    [Address2]    NVARCHAR (256) NULL,
+    [City]        NVARCHAR (256) NULL,
+    [CountryCode] INT            NULL,
+    [StateCode]   INT            NULL,
+    [ZipCode]     NVARCHAR (63)  NULL,
+    [Phone]       NVARCHAR (256) NULL,
+    [Fax]         NVARCHAR (256) NULL,
+    [SendTo]      NVARCHAR (256) NULL,
+    [InqDateTime] DATETIME       NULL,
+    [IsActive]    INT            NULL,
+    [SendToEmail] NVARCHAR (256) NULL,
+    [InquiryType] NVARCHAR (256) NULL,
+    [RecordId]    INT            NULL,
+    [ObjectId]    INT            NULL,
+    [UserId]      INT            CONSTRAINT [DF_ContactInquiry_UserId] DEFAULT ((-1)) NOT NULL,
+    CONSTRAINT [PK_Inquiries] PRIMARY KEY CLUSTERED ([InquiryId] ASC)
+);
+

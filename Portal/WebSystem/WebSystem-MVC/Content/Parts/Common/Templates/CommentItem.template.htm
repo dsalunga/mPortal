@@ -1,0 +1,16 @@
+﻿<div class="commentItem" style="padding-bottom: 8px;" data-comment='{"id": $(COMMENT_ID)}'>
+    <a href="/Singapore/Member-Profile.aspx?UserId=$(POSTER_USER_ID)" style="float: left;
+        margin-right: 8px;">
+        <img src="$(POSTER_IMAGE_URL)" style="width: 32px;" alt="" />
+    </a>
+    <div class="rightBlock">
+        $(DELETE_PANEL)
+        <div style="color: #333; padding-top: 2px; display: table-cell">
+            <a class="comment-user" href="/Singapore/Member-Profile.aspx?UserId=$(POSTER_USER_ID)" style="color: #3B5998;
+                font-weight: bold;">$(POSTER_NAME)</a>&nbsp;<pre class="commentMessage">$(COMMENT_MESSAGE)</pre>
+            <div class="commentActions" style="padding-top: 2px;">
+                <span style="color: #999">$(DATE_POSTED)</span>
+            </div>
+        </div>
+    </div>
+</div>

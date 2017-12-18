@@ -1,0 +1,145 @@
+body {
+    padding: 3px;
+}
+
+h1 {
+    font-family: Arial;
+    color: forestgreen;
+}
+
+.content {
+    font: 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #000000;
+    text-decoration: none;
+}
+
+.header {
+    font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+td.header {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.welcome {
+    font: bold 20px Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+.left_panel {
+    background-color: #fafafa;
+}
+
+select.combo_nav {
+    font-family: Arial, Tahoma, Verdana;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+input, textarea {
+    font-family: Arial, Tahoma, Verdana;
+    font-size: 10pt;
+}
+
+td, div, select {
+    font-family: Arial, Tahoma, Verdana;
+    font-size: 10pt;
+    text-decoration: none;
+}
+
+.menubackgr {
+    background: #F1F3F5;
+    border-bottom: 1px solid #cccccc;
+}
+
+a:hover {
+    /* color: #0000aa; */
+    text-decoration: underline;
+}
+
+.drop_shadow {
+    filter: progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#A7A596,strength=5);
+}
+
+TD.ControlBox {
+    padding: 5px;
+    background-image: url(/Images/Common/backyellow.gif); /* height: 30px; */
+}
+
+TD.ControlBoxRed {
+    padding: 5px;
+    background-image: url(/Images/Common/backred.gif); /* height: 30px; */
+}
+
+.ControlBox {
+    padding: 5px;
+    background-image: url(/Images/Common/backyellow.gif); /* height: 30px; */
+}
+
+.ControlBox_Flat {
+    background-image: url(/Images/Common/backyellow.gif);
+}
+
+.ControlBoxRed {
+    padding: 5px;
+    background-image: url(/Images/Common/backred.gif); /* height: 30px; */
+}
+
+
+DIV.tab_button, DIV.tab_button A {
+    width: 120px;
+    background-color: #3366cc;
+    font-weight: bold;
+    color: White;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+}
+
+DIV.tab_button_blur, DIV.tab_button_blur A {
+    width: 120px;
+    background-color: #1145ae;
+    font-weight: bold;
+    color: gray;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+}
+
+DIV.tab_bar {
+    background-color: #3366cc;
+    height: 5px;
+}
+
+A.module_treenode {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+    A.module_treenode:hover {
+        text-decoration: underline;
+    }
+
+
+.callOutStyle {
+    background-color: #6699CC;
+    font-family: tahoma;
+    font-size: 10pt;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+.callOutHeaderStyle {
+    background-color: #6699CC;
+    padding-left: 7;
+    font-family: tahoma;
+    font-size: 0.9em;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}

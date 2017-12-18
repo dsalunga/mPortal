@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/WCMS.Framework" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCMS.Framework" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCMS.Framework.Core" />
+  <xs:complexType name="WebUser">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UserInfo">
+        <xs:sequence>
+          <xs:element name="_photoOriginalPath" nillable="true" type="xs:string" />
+          <xs:element name="_photoPath" nillable="true" type="xs:string" />
+          <xs:element name="_photoThumbPath" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_ActivationKey_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_Email2_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_LastLoginFailureDate_x003E_k__BackingField" type="xs:dateTime" />
+          <xs:element name="_x003C_LastLogin_x003E_k__BackingField" type="xs:dateTime" />
+          <xs:element name="_x003C_LoginFailureCount_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_MaritalStatusId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_NameSuffix_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_NewEmail_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_PasswordExpiryDate_x003E_k__BackingField" type="xs:dateTime" />
+          <xs:element name="_x003C_Password_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_ProviderId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_StatusText_x003E_k__BackingField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WebUser" nillable="true" type="tns:WebUser" />
+  <xs:complexType name="UserInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/WCMS.Framework.Core" base="q1:ParameterizedWebObject">
+        <xs:sequence>
+          <xs:element name="_x003C_DateCreated_x003E_k__BackingField" type="xs:dateTime" />
+          <xs:element name="_x003C_Email_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_FirstName_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_Gender_x003E_k__BackingField" type="ser:char" />
+          <xs:element name="_x003C_LastName_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_LastUpdate_x003E_k__BackingField" type="xs:dateTime" />
+          <xs:element name="_x003C_MiddleName_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_MobileNumber_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_Status_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_TelephoneNumber_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_UserName_x003E_k__BackingField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UserInfo" nillable="true" type="tns:UserInfo" />
+  <xs:complexType name="ArrayOfWebUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WebUser" nillable="true" type="tns:WebUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWebUser" nillable="true" type="tns:ArrayOfWebUser" />
+  <xs:complexType name="WebUserContainer">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCMS.Framework.Core" name="_x003C_Addresses_x003E_k__BackingField" nillable="true" type="q2:ArrayOfWebAddress" />
+      <xs:element name="_x003C_Groups_x003E_k__BackingField" nillable="true" type="tns:ArrayOfWebGroup" />
+      <xs:element name="_x003C_ItemType_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_User_x003E_k__BackingField" nillable="true" type="tns:WebUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WebUserContainer" nillable="true" type="tns:WebUserContainer" />
+  <xs:complexType name="ArrayOfWebGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WebGroup" nillable="true" type="tns:WebGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWebGroup" nillable="true" type="tns:ArrayOfWebGroup" />
+  <xs:complexType name="WebGroup">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/WCMS.Framework.Core" base="q3:ParameterizedWebObject">
+        <xs:sequence>
+          <xs:element name="_managerList" nillable="true" type="tns:ArrayOfWebUser" />
+          <xs:element name="_managersCache" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_DateModified_x003E_k__BackingField" type="xs:dateTime" />
+          <xs:element name="_x003C_Description_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_HasGroupChildren_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_HasUserChildren_x003E_k__BackingField" type="xs:boolean" />
+          <xs:element name="_x003C_IsSystem_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_JoinAlert_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_JoinApproval_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_Managers_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_OwnerId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_PageId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_PageUrl_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_ParentId_x003E_k__BackingField" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WebGroup" nillable="true" type="tns:WebGroup" />
+</xs:schema>

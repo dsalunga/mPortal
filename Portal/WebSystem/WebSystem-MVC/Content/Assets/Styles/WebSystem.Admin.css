@@ -1,0 +1,229 @@
+/*
+@font-face{
+    font-family: 'Segoe UI';
+    src: url('/Content/Assets/Fonts/Segoe-UI/segoeui.eot'); /* For IE *
+    src: local('Segoe UI'), url('/Content/Assets/Fonts/Segoe-UI/segoeui.ttf') format('truetype'); /* For non-IE *
+}
+
+@font-face{
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    src: url('/Content/Assets/Fonts/Segoe-UI/segoeuib.eot'); /* For IE *
+    src: local('Segoe UI'), url('/Content/Assets/Fonts/Segoe-UI/segoeuib.ttf') format('truetype'); /* For non-IE *
+}
+*/
+
+body {
+    /*margin: 0px;*/
+    background-image: url(/Content/Assets/Uploads/Image/HeaderBackground.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom right;
+    /*
+    font-family: 'Segoe UI', 'Lucida Grande' , 'Lucida Sans Unicode' , Tahoma, sans-serif, Verdana, Arial;
+    font-size: 13px;*/
+}
+
+
+/* Web Administration -- Start */
+
+IMG.TaskListIcon {
+    width: 32px;
+}
+
+img.icon {
+    border: 0px;
+}
+
+.BlueLink, A.BlueLink:hover {
+    color: #0066ff;
+    text-decoration: underline;
+}
+
+/* Web Administration -- End */
+
+/*
+input[type=submit], input[type=button]
+{
+    height: 24px;
+}*/
+
+
+input.Command {
+    height: 30px;
+    font-weight: bold;
+}
+
+/*
+h1
+{
+    font-size: 16pt;
+    font-style: normal;
+    color: #0066FF;
+    font-family: 'Segoe UI', 'Palatino Linotype' , Arial, Helvetica, sans-serif;
+}
+*/
+
+.imagelink {
+    border: 0px;
+    cursor: hand;
+}
+
+.Breadcrumb {
+    margin: 5px;
+}
+
+.ActionBarButton {
+    height: 45px;
+}
+
+.resources li {
+    display: inline-block; /* float: left; */
+    margin-bottom: 10px; /* margin-left: 15px; */
+    list-style-type: none;
+}
+
+
+/* BEGIN: NEW */
+
+.Header {
+    font: 24px 'Segoe UI', Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+td.Header {
+    font: bold 16px 'Segoe UI', Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+/*
+legend
+{
+    color: #0066ff;
+}
+*/
+
+.welcome {
+    font: bold 20px 'Segoe UI', Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+/* END: NEW */
+
+.left_panel {
+    background-color: #fafafa;
+}
+
+SELECT.combo_nav {
+    font-family: 'Segoe UI', Arial, Tahoma, Verdana;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.login_input {
+    font-family: Verdana, Arial;
+    font-size: 13px; /* color: #333333; */
+    width: 200px;
+}
+
+/*
+TD, DIV, select, INPUT, TEXTAREA
+{
+    font-family: 'Segoe UI', "Lucida Grande" , "Lucida Sans Unicode" , Tahoma, sans-serif, Verdana, Arial;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+*/
+
+.cms_header {
+    font-size: 16pt;
+    color: #ff0003;
+    font-family: 'Segoe UI', Trebuchet MS, Verdana;
+    font-weight: bold;
+}
+
+.help_link {
+    cursor: help;
+}
+
+.drop_shadow {
+    filter: progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#A7A596,strength=5);
+}
+
+.grid_header {
+    background-color: #1374c3; /* #009e8f /* #0eafa7; */
+    color: #ffffff;
+}
+
+.grid_pager {
+    background-color: #fafafa; /*#ffffff; /* #0eafa7; */
+    color: #000000;
+    font-weight: bold;
+}
+
+    .grid_pager a {
+        background-color: #fafafa; /* #ffffff; /* #0eafa7; */
+        color: #000000;
+        font-weight: normal;
+    }
+
+.panel_bar {
+    background-color: #0eafa7;
+}
+
+.panel_bar_strong {
+    background-color: #1374c3; /* #cc0066; */
+}
+
+
+A.module_treenode {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+    A.module_treenode:hover {
+        text-decoration: underline;
+    }
+
+
+.callOutStyle {
+    background-color: #6699CC;
+    font-family: tahoma;
+    font-size: 10pt;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+.callOutHeaderStyle {
+    background-color: #6699CC;
+    padding-left: 7px;
+    font-family: tahoma;
+    font-size: 0.9em;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+
+#cms_path_separator, .cms_path_separator {
+    color: #23c754;
+}
+
+.breadcrumb > li {
+    margin-right: 4px;
+}
+
+h1.central.page-header {
+    font-weight: normal;
+    margin-bottom: 5px;
+    margin-top: 30px;
+}

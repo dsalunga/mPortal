@@ -1,0 +1,136 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.Framework.Core
+@{
+    var context = Model.Context == null ? this : Model.Context;
+
+    var isAdmin = WSession.Current.IsAdministrator;
+    var isSiteManager = WSession.Current.IsSiteManager;
+    var siteId = DataHelper.GetId(context.Request, WebColumns.SiteId);
+}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@CentralPages.CentrlHome">@(WSession.Current.IsAdministrator ? "Administrator" : "Site Manager")</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+                @if (isSiteManager)
+                {
+                    var canManageUsers = isAdmin || WebGlobalPolicy.IsUserPermitted(GlobalPolicies.Administration, Permissions.UsersManagement);
+                    var canManageGroups = isAdmin || WebGlobalPolicy.IsUserPermitted(GlobalPolicies.Administration, Permissions.GroupsManagement);
+
+                    if (canManageGroups || canManageUsers)
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" id="dropCentral" role="button" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;System <b class="caret"></b></a>
+                            <ul id="menuCentral" class="dropdown-menu" role="menu" aria-labelledby="dropCentral">
+                                @if (isAdmin)
+                                {
+                                    <li class="dropdown-header">Administration</li>
+                                    <li><a tabindex="-1" href="@CentralPages.WebRegistry">Registry</a></li>
+                                    <li><a tabindex="-1" href="@CentralPages.WebParameterSets">Parameter Sets</a></li>
+                                    <li><a tabindex="-1" href="@CentralPages.WebThemes">Themes</a></li>
+                                    <li><a tabindex="-1" href="@CentralPages.WebResourceManager">Resources</a></li>
+                                    <li class="divider"></li>
+                                }
+                                <li class="dropdown-header">Security</li>
+                                @if (canManageUsers)
+                                {
+                                    <li><a tabindex="-1" href="@CentralPages.WebUsers">Users</a></li>
+                                }
+
+                                @if (canManageGroups)
+                                {
+                                    <li><a tabindex="-1" href="@CentralPages.WebGroups">Groups</a></li>
+                                }
+
+                                @if (isAdmin)
+                                {
+                                    <li class="divider"></li>
+                                    <li class="dropdown-header">Utilities</li>
+                                    <li><a tabindex="-1" href="@CentralPages.WebObjectManager">Object Manager</a></li>
+                                    <li><a tabindex="-1" href="@CentralPages.QueryAnalyzer">Query Analyzer</a></li>
+                                    <li><a tabindex="-1" href="@CentralPages.FileManager">File Manager</a></li>
+                                    <li><a tabindex="-1" href="@CentralPages.Setup">Online Setup</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                }
+
+                @if (isSiteManager)
+                {
+                    var admins = WebPartAdmin.GetList(-1, -1);
+                    var parts = WPart.Provider.GetList(RecordStatus.Active);
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" id="dropParts" role="button" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Apps <b class="caret"></b></a>
+                        <ul id="menuParts" class="dropdown-menu" role="menu" aria-labelledby="dropParts">
+                            <li><a tabindex="-1" href="@CentralPages.WebParts">Apps</a></li>
+
+                            <li class="divider"></li>
+                            @foreach (var part in parts)
+                            {
+                                if (admins.FirstOrDefault(i => i.PartId == part.Id && i.IsVisible) != null && (isAdmin || WebObjectSecurity.IsUserAdded(part)))
+                                {
+                                    <li><a tabindex="-1" href="@WQuery.BuildQuery(CentralPages.WebPartManagement, WebColumns.PartId, part.Id)">@part.Name</a></li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+
+                @if (isSiteManager)
+                {
+                    var sites = WSite.FilterPermittedWithChildren(WSite.GetList(-1).Where(i => i.IsActive), -1, false);
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" id="dropSites" role="button" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp;Sites <b class="caret"></b></a>
+                        <ul id="menuSites" class="dropdown-menu" role="menu" aria-labelledby="dropSites">
+                            @if (siteId > 0)
+                            {
+                                var site = WSite.Get(siteId);
+                                <li><a title="@site.Name" href="@WQuery.BuildQuery(CentralPages.WebSiteHome, WebColumns.SiteId, site.Id)">@DataHelper.GetStringPreview(site.Name, 25)</a></li>
+                                <li class="divider"></li>
+                            }
+
+                            <li><a href="@CentralPages.WebSites">Portal Sites</a></li>
+                            @if (sites.Count > 0)
+                            {
+                                <li class="divider"></li>
+                            }
+
+                            @foreach (var site in sites)
+                            {
+                                if (siteId == -1 || siteId != site.Id)
+                                {
+                                    <li><a title="@site.Name" href="@WQuery.BuildQuery(CentralPages.WebSiteHome, WebColumns.SiteId, site.Id)">@DataHelper.GetStringPreview(site.Name, 25)</a></li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li id="fat-menu" class="dropdown">
+                    <a href="#" id="dropMe" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;@(WSession.Current.IsLoggedIn ? WSession.Current.User.FirstAndLastName : string.Empty) <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropMe">
+                        <li><a tabindex="-1" href="@WQuery.BuildQuery(CentralPages.WebUserHome, WebColumns.UserId, WSession.Current.UserId)">Account Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="@CentralPages.Login?Mode=LogOff">Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <span></span>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>

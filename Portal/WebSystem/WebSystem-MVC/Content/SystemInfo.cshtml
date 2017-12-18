@@ -1,0 +1,61 @@
+﻿@using System.Text;
+@using WCMS.Common.Utilities;
+@using WCMS.Framework
+@{
+    var sb = new StringBuilder();
+    var allDrives = DriveInfo.GetDrives();
+
+    foreach (DriveInfo d in allDrives)
+    {
+        sb.AppendFormat("<strong>Drive {0}</strong><br/>", d.Name);
+        sb.AppendFormat("  File type: {0}<br/>", d.DriveType);
+
+        if (d.IsReady == true)
+        {
+            sb.AppendFormat("Volume label: {0}<br/>", d.VolumeLabel);
+            sb.AppendFormat("File system: {0}<br/>", d.DriveFormat);
+            sb.AppendFormat("Available space to current user: {0, 15} bytes<br/>", d.AvailableFreeSpace);
+            sb.AppendFormat("Total available space: {0, 15} bytes<br/>", d.TotalFreeSpace);
+            sb.AppendFormat("Total size of drive: {0, 15} bytes", d.TotalSize);
+        }
+
+        sb.Append("<br/><br/>");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>WCMS - System Information</title>
+</head>
+<body>
+    <div>
+        <h1>System Variables</h1>
+        <div>
+            UserPhotoPath: <strong>@WConfig.UserPhotoPath</strong><br />
+            UserPhotoPath-Eval: <strong>@WebHelper.MapPath(WConfig.UserPhotoPath, true)</strong><br />
+        </div>
+        <br />
+        <div>
+            DbProvider.Path: <strong>@ConfigHelper.Get("DbProvider.Path")</strong><br />
+            DbProvider.Path-Eval: <strong>@WebHelper.MapPath(ConfigHelper.Get("DbProvider.Path"), true)</strong><br />
+        </div>
+        <br />
+        <div>
+            @WConfig.FILE_CACHE_PATH: <strong>@ConfigHelper.Get(WConfig.FILE_CACHE_PATH)</strong><br />
+            @WConfig.FILE_CACHE_PATH-Eval: <strong>@WebHelper.MapPath(ConfigHelper.Get(WConfig.FILE_CACHE_PATH), true)</strong><br />
+        </div>
+        <br />
+        <div>WCMS:MinDiskFreeMB: <strong>@ConfigHelper.Get(WConfig.MIN_DISK_FREE_MB)</strong></div>
+        <div>WCMS:Environment: <strong>@ConfigHelper.Get("WCMS:Environment")</strong></div>
+        <div>WCMS:AllowCache: <strong>@ConfigHelper.Get(WConfig.ALLOW_CACHE)</strong></div>
+        <br />
+        <div>Request.Url: <strong>@Request.Url</strong></div>
+        <div>Request.RawUrl: <strong>@Request.RawUrl</strong></div>
+        <br />
+        <h1>Server Information</h1>
+        <div>@Html.Raw(sb.ToString())</div>
+    </div>
+</body>
+</html>

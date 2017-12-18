@@ -1,0 +1,25 @@
+
+-- Procedure WebPage_GetCount
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[WebPage_GetCount]
+	(
+		@SiteId int = -1
+	)
+AS
+	SET NOCOUNT ON
+	
+	SELECT COUNT(1) FROM WebPage
+		WHERE @SiteId=-1 OR SiteId = @SiteId
+	
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

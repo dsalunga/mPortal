@@ -1,0 +1,276 @@
+img.image-link {
+    border: 0px;
+}
+
+.clearfix {
+    display: block;
+}
+
+/* HEARBEAT <div class="heartbeat">&hearts;</div>
+    $(".heartbeat").fadeIn(500, function () {
+        $(".heartbeat").fadeOut(500);
+    });
+*/
+.heartbeat {
+    position: absolute;
+    display: none;
+    margin: 5px;
+    color: red;
+    right: 0;
+    top: 0;
+}
+
+.shade-overlay {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%; /*height: 2000px; 150%;*/
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.7;
+    opacity: .70;
+    filter: alpha(opacity=70);
+}
+
+.control-box {
+    min-height: 28px;
+    width: 100%;
+    float: left;
+    clear: both;
+}
+
+    .control-box > div {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .control-box .pull-right {
+        padding-bottom: 5px;
+    }
+
+    .control-box input[type="text"], .control-box select, .control-box input[type="submit"], .control-box input[type="button"] {
+        margin-bottom: 0;
+    }
+
+.control-box-strong {
+    background-image: url(/Content/Assets/Images/Common/backred.gif);
+    font-weight: bold;
+    min-height: 28px;
+    width: 100%;
+    float: left;
+}
+
+    .control-box-strong div {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+.header {
+    font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+.system-label {
+    font: 10px Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+.table-clear, .clear-both {
+    clear: both;
+}
+
+.table-pager table {
+    display: inline-block;
+    *display: inline;
+    margin-bottom: 0;
+    margin-left: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    *zoom: 1;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    clear: left;
+}
+
+    .table.table-borderless th, .table.table-borderless td {
+        border-top: none;
+    }
+
+    .table td a {
+        text-decoration: none;
+    }
+
+tr.table-pager table td, tr.pagination table td {
+    padding: 0;
+    border-top: none;
+}
+
+.table-pager td > a, .table-pager td > span {
+    float: left;
+    padding: 0 14px;
+    line-height: 38px;
+    text-decoration: none;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-left-width: 0;
+    font-weight: bold;
+}
+
+    .table-pager td > a:hover {
+        background-color: #f5f5f5;
+    }
+
+.table-pager td > span {
+    color: #999;
+}
+
+.table-pager table td:first-child > a, .table-pager table td:first-child > span {
+    border-left-width: 1px;
+    -webkit-border-radius: 3px 0 0 3px;
+    -moz-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
+}
+
+.table-pager td:last-child > a, .table-pager td:last-child > span {
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.grid-pager table td {
+    padding: 3px;
+}
+
+.no-bottom-margin input[type="text"], .no-bottom-margin select, .no-bottom-margin input[type="submit"], .no-bottom-margin input[type="button"] {
+    margin-bottom: 0 !important;
+}
+
+.min-bottom-margin input[type="text"], .min-bottom-margin select, .min-bottom-margin input[type="submit"], .min-bottom-margin input[type="button"], .min-bottom-margin a.btn, .min-bottom-margin button {
+    margin-bottom: 5px !important;
+}
+
+th.bootstrap-checkbox, td.bootstrap-checkbox {
+    padding-left: 6px;
+    padding-right: 0;
+}
+
+/*
+@media (max-width: 480px) {
+    .media .pull-left {
+        float: left;
+    }
+
+    .media .pull-right {
+        float: right;
+    }
+}
+
+.dropdown-backdrop {
+    display: none;
+}
+*/
+
+.image-noscale img {
+    max-width: initial;
+}
+
+input.input, input.input-xlarge {
+    /*height: 30px;*/
+}
+
+/* bs2 compatibility */
+input.input, input.input-xlarge, textarea.input, textarea.input-xlarge {
+    min-height: 30px;
+    padding: 3px 6px;
+    margin-bottom: 10px;
+    /*font-size: 14px;
+    line-height: 1.428571429;*/
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+select.input {
+    display: inline-block;
+    min-height: 30px;
+    /*height: 30px;*/
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555555;
+    vertical-align: middle;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+
+input[disabled].input, select[disabled].input, textarea[disabled].input, input[readonly].input, select[readonly].input, textarea[readonly].input {
+    cursor: not-allowed;
+    background-color: #eeeeee;
+}
+
+/* bs3 utils */
+.col-np {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+label {
+    font-weight: normal;
+}
+
+/* bootstrap-aspnet related fixes */
+.aspnet-checkbox input[type="checkbox"] + label, .aspnet-radio input[type="radio"] + label {
+    display: inline;
+    font-weight: normal;
+}
+
+.aspnet-checkbox input[type="checkbox"], .aspnet-radio input[type="radio"] {
+    margin: 5px 5px 5px 0;
+}
+
+.checkbox-list input {
+    margin-right: 2px;
+}
+
+.checkbox-list label {
+    margin-right: 10px;
+}
+
+.clear-left {
+    clear: left;
+}
+
+.width-auto, input-auto, .control-auto {
+    width: auto;
+}
+
+
+.portal-tabpanel {
+    margin-bottom: 15px;
+}
+
+.portal-tabpanel-narrow {
+    margin-bottom: 5px;
+}
+
+.vertical-align {
+    vertical-align: middle !important;
+}
