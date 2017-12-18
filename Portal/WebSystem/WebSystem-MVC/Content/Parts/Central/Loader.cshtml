@@ -1,0 +1,337 @@
+﻿@using System.Text
+@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.Framework.Utilities
+@using WCMS.Framework.Diagnostics
+@using WCMS.WebSystem
+@{
+    var title = "";
+    var url = "";
+    var resources = new StringBuilder();
+    var controlPath = "";
+    var message = "";
+    var showActions = true;
+    var sw = PerformanceLog.StartLog();
+
+    if (!WHelper.CheckCentralLoaderAccess(this)) { return; }
+    var query = new WQuery(this);
+    if (query.Count == 0)
+    {
+        WebHelper.Redirect(CentralPages.CentrlHome);
+        return;
+    }
+
+
+    Func<string, string> FormatLoadParam = (string load) =>
+        {
+            if (string.IsNullOrEmpty(load) || load.EndsWith(".cshtml", StringComparison.InvariantCultureIgnoreCase))
+                return load;
+            else
+                return load + ".cshtml";
+        };
+
+    Action<IWebObject> LoadResources = (IWebObject part) =>
+        {
+            var pageHeader = WHelper.LoadResources(part);
+            if (pageHeader != null)
+                resources.AppendLine(pageHeader.ToString());
+        };
+
+    WebPartAdmin admin = null;
+    int pageId = query.GetId(WebColumns.PageId);
+    int pageElementId = query.GetId(WebColumns.PageElementId);
+    int partAdminId = query.GetId(WebColumns.PartAdminId);
+    if (pageId > 0 || pageElementId > 0)
+    {
+        if (pageElementId > 0)
+        {
+            // MasterPageItem, Page
+            var item = WebPageElement.Get(pageElementId);
+            if (item != null)
+            {
+                title = "App Settings: " + item.Name;
+
+                try
+                {
+                    // WebPartConfig
+                    var load = query.Get(WConstants.Load);
+                    var partControl = item.PartControlTemplate.PartControl;
+                    admin = partControl.PartAdmin;
+                    string fileName = string.IsNullOrEmpty(load) ? partControl.GetAdminFile(admin) : FormatLoadParam(load);
+                    title = item.Name; // string.Format("{0} {2} {1}", item.Name, partControl.Name, "/");
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        var part = partControl.Part;
+                        controlPath = fileName.IndexOfAny(new char[] { '~', '/' }, 0, 1) == 0 ? fileName : string.Format("~/Content/Parts/{0}/{1}", part.Identity, fileName);
+                        //controlToLoad.ID = WContext.GenerateControlId(partControl);
+
+                        // Load Resources
+                        LoadResources(part);
+                    }
+                    else
+                    {
+                        message = WSConstants.NO_LOAD;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(ex);
+                    message = WSConstants.ERROR_LOAD + ex.Message;
+                }
+            }
+        }
+        else if (pageId > 0)
+        {
+            // Page
+            var page = WPage.Get(pageId);
+            if (page != null)
+            {
+                title = "App Settings: " + page.Name;
+
+                try
+                {
+                    // WebPartConfig
+
+                    var load = query.Get(WConstants.Load);
+                    var partConfigId = query.GetId(WebColumns.PartConfigId);
+
+                    if (partConfigId > 0)
+                    {
+                        var config = WebPartConfig.Get(partConfigId);
+                        string fileName = string.IsNullOrEmpty(load) ? config.FileName : FormatLoadParam(load);
+
+                        title = string.Format("{0} {2} {1}", page.Name, config.Name, "/");
+                        url = page.BuildRelativeUrl(); //string.Format("<a href=\"{0}\">{0}</a>", page.BuildRelativeUrl());
+
+                        if (!string.IsNullOrEmpty(fileName))
+                        {
+                            var part = config.Part;
+                            controlPath = fileName.IndexOfAny(new char[] { '~', '/' }, 0, 1) == 0 ? fileName : string.Format("~/Content/Parts/{0}/{1}", part.Identity, fileName);
+                            //controlToLoad.ID = WContext.GenerateControlId(config);
+                            LoadResources(part);
+                        }
+                        else
+                        {
+                            message = WSConstants.NO_LOAD;
+                        }
+                    }
+                    else
+                    {
+                        var partControl = page.PartControlTemplate.PartControl;
+                        admin = partControl.PartAdmin;
+                        string fileName = string.IsNullOrEmpty(load) ? partControl.GetAdminFile(admin) : FormatLoadParam(load);
+
+                        title = page.Name; //string.Format("{0} {2} {1}", page.Name, partControl.Name, "/");
+                        url = page.BuildRelativeUrl(); //string.Format("<a href=\"{0}\">{0}</a>", page.BuildRelativeUrl());
+
+                        if (!string.IsNullOrEmpty(fileName))
+                        {
+                            var part = partControl.Part;
+                            controlPath = fileName.IndexOfAny(new char[] { '~', '/' }, 0, 1) == 0 ? fileName : string.Format("~/Content/Parts/{0}/{1}", part.Identity, fileName);
+                            //controlToLoad.ID = WContext.GenerateControlId(partControl);
+                            LoadResources(part);
+                        }
+                        else
+                        {
+                            message = WSConstants.NO_LOAD;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(ex);
+                    message = WSConstants.ERROR_LOAD + ex.Message;
+                }
+            }
+        }
+        else
+        {
+            showActions = false;
+            message = WSConstants.NO_LOAD;
+        }
+    }
+    else if (partAdminId > 0)
+    {
+        // Web Module
+        showActions = false;
+        admin = WebPartAdmin.Get(partAdminId);
+        if (admin != null)
+        {
+            title = "App Administration: " + admin.Name;
+
+            try
+            {
+                var part = admin.Part;
+                var load = query.Get(WConstants.Load);
+                if (!string.IsNullOrEmpty(load))
+                {
+                    controlPath = string.Format("~/Content/Parts/{0}/{1}", part.Identity, FormatLoadParam(load));
+                }
+                else
+                {
+                    controlPath = admin.FileName.StartsWith("~") || admin.FileName.StartsWith("/") ?
+                        admin.FileName : string.Format("~/Content/Parts/{0}/{1}", part.Identity, admin.FileName);
+                }
+
+                // WebPartAdmin
+                //controlToLoad.ID = WContext.GenerateControlId(partAdmin);
+                title = string.Format("{0} {2} {1}", part.Name, admin.Name, "/");
+
+                // Load Resources
+                LoadResources(part);
+                LoadResources(admin);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(ex);
+                message = WSConstants.ERROR_LOAD + ex.Message;
+            }
+        }
+    }
+    else
+    {
+        showActions = false;
+        message = WSConstants.NO_LOAD;
+    }
+
+    WSession.UserSessions.Update(WSession.Current.UserId, -1, Request.RawUrl);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="none,noarchive" />
+    <title>@title</title>
+    <link href="@WebUtil.Version("~/content/plugins/bootstrap3/css/bootstrap.min.css")" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        /*h1, h2, h3 {
+            font-weight: normal
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        section {
+            padding-top: 30px;
+        }
+
+            section > .page-header,
+            section > .lead, .page-header {
+                color: #5a5a5a;
+            }*/
+
+        /* bootstrap-aspnet related fixes */
+        .aspnet-checkbox input[type="checkbox"] + label, .aspnet-radio input[type="radio"] + label {
+            display: inline;
+        }
+
+        .aspnet-checkbox input[type="checkbox"], .aspnet-radio input[type="radio"] {
+            margin-top: 0;
+            margin-right: 4px;
+        }
+
+        .aspnet-radio label {
+            margin-right: 8px;
+        }
+
+        h1.page-header {
+            border-bottom: none;
+        }
+
+            h1.page-header a, h1.page-header a:hover {
+                color: #333;
+                text-decoration: none;
+            }
+    </style>
+    <link href="@WebUtil.Version("~/content/assets/styles/websystemv2.min.css")" type="text/css" rel="stylesheet" />
+    <link href="@WebUtil.Version("~/content/assets/styles/websystem.controls.min.css")" type="text/css" rel="stylesheet" />
+    <link href="@WebUtil.Version("~/content/assets/styles/websystem.admin.min.css")" type="text/css" rel="stylesheet" />
+
+    <script src="@WebUtil.Version("~/content/assets/scripts/jquery.min.js")" type="text/javascript"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="@WebUtil.Version("~/content/assets/scripts/html5shiv.js")"></script>
+      <script src="@WebUtil.Version("~/content/assets/scripts/respond.min.js")"></script>
+    <![endif]-->
+    @resources
+</head>
+<body>
+    <a name="top"></a>
+    @RenderPage("HeaderNavbar.cshtml", PageData)
+    <div class="container-fluid">
+        @*<uc5:headernavbar id="HeaderNavbar1" runat="server" />
+            <uc1:breadcrumb id="Breadcrumb1" runat="server" />
+            <uc4:webgenerictab id="WebGenericTab1" runat="server" />*@
+        @Html.Raw(CentralBreadcrumb.Render(query))
+        @if ((admin == null || admin.IsAutoTitle) && !string.IsNullOrEmpty(title))
+        {
+            <h1 id="lblHeader" class="page-header" style="margin-bottom: 5px; font-weight: normal; margin-top: 30px;"><a href="@url">@title</a></h1>
+        }
+
+        @*@if (!string.IsNullOrEmpty(url) && false)
+            {
+                <div style="margin-bottom: 15px" id="panelSiteInfo">
+                    <span class="url muted">&nbsp;@Html.Raw(url)</span>
+                </div>
+            }*@
+        <div>
+            @RenderPage(controlPath, PageData)
+            @if (!string.IsNullOrEmpty(message))
+            {
+                <div class="alert alert-danger">@message</div>
+            }
+        </div>
+        @if (showActions)
+        {
+            // Build return URL
+            var siteId = query.GetId(WebColumns.SiteId);
+            var masterId = query.GetId(WebColumns.MasterPageId);
+            var basePath = pageElementId > 0 ? CentralPages.WebPageElementHome : CentralPages.WebPageHome;
+            var q = new WQuery(basePath);
+
+            if (siteId > 0)
+            {
+                q.Set(WebColumns.SiteId, siteId);
+            }
+
+            if (pageId > 0)
+            {
+                q.Set(WebColumns.PageId, pageId);
+            }
+            else if (masterId > 0)
+            {
+                q.Set(WebColumns.MasterPageId, masterId);
+            }
+
+            if (pageElementId > 0)
+            {
+                q.Set(WebColumns.PageElementId, pageElementId);
+            }
+
+            @*<div class="control-box-strong1 row">
+                    <div class="col-md-12">
+                        <input type="submit" id="cmdUpdate" value="Update" class="btn btn-default" />
+                        <a class="btn btn-default" href="@q.BuildQuery()"
+                           title="Closes this form and return back to previous page. NOTE: All unsaved changes will be IGNORED!">Close</a>
+                    </div>
+                </div>*@
+        }
+    </div>
+    <script src="@WebUtil.Version("~/content/assets/scripts/jquery-ui.min.js")" type="text/javascript"></script>
+    <script src="@WebUtil.Version("~/content/plugins/bootstrap3/js/bootstrap.min.js")"></script>
+    <script src="@WebUtil.Version("~/content/assets/scripts/common.min.js")" type="text/javascript"></script>
+    <script src="@WebUtil.Version("~/content/assets/scripts/datetimepicker.aspx.min.js")" type="text/javascript"></script>
+    <script src="@WebUtil.Version("~/content/assets/scripts/wcms.core.min.js")" type="text/javascript"></script>
+    <script src="@WebUtil.Version("~/content/assets/scripts/wcms.utils.min.js")" type="text/javascript"></script>
+    <script src="@WebUtil.Version("~/content/assets/scripts/websystem.admin.min.js")" type="text/javascript"></script>
+</body>
+</html>
+@{PerformanceLog.EndLog(string.Format("Central-Loader-Cshtml: elementid-{0}, partadminid-{1}", pageElementId, partAdminId), sw, pageId);}

@@ -1,0 +1,182 @@
+/* @TabControl Start */
+div.tab-control a {
+    white-space: nowrap;
+    line-height: normal;
+}
+
+/* Default Theme */
+
+div.tab-control.default {
+    border: 1px solid #DBDEDF;
+}
+
+    div.tab-control.default div.TabButton, div.tab-control.default div.TabButton a, div.tab-control.default div.TabButton A:visited {
+        background-color: #0081C2;
+        font-weight: bold;
+        color: White;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    div.tab-control.default DIV.TabButtonBlur, div.tab-control.default DIV.TabButtonBlur A, div.tab-control.default DIV.TabButtonBlur A:visited {
+        background-color: #fff;
+        font-weight: bold;
+        color: #3881C2;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+        div.tab-control.default DIV.TabButtonBlur A:hover {
+            color: #FFCC00;
+        }
+
+    div.tab-control.default DIV.TabBar {
+        background-color: #0081C2;
+        height: 5px;
+    }
+
+
+/* Yellow Theme */
+
+div.tab-control.yellow {
+    border: 1px solid #CCCCCC;
+}
+
+    div.tab-control.yellow div.TabButton, div.tab-control.yellow div.TabButton a, div.tab-control.yellow div.TabButton A:visited {
+        background-color: #7B79C7;
+        font-weight: bold;
+        color: #D9D9D5;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    div.tab-control.yellow DIV.TabButtonBlur, div.tab-control.yellow DIV.TabButtonBlur A, div.tab-control.yellow div.TabButtonBlur A:visited {
+        background-color: #fff;
+        font-weight: bold;
+        color: #4E4E9A;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+        div.tab-control.yellow DIV.TabButtonBlur A:hover {
+            color: #4E4E9A;
+        }
+
+    div.tab-control.yellow DIV.TabBar {
+        background-color: #7B79C7;
+        height: 5px;
+    }
+
+/* Green Theme */
+
+div.tab-control.green {
+    border: 1px solid #CCCCCC;
+}
+
+    div.tab-control.green div.TabButton, div.tab-control.green div.TabButton a, div.tab-control.green div.TabButton A:visited {
+        background-color: #33CC33;
+        font-weight: bold;
+        color: #fff;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    div.tab-control.green DIV.TabButtonBlur, div.tab-control.green DIV.TabButtonBlur A, div.tab-control.green div.TabButtonBlur A:visited {
+        background-color: #fff;
+        font-weight: bold;
+        color: #33CC33;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+        div.tab-control.green div.TabButtonBlur A:hover {
+            color: #33CC33;
+        }
+
+    div.tab-control.green div.TabBar {
+        background-color: #33CC33;
+        height: 5px;
+    }
+
+/* TabControl End@ */
+
+/* WebPart: EventCalendar -- Start */
+
+.EventCalendar-Calendar-Title TR TD {
+    font-size: 12pt;
+}
+
+.Calendar-Day, .Calendar-Day A {
+    height: 85px;
+    vertical-align: top;
+    text-align: left; /* width: 120px; */
+    font-weight: bold;
+    color: Black;
+}
+
+.Selected-Calendar-Day {
+    background-color: #333399;
+    color: White;
+}
+
+    .Selected-Calendar-Day A {
+        color: White;
+        font-weight: bold;
+    }
+
+.Day-Header {
+    font-size: 9pt;
+    font-weight: bold; /* width: 120px; */
+}
+
+.Today-Day /*, .Today-Day A */ {
+    background-color: #CCCCCC;
+    color: Black;
+}
+
+.Other-Month-Day, .Other-Month-Day A {
+    color: #999999;
+}
+
+div.Event-List-Item {
+    font-weight: normal; /* background-color: Yellow; */
+    margin-bottom: 4px;
+    margin-top: 2px;
+    padding: 2px;
+    border: 1px solid #CCCCCC;
+}
+
+    div.Event-List-Item A {
+        /* background-color: Yellow; */
+    }
+
+.Selected-Calendar-Day DIV.Event-List-Item {
+    font-weight: normal;
+    background-color: red;
+    margin-top: 2px;
+    margin-bottom: 4px;
+    padding: 2px;
+}
+
+    .Selected-Calendar-Day DIV.Event-List-Item A {
+        /* background-color: red; */
+    }
+
+
+.Event-List-Item A {
+    font-weight: normal;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    .Event-List-Item A:hover {
+        text-decoration: underline;
+    }
+
+/* WebPart: EventCalendar -- End */

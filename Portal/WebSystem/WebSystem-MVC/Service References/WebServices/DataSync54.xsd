@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCMS.Framework.Core" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCMS.Framework.Core" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ParameterizedWebObject">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:NamedWebObject">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ParameterizedWebObject" nillable="true" type="tns:ParameterizedWebObject" />
+  <xs:complexType name="NamedWebObject">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebObjectBase">
+        <xs:sequence>
+          <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NamedWebObject" nillable="true" type="tns:NamedWebObject" />
+  <xs:complexType name="WebObjectBase">
+    <xs:sequence>
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WebObjectBase" nillable="true" type="tns:WebObjectBase" />
+  <xs:complexType name="ArrayOfWebAddress">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WebAddress" nillable="true" type="tns:WebAddress" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWebAddress" nillable="true" type="tns:ArrayOfWebAddress" />
+  <xs:complexType name="WebAddress">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebObjectBase">
+        <xs:sequence>
+          <xs:element name="_x003C_AddressLine1_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_AddressLine2_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_CityTown_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_CountryCode_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_CountryName_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_LastUpdated_x003E_k__BackingField" type="xs:dateTime" />
+          <xs:element name="_x003C_ObjectId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_PhoneNumber_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_RecordId_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_StateProvinceCode_x003E_k__BackingField" type="xs:int" />
+          <xs:element name="_x003C_StateProvince_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_Tag_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_ZipCode_x003E_k__BackingField" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WebAddress" nillable="true" type="tns:WebAddress" />
+  <xs:complexType name="ArrayOfWebSiteIdentity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WebSiteIdentity" nillable="true" type="tns:WebSiteIdentity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWebSiteIdentity" nillable="true" type="tns:ArrayOfWebSiteIdentity" />
+  <xs:complexType name="WebSiteIdentity">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebObjectBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="HostName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IPAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Port" type="xs:int" />
+          <xs:element minOccurs="0" name="ProtocolId" type="xs:int" />
+          <xs:element minOccurs="0" name="RedirectUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SiteId" type="xs:int" />
+          <xs:element minOccurs="0" name="UrlPath" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WebSiteIdentity" nillable="true" type="tns:WebSiteIdentity" />
+</xs:schema>

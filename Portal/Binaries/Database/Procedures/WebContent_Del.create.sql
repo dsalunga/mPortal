@@ -1,0 +1,25 @@
+
+-- Procedure WebContent_Del
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[WebContent_Del]
+	(
+		@ContentId int
+	)
+AS
+	SET NOCOUNT ON
+	
+	DELETE FROM WebContent
+	WHERE ContentId = @ContentId
+	
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

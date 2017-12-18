@@ -1,0 +1,28 @@
+
+-- Procedure WebRole_Del
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[WebRole_Del]
+	(
+		@RoleId int
+	)
+AS
+	SET NOCOUNT ON
+	
+	IF(@RoleId > 0)
+		BEGIN
+			DELETE FROM WebRole
+			WHERE Id=@RoleId
+		END
+	
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

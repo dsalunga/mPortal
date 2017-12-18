@@ -1,0 +1,17 @@
+﻿@using WCMS.WebSystem
+<h2>Message from a Theme</h2>
+<p>@PageData[0]</p>
+<br />
+<br />
+<div>
+    <h1>Header</h1>
+    @RazorHelper.RenderPanel("phHeader", this)
+</div>
+<div>
+    <h1>Main</h1>
+    @RazorHelper.RenderPanel("phMain", this)
+</div>
+<div>
+    <h1>Footer</h1>
+    @RazorHelper.RenderPanel("phFooter", this)
+</div>

@@ -1,0 +1,323 @@
+﻿
+@using WCMS.Common.Utilities
+@using WCMS.Framework
+@{
+    var session = WSession.Current;
+    var context = new WContext(this);
+    var page = WPage.Get(context.PageId);
+    var site = page.Site;
+    var panelExpanded = session.InDesignPanelExpanded;
+
+    #region Web Page
+    bool canManageInstance = false;
+    bool canManageContent = false;
+    string editModeUrl = "";
+    var query = context.Query.Clone();
+    query.Set(WebColumns.SiteId, page.SiteId);
+    query.Set(WebColumns.PageId, page.Id);
+
+    WebPartAdmin admin = null;
+    IEnumerable<WebPartAdmin> admins = null;
+
+    if (session.IsAdministrator || page.IsUserMgmtPermitted(Permissions.ManageContent))
+    {
+        canManageInstance = session.IsAdministrator || page.IsUserMgmtPermitted(Permissions.ManageInstance);
+        canManageContent = true;
+
+        // # Web Page #
+        //panelPageVisible = true;
+
+        if (canManageInstance)
+        {
+            // Page > New Pagepan
+            //panelNewPage.Visible = true;
+            //linkNewPage.HRef = WQuery.BuildQuery(CentralPages.WebSite, WebColumns.SiteId, page.SiteId);
+        }
+
+
+        var partControl = page.PartControlTemplate.PartControl;
+        admin = partControl.PartAdmin;
+        admins = partControl.Part.AdminControls.Where(i => i.IsVisible);
+
+        // Web Page > Edit Mode
+        editModeUrl = query.BuildQuery(admin != null && admin.TemplateEngineId == TemplateEngineTypes.Razor ? CentralPages.LoaderRazor : CentralPages.LoaderMain);
+
+        //panelPageEditMode.Visible = true;
+        //linkPageEditMode.HRef = editModeUrl;
+
+        //linkEditMode.HRef = editModeUrl;
+        //linkEditMode.Visible = true;
+
+        //var configureUrl = new WQuery(CentralPages.WebPageHome).Set(WebColumns.PageId, page.Id).Set(WebColumns.SiteId, site.Id).BuildQuery();
+        //linkPageConfigure.HRef = configureUrl;
+        //panelPageConfigure.Visible = true;
+    }
+
+    #endregion
+
+    #region All Web Sites
+
+    // # All Web Sites #
+    /*
+    MenuItem rootMenu = new MenuItem("<strong>All Web Sites</strong>");
+    rootMenu.NavigateUrl = WConfig.DefaultSite.BuildRelativeUrl();
+    rootMenu.ImageUrl = "~/Content/Assets/Images/Common/wf1.gif";
+    mnSites.Items.Add(rootMenu);
+    LoadRecursiveTree(-1, WSite.GetList(), rootMenu, page);
+    */
+    #endregion
+
+    #region Administrator
+    /*
+    MenuItem rootAdmin = new MenuItem("Administration");
+    rootAdmin.NavigateUrl = CentralPages.CentrlHome;
+    rootAdmin.ImageUrl = "~/Content/Assets/Images/Common/Gear.gif";
+    rootAdmin.Target = "_top";
+    mnSites.Items.Add(rootAdmin);
+    */
+
+    /*
+    if (WSession.Current.IsAdministrator)
+    {
+        MenuItem setup = new MenuItem("Web Setup");
+        setup.NavigateUrl = CentralPages.Setup;
+        setup.ImageUrl = "~/Content/Assets/Images/Common/Actions/FullScreenHS.png";
+        rootAdmin.ChildItems.Add(setup);
+
+        MenuItem managerNode = new MenuItem("Manager UI");
+        managerNode.NavigateUrl = CentralPages.WebSystemDashboard;
+        managerNode.ImageUrl = "~/Content/Assets/Images/Common/Actions/ThumbnailView.png";
+        rootAdmin.ChildItems.Add(managerNode);
+    }
+    */
+
+    #endregion
+
+    var q = new WQuery(WConfig.DefaultLoginPage);
+    q.Set("Mode", "LogOff");
+}
+
+<style type="text/css">
+    #designMode {
+        /* #E8E8E8; */
+        border: 2px solid #ee5f5b;
+        position: fixed;
+        z-index: 10000;
+        font-family: Georgia, Calibri;
+        background-color: #fff;
+        font-size: 10pt;
+        color: #444;
+        border-radius: 6px;
+    }
+
+        #designMode select {
+            font-family: Georgia, Calibri;
+            -webkit-appearance: menulist;
+            box-sizing: border-box;
+            -webkit-box-align: center;
+            border: 1px solid #aaa;
+            white-space: pre;
+            -webkit-rtl-ordering: logical;
+            color: black;
+            background-color: white;
+            cursor: default;
+        }
+
+        #designMode a, #designMode a:visited {
+            /* color: #3380CC; */
+            color: #3366B7;
+            text-decoration: none;
+        }
+
+        #designMode select, #designMode a {
+            font-size: 10pt;
+        }
+
+        #designMode img.icon {
+            border-style: none;
+            vertical-align: middle;
+        }
+
+        #designMode .toolbox-icons img.icon {
+            width: 20px;
+        }
+
+        #designMode a:hover {
+            color: #D95852;
+        }
+
+        #designMode .handle {
+            background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+            min-height: 12px;
+            background-color: #f44365;
+            width: auto;
+            cursor: move;
+            font-size: larger;
+            font-weight: bold;
+            padding: 2px;
+            color: #fff;
+        }
+
+    #modeCtrl_mnSites img.icon {
+        vertical-align: top !important;
+        margin-right: 1px;
+    }
+
+    #modeCtrl_mnSites a.popout.dynamic, #mnSites a.dynamic {
+        padding-right: 14px;
+    }
+
+    .IE8Fix {
+        z-index: 100;
+    }
+</style>
+
+<div id="designMode" style="top:@(session.InDesignPanelTop)px;left:@(session.InDesignPanelLeft)px;opacity:@(session.IsDesignInitiated ? "1" : ".15")">
+    <div class="handle" title="Move">@*Control Box*@</div>
+    <div id="designPanelContent" style="padding: 8px 10px 0 10px; display: @(panelExpanded ? "block" : "none")">
+        @if (canManageContent && admins != null && admins.Count() > 0)
+        {
+            <div style="margin: 0 0 15px 0">
+
+                @if (admin != null)
+                {
+                    <div>
+                        <a href="@editModeUrl" title="Settings: Manage the content if this Element and set additional parameters if there's any.">
+                            <img class="icon" alt="" src="/Content/Assets/Images/Common/Objects.gif" />&nbsp;<strong>@admin.Name</strong></a>
+                    </div>
+                }
+
+                @if (admins.Count() > 0)
+                {
+                    foreach (var admin2 in admins)
+                    {
+                        if (admin == null || admin2.Id != admin.Id)
+                        {
+                    <div>
+                        <a href="@query.BuildQuery(admin != null && admin2.TemplateEngineId == TemplateEngineTypes.Razor ? CentralPages.LoaderRazor : CentralPages.LoaderMain)" title="Settings: Manage the content if this Element and set additional parameters if there's any.">
+                            <img class="icon" alt="" src="/Content/Assets/Images/Common/Objects.gif" />&nbsp;@admin2.Name</a>
+                    </div>
+                        }
+                    }
+                }
+            </div>
+        }
+
+        <div>
+            <a href="@CentralPages.CentrlHome" target="_top" title="Administration">
+                <img class="icon" alt="Sign Out" src="/Content/Assets/Images/Common/Gear.gif" />&nbsp;Dashboard</a>
+        </div>
+        <div>
+            <a href="@q.BuildQuery()" target="_top" title="Sign Out">
+                <img class="icon" alt="Sign Out" src="/Content/Assets/Images/TreeView/l.gif" />&nbsp;Sign Out</a>
+        </div>
+    </div>
+    <div style="text-align: right" class="toolbox-icons">
+        <div style="float: right; margin: 2px">
+            &nbsp;<a href="javascript:;" id="showHideDesignMode" title="Expand/Collapse ToolBox"
+                style="font-weight: bold; text-decoration: none; font-size: 14pt; line-height: 22px">@Html.Raw(panelExpanded ? "&laquo;" : "&raquo;")</a>
+        </div>
+        <div id="panelMiniIcons" style="float: right; padding: 0px; display: @(panelExpanded ? "none" : "static")">
+            <a id="linkEditMode" href="@editModeUrl"
+                title="Settings: Manage the content if this Element and set additional parameters if there's any.">
+                <img class="icon" style="margin: 4px 0px 2px 4px" alt="" src="/Content/Assets/Images/Common/Objects.gif" /></a>@*<a
+                                id="linkAdmin" href="@CentralPages.CentrlHome" title="Administration"><img
+                                    class="icon" style="margin: 4px 0px 2px 4px" title="Administration" alt="" src="/Content/Assets/Images/Common/Gear.gif" /></a>*@
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function setupToolBox() {
+        var m = $("#showHideDesignMode");
+        if (m != null) {
+            var dm = $("#designMode");
+            dm.draggable({ handle: 'div.handle' });
+            dm.bind('dragstop', function (event, ui) {
+                var ajaxUrl = "/Content/Handlers/AjaxHandler.ashx?Method=SetDesignPanel&Left=" + ui.offset.left +
+                    "&Top=" + ui.offset.top +
+                    "&" + (new Date()).valueOf();
+                $.get(ajaxUrl);
+            });
+
+            // opacity conflicts w/ the menu
+            var opacityFlag = @(session.IsDesignInitiated ? "true" : "false");
+            //console.log('o-flag: ' + opacityFlag);
+            var isHover = false, isHovering = false;
+            var applyOpacity = function () {
+                //console.log('applyOpacity, isHovering: ' + isHovering + ', opacityFlag:' + opacityFlag);
+                if(isHovering && !opacityFlag){
+                        dm.css('opacity', isHover ? 1 : 0.15);
+                } else {
+                    dm.css('opacity', opacityFlag ? 1 : 0.15);
+                    dm.unbind('click', applyOpacity);
+                    //console.log('dm click');
+                    var ajaxUrl = '/Content/Handlers/AjaxHandler.ashx?Method=SetDesignPanel&Init=' + (opacityFlag ? 1 : 0) + '&' + (new Date()).valueOf();
+                    $.get(ajaxUrl);
+                }
+            }
+            var timeOpacity = function(){
+                if(opacityFlag){
+                    //console.log('trigger set timout')
+                    setTimeout(function (){
+                        opacityFlag = false;
+                        applyOpacity();
+                    }, 5000);
+                }
+            }
+            var triggerOpacity = function(){
+                if(!opacityFlag){
+                    //console.log('click dm');
+                    opacityFlag = true;
+                    applyOpacity();
+                    timeOpacity();
+                }
+            }
+            dm.click(function () {
+                triggerOpacity();
+            });
+            dm.hover(function(){
+                // Hover In
+                //console.log('in');
+                if(!opacityFlag){
+                    isHover = true;
+                    isHovering = true;
+                    applyOpacity();
+                }
+            }, function(){
+                // Hover Out
+                //console.log('out');
+                isHover = false;
+                if(!opacityFlag){
+                    applyOpacity();
+                }
+                isHovering = false;
+            });
+
+            if(opacityFlag){
+                timeOpacity();
+            }
+
+            m.click(function () {
+                var panel = $("#designPanelContent");
+                var pd = panel.css("display");
+
+                // Toggle with transition
+                var options = {};
+                panel.toggle('slide', options, 'fast');
+
+                // Persist the state of panel
+                var isExpanded = (pd == "block" || pd == "") ? "0" : "1";
+                $("#panelMiniIcons").css("display", isExpanded == "1" ? "none" : "");
+
+                var ajaxUrl = "/Content/Handlers/AjaxHandler.ashx?Method=SetDesignPanel&Expanded=" + isExpanded + "&" + (new Date()).valueOf();
+                m.get(0).innerHTML = isExpanded == "1" ? "&laquo;" : "&raquo;";
+                $.get(ajaxUrl);
+            });
+        }
+        //});
+    }
+
+    $(document).ready(function () {
+        setupToolBox();
+    });
+</script>

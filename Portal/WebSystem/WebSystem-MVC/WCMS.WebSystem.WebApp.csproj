@@ -1,0 +1,2526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{03885372-4784-417A-91DB-D09C7A51D0CA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WCMS.WebSystem</RootNamespace>
+    <AssemblyName>WCMS.WebSystem.WebApp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\WCMS.WebSystem.WebApp.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.5.7.1213, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Binaries\Nuget-Packages\AjaxControlToolkit.7.1213\lib\45\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\..\Binaries\Nuget-Packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Harbour.RedisSessionStateStore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Binaries\Externals\Harbour.RedisSessionStateStore\Harbour.RedisSessionStateStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebHelpers.3.2.3\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nustache.Core, Version=1.15.1.3, Culture=neutral, PublicKeyToken=efd6f3d8f76ecd9f, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Nustache.1.15.1.3\lib\net20\Nustache.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\Binaries\Nuget-Packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.0.40.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\ServiceStack.Common.4.0.40\lib\net40\ServiceStack.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\ServiceStack.Interfaces.4.0.40\lib\portable-wp80+sl5+net40+win8+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=4.0.40.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\ServiceStack.Redis.4.0.40\lib\net40\ServiceStack.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.0.40.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\ServiceStack.Text.4.0.40\lib\net40\ServiceStack.Text.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Binaries\Nuget-Packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Content\Controllers\CatController.cs" />
+    <Compile Include="Content\Controls\CKEditor.ascx.cs">
+      <DependentUpon>CKEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Controls\CKEditor.ascx.designer.cs">
+      <DependentUpon>CKEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Controls\ComboDatePicker.ascx.cs">
+      <DependentUpon>ComboDatePicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Controls\ComboDatePicker.ascx.designer.cs">
+      <DependentUpon>ComboDatePicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Controls\ContextActionBar.ascx.cs">
+      <DependentUpon>ContextActionBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Controls\ContextActionBar.ascx.designer.cs">
+      <DependentUpon>ContextActionBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Controls\FullNamePicker.ascx.cs">
+      <DependentUpon>FullNamePicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Controls\FullNamePicker.ascx.designer.cs">
+      <DependentUpon>FullNamePicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Controls\MonthPicker.ascx.cs">
+      <DependentUpon>MonthPicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Controls\MonthPicker.ascx.designer.cs">
+      <DependentUpon>MonthPicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Controls\PhoneNumber.ascx.cs">
+      <DependentUpon>PhoneNumber.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Controls\PhoneNumber.ascx.designer.cs">
+      <DependentUpon>PhoneNumber.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Controls\TabControl.ascx.cs">
+      <DependentUpon>TabControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Controls\TabControl.ascx.designer.cs">
+      <DependentUpon>TabControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Controls\TabControlV1.ascx.cs">
+      <DependentUpon>TabControlV1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Controls\TabControlV1.ascx.designer.cs">
+      <DependentUpon>TabControlV1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Controls\TextEditor.ascx.cs">
+      <DependentUpon>TextEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Controls\TextEditor.ascx.designer.cs">
+      <DependentUpon>TextEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Controls\WMPControl.ascx.cs">
+      <DependentUpon>WMPControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Controls\WMPControl.ascx.designer.cs">
+      <DependentUpon>WMPControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Handlers\DataSync.svc.cs">
+      <DependentUpon>DataSync.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Handlers\IDataSync.cs" />
+    <Compile Include="Content\Parts\Central\Controls\WebPartControlTemplateTab.ascx.cs">
+      <DependentUpon>WebPartControlTemplateTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPartControlTemplateTab.ascx.designer.cs">
+      <DependentUpon>WebPartControlTemplateTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebThemeHome.ascx.cs">
+      <DependentUpon>WebThemeHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebThemeHome.ascx.designer.cs">
+      <DependentUpon>WebThemeHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\HeaderNavbar.ascx.cs">
+      <DependentUpon>HeaderNavbar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\HeaderNavbar.ascx.designer.cs">
+      <DependentUpon>HeaderNavbar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\UserActivities.ascx.cs">
+      <DependentUpon>UserActivities.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\UserActivities.ascx.designer.cs">
+      <DependentUpon>UserActivities.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\SideBar.ascx.cs">
+      <DependentUpon>SideBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\SideBar.ascx.designer.cs">
+      <DependentUpon>SideBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebThemeHome.ascx.cs">
+      <DependentUpon>WebThemeHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebThemeHome.ascx.designer.cs">
+      <DependentUpon>WebThemeHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTheme.ascx.cs">
+      <DependentUpon>WebTheme.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTheme.ascx.designer.cs">
+      <DependentUpon>WebTheme.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebThemes.ascx.cs">
+      <DependentUpon>WebThemes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebThemes.ascx.designer.cs">
+      <DependentUpon>WebThemes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\DataSyncDashboard.ascx.cs">
+      <DependentUpon>DataSyncDashboard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\DataSyncDashboard.ascx.designer.cs">
+      <DependentUpon>DataSyncDashboard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\DataSyncManager.ascx.cs">
+      <DependentUpon>DataSyncManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\DataSyncManager.ascx.designer.cs">
+      <DependentUpon>DataSyncManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\MessageQueueManager.ascx.cs">
+      <DependentUpon>MessageQueueManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\MessageQueueManager.ascx.designer.cs">
+      <DependentUpon>MessageQueueManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartAdminMgmt.ascx.cs">
+      <DependentUpon>WebPartAdminMgmt.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartAdminMgmt.ascx.designer.cs">
+      <DependentUpon>WebPartAdminMgmt.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartTemplatePanel.ascx.cs">
+      <DependentUpon>WebPartTemplatePanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartTemplatePanel.ascx.designer.cs">
+      <DependentUpon>WebPartTemplatePanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartTemplatePanels.ascx.cs">
+      <DependentUpon>WebPartTemplatePanels.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartTemplatePanels.ascx.designer.cs">
+      <DependentUpon>WebPartTemplatePanels.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Common\AdminCommentManager.ascx.cs">
+      <DependentUpon>AdminCommentManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Common\AdminCommentManager.ascx.designer.cs">
+      <DependentUpon>AdminCommentManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Common\Comments.ascx.cs">
+      <DependentUpon>Comments.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Common\Comments.ascx.designer.cs">
+      <DependentUpon>Comments.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Common\Login.ascx.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Common\Login.ascx.designer.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Common\MessageBoard.ascx.cs">
+      <DependentUpon>MessageBoard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Common\MessageBoard.ascx.designer.cs">
+      <DependentUpon>MessageBoard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Common\TriggerTask.ascx.cs">
+      <DependentUpon>TriggerTask.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Common\TriggerTask.ascx.designer.cs">
+      <DependentUpon>TriggerTask.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Common\User.svc.cs">
+      <DependentUpon>User.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Common\UserPhotoUpload.ascx.cs">
+      <DependentUpon>UserPhotoUpload.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Common\UserPhotoUpload.ascx.designer.cs">
+      <DependentUpon>UserPhotoUpload.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Themes\test\StandAloneTemplate.ascx.cs">
+      <DependentUpon>StandAloneTemplate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Themes\test\StandAloneTemplate.ascx.designer.cs">
+      <DependentUpon>StandAloneTemplate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Handlers\AjaxHandler.ashx.cs">
+      <DependentUpon>AjaxHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Handlers\Resource.ashx.cs">
+      <DependentUpon>Resource.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Content\Setup.aspx.cs">
+      <DependentUpon>Setup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Setup.aspx.designer.cs">
+      <DependentUpon>Setup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\AccountService.asmx.cs">
+      <DependentUpon>AccountService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Agent\Dashboard.ascx.cs">
+      <DependentUpon>Dashboard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Agent\Dashboard.ascx.designer.cs">
+      <DependentUpon>Dashboard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Agent\TaskEditor.ascx.cs">
+      <DependentUpon>TaskEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Agent\TaskEditor.ascx.designer.cs">
+      <DependentUpon>TaskEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Agent\TaskManager.ascx.cs">
+      <DependentUpon>TaskManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Agent\TaskManager.ascx.designer.cs">
+      <DependentUpon>TaskManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Agent\TaskView.ascx.cs">
+      <DependentUpon>TaskView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Agent\TaskView.ascx.designer.cs">
+      <DependentUpon>TaskView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Breadcrumb.ascx.cs">
+      <DependentUpon>Breadcrumb.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Breadcrumb.ascx.designer.cs">
+      <DependentUpon>Breadcrumb.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\ChangePasswordForm.ascx.cs">
+      <DependentUpon>ChangePasswordForm.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\ChangePasswordForm.ascx.designer.cs">
+      <DependentUpon>ChangePasswordForm.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\DesignMode.ascx.cs">
+      <DependentUpon>DesignMode.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\DesignMode.ascx.designer.cs">
+      <DependentUpon>DesignMode.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\ElementDesigner.ascx.cs">
+      <DependentUpon>ElementDesigner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\ElementDesigner.ascx.designer.cs">
+      <DependentUpon>ElementDesigner.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\ManagementSecurityOption.ascx.cs">
+      <DependentUpon>ManagementSecurityOption.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\ManagementSecurityOption.ascx.designer.cs">
+      <DependentUpon>ManagementSecurityOption.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\PanelDesigner.ascx.cs">
+      <DependentUpon>PanelDesigner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\PanelDesigner.ascx.designer.cs">
+      <DependentUpon>PanelDesigner.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\ParameterSetSelector.ascx.cs">
+      <DependentUpon>ParameterSetSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\ParameterSetSelector.ascx.designer.cs">
+      <DependentUpon>ParameterSetSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\SaveInFolder.ascx.cs">
+      <DependentUpon>SaveInFolder.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\SaveInFolder.ascx.designer.cs">
+      <DependentUpon>SaveInFolder.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\TreeControls.ascx.cs">
+      <DependentUpon>TreeControls.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\TreeControls.ascx.designer.cs">
+      <DependentUpon>TreeControls.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\UserProfileForm.ascx.cs">
+      <DependentUpon>UserProfileForm.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\UserProfileForm.ascx.designer.cs">
+      <DependentUpon>UserProfileForm.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\UserRolesForm.ascx.cs">
+      <DependentUpon>UserRolesForm.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\UserRolesForm.ascx.designer.cs">
+      <DependentUpon>UserRolesForm.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebGenericTab.ascx.cs">
+      <DependentUpon>WebGenericTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebGenericTab.ascx.designer.cs">
+      <DependentUpon>WebGenericTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebGroupTab.ascx.cs">
+      <DependentUpon>WebGroupTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebGroupTab.ascx.designer.cs">
+      <DependentUpon>WebGroupTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebMasterPageTab.ascx.cs">
+      <DependentUpon>WebMasterPageTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebMasterPageTab.ascx.designer.cs">
+      <DependentUpon>WebMasterPageTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPagePanelTab.ascx.cs">
+      <DependentUpon>WebPagePanelTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPagePanelTab.ascx.designer.cs">
+      <DependentUpon>WebPagePanelTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPagesControl.ascx.cs">
+      <DependentUpon>WebPagesControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPagesControl.ascx.designer.cs">
+      <DependentUpon>WebPagesControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPageTab.ascx.cs">
+      <DependentUpon>WebPageTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPageTab.ascx.designer.cs">
+      <DependentUpon>WebPageTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPartControlTab.ascx.cs">
+      <DependentUpon>WebPartControlTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPartControlTab.ascx.designer.cs">
+      <DependentUpon>WebPartControlTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPartTab.ascx.cs">
+      <DependentUpon>WebPartTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebPartTab.ascx.designer.cs">
+      <DependentUpon>WebPartTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebRoleTab.ascx.cs">
+      <DependentUpon>WebRoleTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebRoleTab.ascx.designer.cs">
+      <DependentUpon>WebRoleTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebSiteElementSelector.ascx.cs">
+      <DependentUpon>WebSiteElementSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebSiteElementSelector.ascx.designer.cs">
+      <DependentUpon>WebSiteElementSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebSitesControl.ascx.cs">
+      <DependentUpon>WebSitesControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebSitesControl.ascx.designer.cs">
+      <DependentUpon>WebSitesControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebSiteTab.ascx.cs">
+      <DependentUpon>WebSiteTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebSiteTab.ascx.designer.cs">
+      <DependentUpon>WebSiteTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebTemplateHome.ascx.cs">
+      <DependentUpon>WebTemplateHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebTemplateHome.ascx.designer.cs">
+      <DependentUpon>WebTemplateHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebUserTab.ascx.cs">
+      <DependentUpon>WebUserTab.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Controls\WebUserTab.ascx.designer.cs">
+      <DependentUpon>WebUserTab.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\HeaderPanel.ascx.cs">
+      <DependentUpon>HeaderPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\HeaderPanel.ascx.designer.cs">
+      <DependentUpon>HeaderPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Manager\Home.ascx.cs">
+      <DependentUpon>Home.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Manager\Home.ascx.designer.cs">
+      <DependentUpon>Home.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\SubscriptionManager.ascx.cs">
+      <DependentUpon>SubscriptionManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\SubscriptionManager.ascx.designer.cs">
+      <DependentUpon>SubscriptionManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebAddress.ascx.cs">
+      <DependentUpon>WebAddress.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebAddress.ascx.designer.cs">
+      <DependentUpon>WebAddress.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebAddresses.ascx.cs">
+      <DependentUpon>WebAddresses.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebAddresses.ascx.designer.cs">
+      <DependentUpon>WebAddresses.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebOffice.ascx.cs">
+      <DependentUpon>WebOffice.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebOffice.ascx.designer.cs">
+      <DependentUpon>WebOffice.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebOfficeHome.ascx.cs">
+      <DependentUpon>WebOfficeHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebOfficeHome.ascx.designer.cs">
+      <DependentUpon>WebOfficeHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebOffices.ascx.cs">
+      <DependentUpon>WebOffices.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebOffices.ascx.designer.cs">
+      <DependentUpon>WebOffices.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebOfficeTree.ascx.cs">
+      <DependentUpon>WebOfficeTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebOfficeTree.ascx.designer.cs">
+      <DependentUpon>WebOfficeTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParameter.ascx.cs">
+      <DependentUpon>WebParameter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParameter.ascx.designer.cs">
+      <DependentUpon>WebParameter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParameters.ascx.cs">
+      <DependentUpon>WebParameters.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParameters.ascx.designer.cs">
+      <DependentUpon>WebParameters.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParameterSet.ascx.cs">
+      <DependentUpon>WebParameterSet.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParameterSet.ascx.designer.cs">
+      <DependentUpon>WebParameterSet.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParameterSetHome.ascx.cs">
+      <DependentUpon>WebParameterSetHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParameterSetHome.ascx.designer.cs">
+      <DependentUpon>WebParameterSetHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParameterSets.ascx.cs">
+      <DependentUpon>WebParameterSets.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParameterSets.ascx.designer.cs">
+      <DependentUpon>WebParameterSets.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParametersXml.ascx.cs">
+      <DependentUpon>WebParametersXml.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebParametersXml.ascx.designer.cs">
+      <DependentUpon>WebParametersXml.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebResource.ascx.cs">
+      <DependentUpon>WebResource.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebResource.ascx.designer.cs">
+      <DependentUpon>WebResource.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebResourceManager.ascx.cs">
+      <DependentUpon>WebResourceManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebResourceManager.ascx.designer.cs">
+      <DependentUpon>WebResourceManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebResources.ascx.cs">
+      <DependentUpon>WebResources.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Misc\WebResources.ascx.designer.cs">
+      <DependentUpon>WebResources.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\ChangePassword.ascx.cs">
+      <DependentUpon>ChangePassword.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\ChangePassword.ascx.designer.cs">
+      <DependentUpon>ChangePassword.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\UserProfile.ascx.cs">
+      <DependentUpon>UserProfile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\UserProfile.ascx.designer.cs">
+      <DependentUpon>UserProfile.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGlobalPolicy.ascx.cs">
+      <DependentUpon>WebGlobalPolicy.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGlobalPolicy.ascx.designer.cs">
+      <DependentUpon>WebGlobalPolicy.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGlobalPolicyHome.ascx.cs">
+      <DependentUpon>WebGlobalPolicyHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGlobalPolicyHome.ascx.designer.cs">
+      <DependentUpon>WebGlobalPolicyHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGroup.ascx.cs">
+      <DependentUpon>WebGroup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGroup.ascx.designer.cs">
+      <DependentUpon>WebGroup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGroupHome.ascx.cs">
+      <DependentUpon>WebGroupHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGroupHome.ascx.designer.cs">
+      <DependentUpon>WebGroupHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGroups.ascx.cs">
+      <DependentUpon>WebGroups.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGroups.ascx.designer.cs">
+      <DependentUpon>WebGroups.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGroupTree.ascx.cs">
+      <DependentUpon>WebGroupTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGroupTree.ascx.designer.cs">
+      <DependentUpon>WebGroupTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGroupUsers.ascx.cs">
+      <DependentUpon>WebGroupUsers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebGroupUsers.ascx.designer.cs">
+      <DependentUpon>WebGroupUsers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebObjectPermissions.ascx.cs">
+      <DependentUpon>WebObjectPermissions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebObjectPermissions.ascx.designer.cs">
+      <DependentUpon>WebObjectPermissions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebPermissions.ascx.cs">
+      <DependentUpon>WebPermissions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebPermissions.ascx.designer.cs">
+      <DependentUpon>WebPermissions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebRoleHome.ascx.cs">
+      <DependentUpon>WebRoleHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebRoleHome.ascx.designer.cs">
+      <DependentUpon>WebRoleHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebRoles.ascx.cs">
+      <DependentUpon>WebRoles.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebRoles.ascx.designer.cs">
+      <DependentUpon>WebRoles.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebSecurity.ascx.cs">
+      <DependentUpon>WebSecurity.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebSecurity.ascx.designer.cs">
+      <DependentUpon>WebSecurity.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebSecurityTree.ascx.cs">
+      <DependentUpon>WebSecurityTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebSecurityTree.ascx.designer.cs">
+      <DependentUpon>WebSecurityTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebUserGroups.ascx.cs">
+      <DependentUpon>WebUserGroups.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebUserGroups.ascx.designer.cs">
+      <DependentUpon>WebUserGroups.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebUserHome.ascx.cs">
+      <DependentUpon>WebUserHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebUserHome.ascx.designer.cs">
+      <DependentUpon>WebUserHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebUserPermissions.ascx.cs">
+      <DependentUpon>WebUserPermissions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebUserPermissions.ascx.designer.cs">
+      <DependentUpon>WebUserPermissions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebUserRoles.ascx.cs">
+      <DependentUpon>WebUserRoles.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebUserRoles.ascx.designer.cs">
+      <DependentUpon>WebUserRoles.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebUsers.ascx.cs">
+      <DependentUpon>WebUsers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Security\WebUsers.ascx.designer.cs">
+      <DependentUpon>WebUsers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\SiteMap.ascx.cs">
+      <DependentUpon>SiteMap.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\SiteMap.ascx.designer.cs">
+      <DependentUpon>SiteMap.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplateEditor.ascx.cs">
+      <DependentUpon>WebTemplateEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplateEditor.ascx.designer.cs">
+      <DependentUpon>WebTemplateEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebSkin.ascx.cs">
+      <DependentUpon>WebSkin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebSkin.ascx.designer.cs">
+      <DependentUpon>WebSkin.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebSkinHome.ascx.cs">
+      <DependentUpon>WebSkinHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebSkinHome.ascx.designer.cs">
+      <DependentUpon>WebSkinHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebSkins.ascx.cs">
+      <DependentUpon>WebSkins.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebSkins.ascx.designer.cs">
+      <DependentUpon>WebSkins.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplate.ascx.cs">
+      <DependentUpon>WebTemplate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplate.ascx.designer.cs">
+      <DependentUpon>WebTemplate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplateHome.ascx.cs">
+      <DependentUpon>WebTemplateHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplateHome.ascx.designer.cs">
+      <DependentUpon>WebTemplateHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplatePanel.ascx.cs">
+      <DependentUpon>WebTemplatePanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplatePanel.ascx.designer.cs">
+      <DependentUpon>WebTemplatePanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplatePanels.ascx.cs">
+      <DependentUpon>WebTemplatePanels.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplatePanels.ascx.designer.cs">
+      <DependentUpon>WebTemplatePanels.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplates.ascx.cs">
+      <DependentUpon>WebTemplates.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplates.ascx.designer.cs">
+      <DependentUpon>WebTemplates.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplateVersions.ascx.cs">
+      <DependentUpon>WebTemplateVersions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Template\WebTemplateVersions.ascx.designer.cs">
+      <DependentUpon>WebTemplateVersions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\ImportExportParameterSets.ascx.cs">
+      <DependentUpon>ImportExportParameterSets.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\ImportExportParameterSets.ascx.designer.cs">
+      <DependentUpon>ImportExportParameterSets.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\ImportExportHome.ascx.cs">
+      <DependentUpon>ImportExportHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\ImportExportHome.ascx.designer.cs">
+      <DependentUpon>ImportExportHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\ImportExportPage.ascx.cs">
+      <DependentUpon>ImportExportPage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\ImportExportPage.ascx.designer.cs">
+      <DependentUpon>ImportExportPage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\PerformanceLogManager.ascx.cs">
+      <DependentUpon>PerformanceLogManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\PerformanceLogManager.ascx.designer.cs">
+      <DependentUpon>PerformanceLogManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\DataStoreManager.ascx.cs">
+      <DependentUpon>DataStoreManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\DataStoreManager.ascx.designer.cs">
+      <DependentUpon>DataStoreManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\EventLogManager.ascx.cs">
+      <DependentUpon>EventLogManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\EventLogManager.ascx.designer.cs">
+      <DependentUpon>EventLogManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\QueryAnalyzer.ascx.cs">
+      <DependentUpon>QueryAnalyzer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\QueryAnalyzer.ascx.designer.cs">
+      <DependentUpon>QueryAnalyzer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\ShortUrlEdit.ascx.cs">
+      <DependentUpon>ShortUrlEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\ShortUrlEdit.ascx.designer.cs">
+      <DependentUpon>ShortUrlEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\ShortUrlManager.ascx.cs">
+      <DependentUpon>ShortUrlManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\ShortUrlManager.ascx.designer.cs">
+      <DependentUpon>ShortUrlManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\SmtpAnalyzer.ascx.cs">
+      <DependentUpon>SmtpAnalyzer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\SmtpAnalyzer.ascx.designer.cs">
+      <DependentUpon>SmtpAnalyzer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\UserSessionManager.ascx.cs">
+      <DependentUpon>UserSessionManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\UserSessionManager.ascx.designer.cs">
+      <DependentUpon>UserSessionManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebDataExplorer.ascx.cs">
+      <DependentUpon>WebDataExplorer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebDataExplorer.ascx.designer.cs">
+      <DependentUpon>WebDataExplorer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebDataRows.ascx.cs">
+      <DependentUpon>WebDataRows.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebDataRows.ascx.designer.cs">
+      <DependentUpon>WebDataRows.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebFolder.ascx.cs">
+      <DependentUpon>WebFolder.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebFolder.ascx.designer.cs">
+      <DependentUpon>WebFolder.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebFolderTree.ascx.cs">
+      <DependentUpon>WebFolderTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebFolderTree.ascx.designer.cs">
+      <DependentUpon>WebFolderTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebObjectEdit.ascx.cs">
+      <DependentUpon>WebObjectEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebObjectEdit.ascx.designer.cs">
+      <DependentUpon>WebObjectEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebRegistry.ascx.cs">
+      <DependentUpon>WebRegistry.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebRegistry.ascx.designer.cs">
+      <DependentUpon>WebRegistry.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebRegistryEntry.ascx.cs">
+      <DependentUpon>WebRegistryEntry.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebRegistryEntry.ascx.designer.cs">
+      <DependentUpon>WebRegistryEntry.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebRegistryTree.ascx.cs">
+      <DependentUpon>WebRegistryTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebRegistryTree.ascx.designer.cs">
+      <DependentUpon>WebRegistryTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebToolsTree.ascx.cs">
+      <DependentUpon>WebToolsTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Tools\WebToolsTree.ascx.designer.cs">
+      <DependentUpon>WebToolsTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\TreePanel.ascx.cs">
+      <DependentUpon>TreePanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\TreePanel.ascx.designer.cs">
+      <DependentUpon>TreePanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebOpen.ascx.cs">
+      <DependentUpon>WebOpen.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebOpen.ascx.designer.cs">
+      <DependentUpon>WebOpen.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPartPreview.ascx.cs">
+      <DependentUpon>WebPartPreview.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPartPreview.ascx.designer.cs">
+      <DependentUpon>WebPartPreview.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPart.ascx.cs">
+      <DependentUpon>WebPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPart.ascx.designer.cs">
+      <DependentUpon>WebPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartAdmin.ascx.cs">
+      <DependentUpon>WebPartAdmin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartAdmin.ascx.designer.cs">
+      <DependentUpon>WebPartAdmin.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartAdminEntry.ascx.cs">
+      <DependentUpon>WebPartAdminEntry.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartAdminEntry.ascx.designer.cs">
+      <DependentUpon>WebPartAdminEntry.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartAdminHome.ascx.cs">
+      <DependentUpon>WebPartAdminHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartAdminHome.ascx.designer.cs">
+      <DependentUpon>WebPartAdminHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartConfig.ascx.cs">
+      <DependentUpon>WebPartConfig.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartConfig.ascx.designer.cs">
+      <DependentUpon>WebPartConfig.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartConfigEntry.ascx.cs">
+      <DependentUpon>WebPartConfigEntry.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartConfigEntry.ascx.designer.cs">
+      <DependentUpon>WebPartConfigEntry.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControl.ascx.cs">
+      <DependentUpon>WebPartControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControl.ascx.designer.cs">
+      <DependentUpon>WebPartControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControlHome.ascx.cs">
+      <DependentUpon>WebPartControlHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControlHome.ascx.designer.cs">
+      <DependentUpon>WebPartControlHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControls.ascx.cs">
+      <DependentUpon>WebPartControls.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControls.ascx.designer.cs">
+      <DependentUpon>WebPartControls.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControlTemplate.ascx.cs">
+      <DependentUpon>WebPartControlTemplate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControlTemplate.ascx.designer.cs">
+      <DependentUpon>WebPartControlTemplate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControlTemplateHome.ascx.cs">
+      <DependentUpon>WebPartControlTemplateHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControlTemplateHome.ascx.designer.cs">
+      <DependentUpon>WebPartControlTemplateHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControlTemplates.ascx.cs">
+      <DependentUpon>WebPartControlTemplates.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartControlTemplates.ascx.designer.cs">
+      <DependentUpon>WebPartControlTemplates.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartHome.ascx.cs">
+      <DependentUpon>WebPartHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartHome.ascx.designer.cs">
+      <DependentUpon>WebPartHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebParts.ascx.cs">
+      <DependentUpon>WebParts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebParts.ascx.designer.cs">
+      <DependentUpon>WebParts.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartTree.ascx.cs">
+      <DependentUpon>WebPartTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebPart\WebPartTree.ascx.designer.cs">
+      <DependentUpon>WebPartTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebChildPages.ascx.cs">
+      <DependentUpon>WebChildPages.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebChildPages.ascx.designer.cs">
+      <DependentUpon>WebChildPages.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebChildSites.ascx.cs">
+      <DependentUpon>WebChildSites.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebChildSites.ascx.designer.cs">
+      <DependentUpon>WebChildSites.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebIdentities.ascx.cs">
+      <DependentUpon>WebIdentities.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebIdentities.ascx.designer.cs">
+      <DependentUpon>WebIdentities.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebIdentity.ascx.cs">
+      <DependentUpon>WebIdentity.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebIdentity.ascx.designer.cs">
+      <DependentUpon>WebIdentity.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebLinkedParts.ascx.cs">
+      <DependentUpon>WebLinkedParts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebLinkedParts.ascx.designer.cs">
+      <DependentUpon>WebLinkedParts.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebMasterPage.ascx.cs">
+      <DependentUpon>WebMasterPage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebMasterPage.ascx.designer.cs">
+      <DependentUpon>WebMasterPage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebMasterPageHome.ascx.cs">
+      <DependentUpon>WebMasterPageHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebMasterPageHome.ascx.designer.cs">
+      <DependentUpon>WebMasterPageHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebMasterPages.ascx.cs">
+      <DependentUpon>WebMasterPages.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebMasterPages.ascx.designer.cs">
+      <DependentUpon>WebMasterPages.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPage.ascx.cs">
+      <DependentUpon>WebPage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPage.ascx.designer.cs">
+      <DependentUpon>WebPage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPageElement.ascx.cs">
+      <DependentUpon>WebPageElement.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPageElement.ascx.designer.cs">
+      <DependentUpon>WebPageElement.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPageElementHome.ascx.cs">
+      <DependentUpon>WebPageElementHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPageElementHome.ascx.designer.cs">
+      <DependentUpon>WebPageElementHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPageElements.ascx.cs">
+      <DependentUpon>WebPageElements.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPageElements.ascx.designer.cs">
+      <DependentUpon>WebPageElements.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPageHome.ascx.cs">
+      <DependentUpon>WebPageHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPageHome.ascx.designer.cs">
+      <DependentUpon>WebPageHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPagePanel.ascx.cs">
+      <DependentUpon>WebPagePanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPagePanel.ascx.designer.cs">
+      <DependentUpon>WebPagePanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPagePanelHome.ascx.cs">
+      <DependentUpon>WebPagePanelHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPagePanelHome.ascx.designer.cs">
+      <DependentUpon>WebPagePanelHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPagePanels.ascx.cs">
+      <DependentUpon>WebPagePanels.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPagePanels.ascx.designer.cs">
+      <DependentUpon>WebPagePanels.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPages.ascx.cs">
+      <DependentUpon>WebPages.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebPages.ascx.designer.cs">
+      <DependentUpon>WebPages.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebSite.ascx.cs">
+      <DependentUpon>WebSite.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebSite.ascx.designer.cs">
+      <DependentUpon>WebSite.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebSiteHome.ascx.cs">
+      <DependentUpon>WebSiteHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebSiteHome.ascx.designer.cs">
+      <DependentUpon>WebSiteHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebSites.ascx.cs">
+      <DependentUpon>WebSites.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebSites.ascx.designer.cs">
+      <DependentUpon>WebSites.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebSiteTree.ascx.cs">
+      <DependentUpon>WebSiteTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\WebSites\WebSiteTree.ascx.designer.cs">
+      <DependentUpon>WebSiteTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Dashboard.ascx.cs">
+      <DependentUpon>Dashboard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Central\Dashboard.ascx.designer.cs">
+      <DependentUpon>Dashboard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Common\FxService.asmx.cs">
+      <DependentUpon>FxService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Test\CategoryPart.ascx.cs">
+      <DependentUpon>CategoryPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Test\CategoryPart.ascx.designer.cs">
+      <DependentUpon>CategoryPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Test\DetailsPart.ascx.cs">
+      <DependentUpon>DetailsPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Test\DetailsPart.ascx.designer.cs">
+      <DependentUpon>DetailsPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Test\ListPart.ascx.cs">
+      <DependentUpon>ListPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Test\ListPart.ascx.designer.cs">
+      <DependentUpon>ListPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Parts\Test\TemplateFormEditor.ascx.cs">
+      <DependentUpon>TemplateFormEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Parts\Test\TemplateFormEditor.ascx.designer.cs">
+      <DependentUpon>TemplateFormEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Windows\AccountBrowser.aspx.cs">
+      <DependentUpon>AccountBrowser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Windows\AccountBrowser.aspx.designer.cs">
+      <DependentUpon>AccountBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Windows\DateTimePicker.aspx.cs">
+      <DependentUpon>DateTimePicker.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Windows\DateTimePicker.aspx.designer.cs">
+      <DependentUpon>DateTimePicker.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Windows\FileBrowser.aspx.cs">
+      <DependentUpon>FileBrowser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Windows\FileBrowser.aspx.designer.cs">
+      <DependentUpon>FileBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Windows\LinkBrowser.aspx.cs">
+      <DependentUpon>LinkBrowser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Windows\LinkBrowser.aspx.designer.cs">
+      <DependentUpon>LinkBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Windows\ObjectBrowser.aspx.cs">
+      <DependentUpon>ObjectBrowser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Windows\ObjectBrowser.aspx.designer.cs">
+      <DependentUpon>ObjectBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Windows\StyleBuilder.aspx.cs">
+      <DependentUpon>StyleBuilder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Windows\StyleBuilder.aspx.designer.cs">
+      <DependentUpon>StyleBuilder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Windows\Upload.aspx.cs">
+      <DependentUpon>Upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Windows\Upload.aspx.designer.cs">
+      <DependentUpon>Upload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WebServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientAccessPolicy.xml" />
+    <Content Include="Content\Admin\Data\Contact-Old.htm" />
+    <Content Include="Content\Admin\Data\locale-map.htm" />
+    <Content Include="Content\Admin\Data\map-test.htm" />
+    <Content Include="Content\Admin\Data\NewDataSet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Admin\Data\Test-Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Admin\Data\Test.htm" />
+    <Content Include="Content\Assets\Images\nophoto.png" />
+    <Content Include="Content\Assets\Scripts\common.min.js">
+      <DependentUpon>common.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\DateTimePicker.aspx.min.js">
+      <DependentUpon>DateTimePicker.aspx.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\dragdrop.min.js">
+      <DependentUpon>dragdrop.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\FindUser.aspx.min.js">
+      <DependentUpon>FindUser.aspx.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\Grid.aspx.min.js">
+      <DependentUpon>Grid.aspx.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\jquery-ui.min.js" />
+    <Content Include="Content\Assets\Scripts\jquery.js" />
+    <Content Include="Content\Assets\Scripts\jquery.min.js" />
+    <Content Include="Content\Assets\Scripts\html5shim.js" />
+    <Content Include="Content\Assets\Scripts\html5shiv-printshiv.js" />
+    <Content Include="Content\Assets\Scripts\html5shiv.js" />
+    <Content Include="Content\Assets\Scripts\js.min.js">
+      <DependentUpon>js.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\pngfix.min.js">
+      <DependentUpon>pngfix.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\shadow.min.js">
+      <DependentUpon>shadow.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\WCMS.Core.min.js">
+      <DependentUpon>WCMS.Core.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\WCMS.Utils.min.js">
+      <DependentUpon>WCMS.Utils.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\WebSystem.Admin.min.js">
+      <DependentUpon>WebSystem.Admin.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\DateTimePicker.aspx.min.css">
+      <DependentUpon>DateTimePicker.aspx.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\DragDrop.min.css">
+      <DependentUpon>DragDrop.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\PageDesigner.min.css">
+      <DependentUpon>PageDesigner.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\Registration.min.css">
+      <DependentUpon>Registration.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\TreePanel.aspx.min.css">
+      <DependentUpon>TreePanel.aspx.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\upload.min.css">
+      <DependentUpon>upload.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\WebSystem.Admin.min.css">
+      <DependentUpon>WebSystem.Admin.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\WebSystem.Controls.min.css">
+      <DependentUpon>WebSystem.Controls.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\WebSystem.min.css">
+      <DependentUpon>WebSystem.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\WebSystem.Window.min.css">
+      <DependentUpon>WebSystem.Window.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Styles\WebSystemV2.css" />
+    <Content Include="Content\Assets\Styles\WebSystemV2.min.css">
+      <DependentUpon>WebSystemV2.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Uploads\Default.htm" />
+    <Content Include="Content\Controls\TabControl.ascx" />
+    <Content Include="Content\Controls\TabControlV1.ascx" />
+    <Content Include="Content\facebook.html" />
+    <Content Include="Content\fb-channel.aspx" />
+    <Content Include="Content\Handlers\DataSync.svc" />
+    <Content Include="Content\Index.html" />
+    <Content Include="Content\Page1.html" />
+    <Content Include="Content\Parts\Central\Central-notes.txt" />
+    <Content Include="Content\Parts\Central\Controls\WebPartControlTemplateTab.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebThemeHome.ascx" />
+    <Content Include="Content\Parts\Central\HeaderNavbar.ascx" />
+    <Content Include="Content\Parts\Central\part.xml" />
+    <Content Include="Content\Parts\Central\Security\UserActivities.ascx" />
+    <Content Include="Content\Parts\Central\SideBar.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebThemeHome.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebTheme.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebThemes.ascx" />
+    <Content Include="Content\Parts\Central\Tools\DataSyncDashboard.ascx" />
+    <Content Include="Content\Parts\Central\Tools\DataSyncManager.ascx" />
+    <Content Include="Content\Parts\Central\Tools\MessageQueueManager.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartAdminMgmt.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartTemplatePanel.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartTemplatePanels.ascx" />
+    <Content Include="Content\Parts\Common\AdminCommentManager.ascx" />
+    <Content Include="Content\Parts\Common\Comments.ascx" />
+    <Content Include="Content\Parts\Common\Login.ascx" />
+    <Content Include="Content\Parts\Common\LoginV2.ascx" />
+    <Content Include="Content\Parts\Common\MessageBoard.ascx" />
+    <Content Include="Content\Parts\Common\TriggerTask.ascx" />
+    <Content Include="Content\Parts\Common\User.svc" />
+    <Content Include="Content\Parts\Common\UserPhotoUpload.ascx" />
+    <Content Include="Content\Plugins\7za\7za.exe" />
+    <Content Include="Content\Plugins\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="Content\Plugins\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\Plugins\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\Plugins\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\Plugins\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\Plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Plugins\fancybox\blank.gif" />
+    <Content Include="Content\Plugins\fancybox\fancybox-x.png" />
+    <Content Include="Content\Plugins\fancybox\fancybox-y.png" />
+    <Content Include="Content\Plugins\fancybox\fancybox.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_close.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_loading.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_nav_left.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_nav_right.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_shadow_e.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_shadow_n.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_shadow_ne.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_shadow_nw.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_shadow_s.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_shadow_se.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_shadow_sw.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_shadow_w.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_title_left.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_title_main.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_title_over.png" />
+    <Content Include="Content\Plugins\fancybox\fancy_title_right.png" />
+    <Content Include="Content\Plugins\fancybox\jquery.easing-1.3.pack.js" />
+    <Content Include="Content\Plugins\fancybox\jquery.fancybox-1.3.1.css" />
+    <Content Include="Content\Plugins\fancybox\jquery.fancybox-1.3.1.js" />
+    <Content Include="Content\Plugins\fancybox\jquery.fancybox-1.3.1.pack.js" />
+    <Content Include="Content\Plugins\fancybox\jquery.mousewheel-3.0.2.pack.js" />
+    <Content Include="Content\Plugins\fckeditor\fckconfig.js" />
+    <Content Include="Content\Controls\CKEditor.ascx" />
+    <Content Include="Content\Controls\ComboDatePicker.ascx" />
+    <Content Include="Content\Controls\ContextActionBar.ascx" />
+    <Content Include="Content\Controls\FullNamePicker.ascx" />
+    <Content Include="Content\Controls\MonthPicker.ascx" />
+    <Content Include="Content\Controls\PhoneNumber.ascx" />
+    <Content Include="Content\Controls\TextEditor.ascx" />
+    <Content Include="Content\Controls\WMPControl.ascx" />
+    <Content Include="Content\Plugins\fckeditor\fckconfig.min.js">
+      <DependentUpon>fckconfig.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Plugins\flowplayer\flowplayer.js" />
+    <Content Include="Content\Plugins\flowplayer\flowplayer.min.js" />
+    <Content Include="Content\Plugins\flowplayer\flowplayer.swf" />
+    <Content Include="Content\Plugins\flowplayer\index.html" />
+    <Content Include="Content\Plugins\flowplayer\skin\all-skins.css" />
+    <Content Include="Content\Plugins\flowplayer\skin\functional.css" />
+    <Content Include="Content\Plugins\flowplayer\skin\img\black.png" />
+    <Content Include="Content\Plugins\flowplayer\skin\img\playful_black.png" />
+    <Content Include="Content\Plugins\flowplayer\skin\img\playful_white.png" />
+    <Content Include="Content\Plugins\flowplayer\skin\img\play_black.png" />
+    <Content Include="Content\Plugins\flowplayer\skin\img\play_white.png" />
+    <Content Include="Content\Plugins\flowplayer\skin\img\white.png" />
+    <Content Include="Content\Plugins\flowplayer\skin\minimalist.css" />
+    <Content Include="Content\Plugins\flowplayer\skin\playful.css" />
+    <Content Include="Content\Plugins\jwplayer\jwplayer.js" />
+    <Content Include="Content\Plugins\jwplayer\license.txt" />
+    <Content Include="Content\Plugins\jwplayer\player.swf" />
+    <Content Include="Content\Plugins\jwplayer\preview.jpg" />
+    <Content Include="Content\Plugins\jwplayer\readme.html" />
+    <Content Include="Content\Plugins\jwplayer\video.mp4" />
+    <Content Include="Content\Plugins\WebExtractor\WCMS.Common.dll" />
+    <Content Include="Content\Plugins\WebExtractor\WCMS.Common.pdb" />
+    <Content Include="Content\Plugins\WebExtractor\WebExtractor.exe" />
+    <Content Include="Content\Plugins\WebExtractor\WebExtractor.pdb" />
+    <Content Include="Content\Test02.aspx" />
+    <Content Include="Content\Themes\area51\css\contentslider.min.css">
+      <DependentUpon>contentslider.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\css\ddsmoothmenu.min.css">
+      <DependentUpon>ddsmoothmenu.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\css\jquery.fancybox-1.3.1.min.css">
+      <DependentUpon>jquery.fancybox-1.3.1.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\css\main_style.min.css">
+      <DependentUpon>main_style.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\css\slider.min.css">
+      <DependentUpon>slider.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\Default.ascx" />
+    <Content Include="Content\Themes\area51\js\acrodin.min.js">
+      <DependentUpon>acrodin.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\animatedcollapse.min.js">
+      <DependentUpon>animatedcollapse.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\anythingslider.min.js">
+      <DependentUpon>anythingslider.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\banner_left.min.js">
+      <DependentUpon>banner_left.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\collapse.min.js">
+      <DependentUpon>collapse.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\contentslider.min.js">
+      <DependentUpon>contentslider.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\cont_slide.min.js">
+      <DependentUpon>cont_slide.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\ddaccordion.min.js">
+      <DependentUpon>ddaccordion.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\ddsmoothmenu.min.js">
+      <DependentUpon>ddsmoothmenu.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\jquery.anythingslider.min.js">
+      <DependentUpon>jquery.anythingslider.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\jquery.easing.1.2.min.js">
+      <DependentUpon>jquery.easing.1.2.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\jquery.fancybox-1.3.1.min.js">
+      <DependentUpon>jquery.fancybox-1.3.1.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\lightbox.min.js">
+      <DependentUpon>lightbox.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\menu-collapsed.min.js">
+      <DependentUpon>menu-collapsed.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\menu.min.js">
+      <DependentUpon>menu.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\virtualpaginate.min.js">
+      <DependentUpon>virtualpaginate.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\Parts\EventCalendar\Event\EventViewBasic.ascx" />
+    <Content Include="Content\Themes\bootstrap3\carousel\carousel.css" />
+    <Content Include="Content\Themes\bootstrap3\carousel\index.html" />
+    <Content Include="Content\Themes\bootstrap3\grid\grid.css" />
+    <Content Include="Content\Themes\bootstrap3\grid\index.html" />
+    <Content Include="Content\Themes\bootstrap3\jumbotron-narrow\index.html" />
+    <Content Include="Content\Themes\bootstrap3\jumbotron-narrow\jumbotron-narrow.css" />
+    <Content Include="Content\Themes\bootstrap3\jumbotron\index.html" />
+    <Content Include="Content\Themes\bootstrap3\jumbotron\jumbotron.css" />
+    <Content Include="Content\Themes\bootstrap3\justified-nav\index.html" />
+    <Content Include="Content\Themes\bootstrap3\justified-nav\justified-nav.css" />
+    <Content Include="Content\Parts\Central\Security\UserStats.cshtml" />
+    <Content Include="Content\Parts\Central\Tools\SessionDiagnostics.cshtml" />
+    <Content Include="Content\Parts\Central\Tools\CodeExecutor.cshtml" />
+    <Content Include="Content\Assets\Scripts\common.min.js.map">
+      <DependentUpon>common.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\DateTimePicker.aspx.min.js.map">
+      <DependentUpon>DateTimePicker.aspx.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\dragdrop.min.js.map">
+      <DependentUpon>dragdrop.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\FindUser.aspx.min.js.map">
+      <DependentUpon>FindUser.aspx.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\Grid.aspx.min.js.map">
+      <DependentUpon>Grid.aspx.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\js.min.js.map">
+      <DependentUpon>js.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\shadow.min.js.map">
+      <DependentUpon>shadow.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\WCMS.Core.min.js.map">
+      <DependentUpon>WCMS.Core.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\WCMS.Utils.min.js.map">
+      <DependentUpon>WCMS.Utils.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\WebSystem.Admin.min.js.map">
+      <DependentUpon>WebSystem.Admin.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Assets\Scripts\pngfix.min.js.map">
+      <DependentUpon>pngfix.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Plugins\fckeditor\fckconfig.min.js.map">
+      <DependentUpon>fckconfig.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\virtualpaginate.min.js.map">
+      <DependentUpon>virtualpaginate.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\menu.min.js.map">
+      <DependentUpon>menu.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\menu-collapsed.min.js.map">
+      <DependentUpon>menu-collapsed.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\lightbox.min.js.map">
+      <DependentUpon>lightbox.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\jquery.fancybox-1.3.1.min.js.map">
+      <DependentUpon>jquery.fancybox-1.3.1.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\jquery.easing.1.2.min.js.map">
+      <DependentUpon>jquery.easing.1.2.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\jquery.anythingslider.min.js.map">
+      <DependentUpon>jquery.anythingslider.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\ddsmoothmenu.min.js.map">
+      <DependentUpon>ddsmoothmenu.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\ddaccordion.min.js.map">
+      <DependentUpon>ddaccordion.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\contentslider.min.js.map">
+      <DependentUpon>contentslider.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\cont_slide.min.js.map">
+      <DependentUpon>cont_slide.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\collapse.min.js.map">
+      <DependentUpon>collapse.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\banner_left.min.js.map">
+      <DependentUpon>banner_left.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\anythingslider.min.js.map">
+      <DependentUpon>anythingslider.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\animatedcollapse.min.js.map">
+      <DependentUpon>animatedcollapse.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\Themes\area51\js\acrodin.min.js.map">
+      <DependentUpon>acrodin.min.js</DependentUpon>
+    </Content>
+    <None Include="Content\Themes\bootstrap3\navbar-fixed-top.cshtml" />
+    <Content Include="Content\Themes\bootstrap3\navbar-fixed-top.ascx" />
+    <Content Include="Content\Themes\bootstrap3\navbar-fixed-top\index.html" />
+    <Content Include="Content\Themes\bootstrap3\navbar-fixed-top\navbar-fixed-top.css" />
+    <Content Include="Content\Themes\bootstrap3\navbar-static-top\index.html" />
+    <Content Include="Content\Themes\bootstrap3\navbar-static-top\navbar-static-top.css" />
+    <Content Include="Content\Themes\bootstrap3\navbar\index.html" />
+    <Content Include="Content\Themes\bootstrap3\navbar\navbar.css" />
+    <Content Include="Content\Themes\bootstrap3\non-responsive\index.html" />
+    <Content Include="Content\Themes\bootstrap3\non-responsive\non-responsive.css" />
+    <Content Include="Content\Themes\bootstrap3\offcanvas\index.html" />
+    <Content Include="Content\Themes\bootstrap3\offcanvas\offcanvas.css" />
+    <Content Include="Content\Themes\bootstrap3\offcanvas\offcanvas.js" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\carousel.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\grid.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\jumbotron-narrow.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\jumbotron.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\justified-nav.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\navbar-fixed.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\navbar-static.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\navbar.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\non-responsive.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\offcanvas.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\sign-in.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\starter-template.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\sticky-footer-navbar.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\sticky-footer.jpg" />
+    <Content Include="Content\Themes\bootstrap3\screenshots\theme.jpg" />
+    <Content Include="Content\Themes\bootstrap3\signin\index.html" />
+    <Content Include="Content\Themes\bootstrap3\signin\signin.css" />
+    <Content Include="Content\Themes\bootstrap3\starter-template\index.html" />
+    <Content Include="Content\Themes\bootstrap3\starter-template\starter-template.css" />
+    <Content Include="Content\Themes\bootstrap3\sticky-footer-navbar\index.html" />
+    <Content Include="Content\Themes\bootstrap3\sticky-footer-navbar\sticky-footer-navbar.css" />
+    <Content Include="Content\Themes\bootstrap3\sticky-footer\index.html" />
+    <Content Include="Content\Themes\bootstrap3\sticky-footer\sticky-footer.css" />
+    <Content Include="Content\Themes\bootstrap3\theme\index.html" />
+    <Content Include="Content\Themes\bootstrap3\theme\theme.css" />
+    <Content Include="Content\Themes\Central\ResponsiveWithSidebar.ascx" />
+    <Content Include="Content\Themes\Central\Responsive.ascx" />
+    <Content Include="Content\Themes\Default\ForAjaxControlToolkit.ascx" />
+    <Content Include="Content\Themes\Default\Default.ascx" />
+    <Content Include="Content\Themes\Default\Style.css" />
+    <Content Include="Content\Themes\test\StandAloneTemplate.ascx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Assets\Images\TreeView\+.gif" />
+    <Content Include="Content\Assets\Images\TreeView\-.gif" />
+    <Content Include="Content\Assets\Images\TreeView\c.gif" />
+    <Content Include="Content\Assets\Images\TreeView\cl.gif" />
+    <Content Include="Content\Assets\Images\TreeView\collapse.gif" />
+    <Content Include="Content\Assets\Images\TreeView\e.gif" />
+    <Content Include="Content\Assets\Images\TreeView\expand.gif" />
+    <Content Include="Content\Assets\Images\TreeView\f.gif" />
+    <Content Include="Content\Assets\Images\TreeView\folder2.gif" />
+    <Content Include="Content\Assets\Images\TreeView\h.gif" />
+    <Content Include="Content\Assets\Images\TreeView\ip.gif" />
+    <Content Include="Content\Assets\Images\TreeView\l.gif" />
+    <Content Include="Content\Assets\Images\TreeView\mo.gif" />
+    <Content Include="Content\Assets\Images\TreeView\mp1.gif" />
+    <Content Include="Content\Assets\Images\TreeView\mp2.gif" />
+    <Content Include="Content\Assets\Images\TreeView\ne.gif" />
+    <Content Include="Content\Assets\Images\TreeView\o.gif" />
+    <Content Include="Content\Assets\Images\TreeView\p.gif" />
+    <Content Include="Content\Assets\Images\TreeView\portal.gif" />
+    <Content Include="Content\Assets\Images\TreeView\pr.gif" />
+    <Content Include="Content\Assets\Images\TreeView\t.gif" />
+    <Content Include="Content\Assets\Images\TreeView\tl.gif" />
+    <Content Include="Content\Assets\Images\TreeView\txt.gif" />
+    <Content Include="Content\Assets\Images\TreeView\u.gif" />
+    <Content Include="Content\Assets\Images\TreeView\w.gif" />
+    <Content Include="Content\Assets\Images\TreeView\Web.gif" />
+    <Content Include="Content\Assets\Images\TreeView\wf.gif" />
+    <Content Include="Content\Assets\Images\TreeView\wf1.gif" />
+    <Content Include="Content\Assets\Images\TreeView\ws.gif" />
+    <Content Include="Content\Assets\Scripts\WCMS.Utils.js" />
+    <Content Include="Content\Assets\Scripts\common.js" />
+    <Content Include="Content\Assets\Scripts\DateTimePicker.aspx.js" />
+    <Content Include="Content\Assets\Scripts\dragdrop.js" />
+    <Content Include="Content\Assets\Scripts\FindUser.aspx.js" />
+    <Content Include="Content\Assets\Scripts\Grid.aspx.js" />
+    <Content Include="Content\Assets\Scripts\ieupdate.js" />
+    <Content Include="Content\Assets\Scripts\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Content\Assets\Scripts\jquery-1.4.4.js" />
+    <Content Include="Content\Assets\Scripts\jquery-1.4.4.min.js" />
+    <Content Include="Content\Assets\Scripts\jquery-ui.js" />
+    <Content Include="Content\Assets\Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Content\Assets\Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Content\Assets\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Content\Assets\Scripts\jquery.validate.js" />
+    <Content Include="Content\Assets\Scripts\jquery.validate.min.js" />
+    <Content Include="Content\Assets\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Content\Assets\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\Assets\Scripts\js.js" />
+    <Content Include="Content\Assets\Scripts\WCMS.Core.js" />
+    <Content Include="Content\Assets\Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Content\Assets\Scripts\MicrosoftAjax.js" />
+    <Content Include="Content\Assets\Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Content\Assets\Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Content\Assets\Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Content\Assets\Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Content\Assets\Scripts\pngfix.js" />
+    <Content Include="Content\Assets\Scripts\shadow.js" />
+    <Content Include="Content\Assets\Scripts\WebSystem.Admin.js" />
+    <Content Include="Content\Setup.aspx" />
+    <Content Include="Properties\DataSources\WCMS.Framework.Net.FileSyncInfo.datasource" />
+    <Content Include="Properties\DataSources\WCMS.Framework.WebUser.datasource" />
+    <Content Include="Properties\DataSources\WCMS.Framework.WebUserContainer.datasource" />
+    <Content Include="Properties\DataSources\WCMS.Framework.Core.WebSiteIdentity.datasource" />
+    <Content Include="Content\Plugins\7za\7za920.zip" />
+    <Content Include="Content\Plugins\7za\doc.docx" />
+    <Content Include="Content\Plugins\7za\doc.rar" />
+    <Content Include="Content\Plugins\flowplayer\LICENSE.md" />
+    <Content Include="Content\Plugins\jwplayer\JW Player Quick Start Guide.pdf" />
+    <Content Include="Content\Plugins\WebExtractor\WebExtractor.exe.config" />
+    <Content Include="Content\Razor\ViewPage1.cshtml" />
+    <Content Include="Content\Razor\_LayoutPage1.cshtml" />
+    <Content Include="Content\Razor\ViewPage2.cshtml" />
+    <Content Include="Content\MVC\Views\Web.config" />
+    <Content Include="Default.cshtml" />
+    <Content Include="Content\Executor.cshtml" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.1.0.debug.js" />
+    <Content Include="Scripts\knockout-3.1.0.js" />
+    <Content Include="Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\modernizr-2.7.2.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <None Include="Service References\WebServices\DataSync1.disco" />
+    <Content Include="Static.aspx" />
+    <Content Include="_App_Offline.htm" />
+    <Content Include="_favicon.ico" />
+    <Content Include="_loader.cshtml" />
+    <Content Include="Content\Themes\demo-razor\template.cshtml" />
+    <Content Include="Content\Assets\Scripts\jquery-ui-1.10.3.zip" />
+    <Content Include="Content\SystemInfo.cshtml" />
+    <Content Include="Content\Parts\Test\Razor\PageStandalone.cshtml" />
+    <Content Include="Content\Parts\Test\Razor\PageDemo.cshtml" />
+    <Content Include="Content\Themes\bootstrap\_carousel.cshtml" />
+    <Content Include="Content\Themes\bootstrap\_fluid.cshtml" />
+    <Content Include="Content\Themes\bootstrap\_hero.cshtml" />
+    <Content Include="Content\Themes\bootstrap\_justified-nav.cshtml" />
+    <Content Include="Content\Themes\bootstrap\_marketing-narrow.cshtml" />
+    <Content Include="Content\Themes\bootstrap\_signin.cshtml" />
+    <Content Include="Content\Themes\bootstrap\_starter-template.cshtml" />
+    <Content Include="Content\Themes\bootstrap\_sticky-footer-navbar.cshtml" />
+    <Content Include="Content\Themes\bootstrap\_sticky-footer.cshtml" />
+    <Content Include="Content\Parts\Central\Loader.cshtml" />
+    <Content Include="Content\Parts\Test\Admin\DemoAdmin.cshtml" />
+    <Content Include="Content\Parts\Central\HeaderNavbar.cshtml" />
+    <Content Include="Content\Parts\Central\Controls\DesignMode.cshtml" />
+    <None Include="Service References\WebServices\configuration91.svcinfo" />
+    <None Include="Service References\WebServices\configuration.svcinfo" />
+    <None Include="Service References\WebServices\DataSync1.wsdl" />
+    <None Include="Service References\WebServices\DataSync5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServices\DataSync51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServices\DataSync52.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServices\DataSync53.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServices\DataSync54.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\Assets\Styles\DateTimePicker.aspx.css" />
+    <Content Include="Content\Assets\Styles\DragDrop.css" />
+    <Content Include="Content\Assets\Styles\PageDesigner.css" />
+    <Content Include="Content\Assets\Styles\pngfix.css" />
+    <Content Include="Content\Assets\Styles\Registration.css" />
+    <Content Include="Content\Assets\Styles\TreePanel.aspx.css" />
+    <Content Include="Content\Assets\Styles\WebSystem.Admin.css" />
+    <Content Include="Content\Assets\Styles\WebSystem.Controls.css" />
+    <Content Include="Content\Assets\Styles\WebSystem.css" />
+    <Content Include="Content\Assets\Styles\WebSystem.Window.css" />
+    <Content Include="Content\Assets\Styles\_TemplateEditor.css" />
+    <Content Include="Content\Themes\area51\css\main_style.css" />
+    <Content Include="Content\Themes\area51\InsideWithSidebar.ascx" />
+    <Content Include="Content\Themes\area51\Parts\EventCalendar\EventCalendar\CalendarView.ascx" />
+    <Content Include="Content\Themes\area51\Parts\Profile\Profile\ForgotPassword.ascx" />
+    <Content Include="Content\Themes\area51\Parts\Profile\Profile\MyPreferences.ascx" />
+    <Content Include="Content\Themes\area51\Parts\Profile\Profile\ProfileUpdate.ascx" />
+    <Content Include="Content\Themes\area51\Parts\Profile\Profile\UpdateMyGroups.ascx" />
+    <Content Include="Content\Themes\area51\Parts\Profile\Profile\UserProfileDetails.ascx" />
+    <Content Include="Content\Themes\area51\InsideFull.ascx" />
+    <Content Include="Content\Themes\area51\index.ascx" />
+    <Content Include="Content\Themes\area51\css\contentslider.css" />
+    <Content Include="Content\Themes\area51\css\ddsmoothmenu.css" />
+    <Content Include="Content\Themes\area51\css\jquery.fancybox-1.3.1.css" />
+    <Content Include="Content\Themes\area51\css\slider.css" />
+    <Content Include="Content\Themes\area51\images\avatar.gif" />
+    <Content Include="Content\Themes\area51\images\background_tile.png" />
+    <Content Include="Content\Themes\area51\images\banner1.jpg" />
+    <Content Include="Content\Themes\area51\images\banner2.jpg" />
+    <Content Include="Content\Themes\area51\images\banner3.jpg" />
+    <Content Include="Content\Themes\area51\images\bg.gif" />
+    <Content Include="Content\Themes\area51\images\blank.png" />
+    <Content Include="Content\Themes\area51\images\blog1.gif" />
+    <Content Include="Content\Themes\area51\images\blog2.gif" />
+    <Content Include="Content\Themes\area51\images\blog3.gif" />
+    <Content Include="Content\Themes\area51\images\blog_bg.gif" />
+    <Content Include="Content\Themes\area51\images\blog_date.gif" />
+    <Content Include="Content\Themes\area51\images\blog_img.gif" />
+    <Content Include="Content\Themes\area51\images\blog_links_bg.gif" />
+    <Content Include="Content\Themes\area51\images\cart.gif" />
+    <Content Include="Content\Themes\area51\images\comments.gif" />
+    <Content Include="Content\Themes\area51\images\contactus.gif" />
+    <Content Include="Content\Themes\area51\images\contactus_pressed.png" />
+    <Content Include="Content\Themes\area51\images\cont_reading.gif" />
+    <Content Include="Content\Themes\area51\images\crumb.gif" />
+    <Content Include="Content\Themes\area51\images\crumb_sep.gif" />
+    <Content Include="Content\Themes\area51\images\date.gif" />
+    <Content Include="Content\Themes\area51\images\del.gif" />
+    <Content Include="Content\Themes\area51\images\dropdown.gif" />
+    <Content Include="Content\Themes\area51\images\facebook.gif" />
+    <Content Include="Content\Themes\area51\images\fancybox\blank.gif" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancybox-x.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancybox-y.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancybox.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_close.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_loading.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_nav_left.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_nav_right.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_e.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_n.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_ne.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_nw.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_s.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_se.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_sw.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_w.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_title_left.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_title_main.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_title_over.png" />
+    <Content Include="Content\Themes\area51\images\fancybox\fancy_title_right.png" />
+    <Content Include="Content\Themes\area51\images\featured.png" />
+    <Content Include="Content\Themes\area51\images\footer.png" />
+    <Content Include="Content\Themes\area51\images\footer_sep.gif" />
+    <Content Include="Content\Themes\area51\images\gallery1.gif" />
+    <Content Include="Content\Themes\area51\images\gallery10.gif" />
+    <Content Include="Content\Themes\area51\images\gallery11.gif" />
+    <Content Include="Content\Themes\area51\images\gallery12.gif" />
+    <Content Include="Content\Themes\area51\images\gallery2.gif" />
+    <Content Include="Content\Themes\area51\images\gallery3.gif" />
+    <Content Include="Content\Themes\area51\images\gallery4.gif" />
+    <Content Include="Content\Themes\area51\images\gallery5.gif" />
+    <Content Include="Content\Themes\area51\images\gallery6.gif" />
+    <Content Include="Content\Themes\area51\images\gallery7.gif" />
+    <Content Include="Content\Themes\area51\images\gallery8.gif" />
+    <Content Include="Content\Themes\area51\images\gallery9.gif" />
+    <Content Include="Content\Themes\area51\images\glosymenu.gif" />
+    <Content Include="Content\Themes\area51\images\go.gif" />
+    <Content Include="Content\Themes\area51\images\grey_bg.gif" />
+    <Content Include="Content\Themes\area51\images\heading.gif" />
+    <Content Include="Content\Themes\area51\images\head_bg.gif" />
+    <Content Include="Content\Themes\area51\images\inputbar.gif" />
+    <Content Include="Content\Themes\area51\images\inputbar_text.gif" />
+    <Content Include="Content\Themes\area51\images\jumpmenu.gif" />
+    <Content Include="Content\Themes\area51\images\landscape.jpg" />
+    <Content Include="Content\Themes\area51\images\little_arrows.png" />
+    <Content Include="Content\Themes\area51\images\loading.gif" />
+    <Content Include="Content\Themes\area51\images\login_bg.gif" />
+    <Content Include="Content\Themes\area51\images\login_form.gif" />
+    <Content Include="Content\Themes\area51\images\minus.gif" />
+    <Content Include="Content\Themes\area51\images\navi_rol.gif" />
+    <Content Include="Content\Themes\area51\images\news1.gif" />
+    <Content Include="Content\Themes\area51\images\news_bg.gif" />
+    <Content Include="Content\Themes\area51\images\news_border.gif" />
+    <Content Include="Content\Themes\area51\images\news_thumb.gif" />
+    <Content Include="Content\Themes\area51\images\news_thumb1.gif" />
+    <Content Include="Content\Themes\area51\images\next.gif" />
+    <Content Include="Content\Themes\area51\images\next_page.gif" />
+    <Content Include="Content\Themes\area51\images\paging.gif" />
+    <Content Include="Content\Themes\area51\images\paging_next.gif" />
+    <Content Include="Content\Themes\area51\images\paging_prev.gif" />
+    <Content Include="Content\Themes\area51\images\paging_rol.gif" />
+    <Content Include="Content\Themes\area51\images\plus.gif" />
+    <Content Include="Content\Themes\area51\images\prev.gif" />
+    <Content Include="Content\Themes\area51\images\readmore.gif" />
+    <Content Include="Content\Themes\area51\images\readmorebg.gif" />
+    <Content Include="Content\Themes\area51\images\respons_bg.gif" />
+    <Content Include="Content\Themes\area51\images\right_acordion.gif" />
+    <Content Include="Content\Themes\area51\images\rss.gif" />
+    <Content Include="Content\Themes\area51\images\search.gif" />
+    <Content Include="Content\Themes\area51\images\sec_arrow.gif" />
+    <Content Include="Content\Themes\area51\images\sitemap.gif" />
+    <Content Include="Content\Themes\area51\images\sitemap_pressed.png" />
+    <Content Include="Content\Themes\area51\images\sorting.gif" />
+    <Content Include="Content\Themes\area51\images\static_img.gif" />
+    <Content Include="Content\Themes\area51\images\submit.gif" />
+    <Content Include="Content\Themes\area51\images\thumb1.gif" />
+    <Content Include="Content\Themes\area51\images\thumb10.gif" />
+    <Content Include="Content\Themes\area51\images\thumb11.gif" />
+    <Content Include="Content\Themes\area51\images\thumb12.gif" />
+    <Content Include="Content\Themes\area51\images\thumb2.gif" />
+    <Content Include="Content\Themes\area51\images\thumb3.gif" />
+    <Content Include="Content\Themes\area51\images\thumb4.gif" />
+    <Content Include="Content\Themes\area51\images\thumb5.gif" />
+    <Content Include="Content\Themes\area51\images\thumb6.gif" />
+    <Content Include="Content\Themes\area51\images\thumb7.gif" />
+    <Content Include="Content\Themes\area51\images\thumb8.gif" />
+    <Content Include="Content\Themes\area51\images\thumb9.gif" />
+    <Content Include="Content\Themes\area51\images\twitter.gif" />
+    <Content Include="Content\Themes\area51\images\wrapper_bg.png" />
+    <Content Include="Content\Themes\area51\images\youtube.gif" />
+    <Content Include="Content\Themes\area51\js\acrodin.js" />
+    <Content Include="Content\Themes\area51\js\animatedcollapse.js" />
+    <Content Include="Content\Themes\area51\js\anythingslider.js" />
+    <Content Include="Content\Themes\area51\js\banner_left.js" />
+    <Content Include="Content\Themes\area51\js\collapse.js" />
+    <Content Include="Content\Themes\area51\js\contentslider.js" />
+    <Content Include="Content\Themes\area51\js\cont_slide.js" />
+    <Content Include="Content\Themes\area51\js\cufon-yui.js" />
+    <Content Include="Content\Themes\area51\js\cufon.js" />
+    <Content Include="Content\Themes\area51\js\ddaccordion.js" />
+    <Content Include="Content\Themes\area51\js\ddsmoothmenu.js" />
+    <Content Include="Content\Themes\area51\js\jquery.anythingslider.js" />
+    <Content Include="Content\Themes\area51\js\jquery.easing.1.2.js" />
+    <Content Include="Content\Themes\area51\js\jquery.fancybox-1.3.1.js" />
+    <Content Include="Content\Themes\area51\js\jquery.min.js" />
+    <Content Include="Content\Themes\area51\js\jquery.min14.js" />
+    <Content Include="Content\Themes\area51\js\lightbox.js" />
+    <Content Include="Content\Themes\area51\js\menu-collapsed.js" />
+    <Content Include="Content\Themes\area51\js\menu.js" />
+    <Content Include="Content\Themes\area51\js\Trebuchet_MS_400-Trebuchet_MS_700-Trebuchet_MS_italic_700-Trebuchet_MS_italic_400.font.js" />
+    <Content Include="Content\Themes\area51\js\virtualpaginate.js" />
+    <Content Include="Content\Themes\area51\Parts\Registration\Registration\Registration.ascx" />
+    <Content Include="Content\Themes\Basic\Basic.ascx" />
+    <Content Include="Content\Themes\Basic\Themes\css here.txt" />
+    <Content Include="Content\Themes\Central\Basic.ascx" />
+    <Content Include="Content\Themes\test\Parts\Article\Default\Article.ascx" />
+    <Content Include="Content\Themes\test\Parts\Contact\Contact\ContactUs.ascx" />
+    <Content Include="Content\Themes\test\test.ascx" />
+    <Content Include="Content\Test.aspx" />
+    <Content Include="Content\Executor.aspx" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
+    <Content Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Parts\Central\AccountService.asmx" />
+    <Content Include="Content\Parts\Central\Agent\Dashboard.ascx" />
+    <Content Include="Content\Parts\Central\Agent\TaskEditor.ascx" />
+    <Content Include="Content\Parts\Central\Agent\TaskManager.ascx" />
+    <Content Include="Content\Parts\Central\Agent\TaskView.ascx" />
+    <Content Include="Content\Parts\Central\Breadcrumb.ascx" />
+    <Content Include="Content\Parts\Central\Controls\ChangePasswordForm.ascx" />
+    <Content Include="Content\Parts\Central\Controls\DesignMode.ascx" />
+    <Content Include="Content\Parts\Central\Controls\ElementDesigner.ascx" />
+    <Content Include="Content\Parts\Central\Controls\ManagementSecurityOption.ascx" />
+    <Content Include="Content\Parts\Central\Controls\PanelDesigner.ascx" />
+    <Content Include="Content\Parts\Central\Controls\ParameterSetSelector.ascx" />
+    <Content Include="Content\Parts\Central\Controls\SaveInFolder.ascx" />
+    <Content Include="Content\Parts\Central\Controls\TreeControls.ascx" />
+    <Content Include="Content\Parts\Central\Controls\UserProfileForm.ascx" />
+    <Content Include="Content\Parts\Central\Controls\UserRolesForm.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebGenericTab.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebGroupTab.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebMasterPageTab.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebPagePanelTab.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebPagesControl.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebPageTab.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebPartControlTab.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebPartTab.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebRoleTab.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebSiteElementSelector.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebSitesControl.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebSiteTab.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebTemplateHome.ascx" />
+    <Content Include="Content\Parts\Central\Controls\WebUserTab.ascx" />
+    <Content Include="Content\Parts\Central\Default.aspx" />
+    <Content Include="Content\Parts\Central\HeaderPanel.ascx" />
+    <Content Include="Content\Parts\Central\Manager\Home.ascx" />
+    <Content Include="Content\Parts\Central\Misc\SubscriptionManager.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebAddress.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebAddresses.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebOffice.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebOfficeHome.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebOffices.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebOfficeTree.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebParameter.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebParameters.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebParameterSet.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebParameterSetHome.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebParameterSets.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebParametersXml.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebResource.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebResourceManager.ascx" />
+    <Content Include="Content\Parts\Central\Misc\WebResources.ascx" />
+    <Content Include="Content\Parts\Central\Security\ChangePassword.ascx" />
+    <Content Include="Content\Parts\Central\Security\UserProfile.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebGlobalPolicy.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebGlobalPolicyHome.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebGroup.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebGroupHome.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebGroups.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebGroupTree.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebGroupUsers.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebObjectPermissions.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebPermissions.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebRoleHome.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebRoles.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebSecurity.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebSecurityTree.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebUserGroups.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebUserHome.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebUserPermissions.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebUserRoles.ascx" />
+    <Content Include="Content\Parts\Central\Security\WebUsers.ascx" />
+    <Content Include="Content\Parts\Central\SiteMap.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebTemplateEditor.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebSkin.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebSkinHome.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebSkins.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebTemplate.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebTemplateHome.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebTemplatePanel.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebTemplatePanels.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebTemplates.ascx" />
+    <Content Include="Content\Parts\Central\Template\WebTemplateVersions.ascx" />
+    <Content Include="Content\Parts\Central\Tools\ImportExportParameterSets.ascx" />
+    <Content Include="Content\Parts\Central\Tools\ImportExportHome.ascx" />
+    <Content Include="Content\Parts\Central\Tools\ImportExportPage.ascx" />
+    <Content Include="Content\Parts\Central\Tools\PerformanceLogManager.ascx" />
+    <Content Include="Content\Parts\Central\Tools\DataStoreManager.ascx" />
+    <Content Include="Content\Parts\Central\Tools\EventLogManager.ascx" />
+    <Content Include="Content\Parts\Central\Tools\QueryAnalyzer.ascx" />
+    <Content Include="Content\Parts\Central\Tools\ShortUrlEdit.ascx" />
+    <Content Include="Content\Parts\Central\Tools\ShortUrlManager.ascx" />
+    <Content Include="Content\Parts\Central\Tools\SmtpAnalyzer.ascx" />
+    <Content Include="Content\Parts\Central\Tools\UserSessionManager.ascx" />
+    <Content Include="Content\Parts\Central\Tools\WebDataExplorer.ascx" />
+    <Content Include="Content\Parts\Central\Tools\WebDataRows.ascx" />
+    <Content Include="Content\Parts\Central\Tools\WebFolder.ascx" />
+    <Content Include="Content\Parts\Central\Tools\WebFolderTree.ascx" />
+    <Content Include="Content\Parts\Central\Tools\WebObjectEdit.ascx" />
+    <Content Include="Content\Parts\Central\Tools\WebRegistry.ascx" />
+    <Content Include="Content\Parts\Central\Tools\WebRegistryEntry.ascx" />
+    <Content Include="Content\Parts\Central\Tools\WebRegistryTree.ascx" />
+    <Content Include="Content\Parts\Central\Tools\WebToolsTree.ascx" />
+    <Content Include="Content\Parts\Central\TreePanel.ascx" />
+    <Content Include="Content\Parts\Central\WebOpen.ascx" />
+    <Content Include="Content\Parts\Central\WebPartPreview.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPart.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartAdmin.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartAdminEntry.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartAdminHome.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartConfig.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartConfigEntry.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartControl.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartControlHome.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartControls.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartControlTemplate.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartControlTemplateHome.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartControlTemplates.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartHome.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebParts.ascx" />
+    <Content Include="Content\Parts\Central\WebPart\WebPartTree.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebChildPages.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebChildSites.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebIdentities.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebIdentity.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebLinkedParts.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebMasterPage.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebMasterPageHome.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebMasterPages.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebPage.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebPageElement.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebPageElementHome.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebPageElements.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebPageHome.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebPagePanel.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebPagePanelHome.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebPagePanels.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebPages.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebSite.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebSiteHome.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebSites.ascx" />
+    <Content Include="Content\Parts\Central\WebSites\WebSiteTree.ascx" />
+    <Content Include="Content\Parts\Central\Dashboard.ascx" />
+    <Content Include="Content\Parts\Common\FxService.asmx" />
+    <Content Include="Content\Parts\Common\Templates\CommentItem.template.htm" />
+    <Content Include="Content\Parts\Test\CategoryPart.ascx" />
+    <Content Include="Content\Parts\Test\DetailsPart.ascx" />
+    <Content Include="Content\Parts\Test\ListPart.ascx" />
+    <Content Include="Content\Parts\Test\TemplateFormEditor.ascx" />
+    <Content Include="Content\Parts\Test\WebUserControl1.ascx" />
+    <Content Include="Content\Windows\AccountBrowser.aspx" />
+    <Content Include="Content\Windows\DateTimePicker.aspx" />
+    <Content Include="Content\Windows\FileBrowser.aspx" />
+    <Content Include="Content\Windows\LinkBrowser.aspx" />
+    <Content Include="Content\Windows\ObjectBrowser.aspx" />
+    <Content Include="Content\Assets\Styles\upload.css" />
+    <Content Include="Content\Windows\StyleBuilder.aspx" />
+    <Content Include="Content\Windows\Upload.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\Admin\Data\Temp\" />
+    <Folder Include="Content\Assets\Html\Account\" />
+    <Folder Include="Content\Assets\Html\Article\" />
+    <Folder Include="Content\Assets\Html\Contact\" />
+    <Folder Include="Content\Assets\Html\Registration\" />
+    <Folder Include="Content\Themes\Basic\Themes\Graphics\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Handlers\AjaxHandler.ashx" />
+    <Content Include="Content\Handlers\Resource.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Admin\Data\ViewPage1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\WebParts\SystemPartsG2\WCMS.WebSystem.WebParts.Social\WCMS.Framework.Social.csproj">
+      <Project>{DD6D69AA-1137-4783-88CA-68CE1661964D}</Project>
+      <Name>WCMS.Framework.Social</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FCKeditor.Net_2.6.3\FredCK.FCKeditorV2.csproj">
+      <Project>{F6F32704-97E0-4006-A474-5A9729C6B1B4}</Project>
+      <Name>FredCK.FCKeditorV2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCMS.Common\WCMS.Common.csproj">
+      <Project>{1881CF9F-2771-49D6-993B-EEF7B40F698C}</Project>
+      <Name>WCMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCMS.Framewok.Agent\WCMS.Framework.Agent.csproj">
+      <Project>{F0AF3730-99DA-4005-B234-99A4C9DB6410}</Project>
+      <Name>WCMS.Framework.Agent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCMS.Framework.Core.SqlProvider.Smo\WCMS.Framework.Core.SqlProvider.Smo.csproj">
+      <Project>{1A079889-4D5D-4B05-8155-819A2DBD082C}</Project>
+      <Name>WCMS.Framework.Core.SqlProvider.Smo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCMS.Framework.Core.SqlProvider\WCMS.Framework.Core.SqlProvider.csproj">
+      <Project>{0802EBA9-6536-4858-A532-1FF7103D0151}</Project>
+      <Name>WCMS.Framework.Core.SqlProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCMS.Framework.Core.XmlProvider\WCMS.Framework.Core.XmlProvider.csproj">
+      <Project>{90445383-7C37-45CD-BACF-1B6C3522DA5C}</Project>
+      <Name>WCMS.Framework.Core.XmlProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCMS.Framework\WCMS.Framework.csproj">
+      <Project>{9A259659-82E0-4FA7-8B43-786D92F72E53}</Project>
+      <Name>WCMS.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCMS.WebSystem.Utilities\WCMS.WebSystem.Utilities.csproj">
+      <Project>{DEB8CCE5-7660-4C09-8384-09B494F0A93F}</Project>
+      <Name>WCMS.WebSystem.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCMS.WebSystem.ViewModels\WCMS.WebSystem.csproj">
+      <Project>{6614A27D-D029-4AA2-AE18-CE554014FD4E}</Project>
+      <Name>WCMS.WebSystem</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WebServices\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>8888</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8888/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+</Project>

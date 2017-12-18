@@ -1,0 +1,26 @@
+
+-- Procedure ArticleList_Del
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ArticleList_Del]
+	(
+		@ListId int
+	)
+AS
+	SET NOCOUNT ON
+	
+	IF(@ListId > 0)
+		DELETE FROM ArticleList
+		WHERE ListId=@ListId
+	
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

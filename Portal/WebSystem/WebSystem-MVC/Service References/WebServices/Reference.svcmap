@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c5cdbdb4-334f-4b90-9987-2218138751b3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9000/Content/Handlers/DataSync.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DataSync5.xsd" MetadataType="Schema" ID="2e4e5193-6f83-4d0b-83b0-da2b9dd61d3b" SourceId="1" SourceUrl="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd1" />
+    <MetadataFile FileName="DataSync51.xsd" MetadataType="Schema" ID="bc54594d-ad83-4e0e-8bf3-a4fcc920a2b4" SourceId="1" SourceUrl="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd4" />
+    <MetadataFile FileName="DataSync1.wsdl" MetadataType="Wsdl" ID="1a0d87d4-ffd5-4462-b4af-7c57a2e25e0d" SourceId="1" SourceUrl="http://localhost:9000/Content/Handlers/DataSync.svc?wsdl" />
+    <MetadataFile FileName="DataSync52.xsd" MetadataType="Schema" ID="51932b96-61dd-4beb-8099-82eb74eb4dd1" SourceId="1" SourceUrl="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd0" />
+    <MetadataFile FileName="DataSync53.xsd" MetadataType="Schema" ID="0770260d-2066-4253-85f6-0297cfdebb5f" SourceId="1" SourceUrl="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd2" />
+    <MetadataFile FileName="DataSync54.xsd" MetadataType="Schema" ID="d8da92fa-c31a-4b65-a385-04e33dc3d766" SourceId="1" SourceUrl="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd3" />
+    <MetadataFile FileName="DataSync1.disco" MetadataType="Disco" ID="c855fae9-40a4-4aeb-8457-d1fac9ad4ce2" SourceId="1" SourceUrl="http://localhost:9000/Content/Handlers/DataSync.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,107 @@
+﻿@using WCMS.Common.Utilities;
+@using WCMS.Framework
+@using WCMS.Framework.Core
+@using WCMS.WebSystem
+@{
+    var page = Page.Page;
+    WebTemplate template = Page.Template;
+    var panelName = Page.PanelName;
+    IEnumerable<WebTemplatePanel> panels = Page.Panels;
+    IEnumerable<IPageElement> elements = Page.Elements;
+    var panel = panels.FirstOrDefault(i => i.PanelName.Equals(panelName, StringComparison.InvariantCultureIgnoreCase));
+    IEnumerable<IPageElement> panelElements = null;
+
+    if (panel.Id == template.PrimaryPanelId)
+    {
+        var pageElement = new List<IPageElement>();
+        pageElement.Add(page);
+
+        panelElements = from i in elements.Concat(pageElement)
+                        where i.TemplatePanelId == panel.Id
+                        orderby i.Rank
+                        select i;
+    }
+    else
+    {
+        panelElements = from i in elements
+                        where i.TemplatePanelId == panel.Id
+                        orderby i.Rank
+                        select i;
+    }
+
+    foreach (var item in panelElements)
+    {
+        Page.Element = item;
+
+        var partTemplate = item.PartControlTemplate;
+        var partControl = partTemplate.PartControl;
+        var part = partControl.Part;
+
+        if (item.OBJECT_ID == WebObjects.WebPage)
+        {
+            var openRequest = DataHelper.Get(Request, WConstants.Open);
+            var debugTemplateId = DataHelper.GetId(Request, WConstants.DebugTemplateId);
+
+            // Check if there is a request to load another WebPartControl
+            if (!string.IsNullOrEmpty(openRequest))
+            {
+                var tempTemplate = part.GetTemplateFromIdentity(partTemplate.Id, openRequest);
+                if (tempTemplate != null)
+                {
+                    // The requested Template was found
+                    partTemplate = tempTemplate;
+                    partControl = tempTemplate.PartControl;
+                }
+            }
+            else if (debugTemplateId > 0 && WSession.Current.IsAdministrator)
+            {
+                var debugTemplate = WebPartControlTemplate.Get(debugTemplateId);
+                if (debugTemplate != null)
+                {
+                    partTemplate = debugTemplate;
+                    partControl = debugTemplate.PartControl;
+                    part = partControl.Part;
+                }
+            }
+
+            if (WSession.Current.IsSiteManager)
+            {
+                @RenderPage(WSConstants.RazorDesignModeControlPath, PageData)
+            }
+        }
+
+        var templatePath = item.UsePartTemplatePath == WebBoolean.Yes && !string.IsNullOrEmpty(partTemplate.Path) ? partTemplate.GetRenderPath() :
+            string.Format(WSConstants.PART_PATH_FORMAT, item.MasterPage.Template.Identity, part.Identity, partControl.Identity, partTemplate.FileName);
+
+        // FormatString
+        string formatString = WebParameter.GetStringValue(item.OBJECT_ID, item.Id, WConstants.FormatStringKey);
+        if (!string.IsNullOrEmpty(formatString))
+        {
+            if (formatString.IndexOf(Substituter.DefaultContentToken) == -1) { formatString += Substituter.DefaultContentToken; }
+            formatString = formatString.Replace(Substituter.DefaultContentToken, WConstants.ReplacerString);
+
+            // Substituter
+            var context = new WContext(this, item);
+            formatString = Substituter.Substitute(formatString, context.ValueProvider);
+
+            var paddingArray = formatString.Split(WConstants.ReplacerChar);
+            int padLen = paddingArray.Length;
+            for (int i = 0; i < paddingArray.Length; i++)
+            {
+                var padding = paddingArray[i];
+                @Html.Raw(padding)
+                if (padLen == 1 || i != padLen - 1)
+                {
+                    //var templatePath = el.PartControlTemplate.Path;
+                    @RenderPage(templatePath, PageData)
+                }
+            }
+        }
+        else
+        {
+            //var templatePath = el.PartControlTemplate.Path;
+            @RenderPage(templatePath, PageData)
+        }
+
+    }
+}
