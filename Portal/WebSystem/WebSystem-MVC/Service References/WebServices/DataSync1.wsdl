@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DataSync" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCMS.Framework" />
+      <xsd:import schemaLocation="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCMS.Framework.Core" />
+      <xsd:import schemaLocation="http://localhost:9000/Content/Handlers/DataSync.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/WCMS.Framework.Net" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDataSync_DoWork_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoWork" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_DoWork_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_GetObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetObject" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_GetObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_GetObjectList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectList" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_GetObjectList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_GetUserComplete_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserComplete" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_GetUserComplete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserCompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_SetUserComplete_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserComplete" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_SetUserComplete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserCompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_GetFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFiles" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_GetFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_GetBindings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBindings" />
+  </wsdl:message>
+  <wsdl:message name="IDataSync_GetBindings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBindingsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDataSync">
+    <wsdl:operation name="DoWork">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataSync/DoWork" message="tns:IDataSync_DoWork_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataSync/DoWorkResponse" message="tns:IDataSync_DoWork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataSync/GetObject" message="tns:IDataSync_GetObject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataSync/GetObjectResponse" message="tns:IDataSync_GetObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataSync/GetObjectList" message="tns:IDataSync_GetObjectList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataSync/GetObjectListResponse" message="tns:IDataSync_GetObjectList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserComplete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataSync/GetUserComplete" message="tns:IDataSync_GetUserComplete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataSync/GetUserCompleteResponse" message="tns:IDataSync_GetUserComplete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserComplete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataSync/SetUserComplete" message="tns:IDataSync_SetUserComplete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataSync/SetUserCompleteResponse" message="tns:IDataSync_SetUserComplete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataSync/GetFiles" message="tns:IDataSync_GetFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataSync/GetFilesResponse" message="tns:IDataSync_GetFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBindings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataSync/GetBindings" message="tns:IDataSync_GetBindings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataSync/GetBindingsResponse" message="tns:IDataSync_GetBindings_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IDataSync" type="tns:IDataSync">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoWork">
+      <soap:operation soapAction="http://tempuri.org/IDataSync/DoWork" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObject">
+      <soap:operation soapAction="http://tempuri.org/IDataSync/GetObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectList">
+      <soap:operation soapAction="http://tempuri.org/IDataSync/GetObjectList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserComplete">
+      <soap:operation soapAction="http://tempuri.org/IDataSync/GetUserComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserComplete">
+      <soap:operation soapAction="http://tempuri.org/IDataSync/SetUserComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFiles">
+      <soap:operation soapAction="http://tempuri.org/IDataSync/GetFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBindings">
+      <soap:operation soapAction="http://tempuri.org/IDataSync/GetBindings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataSync">
+    <wsdl:port name="BasicHttpBinding_IDataSync" binding="tns:BasicHttpBinding_IDataSync">
+      <soap:address location="http://localhost:9000/Content/Handlers/DataSync.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

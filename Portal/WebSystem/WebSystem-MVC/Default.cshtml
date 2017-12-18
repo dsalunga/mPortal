@@ -1,0 +1,85 @@
+﻿@using System.Text;
+@using System.Diagnostics;
+@using WCMS.Common;
+@using WCMS.Common.Utilities;
+@using WCMS.Framework;
+@using WCMS.Framework.Core;
+@using WCMS.Framework.Diagnostics;
+@using WCMS.WebSystem.Controls;
+@using WCMS.WebSystem.ViewModel;
+@{
+    var pageTitle = string.Empty;
+    var templatePath = string.Empty;
+    var resources = new StringBuilder();
+
+    var stopWatch = PerformanceLog.StartLog();
+    var query = new WQuery(Request);
+    var pageId = DataHelper.GetId(Request, WebColumns.PageIdInternal);
+
+    WebMasterPage masterPage = null;
+    WebTemplate template = null;
+
+    if (pageId == -1) { return; }
+
+    var page = WHelper.GetPageOrDefault(pageId);
+    if (!WLoaderPageBase.CheckAccess(page, query, WSession.Current)) { return; }
+
+    var pageHeader = WHelper.LoadResources(page);
+    if (pageHeader != null) { resources.AppendLine(pageHeader.ToString()); }
+
+    if (page.GetEvalTypeId() == PageTypes.Static)
+    {
+        templatePath = page.PartControlTemplate.Path;
+    }
+    else
+    {
+        masterPage = page.MasterPage;
+        if (masterPage != null)
+        {
+            template = masterPage.Template;
+            templatePath = string.Format("~/Content/Themes/{0}/{1}", template.Identity, template.FileName);
+
+            // Load the page content
+            var panels = template.Panels;
+
+            // Load PageElements
+            var pageElements = from el in page.Elements
+                               where el.IsActive
+                               select (IPageElement)el;
+
+            // Load Panels, only Override or Add
+            var pagePanels = from p in page.Panels
+                             where !p.Inherit
+                             select p;
+
+            // Load MasterPageElements
+            var items = from i in masterPage.Elements
+                        where i.IsActive
+                        select (IPageElement)i;
+
+            Page.Template = template;
+            Page.Panels = panels;
+            Page.Elements = pageElements.Concat(items);
+        }
+    }
+
+    var session = WSession.Current;
+    if (session.IsLoggedIn)
+    {
+        // Log Activity
+        WSession.UserSessions.Update(session.UserId, page.Id);
+    }
+
+    Page.Title = page.BuildTitle(pageTitle);
+    Page.Resources = resources;
+    Page.IsHomePage = DataHelper.ToString(page.Site.HomePageId == page.Id, BoolStrings.ZeroOne);
+
+    Page.Site = page.Site;
+    Page.Page = page;
+    Page.Master = masterPage;
+    Page.Template = template;
+    Page.HideHeader = true ;
+    
+    PerformanceLog.EndLog("Page Unload", stopWatch, pageId);
+}
+@RenderPage(templatePath, Page)

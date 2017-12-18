@@ -1,0 +1,26 @@
+
+-- Procedure WebTemplate_Del
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[WebTemplate_Del]
+	(
+		@Id int
+	)
+AS
+	SET NOCOUNT ON
+	
+	if(@Id > 0)
+		DELETE FROM WebTemplate
+		WHERE Id=@Id
+
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

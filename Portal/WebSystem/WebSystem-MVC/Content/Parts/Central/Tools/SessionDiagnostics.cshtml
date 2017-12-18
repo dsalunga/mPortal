@@ -1,0 +1,43 @@
+﻿@{
+
+}
+
+<h4>Interval: <span id="interval">5</span> seconds</h4>
+<h4>Page Load: <span id="firstLoad"></span></h4>
+<h4>Last Update: <span id="lastUpdate"></span></h4>
+<h4>Last Result: <span id="result"></span></h4>
+<h4>Last Failed: <span id="resultFailed"></span></h4>
+<div class="checkbox">
+    <label>
+        <input id="chkKeepAlive" type="checkbox" checked="checked" /> Check &amp; Keep Alive
+    </label>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var interval = -1;
+        var runKeepAlive = function () {
+            interval = ExecuteSessionCheckCallback(5 * 1000, function (error, text) {
+                var lastUpdateDate = (new Date()).toString();
+                $('#result').html(text);
+                $('#lastUpdate').html(lastUpdateDate);
+
+                if (text == "0") {
+                    $('#resultFailed').html(lastUpdateDate);
+                }
+            });
+        }
+
+        $('#chkKeepAlive').change(function () {
+            console.log('checked/unchecked');
+            if ($('#chkKeepAlive').is(':checked')) {
+                runKeepAlive();
+            } else {
+                clearInterval(interval);
+            }
+        });
+
+        runKeepAlive();
+        $('#firstLoad').html((new Date()).toString());
+    });
+</script>

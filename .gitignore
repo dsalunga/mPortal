@@ -1,12 +1,17 @@
-/Portal/Binaries/IISExpress
 obj
 bin
+.vs
+*.suo
+*.user
+*.vshost.exe
+*.vshost.exe.config
+*.vshost.exe.manifest
+*.dbmdl
+/Portal/Binaries/IISExpress
+/Portal/Binaries/Logs
 /Portal/WebSystem/WebSystem-MVC/Content/Admin/Data/Logs
 /Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/_samples
 /Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/_source
-*.suo
-*.user
-.vs
 /Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/_samples
 /Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/_source
 /Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/skins
@@ -27,15 +32,14 @@ bin
 /Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/js
 /Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/filemanager
 /Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/dialog
-*.vshost.exe
-*.vshost.exe.config
-*.vshost.exe.manifest
-*.dbmdl
-/Portal/Binaries/Logs
-/LessonReviewer/LessonReviewer/Admin/Data/Logs
+/Portal/WebSystem/WebSystem-MVC/Content/Assets/Resources
+
 /Portal/WebParts/SystemParts/SystemParts/Content
 /Portal/WebParts/SystemPartsG2/SystemPartsG2/Content
 /Portal/WebParts/SystemPartsG3/SystemPartsG3/Content
-/Portal/WebParts/SomeOrgParts/BibleReader.Database/Import Schema Logs
-/Portal/WebParts/SomeOrg-G2/WCMS.WebSystem.WebParts.SomeOrg.WebAppG2/Content
-/Portal/WebParts/SomeOrgParts/SomeOrgParts/Content
+
+/Portal/WebParts/IntegrationParts/BibleReader.Database/Import Schema Logs
+/Portal/WebParts/IntegrationParts/IntegrationParts/Content
+/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/Content
+
+/LessonReviewer/LessonReviewer/Admin/Data/Logs

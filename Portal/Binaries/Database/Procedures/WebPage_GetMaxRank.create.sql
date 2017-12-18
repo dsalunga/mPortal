@@ -1,0 +1,25 @@
+
+-- Procedure WebPage_GetMaxRank
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[WebPage_GetMaxRank]
+	(
+		@SiteId int = -1
+	)
+AS
+	SET NOCOUNT ON
+	
+	SELECT MAX(Rank) FROM WebPage
+		WHERE @SiteId=-1 OR SiteId = @SiteId
+	
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
