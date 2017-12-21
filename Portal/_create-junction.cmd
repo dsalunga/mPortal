@@ -17,6 +17,6 @@ cd WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp
 call create-junction.cmd
 cd ..\..\..
 
-cd WebParts/IntegrationParts/IntegrationParts
+cd WebParts/Integration/IntegrationParts
 call create-junction.cmd
 cd ..\..\..

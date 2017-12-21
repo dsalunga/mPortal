@@ -11,10 +11,6 @@ cd WebSystem
 call build-release.cmd
 cd ..
 
-cd WebParts/IntegrationParts
-call build-release.cmd
-cd ..\..
-
 cd WebParts/SystemParts
 call build-release.cmd
 cd ..\..
@@ -27,6 +23,10 @@ cd WebParts/SystemPartsG3
 call build-release.cmd
 cd ..\..
 
-cd WebParts/Integration-G2
+cd WebParts/BranchLocator
+call build-release.cmd
+cd ..\..
+
+cd WebParts/Integration
 call build-release.cmd
 cd ..\..
