@@ -7,8 +7,11 @@ bin
 *.vshost.exe.config
 *.vshost.exe.manifest
 *.dbmdl
+*.jfm
+
 /Portal/Binaries/IISExpress
 /Portal/Binaries/Logs
+/Portal/Binaries/Nuget-Packages
 /Portal/WebSystem/WebSystem-MVC/Content/Admin/Data/Logs
 /Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/_samples
 /Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/_source
@@ -35,10 +38,10 @@ bin
 /Portal/WebSystem/WebSystem-MVC/Content/Assets/Resources
 
 /Portal/WebParts/SystemParts/SystemParts/Content
-/Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle
 /Portal/WebParts/SystemPartsG2/SystemPartsG2/Content
-/Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle2
 /Portal/WebParts/SystemPartsG3/SystemPartsG3/Content
+/Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle
+/Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle2
 /Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle3
 
 /Portal/WebParts/IntegrationParts/BibleReader.Database/Import Schema Logs

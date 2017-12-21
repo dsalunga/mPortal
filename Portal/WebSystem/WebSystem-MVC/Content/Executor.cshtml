@@ -1,9 +1,9 @@
 ﻿@using WCMS.Framework
 @using WCMS.Framework.Core;
 @using System.Threading
-@using WCMS.WebSystem.WebParts.Integration;
-@using WCMS.WebSystem.WebParts.Integration.IntegrationMemberWS;
 @{
+    /*using WCMS.WebSystem.Apps.Integration;
+    using WCMS.WebSystem.Apps.Integration.IntegrationMemberWS;*/
     /*var link = MemberLink.Provider.Get("ADD00139");
     if (link != null)
     {
@@ -12,7 +12,7 @@
     }
     */
 
-    /*var commonClient = new WCMS.WebSystem.WebParts.Integration.CommonWS.CommonWSSoapClient();
+    /*var commonClient = new WCMS.WebSystem.Apps.Integration.CommonWS.CommonWSSoapClient();
     var amsGroups = commonClient.GetLocaleGroups(IntegrationConstants.SGLocale, -1, "");
     var sgGroup = WebGroup.SelectNode(MemberConstants.LocaleGroupPath);
     var localeGroups = sgGroup.Children;
@@ -114,10 +114,11 @@
     }
     */
 
+
     var memberId = 12239;
     var serviceScheduleId = 16408;
     var timeIn = new DateTime(2015, 7, 24, 13, 0, 0);
-    var status = IntegrationAttendanceStatus.HookUp;
+    /*var status = IntegrationAttendanceStatus.HookUp;
     var result = new LogAttendanceResult();
     var attendanceClient = new WCMS.WebSystem.Apps.Integration.AttendanceWS.AttendanceSoapClient(false);
     var commonClient = new WCMS.WebSystem.Apps.Integration.CommonWS.CommonWSSoapClient();
@@ -127,13 +128,13 @@
     if (attendanceClient.Insert3((long)memberId, serviceSchedule.LocaleID, serviceScheduleId, serviceSchedule.ServiceID, serviceSchedule.WeekNo, timeIn.ToString("u"), serviceSchedule.LateDateTime.ToString("u"), status, true))
     {
         result.Status = 200;
-    }
+    }*/
 }
 
 @*<h1>@updated Updated.</h1>*@
 
 <h1>
-    @serviceSchedule.ServiceScheduleID
+    @*serviceSchedule.ServiceScheduleID*@
     <br />
 </h1>
 
