@@ -17,6 +17,6 @@ cd WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp
 call delete-junction.cmd
 cd ..\..\..
 
-cd WebParts/IntegrationParts/IntegrationParts
+cd WebParts/Integration/IntegrationParts
 call delete-junction.cmd
 cd ..\..\..

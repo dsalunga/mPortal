@@ -16,7 +16,7 @@ using WCMS.Framework.Diagnostics;
 using WCMS.Framework.Utilities;
 
 using WCMS.WebSystem.WebParts.Incident;
-using WCMS.WebSystem.WebParts.Integration;
+//using WCMS.WebSystem.WebParts.Integration;
 
 namespace WCMS.WebSystem.WebParts.Incident
 {
@@ -104,7 +104,7 @@ namespace WCMS.WebSystem.WebParts.Incident
 
             var sla = IncidentHelper.GetSlaInfo(set);
 
-            MemberLink link = null;
+            //MemberLink link = null;
             WebUser user = null;
             WebUser assignedTo = null;
             WebGroup supportGroup = null;

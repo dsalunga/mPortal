@@ -20,7 +20,7 @@ using WCMS.Framework.Diagnostics;
 using WCMS.Framework.Utilities;
 
 using WCMS.WebSystem.Agent;
-using WCMS.WebSystem.WebParts.Registration;
+//using WCMS.WebSystem.WebParts.Registration;
 
 namespace WCMS.WebSystem.WebParts.Incident
 {

@@ -112,7 +112,7 @@
     <echo message="Project config = ${project.config}" />
 
     <!-- Completely standalone projects -->
-    <exec program="MSBuild" commandline="Integration-G2.sln /property:Configuration=${project.config}" failonerror="true" />
+    <exec program="MSBuild" commandline="BranchLocator.sln /property:Configuration=${project.config}" failonerror="true" />
 
     <call target="set_prev_environment" failonerror="true" />
   </target>

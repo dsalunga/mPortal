@@ -15,10 +15,6 @@ cd WebParts/SystemParts
 call build-debug.cmd
 cd ..\..
 
-cd WebParts/IntegrationParts
-call build-debug.cmd
-cd ..\..
-
 cd WebSystem
 call build-debug.cmd
 cd ..
@@ -31,6 +27,10 @@ cd WebParts/SystemPartsG3
 call build-debug.cmd
 cd ..\..
 
-cd WebParts/Integration-G2
+cd WebParts/BranchLocator
+call build-debug.cmd
+cd ..\..
+
+cd WebParts/Integration
 call build-debug.cmd
 cd ..\..
