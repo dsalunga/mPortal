@@ -459,7 +459,7 @@ namespace WCMS.Framework.Core
         public virtual int GetCount<T>() where T : IWebObject
         {
             Type itemType = typeof(T);
-            var o = SqlHelper.ExecuteScalar(itemType.Name);
+            var o = SqlHelper.ExecuteScalar(CommandType.Text, String.Format("SELECT COUNT(1) FROM {0}", itemType.Name));
             if (o != null)
                 return Convert.ToInt32(o.ToString());
             return -1;
