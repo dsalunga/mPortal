@@ -131,18 +131,52 @@
       <HintPath>..\..\Binaries\Nuget-Packages\ServiceStack.Text.4.0.40\lib\net40\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.IO">
+      <HintPath>..\..\Binaries\Nuget-Packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Json, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\Binaries\Nuget-Packages\System.Json.4.4.0\lib\netstandard2.0\System.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime">
+      <HintPath>..\..\Binaries\Nuget-Packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Nuget-Packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding">
+      <HintPath>..\..\Binaries\Nuget-Packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives">
+      <HintPath>..\..\Binaries\Nuget-Packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates">
+      <HintPath>..\..\Binaries\Nuget-Packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -1630,7 +1664,6 @@
     <Content Include="Content\fb-channel.aspx" />
     <Content Include="Content\Handlers\DataSync.svc" />
     <Content Include="Content\Index.html" />
-    <Content Include="Content\Page1.html" />
     <Content Include="Content\Parts\Central\Central-notes.txt" />
     <Content Include="Content\Parts\Central\Controls\WebPartControlTemplateTab.ascx" />
     <Content Include="Content\Parts\Central\Controls\WebThemeHome.ascx" />
@@ -1726,71 +1759,6 @@
     <Content Include="Content\Plugins\WebExtractor\WebExtractor.exe" />
     <Content Include="Content\Plugins\WebExtractor\WebExtractor.pdb" />
     <Content Include="Content\Test02.aspx" />
-    <Content Include="Content\Themes\area51\css\contentslider.min.css">
-      <DependentUpon>contentslider.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\css\ddsmoothmenu.min.css">
-      <DependentUpon>ddsmoothmenu.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\css\jquery.fancybox-1.3.1.min.css">
-      <DependentUpon>jquery.fancybox-1.3.1.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\css\main_style.min.css">
-      <DependentUpon>main_style.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\css\slider.min.css">
-      <DependentUpon>slider.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\Default.ascx" />
-    <Content Include="Content\Themes\area51\js\acrodin.min.js">
-      <DependentUpon>acrodin.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\animatedcollapse.min.js">
-      <DependentUpon>animatedcollapse.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\anythingslider.min.js">
-      <DependentUpon>anythingslider.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\banner_left.min.js">
-      <DependentUpon>banner_left.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\collapse.min.js">
-      <DependentUpon>collapse.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\contentslider.min.js">
-      <DependentUpon>contentslider.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\cont_slide.min.js">
-      <DependentUpon>cont_slide.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\ddaccordion.min.js">
-      <DependentUpon>ddaccordion.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\ddsmoothmenu.min.js">
-      <DependentUpon>ddsmoothmenu.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\jquery.anythingslider.min.js">
-      <DependentUpon>jquery.anythingslider.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\jquery.easing.1.2.min.js">
-      <DependentUpon>jquery.easing.1.2.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\jquery.fancybox-1.3.1.min.js">
-      <DependentUpon>jquery.fancybox-1.3.1.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\lightbox.min.js">
-      <DependentUpon>lightbox.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\menu-collapsed.min.js">
-      <DependentUpon>menu-collapsed.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\menu.min.js">
-      <DependentUpon>menu.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\virtualpaginate.min.js">
-      <DependentUpon>virtualpaginate.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\Parts\EventCalendar\Event\EventViewBasic.ascx" />
     <Content Include="Content\Themes\bootstrap3\carousel\carousel.css" />
     <Content Include="Content\Themes\bootstrap3\carousel\index.html" />
     <Content Include="Content\Themes\bootstrap3\grid\grid.css" />
@@ -1839,54 +1807,6 @@
     </Content>
     <Content Include="Content\Plugins\fckeditor\fckconfig.min.js.map">
       <DependentUpon>fckconfig.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\virtualpaginate.min.js.map">
-      <DependentUpon>virtualpaginate.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\menu.min.js.map">
-      <DependentUpon>menu.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\menu-collapsed.min.js.map">
-      <DependentUpon>menu-collapsed.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\lightbox.min.js.map">
-      <DependentUpon>lightbox.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\jquery.fancybox-1.3.1.min.js.map">
-      <DependentUpon>jquery.fancybox-1.3.1.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\jquery.easing.1.2.min.js.map">
-      <DependentUpon>jquery.easing.1.2.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\jquery.anythingslider.min.js.map">
-      <DependentUpon>jquery.anythingslider.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\ddsmoothmenu.min.js.map">
-      <DependentUpon>ddsmoothmenu.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\ddaccordion.min.js.map">
-      <DependentUpon>ddaccordion.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\contentslider.min.js.map">
-      <DependentUpon>contentslider.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\cont_slide.min.js.map">
-      <DependentUpon>cont_slide.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\collapse.min.js.map">
-      <DependentUpon>collapse.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\banner_left.min.js.map">
-      <DependentUpon>banner_left.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\anythingslider.min.js.map">
-      <DependentUpon>anythingslider.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\animatedcollapse.min.js.map">
-      <DependentUpon>animatedcollapse.min.js</DependentUpon>
-    </Content>
-    <Content Include="Content\Themes\area51\js\acrodin.min.js.map">
-      <DependentUpon>acrodin.min.js</DependentUpon>
     </Content>
     <None Include="Content\Themes\bootstrap3\navbar-fixed-top.cshtml" />
     <Content Include="Content\Themes\bootstrap3\navbar-fixed-top.ascx" />
@@ -2010,29 +1930,6 @@
     <Content Include="Content\MVC\Views\Web.config" />
     <Content Include="Default.cshtml" />
     <Content Include="Content\Executor.cshtml" />
-    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-3.1.0.debug.js" />
-    <Content Include="Scripts\knockout-3.1.0.js" />
-    <Content Include="Scripts\knockout-3.3.0.debug.js" />
-    <Content Include="Scripts\knockout-3.3.0.js" />
-    <Content Include="Scripts\modernizr-2.7.2.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
     <None Include="Service References\WebServices\DataSync1.disco" />
     <Content Include="Static.aspx" />
     <Content Include="_App_Offline.htm" />
@@ -2089,157 +1986,6 @@
     <Content Include="Content\Assets\Styles\WebSystem.css" />
     <Content Include="Content\Assets\Styles\WebSystem.Window.css" />
     <Content Include="Content\Assets\Styles\_TemplateEditor.css" />
-    <Content Include="Content\Themes\area51\css\main_style.css" />
-    <Content Include="Content\Themes\area51\InsideWithSidebar.ascx" />
-    <Content Include="Content\Themes\area51\Parts\EventCalendar\EventCalendar\CalendarView.ascx" />
-    <Content Include="Content\Themes\area51\Parts\Profile\Profile\ForgotPassword.ascx" />
-    <Content Include="Content\Themes\area51\Parts\Profile\Profile\MyPreferences.ascx" />
-    <Content Include="Content\Themes\area51\Parts\Profile\Profile\ProfileUpdate.ascx" />
-    <Content Include="Content\Themes\area51\Parts\Profile\Profile\UpdateMyGroups.ascx" />
-    <Content Include="Content\Themes\area51\Parts\Profile\Profile\UserProfileDetails.ascx" />
-    <Content Include="Content\Themes\area51\InsideFull.ascx" />
-    <Content Include="Content\Themes\area51\index.ascx" />
-    <Content Include="Content\Themes\area51\css\contentslider.css" />
-    <Content Include="Content\Themes\area51\css\ddsmoothmenu.css" />
-    <Content Include="Content\Themes\area51\css\jquery.fancybox-1.3.1.css" />
-    <Content Include="Content\Themes\area51\css\slider.css" />
-    <Content Include="Content\Themes\area51\images\avatar.gif" />
-    <Content Include="Content\Themes\area51\images\background_tile.png" />
-    <Content Include="Content\Themes\area51\images\banner1.jpg" />
-    <Content Include="Content\Themes\area51\images\banner2.jpg" />
-    <Content Include="Content\Themes\area51\images\banner3.jpg" />
-    <Content Include="Content\Themes\area51\images\bg.gif" />
-    <Content Include="Content\Themes\area51\images\blank.png" />
-    <Content Include="Content\Themes\area51\images\blog1.gif" />
-    <Content Include="Content\Themes\area51\images\blog2.gif" />
-    <Content Include="Content\Themes\area51\images\blog3.gif" />
-    <Content Include="Content\Themes\area51\images\blog_bg.gif" />
-    <Content Include="Content\Themes\area51\images\blog_date.gif" />
-    <Content Include="Content\Themes\area51\images\blog_img.gif" />
-    <Content Include="Content\Themes\area51\images\blog_links_bg.gif" />
-    <Content Include="Content\Themes\area51\images\cart.gif" />
-    <Content Include="Content\Themes\area51\images\comments.gif" />
-    <Content Include="Content\Themes\area51\images\contactus.gif" />
-    <Content Include="Content\Themes\area51\images\contactus_pressed.png" />
-    <Content Include="Content\Themes\area51\images\cont_reading.gif" />
-    <Content Include="Content\Themes\area51\images\crumb.gif" />
-    <Content Include="Content\Themes\area51\images\crumb_sep.gif" />
-    <Content Include="Content\Themes\area51\images\date.gif" />
-    <Content Include="Content\Themes\area51\images\del.gif" />
-    <Content Include="Content\Themes\area51\images\dropdown.gif" />
-    <Content Include="Content\Themes\area51\images\facebook.gif" />
-    <Content Include="Content\Themes\area51\images\fancybox\blank.gif" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancybox-x.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancybox-y.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancybox.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_close.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_loading.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_nav_left.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_nav_right.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_e.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_n.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_ne.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_nw.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_s.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_se.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_sw.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_shadow_w.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_title_left.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_title_main.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_title_over.png" />
-    <Content Include="Content\Themes\area51\images\fancybox\fancy_title_right.png" />
-    <Content Include="Content\Themes\area51\images\featured.png" />
-    <Content Include="Content\Themes\area51\images\footer.png" />
-    <Content Include="Content\Themes\area51\images\footer_sep.gif" />
-    <Content Include="Content\Themes\area51\images\gallery1.gif" />
-    <Content Include="Content\Themes\area51\images\gallery10.gif" />
-    <Content Include="Content\Themes\area51\images\gallery11.gif" />
-    <Content Include="Content\Themes\area51\images\gallery12.gif" />
-    <Content Include="Content\Themes\area51\images\gallery2.gif" />
-    <Content Include="Content\Themes\area51\images\gallery3.gif" />
-    <Content Include="Content\Themes\area51\images\gallery4.gif" />
-    <Content Include="Content\Themes\area51\images\gallery5.gif" />
-    <Content Include="Content\Themes\area51\images\gallery6.gif" />
-    <Content Include="Content\Themes\area51\images\gallery7.gif" />
-    <Content Include="Content\Themes\area51\images\gallery8.gif" />
-    <Content Include="Content\Themes\area51\images\gallery9.gif" />
-    <Content Include="Content\Themes\area51\images\glosymenu.gif" />
-    <Content Include="Content\Themes\area51\images\go.gif" />
-    <Content Include="Content\Themes\area51\images\grey_bg.gif" />
-    <Content Include="Content\Themes\area51\images\heading.gif" />
-    <Content Include="Content\Themes\area51\images\head_bg.gif" />
-    <Content Include="Content\Themes\area51\images\inputbar.gif" />
-    <Content Include="Content\Themes\area51\images\inputbar_text.gif" />
-    <Content Include="Content\Themes\area51\images\jumpmenu.gif" />
-    <Content Include="Content\Themes\area51\images\landscape.jpg" />
-    <Content Include="Content\Themes\area51\images\little_arrows.png" />
-    <Content Include="Content\Themes\area51\images\loading.gif" />
-    <Content Include="Content\Themes\area51\images\login_bg.gif" />
-    <Content Include="Content\Themes\area51\images\login_form.gif" />
-    <Content Include="Content\Themes\area51\images\minus.gif" />
-    <Content Include="Content\Themes\area51\images\navi_rol.gif" />
-    <Content Include="Content\Themes\area51\images\news1.gif" />
-    <Content Include="Content\Themes\area51\images\news_bg.gif" />
-    <Content Include="Content\Themes\area51\images\news_border.gif" />
-    <Content Include="Content\Themes\area51\images\news_thumb.gif" />
-    <Content Include="Content\Themes\area51\images\news_thumb1.gif" />
-    <Content Include="Content\Themes\area51\images\next.gif" />
-    <Content Include="Content\Themes\area51\images\next_page.gif" />
-    <Content Include="Content\Themes\area51\images\paging.gif" />
-    <Content Include="Content\Themes\area51\images\paging_next.gif" />
-    <Content Include="Content\Themes\area51\images\paging_prev.gif" />
-    <Content Include="Content\Themes\area51\images\paging_rol.gif" />
-    <Content Include="Content\Themes\area51\images\plus.gif" />
-    <Content Include="Content\Themes\area51\images\prev.gif" />
-    <Content Include="Content\Themes\area51\images\readmore.gif" />
-    <Content Include="Content\Themes\area51\images\readmorebg.gif" />
-    <Content Include="Content\Themes\area51\images\respons_bg.gif" />
-    <Content Include="Content\Themes\area51\images\right_acordion.gif" />
-    <Content Include="Content\Themes\area51\images\rss.gif" />
-    <Content Include="Content\Themes\area51\images\search.gif" />
-    <Content Include="Content\Themes\area51\images\sec_arrow.gif" />
-    <Content Include="Content\Themes\area51\images\sitemap.gif" />
-    <Content Include="Content\Themes\area51\images\sitemap_pressed.png" />
-    <Content Include="Content\Themes\area51\images\sorting.gif" />
-    <Content Include="Content\Themes\area51\images\static_img.gif" />
-    <Content Include="Content\Themes\area51\images\submit.gif" />
-    <Content Include="Content\Themes\area51\images\thumb1.gif" />
-    <Content Include="Content\Themes\area51\images\thumb10.gif" />
-    <Content Include="Content\Themes\area51\images\thumb11.gif" />
-    <Content Include="Content\Themes\area51\images\thumb12.gif" />
-    <Content Include="Content\Themes\area51\images\thumb2.gif" />
-    <Content Include="Content\Themes\area51\images\thumb3.gif" />
-    <Content Include="Content\Themes\area51\images\thumb4.gif" />
-    <Content Include="Content\Themes\area51\images\thumb5.gif" />
-    <Content Include="Content\Themes\area51\images\thumb6.gif" />
-    <Content Include="Content\Themes\area51\images\thumb7.gif" />
-    <Content Include="Content\Themes\area51\images\thumb8.gif" />
-    <Content Include="Content\Themes\area51\images\thumb9.gif" />
-    <Content Include="Content\Themes\area51\images\twitter.gif" />
-    <Content Include="Content\Themes\area51\images\wrapper_bg.png" />
-    <Content Include="Content\Themes\area51\images\youtube.gif" />
-    <Content Include="Content\Themes\area51\js\acrodin.js" />
-    <Content Include="Content\Themes\area51\js\animatedcollapse.js" />
-    <Content Include="Content\Themes\area51\js\anythingslider.js" />
-    <Content Include="Content\Themes\area51\js\banner_left.js" />
-    <Content Include="Content\Themes\area51\js\collapse.js" />
-    <Content Include="Content\Themes\area51\js\contentslider.js" />
-    <Content Include="Content\Themes\area51\js\cont_slide.js" />
-    <Content Include="Content\Themes\area51\js\cufon-yui.js" />
-    <Content Include="Content\Themes\area51\js\cufon.js" />
-    <Content Include="Content\Themes\area51\js\ddaccordion.js" />
-    <Content Include="Content\Themes\area51\js\ddsmoothmenu.js" />
-    <Content Include="Content\Themes\area51\js\jquery.anythingslider.js" />
-    <Content Include="Content\Themes\area51\js\jquery.easing.1.2.js" />
-    <Content Include="Content\Themes\area51\js\jquery.fancybox-1.3.1.js" />
-    <Content Include="Content\Themes\area51\js\jquery.min.js" />
-    <Content Include="Content\Themes\area51\js\jquery.min14.js" />
-    <Content Include="Content\Themes\area51\js\lightbox.js" />
-    <Content Include="Content\Themes\area51\js\menu-collapsed.js" />
-    <Content Include="Content\Themes\area51\js\menu.js" />
-    <Content Include="Content\Themes\area51\js\Trebuchet_MS_400-Trebuchet_MS_700-Trebuchet_MS_italic_700-Trebuchet_MS_italic_400.font.js" />
-    <Content Include="Content\Themes\area51\js\virtualpaginate.js" />
-    <Content Include="Content\Themes\area51\Parts\Registration\Registration\Registration.ascx" />
     <Content Include="Content\Themes\Basic\Basic.ascx" />
     <Content Include="Content\Themes\Basic\Themes\css here.txt" />
     <Content Include="Content\Themes\Central\Basic.ascx" />
@@ -2525,4 +2271,9 @@
     </PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\..\Binaries\Nuget-Packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\Binaries\Nuget-Packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\Binaries\Nuget-Packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\Binaries\Nuget-Packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
 </Project>

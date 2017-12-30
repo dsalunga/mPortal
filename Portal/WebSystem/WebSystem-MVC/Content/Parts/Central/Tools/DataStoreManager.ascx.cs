@@ -38,7 +38,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
             try
             {
-                return DataHelper.ToDataSet(
+                var dataSet = DataHelper.ToDataSet(
                     from i in WebObject.GetList()
                     let manager = i.DataManager
                     select new
@@ -56,17 +56,19 @@ namespace WCMS.WebSystem.WebParts.Central
                         Count = manager == null ? -1 : manager.GetCount()
                     }
                 );
+
+                return dataSet;
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(ex);
-                return DataHelper.GetEmptyDataSet();
+                return DataUtil.GetEmptyDataSet();
             }
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             var query = new WContext(this);
 
             switch (e.CommandName)
@@ -136,7 +138,7 @@ namespace WCMS.WebSystem.WebParts.Central
             var checkedIds = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(checkedIds))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(checkedIds);
+                var ids = DataUtil.ParseCommaSeparatedIdList(checkedIds);
                 foreach (var id in ids)
                 {
                     var manager = WebObject.Get(id).DataManager;
@@ -153,7 +155,7 @@ namespace WCMS.WebSystem.WebParts.Central
             var checkedIds = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(checkedIds))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(checkedIds);
+                var ids = DataUtil.ParseCommaSeparatedIdList(checkedIds);
                 foreach (var id in ids)
                 {
                     var manager = WebObject.Get(id).DataManager;
