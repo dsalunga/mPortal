@@ -1,0 +1,24 @@
+# POST-DEPLOYMENT CHECKS
+* Lesson Reviewer
+* Send Message
+
+# Resources
+
+# Parameters / Registry	
+	
+# DB Schema / Objects
+
+# Config
+
+# Others
+* Remove Part Ajax Script Manager in Central Site
+
+# Ticketing
+* INC: Status, Changes: Description, Notes, Attachments
+
+SMS
+To: Submitter - Notes, Status (3)
+Support: All Status, Description, Notes, Attachments, Urgency
+Monitoring team: No SMS, Email
+
+INC: Status - Descr (50 char). CHANGES: field1, field2. NOTE from {0}: note

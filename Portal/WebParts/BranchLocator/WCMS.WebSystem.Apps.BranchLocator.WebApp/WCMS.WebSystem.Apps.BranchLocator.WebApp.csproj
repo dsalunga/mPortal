@@ -297,7 +297,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)..\..\Binaries\PostBuildManager\PostBuildManager.exe $(ProjectDir)</PostBuildEvent>
+    <PostBuildEvent>REM $(SolutionDir)..\..\Binaries\PostBuildManager\PostBuildManager.exe $(ProjectDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
