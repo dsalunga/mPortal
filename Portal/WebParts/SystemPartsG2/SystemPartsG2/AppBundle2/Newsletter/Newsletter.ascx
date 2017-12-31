@@ -6,7 +6,7 @@
                 <p>
                     Get a chance to win 1 of the 3 Beatbox Mini-Speakers on the Elimination Night! (Terms & Conditions Applies).<br />
                     <br />
-                    <img id="subscribe_button" src="/Content/Themes/ASOP/v2/division/images/subscribe.png" alt="subscribe now" />
+                    <img id="subscribe_button" src="/Content/Themes/Integration/ASOP/v2/division/images/subscribe.png" alt="subscribe now" />
                 </p>
             </div>
             <div id="subscribe_section" class="subscribe">

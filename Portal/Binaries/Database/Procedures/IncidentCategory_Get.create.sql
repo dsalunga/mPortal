@@ -4,7 +4,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE dbo.IncidentCategory_Get
+CREATE PROCEDURE [dbo].[IncidentCategory_Get]
 	(
 		@Id int = -1,
 		@InstanceId int =-2
@@ -12,7 +12,7 @@ CREATE PROCEDURE dbo.IncidentCategory_Get
 AS
 	SET NOCOUNT ON
 
-	SELECT     Id, Name, GroupId, Description, Rank
+	SELECT     Id, Name, GroupId, Description, Rank, InstanceId
 	FROM         IncidentCategory
 	WHERE     (@Id = -1 OR Id = @Id)
 		AND (@InstanceId=-2 OR InstanceId=@InstanceId)
