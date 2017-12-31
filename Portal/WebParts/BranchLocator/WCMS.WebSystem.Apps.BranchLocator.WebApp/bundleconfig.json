@@ -1,8 +1,8 @@
 [
   {
-    "outputFileName": "Content/Parts/BranchLocator/res/locale-ads/css/full-slider.css",
+    "outputFileName": "Content/Parts/BranchLocator/assets/locale-ads/css/full-slider.css",
     "inputFiles": [
-      "Content/Parts/BranchLocator/res/locale-ads/css/full-slider.css"
+      "Content/Parts/BranchLocator/assets/locale-ads/css/full-slider.css"
     ]
   }
 ]

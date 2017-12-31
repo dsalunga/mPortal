@@ -20,7 +20,7 @@
 
     var address = string.IsNullOrEmpty(chapter.Address) ? "Please contact the assigned coordinator." : chapter.Address;
 }
-<link href="@WebUtil.Version("~/content/parts/branchlocator/res/css/fal.min.css")" type="text/css" rel="stylesheet" />
+<link href="@WebUtil.Version("~/content/parts/branchlocator/assets/css/fal.min.css")" type="text/css" rel="stylesheet" />
 <style type="text/css">
     .pic {
         border: solid 1px #000000;
@@ -97,14 +97,14 @@
             <br />
             @*<br />*@
             @*<a class="btn btn-default btn-sm" href="@query">Back to Dashboard</a>*@
-            ><br />
+            <br />
             <h6 class="text-muted">Last updated: @chapter.LastUpdate.ToLongDateString() @@ @chapter.LastUpdate.ToLongTimeString()</h6>
         </div>
     </div>
 </div>
 
 <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script src="@WebUtil.Version("~/content/parts/branchlocator/res/js/fal.min.js")"></script>
+<script src="@WebUtil.Version("~/content/parts/branchlocator/assets/js/fal.min.js")"></script>
 <script type="text/javascript">
     function initialize() {
         var latlng = new google.maps.LatLng($('#lat').val(), $('#lng').val());
