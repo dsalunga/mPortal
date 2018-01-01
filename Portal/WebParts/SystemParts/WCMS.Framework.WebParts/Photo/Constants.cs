@@ -7,8 +7,8 @@ namespace WCMS.WebSystem.WebParts.Photo
 {
     public struct PhotoConstants
     {
-        public const string GalleryPath = "/Content/Assets/Uploads/Image/WebParts/Photo/";
-        public const string TempPath = "/Content/Assets/Uploads/Image/WebParts/Photo/temp/";
+        public const string GalleryPath = "/Content/Assets/Uploads/Image/Apps/Photo/";
+        public const string TempPath = "/Content/Assets/Uploads/Image/Apps/Photo/temp/";
 
         public const string ResizedPrefix = "Resized.";
 
