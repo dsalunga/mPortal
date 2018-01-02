@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCMS.WebSystem.Apps.Integration.WebApp", "IntegrationParts\WCMS.WebSystem.Apps.Integration.WebApp.csproj", "{ED9995AD-9620-43AF-B2B8-959A00487614}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCMS.WebSystem.Apps.Integration", "WCMS.WebSystem.Apps.Integration\WCMS.WebSystem.Apps.Integration.csproj", "{FE80F4C2-E201-41C9-9FD9-6E98713F363C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCMS.WebSystem.Apps.BibleReader", "WCMS.WebSystem.Apps.BibleReader\WCMS.WebSystem.Apps.BibleReader.csproj", "{935CB3C6-BA5A-4AD2-A420-897FCFC92E54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibleReader.Core", "..\..\..\BibleReader\BibleReader.Core\BibleReader.Core.csproj", "{16ADB616-1A5B-48DF-A44E-782478E21754}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BibleReader.Database", "BibleReader.Database\BibleReader.Database.sqlproj", "{B86936E7-2DF8-4F3D-90AE-81ECDC968C3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCMS.WebSystem.Apps.Integration.UnitTest", "WCMS.WebSystem.Apps.Integration.UnitTest\WCMS.WebSystem.Apps.Integration.UnitTest.csproj", "{F6273E61-1485-4869-9C69-0989FC3C30FB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WCMS.WebSystem.Apps.Integration.Database", "WCMS.WebSystem.Apps.Integration.Database\WCMS.WebSystem.Apps.Integration.Database.sqlproj", "{FF309410-1146-4198-ACBD-AB7AF2DEA1C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED9995AD-9620-43AF-B2B8-959A00487614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9995AD-9620-43AF-B2B8-959A00487614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9995AD-9620-43AF-B2B8-959A00487614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9995AD-9620-43AF-B2B8-959A00487614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE80F4C2-E201-41C9-9FD9-6E98713F363C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE80F4C2-E201-41C9-9FD9-6E98713F363C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE80F4C2-E201-41C9-9FD9-6E98713F363C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE80F4C2-E201-41C9-9FD9-6E98713F363C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{935CB3C6-BA5A-4AD2-A420-897FCFC92E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{935CB3C6-BA5A-4AD2-A420-897FCFC92E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{935CB3C6-BA5A-4AD2-A420-897FCFC92E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{935CB3C6-BA5A-4AD2-A420-897FCFC92E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16ADB616-1A5B-48DF-A44E-782478E21754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16ADB616-1A5B-48DF-A44E-782478E21754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16ADB616-1A5B-48DF-A44E-782478E21754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16ADB616-1A5B-48DF-A44E-782478E21754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B86936E7-2DF8-4F3D-90AE-81ECDC968C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86936E7-2DF8-4F3D-90AE-81ECDC968C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6273E61-1485-4869-9C69-0989FC3C30FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6273E61-1485-4869-9C69-0989FC3C30FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6273E61-1485-4869-9C69-0989FC3C30FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6273E61-1485-4869-9C69-0989FC3C30FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF309410-1146-4198-ACBD-AB7AF2DEA1C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF309410-1146-4198-ACBD-AB7AF2DEA1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9EE2FD1-A862-43EC-8026-C12820BDDE7F}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,24 @@
+
+-- Procedure MusicCompetition_Del
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[MusicCompetition_Del]
+	@Id int
+AS
+	SET NOCOUNT ON
+
+	IF(@Id > 0)
+		DELETE FROM MusicCompetition
+		WHERE Id=@Id;
+
+RETURN 0
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

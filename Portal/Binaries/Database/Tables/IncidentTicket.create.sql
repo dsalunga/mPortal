@@ -70,7 +70,7 @@ ALTER TABLE [dbo].[IncidentTicket] ADD  CONSTRAINT [DF_IncidentTicket_NotifyAlso
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentT__Insta__6395DBC1]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentT__Insta__28A8896F]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentTicket] ADD  DEFAULT ((-1)) FOR [InstanceId]
 END

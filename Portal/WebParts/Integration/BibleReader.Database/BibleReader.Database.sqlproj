@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>BibleReader.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{b86936e7-2df8-4f3d-90ae-81ecdc968c3b}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>BibleReader.Database</RootNamespace>
+    <AssemblyName>BibleReader.Database</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\BIBLE_ADBTAG.sql" />
+    <Build Include="dbo\Tables\BIBLE_GW.sql" />
+    <Build Include="dbo\Tables\BIBLE_HIL.sql" />
+    <Build Include="dbo\Tables\BibleArticle.sql" />
+    <Build Include="dbo\Tables\BibleFact.sql" />
+    <Build Include="dbo\Tables\BIBLE_ISV.sql" />
+    <Build Include="dbo\Tables\BibleFactCategory.sql" />
+    <Build Include="dbo\Tables\BibleFactSubcategory.sql" />
+    <Build Include="dbo\Tables\BIBLE_ITB.sql" />
+    <Build Include="dbo\Tables\BIBLE_ABBTAG.sql" />
+    <Build Include="dbo\Tables\BIBLE_KJV.sql" />
+    <Build Include="dbo\Tables\BIBLE_ABTAG.sql" />
+    <Build Include="dbo\Tables\BIBLE_LBLA.sql" />
+    <Build Include="dbo\Tables\BIBLE_ADBBCL.sql" />
+    <Build Include="dbo\Tables\BIBLE_LITV.sql" />
+    <Build Include="dbo\Tables\BibleVersionLanguage.sql" />
+    <Build Include="dbo\Tables\BIBLE_ADBCEB.sql" />
+    <Build Include="dbo\Tables\BIBLE_MBBTAG.sql" />
+    <Build Include="dbo\Tables\BIBLE_ADBILN.sql" />
+    <Build Include="dbo\Tables\BIBLE_MKJV.sql" />
+    <Build Include="dbo\Tables\BIBLE_ADBPAM.sql" />
+    <Build Include="dbo\Tables\BIBLE_NIV.sql" />
+    <Build Include="dbo\Tables\BIBLE_ADBSAM.sql" />
+    <Build Include="dbo\Tables\BIBLE_NORSK.sql" />
+    <Build Include="dbo\Tables\BIBLE_ADHIL.sql" />
+    <Build Include="dbo\Tables\BIBLE_PJFA.sql" />
+    <Build Include="dbo\Tables\tbl_cubt.sql" />
+    <Build Include="dbo\Tables\BIBLE_ALT.sql" />
+    <Build Include="dbo\Tables\BIBLE_RSV.sql" />
+    <Build Include="dbo\Tables\tbl_cubtcategory.sql" />
+    <Build Include="dbo\Tables\tbl_randverse.sql" />
+    <Build Include="dbo\Tables\tbl_tools.sql" />
+    <Build Include="dbo\Tables\BIBLE_AOV.sql" />
+    <Build Include="dbo\Tables\BIBLE_SF.sql" />
+    <Build Include="dbo\Tables\tbl_users.sql" />
+    <Build Include="dbo\Tables\BIBLE_ASV.sql" />
+    <Build Include="dbo\Tables\BIBLE_SRV.sql" />
+    <Build Include="dbo\Tables\BIBLE_BBE.sql" />
+    <Build Include="dbo\Tables\BIBLE_SSE.sql" />
+    <Build Include="dbo\Tables\BIBLE_BIBELN.sql" />
+    <Build Include="dbo\Tables\BIBLE_SWB.sql" />
+    <Build Include="dbo\Tables\BibleBookName.sql" />
+    <Build Include="dbo\Tables\BIBLE_CEV.sql" />
+    <Build Include="dbo\Tables\BIBLE_VULGATE.sql" />
+    <Build Include="dbo\Tables\BIBLE_DARBY.sql" />
+    <Build Include="dbo\Tables\BIBLE_WEB.sql" />
+    <Build Include="dbo\Tables\BIBLE_DRB.sql" />
+    <Build Include="dbo\Tables\BIBLE_WEBSTER.sql" />
+    <Build Include="dbo\Tables\BIBLE_DSV.sql" />
+    <Build Include="dbo\Tables\BIBLE_WYC.sql" />
+    <Build Include="dbo\Tables\BibleTranslation.sql" />
+    <Build Include="dbo\Tables\BIBLE_EMTV.sql" />
+    <Build Include="dbo\Tables\BIBLE_YLT.sql" />
+    <Build Include="dbo\Tables\BibleVersion.sql" />
+    <Build Include="dbo\Tables\BIBLE_ESV.sql" />
+    <Build Include="dbo\Tables\BIBLE_FLS.sql" />
+    <Build Include="dbo\Tables\BIBLE_GB.sql" />
+    <Build Include="dbo\Tables\BIBLE_GLB.sql" />
+    <Build Include="dbo\Tables\BIBLE_GNB.sql" />
+    <Build Include="dbo\Tables\BibleTranslation_old.sql" />
+    <Build Include="dbo\Stored Procedures\Book_Get.sql" />
+    <Build Include="dbo\Stored Procedures\BibleBookName_Get.sql" />
+    <Build Include="dbo\Stored Procedures\BibleVersionLanguage_Get.sql" />
+    <Build Include="dbo\Stored Procedures\BibleVersion_Get.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BibleReader.Database.publish.xml" />
+  </ItemGroup>
+</Project>
