@@ -147,7 +147,7 @@ namespace WCMS.WebSystem
             string dbPath = _db.XML_PATH;
 
             // Map to exact path
-            string databasePath = string.Format(@"{0}\{1}", dbPath, DbConstants.XML_FILE);
+            string databasePath = string.Format(@"{0}{1}{2}", dbPath, Path.DirectorySeparatorChar, DbConstants.XML_FILE);
             if (File.Exists(databasePath))
             {
                 try

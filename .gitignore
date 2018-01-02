@@ -8,6 +8,7 @@ bin
 *.vshost.exe.manifest
 *.dbmdl
 *.jfm
+*.userprefs
 
 /Portal/Binaries/IISExpress
 /Portal/Binaries/Logs
@@ -38,14 +39,16 @@ bin
 /Portal/WebSystem/WebSystem-MVC/Content/Assets/Resources
 
 /Portal/WebParts/SystemParts/SystemParts/Content
-/Portal/WebParts/SystemPartsG2/SystemPartsG2/Content
-/Portal/WebParts/SystemPartsG3/SystemPartsG3/Content
 /Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle
+
+/Portal/WebParts/SystemPartsG2/SystemPartsG2/Content
 /Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle2
+
+/Portal/WebParts/SystemPartsG3/SystemPartsG3/Content
 /Portal/WebSystem/WebSystem-MVC/Content/Parts/AppBundle3
 
-/Portal/WebParts/IntegrationParts/BibleReader.Database/Import Schema Logs
-/Portal/WebParts/IntegrationParts/IntegrationParts/Content
+/Portal/WebParts/Integration/BibleReader.Database/Import Schema Logs
+/Portal/WebParts/Integration/IntegrationParts/Content
 /Portal/WebSystem/WebSystem-MVC/Content/Parts/Integration
 /Portal/WebSystem/WebSystem-MVC/Content/Themes/Integration
 
