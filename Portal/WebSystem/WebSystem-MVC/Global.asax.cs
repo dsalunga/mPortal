@@ -62,12 +62,16 @@ namespace WCMS.WebSystem
 
             var p = typeof(HttpRuntime).GetProperty("FileChangesMonitor",
                 BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static);
-            var o = p.GetValue(null, null);
-            var f = o.GetType().GetField("_dirMonSubdirs",
-                BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.IgnoreCase);
-            var monitor = f.GetValue(o);
-            var m = monitor.GetType().GetMethod("StopMonitoring",
-                BindingFlags.Instance | BindingFlags.NonPublic); m.Invoke(monitor, new object[] { });
+			// for OSX
+			if (p != null)
+			{
+				var o = p.GetValue(null, null);
+				var f = o.GetType().GetField("_dirMonSubdirs",
+					BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.IgnoreCase);
+				var monitor = f.GetValue(o);
+				var m = monitor.GetType().GetMethod("StopMonitoring",
+					BindingFlags.Instance | BindingFlags.NonPublic); m.Invoke(monitor, new object[] { });
+			}
 
             #endregion
 
