@@ -354,7 +354,7 @@ namespace TableEditor
         private void tables_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             string tableName = tables.SelectedItem.ToString();
-            data = new DataSet("ADDBible");
+            data = new DataSet("BibleReader");
 
             da = new MySqlDataAdapter("SELECT * FROM " + tableName, conn);
             cb = new MySqlCommandBuilder(da);
@@ -378,7 +378,7 @@ namespace TableEditor
             foreach (var tableItem in tables.Items)
             {
                 string tableName = tableItem.ToString();
-                DataSet ds = new DataSet("ADDBible");
+                DataSet ds = new DataSet("BibleReader");
                 da = new MySqlDataAdapter("SELECT * FROM " + tableName, conn);
                 cb = new MySqlCommandBuilder(da);
                 da.Fill(ds, tableName);
@@ -389,7 +389,7 @@ namespace TableEditor
                 string cnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                 var sqlConn = new SqlConnection(cnString);
                 Server srv = new Server(new ServerConnection(sqlConn));
-                var db = srv.Databases["ADDBible"];
+                var db = srv.Databases["BibleReader"];
 
                 if (db.Tables.Contains(dataTable.TableName))
                     db.Tables[dataTable.TableName].Drop();

@@ -40,9 +40,9 @@ ALTER TABLE [dbo].[IncidentTicket] DROP CONSTRAINT [DF_IncidentTicket_NotifyAlso
 END
 
 GO
-IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentT__Insta__6395DBC1]') AND type = 'D')
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentT__Insta__28A8896F]') AND type = 'D')
 BEGIN
-ALTER TABLE [dbo].[IncidentTicket] DROP CONSTRAINT [DF__IncidentT__Insta__6395DBC1]
+ALTER TABLE [dbo].[IncidentTicket] DROP CONSTRAINT [DF__IncidentT__Insta__28A8896F]
 END
 
 GO

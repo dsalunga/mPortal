@@ -14,7 +14,7 @@
             query.SetSource(CentralPages.LoaderMain);
         }
 
-        //query.Set("Key", string.Format("{0}-{1}", IntegrationConstants.ASOPCompetition, id));
+        //query.Set("Key", string.Format("{0}-{1}", IntegrationConstants.MusicCompetition, id));
 
         return query.BuildQuery();
     }

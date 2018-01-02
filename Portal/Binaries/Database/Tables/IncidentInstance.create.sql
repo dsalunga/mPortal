@@ -21,31 +21,31 @@ CREATE TABLE [dbo].[IncidentInstance](
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentI__Incid__2A5D5E65]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentI__Incid__1B4E8E51]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentInstance] ADD  DEFAULT ('INC') FOR [IncidentPrefix]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentI__SLAHi__2B51829E]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentI__SLAHi__1C42B28A]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentInstance] ADD  DEFAULT ((24)) FOR [SLAHighDuration]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentI__SLALo__2C45A6D7]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentI__SLALo__1D36D6C3]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentInstance] ADD  DEFAULT ((168)) FOR [SLALowDuration]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentI__SLANo__2D39CB10]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentI__SLANo__1E2AFAFC]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentInstance] ADD  DEFAULT ((72)) FOR [SLANormalDuration]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentI__SLAWa__2E2DEF49]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentI__SLAWa__1F1F1F35]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentInstance] ADD  DEFAULT ((0.8)) FOR [SLAWarningPercentage]
 END

@@ -4,9 +4,9 @@ ALTER TABLE [dbo].[IncidentCategory] DROP CONSTRAINT [DF_IncidentCategory_Rank]
 END
 
 GO
-IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentC__Insta__51772B86]') AND type = 'D')
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentC__Insta__187221A6]') AND type = 'D')
 BEGIN
-ALTER TABLE [dbo].[IncidentCategory] DROP CONSTRAINT [DF__IncidentC__Insta__51772B86]
+ALTER TABLE [dbo].[IncidentCategory] DROP CONSTRAINT [DF__IncidentC__Insta__187221A6]
 END
 
 GO
