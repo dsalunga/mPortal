@@ -1,0 +1,2892 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetMemberAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberAddressResult" type="tns:MemberAddress" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MemberAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="MemberAddressID" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CityID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="StateID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CountryID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CreationDate" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedBy" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateUpdated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedBy" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMemberID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="externalIdNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMemberIDResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="externalIdNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberInfoResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAll">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prefixText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBrethren">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prefixText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBrethrenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBrethrenResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBrethrenAndKNC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prefixText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBrethrenAndKNCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBrethrenAndKNCResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBrethrenAndVisitors">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prefixText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBrethrenAndVisitorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBrethrenAndVisitorsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExternalIDNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prefixText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExternalIDNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExternalIDNoResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFirstName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prefixText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFirstNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFirstNameResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prefixText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLastNameResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrientedBy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prefixText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrientedByResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrientedByResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOnboardedBy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prefixText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOnboardedByResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOnboardedByResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="externalIdNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="membershipDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProfileResult" type="tns:Member" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Member">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExternalIDNo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TemporaryIDNo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NickName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BirthDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="BirthPlace" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BloodType" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CivilStatusID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CitizenshipID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RaceID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email2" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetProfiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="lastUpdate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProfilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProfilesResult" type="tns:ArrayOfMember" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Member" nillable="true" type="tns:Member" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMembershipStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMembershipStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMembershipStatusResult" type="tns:MemberStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MemberStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="MemberStatusID" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="MemberTypeID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="MembershipStatusID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleStatusID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Ministries" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Committees" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="MembershipDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="MembershipPlace" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OrientedByID" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="OnboardedByID" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="PreviousOrganizationID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="WithID" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetMembershipStatuses">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="lastUpdate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMembershipStatusesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMembershipStatusesResult" type="tns:ArrayOfMemberStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMemberStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MemberStatus" nillable="true" type="tns:MemberStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDefaultAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDefaultAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDefaultAddressResult" type="tns:MemberAddress" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveLocaleGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveLocaleGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetActiveLocaleGroupResult" type="tns:MemberLocaleGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MemberLocaleGroup">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="MemberLocaleGroupID" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleGroupID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DateJoined" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetLocaleGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeGroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocaleGroupResult" type="tns:LocaleGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LocaleGroup">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleGroupID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="LocaleGroupName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ColorCodes" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetLocaleGroupCouncillor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeGroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleGroupCouncillorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocaleGroupCouncillorResult" type="tns:Member" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleGroupServant">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeGroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleGroupServantResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocaleGroupServantResult" type="tns:Member" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleAsstGroupServant">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeGroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleAsstGroupServantResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocaleAsstGroupServantResult" type="tns:Member" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPhoto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPhotoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPhotoResult" type="tns:ArrayOfMemberPhoto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMemberPhoto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MemberPhoto" nillable="true" type="tns:MemberPhoto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MemberPhoto">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="MemberPhotoID" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="PhotoFileName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SignFileName" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetAttendances">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeGroupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceStartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceEndDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttendancesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAttendancesResult" type="tns:ArrayOfMemberAttendance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMemberAttendance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MemberAttendance" nillable="true" type="tns:MemberAttendance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MemberAttendance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AttendanceID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServiceScheduleID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="WeekNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceDateTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateTimeIn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateTimeOut" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMembersByLocale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encryptedLocaleID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMembersByLocaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMembersByLocaleResult" type="tns:ArrayOfMemberProfile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMemberProfile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MemberProfile" nillable="true" type="tns:MemberProfile" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MemberProfile">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalIDNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TemporaryIDNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NickName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BirthDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="BirthPlace" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BloodType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CivilStatusID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CivilStatusName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberTypeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MembershipDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FleshAge" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SpiritAge" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocaleID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocaleName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocaleGroupID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocaleGroupName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoFileName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllByLocale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encryptedLocaleID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllByLocaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllByLocaleResult" type="tns:ArrayOfMemberProfile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBasicInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="externalIdNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email2" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBasicInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateBasicInfoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasPendingTransfer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasPendingTransferResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HasPendingTransferResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransferToAnotherLocale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeIDFrom" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeIDTo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransferToAnotherLocaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransferToAnotherLocaleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendingTransferee">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendingTransfereeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPendingTransfereeResult" type="tns:ArrayOfLocaleTransfer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLocaleTransfer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LocaleTransfer" nillable="true" type="tns:LocaleTransfer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LocaleTransfer">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleTransferID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleIDFrom" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleIDTo" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DateTransferred" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="DateAccepted" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetLocaleTransferees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeIDTo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleTransfereesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocaleTransfereesResult" type="tns:ArrayOfLocaleTransferee" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLocaleTransferee">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LocaleTransferee" nillable="true" type="tns:LocaleTransferee" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LocaleTransferee">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LocaleTransferID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalIDNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocaleIDFrom" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocaleFromName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocaleIDTo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocaleToName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTransferred" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ApproveLocaleTransferee">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeTransferID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApproveLocaleTransfereeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ApproveLocaleTransfereeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MemberAddress" nillable="true" type="tns:MemberAddress" />
+      <s:element name="long" type="s:long" />
+      <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+      <s:element name="Member" nillable="true" type="tns:Member" />
+      <s:element name="ArrayOfMember" nillable="true" type="tns:ArrayOfMember" />
+      <s:element name="MemberStatus" nillable="true" type="tns:MemberStatus" />
+      <s:element name="ArrayOfMemberStatus" nillable="true" type="tns:ArrayOfMemberStatus" />
+      <s:element name="MemberLocaleGroup" nillable="true" type="tns:MemberLocaleGroup" />
+      <s:element name="LocaleGroup" nillable="true" type="tns:LocaleGroup" />
+      <s:element name="ArrayOfMemberPhoto" nillable="true" type="tns:ArrayOfMemberPhoto" />
+      <s:element name="ArrayOfMemberAttendance" nillable="true" type="tns:ArrayOfMemberAttendance" />
+      <s:element name="ArrayOfMemberProfile" nillable="true" type="tns:ArrayOfMemberProfile" />
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="ArrayOfLocaleTransfer" nillable="true" type="tns:ArrayOfLocaleTransfer" />
+      <s:element name="ArrayOfLocaleTransferee" nillable="true" type="tns:ArrayOfLocaleTransferee" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetMemberAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberAddress" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberID" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAll" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBrethren" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBrethrenResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndKNCSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBrethrenAndKNC" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndKNCSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBrethrenAndKNCResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndVisitorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBrethrenAndVisitors" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndVisitorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBrethrenAndVisitorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExternalIDNoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExternalIDNo" />
+  </wsdl:message>
+  <wsdl:message name="GetExternalIDNoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExternalIDNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFirstName" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFirstNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLastNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLastName" />
+  </wsdl:message>
+  <wsdl:message name="GetLastNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLastNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrientedBySoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrientedBy" />
+  </wsdl:message>
+  <wsdl:message name="GetOrientedBySoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrientedByResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOnboardedBySoapIn">
+    <wsdl:part name="parameters" element="tns:GetOnboardedBy" />
+  </wsdl:message>
+  <wsdl:message name="GetOnboardedBySoapOut">
+    <wsdl:part name="parameters" element="tns:GetOnboardedByResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProfile" />
+  </wsdl:message>
+  <wsdl:message name="GetProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProfiles" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProfilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMembershipStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMembershipStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMembershipStatuses" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMembershipStatusesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDefaultAddress" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDefaultAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveLocaleGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActiveLocaleGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveLocaleGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActiveLocaleGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupCouncillorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupCouncillor" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupCouncillorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupCouncillorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupServantSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupServant" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupServantSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupServantResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleAsstGroupServantSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocaleAsstGroupServant" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleAsstGroupServantSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocaleAsstGroupServantResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPhotoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPhoto" />
+  </wsdl:message>
+  <wsdl:message name="GetPhotoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendancesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAttendances" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendancesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAttendancesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMembersByLocaleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMembersByLocale" />
+  </wsdl:message>
+  <wsdl:message name="GetMembersByLocaleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMembersByLocaleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllByLocaleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllByLocale" />
+  </wsdl:message>
+  <wsdl:message name="GetAllByLocaleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllByLocaleResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBasicInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateBasicInfo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBasicInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateBasicInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="HasPendingTransferSoapIn">
+    <wsdl:part name="parameters" element="tns:HasPendingTransfer" />
+  </wsdl:message>
+  <wsdl:message name="HasPendingTransferSoapOut">
+    <wsdl:part name="parameters" element="tns:HasPendingTransferResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransferToAnotherLocaleSoapIn">
+    <wsdl:part name="parameters" element="tns:TransferToAnotherLocale" />
+  </wsdl:message>
+  <wsdl:message name="TransferToAnotherLocaleSoapOut">
+    <wsdl:part name="parameters" element="tns:TransferToAnotherLocaleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingTransfereeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPendingTransferee" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingTransfereeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPendingTransfereeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleTransfereesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocaleTransferees" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleTransfereesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocaleTransfereesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ApproveLocaleTransfereeSoapIn">
+    <wsdl:part name="parameters" element="tns:ApproveLocaleTransferee" />
+  </wsdl:message>
+  <wsdl:message name="ApproveLocaleTransfereeSoapOut">
+    <wsdl:part name="parameters" element="tns:ApproveLocaleTransfereeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberAddressHttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberAddressHttpGetOut">
+    <wsdl:part name="Body" element="tns:MemberAddress" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberIDHttpGetIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:long" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberInfoHttpGetIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetAllHttpGetIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenHttpGetIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndKNCHttpGetIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndKNCHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndVisitorsHttpGetIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndVisitorsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetExternalIDNoHttpGetIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExternalIDNoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstNameHttpGetIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetLastNameHttpGetIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLastNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetOrientedByHttpGetIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrientedByHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetOnboardedByHttpGetIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOnboardedByHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetProfileHttpGetIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="membershipDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProfileHttpGetOut">
+    <wsdl:part name="Body" element="tns:Member" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilesHttpGetIn">
+    <wsdl:part name="lastUpdate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMember" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusHttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:MemberStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusesHttpGetIn">
+    <wsdl:part name="lastUpdate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMemberStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultAddressHttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultAddressHttpGetOut">
+    <wsdl:part name="Body" element="tns:MemberAddress" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveLocaleGroupHttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveLocaleGroupHttpGetOut">
+    <wsdl:part name="Body" element="tns:MemberLocaleGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupHttpGetIn">
+    <wsdl:part name="localeGroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupHttpGetOut">
+    <wsdl:part name="Body" element="tns:LocaleGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupCouncillorHttpGetIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="localeGroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupCouncillorHttpGetOut">
+    <wsdl:part name="Body" element="tns:Member" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupServantHttpGetIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="localeGroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupServantHttpGetOut">
+    <wsdl:part name="Body" element="tns:Member" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleAsstGroupServantHttpGetIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="localeGroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleAsstGroupServantHttpGetOut">
+    <wsdl:part name="Body" element="tns:Member" />
+  </wsdl:message>
+  <wsdl:message name="GetPhotoHttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPhotoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMemberPhoto" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendancesHttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="localeGroupID" type="s:string" />
+    <wsdl:part name="serviceStartDate" type="s:string" />
+    <wsdl:part name="serviceEndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendancesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMemberAttendance" />
+  </wsdl:message>
+  <wsdl:message name="GetMembersByLocaleHttpGetIn">
+    <wsdl:part name="encryptedLocaleID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMembersByLocaleHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMemberProfile" />
+  </wsdl:message>
+  <wsdl:message name="GetAllByLocaleHttpGetIn">
+    <wsdl:part name="encryptedLocaleID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllByLocaleHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMemberProfile" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBasicInfoHttpGetIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="phone" type="s:string" />
+    <wsdl:part name="mobile" type="s:string" />
+    <wsdl:part name="address1" type="s:string" />
+    <wsdl:part name="address2" type="s:string" />
+    <wsdl:part name="email1" type="s:string" />
+    <wsdl:part name="email2" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBasicInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="HasPendingTransferHttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HasPendingTransferHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="TransferToAnotherLocaleHttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="localeIDFrom" type="s:string" />
+    <wsdl:part name="localeIDTo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransferToAnotherLocaleHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingTransfereeHttpGetIn">
+    <wsdl:part name="localeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingTransfereeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLocaleTransfer" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleTransfereesHttpGetIn">
+    <wsdl:part name="localeIDTo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleTransfereesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLocaleTransferee" />
+  </wsdl:message>
+  <wsdl:message name="ApproveLocaleTransfereeHttpGetIn">
+    <wsdl:part name="localeTransferID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ApproveLocaleTransfereeHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberAddressHttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberAddressHttpPostOut">
+    <wsdl:part name="Body" element="tns:MemberAddress" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberIDHttpPostIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:long" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberInfoHttpPostIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetAllHttpPostIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenHttpPostIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndKNCHttpPostIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndKNCHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndVisitorsHttpPostIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBrethrenAndVisitorsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetExternalIDNoHttpPostIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExternalIDNoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstNameHttpPostIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetLastNameHttpPostIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLastNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetOrientedByHttpPostIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrientedByHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetOnboardedByHttpPostIn">
+    <wsdl:part name="prefixText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOnboardedByHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetProfileHttpPostIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="membershipDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProfileHttpPostOut">
+    <wsdl:part name="Body" element="tns:Member" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilesHttpPostIn">
+    <wsdl:part name="lastUpdate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProfilesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMember" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusHttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:MemberStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusesHttpPostIn">
+    <wsdl:part name="lastUpdate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMemberStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultAddressHttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultAddressHttpPostOut">
+    <wsdl:part name="Body" element="tns:MemberAddress" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveLocaleGroupHttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveLocaleGroupHttpPostOut">
+    <wsdl:part name="Body" element="tns:MemberLocaleGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupHttpPostIn">
+    <wsdl:part name="localeGroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupHttpPostOut">
+    <wsdl:part name="Body" element="tns:LocaleGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupCouncillorHttpPostIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="localeGroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupCouncillorHttpPostOut">
+    <wsdl:part name="Body" element="tns:Member" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupServantHttpPostIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="localeGroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupServantHttpPostOut">
+    <wsdl:part name="Body" element="tns:Member" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleAsstGroupServantHttpPostIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="localeGroupID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleAsstGroupServantHttpPostOut">
+    <wsdl:part name="Body" element="tns:Member" />
+  </wsdl:message>
+  <wsdl:message name="GetPhotoHttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPhotoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMemberPhoto" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendancesHttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="localeGroupID" type="s:string" />
+    <wsdl:part name="serviceStartDate" type="s:string" />
+    <wsdl:part name="serviceEndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendancesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMemberAttendance" />
+  </wsdl:message>
+  <wsdl:message name="GetMembersByLocaleHttpPostIn">
+    <wsdl:part name="encryptedLocaleID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMembersByLocaleHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMemberProfile" />
+  </wsdl:message>
+  <wsdl:message name="GetAllByLocaleHttpPostIn">
+    <wsdl:part name="encryptedLocaleID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllByLocaleHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMemberProfile" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBasicInfoHttpPostIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="phone" type="s:string" />
+    <wsdl:part name="mobile" type="s:string" />
+    <wsdl:part name="address1" type="s:string" />
+    <wsdl:part name="address2" type="s:string" />
+    <wsdl:part name="email1" type="s:string" />
+    <wsdl:part name="email2" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBasicInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="HasPendingTransferHttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HasPendingTransferHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="TransferToAnotherLocaleHttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="localeIDFrom" type="s:string" />
+    <wsdl:part name="localeIDTo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransferToAnotherLocaleHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingTransfereeHttpPostIn">
+    <wsdl:part name="localeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingTransfereeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLocaleTransfer" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleTransfereesHttpPostIn">
+    <wsdl:part name="localeIDTo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleTransfereesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLocaleTransferee" />
+  </wsdl:message>
+  <wsdl:message name="ApproveLocaleTransfereeHttpPostIn">
+    <wsdl:part name="localeTransferID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ApproveLocaleTransfereeHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:portType name="MemberSoap">
+    <wsdl:operation name="GetMemberAddress">
+      <wsdl:input message="tns:GetMemberAddressSoapIn" />
+      <wsdl:output message="tns:GetMemberAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberID">
+      <wsdl:input message="tns:GetMemberIDSoapIn" />
+      <wsdl:output message="tns:GetMemberIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfo">
+      <wsdl:input message="tns:GetMemberInfoSoapIn" />
+      <wsdl:output message="tns:GetMemberInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <wsdl:input message="tns:GetAllSoapIn" />
+      <wsdl:output message="tns:GetAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethren">
+      <wsdl:input message="tns:GetBrethrenSoapIn" />
+      <wsdl:output message="tns:GetBrethrenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndKNC">
+      <wsdl:input message="tns:GetBrethrenAndKNCSoapIn" />
+      <wsdl:output message="tns:GetBrethrenAndKNCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndVisitors">
+      <wsdl:input message="tns:GetBrethrenAndVisitorsSoapIn" />
+      <wsdl:output message="tns:GetBrethrenAndVisitorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExternalIDNo">
+      <wsdl:input message="tns:GetExternalIDNoSoapIn" />
+      <wsdl:output message="tns:GetExternalIDNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstName">
+      <wsdl:input message="tns:GetFirstNameSoapIn" />
+      <wsdl:output message="tns:GetFirstNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastName">
+      <wsdl:input message="tns:GetLastNameSoapIn" />
+      <wsdl:output message="tns:GetLastNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrientedBy">
+      <wsdl:input message="tns:GetOrientedBySoapIn" />
+      <wsdl:output message="tns:GetOrientedBySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnboardedBy">
+      <wsdl:input message="tns:GetOnboardedBySoapIn" />
+      <wsdl:output message="tns:GetOnboardedBySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfile">
+      <wsdl:input message="tns:GetProfileSoapIn" />
+      <wsdl:output message="tns:GetProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfiles">
+      <wsdl:input message="tns:GetProfilesSoapIn" />
+      <wsdl:output message="tns:GetProfilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatus">
+      <wsdl:input message="tns:GetMembershipStatusSoapIn" />
+      <wsdl:output message="tns:GetMembershipStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatuses">
+      <wsdl:input message="tns:GetMembershipStatusesSoapIn" />
+      <wsdl:output message="tns:GetMembershipStatusesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAddress">
+      <wsdl:input message="tns:GetDefaultAddressSoapIn" />
+      <wsdl:output message="tns:GetDefaultAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveLocaleGroup">
+      <wsdl:input message="tns:GetActiveLocaleGroupSoapIn" />
+      <wsdl:output message="tns:GetActiveLocaleGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroup">
+      <wsdl:input message="tns:GetLocaleGroupSoapIn" />
+      <wsdl:output message="tns:GetLocaleGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupCouncillor">
+      <wsdl:input message="tns:GetLocaleGroupCouncillorSoapIn" />
+      <wsdl:output message="tns:GetLocaleGroupCouncillorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupServant">
+      <wsdl:input message="tns:GetLocaleGroupServantSoapIn" />
+      <wsdl:output message="tns:GetLocaleGroupServantSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleAsstGroupServant">
+      <wsdl:input message="tns:GetLocaleAsstGroupServantSoapIn" />
+      <wsdl:output message="tns:GetLocaleAsstGroupServantSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoto">
+      <wsdl:input message="tns:GetPhotoSoapIn" />
+      <wsdl:output message="tns:GetPhotoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendances">
+      <wsdl:input message="tns:GetAttendancesSoapIn" />
+      <wsdl:output message="tns:GetAttendancesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembersByLocale">
+      <wsdl:input message="tns:GetMembersByLocaleSoapIn" />
+      <wsdl:output message="tns:GetMembersByLocaleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllByLocale">
+      <wsdl:input message="tns:GetAllByLocaleSoapIn" />
+      <wsdl:output message="tns:GetAllByLocaleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBasicInfo">
+      <wsdl:input message="tns:UpdateBasicInfoSoapIn" />
+      <wsdl:output message="tns:UpdateBasicInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HasPendingTransfer">
+      <wsdl:input message="tns:HasPendingTransferSoapIn" />
+      <wsdl:output message="tns:HasPendingTransferSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransferToAnotherLocale">
+      <wsdl:input message="tns:TransferToAnotherLocaleSoapIn" />
+      <wsdl:output message="tns:TransferToAnotherLocaleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTransferee">
+      <wsdl:input message="tns:GetPendingTransfereeSoapIn" />
+      <wsdl:output message="tns:GetPendingTransfereeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleTransferees">
+      <wsdl:input message="tns:GetLocaleTransfereesSoapIn" />
+      <wsdl:output message="tns:GetLocaleTransfereesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApproveLocaleTransferee">
+      <wsdl:input message="tns:ApproveLocaleTransfereeSoapIn" />
+      <wsdl:output message="tns:ApproveLocaleTransfereeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MemberHttpGet">
+    <wsdl:operation name="GetMemberAddress">
+      <wsdl:input message="tns:GetMemberAddressHttpGetIn" />
+      <wsdl:output message="tns:GetMemberAddressHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberID">
+      <wsdl:input message="tns:GetMemberIDHttpGetIn" />
+      <wsdl:output message="tns:GetMemberIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfo">
+      <wsdl:input message="tns:GetMemberInfoHttpGetIn" />
+      <wsdl:output message="tns:GetMemberInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <wsdl:input message="tns:GetAllHttpGetIn" />
+      <wsdl:output message="tns:GetAllHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethren">
+      <wsdl:input message="tns:GetBrethrenHttpGetIn" />
+      <wsdl:output message="tns:GetBrethrenHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndKNC">
+      <wsdl:input message="tns:GetBrethrenAndKNCHttpGetIn" />
+      <wsdl:output message="tns:GetBrethrenAndKNCHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndVisitors">
+      <wsdl:input message="tns:GetBrethrenAndVisitorsHttpGetIn" />
+      <wsdl:output message="tns:GetBrethrenAndVisitorsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExternalIDNo">
+      <wsdl:input message="tns:GetExternalIDNoHttpGetIn" />
+      <wsdl:output message="tns:GetExternalIDNoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstName">
+      <wsdl:input message="tns:GetFirstNameHttpGetIn" />
+      <wsdl:output message="tns:GetFirstNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastName">
+      <wsdl:input message="tns:GetLastNameHttpGetIn" />
+      <wsdl:output message="tns:GetLastNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrientedBy">
+      <wsdl:input message="tns:GetOrientedByHttpGetIn" />
+      <wsdl:output message="tns:GetOrientedByHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnboardedBy">
+      <wsdl:input message="tns:GetOnboardedByHttpGetIn" />
+      <wsdl:output message="tns:GetOnboardedByHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfile">
+      <wsdl:input message="tns:GetProfileHttpGetIn" />
+      <wsdl:output message="tns:GetProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfiles">
+      <wsdl:input message="tns:GetProfilesHttpGetIn" />
+      <wsdl:output message="tns:GetProfilesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatus">
+      <wsdl:input message="tns:GetMembershipStatusHttpGetIn" />
+      <wsdl:output message="tns:GetMembershipStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatuses">
+      <wsdl:input message="tns:GetMembershipStatusesHttpGetIn" />
+      <wsdl:output message="tns:GetMembershipStatusesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAddress">
+      <wsdl:input message="tns:GetDefaultAddressHttpGetIn" />
+      <wsdl:output message="tns:GetDefaultAddressHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveLocaleGroup">
+      <wsdl:input message="tns:GetActiveLocaleGroupHttpGetIn" />
+      <wsdl:output message="tns:GetActiveLocaleGroupHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroup">
+      <wsdl:input message="tns:GetLocaleGroupHttpGetIn" />
+      <wsdl:output message="tns:GetLocaleGroupHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupCouncillor">
+      <wsdl:input message="tns:GetLocaleGroupCouncillorHttpGetIn" />
+      <wsdl:output message="tns:GetLocaleGroupCouncillorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupServant">
+      <wsdl:input message="tns:GetLocaleGroupServantHttpGetIn" />
+      <wsdl:output message="tns:GetLocaleGroupServantHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleAsstGroupServant">
+      <wsdl:input message="tns:GetLocaleAsstGroupServantHttpGetIn" />
+      <wsdl:output message="tns:GetLocaleAsstGroupServantHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoto">
+      <wsdl:input message="tns:GetPhotoHttpGetIn" />
+      <wsdl:output message="tns:GetPhotoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendances">
+      <wsdl:input message="tns:GetAttendancesHttpGetIn" />
+      <wsdl:output message="tns:GetAttendancesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembersByLocale">
+      <wsdl:input message="tns:GetMembersByLocaleHttpGetIn" />
+      <wsdl:output message="tns:GetMembersByLocaleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllByLocale">
+      <wsdl:input message="tns:GetAllByLocaleHttpGetIn" />
+      <wsdl:output message="tns:GetAllByLocaleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBasicInfo">
+      <wsdl:input message="tns:UpdateBasicInfoHttpGetIn" />
+      <wsdl:output message="tns:UpdateBasicInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HasPendingTransfer">
+      <wsdl:input message="tns:HasPendingTransferHttpGetIn" />
+      <wsdl:output message="tns:HasPendingTransferHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransferToAnotherLocale">
+      <wsdl:input message="tns:TransferToAnotherLocaleHttpGetIn" />
+      <wsdl:output message="tns:TransferToAnotherLocaleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTransferee">
+      <wsdl:input message="tns:GetPendingTransfereeHttpGetIn" />
+      <wsdl:output message="tns:GetPendingTransfereeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleTransferees">
+      <wsdl:input message="tns:GetLocaleTransfereesHttpGetIn" />
+      <wsdl:output message="tns:GetLocaleTransfereesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApproveLocaleTransferee">
+      <wsdl:input message="tns:ApproveLocaleTransfereeHttpGetIn" />
+      <wsdl:output message="tns:ApproveLocaleTransfereeHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MemberHttpPost">
+    <wsdl:operation name="GetMemberAddress">
+      <wsdl:input message="tns:GetMemberAddressHttpPostIn" />
+      <wsdl:output message="tns:GetMemberAddressHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberID">
+      <wsdl:input message="tns:GetMemberIDHttpPostIn" />
+      <wsdl:output message="tns:GetMemberIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfo">
+      <wsdl:input message="tns:GetMemberInfoHttpPostIn" />
+      <wsdl:output message="tns:GetMemberInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <wsdl:input message="tns:GetAllHttpPostIn" />
+      <wsdl:output message="tns:GetAllHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethren">
+      <wsdl:input message="tns:GetBrethrenHttpPostIn" />
+      <wsdl:output message="tns:GetBrethrenHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndKNC">
+      <wsdl:input message="tns:GetBrethrenAndKNCHttpPostIn" />
+      <wsdl:output message="tns:GetBrethrenAndKNCHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndVisitors">
+      <wsdl:input message="tns:GetBrethrenAndVisitorsHttpPostIn" />
+      <wsdl:output message="tns:GetBrethrenAndVisitorsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExternalIDNo">
+      <wsdl:input message="tns:GetExternalIDNoHttpPostIn" />
+      <wsdl:output message="tns:GetExternalIDNoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstName">
+      <wsdl:input message="tns:GetFirstNameHttpPostIn" />
+      <wsdl:output message="tns:GetFirstNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastName">
+      <wsdl:input message="tns:GetLastNameHttpPostIn" />
+      <wsdl:output message="tns:GetLastNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrientedBy">
+      <wsdl:input message="tns:GetOrientedByHttpPostIn" />
+      <wsdl:output message="tns:GetOrientedByHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnboardedBy">
+      <wsdl:input message="tns:GetOnboardedByHttpPostIn" />
+      <wsdl:output message="tns:GetOnboardedByHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfile">
+      <wsdl:input message="tns:GetProfileHttpPostIn" />
+      <wsdl:output message="tns:GetProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfiles">
+      <wsdl:input message="tns:GetProfilesHttpPostIn" />
+      <wsdl:output message="tns:GetProfilesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatus">
+      <wsdl:input message="tns:GetMembershipStatusHttpPostIn" />
+      <wsdl:output message="tns:GetMembershipStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatuses">
+      <wsdl:input message="tns:GetMembershipStatusesHttpPostIn" />
+      <wsdl:output message="tns:GetMembershipStatusesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAddress">
+      <wsdl:input message="tns:GetDefaultAddressHttpPostIn" />
+      <wsdl:output message="tns:GetDefaultAddressHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveLocaleGroup">
+      <wsdl:input message="tns:GetActiveLocaleGroupHttpPostIn" />
+      <wsdl:output message="tns:GetActiveLocaleGroupHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroup">
+      <wsdl:input message="tns:GetLocaleGroupHttpPostIn" />
+      <wsdl:output message="tns:GetLocaleGroupHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupCouncillor">
+      <wsdl:input message="tns:GetLocaleGroupCouncillorHttpPostIn" />
+      <wsdl:output message="tns:GetLocaleGroupCouncillorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupServant">
+      <wsdl:input message="tns:GetLocaleGroupServantHttpPostIn" />
+      <wsdl:output message="tns:GetLocaleGroupServantHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleAsstGroupServant">
+      <wsdl:input message="tns:GetLocaleAsstGroupServantHttpPostIn" />
+      <wsdl:output message="tns:GetLocaleAsstGroupServantHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoto">
+      <wsdl:input message="tns:GetPhotoHttpPostIn" />
+      <wsdl:output message="tns:GetPhotoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendances">
+      <wsdl:input message="tns:GetAttendancesHttpPostIn" />
+      <wsdl:output message="tns:GetAttendancesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembersByLocale">
+      <wsdl:input message="tns:GetMembersByLocaleHttpPostIn" />
+      <wsdl:output message="tns:GetMembersByLocaleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllByLocale">
+      <wsdl:input message="tns:GetAllByLocaleHttpPostIn" />
+      <wsdl:output message="tns:GetAllByLocaleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBasicInfo">
+      <wsdl:input message="tns:UpdateBasicInfoHttpPostIn" />
+      <wsdl:output message="tns:UpdateBasicInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HasPendingTransfer">
+      <wsdl:input message="tns:HasPendingTransferHttpPostIn" />
+      <wsdl:output message="tns:HasPendingTransferHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransferToAnotherLocale">
+      <wsdl:input message="tns:TransferToAnotherLocaleHttpPostIn" />
+      <wsdl:output message="tns:TransferToAnotherLocaleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTransferee">
+      <wsdl:input message="tns:GetPendingTransfereeHttpPostIn" />
+      <wsdl:output message="tns:GetPendingTransfereeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleTransferees">
+      <wsdl:input message="tns:GetLocaleTransfereesHttpPostIn" />
+      <wsdl:output message="tns:GetLocaleTransfereesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApproveLocaleTransferee">
+      <wsdl:input message="tns:ApproveLocaleTransfereeHttpPostIn" />
+      <wsdl:output message="tns:ApproveLocaleTransfereeHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MemberSoap" type="tns:MemberSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMemberAddress">
+      <soap:operation soapAction="http://tempuri.org/GetMemberAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberID">
+      <soap:operation soapAction="http://tempuri.org/GetMemberID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfo">
+      <soap:operation soapAction="http://tempuri.org/GetMemberInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <soap:operation soapAction="http://tempuri.org/GetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethren">
+      <soap:operation soapAction="http://tempuri.org/GetBrethren" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndKNC">
+      <soap:operation soapAction="http://tempuri.org/GetBrethrenAndKNC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndVisitors">
+      <soap:operation soapAction="http://tempuri.org/GetBrethrenAndVisitors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExternalIDNo">
+      <soap:operation soapAction="http://tempuri.org/GetExternalIDNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstName">
+      <soap:operation soapAction="http://tempuri.org/GetFirstName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastName">
+      <soap:operation soapAction="http://tempuri.org/GetLastName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrientedBy">
+      <soap:operation soapAction="http://tempuri.org/GetOrientedBy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnboardedBy">
+      <soap:operation soapAction="http://tempuri.org/GetOnboardedBy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfile">
+      <soap:operation soapAction="http://tempuri.org/GetProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfiles">
+      <soap:operation soapAction="http://tempuri.org/GetProfiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatus">
+      <soap:operation soapAction="http://tempuri.org/GetMembershipStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatuses">
+      <soap:operation soapAction="http://tempuri.org/GetMembershipStatuses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAddress">
+      <soap:operation soapAction="http://tempuri.org/GetDefaultAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveLocaleGroup">
+      <soap:operation soapAction="http://tempuri.org/GetActiveLocaleGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroup">
+      <soap:operation soapAction="http://tempuri.org/GetLocaleGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupCouncillor">
+      <soap:operation soapAction="http://tempuri.org/GetLocaleGroupCouncillor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupServant">
+      <soap:operation soapAction="http://tempuri.org/GetLocaleGroupServant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleAsstGroupServant">
+      <soap:operation soapAction="http://tempuri.org/GetLocaleAsstGroupServant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoto">
+      <soap:operation soapAction="http://tempuri.org/GetPhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendances">
+      <soap:operation soapAction="http://tempuri.org/GetAttendances" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembersByLocale">
+      <soap:operation soapAction="http://tempuri.org/GetMembersByLocale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllByLocale">
+      <soap:operation soapAction="http://tempuri.org/GetAllByLocale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBasicInfo">
+      <soap:operation soapAction="http://tempuri.org/UpdateBasicInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPendingTransfer">
+      <soap:operation soapAction="http://tempuri.org/HasPendingTransfer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferToAnotherLocale">
+      <soap:operation soapAction="http://tempuri.org/TransferToAnotherLocale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTransferee">
+      <soap:operation soapAction="http://tempuri.org/GetPendingTransferee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleTransferees">
+      <soap:operation soapAction="http://tempuri.org/GetLocaleTransferees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveLocaleTransferee">
+      <soap:operation soapAction="http://tempuri.org/ApproveLocaleTransferee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MemberSoap12" type="tns:MemberSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMemberAddress">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberID">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <soap12:operation soapAction="http://tempuri.org/GetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethren">
+      <soap12:operation soapAction="http://tempuri.org/GetBrethren" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndKNC">
+      <soap12:operation soapAction="http://tempuri.org/GetBrethrenAndKNC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndVisitors">
+      <soap12:operation soapAction="http://tempuri.org/GetBrethrenAndVisitors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExternalIDNo">
+      <soap12:operation soapAction="http://tempuri.org/GetExternalIDNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstName">
+      <soap12:operation soapAction="http://tempuri.org/GetFirstName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastName">
+      <soap12:operation soapAction="http://tempuri.org/GetLastName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrientedBy">
+      <soap12:operation soapAction="http://tempuri.org/GetOrientedBy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnboardedBy">
+      <soap12:operation soapAction="http://tempuri.org/GetOnboardedBy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfile">
+      <soap12:operation soapAction="http://tempuri.org/GetProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfiles">
+      <soap12:operation soapAction="http://tempuri.org/GetProfiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetMembershipStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatuses">
+      <soap12:operation soapAction="http://tempuri.org/GetMembershipStatuses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAddress">
+      <soap12:operation soapAction="http://tempuri.org/GetDefaultAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveLocaleGroup">
+      <soap12:operation soapAction="http://tempuri.org/GetActiveLocaleGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroup">
+      <soap12:operation soapAction="http://tempuri.org/GetLocaleGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupCouncillor">
+      <soap12:operation soapAction="http://tempuri.org/GetLocaleGroupCouncillor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupServant">
+      <soap12:operation soapAction="http://tempuri.org/GetLocaleGroupServant" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleAsstGroupServant">
+      <soap12:operation soapAction="http://tempuri.org/GetLocaleAsstGroupServant" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoto">
+      <soap12:operation soapAction="http://tempuri.org/GetPhoto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendances">
+      <soap12:operation soapAction="http://tempuri.org/GetAttendances" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembersByLocale">
+      <soap12:operation soapAction="http://tempuri.org/GetMembersByLocale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllByLocale">
+      <soap12:operation soapAction="http://tempuri.org/GetAllByLocale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBasicInfo">
+      <soap12:operation soapAction="http://tempuri.org/UpdateBasicInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPendingTransfer">
+      <soap12:operation soapAction="http://tempuri.org/HasPendingTransfer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferToAnotherLocale">
+      <soap12:operation soapAction="http://tempuri.org/TransferToAnotherLocale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTransferee">
+      <soap12:operation soapAction="http://tempuri.org/GetPendingTransferee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleTransferees">
+      <soap12:operation soapAction="http://tempuri.org/GetLocaleTransferees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveLocaleTransferee">
+      <soap12:operation soapAction="http://tempuri.org/ApproveLocaleTransferee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MemberHttpGet" type="tns:MemberHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetMemberAddress">
+      <http:operation location="/GetMemberAddress" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberID">
+      <http:operation location="/GetMemberID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfo">
+      <http:operation location="/GetMemberInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <http:operation location="/GetAll" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethren">
+      <http:operation location="/GetBrethren" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndKNC">
+      <http:operation location="/GetBrethrenAndKNC" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndVisitors">
+      <http:operation location="/GetBrethrenAndVisitors" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExternalIDNo">
+      <http:operation location="/GetExternalIDNo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstName">
+      <http:operation location="/GetFirstName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastName">
+      <http:operation location="/GetLastName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrientedBy">
+      <http:operation location="/GetOrientedBy" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnboardedBy">
+      <http:operation location="/GetOnboardedBy" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfile">
+      <http:operation location="/GetProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfiles">
+      <http:operation location="/GetProfiles" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatus">
+      <http:operation location="/GetMembershipStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatuses">
+      <http:operation location="/GetMembershipStatuses" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAddress">
+      <http:operation location="/GetDefaultAddress" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveLocaleGroup">
+      <http:operation location="/GetActiveLocaleGroup" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroup">
+      <http:operation location="/GetLocaleGroup" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupCouncillor">
+      <http:operation location="/GetLocaleGroupCouncillor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupServant">
+      <http:operation location="/GetLocaleGroupServant" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleAsstGroupServant">
+      <http:operation location="/GetLocaleAsstGroupServant" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoto">
+      <http:operation location="/GetPhoto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendances">
+      <http:operation location="/GetAttendances" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembersByLocale">
+      <http:operation location="/GetMembersByLocale" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllByLocale">
+      <http:operation location="/GetAllByLocale" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBasicInfo">
+      <http:operation location="/UpdateBasicInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPendingTransfer">
+      <http:operation location="/HasPendingTransfer" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferToAnotherLocale">
+      <http:operation location="/TransferToAnotherLocale" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTransferee">
+      <http:operation location="/GetPendingTransferee" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleTransferees">
+      <http:operation location="/GetLocaleTransferees" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveLocaleTransferee">
+      <http:operation location="/ApproveLocaleTransferee" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MemberHttpPost" type="tns:MemberHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetMemberAddress">
+      <http:operation location="/GetMemberAddress" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberID">
+      <http:operation location="/GetMemberID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfo">
+      <http:operation location="/GetMemberInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <http:operation location="/GetAll" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethren">
+      <http:operation location="/GetBrethren" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndKNC">
+      <http:operation location="/GetBrethrenAndKNC" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrethrenAndVisitors">
+      <http:operation location="/GetBrethrenAndVisitors" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExternalIDNo">
+      <http:operation location="/GetExternalIDNo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstName">
+      <http:operation location="/GetFirstName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastName">
+      <http:operation location="/GetLastName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrientedBy">
+      <http:operation location="/GetOrientedBy" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnboardedBy">
+      <http:operation location="/GetOnboardedBy" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfile">
+      <http:operation location="/GetProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfiles">
+      <http:operation location="/GetProfiles" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatus">
+      <http:operation location="/GetMembershipStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatuses">
+      <http:operation location="/GetMembershipStatuses" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAddress">
+      <http:operation location="/GetDefaultAddress" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveLocaleGroup">
+      <http:operation location="/GetActiveLocaleGroup" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroup">
+      <http:operation location="/GetLocaleGroup" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupCouncillor">
+      <http:operation location="/GetLocaleGroupCouncillor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupServant">
+      <http:operation location="/GetLocaleGroupServant" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleAsstGroupServant">
+      <http:operation location="/GetLocaleAsstGroupServant" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoto">
+      <http:operation location="/GetPhoto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendances">
+      <http:operation location="/GetAttendances" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembersByLocale">
+      <http:operation location="/GetMembersByLocale" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllByLocale">
+      <http:operation location="/GetAllByLocale" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBasicInfo">
+      <http:operation location="/UpdateBasicInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPendingTransfer">
+      <http:operation location="/HasPendingTransfer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferToAnotherLocale">
+      <http:operation location="/TransferToAnotherLocale" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTransferee">
+      <http:operation location="/GetPendingTransferee" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleTransferees">
+      <http:operation location="/GetLocaleTransferees" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveLocaleTransferee">
+      <http:operation location="/ApproveLocaleTransferee" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Member">
+    <wsdl:port name="MemberSoap" binding="tns:MemberSoap">
+      <soap:address location="https://external.someorg.org/webservices/member.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MemberSoap12" binding="tns:MemberSoap12">
+      <soap12:address location="https://external.someorg.org/webservices/member.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MemberHttpGet" binding="tns:MemberHttpGet">
+      <http:address location="https://external.someorg.org/webservices/member.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MemberHttpPost" binding="tns:MemberHttpPost">
+      <http:address location="https://external.someorg.org/webservices/member.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

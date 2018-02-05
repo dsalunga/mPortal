@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCMS.WebSystem.Apps.Integration" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCMS.WebSystem.Apps.Integration" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://someorg.org/Content/Parts/Registration/DataSync.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCMS.WebSystem.Apps.Integration" />
+  <xs:complexType name="ArrayOfMemberLinkContainer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MemberLinkContainer" nillable="true" type="tns:MemberLinkContainer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMemberLinkContainer" nillable="true" type="tns:ArrayOfMemberLinkContainer" />
+  <xs:complexType name="MemberLinkContainer">
+    <xs:sequence>
+      <xs:element name="_x003C_ItemType_x003E_k__BackingField" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCMS.WebSystem.Apps.Integration" name="_x003C_Link_x003E_k__BackingField" nillable="true" type="q1:MemberLink" />
+      <xs:element name="_x003C_UserName_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MemberLinkContainer" nillable="true" type="tns:MemberLinkContainer" />
+</xs:schema>

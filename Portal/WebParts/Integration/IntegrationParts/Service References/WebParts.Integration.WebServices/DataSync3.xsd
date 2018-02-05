@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCMS.WebSystem.Apps.Integration" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCMS.WebSystem.Apps.Integration" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="MemberLink">
+    <xs:sequence>
+      <xs:element name="_homeCountryCode" nillable="true" type="xs:int" />
+      <xs:element name="_photoPath" nillable="true" type="xs:string" />
+      <xs:element name="_userId" type="xs:int" />
+      <xs:element name="_x003C_AdditionalInfo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Approved_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_MembershipDate_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_ExternalIdNo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_HomeAddressLine1_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_HomeAddressLine2_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_HomeAddressStateCode_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_HomeAddressZipCode_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_HomePhone_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LastUpdate_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_LocaleId_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Locale_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MemberId_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_MemberLinkId_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_MobileNumber_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Nickname_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Private_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_WorkAddressCountryCode_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_WorkAddressLine1_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_WorkAddressLine2_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_WorkAddressStateCode_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_WorkAddressZipCode_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_WorkDesignation_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_WorkPhone_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MemberLink" nillable="true" type="tns:MemberLink" />
+</xs:schema>

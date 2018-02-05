@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configurationSnapshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:schemas-microsoft-com:xml-wcfconfigurationsnapshot">
+  <behaviors />
+  <bindings>
+    <binding digest="System.ServiceModel.Configuration.BasicHttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data name=&quot;webservice01.someorg.orgSoap&quot;&gt;&lt;security mode=&quot;Transport&quot; /&gt;&lt;/Data&gt;" bindingType="basicHttpBinding" name="webservice01.someorg.orgSoap" />
+    <binding digest="System.ServiceModel.Configuration.BasicHttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data name=&quot;webservice01.someorg.orgSoap1&quot; /&gt;" bindingType="basicHttpBinding" name="webservice01.someorg.orgSoap1" />
+  </bindings>
+  <endpoints>
+    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;https://webservice01.someorg.org:8443/ONEAccess/ServiceList.asmx&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;webservice01.someorg.orgSoap&quot; contract=&quot;ExtWebService.webservice01someorgSoap&quot; name=&quot;webservice01.someorg.orgSoap&quot; /&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;https://webservice01.someorg.org:8443/ONEAccess/ServiceList.asmx&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;webservice01.someorg.orgSoap&quot; contract=&quot;ExtWebService.webservice01someorgSoap&quot; name=&quot;webservice01.someorg.orgSoap&quot; /&gt;" contractName="ExtWebService.webservice01someorgSoap" name="webservice01.someorg.orgSoap" />
+  </endpoints>
+</configurationSnapshot>

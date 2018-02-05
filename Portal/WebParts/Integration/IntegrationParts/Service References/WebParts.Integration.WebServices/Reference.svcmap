@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3a2ccae5-c266-4614-adf3-dc91416fc3fc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9000/Content/Parts/Registration/DataSync.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DataSync1.wsdl" MetadataType="Wsdl" ID="34bc6c85-ad95-4d12-a0ae-fc17fbe40891" SourceId="1" SourceUrl="http://someorg.org/Content/Parts/Registration/DataSync.svc?wsdl" />
+    <MetadataFile FileName="DataSync3.xsd" MetadataType="Schema" ID="b548c4c3-829d-4b96-a6af-2d5581315cbc" SourceId="1" SourceUrl="http://someorg.org/Content/Parts/Registration/DataSync.svc?xsd=xsd3" />
+    <MetadataFile FileName="DataSync31.xsd" MetadataType="Schema" ID="8282865f-7c77-43bc-99e2-4f0372830e54" SourceId="1" SourceUrl="http://someorg.org/Content/Parts/Registration/DataSync.svc?xsd=xsd2" />
+    <MetadataFile FileName="DataSync32.xsd" MetadataType="Schema" ID="80636a93-0cdb-4803-9a37-3577c2ae469a" SourceId="1" SourceUrl="http://someorg.org/Content/Parts/Registration/DataSync.svc?xsd=xsd1" />
+    <MetadataFile FileName="DataSync1.disco" MetadataType="Disco" ID="a07606ed-ee27-4841-b8cf-80d76b559396" SourceId="1" SourceUrl="http://someorg.org/Content/Parts/Registration/DataSync.svc?disco" />
+    <MetadataFile FileName="DataSync33.xsd" MetadataType="Schema" ID="4f93734d-8d12-46f0-9d4a-3375a97f795a" SourceId="1" SourceUrl="http://someorg.org/Content/Parts/Registration/DataSync.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

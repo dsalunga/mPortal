@@ -1,0 +1,231 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.Integration
+@using WCMS.WebSystem.Apps.Integration.EventRegister
+@{
+    var context = new WContext(this);
+    var site = context.Site;
+    //var portalSite = WSite.Provider.Get("Portal");
+    var session = WSession.Current;
+    var isManager = false;
+    var isAttendee = false;
+    var attendeesUrl = "";
+    var contactPerson = "contactPerson";
+    WebUser myCoordinator = null;
+
+    if (session.IsLoggedIn)
+    {
+        // Check if member of pnkbrazil2015 group, if not, show contact info (bro robert)
+        var user = WSession.Current.User;
+        var element = context.Element;
+
+        var managerGroupFilter = element.GetParameterValue("CoordinatorGroupFilter");
+        var managerGroup = WebGroup.SelectNode(managerGroupFilter);
+        if (user.IsMemberOf(managerGroup.Id) || session.IsAdministrator)
+        {
+            attendeesUrl = element.GetParameterValue("AttendeesUrl");
+            isManager = true;
+            //context.Redirect(attendeesUrl);
+            //return;
+        }
+
+        var groupFilter = element.GetParameterValue("GroupFilter");
+        var group = WebGroup.SelectNode(groupFilter);
+        if (group != null && user.IsMemberOf(group.Id))
+        {
+            isAttendee = true;
+            WebUserGroup ug = WebUserGroup.Get(group.Id, user.Id);
+            if (ug != null)
+            {
+                myCoordinator = ug.CreatedBy;
+            }
+
+            if (IsPost && !string.IsNullOrEmpty(Request.Form["btnDownload"]))
+            {
+                // trigger ID card download
+
+                EventRegisterUtil.DownloadCard(user);
+                return;
+            }
+        }
+    }
+    else
+    {
+        // show contact info
+        // show registration link
+    }
+}
+
+<style>
+    /*h1.page-header {margin-top: 70px;}*/
+    h1.page-header {
+        margin-top: 0px;
+    }
+
+    .app-category {
+        margin-bottom: 50px;
+    }
+
+    .media a {
+        color: #333;
+    }
+
+    .media, .media .media {
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+
+        .media:first-child {
+            margin-top: 0;
+        }
+
+    .flag-shadow {
+        box-shadow: 1px 1px #ddd;
+    }
+
+    .app-icon {
+        max-height: 175px;
+    }
+
+    .store-icon {
+        height: 40px;
+    }
+
+    .app-blurb ol, .app-blurb ul {
+        padding-left: 20px;
+    }
+
+    .glyphicon-icon {
+        font-size: 50px;
+        width: 64px;
+        /*color: #EDA912;*/
+        color: #333;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .jumbotron {
+        text-align: center;
+        background-color: transparent;
+    }
+
+        .jumbotron .btn {
+            padding: 14px 24px;
+            font-size: 21px;
+        }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="/Content/Parts/Integration/EventRegister/assets/banner.jpg" class="img-responsive" alt="Brasil 2015" />
+        </div>
+        @if (isManager)
+        {
+            <div class="col-md-6 app-category">
+                <h2>Attendees &amp; ID Cards Management</h2>
+                <div class="app-blurb">
+                    <ol>
+                        <li>
+                            Add/manage attendee records and download ID Cards for printing:
+                            <ul>
+                                <li>Launch the Attendees &amp; ID Card Manager</li>
+                                <li>Add/manage attendee records</li>
+                                <li>To download ID Cards: select the records and click the Download ID Cards button</li>
+                            </ul>
+                        </li>
+                        <li>
+                            ID Cards printing details:
+                            <ul>
+                                <li>ID Card size: 100.0 x 148.0mm (3.94 x 5.83in.)</li>
+                                <li>Recommended printer: <a href="http://www.canon.com.sg/personal/products/compact-photo-printers/compact-photo-printers/selphy-cp910" target="_blank">Canon SELPHY CP910</a></li>
+                                <li>Printer cost: around <a href="http://www.amazon.com/Canon-Portable-Wireless-Compact-Printer/dp/B00HK8V4PK" target="_blank">$150 USD</a> (no cutting required if using the above printer)</li>
+                            </ul>
+                        </li>
+                        <li>For any assistance, please contact @contactPerson.</li>
+                    </ol>
+                </div>
+                <p><a href="@attendeesUrl" class="btn btn-primary">Launch</a></p>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-4 app-category">
+                <h2>Are you a coordinator?</h2>
+                <div class="app-blurb">
+                    <ol>
+                        @if (!session.IsLoggedIn)
+                        {
+                            <li>Register an Integration Portal account <a href="/public/Register?View=Local" target="_blank">here</a> or click the Login button above if you have an account.</li>
+                        }
+                        <li>Contact @contactPerson for your account's approval and granting of Coordinator access.</li>
+                        <li>
+                            Once you have the Coordinator access, you can:
+                            <ul>
+                                <li>Add/register the attendees in your Locale, District or Division.</li>
+                                <li>Download the ID Card templates and have them printed.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        }
+
+        @if (!isManager)
+        {
+            if (isAttendee)
+            {
+                <div class="col-md-4 app-category">
+                    <h2>You are an attendee!</h2>
+                    <div class="app-blurb">
+                        <ol>
+                            <li>Be sure to update your profile details and photo <a href="/Account/" target="_blank">here</a> if your ID card is not yet printed.</li>
+                            @if (myCoordinator != null)
+                            {
+                                <li>For the status of your ID Card, please check with your locale Coordinator - <a href="/Account/?UserId=@myCoordinator.Id" target="_blank">@myCoordinator.FirstAndLastName</a> or check with @contactPerson.</li>
+                            }
+                            else
+                            {
+                                <li>For the status of your ID Card, please check with your locale Coordinator or check with @contactPerson.</li>
+                            }
+                        </ol>
+                    </div>
+                    <form method="post">
+                        <p>
+                            <button type="submit" name="btnDownload" class="btn btn-primary" value="Download">Download My ID Card!</button>
+                        </p>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-4 app-category">
+                    <h2>Are you an attendee?</h2>
+                    <div class="app-blurb">
+                        <ol>
+                            @if (!session.IsLoggedIn)
+                            {
+                                <li>Register an Integration Portal account <a href="/public/Register?View=Local" target="_blank">here</a> or click the Login button above if you have an account.</li>
+                            }
+                            else
+                            {
+                                <li>Update your account profile and photo <a href="/Account/" target="_blank">here</a></li>
+                            }
+                            <li>Contact @contactPerson or check with your locale officers/workers/coordinators to be registered as attendee.</li>
+                        </ol>
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="col-md-4 app-category">
+            <h2>Please contact:</h2>
+            <div class="app-blurb">
+                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;<strong>Sis. Sarah Jean (Jhinky) Nepomuceno</strong></p>
+                <p><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;+65 8468 1484</p>
+                <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;khyjin71@gmail.com</p>
+                <p><span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;Also available in Viber &amp; Hangouts</p>
+            </div>
+        </div>
+    </div>
+</div>

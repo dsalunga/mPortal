@@ -1,0 +1,26 @@
+﻿@using WCMS.Framework
+@{
+    string sessionId = Page.SessionId;
+    string room = Page.Room;
+    string minHeight = Page.MinHeight;
+
+    if (string.IsNullOrEmpty(room))
+    {
+        var context = new WContext(this);
+        var element = context.Element;
+        room = element.GetParameterValue("ChatRoom", "Chat Room");
+    }
+
+    if (string.IsNullOrEmpty(sessionId))
+    {
+        var session = WSession.Current.UserSession;
+        sessionId = session != null ? session.SessionId.ToString() : "";
+    }
+}
+
+@if (!string.IsNullOrEmpty(sessionId))
+{
+    <div id="chatContainer" class="embed-responsive embed-responsive-4by3 col-md-12" style="min-height: @(string.IsNullOrEmpty(minHeight) ? "650" : minHeight)px">
+        <iframe class="embed-responsive-item" src="https://chat.someorg.org/?room=@room&sessionId=@sessionId" @*onload="resizeIframe(this, document.getElementById('chatContainer'));"*@></iframe>
+    </div>
+}

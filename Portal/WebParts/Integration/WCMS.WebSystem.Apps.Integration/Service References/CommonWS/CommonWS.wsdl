@@ -1,0 +1,1383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetDivisions">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDivisionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDivisionsResult" type="tns:ArrayOfLookup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLookup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Lookup" nillable="true" type="tns:Lookup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Lookup">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LookupTypeID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LookupParentID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="LookupName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ConfigString" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsParent" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CreationDate" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedBy" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateUpdated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedBy" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDistricts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="divisionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDistrictsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDistrictsResult" type="tns:ArrayOfLookup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocales">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="districtID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocalesResult" type="tns:ArrayOfLocale" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLocale">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Locale" nillable="true" type="tns:Locale" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Locale">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DivisionID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DistrictID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleTypeID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="LocaleName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LocaleCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CityID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="StateID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CountryID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DateFounded" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetCountries">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCountriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCountriesResult" type="tns:ArrayOfCountry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCountry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Country" nillable="true" type="tns:Country" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Country">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="CountryID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RegionID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CapitalID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DivisionID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetCountry">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="countryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="countryName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCountryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCountryResult" type="tns:Country" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCountriesByRegion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="regionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCountriesByRegionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCountriesByRegionResult" type="tns:ArrayOfCountry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleGroups">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeGroupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="localeGroupName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleGroupsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocaleGroupsResult" type="tns:ArrayOfLocaleGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLocaleGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LocaleGroup" nillable="true" type="tns:LocaleGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LocaleGroup">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleGroupID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="LocaleGroupName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ColorCodes" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetServiceTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServiceTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceTypesResult" type="tns:ArrayOfLookup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServices">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServicesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServicesResult" type="tns:ArrayOfService" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfService">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Service" nillable="true" type="tns:Service" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Service">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ServiceID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ServiceTypeID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ScheduleTypeID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="serviceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceResult" type="tns:Service" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceSchedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="serviceScheduleID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceScheduleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceScheduleResult" type="tns:ServiceSchedule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ServiceSchedule">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreationDate">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ServiceScheduleID" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="LocaleID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ServiceID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartServiceDateTime" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndServiceDateTime" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="LateDateTime" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="WeekNo" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsMainSchedule" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="AssignedCouncillor" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetServiceSchedules">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServiceSchedulesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceSchedulesResult" type="tns:ArrayOfServiceSchedule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfServiceSchedule">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ServiceSchedule" nillable="true" type="tns:ServiceSchedule" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetServiceScheduleByDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceStartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceEndDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceScheduleByDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceScheduleByDateResult" type="tns:ArrayOfServiceSchedule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllServiceScheduleByDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceStartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceEndDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllServiceScheduleByDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllServiceScheduleByDateResult" type="tns:ArrayOfServiceSchedule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceSchedulesByMonth">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isMainSchedule" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="month" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceSchedulesByMonthResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceSchedulesByMonthResult" type="tns:ArrayOfServiceSchedule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfLookup" nillable="true" type="tns:ArrayOfLookup" />
+      <s:element name="ArrayOfLocale" nillable="true" type="tns:ArrayOfLocale" />
+      <s:element name="ArrayOfCountry" nillable="true" type="tns:ArrayOfCountry" />
+      <s:element name="Country" nillable="true" type="tns:Country" />
+      <s:element name="ArrayOfLocaleGroup" nillable="true" type="tns:ArrayOfLocaleGroup" />
+      <s:element name="ArrayOfService" nillable="true" type="tns:ArrayOfService" />
+      <s:element name="Service" nillable="true" type="tns:Service" />
+      <s:element name="ServiceSchedule" nillable="true" type="tns:ServiceSchedule" />
+      <s:element name="ArrayOfServiceSchedule" nillable="true" type="tns:ArrayOfServiceSchedule" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetDivisionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDivisions" />
+  </wsdl:message>
+  <wsdl:message name="GetDivisionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDivisionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDistricts" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocalesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocales" />
+  </wsdl:message>
+  <wsdl:message name="GetLocalesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocalesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCountries" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCountriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCountrySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCountry" />
+  </wsdl:message>
+  <wsdl:message name="GetCountrySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCountryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesByRegionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCountriesByRegion" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesByRegionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCountriesByRegionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroups" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServicesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServices" />
+  </wsdl:message>
+  <wsdl:message name="GetServicesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetService" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSchedulesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceSchedules" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSchedulesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceSchedulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleByDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceScheduleByDate" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleByDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceScheduleByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllServiceScheduleByDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllServiceScheduleByDate" />
+  </wsdl:message>
+  <wsdl:message name="GetAllServiceScheduleByDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllServiceScheduleByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSchedulesByMonthSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceSchedulesByMonth" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSchedulesByMonthSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceSchedulesByMonthResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDivisionsHttpGetIn" />
+  <wsdl:message name="GetDivisionsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLookup" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictsHttpGetIn">
+    <wsdl:part name="divisionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLookup" />
+  </wsdl:message>
+  <wsdl:message name="GetLocalesHttpGetIn">
+    <wsdl:part name="districtID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocalesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLocale" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesHttpGetIn" />
+  <wsdl:message name="GetCountriesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCountry" />
+  </wsdl:message>
+  <wsdl:message name="GetCountryHttpGetIn">
+    <wsdl:part name="countryID" type="s:string" />
+    <wsdl:part name="countryName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCountryHttpGetOut">
+    <wsdl:part name="Body" element="tns:Country" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesByRegionHttpGetIn">
+    <wsdl:part name="regionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesByRegionHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCountry" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupsHttpGetIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="localeGroupID" type="s:string" />
+    <wsdl:part name="localeGroupName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLocaleGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceTypesHttpGetIn" />
+  <wsdl:message name="GetServiceTypesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLookup" />
+  </wsdl:message>
+  <wsdl:message name="GetServicesHttpGetIn" />
+  <wsdl:message name="GetServicesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfService" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceHttpGetIn">
+    <wsdl:part name="serviceID" type="s:string" />
+    <wsdl:part name="serviceCode" type="s:string" />
+    <wsdl:part name="description" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceHttpGetOut">
+    <wsdl:part name="Body" element="tns:Service" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleHttpGetIn">
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleHttpGetOut">
+    <wsdl:part name="Body" element="tns:ServiceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSchedulesHttpGetIn" />
+  <wsdl:message name="GetServiceSchedulesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleByDateHttpGetIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceStartDate" type="s:string" />
+    <wsdl:part name="serviceEndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleByDateHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetAllServiceScheduleByDateHttpGetIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceStartDate" type="s:string" />
+    <wsdl:part name="serviceEndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllServiceScheduleByDateHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSchedulesByMonthHttpGetIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="isMainSchedule" type="s:string" />
+    <wsdl:part name="month" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSchedulesByMonthHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetDivisionsHttpPostIn" />
+  <wsdl:message name="GetDivisionsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLookup" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictsHttpPostIn">
+    <wsdl:part name="divisionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLookup" />
+  </wsdl:message>
+  <wsdl:message name="GetLocalesHttpPostIn">
+    <wsdl:part name="districtID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocalesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLocale" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesHttpPostIn" />
+  <wsdl:message name="GetCountriesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCountry" />
+  </wsdl:message>
+  <wsdl:message name="GetCountryHttpPostIn">
+    <wsdl:part name="countryID" type="s:string" />
+    <wsdl:part name="countryName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCountryHttpPostOut">
+    <wsdl:part name="Body" element="tns:Country" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesByRegionHttpPostIn">
+    <wsdl:part name="regionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesByRegionHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCountry" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupsHttpPostIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="localeGroupID" type="s:string" />
+    <wsdl:part name="localeGroupName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLocaleGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceTypesHttpPostIn" />
+  <wsdl:message name="GetServiceTypesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLookup" />
+  </wsdl:message>
+  <wsdl:message name="GetServicesHttpPostIn" />
+  <wsdl:message name="GetServicesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfService" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceHttpPostIn">
+    <wsdl:part name="serviceID" type="s:string" />
+    <wsdl:part name="serviceCode" type="s:string" />
+    <wsdl:part name="description" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceHttpPostOut">
+    <wsdl:part name="Body" element="tns:Service" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleHttpPostIn">
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleHttpPostOut">
+    <wsdl:part name="Body" element="tns:ServiceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSchedulesHttpPostIn" />
+  <wsdl:message name="GetServiceSchedulesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleByDateHttpPostIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceStartDate" type="s:string" />
+    <wsdl:part name="serviceEndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceScheduleByDateHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetAllServiceScheduleByDateHttpPostIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceStartDate" type="s:string" />
+    <wsdl:part name="serviceEndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllServiceScheduleByDateHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSchedulesByMonthHttpPostIn">
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="isMainSchedule" type="s:string" />
+    <wsdl:part name="month" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceSchedulesByMonthHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceSchedule" />
+  </wsdl:message>
+  <wsdl:portType name="CommonWSSoap">
+    <wsdl:operation name="GetDivisions">
+      <wsdl:input message="tns:GetDivisionsSoapIn" />
+      <wsdl:output message="tns:GetDivisionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistricts">
+      <wsdl:input message="tns:GetDistrictsSoapIn" />
+      <wsdl:output message="tns:GetDistrictsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocales">
+      <wsdl:input message="tns:GetLocalesSoapIn" />
+      <wsdl:output message="tns:GetLocalesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <wsdl:input message="tns:GetCountriesSoapIn" />
+      <wsdl:output message="tns:GetCountriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <wsdl:input message="tns:GetCountrySoapIn" />
+      <wsdl:output message="tns:GetCountrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountriesByRegion">
+      <wsdl:input message="tns:GetCountriesByRegionSoapIn" />
+      <wsdl:output message="tns:GetCountriesByRegionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroups">
+      <wsdl:input message="tns:GetLocaleGroupsSoapIn" />
+      <wsdl:output message="tns:GetLocaleGroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceTypes">
+      <wsdl:input message="tns:GetServiceTypesSoapIn" />
+      <wsdl:output message="tns:GetServiceTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <wsdl:input message="tns:GetServicesSoapIn" />
+      <wsdl:output message="tns:GetServicesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetService">
+      <wsdl:input message="tns:GetServiceSoapIn" />
+      <wsdl:output message="tns:GetServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedule">
+      <wsdl:input message="tns:GetServiceScheduleSoapIn" />
+      <wsdl:output message="tns:GetServiceScheduleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedules">
+      <wsdl:input message="tns:GetServiceSchedulesSoapIn" />
+      <wsdl:output message="tns:GetServiceSchedulesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceScheduleByDate">
+      <wsdl:input message="tns:GetServiceScheduleByDateSoapIn" />
+      <wsdl:output message="tns:GetServiceScheduleByDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServiceScheduleByDate">
+      <wsdl:input message="tns:GetAllServiceScheduleByDateSoapIn" />
+      <wsdl:output message="tns:GetAllServiceScheduleByDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedulesByMonth">
+      <wsdl:input message="tns:GetServiceSchedulesByMonthSoapIn" />
+      <wsdl:output message="tns:GetServiceSchedulesByMonthSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CommonWSHttpGet">
+    <wsdl:operation name="GetDivisions">
+      <wsdl:input message="tns:GetDivisionsHttpGetIn" />
+      <wsdl:output message="tns:GetDivisionsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistricts">
+      <wsdl:input message="tns:GetDistrictsHttpGetIn" />
+      <wsdl:output message="tns:GetDistrictsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocales">
+      <wsdl:input message="tns:GetLocalesHttpGetIn" />
+      <wsdl:output message="tns:GetLocalesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <wsdl:input message="tns:GetCountriesHttpGetIn" />
+      <wsdl:output message="tns:GetCountriesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <wsdl:input message="tns:GetCountryHttpGetIn" />
+      <wsdl:output message="tns:GetCountryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountriesByRegion">
+      <wsdl:input message="tns:GetCountriesByRegionHttpGetIn" />
+      <wsdl:output message="tns:GetCountriesByRegionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroups">
+      <wsdl:input message="tns:GetLocaleGroupsHttpGetIn" />
+      <wsdl:output message="tns:GetLocaleGroupsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceTypes">
+      <wsdl:input message="tns:GetServiceTypesHttpGetIn" />
+      <wsdl:output message="tns:GetServiceTypesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <wsdl:input message="tns:GetServicesHttpGetIn" />
+      <wsdl:output message="tns:GetServicesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetService">
+      <wsdl:input message="tns:GetServiceHttpGetIn" />
+      <wsdl:output message="tns:GetServiceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedule">
+      <wsdl:input message="tns:GetServiceScheduleHttpGetIn" />
+      <wsdl:output message="tns:GetServiceScheduleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedules">
+      <wsdl:input message="tns:GetServiceSchedulesHttpGetIn" />
+      <wsdl:output message="tns:GetServiceSchedulesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceScheduleByDate">
+      <wsdl:input message="tns:GetServiceScheduleByDateHttpGetIn" />
+      <wsdl:output message="tns:GetServiceScheduleByDateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServiceScheduleByDate">
+      <wsdl:input message="tns:GetAllServiceScheduleByDateHttpGetIn" />
+      <wsdl:output message="tns:GetAllServiceScheduleByDateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedulesByMonth">
+      <wsdl:input message="tns:GetServiceSchedulesByMonthHttpGetIn" />
+      <wsdl:output message="tns:GetServiceSchedulesByMonthHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CommonWSHttpPost">
+    <wsdl:operation name="GetDivisions">
+      <wsdl:input message="tns:GetDivisionsHttpPostIn" />
+      <wsdl:output message="tns:GetDivisionsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistricts">
+      <wsdl:input message="tns:GetDistrictsHttpPostIn" />
+      <wsdl:output message="tns:GetDistrictsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocales">
+      <wsdl:input message="tns:GetLocalesHttpPostIn" />
+      <wsdl:output message="tns:GetLocalesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <wsdl:input message="tns:GetCountriesHttpPostIn" />
+      <wsdl:output message="tns:GetCountriesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <wsdl:input message="tns:GetCountryHttpPostIn" />
+      <wsdl:output message="tns:GetCountryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountriesByRegion">
+      <wsdl:input message="tns:GetCountriesByRegionHttpPostIn" />
+      <wsdl:output message="tns:GetCountriesByRegionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroups">
+      <wsdl:input message="tns:GetLocaleGroupsHttpPostIn" />
+      <wsdl:output message="tns:GetLocaleGroupsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceTypes">
+      <wsdl:input message="tns:GetServiceTypesHttpPostIn" />
+      <wsdl:output message="tns:GetServiceTypesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <wsdl:input message="tns:GetServicesHttpPostIn" />
+      <wsdl:output message="tns:GetServicesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetService">
+      <wsdl:input message="tns:GetServiceHttpPostIn" />
+      <wsdl:output message="tns:GetServiceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedule">
+      <wsdl:input message="tns:GetServiceScheduleHttpPostIn" />
+      <wsdl:output message="tns:GetServiceScheduleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedules">
+      <wsdl:input message="tns:GetServiceSchedulesHttpPostIn" />
+      <wsdl:output message="tns:GetServiceSchedulesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceScheduleByDate">
+      <wsdl:input message="tns:GetServiceScheduleByDateHttpPostIn" />
+      <wsdl:output message="tns:GetServiceScheduleByDateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServiceScheduleByDate">
+      <wsdl:input message="tns:GetAllServiceScheduleByDateHttpPostIn" />
+      <wsdl:output message="tns:GetAllServiceScheduleByDateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedulesByMonth">
+      <wsdl:input message="tns:GetServiceSchedulesByMonthHttpPostIn" />
+      <wsdl:output message="tns:GetServiceSchedulesByMonthHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommonWSSoap" type="tns:CommonWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDivisions">
+      <soap:operation soapAction="http://tempuri.org/GetDivisions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistricts">
+      <soap:operation soapAction="http://tempuri.org/GetDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocales">
+      <soap:operation soapAction="http://tempuri.org/GetLocales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <soap:operation soapAction="http://tempuri.org/GetCountries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <soap:operation soapAction="http://tempuri.org/GetCountry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountriesByRegion">
+      <soap:operation soapAction="http://tempuri.org/GetCountriesByRegion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroups">
+      <soap:operation soapAction="http://tempuri.org/GetLocaleGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceTypes">
+      <soap:operation soapAction="http://tempuri.org/GetServiceTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <soap:operation soapAction="http://tempuri.org/GetServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetService">
+      <soap:operation soapAction="http://tempuri.org/GetService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedule">
+      <soap:operation soapAction="http://tempuri.org/GetServiceSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedules">
+      <soap:operation soapAction="http://tempuri.org/GetServiceSchedules" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceScheduleByDate">
+      <soap:operation soapAction="http://tempuri.org/GetServiceScheduleByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServiceScheduleByDate">
+      <soap:operation soapAction="http://tempuri.org/GetAllServiceScheduleByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedulesByMonth">
+      <soap:operation soapAction="http://tempuri.org/GetServiceSchedulesByMonth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CommonWSSoap12" type="tns:CommonWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDivisions">
+      <soap12:operation soapAction="http://tempuri.org/GetDivisions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistricts">
+      <soap12:operation soapAction="http://tempuri.org/GetDistricts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocales">
+      <soap12:operation soapAction="http://tempuri.org/GetLocales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <soap12:operation soapAction="http://tempuri.org/GetCountries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <soap12:operation soapAction="http://tempuri.org/GetCountry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountriesByRegion">
+      <soap12:operation soapAction="http://tempuri.org/GetCountriesByRegion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroups">
+      <soap12:operation soapAction="http://tempuri.org/GetLocaleGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceTypes">
+      <soap12:operation soapAction="http://tempuri.org/GetServiceTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <soap12:operation soapAction="http://tempuri.org/GetServices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetService">
+      <soap12:operation soapAction="http://tempuri.org/GetService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedule">
+      <soap12:operation soapAction="http://tempuri.org/GetServiceSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedules">
+      <soap12:operation soapAction="http://tempuri.org/GetServiceSchedules" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceScheduleByDate">
+      <soap12:operation soapAction="http://tempuri.org/GetServiceScheduleByDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServiceScheduleByDate">
+      <soap12:operation soapAction="http://tempuri.org/GetAllServiceScheduleByDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedulesByMonth">
+      <soap12:operation soapAction="http://tempuri.org/GetServiceSchedulesByMonth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CommonWSHttpGet" type="tns:CommonWSHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetDivisions">
+      <http:operation location="/GetDivisions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistricts">
+      <http:operation location="/GetDistricts" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocales">
+      <http:operation location="/GetLocales" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <http:operation location="/GetCountries" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <http:operation location="/GetCountry" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountriesByRegion">
+      <http:operation location="/GetCountriesByRegion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroups">
+      <http:operation location="/GetLocaleGroups" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceTypes">
+      <http:operation location="/GetServiceTypes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <http:operation location="/GetServices" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetService">
+      <http:operation location="/GetService" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedule">
+      <http:operation location="/GetServiceSchedule" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedules">
+      <http:operation location="/GetServiceSchedules" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceScheduleByDate">
+      <http:operation location="/GetServiceScheduleByDate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServiceScheduleByDate">
+      <http:operation location="/GetAllServiceScheduleByDate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedulesByMonth">
+      <http:operation location="/GetServiceSchedulesByMonth" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CommonWSHttpPost" type="tns:CommonWSHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetDivisions">
+      <http:operation location="/GetDivisions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistricts">
+      <http:operation location="/GetDistricts" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocales">
+      <http:operation location="/GetLocales" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <http:operation location="/GetCountries" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <http:operation location="/GetCountry" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountriesByRegion">
+      <http:operation location="/GetCountriesByRegion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroups">
+      <http:operation location="/GetLocaleGroups" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceTypes">
+      <http:operation location="/GetServiceTypes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <http:operation location="/GetServices" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetService">
+      <http:operation location="/GetService" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedule">
+      <http:operation location="/GetServiceSchedule" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedules">
+      <http:operation location="/GetServiceSchedules" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceScheduleByDate">
+      <http:operation location="/GetServiceScheduleByDate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServiceScheduleByDate">
+      <http:operation location="/GetAllServiceScheduleByDate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceSchedulesByMonth">
+      <http:operation location="/GetServiceSchedulesByMonth" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommonWS">
+    <wsdl:port name="CommonWSSoap" binding="tns:CommonWSSoap">
+      <soap:address location="https://external.someorg.org/webservices/CommonWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CommonWSSoap12" binding="tns:CommonWSSoap12">
+      <soap12:address location="https://external.someorg.org/webservices/CommonWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CommonWSHttpGet" binding="tns:CommonWSHttpGet">
+      <http:address location="https://external.someorg.org/webservices/CommonWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CommonWSHttpPost" binding="tns:CommonWSHttpPost">
+      <http:address location="https://external.someorg.org/webservices/CommonWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

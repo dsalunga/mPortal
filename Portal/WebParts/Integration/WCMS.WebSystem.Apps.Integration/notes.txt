@@ -1,0 +1,9 @@
+﻿
+For Registry Configuration, please check class:
+- WCMS.WebSystem.Apps.Integration.MemberConstants
+
+
+Make-Up Status
+0 - For Approval
+1 - Approved
+2 - Rejected

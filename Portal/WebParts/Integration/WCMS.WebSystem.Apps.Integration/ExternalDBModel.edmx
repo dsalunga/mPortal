@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ExternalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="smallint" Nullable="false" />
+          <Property Name="RegionID" Type="smallint" />
+          <Property Name="CapitalID" Type="int" />
+          <Property Name="DivisionID" Type="int" />
+          <Property Name="CountryName" Type="varchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="5" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="CountryID" />
+            <PropertyRef Name="CapitalID" />
+            <PropertyRef Name="StateName" />
+          </Key>
+          <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryID" Type="smallint" Nullable="false" />
+          <Property Name="CapitalID" Type="int" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AreaCode" Type="varchar" MaxLength="5" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_States_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="States" Type="Self.States" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="States">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExternalDBModelStoreContainer">
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_States_Countries" Association="Self.FK_States_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="States" EntitySet="States" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ExternalDBEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="AMSCountries" EntityType="Model.AMSCountry" />
+          <EntitySet Name="States" EntityType="Model.State" />
+          <AssociationSet Name="FK_States_Countries" Association="Model.FK_States_Countries">
+            <End Role="Country" EntitySet="AMSCountries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AMSCountry">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Type="Int16" Name="CountryID" Nullable="false" />
+          <Property Type="Int16" Name="RegionID" />
+          <Property Type="Int32" Name="CapitalID" />
+          <Property Type="String" Name="CountryName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CountryCode" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" />
+          <NavigationProperty Name="States" Relationship="Model.FK_States_Countries" FromRole="Country" ToRole="State" />
+          <Property Name="DateCreated" Nullable="false" Precision="3" Type="DateTime" />
+          <Property Name="CreatedBy" Nullable="false" Type="Int32" />
+          <Property Name="DateUpdated" Nullable="false" Precision="3" Type="DateTime" />
+          <Property Name="UpdatedBy" Nullable="false" Type="Int32" />
+          <Property Name="DivisionID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="CountryID" />
+            <PropertyRef Name="CapitalID" />
+            <PropertyRef Name="StateName" />
+          </Key>
+          <Property Type="Int32" Name="StateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int16" Name="CountryID" Nullable="false" />
+          <Property Type="Int32" Name="CapitalID" Nullable="false" />
+          <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AreaCode" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" />
+          <NavigationProperty Name="Country" Relationship="Model.FK_States_Countries" FromRole="State" ToRole="Country" />
+          <Property Name="DateCreated" Nullable="false" Precision="3" Type="DateTime" />
+          <Property Name="CreatedBy" Nullable="false" Type="Int32" />
+          <Property Name="DateUpdated" Nullable="false" Precision="3" Type="DateTime" />
+          <Property Name="UpdatedBy" Nullable="false" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_States_Countries">
+          <End Type="Model.AMSCountry" Role="Country" Multiplicity="1" />
+          <End Type="Model.State" Role="State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExternalDBModelStoreContainer" CdmEntityContainer="ExternalDBEntities">
+          <EntitySetMapping Name="AMSCountries">
+            <EntityTypeMapping TypeName="Model.AMSCountry">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CapitalID" ColumnName="CapitalID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="Model.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CapitalID" ColumnName="CapitalID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ExternalDBModel" ZoomLevel="109">
+        <EntityTypeShape EntityType="Model.AMSCountry" Width="1.5" PointX="0.75" PointY="1" Height="2.0853483072916656" />
+        <EntityTypeShape EntityType="Model.State" Width="1.5" PointX="3" PointY="1" Height="2.0853483072916656" />
+        <AssociationConnector Association="Model.FK_States_Countries">
+          <ConnectorPoint PointX="2.25" PointY="1.9176741536458328" />
+          <ConnectorPoint PointX="3" PointY="1.9176741536458328" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://webservice01.someorg.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://webservice01.someorg.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://webservice01.someorg.org/">
+      <s:element name="CheckUserAppPermission1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appkey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="secret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserAppPermission1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckUserAppPermission1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserAppPermission2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appkey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="secret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserAppPermission2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckUserAppPermission2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfo1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appkey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idno" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfo1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserInfo1Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfo2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appkey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfo2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserInfo2Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CheckUserAppPermission1SoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUserAppPermission1" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserAppPermission1SoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUserAppPermission1Response" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserAppPermission2SoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUserAppPermission2" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserAppPermission2SoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUserAppPermission2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfo1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserInfo1" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfo1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserInfo1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfo2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserInfo2" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfo2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserInfo2Response" />
+  </wsdl:message>
+  <wsdl:portType name="webservice01.someorg.orgSoap">
+    <wsdl:operation name="CheckUserAppPermission1">
+      <wsdl:input message="tns:CheckUserAppPermission1SoapIn" />
+      <wsdl:output message="tns:CheckUserAppPermission1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserAppPermission2">
+      <wsdl:input message="tns:CheckUserAppPermission2SoapIn" />
+      <wsdl:output message="tns:CheckUserAppPermission2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo1">
+      <wsdl:input message="tns:GetUserInfo1SoapIn" />
+      <wsdl:output message="tns:GetUserInfo1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo2">
+      <wsdl:input message="tns:GetUserInfo2SoapIn" />
+      <wsdl:output message="tns:GetUserInfo2SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="webservice01.someorg.orgSoap" type="tns:webservice01.someorg.orgSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckUserAppPermission1">
+      <soap:operation soapAction="http://webservice01.someorg.org/CheckUserAppPermission1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserAppPermission2">
+      <soap:operation soapAction="http://webservice01.someorg.org/CheckUserAppPermission2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo1">
+      <soap:operation soapAction="http://webservice01.someorg.org/GetUserInfo1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo2">
+      <soap:operation soapAction="http://webservice01.someorg.org/GetUserInfo2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="webservice01.someorg.orgSoap12" type="tns:webservice01.someorg.orgSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckUserAppPermission1">
+      <soap12:operation soapAction="http://webservice01.someorg.org/CheckUserAppPermission1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserAppPermission2">
+      <soap12:operation soapAction="http://webservice01.someorg.org/CheckUserAppPermission2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo1">
+      <soap12:operation soapAction="http://webservice01.someorg.org/GetUserInfo1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo2">
+      <soap12:operation soapAction="http://webservice01.someorg.org/GetUserInfo2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="webservice01.someorg.org">
+    <wsdl:port name="webservice01.someorg.orgSoap" binding="tns:webservice01.someorg.orgSoap">
+      <soap:address location="https://webservice01.someorg.org:8443/ONEAccess/ServiceList.asmx" />
+    </wsdl:port>
+    <wsdl:port name="webservice01.someorg.orgSoap12" binding="tns:webservice01.someorg.orgSoap12">
+      <soap12:address location="https://webservice01.someorg.org:8443/ONEAccess/ServiceList.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
