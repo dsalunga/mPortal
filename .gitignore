@@ -10,6 +10,8 @@ bin
 *.jfm
 *.userprefs
 
+/Others
+
 /Portal/Binaries/IISExpress
 /Portal/Binaries/Logs
 /Portal/Binaries/Nuget-Packages
