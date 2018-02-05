@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>WCMS.WebSystem.Apps.Integration.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{ff309410-1146-4198-acbd-ab7af2dea1c0}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>WCMS.WebSystem.Apps.Integration.Database</RootNamespace>
+    <AssemblyName>WCMS.WebSystem.Apps.Integration.Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="dbo\Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Stored Procedures\BibleReaderAccess_Del.sql" />
+    <Build Include="dbo\Stored Procedures\BibleReaderAccess_Get.sql" />
+    <Build Include="dbo\Stored Procedures\BibleReaderAccess_Set.sql" />
+    <Build Include="dbo\Stored Procedures\BibleReaderVersionAccess_Del.sql" />
+    <Build Include="dbo\Stored Procedures\BibleReaderVersionAccess_Get.sql" />
+    <Build Include="dbo\Stored Procedures\BibleReaderVersionAccess_Set.sql" />
+    <Build Include="dbo\Stored Procedures\ExternalDB_Attendance_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ExternalMember_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ExternalMember_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ExternalMember_Set.sql" />
+    <Build Include="dbo\Stored Procedures\MCCandidate_Del.sql" />
+    <Build Include="dbo\Stored Procedures\MCCandidate_Get.sql" />
+    <Build Include="dbo\Stored Procedures\MCCandidate_Set.sql" />
+    <Build Include="dbo\Stored Procedures\MusicCompetition_Del.sql" />
+    <Build Include="dbo\Stored Procedures\MusicCompetition_Get.sql" />
+    <Build Include="dbo\Stored Procedures\MusicCompetition_Set.sql" />
+    <Build Include="dbo\Stored Procedures\MCComposer_Del.sql" />
+    <Build Include="dbo\Stored Procedures\MCComposer_Get.sql" />
+    <Build Include="dbo\Stored Procedures\MCComposer_Set.sql" />
+    <Build Include="dbo\Stored Procedures\MCInterpreterScore_Del.sql" />
+    <Build Include="dbo\Stored Procedures\MCInterpreterScore_Get.sql" />
+    <Build Include="dbo\Stored Procedures\MCInterpreterScore_Set.sql" />
+    <Build Include="dbo\Stored Procedures\MCSongScore_Del.sql" />
+    <Build Include="dbo\Stored Procedures\MCSongScore_Get.sql" />
+    <Build Include="dbo\Stored Procedures\MCSongScore_Set.sql" />
+    <Build Include="dbo\Stored Procedures\MCVote_Del.sql" />
+    <Build Include="dbo\Stored Procedures\MCVote_Get.sql" />
+    <Build Include="dbo\Stored Procedures\MCVote_Set.sql" />
+    <Build Include="dbo\Stored Procedures\LessonReviewerVideo_Del.sql" />
+    <Build Include="dbo\Stored Procedures\LessonReviewerVideo_Get.sql" />
+    <Build Include="dbo\Stored Procedures\LessonReviewerVideo_Set.sql" />
+    <Build Include="dbo\Stored Procedures\Member_Del.sql" />
+    <Build Include="dbo\Stored Procedures\Member_Get.sql" />
+    <Build Include="dbo\Stored Procedures\Member_Set.sql" />
+    <Build Include="dbo\Stored Procedures\MemberLink_Del.sql" />
+    <Build Include="dbo\Stored Procedures\MemberLink_Get.sql" />
+    <Build Include="dbo\Stored Procedures\MemberLink_Set.sql" />
+    <Build Include="dbo\Stored Procedures\MembershipInfo_Set.sql" />
+    <Build Include="dbo\Stored Procedures\ODKVisit_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ODKVisit_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ODKVisit_Set.sql" />
+    <Build Include="dbo\Stored Procedures\Registration_Del.sql" />
+    <Build Include="dbo\Stored Procedures\Registration_Get.sql" />
+    <Build Include="dbo\Stored Procedures\Registration_Set.sql" />
+    <Build Include="dbo\Stored Procedures\LessonReviewerSession_Del.sql" />
+    <Build Include="dbo\Stored Procedures\LessonReviewerSession_Get.sql" />
+    <Build Include="dbo\Stored Procedures\LessonReviewerSession_Set.sql" />
+    <Build Include="dbo\Stored Procedures\Sportsfest_Del.sql" />
+    <Build Include="dbo\Stored Procedures\Sportsfest_Get.sql" />
+    <Build Include="dbo\Stored Procedures\Sportsfest_Set.sql" />
+    <Build Include="dbo\Tables\BibleReaderAccess.sql" />
+    <Build Include="dbo\Tables\BibleReaderVersionAccess.sql" />
+    <Build Include="dbo\Tables\MCCandidate.sql" />
+    <Build Include="dbo\Tables\MusicCompetition.sql" />
+    <Build Include="dbo\Tables\MCComposer.sql" />
+    <Build Include="dbo\Tables\MCInterpreterScore.sql" />
+    <Build Include="dbo\Tables\MCSongScore.sql" />
+    <Build Include="dbo\Tables\MCVote.sql" />
+    <Build Include="dbo\Tables\LessonReviewerVideo.sql" />
+    <Build Include="dbo\Tables\Member.sql" />
+    <Build Include="dbo\Tables\MemberLink.sql" />
+    <Build Include="dbo\Tables\Membership.sql" />
+    <Build Include="dbo\Tables\MemberStatuses.sql" />
+    <Build Include="dbo\Tables\ODKVisit.sql" />
+    <Build Include="dbo\Tables\Registration.sql" />
+    <Build Include="dbo\Tables\LessonReviewerSession.sql" />
+  </ItemGroup>
+</Project>
