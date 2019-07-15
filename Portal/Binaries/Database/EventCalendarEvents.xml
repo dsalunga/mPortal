@@ -1,0 +1,663 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="EventCalendarEvents">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="EventId" type="xs:int" />
+                <xs:element name="Subject">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Message">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Location">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="StartDate" type="xs:dateTime" />
+                <xs:element name="EndDate" type="xs:dateTime" />
+                <xs:element name="CategoryId" type="xs:int" />
+                <xs:element name="RepeatUntil" type="xs:dateTime" />
+                <xs:element name="ReminderTo">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="4000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ReminderBefore" type="xs:int" />
+                <xs:element name="RecurrenceId" type="xs:int" />
+                <xs:element name="LocationId" type="xs:int" />
+                <xs:element name="Weekdays" type="xs:int" />
+                <xs:element name="LastReminderSent" type="xs:dateTime" />
+                <xs:element name="BookLocation" type="xs:int" />
+                <xs:element name="CalendarId" type="xs:int" />
+                <xs:element name="TemplateId" type="xs:int" />
+                <xs:element name="SendReminderVia" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//EventCalendarEvents" />
+        <xs:field xpath="EventId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <EventCalendarEvents>
+    <EventId>2</EventId>
+    <Subject>test1</Subject>
+    <Message>test</Message>
+    <Location />
+    <StartDate>2009-03-28T10:07:05+08:00</StartDate>
+    <EndDate>2009-03-30T10:07:07+08:00</EndDate>
+    <CategoryId>5</CategoryId>
+    <RepeatUntil>2009-03-29T06:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>60</ReminderBefore>
+    <RecurrenceId>1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>42</Weekdays>
+    <LastReminderSent>1799-12-31T05:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>3</EventId>
+    <Subject>test21</Subject>
+    <Message>&lt;p&gt;test21&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2009-03-28T11:30:00+08:00</StartDate>
+    <EndDate>2009-03-17T10:20:55+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2009-03-29T06:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>6</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>2009-04-23T07:41:22.267+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>4</EventId>
+    <Subject>sadfasd</Subject>
+    <Message>&lt;p&gt;asdf&lt;/p&gt;</Message>
+    <Location>asdfasdf</Location>
+    <StartDate>2009-03-17T10:22:08+08:00</StartDate>
+    <EndDate>2009-03-19T10:22:11+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2009-03-29T06:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>6</RecurrenceId>
+    <LocationId>-1</LocationId>
+    <Weekdays>-1</Weekdays>
+    <LastReminderSent>1799-12-31T05:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>5</EventId>
+    <Subject>jan 1 to 15</Subject>
+    <Message>&lt;p&gt;jan 1 to 15&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2008-12-31T05:30:00+08:00</StartDate>
+    <EndDate>2008-12-31T07:30:00+08:00</EndDate>
+    <CategoryId>2</CategoryId>
+    <RepeatUntil>2009-01-15T04:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>30</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>2</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1799-12-31T05:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>6</EventId>
+    <Subject>test45</Subject>
+    <Message>&lt;p&gt;test45&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2009-03-01T18:50:00+08:00</StartDate>
+    <EndDate>2009-03-01T19:30:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2009-03-12T06:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>2</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>42</Weekdays>
+    <LastReminderSent>1799-12-31T05:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>7</EventId>
+    <Subject>month 2nd asd fas df asdf asd f asdfasdfas dfa sdfasdfasdf</Subject>
+    <Message>month 2nd</Message>
+    <Location>asdfasdfasdf</Location>
+    <StartDate>2008-04-02T11:25:00+08:00</StartDate>
+    <EndDate>2008-04-02T12:00:00+08:00</EndDate>
+    <CategoryId>3</CategoryId>
+    <RepeatUntil>2010-04-02T06:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>60</ReminderBefore>
+    <RecurrenceId>4</RecurrenceId>
+    <LocationId>-1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1799-12-31T05:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>8</EventId>
+    <Subject>test222</Subject>
+    <Message>test2323</Message>
+    <Location />
+    <StartDate>2009-04-02T22:30:00+08:00</StartDate>
+    <EndDate>2009-04-03T01:30:00+08:00</EndDate>
+    <CategoryId>6</CategoryId>
+    <RepeatUntil>2009-04-02T06:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1799-12-31T05:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>9</EventId>
+    <Subject>asdasd</Subject>
+    <Message>&lt;p&gt;fasdfasdfasdf&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2009-04-03T02:30:00+08:00</StartDate>
+    <EndDate>2009-04-03T03:30:00+08:00</EndDate>
+    <CategoryId>2</CategoryId>
+    <RepeatUntil>2009-05-12T06:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1799-12-31T05:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>10</EventId>
+    <Subject>test reminder</Subject>
+    <Message>test reminder</Message>
+    <Location />
+    <StartDate>2009-04-19T08:45:00+08:00</StartDate>
+    <EndDate>2009-04-19T08:55:00+08:00</EndDate>
+    <CategoryId>6</CategoryId>
+    <RepeatUntil>2009-04-22T09:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>1440</ReminderBefore>
+    <RecurrenceId>1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>85</Weekdays>
+    <LastReminderSent>2009-04-22T08:37:49.593+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>11</EventId>
+    <Subject>test today</Subject>
+    <Message />
+    <Location />
+    <StartDate>2009-04-17T06:30:00+08:00</StartDate>
+    <EndDate>2009-04-17T06:30:00+08:00</EndDate>
+    <CategoryId>6</CategoryId>
+    <RepeatUntil>2009-04-23T06:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2;dcsalunga@gmail.com</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>2</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>127</Weekdays>
+    <LastReminderSent>2009-04-22T09:21:54.47+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>12</EventId>
+    <Subject>adsf</Subject>
+    <Message>adsf</Message>
+    <Location />
+    <StartDate>2009-05-31T06:20:59+08:00</StartDate>
+    <EndDate>2009-05-31T06:29:59+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2009-05-31T02:36:20+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1799-12-31T05:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>13</EventId>
+    <Subject>event1</Subject>
+    <Message>asdf</Message>
+    <Location />
+    <StartDate>2009-06-08T11:30:00+08:00</StartDate>
+    <EndDate>2009-06-08T13:30:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2009-06-08T06:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1799-12-31T05:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>14</EventId>
+    <Subject>event2</Subject>
+    <Message />
+    <Location />
+    <StartDate>2009-06-08T11:30:00+08:00</StartDate>
+    <EndDate>2009-06-08T13:30:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2009-06-08T06:30:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1799-12-31T05:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>15</EventId>
+    <Subject>We have a meeting now</Subject>
+    <Message>&lt;p&gt;We have a meeting now&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2011-02-28T02:16:30+08:00</StartDate>
+    <EndDate>2011-02-28T02:17:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2010-08-11T23:00:00+08:00</RepeatUntil>
+    <ReminderTo>USER\mag00049</ReminderTo>
+    <ReminderBefore>0</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>2</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>2011-02-28T02:15:39.017+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>16</EventId>
+    <Subject>test event on september</Subject>
+    <Message>test event description</Message>
+    <Location />
+    <StartDate>2010-09-06T23:30:00+08:00</StartDate>
+    <EndDate>2010-09-07T00:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2010-09-29T00:00:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>2</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>77</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>17</EventId>
+    <Subject>asd fasdf asdf</Subject>
+    <Message>asdf asdfasdfasdfasdf</Message>
+    <Location />
+    <StartDate>2010-09-06T11:30:00+08:00</StartDate>
+    <EndDate>2010-09-06T12:30:00+08:00</EndDate>
+    <CategoryId>5</CategoryId>
+    <RepeatUntil>2010-09-27T00:00:00+08:00</RepeatUntil>
+    <ReminderTo>dsalunga@daniel2</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>2</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>10</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>18</EventId>
+    <Subject>Test Event</Subject>
+    <Message>Test Event</Message>
+    <Location />
+    <StartDate>2010-12-26T23:22:00+08:00</StartDate>
+    <EndDate>2011-01-07T18:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-01-12T18:00:00+08:00</RepeatUntil>
+    <ReminderTo>USER\dsalunga</ReminderTo>
+    <ReminderBefore>0</ReminderBefore>
+    <RecurrenceId>1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>127</Weekdays>
+    <LastReminderSent>2011-01-07T14:11:37.973+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>20</EventId>
+    <Subject>MEETING ASD FASD FAS DFASDFASDF ASDFASDFADF ASDFASDFA SDFASD</Subject>
+    <Message />
+    <Location />
+    <StartDate>2011-02-13T22:30:00+08:00</StartDate>
+    <EndDate>2011-02-16T00:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-02-22T00:00:00+08:00</RepeatUntil>
+    <ReminderTo>daniel.salunga@mcgi.org.sg;+6583871509;21\115;38\1</ReminderTo>
+    <ReminderBefore>0</ReminderBefore>
+    <RecurrenceId>1</RecurrenceId>
+    <LocationId>4</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>2011-02-14T22:31:20.673+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>21</EventId>
+    <Subject>ASDFA DFASDFASDFASDFA SDFASDFASDF</Subject>
+    <Message />
+    <Location />
+    <StartDate>2011-02-13T23:30:00+08:00</StartDate>
+    <EndDate>2011-02-14T00:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-02-14T00:00:00+08:00</RepeatUntil>
+    <ReminderTo>daniel.salunga@mcgi.org.sg</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>22</EventId>
+    <Subject>New event test</Subject>
+    <Message />
+    <Location />
+    <StartDate>2011-02-07T15:30:00+08:00</StartDate>
+    <EndDate>2011-02-07T16:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-02-07T16:00:00+08:00</RepeatUntil>
+    <ReminderTo />
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>1</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>23</EventId>
+    <Subject>Regular Thanksgiving</Subject>
+    <Message>&lt;p&gt;Live @ Apalit&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2011-03-05T03:30:00+08:00</StartDate>
+    <EndDate>2011-03-05T15:30:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-04-13T21:00:00+08:00</RepeatUntil>
+    <ReminderTo>21\115</ReminderTo>
+    <ReminderBefore>30</ReminderBefore>
+    <RecurrenceId>2</RecurrenceId>
+    <LocationId>5</LocationId>
+    <Weekdays>64</Weekdays>
+    <LastReminderSent>2011-04-12T23:10:39.86+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>0</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>24</EventId>
+    <Subject>test</Subject>
+    <Message>&lt;p&gt;test&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2011-03-27T22:00:00+08:00</StartDate>
+    <EndDate>2011-03-28T22:20:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-04-11T21:30:00+08:00</RepeatUntil>
+    <ReminderTo>21\115</ReminderTo>
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>2</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>2</Weekdays>
+    <LastReminderSent>2011-04-08T23:28:01.08+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>25</EventId>
+    <Subject>Test Event on May 11</Subject>
+    <Message>&lt;p&gt;Test Event on May 11&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2010-05-11T15:30:00+08:00</StartDate>
+    <EndDate>2010-05-11T15:30:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-05-11T16:00:00+08:00</RepeatUntil>
+    <ReminderTo />
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>2</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>26</EventId>
+    <Subject>Location Test 1</Subject>
+    <Message />
+    <Location />
+    <StartDate>2011-04-18T23:30:00+08:00</StartDate>
+    <EndDate>2011-04-19T00:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-04-06T00:00:00+08:00</RepeatUntil>
+    <ReminderTo />
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>6</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>27</EventId>
+    <Subject>Location Test 2</Subject>
+    <Message />
+    <Location />
+    <StartDate>2011-04-18T23:30:00+08:00</StartDate>
+    <EndDate>2011-04-19T00:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-04-06T00:00:00+08:00</RepeatUntil>
+    <ReminderTo />
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>6</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>28</EventId>
+    <Subject>Worldwide Bible Exposition</Subject>
+    <Message>&lt;p&gt;Be part of the Worldwide Bible Exposition! Live @ Locale!&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2011-04-19T15:30:00+08:00</StartDate>
+    <EndDate>2011-04-19T21:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-04-19T00:00:00+08:00</RepeatUntil>
+    <ReminderTo />
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>5</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>2</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>29</EventId>
+    <Subject>ADD Mass Indoctrination</Subject>
+    <Message />
+    <Location>asdf</Location>
+    <StartDate>2011-04-25T17:00:00+08:00</StartDate>
+    <EndDate>2011-04-25T17:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-04-26T21:00:00+08:00</RepeatUntil>
+    <ReminderTo />
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>1</RecurrenceId>
+    <LocationId>-1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>30</EventId>
+    <Subject>Event for recurrence reminder testing</Subject>
+    <Message>&lt;p&gt;Event for recurrence reminder testing&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2011-09-07T14:24:00+08:00</StartDate>
+    <EndDate>2011-09-07T16:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2011-09-28T12:00:00+08:00</RepeatUntil>
+    <ReminderTo>21\3</ReminderTo>
+    <ReminderBefore>0</ReminderBefore>
+    <RecurrenceId>2</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>8</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>1</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>0</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>31</EventId>
+    <Subject>test</Subject>
+    <Message>&lt;p&gt;&amp;nbsp;test&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2012-08-05T14:11:00+08:00</StartDate>
+    <EndDate>2012-08-05T15:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2012-08-05T14:00:00+08:00</RepeatUntil>
+    <ReminderTo>21\1</ReminderTo>
+    <ReminderBefore>0</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>3</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>0</SendReminderVia>
+  </EventCalendarEvents>
+  <EventCalendarEvents>
+    <EventId>32</EventId>
+    <Subject>test</Subject>
+    <Message>&lt;p&gt;&amp;nbsp;test&lt;/p&gt;</Message>
+    <Location />
+    <StartDate>2012-10-08T19:30:00+08:00</StartDate>
+    <EndDate>2012-10-08T20:00:00+08:00</EndDate>
+    <CategoryId>1</CategoryId>
+    <RepeatUntil>2012-10-08T20:00:00+08:00</RepeatUntil>
+    <ReminderTo />
+    <ReminderBefore>-1</ReminderBefore>
+    <RecurrenceId>-1</RecurrenceId>
+    <LocationId>1</LocationId>
+    <Weekdays>0</Weekdays>
+    <LastReminderSent>1753-12-31T21:30:00+08:00</LastReminderSent>
+    <BookLocation>1</BookLocation>
+    <CalendarId>3</CalendarId>
+    <TemplateId>-1</TemplateId>
+    <SendReminderVia>2</SendReminderVia>
+  </EventCalendarEvents>
+</mPortal>

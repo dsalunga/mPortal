@@ -1,0 +1,12 @@
+﻿CREATE PROCEDURE dbo.MCVote_Del
+	(
+		@Id int
+	)
+AS
+	SET NOCOUNT ON
+
+	IF(@Id > 0)
+		DELETE FROM MCVote
+		WHERE Id=@Id;
+
+	RETURN

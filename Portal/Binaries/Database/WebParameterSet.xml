@@ -1,0 +1,201 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebParameterSet">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="SchemaParameterName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebParameterSet" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebParameterSet>
+    <Id>2</Id>
+    <Name>Mockup Dynamic Menu</Name>
+    <SchemaParameterName>Generic Menu</SchemaParameterName>
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>3</Id>
+    <Name>Integration Web Site Menu</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>4</Id>
+    <Name>In this section (Menu)</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>5</Id>
+    <Name>Groups Dashboard</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>6</Id>
+    <Name>Groups Dashboard List</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>7</Id>
+    <Name>Menu: Integration Gutter</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>8</Id>
+    <Name>LessionReviewer-Templates</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>9</Id>
+    <Name>Integration-Forgot-Password</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>10</Id>
+    <Name>Integration-Registration</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>11</Id>
+    <Name>Incident-Management</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>12</Id>
+    <Name>MENU: XTECH You are here</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>13</Id>
+    <Name>MENU: XTECH Sub Menu</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>14</Id>
+    <Name>MENU: XTECH Top Menu</Name>
+    <SchemaParameterName>Generic Menu</SchemaParameterName>
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>15</Id>
+    <Name>Integration: AddressBook Mini</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>16</Id>
+    <Name>SCHEMAS</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>17</Id>
+    <Name>Integration: AddressBook Mini V2</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>19</Id>
+    <Name>MENU: Portal Main V2</Name>
+    <SchemaParameterName>Generic Menu</SchemaParameterName>
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>20</Id>
+    <Name>MENU: Portal V2 - You are here</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>21</Id>
+    <Name>MENU: area51 Home Latest Links</Name>
+    <SchemaParameterName>Generic Menu</SchemaParameterName>
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>22</Id>
+    <Name>MENU: area51 Sidebar Menu (Categories)</Name>
+    <SchemaParameterName>Generic Menu</SchemaParameterName>
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>23</Id>
+    <Name>MENU: area51 Sitemap</Name>
+    <SchemaParameterName>Generic Menu</SchemaParameterName>
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>24</Id>
+    <Name>Wall Updates</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>25</Id>
+    <Name>Music Nomination</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>26</Id>
+    <Name>MM-Registration</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>27</Id>
+    <Name>MENU: area51 Sidebar Menu (Categories)</Name>
+    <SchemaParameterName>Generic Menu</SchemaParameterName>
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>28</Id>
+    <Name>MENU: area51 Sitemap</Name>
+    <SchemaParameterName>Generic Menu</SchemaParameterName>
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>29</Id>
+    <Name>MENU: Portal Main V2</Name>
+    <SchemaParameterName>Generic Menu</SchemaParameterName>
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>30</Id>
+    <Name>MENU: area51 Home Latest Links</Name>
+    <SchemaParameterName>Generic Menu</SchemaParameterName>
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>31</Id>
+    <Name>MM-Inquiry</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>32</Id>
+    <Name>Music V2 - Breadcrumb</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>33</Id>
+    <Name>MCGI Web Site Menu</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>34</Id>
+    <Name>In this section (Menu)</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+  <WebParameterSet>
+    <Id>35</Id>
+    <Name>SG-Streaming</Name>
+    <SchemaParameterName />
+  </WebParameterSet>
+</mPortal>

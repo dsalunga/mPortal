@@ -1,0 +1,63 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="MCInterpreterScore">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="JudgeId" type="xs:int" />
+                <xs:element name="VoiceQuality" type="xs:int" />
+                <xs:element name="Interpretation" type="xs:int" />
+                <xs:element name="StagePresence" type="xs:int" />
+                <xs:element name="OverallImpact" type="xs:int" />
+                <xs:element name="DateModified" type="xs:dateTime" />
+                <xs:element name="CandidateId" type="xs:int" />
+                <xs:element name="CompetitionId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//MCInterpreterScore" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <MCInterpreterScore>
+    <Id>1</Id>
+    <JudgeId>1</JudgeId>
+    <VoiceQuality>90</VoiceQuality>
+    <Interpretation>70</Interpretation>
+    <StagePresence>60</StagePresence>
+    <OverallImpact>99</OverallImpact>
+    <DateModified>2012-10-08T14:35:39.29+08:00</DateModified>
+    <CandidateId>1</CandidateId>
+    <CompetitionId>1</CompetitionId>
+  </MCInterpreterScore>
+  <MCInterpreterScore>
+    <Id>2</Id>
+    <JudgeId>1</JudgeId>
+    <VoiceQuality>90</VoiceQuality>
+    <Interpretation>10</Interpretation>
+    <StagePresence>99</StagePresence>
+    <OverallImpact>90</OverallImpact>
+    <DateModified>2012-10-08T14:35:39.307+08:00</DateModified>
+    <CandidateId>2</CandidateId>
+    <CompetitionId>1</CompetitionId>
+  </MCInterpreterScore>
+  <MCInterpreterScore>
+    <Id>4</Id>
+    <JudgeId>1</JudgeId>
+    <VoiceQuality>90</VoiceQuality>
+    <Interpretation>70</Interpretation>
+    <StagePresence>90</StagePresence>
+    <OverallImpact>90</OverallImpact>
+    <DateModified>2012-10-09T12:03:44.56+08:00</DateModified>
+    <CandidateId>3</CandidateId>
+    <CompetitionId>1</CompetitionId>
+  </MCInterpreterScore>
+</mPortal>

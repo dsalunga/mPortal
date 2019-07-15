@@ -1,0 +1,235 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebOffice">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="OfficeId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ParentId" type="xs:int" />
+                <xs:element name="AddressLine1">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="MobileNumber">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="PhoneNumber">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="EmailAddress">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ContactPerson">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebOffice" />
+        <xs:field xpath="OfficeId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebOffice>
+    <OfficeId>2</OfficeId>
+    <Name>ADD Central</Name>
+    <ParentId>-1</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>3</OfficeId>
+    <Name>Singapore</Name>
+    <ParentId>-1</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>5</OfficeId>
+    <Name>Singapore</Name>
+    <ParentId>3</ParentId>
+    <AddressLine1>Blk 892A Tampines Ave 8, #06-32 Singapore 521892</AddressLine1>
+    <MobileNumber>+65 8387 1509</MobileNumber>
+    <PhoneNumber>+65 8387 1509</PhoneNumber>
+    <EmailAddress>singapore@mcgi.org</EmailAddress>
+    <ContactPerson>Bro Simon</ContactPerson>
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>6</OfficeId>
+    <Name>Malaysia</Name>
+    <ParentId>-1</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>7</OfficeId>
+    <Name>Philippines</Name>
+    <ParentId>-1</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>8</OfficeId>
+    <Name>Hong Kong</Name>
+    <ParentId>-1</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>9</OfficeId>
+    <Name>Japan</Name>
+    <ParentId>-1</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>10</OfficeId>
+    <Name>China</Name>
+    <ParentId>-1</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>11</OfficeId>
+    <Name>Australia</Name>
+    <ParentId>-1</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>12</OfficeId>
+    <Name>Metro Manila</Name>
+    <ParentId>7</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>13</OfficeId>
+    <Name>Pampanga</Name>
+    <ParentId>7</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>14</OfficeId>
+    <Name>Bulacan</Name>
+    <ParentId>7</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>15</OfficeId>
+    <Name>District I</Name>
+    <ParentId>13</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>16</OfficeId>
+    <Name>District II</Name>
+    <ParentId>13</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>17</OfficeId>
+    <Name>District III</Name>
+    <ParentId>13</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>18</OfficeId>
+    <Name>District IV</Name>
+    <ParentId>13</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+  <WebOffice>
+    <OfficeId>19</OfficeId>
+    <Name>Integration</Name>
+    <ParentId>-1</ParentId>
+    <AddressLine1 />
+    <MobileNumber />
+    <PhoneNumber />
+    <EmailAddress />
+    <ContactPerson />
+  </WebOffice>
+</mPortal>

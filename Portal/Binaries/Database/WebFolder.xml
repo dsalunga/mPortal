@@ -1,0 +1,63 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebFolder">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ParentId" type="xs:int" />
+                <xs:element name="ShareName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ObjectId" type="xs:int" />
+                <xs:element name="SiteId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebFolder" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebFolder>
+    <Id>1</Id>
+    <Name>Singapore</Name>
+    <ParentId>-1</ParentId>
+    <ShareName />
+    <ObjectId>-1</ObjectId>
+    <SiteId>-1</SiteId>
+  </WebFolder>
+  <WebFolder>
+    <Id>2</Id>
+    <Name>News</Name>
+    <ParentId>1</ParentId>
+    <ShareName />
+    <ObjectId>-1</ObjectId>
+    <SiteId>-1</SiteId>
+  </WebFolder>
+  <WebFolder>
+    <Id>3</Id>
+    <Name>Policies</Name>
+    <ParentId>1</ParentId>
+    <ShareName />
+    <ObjectId>-1</ObjectId>
+    <SiteId>-1</SiteId>
+  </WebFolder>
+</mPortal>

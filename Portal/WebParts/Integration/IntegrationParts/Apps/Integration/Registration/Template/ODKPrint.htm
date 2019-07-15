@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        body, div, pre
+        {
+            font-family: "Times New Roman" , Times, serif;
+            font-size: 13pt;
+        }
+        
+        #heading
+        {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        div.details-column1
+        {
+            float: left;
+            clear: left;
+            width: 350px;
+            margin-right: 10px;
+        }
+        
+        div.details-column2
+        {
+            float: left;
+            clear: right;
+        }
+        
+        #member-details div.label
+        {
+            margin-right: 15px;
+            float: left;
+        }
+        
+        .value
+        {
+            font-weight: bold;
+        }
+        
+        .field-row
+        {
+            clear: both;
+            padding-top: 25px;
+        }
+        
+        .field-row.report
+        {
+            padding-bottom: 25px;
+        }
+        
+        pre
+        {
+            overflow-x: auto; /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */ /*
+	width: 99%; */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+        }
+    </style>
+</head>
+<body>
+    <div id="heading">
+        <h1>
+            Locale of Singapore<br />
+            OPLAN DALAW REPORT</h1>
+    </div>
+    <div id="member-details">
+        <div class="details-column1">
+            <div class="label">
+                Name of Brethren:</div>
+            <span class="value">$(Name)</span>
+        </div>
+        <div class="details-column2">
+            <div class="label">
+                Date of Membership:</div>
+            <span class="value">$(MembershipDate)</span>
+        </div>
+        <div class="details-column1">
+            <div class="label">
+                Date/s Visited:</div>
+            <span class="value">$(DateVisited)</span>
+        </div>
+        <div class="details-column2">
+            <div class="label">
+                No. of Times Visited:</div>
+            <span class="value">$(TimesVisited)</span>
+        </div>
+        <div class="details-column1">
+            <div class="label">
+                Address:</div>
+            <span class="value">$(Address)</span>
+        </div>
+        <div class="details-column2">
+            <div class="label">
+                Contact No.:</div>
+            <span class="value">$(ContactNo)</span>
+        </div>
+    </div>
+    <div class="field-row report">
+        <div>
+            <strong>CASE STATUS:</strong></div>
+        <pre>$(CaseStatus)</pre>
+    </div>
+    <div class="field-row report">
+        <div>
+            <strong>COUNCILLOR'S OBSERVATION:</strong></div>
+        <pre>$(CouncillorsObservation)</pre>
+    </div>
+    <div class="field-row report">
+        <div>
+            <strong>ACTION TAKEN:</strong></div>
+        <pre>$(ActionTaken)</pre>
+    </div>
+    <div class="field-row">
+        <div>
+            Reported by:</div>
+        <div>
+            <strong>$(ReportedBy)</strong></div>
+    </div>
+    <div class="field-row">
+        <div>
+            Signed by:</div>
+        <div class="details-column1">
+            <strong>Bro. Domingo Azugue</strong><br />
+            Deacon</div>
+        <div class="details-column2">
+            <strong>Sis. Louie Azugue</strong><br />
+            Deaconess</div>
+    </div>
+    <div class="field-row">
+        <div>
+            Noted by:</div>
+        <div>
+            <strong>Bro. Robert Navoa</strong><br />
+            District Servant</div>
+    </div>
+</body>
+</html>

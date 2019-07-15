@@ -1,0 +1,135 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="FileIdentity">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="ObjectId" type="xs:int" />
+                <xs:element name="RecordId" type="xs:int" />
+                <xs:element name="LibraryId" type="xs:int" />
+                <xs:element name="FilePath">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="4000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//FileIdentity" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <FileIdentity>
+    <Id>1</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>Leaving On A Jet Plane.docx</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>2</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>Never Be Sick Again.pdf</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>3</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>Leaving_On_A_Jet_Plane.docx</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>4</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>Desktops.exe</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>5</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>DIT - Draft of Starter Kit.doc</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>6</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>DIT - Draft of Starter Kit.zip</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>7</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>Objectives - Daniel - 2009.doc</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>8</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>Financial-Reports.zip</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>9</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>Objectives - Daniel - 2009.zip</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>10</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>Products.zip</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>11</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>Brown_Group_-_Financial_January_2011.zip</Name>
+  </FileIdentity>
+  <FileIdentity>
+    <Id>12</Id>
+    <ObjectId>3</ObjectId>
+    <RecordId>114</RecordId>
+    <LibraryId>-1</LibraryId>
+    <FilePath>~/Assets/Public/Media-Library</FilePath>
+    <Name>Windows 7 Loader v1.7.7r.zip</Name>
+  </FileIdentity>
+</mPortal>

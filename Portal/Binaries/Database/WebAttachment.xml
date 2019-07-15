@@ -1,0 +1,180 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebAttachment">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FilePath">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Size" type="xs:long" />
+                <xs:element name="DateUploaded" type="xs:dateTime" />
+                <xs:element name="UserId" type="xs:int" />
+                <xs:element name="ObjectId" type="xs:int" />
+                <xs:element name="RecordId" type="xs:int" />
+                <xs:element name="BatchGuid">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebAttachment" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebAttachment>
+    <Id>4</Id>
+    <Name>bamboo.jpg</Name>
+    <FilePath>~/Assets/Attachments/113/O3-D34D58934FAE4BB0B1E014FBDB58ED08-bamboo.jpg</FilePath>
+    <Size>27931</Size>
+    <DateUploaded>2011-06-01T00:50:55.33+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>3</RecordId>
+    <BatchGuid>D34D58934FAE4BB0B1E014FBDB58ED08</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>5</Id>
+    <Name>blue_tiles.jpg</Name>
+    <FilePath>~/Assets/Attachments/113/O3-9931B4AD03764E8D98F14BB8305B2EB9-blue_tiles.jpg</FilePath>
+    <Size>4734</Size>
+    <DateUploaded>2011-06-01T00:52:30.427+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>3</RecordId>
+    <BatchGuid>9931B4AD03764E8D98F14BB8305B2EB9</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>6</Id>
+    <Name>Dindo-110x150.jpg</Name>
+    <FilePath>~/Assets/Attachments/113/O4-EA733275A4B64272ABDE8C06898D6216-Dindo-110x150.jpg</FilePath>
+    <Size>14371</Size>
+    <DateUploaded>2011-06-03T16:19:32.47+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>4</RecordId>
+    <BatchGuid>EA733275A4B64272ABDE8C06898D6216</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>7</Id>
+    <Name>Tcpview.exe</Name>
+    <FilePath>~/Assets/Attachments/113/O3-4DD269A4E7634DCDBF412C0FA06D7CF3-Tcpview.exe</FilePath>
+    <Size>148520</Size>
+    <DateUploaded>2011-06-04T13:45:42.27+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>3</RecordId>
+    <BatchGuid>4DD269A4E7634DCDBF412C0FA06D7CF3</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>8</Id>
+    <Name>cheese.jpg</Name>
+    <FilePath>~/Assets/Attachments/113/O6-7E7202CC18F44CF9906E6F3A6105595C-cheese.jpg</FilePath>
+    <Size>6381</Size>
+    <DateUploaded>2011-06-06T23:40:38.82+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>6</RecordId>
+    <BatchGuid>7E7202CC18F44CF9906E6F3A6105595C</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>9</Id>
+    <Name>dino.jpg</Name>
+    <FilePath>~/Assets/Attachments/113/O6-D8199973DB6F423497E04226329015A8-dino.jpg</FilePath>
+    <Size>17359</Size>
+    <DateUploaded>2011-06-06T23:41:54.753+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>6</RecordId>
+    <BatchGuid>D8199973DB6F423497E04226329015A8</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>10</Id>
+    <Name>cactustile.jpg</Name>
+    <FilePath>~/Assets/Attachments/113/O6-D8199973DB6F423497E04226329015A8-cactustile.jpg</FilePath>
+    <Size>4722</Size>
+    <DateUploaded>2011-06-06T23:41:54.757+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>6</RecordId>
+    <BatchGuid>D8199973DB6F423497E04226329015A8</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>12</Id>
+    <Name>cactustile.jpg</Name>
+    <FilePath>~/Assets/Attachments/113/O1-95164EB77CA344BBA5C8A68879CD80AE-cactustile.jpg</FilePath>
+    <Size>4722</Size>
+    <DateUploaded>2011-06-06T23:50:21.543+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>1</RecordId>
+    <BatchGuid>95164EB77CA344BBA5C8A68879CD80AE</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>13</Id>
+    <Name>cheese.jpg</Name>
+    <FilePath>~/Assets/Attachments/113/O1-95164EB77CA344BBA5C8A68879CD80AE-cheese.jpg</FilePath>
+    <Size>6381</Size>
+    <DateUploaded>2011-06-06T23:50:21.547+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>1</RecordId>
+    <BatchGuid>95164EB77CA344BBA5C8A68879CD80AE</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>14</Id>
+    <Name>deco.jpg</Name>
+    <FilePath>~/Assets/Attachments/113/O5-472DE5DFF3CA4FE09712CBF9DC665B70-deco.jpg</FilePath>
+    <Size>16445</Size>
+    <DateUploaded>2011-06-06T23:58:40.17+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>5</RecordId>
+    <BatchGuid>472DE5DFF3CA4FE09712CBF9DC665B70</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>15</Id>
+    <Name>CorbeilleVide.png</Name>
+    <FilePath>~/Assets/Attachments/113/O22-923D662052D6482EB3FA02C522CB6593-CorbeilleVide.png</FilePath>
+    <Size>25123</Size>
+    <DateUploaded>2011-06-27T21:35:01.193+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>22</RecordId>
+    <BatchGuid>923D662052D6482EB3FA02C522CB6593</BatchGuid>
+  </WebAttachment>
+  <WebAttachment>
+    <Id>16</Id>
+    <Name>KKTK_SG.xlsx</Name>
+    <FilePath>~/Assets/Attachments/113/O20-6CC72590F47D45288A7F341DD7BB12AF-KKTK_SG.xlsx</FilePath>
+    <Size>26256</Size>
+    <DateUploaded>2011-06-27T21:35:28.977+08:00</DateUploaded>
+    <UserId>3</UserId>
+    <ObjectId>113</ObjectId>
+    <RecordId>20</RecordId>
+    <BatchGuid>6CC72590F47D45288A7F341DD7BB12AF</BatchGuid>
+  </WebAttachment>
+</mPortal>

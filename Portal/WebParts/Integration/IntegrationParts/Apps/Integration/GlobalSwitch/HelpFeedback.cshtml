@@ -1,0 +1,81 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.Integration
+@{
+    WebUser user = null;
+    var context = new WContext(this);
+    var site = context.Site;
+    var portalSite = WSite.Provider.Get("Portal");
+
+    var wsession = WSession.Current;
+    var isMember = false;
+    //var isSG = false;
+    //var sessionId = string.Empty;
+    //var portalSessionId = string.Empty;
+    if (wsession.IsLoggedIn)
+    {
+        user = wsession.User;
+        isMember = user.IsMemberOf(IntegrationConstants.MEMBERS_GROUP_NAME);
+        //isSG = user.IsMemberOf("Singapore");
+        //var userSession = wsession.UserSession;
+        //if (userSession != null)
+        //{
+        //    sessionId = "?SessionId=" + userSession.SessionId;
+        //    if (site.Id != portalSite.Id)
+        //    {
+        //        portalSessionId = sessionId;
+        //    }
+        //}
+    }
+
+    var request = context.Context.Request;
+    var portalHomeUrl = portalSite.BuildAbsoluteUrl();
+    var portalRootUrl = portalHomeUrl;
+}
+
+@*<h1 class="page-header">Apps, Websites &amp; Services</h1>
+    <p class="lead">Here is a list of apps and links available to members.</p>
+*@
+
+<style type="text/css">
+    .jumbotron {
+        text-align: center;
+        background-color: transparent;
+    }
+
+        .jumbotron .btn {
+            padding: 14px 24px;
+            font-size: 21px;
+        }
+</style>
+
+<div class="container">
+
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <h1>Help &amp; Feedback</h1>
+        <p class="lead">Experiencing an issue or need to report something? Got a great idea or wanted to suggestion an improvement? Or just wanted someone to contact directly about your concern?</p>
+
+    </div>
+
+    <!-- Example row of columns -->
+    <div class="row">
+        @if (isMember) {
+        <div class="col-lg-4">
+            <h2>Service Request</h2>
+            <p>You have an urget issue, an error is stopping you from what you're doing, or wanted to request something to be done. ETA and progress tracking is available.</p>
+            <p><a class="btn btn-primary" href="@portalRootUrl/HelpDesk/" role="button">Raise a ticket »</a></p>
+        </div>
+        }
+        <div class="col-lg-4">
+            <h2>Suggestions</h2>
+            <p>Got a great idea you wanted to share, found something that needs improvement or just something you want to share?</p>
+            <p><a class="btn btn-primary" href="@portalRootUrl/Suggestions/?Subject=Suggestion" role="button">Submit a suggestion »</a></p>
+        </div>
+        <div class="col-lg-4">
+            <h2>Contact Support</h2>
+            <p>You just wanted to contact a human directly regarding your concern or issue.</p>
+            <p><a class="btn btn-primary" href="@portalRootUrl/contact" role="button">Open contact form »</a></p>
+        </div>
+    </div>
+</div>

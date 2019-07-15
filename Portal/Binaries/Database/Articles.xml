@@ -1,0 +1,989 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Articles">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Title">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="255" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Image">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="255" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Description">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1024" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Date" type="xs:dateTime" />
+                <xs:element name="Content">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Author">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="255" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="SiteId" type="xs:int" />
+                <xs:element name="Active" type="xs:int" />
+                <xs:element name="DateModified" type="xs:dateTime" />
+                <xs:element name="UserId" type="xs:int" />
+                <xs:element name="ModifiedUserId" type="xs:int" />
+                <xs:element name="DirectoryId" type="xs:int" />
+                <xs:element name="Tags">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Articles" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <Articles>
+    <Id>5</Id>
+    <Title>We Go Global! Singapore as a partaker....</Title>
+    <Image />
+    <Description>&lt;p&gt;&lt;img align="left" alt="" vspace="2" hspace="2" style="padding: 3px;" src="/Content/Parts/Integration/Assets/images/Sites/mcgisg/global_thumb.jpg" /&gt;&amp;hellip;&lt;span class="text_normal"&gt; &lt;em&gt;&amp;ldquo;And this gospel of the&lt;/em&gt; &lt;em&gt;kingdom shall be preached&lt;/em&gt; &lt;em&gt;in the entire world for a witness unto all nations; and then shall the end come&amp;rdquo; (Mat 24:14).&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;</Description>
+    <Date>2011-05-03T00:00:00+08:00</Date>
+    <Content>&lt;p&gt;&amp;hellip;&lt;span class="text_normal"&gt; &lt;strong&gt;&lt;em&gt;&amp;ldquo;And this gospel of the&lt;/em&gt;&lt;/strong&gt; &lt;strong&gt;&lt;em&gt;kingdom shall be preached&lt;/em&gt;&lt;/strong&gt; &lt;strong&gt;&lt;em&gt;in the entire world for a witness unto all nations; and then shall the end come&amp;rdquo; (Mat 24:14).&lt;/em&gt;&lt;/strong&gt; &amp;nbsp; &amp;nbsp;&lt;br /&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;div&gt;
+&lt;div&gt;
+&lt;div&gt;
+&lt;p class="text_normal"&gt;The propagation of the Word of Truth through the &lt;em&gt;&lt;a target="_blank" href="http://www.angdatingdaan.org/about/about_chistory.htm"&gt;Members of the Church of God International&lt;/a&gt;&lt;/em&gt; is heading its way global. Indeed, we clearly see the fulfillment of prophesies in preaching the Gospel through the chosen vessels, the Church&amp;rsquo;s Presiding Ministers, &lt;a target="_blank" href="http://www.elisoriano.com/life/"&gt;Brother Eli Soriano&lt;/a&gt; and Brother &lt;a target="_blank" href="http://www.danielrazon.com/bio.aspx"&gt;Daniel Razon&lt;/a&gt;. How blessed we are that with their zealous labor, we now belong to the called out ones and co-workers of this great responsibility with the help of the Almighty Creator.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal"&gt;Locale of Singapore as a partaker, some major events are positively proceeding with the brethren&amp;rsquo;s ardent support despite the state&amp;rsquo;s legal restrictions in relation to religious campaign.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;&lt;strong&gt;PROFESSIONAL MEMBERS IN ACTION&lt;/strong&gt;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;Singapore is known as the country having amassed of talented foreign professionals. People especially Filipinos went here to earn a living and to sustain their family needs. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;For the Members Church of God International &amp;ndash; Singapore Chapter, with the guidance and good grace of our Almighty God, brethren would like to extend the love and kindness not only for the benefit of the congregation and for the benefit of their family in the Philippines, but also outside the church.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;All professional members in this chapter apart from their field of expertise, being driven by faith, have united and lend their help in supporting different ministerial works and public service here in Singapore. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;&lt;strong&gt;Free Computer Lesson and Bible Study&lt;/strong&gt;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;Started during the first month of the year 2007, &lt;em&gt;Free Computer Lesson&lt;/em&gt; was given for those who want to acquire computer knowledge. This is a classroom training set up with basic computer modules to run during the whole course training and allows student to have a hands-on experience using desktop computers. This takes place every Sunday with two group sessions (Morning session, 10AM-2PM and Afternoon session, 2-4PM). &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;Most of the students are Domestic Helpers having zero knowledge on computers, but they are able to learn quickly. In such case, what they have learned will open the door for other employment opportunities and for their own personal use. They spent their free time learning the basic computer skills as well as to hear the word of God in the Bible taught to them during Bible study. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;Some of members of the church that encompass with strong technical and computer background trained the students. No requirements are given, only their eagerness to study the computer lesson and the teachings being taught in the Holy Scripture. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;The materials being used and maintained in the training room are given by the concerted effort of members of the church. The abiding commitment given by them enabled students to experience the advantage of technology and attain their full potential.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;Currently, eight students were enrolled and enthusiastically spend their time erudition to a valuable undertaking. In addition, five of them are now under indoctrination every Sunday and they have just finished the eighth topic taught by Brother Eli Soriano.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;&lt;strong&gt;Blood Donation Drive&lt;/strong&gt;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;As we would like to reach out for more people in this country, not only for our fellowmen who also works here in a different field, the recent Blood Donation Drive event, entitled &amp;ldquo;&lt;a href="blood/index_08.html"&gt;ADD Blood. ADD Life&lt;/a&gt;.&amp;rdquo; was successfully ensued. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;With the coordination of &lt;a target="_blank" href="http://www.redcross.org.sg/"&gt;Singapore Red Cross&lt;/a&gt; and &lt;a target="_blank" href="http://www.untvweb.com"&gt;UNTV&lt;/a&gt;, the first MCGI blood donation drive held on August 10, 2008 have ceded 87 donors. This exceeded the expectation of the Red Cross Staff being a neophyte organizer of this campaign.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;This event entailed brethren to participate with a common cause to let people grasp the value of donating blood for them and rally round destitute who need blood transfusion.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;This is not the end of promoting goodwill to all the people here in Singapore. This is a continuous works with a great mission to fulfill. Primarily, to propagate the word of God and for all those virtues every member had taught, would like to change lives and facilitate more public service related projects in the future. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p align="justify" class="text_normal"&gt;Truly, we are delighted to work hand-in-hand even if it entails a great deal of self-sacrifice.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;ul&gt;
+    &lt;p class="text_normal"&gt;&lt;em&gt;&amp;hellip; &amp;ldquo;Behold, how goodand how pleasant it is for brethrento dwelltogether in unity!&amp;rdquo; (Psalm 133: 1)&lt;/em&gt;&amp;nbsp;&lt;br /&gt;
+    &amp;nbsp;&lt;/p&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</Content>
+    <Author>Carmi Tongol/Marivic Aquino</Author>
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2014-05-28T17:39:20.903+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>6</Id>
+    <Title>North Korea declares it conducted nuclear test</Title>
+    <Image>&lt;p&gt;JEAN H. LEE, Associated Press Writer&lt;/p&gt;</Image>
+    <Description>&lt;p&gt;Pyongyang says it has successfully staged an underground test of a short-range nuclear missile.&lt;/p&gt;</Description>
+    <Date>2009-05-25T06:30:00+08:00</Date>
+    <Content>&lt;p&gt;SEOUL, South Korea &amp;ndash; &lt;span id="lw_1243269717_0" class="yshortcuts" style="border-bottom: #0066cc 1px dashed; cursor: hand"&gt;North Korea&lt;/span&gt; claimed it carried out a powerful &lt;span id="lw_1243269717_1" class="yshortcuts" style="border-bottom: medium none; background: none transparent scroll repeat 0% 0%; cursor: hand"&gt;underground nuclear test&lt;/span&gt; Monday &amp;mdash; much larger than one conducted in 2006 &amp;mdash; a major provocation in the escalating international standoff over its rogue nuclear and missile programs.&lt;/p&gt;
+&lt;p&gt;The regime &amp;quot;successfully conducted one more underground nuclear test on May 25 as part of measures to bolster its &lt;span id="lw_1243269717_2" class="yshortcuts"&gt;nuclear deterrent&lt;/span&gt; for self-defense,&amp;quot; the country's official &lt;span id="lw_1243269717_3" class="yshortcuts" style="border-bottom: #0066cc 1px dashed; cursor: hand"&gt;Korean Central News Agency&lt;/span&gt; said.&lt;/p&gt;
+&lt;p&gt;Russia's Defense Ministry confirmed an &lt;span id="lw_1243269717_4" class="yshortcuts"&gt;atomic explosion&lt;/span&gt; at 9:54 a.m. (0054 GMT) in &lt;span id="lw_1243269717_5" class="yshortcuts"&gt;northeastern North Korea&lt;/span&gt;, estimating the blast's yield at 10 to 20 kilotons &amp;mdash; comparable to the bombs that flattened &lt;span id="lw_1243269717_6" class="yshortcuts"&gt;Hiroshima and Nagasaki&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Hours later, the regime test-fired three short-range, ground-to-air missiles, the &lt;span id="lw_1243269717_7" class="yshortcuts" style="border-bottom: #0066cc 1px dashed; cursor: hand"&gt;Yonhap news agency&lt;/span&gt; reported, citing unnamed sources. &lt;span id="lw_1243269717_8" class="yshortcuts" style="border-bottom: medium none; background: none transparent scroll repeat 0% 0%; cursor: hand"&gt;U.N. Security Council resolutions&lt;/span&gt; bar North Korea from engaging in any ballistic missile-related activity.&lt;/p&gt;
+&lt;p&gt;President Barack Obama called the moves &amp;quot;blatant defiance&amp;quot; of the &lt;span id="lw_1243269717_9" class="yshortcuts"&gt;Security Council&lt;/span&gt; and a violation of international law that would only further isolate North Korea.&lt;/p&gt;
+&lt;p&gt;North Korea's claims &amp;quot;are a matter of &lt;span id="lw_1243269717_10" class="yshortcuts"&gt;grave concern&lt;/span&gt; to all nations,&amp;quot; he said, calling for international action in a statement from Washington. &amp;quot;North Korea's attempts to develop nuclear weapons, as well as its &lt;span id="lw_1243269717_11" class="yshortcuts"&gt;ballistic missile program&lt;/span&gt;, constitute a threat to international peace and security.&amp;quot;&lt;/p&gt;
+&lt;p&gt;The U.N. chief said Monday that if North Korea's claim can be confirmed, its announcement of a second nuclear test would represent &amp;quot;a clear violation&amp;quot; of a &lt;span id="lw_1243269717_12" class="yshortcuts"&gt;United Nations Security Council resolution&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&amp;quot;I sincerely hope that the Security Council will take necessary corresponding measures,&amp;quot; &lt;span id="lw_1243269717_13" class="yshortcuts"&gt;U.N. Secretary-General Ban Ki-moon&lt;/span&gt; told The Associated Press, declining to specify what further moves, or sanctions, he would urge the 15 council members to take.&lt;/p&gt;
+&lt;p&gt;The council scheduled emergency consultations on North Korea's actions for Monday afternoon.&lt;/p&gt;
+&lt;p&gt;&lt;span id="lw_1243269717_14" class="yshortcuts"&gt;British Prime Minister Gordon Brown&lt;/span&gt; condemned the test as &amp;quot;erroneous, misguided and a danger to the world.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Japanese Prime Minister Taro Aso said the Security Council will meet at 4:30 p.m. Monday in New York (2030 GMT).&lt;/p&gt;
+&lt;p&gt;&amp;quot;North Korea's nuclear test poses a grave challenge to &lt;span id="lw_1243269717_15" class="yshortcuts"&gt;nuclear nonproliferation&lt;/span&gt; and clearly violates U.N. Security Council resolutions,&amp;quot; he said in Tokyo. &amp;quot;We are not tolerating this at all.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Even China, North Korea's traditional ally, issued rare criticism of &lt;span id="lw_1243269717_16" class="yshortcuts"&gt;Pyongyang&lt;/span&gt;, with the Foreign Ministry saying in a statement posted on its Web site that Beijing was &amp;quot;resolutely opposed&amp;quot; to the test.&lt;/p&gt;
+&lt;p&gt;&lt;span id="lw_1243269717_17" class="yshortcuts"&gt;Russia&lt;/span&gt; said the test violated a &lt;span id="lw_1243269717_18" class="yshortcuts"&gt;U.N. Security Council resolution&lt;/span&gt; that requires North Korea to refrain from &lt;span id="lw_1243269717_19" class="yshortcuts" style="border-bottom: #0066cc 1px dashed; cursor: hand"&gt;nuclear tests&lt;/span&gt;. Moscow's Foreign Ministry called the test &amp;quot;a serious blow to international efforts&amp;quot; to prevent the spread of nuclear weapons.&lt;/p&gt;
+&lt;p&gt;North Korea's bold defiance raises the stakes in the standoff over its nuclear program. In the past two months, Pyongyang has launched a rocket despite international calls for restraint; abandoned international nuclear negotiations; restarted its nuclear plants; and warned it would carry out the atomic test as well as long-range missile tests.&lt;/p&gt;
+&lt;p&gt;The rise in tensions comes amid questions about who will succeed impoverished North Korea's authoritarian leader, 67-year-old &lt;span id="lw_1243269717_20" class="yshortcuts" style="border-bottom: #0066cc 1px dashed; cursor: hand"&gt;Kim Jong Il&lt;/span&gt;, who is believed to have suffered a stroke last August. North Korea also has custody of two American journalists &amp;mdash; accused of entering the country illegally and engaging in &amp;quot;hostile acts&amp;quot; &amp;mdash; who are set to stand trial in Pyongyang on June 4.&lt;/p&gt;
+&lt;p&gt;&amp;quot;This is a political act more than a military act,&amp;quot; said Jim Walsh, an &lt;span id="lw_1243269717_21" class="yshortcuts"&gt;international security expert&lt;/span&gt; at the Massachusetts Institute of Technology.&lt;/p&gt;
+&lt;p&gt;Walsh said domestic factors related to North Korea's political transition were likely the main factor.&lt;/p&gt;
+&lt;p&gt;Monday's atomic test was conducted about 50 miles (80 kilometers) northwest of the northern city of Kilju, Russian Defense Ministry spokesman Alexander Drobyshevsky said, speaking on state-run Rossiya television.&lt;/p&gt;
+&lt;p&gt;Kilju, in the northeastern province of &lt;span id="lw_1243269717_22" class="yshortcuts"&gt;North Hamgyong&lt;/span&gt;, is where North Korea conducted its first nuclear test in October 2006 in a surprise move that also angered China and drew wide-ranging sanctions from the &lt;span id="lw_1243269717_23" class="yshortcuts"&gt;Security Council&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;An emergency siren sounded in the Chinese border city of Yanji, 130 miles (200 kilometers) to the northwest. A receptionist at Yanji's International Hotel said she and several hotel guests felt the ground tremble.&lt;/p&gt;
+&lt;p&gt;North Korea boasted that Monday's test was conducted &amp;quot;on a new higher level in terms of its explosive power and technology of its control&amp;quot; than in 2006.&lt;/p&gt;
+&lt;p&gt;Pyongyang is believed to have enough weaponized plutonium for at least a half-dozen &lt;span id="lw_1243269717_24" class="yshortcuts"&gt;atomic bombs&lt;/span&gt;. However, experts say scientists have not yet mastered the miniaturization needed to mount a nuclear device onto a long-range missile.&lt;/p&gt;
+&lt;p&gt;Ten to 20 kilotons would be far more than North Korea managed in 2006. U.S. intelligence officials said the 2006 test measured less than a kiloton; 1 kiloton is equal to the force produced by 1,000 tons of TNT. However, &lt;span id="lw_1243269717_25" class="yshortcuts"&gt;Russia&lt;/span&gt; estimated the force of the 2006 blast at 5 to 15 kilotons, far higher than other estimates at the time.&lt;/p&gt;
+&lt;p&gt;Radiation levels in Russia's Primorye region, which shares a short border with North Korea, were normal Monday several hours after the blast, the state meteorological office said.&lt;/p&gt;
+&lt;p&gt;A 4.7-magnitude earthquake was registered in &lt;span id="lw_1243269717_26" class="yshortcuts"&gt;northeastern North Korea&lt;/span&gt; at 9:54 a.m. (0054 GMT), the U.S. Geological Survey said.&lt;/p&gt;
+&lt;p&gt;In Vladivostok, a city of 500,000 people about 85 miles (140 kilometers) from the Russian-North Korean border, translator Alexei Sergeyev said he wasn't concerned about the test and doesn't fear North Korea.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Their nuclear program does not have military aims &amp;mdash; their only aim is to frighten the U.S. and receive more humanitarian aid as a result,&amp;quot; said Sergeyev.&lt;/p&gt;
+&lt;p&gt;The reported test-firing of short-range missiles took place at the &lt;span id="lw_1243269717_27" class="yshortcuts" style="border-bottom: #0066cc 1px dashed; cursor: hand"&gt;Musudan-ri&lt;/span&gt; launchpad on North Korea's northeast coast, some 30 miles (50 kilometers) from the nuclear test site, Yonhap said. Unnamed sources described it as a ground-to-air missile with a range of 80 miles (130 kilometers).&lt;/p&gt;
+&lt;p&gt;&lt;span id="lw_1243269717_28" class="yshortcuts"&gt;Japan's coast guard&lt;/span&gt; said Friday that North Korea warned ships to avoid waters off the coast near the launch site, suggesting &lt;span id="lw_1243269717_29" class="yshortcuts"&gt;Pyongyang&lt;/span&gt; was preparing for a missile test. Yonhap also reported brisk activity along the northeast coast last week.&lt;/p&gt;
+&lt;p&gt;South Korean troops were on high alert but there was no sign &lt;span id="lw_1243269717_30" class="yshortcuts"&gt;North Korean soldiers&lt;/span&gt; were massing along the heavily fortified border dividing the two nations, according to an official at the Joint Chiefs of Staff headquarters in &lt;span id="lw_1243269717_31" class="yshortcuts"&gt;Seoul&lt;/span&gt;. He spoke on condition of anonymity, citing agency policy.&lt;/p&gt;
+&lt;p&gt;The two &lt;span id="lw_1243269717_32" class="yshortcuts" style="border-bottom: #0066cc 1px dashed; cursor: hand"&gt;Koreas&lt;/span&gt; technically remain at war because their three-year conflict ended in a truce, not a peace treaty, in 1953.&lt;/p&gt;
+&lt;p&gt;Tensions have been high since &lt;span id="lw_1243269717_33" class="yshortcuts"&gt;conservative President Lee Myung-bak&lt;/span&gt; took office in Seoul in February 2008 saying Pyongyang must fulfill its promises to dismantle its nuclear program before it can expect aid.&lt;/p&gt;
+&lt;p&gt;South Koreans, meanwhile, were grappling with the suicide two days earlier of Lee's liberal predecessor, &lt;span id="lw_1243269717_34" class="yshortcuts"&gt;Roh Moo-hyun&lt;/span&gt;, whose death elicited condolences from &lt;span id="lw_1243269717_35" class="yshortcuts"&gt;Kim Jong Il&lt;/span&gt;. Kim held a 2007 summit in Pyongyang with Roh, who championed reconciliation with North Korea.&lt;/p&gt;
+&lt;p&gt;North Korea had agreed in February 2007 to a six-nation pact to begin disabling its main &lt;span id="lw_1243269717_36" class="yshortcuts"&gt;nuclear reactor&lt;/span&gt; in exchange for 1 million tons of fuel oil and other concessions. But Pyongyang abruptly halted the process last summer over a dispute with Washington over how to verify its 18,000-page list of past atomic activities.&lt;/p&gt;
+&lt;p&gt;Talks hosted by Beijing in December failed to resolve the impasse, and North Korea abandoned the six-nation negotiations last month in anger over the U.N. condemnation of its rocket launch.&lt;/p&gt;
+&lt;p&gt;North Korea claims it launched the rocket to send a satellite into space; South Korea, Japan and other nations saw it as a way to test the technology used to launch an &lt;span id="lw_1243269717_37" class="yshortcuts"&gt;intercontinental ballistic missile&lt;/span&gt;, one capable of reaching the U.S.&lt;/p&gt;</Content>
+    <Author>Jon Herskovitz and Cheon Jong-woo</Author>
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2009-10-25T08:44:57.993+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>10</Id>
+    <Title>test article list</Title>
+    <Image />
+    <Description>&lt;p&gt;test article description&lt;/p&gt;</Description>
+    <Date>2009-10-16T06:30:00+08:00</Date>
+    <Content>&lt;h3 style="color: red"&gt;test article content&lt;/h3&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2009-10-16T08:18:38.47+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>11</Id>
+    <Title>First MCGI, Singapore Red Cross blood letting drive yield 87 donors</Title>
+    <Image>&lt;p&gt;&lt;img height="83" alt="" width="100" src="/Assets/Uploads/image/bible.jpg" /&gt;&lt;/p&gt;</Image>
+    <Description>&lt;p&gt;&lt;img hspace="2" align="left" src="/Content/Parts/Integration/Assets/images/Sites/mcgisg/blooddonation_nov08_thumb.jpg" style="padding: 3px;" alt="" /&gt;Queenstown Community Center, Singapore &amp;ndash; The first blood donation &lt;br /&gt;
+drive launched on Aug. 10 by the Members Church of God &lt;br /&gt;
+International (MCGI) Singapore chapter, in coordination with the &lt;br /&gt;
+Singapore Red Cross and UNTV, successfully gathered 87 blood &lt;br /&gt;
+donors.&lt;/p&gt;</Description>
+    <Date>2008-09-13T21:30:00+08:00</Date>
+    <Content>&lt;p&gt;Queenstown Community Center, Singapore &amp;ndash; The first blood donation &lt;br /&gt;
+drive launched on Aug. 10 by the Members Church of God &lt;br /&gt;
+International (MCGI) Singapore chapter, in coordination with the &lt;br /&gt;
+Singapore Red Cross and UNTV, successfully gathered 87 blood &lt;br /&gt;
+donors.&lt;br /&gt;
+&lt;br /&gt;
+Based on records from Singapore Red Cross, 112 donors were &lt;br /&gt;
+screened but only 87 passed the standards. Persons with high &lt;br /&gt;
+blood &lt;br /&gt;
+pressure, collapsing veins, iron deficiency, and high hemoglobin &lt;br /&gt;
+count are not allowed to donate blood.&lt;br /&gt;
+&lt;br /&gt;
+In an interview, UNTV correspondent Lorra Jane Cruz said that the &lt;br /&gt;
+donors expressed willingness to help save lives in their own &lt;br /&gt;
+little way. The event was held at the Queenstown Community Center &lt;br /&gt;
+(formerly known as Alexandra Community Club/Center) at &lt;br /&gt;
+Commonwealth Avenue.&lt;br /&gt;
+&lt;br /&gt;
+A 32-year-old Malaysian and Singapore Permanent Resident (SPR) &lt;br /&gt;
+woman said that this was the first time she donated blood here in &lt;br /&gt;
+Asia. She started to donate blood only last year. After learning &lt;br /&gt;
+of the event from the monthly newsletter sent by Health Sciences &lt;br /&gt;
+Authority (HSA), she was persuaded by a friend to join this kind &lt;br /&gt;
+of humanitarian activity.&lt;br /&gt;
+&lt;br /&gt;
+&amp;quot;I am more than 77th time donor. A Champion donor!&amp;quot; said Simon Ho &lt;br /&gt;
+Wee Juang, a Singaporean. He said happily that he really loves to &lt;br /&gt;
+donate blood for he can help others and improve his blood &lt;br /&gt;
+circulation as well.&lt;br /&gt;
+&lt;br /&gt;
+&amp;quot;People say that if you donate one packet, it can help three more &lt;br /&gt;
+people,&amp;quot; said Tan Sew Yen, a 56-year-old Singaporean woman who was &lt;br /&gt;
+also one of the successful donors.&lt;br /&gt;
+&lt;br /&gt;
+Jonathan Veluz, a 35-year-old Filipino, said that this is his 4th &lt;br /&gt;
+time donating blood and his first time outside the Philippines. He &lt;br /&gt;
+added that he wanted to extend the act of great human kindness by &lt;br /&gt;
+donating blood even if he is out of his own country.&lt;br /&gt;
+&lt;br /&gt;
+Luz Calibo, a 30-year-old woman who was donating for the first &lt;br /&gt;
+time, expressed her joy saying, &amp;quot;I realized that not all people &lt;br /&gt;
+are eligible to donate blood, so I'm happy I can help save other &lt;br /&gt;
+peoples' lives by being a successful donor.&amp;quot; She hopes that this &lt;br /&gt;
+will be a regular activity to inspire others to donate blood and &lt;br /&gt;
+help those who are in need of it.&lt;br /&gt;
+&lt;br /&gt;
+Refreshments and free Bibles from MCGI Singapore chapter, &lt;br /&gt;
+souvenirs and thank you cards from Singapore Red Cross, and UNTV &lt;br /&gt;
+T-shirts were given to all the participants as a token of &lt;br /&gt;
+appreciation for helping them achieve the objective of this &lt;br /&gt;
+significant project.&lt;br /&gt;
+&lt;br /&gt;
+This charitable event ended at 6 in the evening. The organizers of &lt;br /&gt;
+the event are planning to hold another blood donation drive in the &lt;br /&gt;
+months to come.&lt;/p&gt;</Content>
+    <Author>Carmi Tongol</Author>
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2009-11-18T05:31:23.953+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>12</Id>
+    <Title>Test Chuch Announcement</Title>
+    <Image />
+    <Description>&lt;p&gt;mayroon po tayong meeting sa likod ng bagong stage&lt;/p&gt;</Description>
+    <Date>2009-12-07T21:30:00+08:00</Date>
+    <Content>&lt;p&gt;mayroon po tayong meeting sa likod ng bagong stage&lt;/p&gt;
+&lt;p class="text_normal"&gt;Once again Members of the Church of God International (MCGI, SG) in the locale of Singapore got together to render gratitude to God for His never ending love. Evidently, the locale of Singapore has grown bigger and this time more people were ascertained to have offered thanksgiving to God. The growing locale had long waited the generation of this opportunity to reciprocate God&amp;rsquo;s loving kindness. In just a few months, more groups were added to the locale. The total number of established groups is 8 with approximately 20-24 members each. The existing groups of the Singapore locale are as follows: &amp;nbsp;Green, Blue, Pink, Beige, Lavender, Orange, Yellow, and Grey. Each group videotaped at different interesting locations in Singapore. The Lavender Group, for one, recorded its location shooting at the Esplanade where the group almost perfectly executed its performance with God` s help. Even if the number of people who thanked God has dramatically increased, the cooperation of every member including the cameramen dispensed to each group whose efforts seemed errorless.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Other places depicted as part of the presentation were the world renowned Sentosa Island &lt;br /&gt;
+Resort where one can experience an overview of the underwater world. This was the choice of the Yellow group. The beautiful and very oriental Chinese Garden was for the Gray Group, and so on. Apparently, all groups performed joyfully to give praise to our Almighty God.&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2009-12-08T01:25:11.843+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>13</Id>
+    <Title>Locale Announcements and Worldwide Mass Indoctrination</Title>
+    <Image>&lt;p&gt;&lt;img alt="" width="90" height="100" src="/Assets/Uploads/image/broeli.jpg" /&gt;&lt;/p&gt;</Image>
+    <Description>&lt;p&gt;The fervent objective of the radio and television program is maintained in our online media format. It upholds the ...&lt;/p&gt;</Description>
+    <Date>2014-05-03T00:00:00+08:00</Date>
+    <Content>&lt;p&gt;The fervent objective of the radio and television program is maintained in our online media format. It upholds the divine mission to propagate the true Gospel of Christ based on the Bible and converts sinners to believe and glorify God. It also believes that only the Church can teach the wisdom of God for the salvation of mankind.&lt;br /&gt;
+&lt;br /&gt;
+Our website features timely and relevant Bible Expositions and public discussions, television segments, expos&amp;eacute;s, the highly-popular &lt;b&gt;Itanong mo kay Soriano&lt;/b&gt; (Ask Soriano) segment, religious references, and doctrines, among others. &lt;br /&gt;
+&lt;br /&gt;
+When launched in 2000, the MEMBERS OF THE CHURCH OF GOD INTERNATIONAL made a bold step in reaching out to many people worldwide, together with the streaming media platform called &lt;a href="http://www.theoldpath.tv/"&gt;www.theoldpath.tv&lt;/a&gt; .&lt;br /&gt;
+&lt;br /&gt;
+Since then, &amp;ldquo;&lt;b&gt;Ang Dating Daan&lt;/b&gt;&amp;rdquo; was heard and seen in the whole world. Membership soared and new local chapters were established in North America, Canada, Europe, Africa, and even the Asia Pacific, China and Australia. &lt;br /&gt;
+&lt;br /&gt;
+In 2002, our website made history when the 5th Philippine Web Awards picked out Ang Dating Daan Bible Exposition Online for the Yehey's MOST POPULAR WEBSITE and the PEOPLE&amp;rsquo;S CHOICE AWARD in the BEST ORGANIZATION CATEGORY. Over 2,000 Philippine websites vied for the top site in this annual website competition. &lt;br /&gt;
+&lt;br /&gt;
+On the other hand, &amp;ldquo;&lt;b&gt;Ang Dating Daan&lt;/b&gt;,&amp;rdquo; which already carved its mark since its inception over 20 years ago in Philippine broadcast history, can be seen worldwide via satellite through the facilities of UN Television UHF Channel 37 and heard over the most powerful radio networks &amp;ndash; DZRH, RMN and 100 Radyo Nation Stations nationwide. &lt;br /&gt;
+&lt;br /&gt;
+Brother Eliseo F. Soriano, considered as the only sensible evangelist today, hosts the radio and television programs, together with Bros. Josel Mallari, Danny Navales, Willy Santiago and Sis. Luz Cruz. &lt;br /&gt;
+&lt;br /&gt;
+The &lt;b&gt;Ang Dating Daan Bible Exposition Online&lt;/b&gt;, with satellite offices all over the country and several countries around the globe, can be contacted in its central headquarters in ADD Convention Center, Brgy. Sampaloc, Apalit, Pampanga.&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2014-05-28T17:51:11.21+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags>Make-Up</Tags>
+  </Articles>
+  <Articles>
+    <Id>14</Id>
+    <Title>International Circular #12 of 2014</Title>
+    <Image />
+    <Description>&lt;p&gt;Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.&lt;/p&gt;</Description>
+    <Date>2014-05-03T00:00:00+08:00</Date>
+    <Content>&lt;p&gt;asd fasdf asdf asdfasdf asdf&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;The fervent objective of the radio and television program is maintained in our online media format. It upholds the divine mission to propagate the true Gospel of Christ based on the Bible and converts sinners to believe and glorify God. It also believes that only the Church can teach the wisdom of God for the salvation of mankind.&lt;br /&gt;
+&lt;br /&gt;
+Our website features timely and relevant Bible Expositions and public discussions, television segments, expos&amp;eacute;s, the highly-popular &lt;b&gt;Itanong mo kay Soriano&lt;/b&gt; (Ask Soriano) segment, religious references, and doctrines, among others. &lt;br /&gt;
+&lt;br /&gt;
+When launched in 2000, the MEMBERS OF THE CHURCH OF GOD INTERNATIONAL made a bold step in reaching out to many people worldwide, together with the streaming media platform called &lt;a href="http://www.theoldpath.tv/"&gt;www.theoldpath.tv&lt;/a&gt; .&lt;br /&gt;
+&lt;br /&gt;
+Since then, &amp;ldquo;&lt;b&gt;Ang Dating Daan&lt;/b&gt;&amp;rdquo; was heard and seen in the whole world. Membership soared and new local chapters were established in North America, Canada, Europe, Africa, and even the Asia Pacific, China and Australia. &lt;br /&gt;
+&lt;br /&gt;
+In 2002, our website made history when the 5th Philippine Web Awards picked out Ang Dating Daan Bible Exposition Online for the Yehey's MOST POPULAR WEBSITE and the PEOPLE&amp;rsquo;S CHOICE AWARD in the BEST ORGANIZATION CATEGORY. Over 2,000 Philippine websites vied for the top site in this annual website competition. &lt;br /&gt;
+&lt;br /&gt;
+On the other hand, &amp;ldquo;&lt;b&gt;Ang Dating Daan&lt;/b&gt;,&amp;rdquo; which already carved its mark since its inception over 20 years ago in Philippine broadcast history, can be seen worldwide via satellite through the facilities of UN Television UHF Channel 37 and heard over the most powerful radio networks &amp;ndash; DZRH, RMN and 100 Radyo Nation Stations nationwide. &lt;br /&gt;
+&lt;br /&gt;
+Brother Eliseo F. Soriano, considered as the only sensible evangelist today, hosts the radio and television programs, together with Bros. Josel Mallari, Danny Navales, Willy Santiago and Sis. Luz Cruz. &lt;br /&gt;
+&lt;br /&gt;
+The &lt;b&gt;Ang Dating Daan Bible Exposition Online&lt;/b&gt;, with satellite offices all over the country and several countries around the globe, can be contacted in its central headquarters in ADD Convention Center, Brgy. Sampaloc, Apalit, Pampanga.&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2014-05-28T17:42:27.177+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>15</Id>
+    <Title>A Reciprocation of GOD’S Love</Title>
+    <Image />
+    <Description>&lt;p&gt;Once again Members of the Church of God International (MCGI, SG) in the locale of Singapore got together to render gratitude to God for His never ending love. Evidently, the locale of Singapore has grown bigger and this time more people were ascertained to have offered thanksgiving to God.&lt;/p&gt;</Description>
+    <Date>2008-11-17T21:30:00+08:00</Date>
+    <Content>&lt;p class="text_normal"&gt;Once again Members of the Church of God International (MCGI, SG) in the locale of Singapore got together to render gratitude to God for His never ending love. Evidently, the locale of Singapore has grown bigger and this time more people were ascertained to have offered thanksgiving to God. The growing locale had long waited the generation of this opportunity to reciprocate God&amp;rsquo;s loving kindness. In just a few months, more groups were added to the locale. The total number of established groups is 8 with approximately 20-24 members each. The existing groups of the Singapore locale are as follows: &amp;nbsp;Green, Blue, Pink, Beige, Lavender, Orange, Yellow, and Grey. Each group videotaped at different interesting locations in Singapore. The Lavender Group, for one, recorded its location shooting at the Esplanade where the group almost perfectly executed its performance with God` s help. Even if the number of people who thanked God has dramatically increased, the cooperation of every member including the cameramen dispensed to each group whose efforts seemed errorless.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Other places depicted as part of the presentation were the world renowned Sentosa Island &lt;br /&gt;
+Resort where one can experience an overview of the underwater world. This was the choice of the Yellow group. The beautiful and very oriental Chinese Garden was for the Gray Group, and so on. Apparently, all groups performed joyfully to give praise to our Almighty God.&lt;/p&gt;
+&lt;p class="text_normal"&gt;The Locale of Singapore is obviously getting bigger. Currently, more groups are waiting to be added since more and more people are coming in as newly-baptized members, if not old members wanting to seek opportunities in Singapore. Right now close to 10 people undergo indoctrination including another Chinese Singaporean. They too paid and heed to the glorious event.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Likewise, present during the Thanksgiving were the locale&amp;rsquo;s babies indoctrinated and baptized in Singapore, September of this year, Sister Katrina Esperanza and Brother Harold Valiente. Brother Harold has opted to join the roster of workers of the church for God. He is currently learning the training process for being a worker of God here in Singapore. Brother Simon Ho, our Singaporean brother who was indoctrinated and baptized in Singapore gave thanks and sang our Tagalog hymns with gusto and inspiration.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Special treats included group songs and dances. Along with the offerings was a bubbly hymn danced into by the Women&amp;rsquo;s Teatro Kristiano wherein mothers who are professionals found time to practice no matter how late it took them. In addition, mothers- to- be linked up with the Women&amp;rsquo;s Teatro Kristiano. They got together and danced onstage and so did their children who also felt ecstatic being members of the Teatro Kristiano.&lt;/p&gt;
+&lt;p class="text_normal"&gt;As the songs prepared by the locale were being played in the widescreens, they were being simultaneously viewed in Apalit, Pampanga, Philippines. ADDCIT Singapore and Apalit coordinated well and made the celebration a success. Every true Christian accepts the Biblical fact that everything must be executed with perfection when offering thanksgiving to God to please Him. A loving heart and a clean mind, that is. According to Brother Eli and Brother Daniel, &amp;ldquo;If it is for God it must be the best, and if it is from God, it must be good&amp;ldquo;. Our sensible Brother Eli never fails to teach us that our best performance must be carried through for God and never to satisfy one&amp;rsquo;s vanity or to impress spectators. Every bit of talent must be &amp;nbsp;applied &amp;nbsp;and &amp;nbsp;be &amp;nbsp;returned &amp;nbsp;to God, &amp;nbsp;every piece to be used &amp;nbsp;to spread &amp;nbsp;God&amp;rsquo;s &amp;nbsp;gospel for everyone to obtain the greatest &amp;nbsp;hope, the hope of &amp;nbsp;salvation...&lt;/p&gt;
+&lt;p class="text_normal"&gt;&amp;ldquo;All we can say with humbleness is AMEN!&amp;rdquo; Bro Robert Navoa said as he exudes his joy thru email for the brethren in locale of Singapore.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Indeed! Because another fruitful day has come, marked on November 9, 2008 at Geylang Football Club, Bedok, Singapore to glorify His everlasting name and endlessly give thanks for all His unspeakable gifts.&lt;/p&gt;</Content>
+    <Author>Priscilla Mendoza</Author>
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-03-11T15:00:44.883+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>16</Id>
+    <Title>A Reciprocation of GOD’S Love</Title>
+    <Image />
+    <Description>&lt;p&gt;Once again Members of the Church of God International (MCGI, SG) in the locale of Singapore got together to render gratitude to God for His never ending love. Evidently, the locale of Singapore has grown bigger and this time more people were ascertained to have offered thanksgiving to God.&lt;/p&gt;</Description>
+    <Date>2008-11-17T21:30:00+08:00</Date>
+    <Content>&lt;p class="text_normal"&gt;Once again Members of the Church of God International (MCGI, SG) in the locale of Singapore got together to render gratitude to God for His never ending love. Evidently, the locale of Singapore has grown bigger and this time more people were ascertained to have offered thanksgiving to God. The growing locale had long waited the generation of this opportunity to reciprocate God&amp;rsquo;s loving kindness. In just a few months, more groups were added to the locale. The total number of established groups is 8 with approximately 20-24 members each. The existing groups of the Singapore locale are as follows: &amp;nbsp;Green, Blue, Pink, Beige, Lavender, Orange, Yellow, and Grey. Each group videotaped at different interesting locations in Singapore. The Lavender Group, for one, recorded its location shooting at the Esplanade where the group almost perfectly executed its performance with God` s help. Even if the number of people who thanked God has dramatically increased, the cooperation of every member including the cameramen dispensed to each group whose efforts seemed errorless.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Other places depicted as part of the presentation were the world renowned Sentosa Island &lt;br /&gt;
+Resort where one can experience an overview of the underwater world. This was the choice of the Yellow group. The beautiful and very oriental Chinese Garden was for the Gray Group, and so on. Apparently, all groups performed joyfully to give praise to our Almighty God.&lt;/p&gt;
+&lt;p class="text_normal"&gt;The Locale of Singapore is obviously getting bigger. Currently, more groups are waiting to be added since more and more people are coming in as newly-baptized members, if not old members wanting to seek opportunities in Singapore. Right now close to 10 people undergo indoctrination including another Chinese Singaporean. They too paid and heed to the glorious event.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Likewise, present during the Thanksgiving were the locale&amp;rsquo;s babies indoctrinated and baptized in Singapore, September of this year, Sister Katrina Esperanza and Brother Harold Valiente. Brother Harold has opted to join the roster of workers of the church for God. He is currently learning the training process for being a worker of God here in Singapore. Brother Simon Ho, our Singaporean brother who was indoctrinated and baptized in Singapore gave thanks and sang our Tagalog hymns with gusto and inspiration.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Special treats included group songs and dances. Along with the offerings was a bubbly hymn danced into by the Women&amp;rsquo;s Teatro Kristiano wherein mothers who are professionals found time to practice no matter how late it took them. In addition, mothers- to- be linked up with the Women&amp;rsquo;s Teatro Kristiano. They got together and danced onstage and so did their children who also felt ecstatic being members of the Teatro Kristiano.&lt;/p&gt;
+&lt;p class="text_normal"&gt;As the songs prepared by the locale were being played in the widescreens, they were being simultaneously viewed in Apalit, Pampanga, Philippines. ADDCIT Singapore and Apalit coordinated well and made the celebration a success. Every true Christian accepts the Biblical fact that everything must be executed with perfection when offering thanksgiving to God to please Him. A loving heart and a clean mind, that is. According to Brother Eli and Brother Daniel, &amp;ldquo;If it is for God it must be the best, and if it is from God, it must be good&amp;ldquo;. Our sensible Brother Eli never fails to teach us that our best performance must be carried through for God and never to satisfy one&amp;rsquo;s vanity or to impress spectators. Every bit of talent must be &amp;nbsp;applied &amp;nbsp;and &amp;nbsp;be &amp;nbsp;returned &amp;nbsp;to God, &amp;nbsp;every piece to be used &amp;nbsp;to spread &amp;nbsp;God&amp;rsquo;s &amp;nbsp;gospel for everyone to obtain the greatest &amp;nbsp;hope, the hope of &amp;nbsp;salvation...&lt;/p&gt;
+&lt;p class="text_normal"&gt;&amp;ldquo;All we can say with humbleness is AMEN!&amp;rdquo; Bro Robert Navoa said as he exudes his joy thru email for the brethren in locale of Singapore.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Indeed! Because another fruitful day has come, marked on November 9, 2008 at Geylang Football Club, Bedok, Singapore to glorify His everlasting name and endlessly give thanks for all His unspeakable gifts.&lt;/p&gt;</Content>
+    <Author>Priscilla Mendoza</Author>
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-03-11T15:02:08.587+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>17</Id>
+    <Title>PROFESSIONAL MEMBERS IN ACTION</Title>
+    <Image />
+    <Description>&lt;p&gt;Singapore is known as the country having amassed of talented foreign professionals. People especially Filipinos went here to earn a living and to sustain their family needs.&amp;nbsp;&amp;nbsp;&lt;/p&gt;</Description>
+    <Date>2009-03-10T21:30:00+08:00</Date>
+    <Content>&lt;p class="text_normal" align="justify"&gt;Singapore is known as the country having amassed of talented foreign professionals. People especially Filipinos went here to earn a living and to sustain their family needs. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;For the Members Church of God International &amp;ndash; Singapore Chapter, with the guidance and good grace of our Almighty God, brethren would like to extend the love and kindness not only for the benefit of the congregation and for the benefit of their family in the Philippines, but also outside the church.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;All professional members in this chapter apart from their field of expertise, being driven by faith, have united and lend their help in supporting different ministerial works and public service here in Singapore.&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-03-11T15:07:03.6+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>18</Id>
+    <Title>Free Computer Lesson and Bible Study</Title>
+    <Image />
+    <Description>&lt;p&gt;Started during the first month of the year 2007, &lt;em&gt;Free Computer Lesson&lt;/em&gt; was given for those who want to acquire computer knowledge. This is a classroom training set up with basic computer modules to run during the whole course training and allows student to have a hands-on experience using desktop computers.&lt;/p&gt;</Description>
+    <Date>2010-03-10T21:30:00+08:00</Date>
+    <Content>&lt;p class="text_normal" align="justify"&gt;Started during the first month of the year 2007, &lt;em&gt;Free Computer Lesson&lt;/em&gt; was given for those who want to acquire computer knowledge. This is a classroom training set up with basic computer modules to run during the whole course training and allows student to have a hands-on experience using desktop computers. This takes place every Sunday with two group sessions (Morning session, 10AM-2PM and Afternoon session, 2-4PM). &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Most of the students are Domestic Helpers having zero knowledge on computers, but they are able to learn quickly. In such case, what they have learned will open the door for other employment opportunities and for their own personal use. They spent their free time learning the basic computer skills as well as to hear the word of God in the Bible taught to them during Bible study. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Some of members of the church that encompass with strong technical and computer background trained the students. No requirements are given, only their eagerness to study the computer lesson and the teachings being taught in the Holy Scripture. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;The materials being used and maintained in the training room are given by the concerted effort of members of the church. The abiding commitment given by them enabled students to experience the advantage of technology and attain their full potential.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Currently, eight students were enrolled and enthusiastically spend their time erudition to a valuable undertaking. In addition, five of them are now under indoctrination every Sunday and they have just finished the eighth topic taught by Brother Eli Soriano.&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-03-11T15:08:05.117+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>19</Id>
+    <Title>FIRST KAPI SINGAPORE FUN-DAY</Title>
+    <Image />
+    <Description>&lt;p&gt;&lt;img hspace="2" border="2" align="left" src="/Content/Parts/Integration/Assets/images/Sites/mcgisg/kapi_thumb.jpg" style="padding: 3px;" alt="" /&gt;Sunday, July 27th marked another first in the book of Singapore locale church. More than 50 KAPIans and their families assembled in Costa Sand Pasir Ris Park to enjoy the cloudy day and zephyr coming from the still sea ...and the only source of heat felt were the hearts of KAPIans longed to kick-off the involvement and pressure&lt;/p&gt;</Description>
+    <Date>2008-09-26T21:30:00+08:00</Date>
+    <Content>&lt;p class="text_normal"&gt;Sunday, July 27th marked another first in the book of Singapore locale church. More than 50 KAPIans and their families assembled in Costa Sand Pasir Ris Park to enjoy the cloudy day and zephyr coming from the still sea ...and the only source of heat felt were the hearts of KAPIans longed to kick-off the involvement and pressure&lt;/p&gt;
+&lt;p class="text_normal"&gt;that our ministry is embracing. After a light breakfast of &amp;quot;lugaw&amp;quot;, KAPIans stepped on the grass and begun the exercise with our Dance Instructors Bro Ralph and Bro Oliver as the bible told us that &amp;quot;For bodily exercise profiteth little: but godliness is profitable unto all things,&amp;quot; Even our not so young KAPIans cracked their sleeping nerves and started the fun of stretching ... of smile ...of laughters ...of involvement in their own funny way... KAPIans were grouped into two teams for a friendly matched. Yellow vs. Green. The games commenced when both teams kicked off the lush grass of Pasir Ris Park and showcase their bring-it-on-cheer. Keyed-up KAPIans eagerly laid bare their 20 minutes impromptu cheering. The Green Team, to our surprise, displayed the best cheering in the history of Singapore locale church`... (Applause please) Too bad you have not seen ...but we will try to upload it on you tube God willing. Remember the game that our Kuya told us on previous Thanksgivings.... the next game was the message relay. The challenge was who can deliver the original message unflawed ...unblemished ...no period or comma excluded. For those that came in mid-day. Lunch is their first activity though.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Aside from games, definitely there were delicious and healthy Filipino food served.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Hungry KAPIans enjoyed the food under the sky with gentle breeze from the sea and chattering with their loved ones and brethrens. Before they want to lay down and take a nap ...the sports organizer started the biggest challenge of the day... The Bigger the Better. This game is about marketing and commerce. Starting from a pen, it will be traded by another object of higher value. The team leader of Yellow Team proudly promised an LCD screen ...and they actually won. But it's not an LCD though. They traded the 10cents worth pen with S$14.60. They won because they let all the groups be involved and feel the pressure. Green Team on the other hand did the same. Then the next game was forming the star blind-folded. Well at least they all tried to make it like-a-star. We ended the game with a Taboo-KAPI version.&lt;/p&gt;
+&lt;p class="text_normal"&gt;It's not everyday that we were visited by the Board of Trustees. However this day, was not ordinary. Bro Israel Soriano put across to KAPIans the significance of involvement and pressure. On how Singapore KAPIans should enshoulder the ministry and not merely hand carry the load that our ministers are bearing. He also decided who won the games. In the end ...it's not the amount ...but the experience ...the involvement and the pressure that we felt that matters... Awarding was exciting because we have KVI products as a token for the winner ...the GREEN GROUP were awarded by Bro Israel Soriano and Bro Michael del Rosario. One day is not enough indeed but at least the smile and the fun will linger for sometime ...what matters is ...we have made a start ...a single step of our journey towards embracing the pressure of our leaders ....setting forth our vision on the unseen ...so that in God's time ...we can vision and live on His Promise ...no more pressure ...but heavenly pleasure ...forever.&lt;/p&gt;</Content>
+    <Author>Mary Jo Maleriado</Author>
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-03-11T15:23:14.5+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>20</Id>
+    <Title>Welcome Brethren… Happy Thanksgiving Day in Singapore!</Title>
+    <Image />
+    <Description>&lt;p&gt;&lt;img hspace="2" alt="" align="left" style="padding-bottom: 2px; padding-left: 2px; padding-right: 2px; padding-top: 2px" src="/Content/Parts/Integration/Assets/images/Sites/mcgisg/pbk1208_thumb.jpg" /&gt;How far is Haw Par? Well, that is not the question for the people of GOD&amp;hellip; Distance will not matter in celebrating the INTERNATIONAL THANKS GIVING DAY.&lt;/p&gt;</Description>
+    <Date>2010-12-28T21:30:00+08:00</Date>
+    <Content>&lt;p class="text_normal" align="justify"&gt;How far is Haw Par? Well, that is not the question for the people of GOD&amp;hellip; Distance will not matter in celebrating the INTERNATIONAL THANKS GIVING DAY.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Three months have passed and another two consecutive days are given to us to celebrate this very big event. As expected, each one of us who were enlightened of the Righteousness of GOD is preparing for this very moment of offering our gratitude to HIM for all His Loving Kindness and Unspeakable gifts. Song of Praises with graceful movements and heartfelt Hymns as presentation by the whole nation of GOD in our times that is being led by HIS chosen vessels, Brother Eli Soriano and Brother Daniel Razon. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Here in Singapore, Haw Par Techno Centre is the place where the locale gathered to unite with the brethren from other places, emanating from Apalit, this very special moment. Celebration wherein we sing, dance and gather to hear the Wisdom of God, together with the newly baptized (&amp;ldquo;bunsong kapatid&amp;rdquo;) and newly arrived brethren from other countries, particularly those who came from the Philippines. This is something that is not so new to us. Nevertheless, we are still eager to hear how delighted they are to partake the Thanksgiving Day abroad. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&lt;u&gt;Below is a short interview conducted with newly baptized brethren&amp;hellip;&lt;/u&gt;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&lt;em&gt;How do you feel celebrating this event with the brethren here in Singapore?&lt;/em&gt;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&amp;ldquo;This is my second time to attend the International Thanksgiving Day. The first one was when I was still one of the guests and at present, that I am now a member, Thanks be to GOD! I can say that I feel more excited and more prepared than before when I was not yet part of the True Church. I am amazed how vast we are&amp;hellip;nothing can be compared to this kind of event. Truly how happy I am to see that we also celebrate with the brethren whom are of different nationalities. I wish to see and meet our Presiding Ministers, Bro. Eli and Bro. Daniel, personally.&amp;rdquo; sister Irene Sula exclaimed. She was baptized on July of the same year and now celebrating together with us.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Also Sister Katrina Esperanza, who was recently baptized, said that it is not her first time because she used to be attending the previous same event. &amp;ldquo;But it is very different, now that I am a sister in Faith. I am overjoyed in spite of some hindrances being encountered upon the preparations. Indeed, it is different and cannot be compared to other congregations. Unable to expound but I truly feel blissful.&amp;nbsp; Thanks be to GOD for I now belong to one of HIS called out ones.&amp;rdquo;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&lt;u&gt;This time, let us hear from other brethren who are not &amp;ldquo;so new&amp;rdquo; but newly arrived brothers and sisters&lt;/u&gt;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&lt;em&gt;Is this your first time to join the International Thanksgiving here in Singapore?&lt;/em&gt;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&amp;ldquo;Yes, this is the first time for me and my family.&amp;rdquo; Bro. Erwin San Miguel answered. He and his wife will turn seven Godwilling on October 19 and 12 this year. They have just arrived from the Philippines together with their children. &amp;ldquo;We usually celebrate ITG in Apalit so we cannot deny the fact that it is better there. But what we have here right now is a better place, very orderly. There is an area for KNC which makes easier for us to listen to the topic being preached by Bro. Eli and Bro. Daniel. I am expecting to learn more about the Word of GOD through them.&amp;rdquo;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&lt;em&gt;How do you feel?&lt;/em&gt;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&amp;ldquo;I feel the same way I felt when I was baptized. I feel HIS Love that I could not express in words. Sometimes, I even could not contain it in my heart, only tears will flow out of my eyes&amp;hellip; I might be missing my love ones for I am afar. But I know in my heart, I thank Him for HIS Loving Kindness that all my prayers are being answered. Through His Mercy I have the chance to continue serving Him wherever I may be. I am blessed to experience my first International Thanksgiving in Singapore&amp;rdquo; said Brother Rovic Balunsay. He is from Central Apalit and also came here to practice his profession.&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Another brother, CJ Tanedo from Locale of Cubao Aurora, is here for a few days of business trip.&amp;nbsp; He has exhibitions of Art work to attend and apparently his first experience too &amp;ldquo;My heart is very glad to know that we have a locale here in Singapore. It is hard to intermingle with different races with different culture, which can be a cause for us to fail to remember His doctrines. That&amp;rsquo;s why I Thank GOD for HIS love and care. Even I am in a different place, seeing that we have brothers and sisters here and together we will offer our Praises, I really feel blessed that HE is not allowing us to go astray.&amp;rdquo;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Further unexplainable expressions from Sister Shennivi Dela Vega, &amp;ldquo;I am overjoyed to experience this event here in Singapore. I can&amp;rsquo;t believe that I&amp;rsquo;m already here that even though it is the same celebration as we have in Apalit, however I feel more of excited, perhaps because of the place, well that is given because it&amp;rsquo;s beautiful and more convenient here..&amp;rdquo; she utters with smile &amp;ldquo;..But perhaps that feeling of appreciations that no words can express (basta hindi ko maipaliwanag,e). I was like watching the brethren from here who were offering thanksgiving a few weeks ago, and then now I&amp;rsquo;m also here to offer thaksgiving together with the brethren I was just watching before...&amp;rdquo; sister Shennivi graciously stated. She&amp;rsquo;s from Mindanao Region, younger sister of our sister in Faith Cristy Alovera, one of locale secretaries, and currently looking forward to stay here for a long term with her family who are also members of the Church of GOD (kasambahay).&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&lt;em&gt;What is the difference between you celebrating the ITG here in SG and when you were in the Philippines?&lt;/em&gt;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Brother Romy Santisteban from Locale of Tartaria, East District in Cavite Region, came here to search for a job. He has just arrived a few weeks ago and he will experience as well the offering of praises, this time, in Singapore. &amp;ldquo;Celebrating here, although may not be as crowded as we are in Apalit, yet the spirit of enthusiasm is still being felt. I could say that there is a feeling of longing with the way I usually do back in our locale in the Philippines especially in Thanksgiving Day preparations. But regardless of the place, this should always be treated as one of a very treasured moment in acknowledging HIS Greatness and Goodness to all of us. One of those chances that we should not miss.&amp;rdquo; &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&lt;em&gt;What are the preparations you have done before the actual celebration?&lt;/em&gt;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Brother Oliver Coderes who was baptized on July 16, 1999 said &amp;ldquo;Firstly, preparation of our conscience. All hatreds, resentment, and uncleanness must e removed from our being. Instead, forgiveness, kindness, and love to our brothers and sisters in Faith and even non-brethren. Assessment of myself and our songs of praises together with our offerings. Other material things are the last priority.&amp;rdquo; He arrived a few days ago also for a job opportunity here in Singapore. &amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;&lt;strong&gt;And recently&lt;/strong&gt;, we happen to hear good news about the opening of locale in Malaysia. Currently, one of our OICs, Brother Mel Pingal with his behalf, is the one being assigned to take good care of our brethren from the said place. How glad we are as they travelled miles away to participate this special celebration together with us.&lt;/p&gt;
+&lt;p align="justify"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Brother Dexter Ariso, one who comes from there, shares his thoughts &amp;ldquo;this is not my first time, nevertheless I thank God for giving us again the opportunities to celebrate this special day with the brethren here in Singapore. Although the trip will take 12 hours through taking a bus ride and may exhaust us physically, however, thinking that once again we will reunite with brothers and sisters here, eases the feeling of weariness. It&amp;rsquo;s hard when you are in a country where you are being surrounded by those which are against our doctrines, especially the food that are prohibited to eat and the people you work with everyday. However, Thanks to GOD that even we are in the distance, we still have the opportunities to attend our gatherings, Thanksgiving Day in particular, through means of satellite monitoring. But along with happiness is still a little sadness because we&amp;rsquo;re just a few who offer songs of praises, sometimes you just dance alone. Feel like incomplete, unlike the joy brought by the Quarterly Thanks giving, where we gather with a huge company of brothers and sisters. Hence, Thanks be to GOD for all HIS guidance and for all the brethren whom HE continuously allow to be with us. The feeling which cannot be written in words, just &amp;lsquo;Thank YOU&amp;rsquo;&amp;hellip;&amp;rdquo;&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Certainly, we cannot fathom nor count every good thing HE does in our lives. The only thing that we can do is to acknowledge HIS Greatness and Glorify HIM through offering our praises. It is very pleasing to hear that wherever we are, through HIS grace and mercy, the spirit of having this pure intent of showing how we appreciate all the Loving Kindness of GOD and HIS Greatness is still within our being. We are thanking HIM because HE gave us Brother Eli and Brother Daniel that is why we understand this true meaning of Glorifying HIM. Thanks be to God for all HIS unspeakable gifts! Truly the righteous will say &amp;ldquo;....I will go also&amp;hellip;&amp;rdquo; Zechariah 8: 21&amp;nbsp;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;p class="text_normal" align="justify"&gt;Happy Thanks Giving!&lt;/p&gt;</Content>
+    <Author>Marivic Aquino</Author>
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2011-02-26T10:29:37.243+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>115</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>21</Id>
+    <Title>Transient…out of compassion (from the big heart)</Title>
+    <Image />
+    <Description>&lt;p class="text_normal"&gt;&lt;img hspace="2" align="left" src="/Content/Parts/Integration/Assets/images/Sites/mcgisg/transcient_thumb.jpg" style="padding: 3px;" alt="" /&gt;Compassion... Nowadays, we seldom see people who take time rendering their sympathy to others. Allotting one&amp;rsquo;s care and kindness seems to be a difficult task. You may consider yourself fortunate if someone will provide you mercy because the pure intent of giving out compassion can only be seen to a few.&lt;/p&gt;</Description>
+    <Date>2008-10-21T21:30:00+08:00</Date>
+    <Content>&lt;p class="text_normal"&gt;Compassion... Nowadays, we seldom see people who take time rendering their sympathy to others. Allotting one&amp;rsquo;s care and kindness seems to be a difficult task. You may consider yourself fortunate if someone will provide you mercy because the pure intent of giving out compassion can only be seen to a few. Indeed from a few, there comes Brother Eli Soriano and Brother Daniel Razon&amp;hellip;&lt;/p&gt;
+&lt;p class="text_normal"&gt;One time, while watching the film &lt;em&gt;&lt;a href="http://en.wikipedia.org/wiki/The_Pursuit_of_Happyness" target="_blank"&gt;The Pursuit of Happyness&lt;/a&gt;&lt;/em&gt;, Brother &lt;a href="http://www.danielrazon.com/" target="_blank"&gt;Daniel Razon&lt;/a&gt; who is the vice presiding minister of &lt;a href="http://www.untvweb.com/" target="_blank"&gt;Members of the Church of God International&lt;/a&gt; and host of &lt;em&gt;&lt;a href="http://www.untvweb.com/" target="_blank"&gt;Good Morning Kuya&lt;/a&gt;, was able to see a scene that caught up his attention. In the scene &lt;/em&gt;wherein a certain character named Chris Gardner (played by Will Smith) and his son were forced to move into a &lt;em&gt;transient house &lt;/em&gt;offering first-come first-served one-night free accommodation to the homeless in San Francisco, California. This &lt;em&gt;prompted Brother Daniel to come up with an idea to adapt the concept of building a free temporary dwelling place for the less-fortunate in our country. However, he held in reserve the scheme to himself first, thinking of a very good timing, before proposing the concept to &lt;/em&gt;Brother Eli who is the Presiding minister of MCGI and &lt;em&gt;Ang Dating Daan&lt;/em&gt; (The Old Path) host.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Little did Kuya (Brother Daniel) know, Brother Eli from the other side of the world where he is currently propagating the Word of Truth, was watching the same movie and was astounded by the same scenario. Innately compassionate, big-hearted and concerned for the welfare of the less-fortunate, he immediately called Kuya Daniel Razon and discussed his plan of adapting the concept of the free transient house in the Philippines. The idea of setting the right time to relay the plotted proposal to Brother Eli happened earlier than what Kuya was planning. The signal he was hoping for came into reality and he promptly heeded Brother Eli&amp;rsquo;s order. A vacant edifice near the new UNTV Building was transformed into the &lt;em&gt;Philippines&amp;rsquo; first free transient house&lt;/em&gt;, the &lt;strong&gt;Kamanggagawa Foundation Transient Home&lt;/strong&gt;.&lt;/p&gt;
+&lt;p class="text_normal"&gt;Still with modesty intact, this project is only one of the public services that have been produced with an immediate action. Prior to this, they also have initiated UNTV&amp;rsquo;s free daily medical and legal services, &lt;em&gt;libreng sakay&lt;/em&gt; (free bus ride) and free MRT tickets to senior citizens. Moreover, the first feeding program and simple wishes (munting pangarap) being granted under the Brother Eli and Brother Daniel Foundation. Truly, they set good examples to teach and influence others, especially those who are affiliated in the Church, on how to give compassion out of God&amp;rsquo;s loving kindness because service to humanity has always been one of their primary missions. Hence, as they lead the Church, despite a perennial barrage of criticisms from detractors, their fervent, steadfast drive to serve mankind by all godly means has never been doused.&lt;/p&gt;
+&lt;p&gt;&lt;span class="text_normal"&gt;Certainly, compassion from the one who has a big heart, all these good deeds can possibly be done. How grateful are we to the ONE SO GREAT WHO shaped this big heart.&lt;/span&gt;&lt;/p&gt;</Content>
+    <Author>Marivic Aquino</Author>
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-03-11T16:35:32.69+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>22</Id>
+    <Title>MCGI's Seven-Session Mass Indoctrination Set on February 8</Title>
+    <Image />
+    <Description>&lt;p&gt;&lt;strong&gt;&lt;img height="66" alt="" width="150" align="left" style="padding-right: 3px; padding-left: 3px; padding-bottom: 3px; padding-top: 3px" src="/Content/Assets/Uploads/image/Sites/mcgi_website/mass-indoctrination.jpg" /&gt;Singapore &lt;/strong&gt;&amp;ndash; A seven-day Mass Indoctrination will be held by the Ang Dating Daan (The Old Path) program host, Bro. Eliseo Soriano come February 8, 2010 (PHT) at all Members Church of God International coordinating centers in the Philippines and hook-ups abroad.&lt;/p&gt;</Description>
+    <Date>2010-02-03T21:30:00+08:00</Date>
+    <Content>&lt;p&gt;&lt;strong&gt;&lt;img height="241" width="550" style="padding-right: 3px; padding-left: 3px; padding-bottom: 3px; padding-top: 3px" alt="" src="/Content/Assets/Uploads/image/Sites/mcgi_website/mass-indoctrination.jpg" /&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Singapore &lt;/strong&gt;&amp;ndash; A seven-day Mass Indoctrination will be held by the Ang Dating Daan (The Old Path) program host, Bro. Eliseo Soriano come February 8, 2010 (PHT) at all Members Church of God International coordinating centers in the Philippines and hook-ups abroad. And here in Singapore, the&lt;/p&gt;
+&lt;div&gt;Live Mass Indoctrination was graced by fifteen attendees and with God&amp;rsquo;s grace and help- 6 proceeded to membership.&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;The Mass Indoctrination was prompted of the necessity, according to MCGI Presiding Minister bro Eli Soriano in his YouTube invitation. According to him, many people in the Philippines and in almost all parts of the world is awaiting for the Good News to come. He pointed out mass indoctrinations are actually meant for those that go to Bible Expositions and listen to the preacher on television, radio and web programs. These people, he said are asking how to become members of the congregation, the Church of God International.&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Further in his video invitation, multi-award winner Bro Eli stressed pointed out,&amp;quot;This happens when you have received the doctrines that the Lord Jesus Christ teaches in its entirety. So this mass indoctrination is the instruction of the entire doctrines of the Lord Jesus, the commandments that must be fulfilled for a person to be a true Christian. I hope that you will give time and accept our invitation, our fellowmen, and may God bless you.&amp;quot;&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Bible Expositions are held at least semiweekly worldwide via the Internet at MCGI chapters in in South America, Europe, Asia, Middle East, and Africa, and vast venues like the Araneta Coliseum hotels in the Philippines&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;It is in these events where people get to ask Bro. Eli on religious belief and religion live, while he reads to them the answers straight from passages of the Holy Scriptures. Living by what it claims in program's slogan, &amp;quot;Ask Bro. Eli, the Bible Will Answer&amp;quot;.&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;For information on an MCGI chapter near you or for any question regarding the upcoming nationwide Mass Indoctrination and more, please visit &lt;strong&gt;&lt;a href="http://www.mcgisg.org/"&gt;http://www.mcgisg.org/&lt;/a&gt;&lt;/strong&gt;&lt;/div&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-03-12T15:51:55.413+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>23</Id>
+    <Title>MCGI-Singapore: All Set for International Thanksgiving</Title>
+    <Image />
+    <Description>&lt;div&gt;&lt;img alt="" align="left" width="150" height="113" style="padding-bottom: 3px; padding-left: 3px; padding-right: 3px; padding-top: 3px" src="/Content/Assets/Uploads/image/Sites/mcgi_website/ITG-all-set.jpg" /&gt;The heat is on! After 1968 and 2005, Singapore hit the highest temperature of 35degrees Celsius again on February 2010, it is not just because its summertime but because El Nino effect. This is really so hot that people living here would rather stay indoor than go out on day time. But this heat doesn&amp;rsquo;t match the happiness and excitement in the hearts of the Members of Church of God here in Singapore! They are all set to be a part of quarterly Thanksgiving to God of the whole congregation.&lt;/div&gt;</Description>
+    <Date>2010-03-11T21:30:00+08:00</Date>
+    <Content>&lt;p&gt;&lt;img alt="" align="left" width="300" height="225" style="padding-bottom: 3px; padding-left: 3px; padding-right: 3px; padding-top: 3px" src="/Content/Assets/Uploads/image/Sites/mcgi_website/ITG-all-set.jpg" /&gt;The heat is on! After 1968 and 2005, Singapore hit the highest temperature of 35degrees Celsius again on February 2010, it is not just because its summertime but because El Nino effect. This is really so hot that people living here would rather stay indoor than go out on day time. But this heat doesn&amp;rsquo;t match the happiness and excitement in the hearts of the Members of Church of God here in Singapore! They are all set to be a part of quarterly Thanksgiving to God of the whole congregation.&lt;/p&gt;
+&lt;p&gt;Starting from choir and Teatro Kristiano who- at almost all part of jamming- will lead the brethren in singing and dancing, thus they are ready add life and spice on singing sessions; then the GCOS (Guest Coordinating Committee) who are assigned to look after the visitors and visiting brethrens for these 3days, the medical team care of Lingap committee, plus the joint efforts of locale officers to make this event organized.&lt;/p&gt;
+&lt;div&gt;This one-of-a-kind quarterly celebration, will be on March 13-15,2010 and all church members around the world is equally thrilled and geared up for this much-awaited event. This includes none-Filipino members around the globe in South America, Europe, Asia, Middle East, and Africa. Monitoring centers in these continents are now prepared and ready for the 3-day event. Not to mention Papua New Guinea who requires larger venue for attendees, especially that there are newly baptized being the fruit of the recent live indoctrination held last February.&amp;nbsp;Likewise in the Philippines where the bulk mass of members live, they are ready and energized. Even those that need to travel very far, they don&amp;rsquo;t mind the hurdles ahead. As such, t the ADD Convention Center, where the biggest bulk of attendees is expected to land, reconstruction, redesigning, and widening projects are up daily. Social welfare amenities, such as the transient house and the hospital, are also ready for the grand event.&amp;nbsp; According to MCGI Vice-Presiding Minister Bro. Daniel Razon, these efforts are aimed at ensuring the safety and comfort of the congregants.&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Bro. Eli Soriano and Bro Daniel Razon will lead the whole congregation for these 3day-happening. Much awaited new wisdoms from the bible is being anticipated for the feast- the feast that is not showered with delectable foods, fireworks, and all fancy decors- but with wisdom from God that our adversaries cannot resist. As mentioned in &lt;strong&gt;Luke 21:15&lt;/strong&gt; &amp;ldquo;&lt;span style="color: #ff0000"&gt;For I will give you a mouth and wisdom, which all your adversaries shall not be able to gainsay nor resist.&lt;/span&gt;&lt;span&gt;&amp;rdquo;&lt;/span&gt;&lt;/div&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2012-06-22T15:47:55.797+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>24</Id>
+    <Title>Thanksgiving and Tanging Awit Guidelines</Title>
+    <Image />
+    <Description>&lt;p&gt;Thanksgiving and Tanging Awit Guidelines. Thanksgiving and Tanging Awit Guidelines Thanksgiving and Tanging Awit Guidelines. Short description goes here&lt;/p&gt;</Description>
+    <Date>2010-04-30T21:30:00+08:00</Date>
+    <Content />
+    <Author />
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-05-16T23:03:33.527+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags>Services Guidelines, Locale Guidelines</Tags>
+  </Articles>
+  <Articles>
+    <Id>25</Id>
+    <Title>Community Prayer (CP): Schedules and How To Attend</Title>
+    <Image />
+    <Description>&lt;p&gt;Community Prayer: Schedules and How To Attend&lt;/p&gt;</Description>
+    <Date>2010-04-30T21:30:00+08:00</Date>
+    <Content>&lt;p&gt;How to Connect at Community Prayer at SG&lt;br /&gt;
+&lt;a href="http://mcgisg.org/cp-howto/index.php"&gt;http://mcgisg.org/cp-howto/index.php&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+CP Link @ SG (use VLC Player)&lt;br /&gt;
+&lt;a href="http://67.205.124.4:8000/cp-audio-only.ogg"&gt;http://67.205.124.4:8000/cp-audio-only.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Pa-post po ng attendance sa top_central_sg&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-06-03T22:16:53.94+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>26</Id>
+    <Title>Locale Services Schedules</Title>
+    <Image />
+    <Description>&lt;p&gt;Locale Services Schedules &amp;amp; Other Activities&lt;/p&gt;</Description>
+    <Date>2010-04-30T21:30:00+08:00</Date>
+    <Content />
+    <Author />
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-05-01T20:18:49.693+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>27</Id>
+    <Title>Services Make-up Procedues</Title>
+    <Image />
+    <Description>&lt;p&gt;Make-up Procedues&lt;/p&gt;</Description>
+    <Date>2010-04-30T21:30:00+08:00</Date>
+    <Content />
+    <Author />
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-05-01T20:19:11.067+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>28</Id>
+    <Title>Singapore Newcomer Orientation</Title>
+    <Image />
+    <Description>&lt;p&gt;Singapore Newcomer Orientation&lt;/p&gt;</Description>
+    <Date>2010-04-30T21:30:00+08:00</Date>
+    <Content />
+    <Author />
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-05-03T12:03:15.277+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>29</Id>
+    <Title>Locale Toilet Usage - Guidelines</Title>
+    <Image />
+    <Description>&lt;p&gt;Locale Toilet Usage - Guidelines&lt;/p&gt;</Description>
+    <Date>2010-04-30T21:30:00+08:00</Date>
+    <Content />
+    <Author />
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-05-15T21:25:01.827+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags>Locale Guidelines</Tags>
+  </Articles>
+  <Articles>
+    <Id>30</Id>
+    <Title>Blood Donation Drive (BDD) - Guidelines</Title>
+    <Image />
+    <Description>&lt;p&gt;Blood Donation Drive (BDD) - Guidelines&lt;/p&gt;</Description>
+    <Date>2010-04-30T21:30:00+08:00</Date>
+    <Content />
+    <Author />
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-05-16T23:05:38.227+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags>Locale Projects, Community Service</Tags>
+  </Articles>
+  <Articles>
+    <Id>31</Id>
+    <Title>Locale Committees Overview - Which one is for you</Title>
+    <Image />
+    <Description>&lt;p&gt;Locale Committees Overview - Which one is for you&lt;/p&gt;</Description>
+    <Date>2010-04-30T21:30:00+08:00</Date>
+    <Content />
+    <Author />
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-05-03T12:04:52.92+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>32</Id>
+    <Title>MCGI Portal - User Manual</Title>
+    <Image />
+    <Description>&lt;p&gt;MCGI Portal - User Manual&lt;/p&gt;</Description>
+    <Date>2010-04-30T21:30:00+08:00</Date>
+    <Content />
+    <Author />
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-05-16T23:04:43.183+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags>Portal Guidelines</Tags>
+  </Articles>
+  <Articles>
+    <Id>33</Id>
+    <Title>ADDCIT Announcement (this is a test)</Title>
+    <Image />
+    <Description>&lt;p&gt;test description here&lt;/p&gt;</Description>
+    <Date>2010-05-12T21:30:00+08:00</Date>
+    <Content>&lt;p&gt;test content here&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-05-13T00:35:21.443+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>34</Id>
+    <Title>Another ADDCIT announcement</Title>
+    <Image />
+    <Description>&lt;p&gt;His concern for people drooling over the election mania is reflected in his tweet cautioning his fellow voters &lt;a href="http://twitter.com/BroEliSoriano/status/13592610296"&gt;&amp;ldquo;not to place their life to politics, as voting is only a part of social life, and not as significant as the purpose of one's existence.&amp;rdquo;&lt;/a&gt; This following reports of election-related violence and harassments which have dotted Philippine polls.&lt;/p&gt;</Description>
+    <Date>2010-05-12T21:30:00+08:00</Date>
+    <Content>&lt;p&gt;His concern for people drooling over the election mania is reflected in his tweet cautioning his fellow voters &lt;a href="http://twitter.com/BroEliSoriano/status/13592610296"&gt;&amp;ldquo;not to place their life to politics, as voting is only a part of social life, and not as significant as the purpose of one's existence.&amp;rdquo;&lt;/a&gt; This following reports of election-related violence and harassments which have dotted Philippine polls.&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-05-13T00:37:29.767+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>-1</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>35</Id>
+    <Title>UNTV News: Mr. Public Service Daniel S. Razon, ginawaran ng Doctor of Humanities Honoris Causa</Title>
+    <Image />
+    <Description>&lt;p&gt;Answer is...&lt;/p&gt;</Description>
+    <Date>2010-06-04T21:30:00+08:00</Date>
+    <Content>&lt;p&gt;It is...&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>4</SiteId>
+    <Active>1</Active>
+    <DateModified>2011-09-29T05:28:32.363+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>36</Id>
+    <Title>Singapore Committees Thanksgiving</Title>
+    <Image />
+    <Description>&lt;p&gt;&lt;strong&gt;Please be reminded of our annual committee thanksgiving. &amp;nbsp;Register your thanksgiving date atleast 4 weeks in advance.&lt;/strong&gt;&lt;/p&gt;</Description>
+    <Date>2010-06-05T21:30:00+08:00</Date>
+    <Content>&lt;div&gt;&lt;span class="Apple-style-span" style="font-size: medium; -webkit-tap-highlight-color: rgba(26, 26, 26, 0.296875); -webkit-composition-fill-color: rgba(175, 192, 227, 0.230469); -webkit-composition-frame-color: rgba(77, 128, 180, 0.230469)"&gt;
+&lt;div&gt;&lt;b&gt;To all committee heads &amp;amp; members;&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;&lt;br /&gt;
+&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;Please be reminded of our annual committee thanksgiving. &amp;nbsp;Register your thanksgiving date atleast 4 weeks in advance.&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;&lt;br /&gt;
+&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;Please see the details below:&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;&lt;br /&gt;
+&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;JUNE&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;ADDPRO, ADDCIT&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;JULY&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;UNTV, WritersConnect&lt;/div&gt;
+&lt;div&gt;July 3, 2010 Asia &amp;amp; Australia Music Ministry and TK&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;AUGUST&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;a href="wlmailhtml:{7B7FDD14-6D40-43E1-A6AB-73F16E2D4786}mid://00000164/!x-usc:x-apple-data-detectors://4/" x-apple-data-detectors="true"&gt;August 7, 2010&lt;/a&gt;&lt;span class="Apple-tab-span" style="white-space: pre"&gt; &lt;/span&gt;&lt;a href="wlmailhtml:{7B7FDD14-6D40-43E1-A6AB-73F16E2D4786}mid://00000164/!x-usc:x-apple-data-detectors://4/" x-apple-data-detectors="true"&gt;SG Choir&lt;/a&gt;&amp;nbsp;&amp;amp; TK&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;SEPTEMBER&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;ODK, LKD, Membership&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;OCTOBER&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;Locale Thanksgiving&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;NOVEMBER&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;a href="wlmailhtml:{7B7FDD14-6D40-43E1-A6AB-73F16E2D4786}mid://00000164/!x-usc:x-apple-data-detectors://5/" x-apple-data-detectors="true"&gt;November 27, 2010&lt;/a&gt;&lt;span class="Apple-tab-span" style="white-space: pre"&gt; &lt;/span&gt;&lt;a href="wlmailhtml:{7B7FDD14-6D40-43E1-A6AB-73F16E2D4786}mid://00000164/!x-usc:x-apple-data-detectors://5/" x-apple-data-detectors="true"&gt;SG Choir&lt;/a&gt;&amp;nbsp;&amp;amp; TK&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;DECEMBER&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;Artist Guild, ADDCon&lt;/div&gt;
+&lt;/span&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+Regards,&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;TOC Singapore&lt;/div&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-06-06T13:24:29.753+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>37</Id>
+    <Title>Singapore Committees Thanksgiving</Title>
+    <Image />
+    <Description>&lt;p&gt;Please be reminded of our annual committee thanksgiving. &amp;nbsp;Register your thanksgiving date atleast 4 weeks in advance.&lt;/p&gt;</Description>
+    <Date>2010-06-05T21:30:00+08:00</Date>
+    <Content>&lt;div&gt;&lt;span class="Apple-style-span" style="font-size: medium; -webkit-tap-highlight-color: rgba(26, 26, 26, 0.296875); -webkit-composition-fill-color: rgba(175, 192, 227, 0.230469); -webkit-composition-frame-color: rgba(77, 128, 180, 0.230469)"&gt;
+&lt;div&gt;&lt;b&gt;To all committee heads &amp;amp; members;&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;&lt;br /&gt;
+&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;Please be reminded of our annual committee thanksgiving. &amp;nbsp;Register your thanksgiving date atleast 4 weeks in advance.&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;&lt;br /&gt;
+&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;Please see the details below:&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;&lt;br /&gt;
+&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;JUNE&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;ADDPRO, ADDCIT&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;JULY&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;UNTV, WritersConnect&lt;/div&gt;
+&lt;div&gt;July 3, 2010 Asia &amp;amp; Australia Music Ministry and TK&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;AUGUST&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;a href="wlmailhtml:{7B7FDD14-6D40-43E1-A6AB-73F16E2D4786}mid://00000164/!x-usc:x-apple-data-detectors://4/" x-apple-data-detectors="true"&gt;August 7, 2010&lt;/a&gt;&lt;span class="Apple-tab-span" style="white-space: pre"&gt; &lt;/span&gt;&lt;a href="wlmailhtml:{7B7FDD14-6D40-43E1-A6AB-73F16E2D4786}mid://00000164/!x-usc:x-apple-data-detectors://4/" x-apple-data-detectors="true"&gt;SG Choir&lt;/a&gt;&amp;nbsp;&amp;amp; TK&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;SEPTEMBER&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;ODK, LKD, Membership&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;OCTOBER&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;Locale Thanksgiving&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;NOVEMBER&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;&lt;a href="wlmailhtml:{7B7FDD14-6D40-43E1-A6AB-73F16E2D4786}mid://00000164/!x-usc:x-apple-data-detectors://5/" x-apple-data-detectors="true"&gt;November 27, 2010&lt;/a&gt;&lt;span class="Apple-tab-span" style="white-space: pre"&gt; &lt;/span&gt;&lt;a href="wlmailhtml:{7B7FDD14-6D40-43E1-A6AB-73F16E2D4786}mid://00000164/!x-usc:x-apple-data-detectors://5/" x-apple-data-detectors="true"&gt;SG Choir&lt;/a&gt;&amp;nbsp;&amp;amp; TK&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;DECEMBER&lt;/b&gt;&lt;/div&gt;
+&lt;div&gt;Artist Guild, ADDCon&lt;/div&gt;
+&lt;/span&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+Regards,&lt;/div&gt;
+&lt;div&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;TOC Singapore&lt;/div&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-06-06T13:26:46.577+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>39</Id>
+    <Title>MCGI Portal Features and Releases</Title>
+    <Image />
+    <Description>&lt;p&gt;Provides general overview of the MCGI Portal features and features for each releases to update the Members on what is available to them for use,&lt;/p&gt;</Description>
+    <Date>2010-07-13T21:30:00+08:00</Date>
+    <Content>&lt;p&gt;14 July 2010 - Initial Version&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Home - Dashboard&lt;/li&gt;
+    &lt;li&gt;Member Directory&lt;/li&gt;
+    &lt;li&gt;News
+    &lt;ul&gt;
+        &lt;li&gt;Church News&lt;/li&gt;
+        &lt;li&gt;Division News&lt;/li&gt;
+        &lt;li&gt;District News&lt;/li&gt;
+        &lt;li&gt;Locale News&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Locale Groups and Committees&lt;/li&gt;
+    &lt;li&gt;Photo Gallery&lt;/li&gt;
+    &lt;li&gt;Media Library&lt;/li&gt;
+    &lt;li&gt;Suggestion Box&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table width="200" cellspacing="1" cellpadding="1" border="1"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;dd&lt;/td&gt;
+            &lt;td&gt;ddd&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;sd&lt;/td&gt;
+            &lt;td&gt;s&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;d&lt;/td&gt;
+            &lt;td&gt;d&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</Content>
+    <Author />
+    <SiteId>7</SiteId>
+    <Active>1</Active>
+    <DateModified>2010-07-15T01:19:29.103+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+  <Articles>
+    <Id>40</Id>
+    <Title>Hymn line-up for the 3rd Quarter of 2012</Title>
+    <Image />
+    <Description />
+    <Date>2012-07-19T21:30:00+08:00</Date>
+    <Content>&lt;p style="text-align: center; "&gt;&amp;nbsp;&lt;span style="font-family: Arial, Helvetica, sans-serif; font-size: large; background-color: none; color: none; line-height: 22px; text-align: center; "&gt;Hymn line-up for the 3rd Quarter of 2012&lt;/span&gt;&lt;/p&gt;
+&lt;div style="color: rgb(74, 74, 74); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 22px; text-align: center; "&gt;&lt;span style="font-family: Arial, Helvetica, sans-serif; "&gt;(For Prayer Meeting/Worship Service)&lt;/span&gt;&lt;/div&gt;
+&lt;div style="color: rgb(74, 74, 74); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 22px; text-align: center; "&gt;&lt;a href="http://www.mediafire.com/?1h9e25vf335g9" target="_blank" style="color: rgb(122, 55, 55); font-family: Arial, Helvetica, sans-serif; "&gt;&lt;b&gt;download link&lt;/b&gt;&lt;/a&gt;&lt;/div&gt;</Content>
+    <Author />
+    <SiteId>16</SiteId>
+    <Active>1</Active>
+    <DateModified>2012-07-20T01:43:11.38+08:00</DateModified>
+    <UserId>3</UserId>
+    <ModifiedUserId>3</ModifiedUserId>
+    <DirectoryId>-1</DirectoryId>
+    <Tags />
+  </Articles>
+</mPortal>

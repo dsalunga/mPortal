@@ -1,0 +1,12 @@
+﻿CREATE PROCEDURE dbo.ODKVisit_Del
+	(
+		@Id int
+	)
+AS
+	SET NOCOUNT ON
+	
+	IF(@Id > 0)
+		DELETE FROM ODKVisit
+		WHERE Id=@Id
+
+	RETURN

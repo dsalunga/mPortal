@@ -1,0 +1,13 @@
+
+/* IE (version 6) */
+/* ----------------------------------------- */
+
+div.blogOnHomePage div.search { left:-220px }
+
+div.portfolioItem { background:#000 }
+div.blogFocus .post { background:#000 }
+div.recentProjects ul li a img { background:none; border:10px solid #000 }
+div.portfolioItem h2 { background:#000 }
+div.blogFocus .post h2 { background:#000 }
+div.singlePost { float:left; width:340px; padding:0 37px 0 0 }
+p.description { margin:40px 0pt 40px 376px }

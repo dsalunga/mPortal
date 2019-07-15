@@ -1,0 +1,299 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Sportsfest">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="MemberId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="100" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="GroupColor">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Age" type="xs:int" />
+                <xs:element name="Mobile">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="EntryDate" type="xs:dateTime" />
+                <xs:element name="Sports">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Locale">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Suggestion">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="CountryCode" type="xs:int" />
+                <xs:element name="ShirtSize">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Sportsfest" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <Sportsfest>
+    <Id>1</Id>
+    <MemberId>-1</MemberId>
+    <Name>Daniel Salunga</Name>
+    <GroupColor>15</GroupColor>
+    <Age>26</Age>
+    <Mobile>+65 8387 1509</Mobile>
+    <EntryDate>2011-01-17T00:18:14.437+08:00</EntryDate>
+    <Sports />
+    <Locale />
+    <Suggestion />
+    <CountryCode>-1</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>2</Id>
+    <MemberId>-1</MemberId>
+    <Name>Daniel Salunga 1</Name>
+    <GroupColor>15</GroupColor>
+    <Age>26</Age>
+    <Mobile>+65 8387 1509</Mobile>
+    <EntryDate>2011-01-17T00:20:34.977+08:00</EntryDate>
+    <Sports>Basketball 5 on 5, Badmin (Doubles)</Sports>
+    <Locale />
+    <Suggestion />
+    <CountryCode>-1</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>3</Id>
+    <MemberId>-1</MemberId>
+    <Name>Daniel Salunga 2</Name>
+    <GroupColor>15</GroupColor>
+    <Age>26</Age>
+    <Mobile>+65 8387 1509</Mobile>
+    <EntryDate>2011-01-17T00:21:02.663+08:00</EntryDate>
+    <Sports>Basketball 5 on 5, Badmin (Doubles)</Sports>
+    <Locale />
+    <Suggestion />
+    <CountryCode>-1</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>4</Id>
+    <MemberId>-1</MemberId>
+    <Name>Daniel Salunga 3</Name>
+    <GroupColor>15</GroupColor>
+    <Age>26</Age>
+    <Mobile>+65 8387 1509</Mobile>
+    <EntryDate>2011-01-17T00:22:57.903+08:00</EntryDate>
+    <Sports>Basketball 5-on-5, Badmin (Doubles)</Sports>
+    <Locale />
+    <Suggestion />
+    <CountryCode>-1</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>5</Id>
+    <MemberId>-1</MemberId>
+    <Name>Daniel Salunga 4</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>26</Age>
+    <Mobile>+65 8387 1509</Mobile>
+    <EntryDate>2011-01-17T00:23:52.837+08:00</EntryDate>
+    <Sports>Badmin (Doubles)</Sports>
+    <Locale />
+    <Suggestion />
+    <CountryCode>-1</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>6</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator</Name>
+    <GroupColor>NO GROUP</GroupColor>
+    <Age>6</Age>
+    <Mobile>83871509</Mobile>
+    <EntryDate>2011-05-12T08:42:47.69+08:00</EntryDate>
+    <Sports>Badminton (Doubles)</Sports>
+    <Locale />
+    <Suggestion />
+    <CountryCode>-1</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>7</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator1</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>65</Age>
+    <Mobile>+6583871509</Mobile>
+    <EntryDate>2011-11-15T08:00:24.233+08:00</EntryDate>
+    <Sports>Badminton (Doubles)</Sports>
+    <Locale>Buenos Aires</Locale>
+    <Suggestion>Sana po malaki ang venue</Suggestion>
+    <CountryCode>237</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>8</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator2</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>65</Age>
+    <Mobile>+6583871509</Mobile>
+    <EntryDate>2011-11-15T08:01:32.097+08:00</EntryDate>
+    <Sports>Badminton (Doubles)</Sports>
+    <Locale>Buenos Aires</Locale>
+    <Suggestion>Sana po malaki ang venue</Suggestion>
+    <CountryCode>237</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>9</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator3</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>65</Age>
+    <Mobile>+6583871509</Mobile>
+    <EntryDate>2011-11-15T08:02:08.86+08:00</EntryDate>
+    <Sports>Scrabble, Badminton (Doubles)</Sports>
+    <Locale>Buenos Aires</Locale>
+    <Suggestion>Sana po malaki ang venue</Suggestion>
+    <CountryCode>230</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>10</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator4</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>65</Age>
+    <Mobile>+6583871509</Mobile>
+    <EntryDate>2011-11-15T08:02:25.703+08:00</EntryDate>
+    <Sports>Game of the Generals</Sports>
+    <Locale>Buenos Aires</Locale>
+    <Suggestion>Sana po malaki ang venue</Suggestion>
+    <CountryCode>230</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>11</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator5</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>65</Age>
+    <Mobile>+6583871509</Mobile>
+    <EntryDate>2011-11-15T08:03:06.713+08:00</EntryDate>
+    <Sports />
+    <Locale />
+    <Suggestion />
+    <CountryCode>-1</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>12</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator11</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>64</Age>
+    <Mobile>+6583871509</Mobile>
+    <EntryDate>2011-11-16T00:07:22.677+08:00</EntryDate>
+    <Sports />
+    <Locale />
+    <Suggestion />
+    <CountryCode>-1</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>13</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator12</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>64</Age>
+    <Mobile>+6583871509</Mobile>
+    <EntryDate>2011-11-16T00:08:01.03+08:00</EntryDate>
+    <Sports>Basketball 5-on-5, Badminton (Doubles)</Sports>
+    <Locale>test</Locale>
+    <Suggestion>test</Suggestion>
+    <CountryCode>416</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>14</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator13</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>64</Age>
+    <Mobile>+6583871509</Mobile>
+    <EntryDate>2011-11-16T00:08:20.333+08:00</EntryDate>
+    <Sports />
+    <Locale>test</Locale>
+    <Suggestion>test</Suggestion>
+    <CountryCode>416</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>15</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator14</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>64</Age>
+    <Mobile>+6583871509</Mobile>
+    <EntryDate>2011-11-16T00:08:34.69+08:00</EntryDate>
+    <Sports>Scrabble, Table Tennis</Sports>
+    <Locale>test</Locale>
+    <Suggestion>test</Suggestion>
+    <CountryCode>416</CountryCode>
+    <ShirtSize />
+  </Sportsfest>
+  <Sportsfest>
+    <Id>16</Id>
+    <MemberId>-1</MemberId>
+    <Name>Portal Administrator15</Name>
+    <GroupColor>Brown</GroupColor>
+    <Age>18</Age>
+    <Mobile>+6583871509</Mobile>
+    <EntryDate>2011-12-17T15:45:33.44+08:00</EntryDate>
+    <Sports>Basketball 5-on-5, Badminton (Doubles)</Sports>
+    <Locale>Singapore</Locale>
+    <Suggestion>Wala naman</Suggestion>
+    <CountryCode>416</CountryCode>
+    <ShirtSize>XXL</ShirtSize>
+  </Sportsfest>
+</mPortal>

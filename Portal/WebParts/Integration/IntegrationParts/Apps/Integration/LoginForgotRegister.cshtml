@@ -1,0 +1,271 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.Integration
+@{
+    var mode = string.Empty;
+    var email = string.Empty;
+    var cid = string.Empty;
+    var dob = string.Empty;
+    var step = AccessSteps.Step10_EnterCIDEmail;
+
+    if (!IsPost)
+    {
+        var context = new WContext(this);
+        var element = context.Element;
+        //var forgotPasswordUrl = element.GetParameterValue(AccountConstants.ForgotPasswordUrl);
+        //if (!string.IsNullOrEmpty(forgotPasswordUrl))
+        //    linkForgot.HRef = forgotPasswordUrl;
+
+        mode = context.Get(AccountConstants.ModeKey);
+        if (mode == AccountConstants.ModeLogOff)
+        {
+            string sessionId = context.Get(WConstants.SessionId);
+            if (!string.IsNullOrEmpty(sessionId))
+            {
+                var session = WSession.UserSessions.Sessions.FirstOrDefault(i => i.SessionId.ToString()
+                        .Equals(sessionId, StringComparison.InvariantCultureIgnoreCase));
+                if (session != null && session.UserId > 0) // Make sure user has a valid active session
+                {
+                    var request = Context.Request;
+                    if (/*request.UserAgent == session.UserAgent &&*/ request.UserHostAddress == session.IPAddress)
+                    {
+                        WSession.LogOff(session.UserId);
+                    }
+                }
+            }
+
+            // Log-Off
+            WSession.LogOff();
+            // WSession.ClearLoginCookie(Context);
+
+            var signOutRedirect = Request[WQuery.SourceKey];
+            if (!string.IsNullOrEmpty(signOutRedirect))
+            {
+                WQuery.StaticRedirect(signOutRedirect);
+            }
+            else
+            {
+                signOutRedirect = element.GetParameterValue(AccountConstants.SignOutRedirect, null);
+                if (!string.IsNullOrEmpty(signOutRedirect))
+                {
+                    WQuery.StaticRedirect(signOutRedirect, false);
+                }
+                else if (!string.IsNullOrEmpty(signOutRedirect = context.Get(AccountConstants.SignOutRedirect)))
+                {
+                    WQuery.StaticRedirect(signOutRedirect, false);
+                }
+                else
+                {
+                    WQuery.StaticBaseRedirect("/");
+                }
+            }
+        }
+        else if (mode == AccountConstants.ModeForgot)
+        {
+            // Forgot Password
+            var loginUrl = element.GetParameterValue(AccountConstants.LoginUrl);
+            if (!string.IsNullOrEmpty(loginUrl))
+            {
+                var query = context.Query.Clone();
+                query.BasePath = loginUrl;
+                //linkLogin.HRef = query.BuildQuery();
+                //linkLogin2.HRef = query.BuildQuery();
+                //linkLogin3.HRef = query.BuildQuery();
+            }
+
+            //if (!string.IsNullOrEmpty(forgotPasswordUrl))
+            //    context.BasePath = forgotPasswordUrl;
+            //else
+            //    context.Set(AccountConstants.ModeKey, AccountConstants.ModeForgot);
+
+            //linkForgot.HRef = context.BuildQuery();
+            //MultiView1.SetActiveView(viewForgot);
+        }
+        else if (mode == AccountConstants.ModeActivate)
+        {
+            // Activate Account
+            string sUsername = context.Get("User");
+            string sGuid = context.Get("ConfirmCode");
+
+            //MultiView1.SetActiveView(viewActivation);
+        }
+        //else if (mode == AccountConstants.OtpVerify)
+        //{
+        //    // Verify OTP Code
+        //    var otpCache = Session[AccountConstants.OtpCacheKey] as OtpCache;
+        //    if (otpCache != null)
+        //    {
+        //        lblOtpType.InnerHtml = otpCache.OtpType == 0 ? "e-mail" : "mobile";
+        //        lblOtpExpiry.InnerHtml = DateTimeHelper.TimeIntervalToString(OtpCodeGenerator.GetExpiry(), TimeInterval.Minute);
+
+        //        if (otpCache.SentToEmailInstead)
+        //            lblOtpMsg.Text = "There is no valid mobile number defined in your profile. The OTP PIN was sent to your e-mail instead.";
+
+        //        MultiView1.SetActiveView(viewOtpVerification);
+        //    }
+        //    else
+        //    {
+        //        // Invalid Session Info
+        //        context.Remove(AccountConstants.ModeKey);
+        //        context.Redirect();
+        //    }
+        //}
+        else
+        {
+            // Regular Login View
+
+            var allowRememberLogin = DataHelper.GetBool(element.GetParameterValue(AccountConstants.EnableRememberMe), true);
+            WebUser user = null;
+            if (!WSession.Current.IsLoggedIn)
+            {
+                user = WSession.CheckLoginCookie(context.Context);
+                if (user != null)
+                {
+                    if (allowRememberLogin)
+                    {
+                        WSession.Current.Login(user.Id, true);
+                    }
+                    else
+                    {
+                        WSession.ClearLoginCookie(context.Context);
+                    }
+                }
+            }
+            else
+            {
+                user = WSession.Current.User;
+            }
+
+            if (user != null)
+            {
+                // LoginHomeUrl User-Level
+                var url = WHelper.GetRedirectUrl(user, context, element);
+                WQuery.StaticRedirect(url, false);
+                return;
+            }
+            else
+            {
+                //panelRememberMe.Visible = allowRememberLogin;
+
+                //var enableOtp = DataHelper.GetBool(element.GetParameterValue("EnableOTP"), false);
+                //panelOtp.Visible = enableOtp;
+                //if (enableOtp)
+                //    rblOtp.Items[1].Enabled = DataHelper.GetBool(element.GetParameterValue("EnableSMS"), true);
+
+                //// Configure the Sign-Up Url
+                //var signUpUrl = element.GetParameterValue(AccountConstants.SignUpUrl, null);
+                //if (!string.IsNullOrEmpty(signUpUrl))
+                //{
+                //    linkSignup.HRef = signUpUrl; // Set Sign Up URL
+                //    panelSignUpLink.Visible = true;
+                //}
+
+                //var rememberMeText = element.GetParameterValue(AccountConstants.RememberMeText);
+                //if (allowRememberLogin && !string.IsNullOrEmpty(rememberMeText))
+                //    chkRememberMe.Text = rememberMeText;
+
+                //var preLoginNote = ParameterizedWebObject.GetValue("PreLoginNote", element);
+                //if (!string.IsNullOrEmpty(preLoginNote))
+                //    DisplayAlertMessage(preLoginNote);
+
+                //// Set Forgot Password URL
+                //if (!string.IsNullOrEmpty(forgotPasswordUrl))
+                //    context.BasePath = forgotPasswordUrl;
+                //else
+                //    context.Set(AccountConstants.ModeKey, AccountConstants.ModeForgot);
+
+                //linkForgot.HRef = context.BuildQuery();
+                //MultiView1.SetActiveView(viewLogin);
+            }
+
+            //LoginSecurity.GetPublicKey();
+        }
+    }
+    else
+    {
+        // Submit
+        email = Request["email"];
+        cid = Request["cid"];
+        step = Request["step"];
+
+        switch (step)
+        {
+            case AccessSteps.Step10_EnterCIDEmail:
+                var inputEmailCID = Request["inputEmailCID"];
+                
+                // Check if account is existing
+                
+                // Check if account is valid
+                
+                // Redirect to enter password
+                
+                break;
+        }
+    }
+}
+
+<div class="container">
+    <form method="post" role="form">
+        <input type="hidden" name="email" value="@email" />
+
+        @if (!IsPost)
+        {
+            switch (mode)
+            {
+                case AccountConstants.ModeActivate:
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1 class="page-header">Account Activation</h1>
+                            <div>
+                                Thank you! Your account has been successfully activated.
+                                <br />
+                                <br />
+                                <a id="linkLogin" href="Login/" title="Click here to login" class="btn btn-primary">
+                                    Login
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    break;
+            }
+        }
+
+        @if (string.IsNullOrEmpty(mode))
+        {
+            switch (step)
+            {
+                case AccessSteps.Step10_EnterCIDEmail:
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1 class="page-header">Member Login</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputEmailCID">Email or Group ID</label>
+                                <input type="email" name="inputEmailCID" class="form-control" id="inputEmailCID" placeholder="">
+                            </div>
+                            @*<div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>*@
+                            @*<div class="form-group">
+                                    <label for="exampleInputFile">File input</label>
+                                    <input type="file" id="exampleInputFile">
+                                    <p class="help-block">Example block-level help text here.</p>
+                                </div>*@
+                            @*<div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>*@
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <input type="hidden" name="step" value="@AccessSteps.Step10_EnterCIDEmail" />
+                        </div>
+                    </div>
+                    break;
+            }
+        }
+    </form>
+</div>

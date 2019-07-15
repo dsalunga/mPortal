@@ -1,0 +1,59 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="MCSongScore">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="JudgeId" type="xs:int" />
+                <xs:element name="Musicality" type="xs:int" />
+                <xs:element name="LyricsMessage" type="xs:int" />
+                <xs:element name="OverallImpact" type="xs:int" />
+                <xs:element name="DateModified" type="xs:dateTime" />
+                <xs:element name="CandidateId" type="xs:int" />
+                <xs:element name="CompetitionId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//MCSongScore" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <MCSongScore>
+    <Id>3</Id>
+    <JudgeId>1</JudgeId>
+    <Musicality>100</Musicality>
+    <LyricsMessage>30</LyricsMessage>
+    <OverallImpact>20</OverallImpact>
+    <DateModified>2012-10-08T12:53:53.81+08:00</DateModified>
+    <CandidateId>3</CandidateId>
+    <CompetitionId>1</CompetitionId>
+  </MCSongScore>
+  <MCSongScore>
+    <Id>4</Id>
+    <JudgeId>1</JudgeId>
+    <Musicality>90</Musicality>
+    <LyricsMessage>80</LyricsMessage>
+    <OverallImpact>70</OverallImpact>
+    <DateModified>2012-10-09T12:03:30.883+08:00</DateModified>
+    <CandidateId>1</CandidateId>
+    <CompetitionId>1</CompetitionId>
+  </MCSongScore>
+  <MCSongScore>
+    <Id>5</Id>
+    <JudgeId>1</JudgeId>
+    <Musicality>10</Musicality>
+    <LyricsMessage>50</LyricsMessage>
+    <OverallImpact>50</OverallImpact>
+    <DateModified>2012-10-09T12:03:30.933+08:00</DateModified>
+    <CandidateId>2</CandidateId>
+    <CompetitionId>1</CompetitionId>
+  </MCSongScore>
+</mPortal>

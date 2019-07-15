@@ -1,0 +1,87 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="IncidentCategory">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="GroupId" type="xs:int" />
+                <xs:element name="Description">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="4000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Rank" type="xs:int" />
+                <xs:element name="InstanceId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//IncidentCategory" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <IncidentCategory>
+    <Id>1</Id>
+    <Name>General</Name>
+    <GroupId>85</GroupId>
+    <Description>General issues, requests or concerns</Description>
+    <Rank>0</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentCategory>
+  <IncidentCategory>
+    <Id>2</Id>
+    <Name>AMS &amp; ODK</Name>
+    <GroupId>84</GroupId>
+    <Description>AMS &amp; ODK</Description>
+    <Rank>0</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentCategory>
+  <IncidentCategory>
+    <Id>3</Id>
+    <Name>ADD Construction</Name>
+    <GroupId>86</GroupId>
+    <Description>ADD Construction</Description>
+    <Rank>0</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentCategory>
+  <IncidentCategory>
+    <Id>4</Id>
+    <Name>Audio, Video &amp; Streaming</Name>
+    <GroupId>82</GroupId>
+    <Description>Audio, Video &amp; Streaming</Description>
+    <Rank>0</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentCategory>
+  <IncidentCategory>
+    <Id>5</Id>
+    <Name>Internet &amp; Network</Name>
+    <GroupId>81</GroupId>
+    <Description>Internet &amp; Network</Description>
+    <Rank>0</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentCategory>
+  <IncidentCategory>
+    <Id>6</Id>
+    <Name>Portal &amp; Make-Up</Name>
+    <GroupId>83</GroupId>
+    <Description>Portal &amp; Make-Up</Description>
+    <Rank>0</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentCategory>
+</mPortal>

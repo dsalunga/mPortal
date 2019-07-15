@@ -1,0 +1,210 @@
+﻿<h2>Visit Us</h2>
+<div>
+<div>
+<div style="padding: 0px 0px 5px;"><span class="sub_title"><strong>Locale Address</strong></span></div>
+<p align="justify" class="text_normal">Henderson Industrial Park, 211 Henderson Road,<br />
+#14-01, Singapore 159552</p>
+<div>
+<div>
+<div>
+<div>
+<div>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="content-script-type" content="text/javascript">
+<meta http-equiv="content-style-type" content="text/css"><script src="http://maps.google.com/maps?file=api&v=2&key=REPLACE_WITH_GOOGLE_MAPS_API_KEY"
+      type="text/javascript"></script><style type="text/css"> 
+ 
+body {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 11px;
+	margin: 0;
+	padding: 0;
+	background-image: url(images/bkgr.jpg);
+}
+div#map {
+	border: 1px solid black;
+}
+div#sidebar {
+	display:none;
+	border: 1px solid red;
+	margin-left: 2px;
+	padding: 5px;
+	line-height: 1.8;
+	overflow:auto;
+}
+img {
+	border: 0px;
+}
+.info {
+	font-family: Verdana, Helvetica, sans-serif;
+	color: #555555;
+	font-size: 12px;
+}
+.bodytext {
+	font-size: 11px; vertical-align: top; color: #013040; font-family: Arial, Helvetica, sans-serif; text-align: justify
+}
+div#label {
+	width:100%;
+}
+ 
+ </style>
+<table cellspacing="0" cellpadding="2" border="0" width="725">
+    <tbody>
+        <tr>
+            <td valign="top"><span class="sub_title" style="padding-bottom: 5px;"><strong>We are here </strong></span>
+            <table cellspacing="0" cellpadding="4" border="0">
+                <tbody>
+                    <tr>
+                        <td class="bodytext"><a href="javascript:myclick(0)"><img src="/Content/Parts/Integration/Assets/images/Sites/mcgisg/arrow_dotted.gif" alt="" />&nbsp;Integration Chapter Location</a> <br />
+                        <a href="javascript:myclick(1)"><img src="/Content/Parts/Integration/Assets/images/Sites/mcgisg/arrow_dotted.gif" alt="" />&nbsp;HarbourFront MRT Station</a> <br />
+                        <a href="javascript:myclick(2)"><img src="/Content/Parts/Integration/Assets/images/Sites/mcgisg/arrow_dotted.gif" alt="" />&nbsp;Redhill MRT Station</a><br />
+                        <a href="javascript:myclick(3)"><img src="/Content/Parts/Integration/Assets/images/Sites/mcgisg/arrow_dotted.gif" alt="" />&nbsp;Outram Park MRT Station</a><br />
+                        <a href="javascript:myclick(4)"><img src="/Content/Parts/Integration/Assets/images/Sites/mcgisg/arrow_dotted.gif" alt="" />&nbsp;Tiong Bahru MRT Station</a><br />
+                        &nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+            <td valign="top">
+            <div id="eventsr5c3"><span class="sub_title"><strong>Mobile Numbers</strong></span>
+            <p align="justify" class="text_normal">Bro. Robert Navoa&nbsp;&nbsp;+65&nbsp;85117397             <br />
+            Bro. Aga Caacbay&nbsp;&nbsp;+65&nbsp;96777627             <br />
+            Bro. Jun Gundayao&nbsp;&nbsp;+65&nbsp;97514017             <br />
+            Sis. Eliza Casipagan&nbsp;&nbsp;+65&nbsp;81013507</p>
+            </div>
+            </td>
+            <td valign="top">
+            <div style="" id="eventsr5c3"><span class="sub_title"><strong>E-mail Address</strong></span>
+            <p align="justify" class="text_normal"><a href="mailto:info@someorg.org.sg">info@someorg.org.sg</a></p>
+            </div>
+            <span style="padding-bottom: 5px;" class="sub_title"><strong>Reach us using our Enquiry Form</strong></span><br />
+            <h3><a href="/en-sg/Contact/Enquiry.aspx">&raquo; Enquiry Form</a></h3>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table summary="mesa">
+    <tbody>
+        <tr>
+            <td valign="top" class="bodytext">
+            <div id="map" style="width: 860px; height: 500px;">Loading...</div>
+            </td>
+            <td valign="top" class="bodytext">
+            <div id="sidebar" style="width: 160px; height: 310px; overflow: auto;">Loading...</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script type="text/javascript"> 
+//<![CDATA[
+
+    if (GBrowserIsCompatible()) {
+
+        //Original Marker (Locale)
+        var myIcon_3 = new GIcon();
+        myIcon_3.image = "images/locale.png";
+        myIcon_3.iconSize = new GSize(81, 76);
+        myIcon_3.iconAnchor = new GPoint(34, 60);
+        myIcon_3.infoWindowAnchor = new GPoint(18, 11);
+
+        //Original Marker (SMRT)
+        var myIcon_a = new GIcon();
+        myIcon_a.image = "images/smrt.png";
+        myIcon_a.iconSize = new GSize(158, 62);
+        myIcon_a.iconAnchor = new GPoint(60, 50);
+        myIcon_a.infoWindowAnchor = new GPoint(60, 11);
+
+        //Original Marker (Blank)
+        var myIcon_b = new GIcon();
+        myIcon_b.image = "images/blank.png";
+        myIcon_b.iconSize = new GSize(191, 59);
+        myIcon_b.iconAnchor = new GPoint(90, 56);
+        myIcon_b.infoWindowAnchor = new GPoint(60, 11);
+
+
+
+        var sidebar_html = "";
+        var gmarkers = [];
+        var htmls = [];
+        var i = 0;
+        var map = new GMap2(document.getElementById("map"));
+        map.addControl(new GSmallMapControl());
+        map.setCenter(new GLatLng(1.28259, 103.819535), 14);
+        map.enableScrollWheelZoom();
+
+        function createMarker(point, label, name, html) {
+            var marker = new GMarker(point, icon);
+            GEvent.addListener(marker, "click", function () {
+                marker.openInfoWindowHtml('<div style="white-space:nowrap;">' + html + '<\/div>', '"Marker <b>" + letter + "<\/b>"');
+            });
+            gmarkers[i] = marker;
+            htmls[i] = html;
+            sidebar_html += '<div class="label" style="background-color: #ffeac0; font-weight: bold; padding-left: 3px; margin-top: 4px; margin-bottom: 4px;">' + label + '<\/div><a href="javascript:myclick(' + i + ')">' + name + '<\/a><br>';
+            i++;
+            return marker;
+        }
+        function myclick(i) {
+            gmarkers[i].openInfoWindowHtml('<div style="white-space:nowrap;">' + htmls[i] + '<\/div>');
+            map.setCenter(gmarkers[i].point, 16);
+            map.addOverlay(marker);
+        }
+
+        // === Locale Map ===
+        var point = new GLatLng(1.28259, 103.819535);
+        var label = 'Integration Singapore Locale';
+        var icon = new GIcon(myIcon_3);
+        var html = 'Members of the Church of God,<br />The Pillar and Ground of the Truth, Singapore<br/><br/>Henderson Industrial Park, 211 Henderson Road,<br/>#14-01, Singapore 159552<br/><br/>';
+        var marker = createMarker(point, label, 'Singapore Locale Church', html);
+        map.addOverlay(marker);
+
+        // === Harbourfront Map ===
+        var point = new GLatLng(1.265299, 103.820586);
+        var label = 'Harbourfront MRT Station';
+        var icon = new GIcon(myIcon_a);
+        var html = 'Harbourfront MRT Station <br/><br/> 1. Proceed to Telok Blangah Road - opp Expo Gateway <br/> and board bus number 65 <br/> 2. Alight at Lower Delta Road - Block 129 <br/><br/>';
+        var marker = createMarker(point, label, 'Harbourfront MRT Station', html);
+        map.addOverlay(marker);
+
+        // === RedHill Map ===
+        var point = new GLatLng(1.289669, 103.816767);
+        var label = 'Redhill MRT Station';
+        var icon = new GIcon(myIcon_a);
+        var html = 'Redhill MRT Station  <br/><br/>1. Proceed to Tiong Bahru Road - Redhill Stn, <br/>and board bus number 145 <br/> 2. Alight at Henderson Road - <br/>opp Bt Merah Swimming Complex<br/><br/>';
+        var marker = createMarker(point, label, 'Redhill MRT Station', html);
+        map.addOverlay(marker);
+
+        // === Outram Park Map ===
+        var point = new GLatLng(1.280788, 103.838954);
+        var label = 'Outram Park MRT Station';
+        var icon = new GIcon(myIcon_a);
+        var html = 'Outram Park MRT Station <br/><br/>1. Proceed to New Bridge Road - opp New Bridge Rd Terminal <br/> and board bus number 147 <br/> 2. Alight at Jalan Bukit Merah Centre <br/><br/>';
+        var marker = createMarker(point, label, 'Outram Park MRT Station', html);
+        map.addOverlay(marker);
+
+        // === Tiong Bahru Map ===
+        var point = new GLatLng(1.286065, 103.826938);
+        var label = 'Tiong Bahru MRT Station';
+        var icon = new GIcon(myIcon_a);
+        var html = 'Tiong Bahru MRT Station <br/><br/>1. Proceed to Lower Delta Road - Block 24 <br/> and board bus number 14 <br/> 2. Alight at Jalan Bukit Merah Centre <br/><br/>';
+        var marker = createMarker(point, label, 'Tiong Bahru MRT Station', html);
+        map.addOverlay(marker);
+
+
+        document.getElementById("sidebar").innerHTML = sidebar_html;
+    }
+ 
+//]]>
+ 
+</script>                        </meta>
+</meta>
+</meta>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<p>&nbsp;</p>

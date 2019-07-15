@@ -1,0 +1,258 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.Integration
+@{
+    WebUser user = null;
+    var context = new WContext(this);
+    var site = context.Site;
+    var portalSite = WSite.Provider.Get("Portal");
+
+    var wsession = WSession.Current;
+    var isMember = false;
+    var isSG = false;
+    var sessionId = string.Empty;
+    var portalSessionId = string.Empty;
+    if (wsession.IsLoggedIn)
+    {
+        user = wsession.User;
+        isMember = user.IsMemberOf(IntegrationConstants.MEMBERS_GROUP_NAME);
+        isSG = user.IsMemberOf("Singapore");
+        var userSession = wsession.UserSession;
+        if (userSession != null)
+        {
+            sessionId = "?SessionId=" + userSession.SessionId;
+            if (site.Id != portalSite.Id)
+            {
+                portalSessionId = sessionId;
+            }
+        }
+    }
+
+    var request = context.Context.Request;
+    var portalHomeUrl = portalSite.BuildAbsoluteUrl();
+    var portalRootUrl = portalHomeUrl;
+}
+
+@*<h1 class="page-header">Apps, Websites &amp; Services</h1>
+    <p class="lead">Here is a list of apps and links available to members.</p>
+*@
+
+<style type="text/css">
+    /*h1.page-header {margin-top: 70px;}*/
+    h1.page-header {
+        margin-top: 0;
+    }
+
+    .app-category {
+        margin-bottom: 50px;
+    }
+
+        .app-category .media .media-body {
+            /*font-size: 13px;*/
+            color: #999; /*707070*/
+        }
+
+    .media a {
+        color: #333;
+    }
+
+    .app-category .media, .media .media {
+        margin-top: 0;
+        margin-bottom: 30px;
+        min-height: 64px;
+    }
+
+        .app-category .media:first-child {
+            margin-top: 0;
+        }
+
+    .flag-shadow {
+        /*box-shadow: 1px 1px #ddd;*/
+        border: 1px solid #eee;
+    }
+
+    .app-icon {
+        width: 64px;
+    }
+
+    .glyphicon-icon {
+        font-size: 50px;
+        width: 64px;
+        /*color: #EDA912;*/
+        color: #777;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1>Live Video Stream</h1>
+                <p>Live gathering video hookup and monitoring service</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <div class="row app-category">
+                <div class="col-md-12">
+                    <h1 id="locales" class="page-header">Asia Oceania Division</h1>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://sg.someorg.org/Stream/@sessionId" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/sg.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://sg.someorg.org/Stream/@sessionId" target="_blank">Integration Singapore</a></h4>
+                        Live Stream for Integration Singapore chapter
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/jp/LiveStream/" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/jp.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/jp/LiveStream/" target="_blank">Integration Japan</a></h4>
+                        Live Stream for Integration Japan chapter
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/jp/livestream-ja/" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/jp.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/jp/livestream-ja/" target="_blank">Integration Japan (Japanese)</a></h4>
+                        日本語でMCGI日本の章サービスのためにストリームをライブ
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/my/LiveStream/" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/my.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/my/LiveStream/" target="_blank">Integration Malaysia</a></h4>
+                        Live Stream for Integration Malaysia chapter
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/tw/LiveStream/" target="_blank">
+                        <img class="app-icon" src="/Content/Assets/images/flags/cn.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/tw/LiveStream/" target="_blank">Integration Taiwan</a></h4>
+                        Live Stream for Integration Taiwan chapter
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/vn/LiveStream/" target="_blank">
+                        <img class="app-icon" src="/Content/Assets/images/flags/vn.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/vn/LiveStream/" target="_blank">Integration Vietnam</a></h4>
+                        Live Stream for Integration Vietnam chapter
+                    </div>
+                </div>
+                @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="http://mcgisfbay.jimdo.com/" target="_blank">
+                            <img class="app-icon" src="/Content/Assets/images/flags/usa.svg">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://mcgisfbay.jimdo.com/" target="_blank">Integration SF Bay Area</a></h4>
+                            The official website of Integration SF Bay Area Chapter
+                        </div>
+                    </div>*@
+                @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="http://someorg.org.au/" target="_blank">
+                            <img class="app-icon" src="/Content/Assets/images/flags/au.svg">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://someorg.org.au/" target="_blank">Integration Australia</a></h4>
+                            The official website of Integration Australia Chapter
+                        </div>
+                    </div>*@
+            </div>
+            <div class="row app-category">
+                <div class="col-md-12">
+                    <h1 id="locales" class="page-header">Europe &amp; Israel Division</h1>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/no/LiveStream/" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/no.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/no/LiveStream/" target="_blank">Integration Norway</a></h4>
+                        Live Stream for Integration Norway
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/dk/LiveStream/" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/dk.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/dk/LiveStream/" target="_blank">Integration Denmark</a></h4>
+                        Live Stream for Integration Denmark
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/scandinavia/LiveStream/" target="_blank">
+                        <img class="app-icon" src="/Content/Assets/images/flags/scandinavia.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/scandinavia/LiveStream/" target="_blank">Integration Scandinavia</a></h4>
+                        Live Stream for Integration Scandinavia
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/de/LiveStream/" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/de.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/de/LiveStream/" target="_blank">Integration Germany</a></h4>
+                        Live Stream for Integration Germany
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/be/LiveStream/" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/be.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/be/LiveStream/" target="_blank">Integration Belgium</a></h4>
+                        Live Stream for Integration Belgium
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://someorg.org/groups/nordic/LiveStream/" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/nordic.jpg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://someorg.org/groups/nordic/LiveStream/" target="_blank">Integration Nordic</a></h4>
+                        Live Stream for Integration Nordic
+                    </div>
+                </div>
+            </div>
+            <div class="row app-category">
+                <div class="col-md-12">
+                    <h1 id="locales" class="page-header">Live Events Stream</h1>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="/livestream/live-now/" target="_blank">
+                        <span class="glyphicon glyphicon-film glyphicon-icon">&nbsp;</span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="/livestream/live-now/" target="_blank">Live Event Stream</a></h4>
+                        Live event happening now, open to all members.
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="/livestream/live-now/" target="_blank">
+                        <span class="glyphicon glyphicon-film glyphicon-icon">&nbsp;</span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="/livestream/live-protected/" target="_blank">Live Event Stream (By approval)</a></h4>
+                        Live event happening now, by approval access from event admin.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

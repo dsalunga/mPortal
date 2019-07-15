@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WCMS.WebSystem.Apps.Integration.MemberService" CodeBehind="Member.svc.cs" %>

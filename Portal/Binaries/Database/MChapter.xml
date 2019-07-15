@@ -1,0 +1,1405 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="MChapter">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ParentId" type="xs:int" />
+                <xs:element name="Address">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ChapterType" type="xs:int" />
+                <xs:element name="Latitude" type="xs:double" />
+                <xs:element name="Longitude" type="xs:double" />
+                <xs:element name="AccessType" type="xs:int" />
+                <xs:element name="CountryCode" type="xs:int" />
+                <xs:element name="Email">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Mobile">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Telephone">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ServiceSchedule">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="MoreInfo">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DistrictNo" type="xs:int" />
+                <xs:element name="DivisionId" type="xs:int" />
+                <xs:element name="LastUpdate" type="xs:dateTime" />
+                <xs:element name="Extra">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="LocaleId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//MChapter" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <MChapter>
+    <Id>2</Id>
+    <Name>ADD Central</Name>
+    <ParentId>13</ParentId>
+    <Address />
+    <ChapterType>0</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>7</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>3</Id>
+    <Name>Asia Oceania Division</Name>
+    <ParentId>-1</ParentId>
+    <Address>Henderson Industrial Park, 209 Henderson Road, Singapore 159552</Address>
+    <ChapterType>2</ChapterType>
+    <Latitude>1.2817307</Latitude>
+    <Longitude>103.8204332</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>5</Id>
+    <Name>SINGAPORE</Name>
+    <ParentId>22</ParentId>
+    <Address>211 Henderson Rd., #14-01 Henderson Industrial Park, Singapore 159552</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>1.3881595999999998</Latitude>
+    <Longitude>103.8988646</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>416</CountryCode>
+    <Email>info@mcgi.org.sg / jazugue@yahoo.com</Email>
+    <Mobile>+65 9737 8843 / +65 9727 3915</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2015-07-04T22:07:32.603+08:00</LastUpdate>
+    <Extra>{
+  "announcements": {
+    "lastUpdate": "2015-07-04T22:07:32Z",
+    "enabled": true,
+    "slides": "&lt;div class=\"swiper-slide\"&gt;\r\n                    &lt;div class=\"fill\" style=\"background-image:url('/content/parts/mcgi/res/locale-ads/img/pnk.jpg');\"&gt;&lt;/div&gt;\r\n                    &lt;div class=\"carousel-caption\"&gt;\r\n                        &lt;h1 class=\"itg-title\"&gt;Advanced Happy International&lt;br /&gt; Thanksgiving!&lt;/h1&gt;\r\n                        &lt;h2 class=\"itg-content\"&gt;Be with us this July 3, 4 and 5!&lt;/h2&gt;\r\n                        &lt;h3&gt;MC na! Or submit your leave applications!&lt;/h3&gt;\r\n                    &lt;/div&gt;\r\n                &lt;/div&gt;\r\n                &lt;div class=\"swiper-slide\"&gt;\r\n                    &lt;div class=\"fill\" style=\"background-image:url('/content/parts/mcgi/res/locale-ads/img/staroftheweek.jpg');\"&gt;&lt;/div&gt;\r\n                    &lt;div class=\"carousel-caption\"&gt;\r\n                        &lt;h1 class=\"starofweek-title\"&gt;STAR OF THE WEEK&lt;/h1&gt;\r\n                        &lt;h2 class=\"starofweek-content\"&gt;North 1 &amp;amp; North 2&lt;/h2&gt;\r\n                        &lt;h3&gt;Always keep our locale clean!&lt;/h3&gt;\r\n                    &lt;/div&gt;\r\n                &lt;/div&gt;\r\n                &lt;div class=\"swiper-slide\"&gt;\r\n                    &lt;div class=\"fill\" style=\"background-image:url('/content/parts/mcgi/res/locale-ads/img/controversyextraordinary_bg.jpg');\"&gt;&lt;/div&gt;\r\n                    &lt;div class=\"carousel-caption\"&gt;\r\n                        &lt;img src=\"/content/parts/mcgi/res/locale-ads/img/controversyextraordinary.png\" class=\"img-responsive col-xs-12 img-insert\" alt=\"controversyextraordinary\" /&gt;\r\n                        &lt;h2&gt;\r\n                            Use 1 minute of your time to follow the blog with GMAIL. Now.\r\n                        &lt;/h2&gt;\r\n                        &lt;h3 style=\"background:black; padding:5px;\"&gt;www.controversyextraordinary.com&lt;/h3&gt;\r\n                    &lt;/div&gt;\r\n                &lt;/div&gt;\r\n                &lt;div class=\"swiper-slide\"&gt;\r\n                    &lt;div class=\"fill\" style=\"background-image:url('/content/parts/mcgi/res/locale-ads/img/australia.jpg');\"&gt;&lt;/div&gt;\r\n                    &lt;div class=\"carousel-caption\"&gt;\r\n                        &lt;h1 class=\"starofweek-title\"&gt;Australia Concert is almost here!&lt;/h1&gt;\r\n                        &lt;h2&gt;Let's make it happen! Contact your treasurer now.&lt;/h2&gt;\r\n                    &lt;/div&gt;\r\n                &lt;/div&gt;\r\n                &lt;div class=\"swiper-slide\"&gt;\r\n                    &lt;div class=\"fill\" style=\"background-image:url('/content/parts/mcgi/res/locale-ads/img/schedule.jpg');\"&gt;&lt;/div&gt;\r\n                    &lt;div class=\"carousel-caption schedule-texts\"&gt;\r\n                        &lt;div class=\"row\"&gt;\r\n                            &lt;div class=\"col-sm-12\"&gt;\r\n                                &lt;h1 class=\"itg-title\"&gt;SG Service Schedule&lt;/h1&gt;\r\n                            &lt;/div&gt;\r\n                        &lt;/div&gt;\r\n                        &lt;div class=\"row service-box\"&gt;\r\n                            &lt;div class=\"col-sm-6\"&gt;\r\n                                &lt;h3 class=\"col-xs-9 col-xs-offset-3 text-left schedule-content\"&gt;Regular Service&lt;/h3&gt;\r\n                                &lt;b class=\"col-xs-2 col-xs-offset-1 text-right label label-success\"&gt;SPM&lt;/b&gt;&lt;i class=\"col-xs-9 text-left\"&gt;: Tue 5:30pm (live)&lt;/i&gt;&lt;br /&gt;\r\n                                &lt;b class=\"col-xs-2 col-xs-offset-1 text-right label label-info\"&gt;PM&lt;/b&gt;&lt;i class=\"col-xs-9 text-left\"&gt;: Wed 7:30pm/Thu 8:30am&lt;/i&gt;&lt;br /&gt;\r\n                                &lt;b class=\"col-xs-2 col-xs-offset-1 text-right label label-warning\"&gt;WS&lt;/b&gt;&lt;i class=\"col-xs-9 text-left\"&gt;: Sat 8:30 am / 12:30 pm / Sun 8am&lt;/i&gt;&lt;br /&gt;\r\n                                &lt;b class=\"col-xs-2 col-xs-offset-1 text-right label label-danger\"&gt;TG&lt;/b&gt;&lt;i class=\"col-xs-9 text-left\"&gt;: Sat 3pm (live) / Sun 10am (viewing)&lt;/i&gt;\r\n                            &lt;/div&gt;\r\n                            &lt;div class=\"col-sm-6\"&gt;\r\n                                &lt;h3 class=\"col-xs-9 col-xs-offset-3 text-left schedule-content\"&gt;Make Up Service&lt;/h3&gt;\r\n                                &lt;div class=\"row\"&gt;\r\n                                    &lt;b class=\"col-xs-2 col-xs-offset-1 label label-primary\"&gt;PM &amp;amp; WS&lt;/b&gt;\r\n                                    &lt;i class=\"col-xs-9 text-left \"&gt;\r\n                                        Mon / Tue / Thu / Fri&lt;br /&gt;\r\n                                        &lt;em&gt;10am, 12pm, 2pm, 4pm, 6pm, 8pm&lt;/em&gt;&lt;br /&gt;\r\n                                        Wednesday &lt;br /&gt;\r\n                                        &lt;em&gt;10am, 12pm, 2pm, 5pm&lt;/em&gt;&lt;br /&gt;\r\n                                    &lt;/i&gt;\r\n                                &lt;/div&gt;\r\n                                &lt;div class=\"row\"&gt;\r\n                                    &lt;b class=\"col-xs-2 col-xs-offset-1 label label-success\"&gt;TG Makeup&lt;/b&gt;\r\n                                    &lt;i class=\"col-xs-9 text-left\"&gt;Mon-Fri. 10am&lt;/i&gt;\r\n                                &lt;/div&gt;\r\n                            &lt;/div&gt;\r\n                        &lt;/div&gt;\r\n                    &lt;/div&gt;\r\n                &lt;/div&gt;"
+  }
+}</Extra>
+    <LocaleId>1442</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>6</Id>
+    <Name>MALAYSIA - Kota Kinabalu</Name>
+    <ParentId>22</ParentId>
+    <Address>Kampung Keranaan,Tambunan,Kota Kinabalu, Sabah Malaysia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>5.976474</Latitude>
+    <Longitude>116.11577699999998</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>355</CountryCode>
+    <Email>marks_2003@yahoo.com</Email>
+    <Mobile>+60 143563257</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>7</Id>
+    <Name>Philippines</Name>
+    <ParentId>-1</ParentId>
+    <Address>ADD Convention Center, Brgy. Sampaloc, Apalit 2016, Pampanga, Philippines</Address>
+    <ChapterType>2</ChapterType>
+    <Latitude>14.552797</Latitude>
+    <Longitude>121.058805</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>394</CountryCode>
+    <Email>info@mcgi.org</Email>
+    <Mobile />
+    <Telephone>+63.45.8790522</Telephone>
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>7</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>8</Id>
+    <Name>Hong Kong  SAR China</Name>
+    <ParentId>21</ParentId>
+    <Address>Workshop B on 3rd Floor, Splendid Center, No.100 Larch Street, Kowloon, Hongkong SAR China</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>22.3235805</Latitude>
+    <Longitude>114.16246760000001</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>325</CountryCode>
+    <Email>top_central_hk@yahoo.com, epp_717@yahoo.com, ramies_5799@yahoo.com</Email>
+    <Mobile>+852 3755 4940 / +852 3755 4941</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>9</Id>
+    <Name>Osaka, Japan</Name>
+    <ParentId>21</ParentId>
+    <Address>5-15-5 Osaka shi ikono-ku Minami tatsumi haitsu C-35</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>35.684072</Latitude>
+    <Longitude>139.696655</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>334</CountryCode>
+    <Email>top_osaka_jpn@yahoo.com</Email>
+    <Mobile>08038192245/09038707666</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>10</Id>
+    <Name>Shanghai, China</Name>
+    <ParentId>21</ParentId>
+    <Address>Room 101 Bldg 27 Lane 228 Wubao Road Minhang District, Shanghai, China, 201101</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>31.1600286</Latitude>
+    <Longitude>121.3489253</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>271</CountryCode>
+    <Email>addshanghai2001@yahoo.com</Email>
+    <Mobile>+8613918648752/+8613917797245</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:43:01.963+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>12</Id>
+    <Name>Metro Manila</Name>
+    <ParentId>7</ParentId>
+    <Address />
+    <ChapterType>2</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>7</DivisionId>
+    <LastUpdate>2015-02-05T16:26:17.39+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>13</Id>
+    <Name>Pampanga</Name>
+    <ParentId>7</ParentId>
+    <Address />
+    <ChapterType>0</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>0</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>7</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>14</Id>
+    <Name>Bulacan</Name>
+    <ParentId>7</ParentId>
+    <Address />
+    <ChapterType>0</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>0</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>7</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>15</Id>
+    <Name>District I</Name>
+    <ParentId>13</ParentId>
+    <Address />
+    <ChapterType>0</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>0</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>7</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>16</Id>
+    <Name>District II</Name>
+    <ParentId>13</ParentId>
+    <Address />
+    <ChapterType>0</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>0</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>7</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>17</Id>
+    <Name>District III</Name>
+    <ParentId>13</ParentId>
+    <Address />
+    <ChapterType>0</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>0</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>7</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>18</Id>
+    <Name>District IV</Name>
+    <ParentId>13</ParentId>
+    <Address />
+    <ChapterType>0</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>0</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>7</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>20</Id>
+    <Name>Asia Oceania District 1</Name>
+    <ParentId>3</ParentId>
+    <Address>Ground Floor, David Jones/86-108 Castlereagh Street, Sydney NSW 2000, Australia</Address>
+    <ChapterType>1</ChapterType>
+    <Latitude>-33.8674869</Latitude>
+    <Longitude>151.2069902</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2015-06-25T18:21:56.373+08:00</LastUpdate>
+    <Extra>{
+  "announcements": "        &lt;!-- Slides --&gt;\r\n        &lt;div class=\"swiper-slide\"&gt;\r\n                &lt;div class=\"fill blur-me\" style=\"background-image:url('img/pnk.jpg');\"&gt;&lt;/div&gt;\r\n                &lt;div class=\"carousel-caption\"&gt;\r\n                    &lt;h1 class=\"itg-title\"&gt;Advanced Happy International&lt;br/&gt; Thanksgiving!&lt;/h1&gt;\r\n                    &lt;h2 class=\"itg-content\"&gt;Be with us this July 3, 4 and 5!&lt;/h2&gt;\r\n                    &lt;h3&gt;MC na! Or submit your leave applications!&lt;/h3&gt;\r\n                &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=\"swiper-slide\"&gt;\r\n                &lt;div class=\"fill\" style=\"background-image:url('img/staroftheweek.jpg');\"&gt;&lt;/div&gt;\r\n                &lt;div class=\"carousel-caption\"&gt;\r\n                    &lt;h1 class=\"starofweek-title\"&gt;STAR OF THE WEEK&lt;/h1&gt;\r\n                    &lt;h2 class=\"starofweek-content\"&gt;North 1 &amp;amp; North 2&lt;/h2&gt;\r\n                    &lt;h3&gt;Always keep our locale clean!&lt;/h3&gt;\r\n                &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=\"swiper-slide\"&gt;\r\n                &lt;div class=\"fill\" style=\"background-image:url('img/controversyextraordinary_bg.jpg');\"&gt;&lt;/div&gt;\r\n                &lt;div class=\"carousel-caption font-class-playfair60-domine40\"&gt;\r\n                    &lt;img src=\"img/controversyextraordinary.png\" class=\"img-responsive\" style=\"display: inline\" alt=\"controversyextraordinary\"/&gt;\r\n                    &lt;h2&gt;\r\n                        Use 1 minute of your time to follow the blog with GMAIL. Now.\r\n                    &lt;/h2&gt;\r\n                    &lt;h3 style=\"background:black; padding:5px;\"&gt;www.controversyextraordinary.com&lt;/h3&gt;\r\n                &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=\"swiper-slide\"&gt;\r\n                &lt;div class=\"fill blur-me\" style=\"background-image:url('img/australia.jpg');\"&gt;&lt;/div&gt;\r\n                &lt;div class=\"carousel-caption font-class-playfair60-domine40\"&gt;\r\n                    &lt;h1 class=\"itg-title\"&gt;Australia Concert is almost here!&lt;/h1&gt;\r\n                    &lt;h2&gt;Let's make it happen! Contact your treasurer now.&lt;/h2&gt;\r\n                &lt;/div&gt;\r\n        &lt;/div&gt;\r\n"
+}</Extra>
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>21</Id>
+    <Name>Asia Oceania District 2</Name>
+    <ParentId>3</ParentId>
+    <Address>2 Chome-8-1 Nishishinjuku, Shinjuku, Tokyo, Japan</Address>
+    <ChapterType>1</ChapterType>
+    <Latitude>35.6894875</Latitude>
+    <Longitude>139.6917064</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-27T17:47:37.23+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>22</Id>
+    <Name>Asia Oceania District 3</Name>
+    <ParentId>3</ParentId>
+    <Address>Henderson Industrial Park, 209 Henderson Road, Singapore 159552</Address>
+    <ChapterType>1</ChapterType>
+    <Latitude>1.2817307</Latitude>
+    <Longitude>103.8204332</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-27T17:47:45.15+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>23</Id>
+    <Name>Adelaide</Name>
+    <ParentId>20</ParentId>
+    <Address>LOT 87 Stebonheath Road, Munno Para West SA 5115, Australia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-34.664348</Latitude>
+    <Longitude>138.675801</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>240</CountryCode>
+    <Email>top_sa_aus@yahoo.com</Email>
+    <Mobile>61433779055</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2015-02-05T13:11:51.3+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>24</Id>
+    <Name>Brisbane</Name>
+    <ParentId>20</ParentId>
+    <Address>42 O'Keefe Street, Woolloongabba QLD 4102, Australia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-27.497016</Latitude>
+    <Longitude>153.03765299999998</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>240</CountryCode>
+    <Email>top_bne_aus@yahoo.com</Email>
+    <Mobile>610731605831, +610487605775</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>25</Id>
+    <Name>Cairns</Name>
+    <ParentId>20</ParentId>
+    <Address>2-46 Earl Street, Westcourt, Cairns, QLD 4870, Australia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-16.931885</Latitude>
+    <Longitude>145.753692</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>240</CountryCode>
+    <Email>top_cns_aus@yahoo.com</Email>
+    <Mobile>61426197600</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>26</Id>
+    <Name>Darwin</Name>
+    <ParentId>20</ParentId>
+    <Address>61 Cahill Crescent, Nakara NT 0810, Australia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-12.3717259</Latitude>
+    <Longitude>130.87321759999998</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>240</CountryCode>
+    <Email>top_nt_aus@yahoo.com</Email>
+    <Mobile>61889455707</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>27</Id>
+    <Name>Mackay</Name>
+    <ParentId>20</ParentId>
+    <Address>Unit 2 / 122 Milton Street, South Mackay QLD 4740, Australia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-21.1526843</Latitude>
+    <Longitude>149.17631099999994</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>240</CountryCode>
+    <Email>top_mky_aus@yahoo.com</Email>
+    <Mobile>61429 226 466</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>28</Id>
+    <Name>Melbourne</Name>
+    <ParentId>20</ParentId>
+    <Address>45 Furlong Road, Sunshine North VIC 3020, Australia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-37.762344</Latitude>
+    <Longitude>144.82620399999996</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>240</CountryCode>
+    <Email>top_vic_aus@yahoo.com</Email>
+    <Mobile>61400948472</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>29</Id>
+    <Name>Perth</Name>
+    <ParentId>20</ParentId>
+    <Address>17 John St. Bentley westerrn Australia 6102</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-32.00176</Latitude>
+    <Longitude>115.92233799999997</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>240</CountryCode>
+    <Email>top_wa_aus@yahooo.com</Email>
+    <Mobile>61423649535</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>30</Id>
+    <Name>Rockhampton</Name>
+    <ParentId>20</ParentId>
+    <Address>336 Farm Street, Norman Gardens QLD 4701, Australia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-23.333642</Latitude>
+    <Longitude>150.523371</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>240</CountryCode>
+    <Email>top_rhn_aus@yahoo.com</Email>
+    <Mobile>61430 465 403</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>31</Id>
+    <Name>Sydney</Name>
+    <ParentId>20</ParentId>
+    <Address>91 Queen Street, St Marys Town Centre, St Marys NSW 2760, Australia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-33.765095</Latitude>
+    <Longitude>150.773911</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>240</CountryCode>
+    <Email>top_nsw_aus@yahoo.com</Email>
+    <Mobile>61424260030</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>32</Id>
+    <Name>Townsville</Name>
+    <ParentId>20</ParentId>
+    <Address>5/4 Albert St. Cranbrook Townsville Queensland Australia 4814</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-19.2994118</Latitude>
+    <Longitude>146.76108279999994</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>240</CountryCode>
+    <Email>top_tsv_aus@yahoo.com</Email>
+    <Mobile>61424 172 193</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>33</Id>
+    <Name>Auckland</Name>
+    <ParentId>20</ParentId>
+    <Address>35N Enterprise Street, Birkenhead, Auckland 0626, New Zealand</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-36.8122097</Latitude>
+    <Longitude>174.728856</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>378</CountryCode>
+    <Email>top_auck_nz@yahoo.com</Email>
+    <Mobile>6421865967</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>34</Id>
+    <Name>Christ Church</Name>
+    <ParentId>20</ParentId>
+    <Address>76 Maidstone Road, Ilam, Christchurch 8041, New Zealand</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-43.5162671</Latitude>
+    <Longitude>172.5714008</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>378</CountryCode>
+    <Email>top_christchurch_nz@yahoo.com</Email>
+    <Mobile>6432588622</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>35</Id>
+    <Name>Guam</Name>
+    <ParentId>20</ParentId>
+    <Address>SUITE 201 JRV BUILDING ROUTE 16 DEDEDO GUAM, USA 96929</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>13.5270388</Latitude>
+    <Longitude>144.88440400000002</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>317</CountryCode>
+    <Email />
+    <Mobile>1(671)8985519</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>36</Id>
+    <Name>Saipan</Name>
+    <ParentId>20</ParentId>
+    <Address>2nd Floor Unit #A, Saipan Building Middle Road Village, Saipan CNMI
+Mailing Address - PO BOX 501219 CK, Saipan, MP 96950</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>15.177801</Latitude>
+    <Longitude>145.750967</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>385</CountryCode>
+    <Email>top_gpn_spn@yahoo.com</Email>
+    <Mobile>1-670-233-0464</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>37</Id>
+    <Name>Madang Coordinating Center</Name>
+    <ParentId>20</ParentId>
+    <Address>Lot 35 Section 49 Yabob Road corner Melisa Street Madang Town, Madang Province, PAPUA NEW GUINEA</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-5.2336668999999993</Latitude>
+    <Longitude>145.78889500000003</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>391</CountryCode>
+    <Email>top_madang_png@yahoo.com.au</Email>
+    <Mobile>+675 713 34 394 / +675 769 02 620</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>38</Id>
+    <Name>Siar</Name>
+    <ParentId>20</ParentId>
+    <Address>Guaben, Siar Village, Ambenob LLG, Madang District, Madang Province, PAPUA NEW GUINEA</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-4.9849733000000009</Latitude>
+    <Longitude>145.13758340000004</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>391</CountryCode>
+    <Email>top_madang_png@yahoo.com.au</Email>
+    <Mobile>+675 717 88 567 / +675 732 93 714</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>39</Id>
+    <Name>Port Moresby</Name>
+    <ParentId>20</ParentId>
+    <Address>Tal Air, Gordons, Port Moresby, National Capital District, PAPUA NEW GUINEA</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-9.4815530000000017</Latitude>
+    <Longitude>147.190242</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>391</CountryCode>
+    <Email>top_portmoresby_png@yahoo.com</Email>
+    <Mobile>+675 717 93 571</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>1</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>40</Id>
+    <Name>Europe, Israel and Africa Division</Name>
+    <ParentId>-1</ParentId>
+    <Address />
+    <ChapterType>2</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>40</DivisionId>
+    <LastUpdate>2014-04-07T23:25:45.89+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>41</Id>
+    <Name>Middle East Division</Name>
+    <ParentId>-1</ParentId>
+    <Address />
+    <ChapterType>2</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>41</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>42</Id>
+    <Name>South America Division</Name>
+    <ParentId>-1</ParentId>
+    <Address />
+    <ChapterType>2</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>42</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>43</Id>
+    <Name>North America and Canada Division</Name>
+    <ParentId>-1</ParentId>
+    <Address />
+    <ChapterType>2</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>-1</DistrictNo>
+    <DivisionId>43</DivisionId>
+    <LastUpdate>2014-04-05T22:49:29.833+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>44</Id>
+    <Name>Macau SAR China</Name>
+    <ParentId>21</ParentId>
+    <Address>Rua de Riberia Do Patane, Edificio Luen Cheong 169 R/C &amp; S/L Fab de Macau,Macau SAR China</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>22.201874</Latitude>
+    <Longitude>113.54420200000004</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>351</CountryCode>
+    <Email>addmacau2001@yahoo.com</Email>
+    <Mobile>+853 28520846 / +852 63888517</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:43:55.933+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>45</Id>
+    <Name>Shenzhen, China</Name>
+    <ParentId>21</ParentId>
+    <Address>Room H , 18th Floor, De Xin Da Bldg 2, Jiang Se Road, Lou Hu Dist, Shenzhen, PRC</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>22.5373681</Latitude>
+    <Longitude>114.12398570000005</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>271</CountryCode>
+    <Email>top_shenzhen_china@yahoo.com</Email>
+    <Mobile>+8613833307625/+8615015393624</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:45:33.15+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>46</Id>
+    <Name>Kaoshiung,Taiwan</Name>
+    <ParentId>21</ParentId>
+    <Address>Lane 100, Jahong Road, Nanzu District , Kaohsiung  Taiwan</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>22.7268</Latitude>
+    <Longitude>120.29750000000001</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>432</CountryCode>
+    <Email>taiwan.kaohsiung@yahoo.com</Email>
+    <Mobile>073635830/0916406407/0921041837</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:46:41.507+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>47</Id>
+    <Name>Taichung, Taiwan</Name>
+    <ParentId>21</ParentId>
+    <Address>#482 4th flr.,sec. 2 Chungshan Rd. Tanzu, Taichung ,Taiwan</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>24.2332076</Latitude>
+    <Longitude>120.94173679999994</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>432</CountryCode>
+    <Email>top_taichung_taiwan@yahoo.com / addpro_0428_taichung</Email>
+    <Mobile>886983683480</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:48:12.973+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>48</Id>
+    <Name>Taoyuan, Taiwan</Name>
+    <ParentId>21</ParentId>
+    <Address>5flr.# 3-7 Chao-yang st.Section 1,Taoyuan City 330 ROC</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>24.9888889</Latitude>
+    <Longitude>121.31111110000006</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>432</CountryCode>
+    <Email>addlokal_taiwan@yahoo.com/addpro_top_taoyuan@yahoo.com</Email>
+    <Mobile>(03)3343697/886927717551</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:49:10.627+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>49</Id>
+    <Name>Shizuoka, Japan</Name>
+    <ParentId>21</ParentId>
+    <Address>Numazu shi Misono chou 11-8 suteeji Hana Building</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>35.0955842</Latitude>
+    <Longitude>138.8634925</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>334</CountryCode>
+    <Email>lhirade_shizuoka_jpn@yahoo.com</Email>
+    <Mobile>0836307012</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:49:48.477+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>50</Id>
+    <Name>Toyohashi, Japan</Name>
+    <ParentId>21</ParentId>
+    <Address>62-1 hiramatsu funatocho toyohashi-shi aichi ken  441-8072</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>34.7170907</Latitude>
+    <Longitude>137.3485356</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>334</CountryCode>
+    <Email>top_toyohashi_japan@yahoo.com</Email>
+    <Mobile>09017246327</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:50:31.55+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>51</Id>
+    <Name>Ibaraki, Japan</Name>
+    <ParentId>21</ParentId>
+    <Address>Ibaraki ken kasama Shi Fukuhara 4095-1</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>36.3441133</Latitude>
+    <Longitude>140.18850750000001</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>334</CountryCode>
+    <Email>top_ibaraki_jpn@yahoo.com</Email>
+    <Mobile>08065720307</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:50:48.437+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>52</Id>
+    <Name>Nagoya, Japan</Name>
+    <ParentId>21</ParentId>
+    <Address>owariasahi-shi , Arai-cho Meisaigiri 11 3C Sunhouse Aichi-Ken Japan 488-0074</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>35.2198428</Latitude>
+    <Longitude>137.0364595</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>334</CountryCode>
+    <Email>top_nagoya_jpn@yahoo.com</Email>
+    <Mobile>09017835760</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:51:39.703+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>53</Id>
+    <Name>Tokyo, Japan</Name>
+    <ParentId>21</ParentId>
+    <Address>Kanagawa Ken, Kawasaki Shi, Kawasaki Ku, Watarida 1-1-6, Doche Kawasaki 2F, 210-0837</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>35.5228096</Latitude>
+    <Longitude>139.70768699999996</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>334</CountryCode>
+    <Email>top_tokyo_jpn@yahoo.com</Email>
+    <Mobile>+81 8046262494</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:51:56.91+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>54</Id>
+    <Name>Busan, South Korea</Name>
+    <ParentId>21</ParentId>
+    <Address>Busan-Si  Dong Gu Choryang 3 Dong 1163-11 2nd Floor</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>35.1795543</Latitude>
+    <Longitude>129.07564160000004</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>339</CountryCode>
+    <Email />
+    <Mobile>top_busan_kor@yahoo.com</Mobile>
+    <Telephone>+8210 2658 7788</Telephone>
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:52:07.26+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>55</Id>
+    <Name>Songtan, South Korea</Name>
+    <ParentId>21</ParentId>
+    <Address>294-2 Sinjiang 2-Dong,Songtan Pyeongtaek-si Kyeonggi-do South Korea</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>37.075533</Latitude>
+    <Longitude>127.05437699999993</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>339</CountryCode>
+    <Email>songtan_south_korea@yahoo.com</Email>
+    <Mobile>+82 01073322661</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:52:51.477+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>56</Id>
+    <Name>Uijingbu, South Korea</Name>
+    <ParentId>21</ParentId>
+    <Address>Kyeonggido uijeongbu si, ganueng1 dong 677-5 5fl Seoul South Korea</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>37.566535</Latitude>
+    <Longitude>126.97796919999996</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>339</CountryCode>
+    <Email>top_seoul_korea@yahoo.com</Email>
+    <Mobile>+82 01062960395</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>2</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-05T23:53:08.5+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>57</Id>
+    <Name>BRUNEI - Seri</Name>
+    <ParentId>22</ParentId>
+    <Address>Unit 307 1F Cenderwasihc Bldg. Seri, Brunei, Darussalam</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>4.944167</Latitude>
+    <Longitude>114.92833300000007</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>259</CountryCode>
+    <Email>pangyawboy@yahoo.com</Email>
+    <Mobile>+67 38675054</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-06T00:25:48.467+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>58</Id>
+    <Name>CAMBODIA</Name>
+    <ParentId>22</ParentId>
+    <Address>no.75, st.11 Borey pipop Thmei 1, Dangkor, Phnom Penh</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>11.558831</Latitude>
+    <Longitude>104.91744500000004</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>263</CountryCode>
+    <Email>rex_blaza05@yahoo.com</Email>
+    <Mobile>+855 77597507</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-06T00:25:36.377+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>59</Id>
+    <Name>INDONESIA - Jakarta</Name>
+    <ParentId>22</ParentId>
+    <Address>A8-22 Laguna Apartment, Pluit, Jakarta, Indonesia 14450</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>-6.1138942000000007</Latitude>
+    <Longitude>106.78539219999993</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>329</CountryCode>
+    <Email>amielito777@gmail.com</Email>
+    <Mobile>+62 812 872 438 59</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-06T00:20:28.713+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>60</Id>
+    <Name>INDONESIA - East Timor</Name>
+    <ParentId>22</ParentId>
+    <Address>Manufahi, Timor-Leste</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>1.3881595999999998</Latitude>
+    <Longitude>103.8988646</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>329</CountryCode>
+    <Email>brad.jojomagora@yahoo.com</Email>
+    <Mobile>+670 78038517</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2015-02-06T00:21:18.82+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>61</Id>
+    <Name>MALAYSIA - Kuala Lumpur</Name>
+    <ParentId>22</ParentId>
+    <Address>17-1-A Endah Rhia Condominium Sri Petaling Kuala Lumpur Malaysia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>3.06154</Latitude>
+    <Longitude>101.68703000000005</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>355</CountryCode>
+    <Email>top_kl_mlsya@yahoo.com</Email>
+    <Mobile>+60 126 210 472</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-06T00:20:58.61+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>62</Id>
+    <Name>MALAYSIA - Lahad Datu</Name>
+    <ParentId>22</ParentId>
+    <Address>Bukit Belacon Batu 12, Lahad Datuh Sabah Malaysia</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>5.048846</Latitude>
+    <Longitude>118.35931389999996</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>355</CountryCode>
+    <Email>yenyen_basultin111@yahoo.com.ph</Email>
+    <Mobile>+60 148 859 259</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-06T00:22:18.733+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>63</Id>
+    <Name>THAILAND - Bangkok</Name>
+    <ParentId>22</ParentId>
+    <Address>100/86 Soi 4 Ram Intra Soi 67, Kannayao, Bangkok</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>13.8551995</Latitude>
+    <Longitude>100.66950930000007</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>435</CountryCode>
+    <Email>top_bangkok_thailand@yahoo.com</Email>
+    <Mobile>+66 851 578 649</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-06T00:22:36.373+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>64</Id>
+    <Name>THAILAND - Pattaya</Name>
+    <ParentId>22</ParentId>
+    <Address>514/124 7th Flr Pattaya Rungfa Condominium, 508/8 M.9 Sukhumvit Rd., Nongprue Banglamnung Ch 20150</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>12.9276082</Latitude>
+    <Longitude>100.87708129999999</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>435</CountryCode>
+    <Email>top_pattaya_thailand@yahoo.com</Email>
+    <Mobile>+66 836 997 101</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-06T00:21:48.863+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>65</Id>
+    <Name>VIETNAM</Name>
+    <ParentId>22</ParentId>
+    <Address>Conic Dong Nam A D-10 Binh Chanh District, HCMC</Address>
+    <ChapterType>0</ChapterType>
+    <Latitude>10.8105831</Latitude>
+    <Longitude>106.70914219999997</Longitude>
+    <AccessType>0</AccessType>
+    <CountryCode>457</CountryCode>
+    <Email>rex_lauderes@yahoo.com</Email>
+    <Mobile>+84 129 293 8233</Mobile>
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>3</DistrictNo>
+    <DivisionId>3</DivisionId>
+    <LastUpdate>2014-04-06T00:21:35.81+08:00</LastUpdate>
+    <Extra />
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+  <MChapter>
+    <Id>66</Id>
+    <Name>Central Chapter</Name>
+    <ParentId>-1</ParentId>
+    <Address />
+    <ChapterType>0</ChapterType>
+    <Latitude>0</Latitude>
+    <Longitude>0</Longitude>
+    <AccessType>2</AccessType>
+    <CountryCode>-1</CountryCode>
+    <Email />
+    <Mobile />
+    <Telephone />
+    <ServiceSchedule />
+    <MoreInfo />
+    <DistrictNo>0</DistrictNo>
+    <DivisionId>-1</DivisionId>
+    <LastUpdate>2015-07-03T19:26:37.09+08:00</LastUpdate>
+    <Extra>{
+  "announcements": {
+    "enabled": true,
+    "slides": "Central Here",
+    "lastUpdate": "2015-07-03T19:26:37Z"
+  }
+}</Extra>
+    <LocaleId>-1</LocaleId>
+  </MChapter>
+</mPortal>

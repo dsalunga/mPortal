@@ -1,0 +1,512 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="IncidentTicket">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="UserId" type="xs:int" />
+                <xs:element name="DateCreated" type="xs:dateTime" />
+                <xs:element name="CategoryId" type="xs:int" />
+                <xs:element name="Description">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Urgency" type="xs:int" />
+                <xs:element name="Status" type="xs:int" />
+                <xs:element name="AssignedGroupId" type="xs:int" />
+                <xs:element name="AssignedUserId" type="xs:int" />
+                <xs:element name="TicketGuid">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DateClosed" type="xs:dateTime" />
+                <xs:element name="SubmitterId" type="xs:int" />
+                <xs:element name="ETA" type="xs:dateTime" />
+                <xs:element name="TypeId" type="xs:int" />
+                <xs:element name="NotifyAlso">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="InstanceId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//IncidentTicket" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <IncidentTicket>
+    <Id>1</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-05-24T00:50:12.43+08:00</DateCreated>
+    <CategoryId>2</CategoryId>
+    <Description>Create an MCGISG Email for Bro Rani Dasco worker.
+
+Rani.Dasco@mcgi.org.sg
+
+His personal email is ranidasco@gmail.com
+kindly notify him once OK.
+
+yes it is not working...
+yes it is not working...
+yes it is not working...
+yes it is not working...</Description>
+    <Urgency>1</Urgency>
+    <Status>2</Status>
+    <AssignedGroupId>81</AssignedGroupId>
+    <AssignedUserId>15</AssignedUserId>
+    <TicketGuid>INC11240500001</TicketGuid>
+    <DateClosed>2011-06-16T22:59:43.43+08:00</DateClosed>
+    <SubmitterId>-1</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>2</Id>
+    <UserId>15</UserId>
+    <DateCreated>2011-05-26T00:38:03.147+08:00</DateCreated>
+    <CategoryId>3</CategoryId>
+    <Description>test2 desc 1</Description>
+    <Urgency>2</Urgency>
+    <Status>1</Status>
+    <AssignedGroupId>82</AssignedGroupId>
+    <AssignedUserId>3</AssignedUserId>
+    <TicketGuid>INC11260500001</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>-1</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>3</Id>
+    <UserId>15</UserId>
+    <DateCreated>2011-06-01T00:51:30.54+08:00</DateCreated>
+    <CategoryId>1</CategoryId>
+    <Description>test 123</Description>
+    <Urgency>1</Urgency>
+    <Status>1</Status>
+    <AssignedGroupId>82</AssignedGroupId>
+    <AssignedUserId>3</AssignedUserId>
+    <TicketGuid>INC11010600001</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>-1</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>4</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-06-03T16:19:58+08:00</DateCreated>
+    <CategoryId>1</CategoryId>
+    <Description>this is a
+new
+ticket description.
+
+sddddxx</Description>
+    <Urgency>1</Urgency>
+    <Status>1</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>1</AssignedUserId>
+    <TicketGuid>INC11030600001</TicketGuid>
+    <DateClosed>2011-06-16T22:59:43.43+08:00</DateClosed>
+    <SubmitterId>-1</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>5</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-06-04T13:41:11.25+08:00</DateCreated>
+    <CategoryId>1</CategoryId>
+    <Description>Create an MCGISG Email for Bro Rani Dasco worker.
+
+Rani.Dasco@mcgi.org.sg
+
+His personal email is ranidasco@gmail.com
+kindly notify him once OK.</Description>
+    <Urgency>1</Urgency>
+    <Status>2</Status>
+    <AssignedGroupId>82</AssignedGroupId>
+    <AssignedUserId>3</AssignedUserId>
+    <TicketGuid>INC11040600001</TicketGuid>
+    <DateClosed>2011-06-16T22:59:43.43+08:00</DateClosed>
+    <SubmitterId>-1</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>6</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-06-06T20:29:32.413+08:00</DateCreated>
+    <CategoryId>1</CategoryId>
+    <Description>test 1 2 3
+
+Your request has been COMPLETED. Kindly verify and confirm if the solution has solved your request by updating the ticket status to CLOSED.
+
+Your request has been COMPLETED. Kindly verify and confirm if the solution has solved your request by updating the ticket status to CLOSED.
+
+Your request has been COMPLETED. Kindly verify and confirm if the solution has solved your request by updating the ticket status to CLOSED.
+
+Your request has been COMPLETED. Kindly verify and confirm if the solution has solved your request by updating the ticket status to CLOSED.</Description>
+    <Urgency>1</Urgency>
+    <Status>2</Status>
+    <AssignedGroupId>82</AssignedGroupId>
+    <AssignedUserId>3</AssignedUserId>
+    <TicketGuid>INC11060600001</TicketGuid>
+    <DateClosed>2011-06-16T22:59:43.43+08:00</DateClosed>
+    <SubmitterId>-1</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>3</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>7</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-06-07T21:17:11.23+08:00</DateCreated>
+    <CategoryId>2</CategoryId>
+    <Description>test ams odk</Description>
+    <Urgency>1</Urgency>
+    <Status>3</Status>
+    <AssignedGroupId>82</AssignedGroupId>
+    <AssignedUserId>3</AssignedUserId>
+    <TicketGuid>INC11070600001</TicketGuid>
+    <DateClosed>2011-06-17T16:21:52.32+08:00</DateClosed>
+    <SubmitterId>-1</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>8</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-06-10T22:01:16.383+08:00</DateCreated>
+    <CategoryId>2</CategoryId>
+    <Description>dddd</Description>
+    <Urgency>0</Urgency>
+    <Status>1</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>1</AssignedUserId>
+    <TicketGuid>INC11110600001</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>-1</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>10</Id>
+    <UserId>15</UserId>
+    <DateCreated>2011-06-17T00:28:31.093+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>Please grant HelpDesk Access to ADDCIT member below:
+
+Bro Anderson So
+Bro Jett Tayer
+Bro Romano Dela Torre
+Bro Daniel Salunga
+Bro Shier Vermont
+Bro Delfin Gacu
+Bro Gerald Manguiam
+Bro Darryl Mancilla
+Bro Dennis Rodiano
+Bro Jay Llaguno
+Bro Archie Federico
+Bro Jun De Guzman
+Bro Michael Taruc
+
+ssD.</Description>
+    <Urgency>1</Urgency>
+    <Status>1</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>117</AssignedUserId>
+    <TicketGuid>SG11170600002</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>3</SubmitterId>
+    <ETA>2011-07-02T15:48:00+08:00</ETA>
+    <TypeId>3</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>11</Id>
+    <UserId>1</UserId>
+    <DateCreated>2011-06-17T16:00:05.177+08:00</DateCreated>
+    <CategoryId>1</CategoryId>
+    <Description>ddd</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>85</AssignedGroupId>
+    <AssignedUserId>-1</AssignedUserId>
+    <TicketGuid>SG11170600003</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>3</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>12</Id>
+    <UserId>1</UserId>
+    <DateCreated>2011-06-17T16:52:23.243+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>test</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>-1</AssignedUserId>
+    <TicketGuid>SG11170600004</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>3</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>13</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-06-17T17:11:24.943+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>asdf</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>-1</AssignedUserId>
+    <TicketGuid>SG11170600005</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>3</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>14</Id>
+    <UserId>117</UserId>
+    <DateCreated>2011-06-17T17:12:20.363+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>sdfas dfasdfasdfasdf</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>-1</AssignedUserId>
+    <TicketGuid>SG11170600006</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>3</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>16</Id>
+    <UserId>15</UserId>
+    <DateCreated>2011-06-18T20:49:52.047+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>test user12</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>-1</AssignedUserId>
+    <TicketGuid>SG11180600001</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>15</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>17</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-06-18T20:50:08.07+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>test support</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>-1</AssignedUserId>
+    <TicketGuid>SG11180600002</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>3</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>18</Id>
+    <UserId>1</UserId>
+    <DateCreated>2011-06-18T20:50:35.567+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>test support 21</Description>
+    <Urgency>1</Urgency>
+    <Status>1</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>1</AssignedUserId>
+    <TicketGuid>SG11180600003</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>3</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>19</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-06-18T20:56:25.36+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>ddd</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>82</AssignedGroupId>
+    <AssignedUserId>3</AssignedUserId>
+    <TicketGuid>SG11180600004</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>15</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>-1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>20</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-06-19T21:29:11.567+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>test sms notes</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>-1</AssignedUserId>
+    <TicketGuid>SG11061900001</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>3</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>21</Id>
+    <UserId>15</UserId>
+    <DateCreated>2011-06-19T21:30:27.853+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>test</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>82</AssignedGroupId>
+    <AssignedUserId>3</AssignedUserId>
+    <TicketGuid>SG11062000001</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>15</SubmitterId>
+    <ETA>2011-07-04T14:30:00+08:00</ETA>
+    <TypeId>3</TypeId>
+    <NotifyAlso>21\1;21\13</NotifyAlso>
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>22</Id>
+    <UserId>3</UserId>
+    <DateCreated>2011-06-19T21:30:42.357+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>fasdfasdfasdf</Description>
+    <Urgency>1</Urgency>
+    <Status>1</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>1</AssignedUserId>
+    <TicketGuid>SG11062000002</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>3</SubmitterId>
+    <ETA>2011-07-14T23:30:00+08:00</ETA>
+    <TypeId>3</TypeId>
+    <NotifyAlso>38\8;38\44;38\12;38\80;38\55;38\54;38\76;38\77;38\56;38\57;38\58;38\59;38\60;38\61;38\62;38\63;38\64;38\65;21\1;21\3;21\13;21\15;21\17;21\116;21\117;21\118;21\119;21\120;21\121;21\122;21\124;21\127;21\129;21\130;21\131;21\133</NotifyAlso>
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>23</Id>
+    <UserId>15</UserId>
+    <DateCreated>2011-07-01T20:00:47.983+08:00</DateCreated>
+    <CategoryId>1</CategoryId>
+    <Description>test 1 2 3</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>85</AssignedGroupId>
+    <AssignedUserId>-1</AssignedUserId>
+    <TicketGuid>SG11070100001</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>15</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>24</Id>
+    <UserId>15</UserId>
+    <DateCreated>2011-08-16T23:17:07.45+08:00</DateCreated>
+    <CategoryId>6</CategoryId>
+    <Description>test</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>83</AssignedGroupId>
+    <AssignedUserId>-1</AssignedUserId>
+    <TicketGuid>SG11081700001</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>15</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+  <IncidentTicket>
+    <Id>25</Id>
+    <UserId>15</UserId>
+    <DateCreated>2011-08-17T23:22:17.003+08:00</DateCreated>
+    <CategoryId>1</CategoryId>
+    <Description>dddddd</Description>
+    <Urgency>1</Urgency>
+    <Status>0</Status>
+    <AssignedGroupId>85</AssignedGroupId>
+    <AssignedUserId>-1</AssignedUserId>
+    <TicketGuid>SG11081800001</TicketGuid>
+    <DateClosed>1799-12-31T21:30:00+08:00</DateClosed>
+    <SubmitterId>15</SubmitterId>
+    <ETA>1799-12-31T21:30:00+08:00</ETA>
+    <TypeId>1</TypeId>
+    <NotifyAlso />
+    <InstanceId>-1</InstanceId>
+  </IncidentTicket>
+</mPortal>

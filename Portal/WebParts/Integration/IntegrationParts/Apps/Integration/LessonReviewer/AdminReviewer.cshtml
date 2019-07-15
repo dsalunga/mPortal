@@ -1,0 +1,82 @@
+﻿@using WCMS.Framework
+@{
+    var context = new WContext(this);
+    var element = context.Element;
+
+    var admin = element != null ? element.PartControlTemplate.PartControl.PartAdmin : context.PartAdmin;
+
+    var attendanceApprovalUrl = admin.GetParameterValue("AttendanceApprovalUrl");
+    var durationManagerUrl = admin.GetParameterValue("DurationManagerUrl");
+    var offlineAdminUrl = admin.GetParameterValue("OfflineAdminUrl");
+    var makeUpSessions = admin.GetParameterValue("ReviewSessionsUrl");
+}
+
+<style type="text/css">
+    .app-category .media, .media .media {
+        margin-top: 0;
+        margin-bottom: 30px;
+        min-height: 64px;
+    }
+
+        .app-category .media:first-child {
+            margin-top: 0;
+        }
+
+    .app-icon {
+        width: 64px;
+    }
+
+    .glyphicon-icon {
+        font-size: 50px;
+        width: 64px;
+        /*color: #EDA912;*/
+        color: #777;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+</style>
+
+<div class="container1">
+    <div class="row app-category">
+        <div class="col-md-12">
+            @*<h3 class="page-header1">Reviewer Administration</h3>*@
+            &nbsp;
+        </div>
+        <div class="media col-sm-6 col-lg-4">
+            <a class="pull-left" href="@attendanceApprovalUrl" target="_blank">
+                <img class="app-icon" src="/content/assets/images/doc_globe.png">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="@attendanceApprovalUrl" target="_blank">Attendance Approval Manager</a></h4>
+                Review and approve attendance requests submitted by review takers.
+            </div>
+        </div>
+        <div class="media col-sm-6 col-lg-4">
+            <a class="pull-left" href="@makeUpSessions" target="_blank">
+                <img class="app-icon" src="/content/assets/images/doc_globe.png">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="@makeUpSessions" target="_blank">Make-Up Sessions</a></h4>
+                See all ongoing sessions and their duration.
+            </div>
+        </div>
+        <div class="media col-sm-6 col-lg-4">
+            <a class="pull-left" href="@durationManagerUrl" target="_blank">
+                <img class="app-icon" src="/content/assets/images/doc_globe.png">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="@durationManagerUrl" target="_blank">Video Duration Manager</a></h4>
+                Set the duration of video gathering sessions to be used for comparing review sessions length. 
+            </div>
+        </div>
+        <div class="media col-sm-6 col-lg-4">
+            <a class="pull-left" href="@offlineAdminUrl" target="_blank">
+                <img class="app-icon" src="/content/assets/images/doc_globe.png">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="@offlineAdminUrl" target="_blank">Reviewer Offline Administration</a></h4>
+                Open the admin page of the Reviewer Offline version.
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+﻿@using WCMS.Framework
+@{
+    var context = new WContext(this);
+    var element = context.Element;
+    WebGroup group = null;
+    
+    if (element != null) {
+        var parentGroupName = element.GetParameterValue("ParentGroup");
+        if (!string.IsNullOrEmpty(parentGroupName))
+        {
+            group = WebGroup.SelectNode(parentGroupName);
+        }
+    }
+    
+    var admin = element != null ? element.PartControlTemplate.PartControl.PartAdmin : context.PartAdmin;
+    
+    var approvalManagerUrl = admin.GetParameterValue("ApprovalManagerUrl");
+    var linkManagerUrl = admin.GetParameterValue("LinkManagerUrl");
+    var userManagerUrl = CentralPages.WebUsers;
+}
+
+<style type="text/css">
+    .app-category .media, .media .media {
+        margin-top: 0;
+        margin-bottom: 30px;
+        min-height: 64px;
+    }
+
+        .app-category .media:first-child {
+            margin-top: 0;
+        }
+
+    .app-icon {
+        width: 64px;
+    }
+
+    .glyphicon-icon {
+        font-size: 50px;
+        width: 64px;
+        /*color: #EDA912;*/
+        color: #777;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+</style>
+
+<div class="container1">
+    <div class="row app-category">
+        <div class="col-md-12">
+            @*<h3 class="page-header1">Make-Up Administration</h3>*@
+            &nbsp;
+        </div>
+        @if (group != null)
+        {
+            context.BasePath = CentralPages.LoaderMain;
+            context.SetLoad("WebGroupUsers");
+            var url = context.BuildQuery();
+            <div class="media col-sm-6 col-lg-4">
+                <a class="pull-left" href="@url" target="_blank">
+                    <img class="app-icon" src="/content/assets/images/doc_globe.png">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="@url" target="_blank">@group.Name @(group.Name.EndsWith("Members") ? "" : " Members")</a></h4>
+                    Manage the members of this page. Allows adding/removing and download of details.
+                </div>
+            </div>
+        }
+        <div class="media col-sm-6 col-lg-4">
+            <a class="pull-left" href="@approvalManagerUrl" target="_blank">
+                <img class="app-icon" src="/content/assets/images/doc_globe.png">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="@approvalManagerUrl" target="_blank">Registration Approval</a></h4>
+                Review and approve pending registration requests.
+            </div>
+        </div>
+        <div class="media col-sm-6 col-lg-4">
+            <a class="pull-left" href="@linkManagerUrl" target="_blank">
+                <img class="app-icon" src="/content/assets/images/doc_globe.png">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="@linkManagerUrl" target="_blank">All Integration Members</a></h4>
+                Manage all users of the Portal that are have Integration profiles.
+            </div>
+        </div>
+        <div class="media col-sm-6 col-lg-4">
+            <a class="pull-left" href="@userManagerUrl" target="_blank">
+                <img class="app-icon" src="/content/assets/images/doc_globe.png">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="@userManagerUrl" target="_blank">All Users</a></h4>
+                Manage all users of the Portal.
+            </div>
+        </div>
+    </div>
+</div>

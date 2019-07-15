@@ -1,0 +1,204 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="ODKVisit">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="CreatedUserId" type="xs:int" />
+                <xs:element name="DateCreated" type="xs:dateTime" />
+                <xs:element name="ActualReport">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Status">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="GroupId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="VisitedUserId" type="xs:int" />
+                <xs:element name="DateVisited" type="xs:dateTime" />
+                <xs:element name="ActionTaken">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ContactNo">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="TimesVisited" type="xs:int" />
+                <xs:element name="Address">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="MembershipDate" type="xs:dateTime" />
+                <xs:element name="Tags">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//ODKVisit" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <ODKVisit>
+    <Id>15</Id>
+    <CreatedUserId>3</CreatedUserId>
+    <DateCreated>2010-08-03T00:14:19.95+08:00</DateCreated>
+    <ActualReport>&lt;p&gt;ok fine&lt;/p&gt;</ActualReport>
+    <Status>Not interested</Status>
+    <GroupId>15</GroupId>
+    <Name />
+    <VisitedUserId>1</VisitedUserId>
+    <DateVisited>2010-08-09T21:30:00+08:00</DateVisited>
+    <ActionTaken />
+    <ContactNo />
+    <TimesVisited>0</TimesVisited>
+    <Address />
+    <MembershipDate>1905-03-13T21:30:00+08:00</MembershipDate>
+    <Tags />
+  </ODKVisit>
+  <ODKVisit>
+    <Id>16</Id>
+    <CreatedUserId>3</CreatedUserId>
+    <DateCreated>2010-08-03T01:33:51.213+08:00</DateCreated>
+    <ActualReport>tamad po sya</ActualReport>
+    <Status>Need follow up</Status>
+    <GroupId>28</GroupId>
+    <Name />
+    <VisitedUserId>13</VisitedUserId>
+    <DateVisited>2010-08-09T21:30:00+08:00</DateVisited>
+    <ActionTaken />
+    <ContactNo />
+    <TimesVisited>0</TimesVisited>
+    <Address />
+    <MembershipDate>1905-03-13T21:30:00+08:00</MembershipDate>
+    <Tags />
+  </ODKVisit>
+  <ODKVisit>
+    <Id>17</Id>
+    <CreatedUserId>3</CreatedUserId>
+    <DateCreated>2010-08-03T01:34:49.133+08:00</DateCreated>
+    <ActualReport>nagbabato po</ActualReport>
+    <Status>Need follow up</Status>
+    <GroupId>15</GroupId>
+    <Name />
+    <VisitedUserId>17</VisitedUserId>
+    <DateVisited>2010-08-30T21:30:00+08:00</DateVisited>
+    <ActionTaken>wala po</ActionTaken>
+    <ContactNo>83871509</ContactNo>
+    <TimesVisited>1</TimesVisited>
+    <Address>Tampines Ave 8</Address>
+    <MembershipDate>2002-02-14T21:30:00+08:00</MembershipDate>
+    <Tags />
+  </ODKVisit>
+  <ODKVisit>
+    <Id>18</Id>
+    <CreatedUserId>3</CreatedUserId>
+    <DateCreated>2010-08-03T01:37:00.693+08:00</DateCreated>
+    <ActualReport>tesa dsfadsfsdfa
+ads
+fa
+sdf
+asdf
+asdf</ActualReport>
+    <Status>Not interested</Status>
+    <GroupId>15</GroupId>
+    <Name />
+    <VisitedUserId>3</VisitedUserId>
+    <DateVisited>2010-08-16T21:30:00+08:00</DateVisited>
+    <ActionTaken />
+    <ContactNo>83871509</ContactNo>
+    <TimesVisited>0</TimesVisited>
+    <Address>211 Henderson road
+Singapore 345344</Address>
+    <MembershipDate>2010-03-08T21:30:00+08:00</MembershipDate>
+    <Tags />
+  </ODKVisit>
+  <ODKVisit>
+    <Id>21</Id>
+    <CreatedUserId>3</CreatedUserId>
+    <DateCreated>2010-08-30T00:34:24+08:00</DateCreated>
+    <ActualReport>test obs</ActualReport>
+    <Status>test status</Status>
+    <GroupId>15</GroupId>
+    <Name />
+    <VisitedUserId>3</VisitedUserId>
+    <DateVisited>2010-08-29T21:30:00+08:00</DateVisited>
+    <ActionTaken>test action</ActionTaken>
+    <ContactNo>83871509</ContactNo>
+    <TimesVisited>1</TimesVisited>
+    <Address>211 Henderson road
+Singapore 345344</Address>
+    <MembershipDate>2010-03-08T21:30:00+08:00</MembershipDate>
+    <Tags />
+  </ODKVisit>
+  <ODKVisit>
+    <Id>22</Id>
+    <CreatedUserId>3</CreatedUserId>
+    <DateCreated>2011-08-23T12:12:10.533+08:00</DateCreated>
+    <ActualReport />
+    <Status />
+    <GroupId>-1</GroupId>
+    <Name>test</Name>
+    <VisitedUserId>-1</VisitedUserId>
+    <DateVisited>2011-08-22T21:30:00+08:00</DateVisited>
+    <ActionTaken />
+    <ContactNo />
+    <TimesVisited>1</TimesVisited>
+    <Address>test</Address>
+    <MembershipDate>2011-08-01T21:30:00+08:00</MembershipDate>
+    <Tags>Sensitive</Tags>
+  </ODKVisit>
+  <ODKVisit>
+    <Id>23</Id>
+    <CreatedUserId>3</CreatedUserId>
+    <DateCreated>2012-01-16T15:56:32.72+08:00</DateCreated>
+    <ActualReport />
+    <Status />
+    <GroupId>28</GroupId>
+    <Name>test  2</Name>
+    <VisitedUserId>-1</VisitedUserId>
+    <DateVisited>2012-01-15T21:30:00+08:00</DateVisited>
+    <ActionTaken />
+    <ContactNo />
+    <TimesVisited>1</TimesVisited>
+    <Address>adf</Address>
+    <MembershipDate>2012-01-02T21:30:00+08:00</MembershipDate>
+    <Tags>Sensitive</Tags>
+  </ODKVisit>
+</mPortal>

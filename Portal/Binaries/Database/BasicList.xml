@@ -1,0 +1,53 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="BasicList">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="BasicListID" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="DateCreated" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="PageType" type="xs:int" minOccurs="0" />
+                <xs:element name="SitePageItemID" type="xs:int" minOccurs="0" />
+                <xs:element name="RepeatColumns" type="xs:int" minOccurs="0" />
+                <xs:element name="ShowField2" type="xs:boolean" minOccurs="0" />
+                <xs:element name="ShowField3" type="xs:boolean" minOccurs="0" />
+                <xs:element name="CellPadding" type="xs:int" minOccurs="0" />
+                <xs:element name="ItemTemplate" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="PageSize" type="xs:int" minOccurs="0" />
+                <xs:element name="GridLines" type="xs:int" minOccurs="0" />
+                <xs:element name="AlternatingColor" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="64" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="TextColor" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="64" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//BasicList" />
+        <xs:field xpath="BasicListID" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+</mPortal>

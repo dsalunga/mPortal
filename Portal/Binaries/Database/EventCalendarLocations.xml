@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="EventCalendarLocations">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="LocationId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Bookable" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//EventCalendarLocations" />
+        <xs:field xpath="LocationId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <EventCalendarLocations>
+    <LocationId>1</LocationId>
+    <Name>Conference Room</Name>
+    <Bookable>1</Bookable>
+  </EventCalendarLocations>
+  <EventCalendarLocations>
+    <LocationId>2</LocationId>
+    <Name>Computer Room</Name>
+    <Bookable>1</Bookable>
+  </EventCalendarLocations>
+  <EventCalendarLocations>
+    <LocationId>4</LocationId>
+    <Name>Test</Name>
+    <Bookable>1</Bookable>
+  </EventCalendarLocations>
+  <EventCalendarLocations>
+    <LocationId>5</LocationId>
+    <Name>211 Henderson Industrial Park, #14-01</Name>
+    <Bookable>1</Bookable>
+  </EventCalendarLocations>
+  <EventCalendarLocations>
+    <LocationId>6</LocationId>
+    <Name>Not applicable</Name>
+    <Bookable>0</Bookable>
+  </EventCalendarLocations>
+</mPortal>

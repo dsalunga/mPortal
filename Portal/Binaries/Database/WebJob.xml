@@ -1,0 +1,193 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebJob">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="RecurrenceId" type="xs:int" />
+                <xs:element name="Weekdays" type="xs:int" />
+                <xs:element name="OccursEvery" type="xs:int" />
+                <xs:element name="ExecutionStartDate" type="xs:dateTime" />
+                <xs:element name="ExecutionEndDate" type="xs:dateTime" />
+                <xs:element name="ExecutionStatus" type="xs:int" />
+                <xs:element name="ExecutionMessage">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Enabled" type="xs:int" />
+                <xs:element name="TypeName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="StartDate" type="xs:dateTime" />
+                <xs:element name="Description">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="4000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebJob" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebJob>
+    <Id>1</Id>
+    <Name>RemoteIndexer</Name>
+    <RecurrenceId>2</RecurrenceId>
+    <Weekdays>36</Weekdays>
+    <OccursEvery>1</OccursEvery>
+    <ExecutionStartDate>2014-11-20T01:49:00.79+08:00</ExecutionStartDate>
+    <ExecutionEndDate>2014-11-20T01:40:03.703+08:00</ExecutionEndDate>
+    <ExecutionStatus>1</ExecutionStatus>
+    <ExecutionMessage />
+    <Enabled>0</Enabled>
+    <TypeName>WCMS.WebSystem.WebParts.RemoteIndexer, WCMS.WebSystem.WebParts.RemoteIndexer.RemoteIndexerTask</TypeName>
+    <StartDate>2010-11-18T14:46:10+08:00</StartDate>
+    <Description>Indexes remote file system and storage libraries like FTP, HTTP FTP, Windows filesystem, UNIX filesystem, etc.</Description>
+  </WebJob>
+  <WebJob>
+    <Id>2</Id>
+    <Name>AmsProfileSync</Name>
+    <RecurrenceId>2</RecurrenceId>
+    <Weekdays>2</Weekdays>
+    <OccursEvery>1</OccursEvery>
+    <ExecutionStartDate>2011-02-14T16:21:10.557+08:00</ExecutionStartDate>
+    <ExecutionEndDate>2011-02-14T16:21:22.273+08:00</ExecutionEndDate>
+    <ExecutionStatus>2</ExecutionStatus>
+    <ExecutionMessage />
+    <Enabled>0</Enabled>
+    <TypeName>WCMS.WebSystem.WebParts.Registration,WCMS.WebSystem.WebParts.Registration.ProfileAmsSyncTask</TypeName>
+    <StartDate>2010-12-10T05:30:00+08:00</StartDate>
+    <Description>Profile Sync from AMS to Portal</Description>
+  </WebJob>
+  <WebJob>
+    <Id>3</Id>
+    <Name>EventCalendarReminderJob</Name>
+    <RecurrenceId>7</RecurrenceId>
+    <Weekdays>0</Weekdays>
+    <OccursEvery>0</OccursEvery>
+    <ExecutionStartDate>2012-10-31T22:39:25.08+08:00</ExecutionStartDate>
+    <ExecutionEndDate>2012-08-05T14:22:39.333+08:00</ExecutionEndDate>
+    <ExecutionStatus>1</ExecutionStatus>
+    <ExecutionMessage>Thread was being aborted.</ExecutionMessage>
+    <Enabled>1</Enabled>
+    <TypeName>WCMS.WebSystem.WebParts.EventCalendar,WCMS.WebSystem.WebParts.EventCalendar.EventReminderSender</TypeName>
+    <StartDate>1909-12-31T21:30:00+08:00</StartDate>
+    <Description>Event Calendar - Reminder Sender</Description>
+  </WebJob>
+  <WebJob>
+    <Id>4</Id>
+    <Name>McgiOldProfileMigratorTask</Name>
+    <RecurrenceId>7</RecurrenceId>
+    <Weekdays>0</Weekdays>
+    <OccursEvery>0</OccursEvery>
+    <ExecutionStartDate>2011-02-14T22:10:41.327+08:00</ExecutionStartDate>
+    <ExecutionEndDate>2011-02-14T22:10:41.59+08:00</ExecutionEndDate>
+    <ExecutionStatus>2</ExecutionStatus>
+    <ExecutionMessage />
+    <Enabled>0</Enabled>
+    <TypeName>WCMS.WebSystem.WebParts.Registration,WCMS.WebSystem.WebParts.Registration.OldProfileMigratorTask</TypeName>
+    <StartDate>1909-12-31T21:30:00+08:00</StartDate>
+    <Description>Migrates the members' addresses from MemberLink to WebAddress</Description>
+  </WebJob>
+  <WebJob>
+    <Id>5</Id>
+    <Name>MessageQueueProcessor</Name>
+    <RecurrenceId>-1</RecurrenceId>
+    <Weekdays>0</Weekdays>
+    <OccursEvery>0</OccursEvery>
+    <ExecutionStartDate>2015-03-14T11:10:15.853+08:00</ExecutionStartDate>
+    <ExecutionEndDate>2015-03-14T11:10:19.767+08:00</ExecutionEndDate>
+    <ExecutionStatus>2</ExecutionStatus>
+    <ExecutionMessage />
+    <Enabled>1</Enabled>
+    <TypeName>WCMS.Framework,WCMS.Framework.Net.MessageProcessorTask</TypeName>
+    <StartDate>2009-12-31T21:30:00+08:00</StartDate>
+    <Description>Sends queued e-mail and/or SMS messages.</Description>
+  </WebJob>
+  <WebJob>
+    <Id>6</Id>
+    <Name>MemberRegistrationTask</Name>
+    <RecurrenceId>-1</RecurrenceId>
+    <Weekdays>0</Weekdays>
+    <OccursEvery>0</OccursEvery>
+    <ExecutionStartDate>2011-04-03T21:21:27.653+08:00</ExecutionStartDate>
+    <ExecutionEndDate>2011-04-03T21:28:32.017+08:00</ExecutionEndDate>
+    <ExecutionStatus>2</ExecutionStatus>
+    <ExecutionMessage />
+    <Enabled>0</Enabled>
+    <TypeName>WCMS.WebSystem.WebParts.Registration,WCMS.WebSystem.WebParts.Registration.MemberRegistrationTask</TypeName>
+    <StartDate>2011-01-03T21:30:00+08:00</StartDate>
+    <Description>Registers list of Members from an XML file</Description>
+  </WebJob>
+  <WebJob>
+    <Id>7</Id>
+    <Name>MemberDOBUpdaterTask</Name>
+    <RecurrenceId>-1</RecurrenceId>
+    <Weekdays>0</Weekdays>
+    <OccursEvery>0</OccursEvery>
+    <ExecutionStartDate>2011-04-13T00:13:54.187+08:00</ExecutionStartDate>
+    <ExecutionEndDate>2011-04-13T00:13:57.173+08:00</ExecutionEndDate>
+    <ExecutionStatus>2</ExecutionStatus>
+    <ExecutionMessage />
+    <Enabled>0</Enabled>
+    <TypeName>WCMS.WebSystem.WebParts.Registration,WCMS.WebSystem.WebParts.Registration.Task.MemberDOBUpdaterTask</TypeName>
+    <StartDate>2011-03-31T21:30:00+08:00</StartDate>
+    <Description>Syncs all member's DOB from AMS.</Description>
+  </WebJob>
+  <WebJob>
+    <Id>8</Id>
+    <Name>MCVoteReminderTask</Name>
+    <RecurrenceId>-1</RecurrenceId>
+    <Weekdays>0</Weekdays>
+    <OccursEvery>0</OccursEvery>
+    <ExecutionStartDate>2012-09-24T14:36:15.317+08:00</ExecutionStartDate>
+    <ExecutionEndDate>2012-09-24T14:36:15.6+08:00</ExecutionEndDate>
+    <ExecutionStatus>2</ExecutionStatus>
+    <ExecutionMessage />
+    <Enabled>1</Enabled>
+    <TypeName>WCMS.WebSystem.WebParts.Registration,WCMS.WebSystem.WebParts.Registration.Task.MCVoteReminderTask</TypeName>
+    <StartDate>1909-12-31T21:30:00+08:00</StartDate>
+    <Description />
+  </WebJob>
+  <WebJob>
+    <Id>9</Id>
+    <Name>SenderTask</Name>
+    <RecurrenceId>-1</RecurrenceId>
+    <Weekdays>0</Weekdays>
+    <OccursEvery>0</OccursEvery>
+    <ExecutionStartDate>2012-10-26T19:59:27.193+08:00</ExecutionStartDate>
+    <ExecutionEndDate>2012-10-26T19:59:35.39+08:00</ExecutionEndDate>
+    <ExecutionStatus>2</ExecutionStatus>
+    <ExecutionMessage />
+    <Enabled>1</Enabled>
+    <TypeName>WCMS.WebSystem.Utilities, WCMS.WebSystem.Utilities.Spammer.SenderTask</TypeName>
+    <StartDate>2012-10-01T00:00:00+08:00</StartDate>
+    <Description>Email blaster based on XML data</Description>
+  </WebJob>
+</mPortal>

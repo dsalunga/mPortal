@@ -31,9 +31,9 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
             return (new JObject(
                 new JProperty("member",
                     new JObject(
-                        new JProperty("firstName", "Daniel"),
-                        new JProperty("lastName", "Salunga"),
-                        new JProperty("nickname", "Den"),
+                        new JProperty("firstName", "FirstName"),
+                        new JProperty("lastName", "LastName"),
+                        new JProperty("nickname", "Nickname"),
                         new JProperty("photoUrl", "")
                         )
                     )));
@@ -118,7 +118,7 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
                                 new JProperty("firstName", user.FirstName),
                                 new JProperty("lastName", user.LastName),
                                 new JProperty("nickname", link.Nickname),
-                        //new JProperty("email", user.Email),
+                                //new JProperty("email", user.Email),
                                 new JProperty("photoUrl", user.GetPhotoPath("200x200", true)),
                                 new JProperty("country", country != null ? country.CountryName : ""),
                                 new JProperty("chapter", link.Locale),
@@ -167,7 +167,7 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
                                 new JProperty("lastName", user.LastName),
                                 new JProperty("nickname", link.Nickname),
                                 new JProperty("externalId", link.ExternalIdNo),
-                            //new JProperty("email", user.Email),
+                                //new JProperty("email", user.Email),
                                 new JProperty("photoUrl", user.GetPhotoPath("200x200", true)),
                                 new JProperty("country", country != null ? country.CountryName : ""),
                                 new JProperty("chapter", link.Locale),

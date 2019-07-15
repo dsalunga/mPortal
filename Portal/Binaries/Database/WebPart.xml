@@ -1,0 +1,259 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebPart">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PartId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="255" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Identity">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="255" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Active" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebPart" />
+        <xs:field xpath="PartId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebPart>
+    <PartId>1</PartId>
+    <Name>Content</Name>
+    <Identity>Content</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>6</PartId>
+    <Name>Menu</Name>
+    <Identity>Menu</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>13</PartId>
+    <Name>Web Site List</Name>
+    <Identity>SiteList</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>19</PartId>
+    <Name>Ads</Name>
+    <Identity>Ads</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>51</PartId>
+    <Name>File Manager</Name>
+    <Identity>FileManager</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>53</PartId>
+    <Name>Newsletter</Name>
+    <Identity>Newsletter</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>58</PartId>
+    <Name>Photo Gallery</Name>
+    <Identity>Photo</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>59</PartId>
+    <Name>Media Gallery</Name>
+    <Identity>Media</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>60</PartId>
+    <Name>Contact Us</Name>
+    <Identity>Contact</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>63</PartId>
+    <Name>Search</Name>
+    <Identity>Search</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>64</PartId>
+    <Name>Article</Name>
+    <Identity>Article</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>72</PartId>
+    <Name>Section Titles</Name>
+    <Identity>Title</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>75</PartId>
+    <Name>Downloads</Name>
+    <Identity>Download</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>76</PartId>
+    <Name>Birthday Reminder</Name>
+    <Identity>Reminder</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>77</PartId>
+    <Name>Event Calendar</Name>
+    <Identity>EventCalendar</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>78</PartId>
+    <Name>Administration</Name>
+    <Identity>Central</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>79</PartId>
+    <Name>Flash Banner</Name>
+    <Identity>FlashBanner</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>80</PartId>
+    <Name>For testing</Name>
+    <Identity>Test</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>81</PartId>
+    <Name>Basic List</Name>
+    <Identity>BasicList</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>82</PartId>
+    <Name>Generic List</Name>
+    <Identity>GenericList</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>83</PartId>
+    <Name>Navigation WebParts</Name>
+    <Identity>Navigation</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>84</PartId>
+    <Name>Ajax Resources</Name>
+    <Identity>Ajax</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>85</PartId>
+    <Name>Integration Registration</Name>
+    <Identity>Registration</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>86</PartId>
+    <Name>Integration Profile</Name>
+    <Identity>Profile</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>87</PartId>
+    <Name>Offices</Name>
+    <Identity>Office</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>88</PartId>
+    <Name>Messaging</Name>
+    <Identity>Messaging</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>89</PartId>
+    <Name>Remote Libraries</Name>
+    <Identity>RemoteIndexer</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>90</PartId>
+    <Name>Weekly Scheduler</Name>
+    <Identity>WeeklyScheduler</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>91</PartId>
+    <Name>Twitter</Name>
+    <Identity>Twitter</Identity>
+    <Active>0</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>92</PartId>
+    <Name>Incident Management</Name>
+    <Identity>Incident</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>93</PartId>
+    <Name>Bible Reader</Name>
+    <Identity>BibleReader</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>94</PartId>
+    <Name>Social</Name>
+    <Identity>Social</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>95</PartId>
+    <Name>Jobs Manager</Name>
+    <Identity>Jobs</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>96</PartId>
+    <Name>Music Competition</Name>
+    <Identity>Music</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>97</PartId>
+    <Name>Common</Name>
+    <Identity>Common</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>98</PartId>
+    <Name>Integration</Name>
+    <Identity>Integration</Identity>
+    <Active>1</Active>
+  </WebPart>
+  <WebPart>
+    <PartId>99</PartId>
+    <Name>Branch Locator</Name>
+    <Identity>BranchLocator</Identity>
+    <Active>1</Active>
+  </WebPart>
+</mPortal>

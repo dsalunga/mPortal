@@ -1,0 +1,207 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="GalleryCategory">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="Title" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ImageURL" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Width" type="xs:int" />
+                <xs:element name="PhotoHeight" type="xs:int" />
+                <xs:element name="FolderName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="PhotoWidth" type="xs:int" />
+                <xs:element name="DateModified" type="xs:dateTime" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//GalleryCategory" />
+        <xs:field xpath="CategoryID" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <GalleryCategory>
+    <CategoryID>1</CategoryID>
+    <Title>Beautiful Scenes</Title>
+    <ImageURL>Hydrangeas.jpg</ImageURL>
+    <Width>250</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>Beautiful_Scenes</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-08T07:08:21.28+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>2</CategoryID>
+    <Title>Togetherness</Title>
+    <ImageURL>Penguins.jpg</ImageURL>
+    <Width>250</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>Togetherness</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-07T22:28:41.503+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>3</CategoryID>
+    <Title>Random Scenes</Title>
+    <ImageURL>Lighthouse.jpg</ImageURL>
+    <Width>250</Width>
+    <PhotoHeight>250</PhotoHeight>
+    <FolderName>Random_Scenes</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-07T22:28:41.503+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>4</CategoryID>
+    <Title>ams and mothers</Title>
+    <ImageURL>ams_mothers_002.jpg</ImageURL>
+    <Width>200</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>ams_and_mothers</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-07T22:28:41.503+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>5</CategoryID>
+    <Title>bible expo jan 5 2010</Title>
+    <ImageURL>bible_expo_001.jpg</ImageURL>
+    <Width>200</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>bible_expo_jan_5_2010</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-07T22:28:41.503+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>6</CategoryID>
+    <Title>filcras</Title>
+    <ImageURL>filcras_001.jpg</ImageURL>
+    <Width>200</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>filcras</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-07T22:28:41.503+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>7</CategoryID>
+    <Title>food sharing march 9 2010</Title>
+    <ImageURL>food_sharing_005.jpg</ImageURL>
+    <Width>200</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>food_sharing_march_9_2010</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-07T22:28:41.503+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>8</CategoryID>
+    <Title>gcos</Title>
+    <ImageURL>gcos_005.jpg</ImageURL>
+    <Width>200</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>gcos</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-07T22:28:41.503+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>9</CategoryID>
+    <Title>kktk pasalamat</Title>
+    <ImageURL>kktk_pasalamat_001.jpg</ImageURL>
+    <Width>200</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>kktk_pasalamat</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-07T22:28:41.503+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>10</CategoryID>
+    <Title>test</Title>
+    <ImageURL>Desert.jpg</ImageURL>
+    <Width>250</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>test</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-07T22:28:41.503+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>11</CategoryID>
+    <Title>Deep Sea Creatures</Title>
+    <ImageURL>1.jpeg</ImageURL>
+    <Width>200</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>Deep_Sea_Creatures</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-07T22:28:41.503+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>12</CategoryID>
+    <Title>Music Ministry Banners</Title>
+    <ImageURL>IMG_5239.JPG</ImageURL>
+    <Width>250</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>Music_Ministry_Banners</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-09-08T16:30:23.81+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>13</CategoryID>
+    <Title>2009-07 ASOP</Title>
+    <ImageURL>ASOP AsiaOceania Sep2012 -014.1.jpg</ImageURL>
+    <Width>250</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>2009-07_ASOP</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-10-12T23:39:08.47+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>14</CategoryID>
+    <Title>ASOP '12 AsiaOceania District 3</Title>
+    <ImageURL>ASOP AsiaOceania Sep2012 -120.jpg</ImageURL>
+    <Width>250</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>ASOP__12_AsiaOceania_District_3</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-10-12T23:39:46.497+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>15</CategoryID>
+    <Title>test 123</Title>
+    <ImageURL>ASOP AsiaOceania Sep2012 -129.jpg</ImageURL>
+    <Width>250</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>test_123</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2012-10-12T23:40:06.33+08:00</DateModified>
+  </GalleryCategory>
+  <GalleryCategory>
+    <CategoryID>16</CategoryID>
+    <Title>test 12412</Title>
+    <ImageURL>ASOP AsiaOceania Sep2012 -217.jpg</ImageURL>
+    <Width>200</Width>
+    <PhotoHeight>75</PhotoHeight>
+    <FolderName>test_124</FolderName>
+    <PhotoWidth>112</PhotoWidth>
+    <DateModified>2014-04-28T18:09:02.097+08:00</DateModified>
+  </GalleryCategory>
+</mPortal>

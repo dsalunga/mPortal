@@ -1,0 +1,431 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebSite">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="SiteId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Rank" type="xs:int" />
+                <xs:element name="Active" type="xs:int" />
+                <xs:element name="Identity">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="64" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Title">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ParentId" type="xs:int" />
+                <xs:element name="HomePageId" type="xs:int" />
+                <xs:element name="DefaultMasterPageId" type="xs:int" />
+                <xs:element name="HostName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Published" type="xs:int" />
+                <xs:element name="VersionOf" type="xs:int" />
+                <xs:element name="PublicAccess" type="xs:int" />
+                <xs:element name="DateCreated" type="xs:dateTime" />
+                <xs:element name="DateModified" type="xs:dateTime" />
+                <xs:element name="LoginPage">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="AccessDeniedPage">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="PageTitleFormat">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ManagementAccess" type="xs:int" />
+                <xs:element name="BaseAddress">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ThemeId" type="xs:int" />
+                <xs:element name="LocaleId" type="xs:int" />
+                <xs:element name="SkinId" type="xs:int" />
+                <xs:element name="PrimaryIdentityId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebSite" />
+        <xs:field xpath="SiteId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebSite>
+    <SiteId>1</SiteId>
+    <Name>Playground Site</Name>
+    <Rank>6</Rank>
+    <Active>0</Active>
+    <Identity>Playground</Identity>
+    <Title>BibleReader.com</Title>
+    <ParentId>-1</ParentId>
+    <HomePageId>1</HomePageId>
+    <DefaultMasterPageId>1</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>1</PublicAccess>
+    <DateCreated>2009-05-28T05:59:43.03+08:00</DateCreated>
+    <DateModified>2009-05-28T05:59:43.03+08:00</DateModified>
+    <LoginPage />
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>0</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>4</SiteId>
+    <Name>Singapore Portal V1</Name>
+    <Rank>2</Rank>
+    <Active>1</Active>
+    <Identity>Singapore</Identity>
+    <Title />
+    <ParentId>-1</ParentId>
+    <HomePageId>122</HomePageId>
+    <DefaultMasterPageId>27</DefaultMasterPageId>
+    <HostName>localhost</HostName>
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>2</PublicAccess>
+    <DateCreated>2009-05-28T05:59:43.03+08:00</DateCreated>
+    <DateModified>2009-05-28T05:59:43.03+08:00</DateModified>
+    <LoginPage>/Singapore/Public/Login</LoginPage>
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>1</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>7</SiteId>
+    <Name>Integration Singapore</Name>
+    <Rank>1</Rank>
+    <Active>1</Active>
+    <Identity>en-SG</Identity>
+    <Title>Integration Singapore</Title>
+    <ParentId>-1</ParentId>
+    <HomePageId>14</HomePageId>
+    <DefaultMasterPageId>29</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>1</PublicAccess>
+    <DateCreated>2009-05-28T05:59:43.03+08:00</DateCreated>
+    <DateModified>2009-05-28T05:59:43.03+08:00</DateModified>
+    <LoginPage />
+    <AccessDeniedPage />
+    <PageTitleFormat>$(Page:Title) - $(Site:Title)</PageTitleFormat>
+    <ManagementAccess>1</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>9</SiteId>
+    <Name>Central Administration</Name>
+    <Rank>6</Rank>
+    <Active>1</Active>
+    <Identity>Central</Identity>
+    <Title />
+    <ParentId>-1</ParentId>
+    <HomePageId>59</HomePageId>
+    <DefaultMasterPageId>60</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>2</PublicAccess>
+    <DateCreated>2009-07-20T09:33:00.637+08:00</DateCreated>
+    <DateModified>2009-07-20T09:33:00.637+08:00</DateModified>
+    <LoginPage>/Central/Security/Login/</LoginPage>
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>0</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>13</SiteId>
+    <Name>Shared Public Web Site</Name>
+    <Rank>10</Rank>
+    <Active>1</Active>
+    <Identity>Static</Identity>
+    <Title />
+    <ParentId>-1</ParentId>
+    <HomePageId>46</HomePageId>
+    <DefaultMasterPageId>31</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>1</PublicAccess>
+    <DateCreated>2009-08-23T07:36:14.607+08:00</DateCreated>
+    <DateModified>2009-08-23T07:36:14.607+08:00</DateModified>
+    <LoginPage />
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>0</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>15</SiteId>
+    <Name>Singapore Portal</Name>
+    <Rank>2</Rank>
+    <Active>1</Active>
+    <Identity>SingaporeV2</Identity>
+    <Title />
+    <ParentId>-1</ParentId>
+    <HomePageId>313</HomePageId>
+    <DefaultMasterPageId>47</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>2</PublicAccess>
+    <DateCreated>2011-09-14T22:45:17.837+08:00</DateCreated>
+    <DateModified>2011-09-14T22:45:17.837+08:00</DateModified>
+    <LoginPage>/SingaporeV2/Public/Login/</LoginPage>
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>1</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>16</SiteId>
+    <Name>Music Portal</Name>
+    <Rank>20</Rank>
+    <Active>1</Active>
+    <Identity>musicportal</Identity>
+    <Title />
+    <ParentId>-1</ParentId>
+    <HomePageId>443</HomePageId>
+    <DefaultMasterPageId>51</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>2</PublicAccess>
+    <DateCreated>2012-06-20T12:23:52.053+08:00</DateCreated>
+    <DateModified>2012-06-20T12:23:52.053+08:00</DateModified>
+    <LoginPage>http://local.musicportal.org/public/Login/</LoginPage>
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>1</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>18</SiteId>
+    <Name>Music Competition Asia-Oceania</Name>
+    <Rank>20</Rank>
+    <Active>1</Active>
+    <Identity>asia-oceania1</Identity>
+    <Title />
+    <ParentId>19</ParentId>
+    <HomePageId>463</HomePageId>
+    <DefaultMasterPageId>62</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>1</PublicAccess>
+    <DateCreated>2012-08-30T00:33:30.217+08:00</DateCreated>
+    <DateModified>2012-08-30T00:33:30.217+08:00</DateModified>
+    <LoginPage>/Public/Login/</LoginPage>
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>1</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>19</SiteId>
+    <Name>Music Competition Website</Name>
+    <Rank>25</Rank>
+    <Active>1</Active>
+    <Identity>Music-Competition</Identity>
+    <Title />
+    <ParentId>16</ParentId>
+    <HomePageId>-1</HomePageId>
+    <DefaultMasterPageId>-1</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>1</PublicAccess>
+    <DateCreated>2013-03-02T11:46:43.803+08:00</DateCreated>
+    <DateModified>2013-03-02T11:46:43.803+08:00</DateModified>
+    <LoginPage />
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>0</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>20</SiteId>
+    <Name>Asia-Oceania District 1</Name>
+    <Rank>30</Rank>
+    <Active>1</Active>
+    <Identity>d1</Identity>
+    <Title />
+    <ParentId>18</ParentId>
+    <HomePageId>-1</HomePageId>
+    <DefaultMasterPageId>-1</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>128</PublicAccess>
+    <DateCreated>2013-03-06T12:53:21.007+08:00</DateCreated>
+    <DateModified>2013-03-06T12:53:21.007+08:00</DateModified>
+    <LoginPage />
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>0</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>21</SiteId>
+    <Name>Asia-Oceania District 2</Name>
+    <Rank>35</Rank>
+    <Active>1</Active>
+    <Identity>d2</Identity>
+    <Title />
+    <ParentId>18</ParentId>
+    <HomePageId>-1</HomePageId>
+    <DefaultMasterPageId>-1</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>128</PublicAccess>
+    <DateCreated>2013-03-06T12:53:33.853+08:00</DateCreated>
+    <DateModified>2013-03-06T12:53:33.853+08:00</DateModified>
+    <LoginPage />
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>0</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>22</SiteId>
+    <Name>Asia-Oceania District 3</Name>
+    <Rank>40</Rank>
+    <Active>1</Active>
+    <Identity>d3</Identity>
+    <Title />
+    <ParentId>18</ParentId>
+    <HomePageId>-1</HomePageId>
+    <DefaultMasterPageId>-1</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>128</PublicAccess>
+    <DateCreated>2013-03-06T12:53:45.353+08:00</DateCreated>
+    <DateModified>2013-03-06T12:53:45.353+08:00</DateModified>
+    <LoginPage />
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>0</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>-1</PrimaryIdentityId>
+  </WebSite>
+  <WebSite>
+    <SiteId>25</SiteId>
+    <Name>Integration Portal</Name>
+    <Rank>45</Rank>
+    <Active>1</Active>
+    <Identity>Portal</Identity>
+    <Title>Integration Portal</Title>
+    <ParentId>-1</ParentId>
+    <HomePageId>537</HomePageId>
+    <DefaultMasterPageId>74</DefaultMasterPageId>
+    <HostName />
+    <Published>-1</Published>
+    <VersionOf>-1</VersionOf>
+    <PublicAccess>2</PublicAccess>
+    <DateCreated>2013-07-21T11:54:58.743+08:00</DateCreated>
+    <DateModified>2013-07-21T11:54:58.743+08:00</DateModified>
+    <LoginPage>/public/Login/</LoginPage>
+    <AccessDeniedPage />
+    <PageTitleFormat />
+    <ManagementAccess>0</ManagementAccess>
+    <BaseAddress />
+    <ThemeId>-1</ThemeId>
+    <LocaleId>-1</LocaleId>
+    <SkinId>-1</SkinId>
+    <PrimaryIdentityId>10</PrimaryIdentityId>
+  </WebSite>
+</mPortal>

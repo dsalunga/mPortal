@@ -1,0 +1,433 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="CountryState">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="StateCode" type="xs:int" />
+                <xs:element name="StateName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ZipCode">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="64" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="CountryCode" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//CountryState" />
+        <xs:field xpath="StateCode" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <CountryState>
+    <StateCode>-1</StateCode>
+    <StateName>** N/A **</StateName>
+    <ZipCode />
+    <CountryCode>-1</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>3</StateCode>
+    <StateName>Alaska</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>4</StateCode>
+    <StateName>Alabama</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>5</StateCode>
+    <StateName>American Samoa</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>6</StateCode>
+    <StateName>Arizona</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>7</StateCode>
+    <StateName>Arkansas</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>8</StateCode>
+    <StateName>California</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>9</StateCode>
+    <StateName>Colorado</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>10</StateCode>
+    <StateName>Connecticut</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>11</StateCode>
+    <StateName>Delaware</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>12</StateCode>
+    <StateName>District of Columbia</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>13</StateCode>
+    <StateName>Federated States of Micronesia</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>14</StateCode>
+    <StateName>Florida</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>15</StateCode>
+    <StateName>Georgia</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>16</StateCode>
+    <StateName>Guam</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>17</StateCode>
+    <StateName>Hawaii</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>18</StateCode>
+    <StateName>Idaho</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>19</StateCode>
+    <StateName>Illinois</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>20</StateCode>
+    <StateName>Indiana</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>21</StateCode>
+    <StateName>Iowa</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>22</StateCode>
+    <StateName>Kansas</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>23</StateCode>
+    <StateName>Kentucky</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>24</StateCode>
+    <StateName>Louisiana</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>25</StateCode>
+    <StateName>Maine</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>26</StateCode>
+    <StateName>Marshall Islands</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>27</StateCode>
+    <StateName>Maryland</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>28</StateCode>
+    <StateName>Massachusetts</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>29</StateCode>
+    <StateName>Michigan</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>30</StateCode>
+    <StateName>Minnesota</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>31</StateCode>
+    <StateName>Mississippi</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>32</StateCode>
+    <StateName>Missouri</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>33</StateCode>
+    <StateName>Montana</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>34</StateCode>
+    <StateName>Nebraska</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>35</StateCode>
+    <StateName>Nevada</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>36</StateCode>
+    <StateName>New Hampshire</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>37</StateCode>
+    <StateName>New Jersey</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>38</StateCode>
+    <StateName>New Mexico</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>39</StateCode>
+    <StateName>New York</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>40</StateCode>
+    <StateName>North Carolina</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>41</StateCode>
+    <StateName>North Dakota</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>42</StateCode>
+    <StateName>Northern Mariana Islands</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>43</StateCode>
+    <StateName>Ohio</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>44</StateCode>
+    <StateName>Oklahoma</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>45</StateCode>
+    <StateName>Oregon</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>46</StateCode>
+    <StateName>Palau</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>47</StateCode>
+    <StateName>Pennsylvania</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>48</StateCode>
+    <StateName>Puerto Rico</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>49</StateCode>
+    <StateName>Rhode Island</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>50</StateCode>
+    <StateName>South Carolina</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>51</StateCode>
+    <StateName>South Dakota</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>52</StateCode>
+    <StateName>Tennessee</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>53</StateCode>
+    <StateName>Texas</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>54</StateCode>
+    <StateName>Utah</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>55</StateCode>
+    <StateName>Vermont</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>56</StateCode>
+    <StateName>Virgin Islands</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>57</StateCode>
+    <StateName>Virginia</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>58</StateCode>
+    <StateName>Washington</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>59</StateCode>
+    <StateName>West Virginia</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>60</StateCode>
+    <StateName>Wisconsin</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>61</StateCode>
+    <StateName>Wyoming</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>62</StateCode>
+    <StateName>Armed Forces Africa</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>63</StateCode>
+    <StateName>Armed Forces Americas (except Canada)</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>64</StateCode>
+    <StateName>Armed Forces Canada</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>65</StateCode>
+    <StateName>Armed Forces Europe</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>66</StateCode>
+    <StateName>Armed Forces Middle East</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+  <CountryState>
+    <StateCode>67</StateCode>
+    <StateName>Armed Forces Pacific</StateName>
+    <ZipCode />
+    <CountryCode>451</CountryCode>
+  </CountryState>
+</mPortal>

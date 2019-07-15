@@ -1,0 +1,379 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebPartConfig">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PartConfigId" type="xs:int" />
+                <xs:element name="PartId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FileName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebPartConfig" />
+        <xs:field xpath="PartConfigId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebPartConfig>
+    <PartConfigId>3</PartConfigId>
+    <PartId>7</PartId>
+    <Name>News CMS</Name>
+    <FileName>CMS_News.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>4</PartConfigId>
+    <PartId>4</PartId>
+    <Name>Property Main</Name>
+    <FileName>CMS_Property.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>5</PartConfigId>
+    <PartId>4</PartId>
+    <Name>Property Type</Name>
+    <FileName>CMS_projType.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>6</PartConfigId>
+    <PartId>4</PartId>
+    <Name>Property Class</Name>
+    <FileName>CMS_projClass.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>9</PartConfigId>
+    <PartId>9</PartId>
+    <Name>Editor CMS Module</Name>
+    <FileName>CMS_NewsArticleContent.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>10</PartConfigId>
+    <PartId>10</PartId>
+    <Name>Tips CMS</Name>
+    <FileName>CMS_TipsArticleContent.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>11</PartConfigId>
+    <PartId>6</PartId>
+    <Name>Dynamic Menu Configuration</Name>
+    <FileName>CMS_Menu_01.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>13</PartConfigId>
+    <PartId>16</PartId>
+    <Name>Publication News Tips CMS</Name>
+    <FileName>CMS_PublicationsNewsTips.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>14</PartConfigId>
+    <PartId>17</PartId>
+    <Name>Publication News Cover Story</Name>
+    <FileName>CMS_PublicationsNewsCoverStory.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>15</PartConfigId>
+    <PartId>18</PartId>
+    <Name>Technology and You</Name>
+    <FileName>CMS_PublicationsTechnologyAndYou.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>16</PartConfigId>
+    <PartId>19</PartId>
+    <Name>Site Ad Management</Name>
+    <FileName>CMS_Ad.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>17</PartConfigId>
+    <PartId>20</PartId>
+    <Name>Publication Columns CMS</Name>
+    <FileName>CMS_PublicationColumns.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>18</PartConfigId>
+    <PartId>21</PartId>
+    <Name>CMS Publication News</Name>
+    <FileName>CMS_PublicationNews.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>19</PartConfigId>
+    <PartId>22</PartId>
+    <Name>CMS Publications Stepping Out</Name>
+    <FileName>CMS_PublicationsSteppingOut.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>20</PartConfigId>
+    <PartId>23</PartId>
+    <Name>CMS Publications The Business Of Sports</Name>
+    <FileName>CMS_PublicationsTheBusinessOfSports.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>21</PartConfigId>
+    <PartId>24</PartId>
+    <Name>CMS Publication Press Release</Name>
+    <FileName>CMS_PublicationPressRelease.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>22</PartConfigId>
+    <PartId>26</PartId>
+    <Name>CMS Publications Industry Bulletin</Name>
+    <FileName>CMS_PublicationsIndustryBulletin.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>23</PartConfigId>
+    <PartId>27</PartId>
+    <Name>CMS Publications News Breaking</Name>
+    <FileName>CMS_PublicationsNewsBreaking.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>24</PartConfigId>
+    <PartId>28</PartId>
+    <Name>CMS Publications News Cover Story</Name>
+    <FileName>CMS_PublicationsNewsCoverStory.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>25</PartConfigId>
+    <PartId>29</PartId>
+    <Name>CMS Publications News Front Page</Name>
+    <FileName>CMS_PublicationsNewsFrontPage.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>26</PartConfigId>
+    <PartId>30</PartId>
+    <Name>CMS Publications News Global</Name>
+    <FileName>CMS_PublicationsNewsGlobal.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>27</PartConfigId>
+    <PartId>31</PartId>
+    <Name>CMS Publications News More</Name>
+    <FileName>CMS_PublicationsNewsMore.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>28</PartConfigId>
+    <PartId>32</PartId>
+    <Name>CMS Publications News Other Headlines</Name>
+    <FileName>CMS_PublicationsNewsOtherHeadlines.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>29</PartConfigId>
+    <PartId>33</PartId>
+    <Name>CMS Publications News Special Report</Name>
+    <FileName>CMS_PublicationsNewsSpecialReport.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>30</PartConfigId>
+    <PartId>34</PartId>
+    <Name>CMS Publications View Points</Name>
+    <FileName>CMS_PublicationsViewPoints.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>31</PartConfigId>
+    <PartId>35</PartId>
+    <Name>CMS Publications Other Columnists</Name>
+    <FileName>CMS_PublicationsOtherColumnists.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>33</PartConfigId>
+    <PartId>36</PartId>
+    <Name>CMS Publications Blogs</Name>
+    <FileName>CMS_PublicationsBlogs.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>34</PartConfigId>
+    <PartId>37</PartId>
+    <Name>CMS Publications Extreme PC</Name>
+    <FileName>CMS_PublicationsExtremePC.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>35</PartConfigId>
+    <PartId>38</PartId>
+    <Name>CMS Publications Features</Name>
+    <FileName>CMS_PublicationsFeatures.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>36</PartConfigId>
+    <PartId>39</PartId>
+    <Name>CMS Publications Industry Bulletin PCW</Name>
+    <FileName>CMS_PublicationsIndustryBulletinPCW.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>37</PartConfigId>
+    <PartId>40</PartId>
+    <Name>CMS Publications News Cover Story PCW</Name>
+    <FileName>CMS_PublicationsNewsCoverStoryPCW.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>38</PartConfigId>
+    <PartId>41</PartId>
+    <Name>CMS Publications News PCW</Name>
+    <FileName>CMS_PublicationsNewsPCW.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>39</PartConfigId>
+    <PartId>42</PartId>
+    <Name>CMS Publications Reviews</Name>
+    <FileName>CMS_PublicationsReviews.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>41</PartConfigId>
+    <PartId>43</PartId>
+    <Name>CMS Publications In The News</Name>
+    <FileName>CMS_PublicationsInTheNews.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>42</PartConfigId>
+    <PartId>44</PartId>
+    <Name>CMS Brochures</Name>
+    <FileName>CMS_Brochures.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>43</PartConfigId>
+    <PartId>46</PartId>
+    <Name>CMS Schedule A Visit</Name>
+    <FileName>CMS_ScheduleAVisit.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>44</PartConfigId>
+    <PartId>47</PartId>
+    <Name>CMS eNewsletter</Name>
+    <FileName>CMS_eNewsletter.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>49</PartConfigId>
+    <PartId>53</PartId>
+    <Name>eNewsletter Entries</Name>
+    <FileName>CMS_eNewsletter.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>53</PartConfigId>
+    <PartId>58</PartId>
+    <Name>CMS Picture Gallery</Name>
+    <FileName>CMS_Gallery.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>54</PartConfigId>
+    <PartId>59</PartId>
+    <Name>Media Gallery</Name>
+    <FileName>CMS_Media.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>56</PartConfigId>
+    <PartId>58</PartId>
+    <Name>CMS Category</Name>
+    <FileName>CMS_Category.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>59</PartConfigId>
+    <PartId>1</PartId>
+    <Name>Custom</Name>
+    <FileName>CMS_Custom.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>60</PartConfigId>
+    <PartId>6</PartId>
+    <Name>Generic Menu</Name>
+    <FileName>ConfigDynamicMenu01.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>61</PartConfigId>
+    <PartId>64</PartId>
+    <Name>Publication</Name>
+    <FileName>ConfigPublication.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>64</PartConfigId>
+    <PartId>13</PartId>
+    <Name>Listing Page</Name>
+    <FileName>CMS_ListingPage.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>65</PartConfigId>
+    <PartId>6</PartId>
+    <Name>Standard Listing Page</Name>
+    <FileName>CMS_ListingPage.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>74</PartConfigId>
+    <PartId>75</PartId>
+    <Name>Downloads</Name>
+    <FileName>SM_Downloads_03.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>75</PartConfigId>
+    <PartId>75</PartId>
+    <Name>Edit Page</Name>
+    <FileName>PM_Downloads_Edit_02.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>76</PartConfigId>
+    <PartId>60</PartId>
+    <Name>Contact Config</Name>
+    <FileName>ConfigInquiriesList.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>77</PartConfigId>
+    <PartId>81</PartId>
+    <Name>Basic List</Name>
+    <FileName>CMS_01_BasicList.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>78</PartConfigId>
+    <PartId>82</PartId>
+    <Name>Site Surveys</Name>
+    <FileName>SM_Surveys.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>79</PartConfigId>
+    <PartId>64</PartId>
+    <Name>Dashboard Configuration</Name>
+    <FileName>ConfigDashboard.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>80</PartConfigId>
+    <PartId>86</PartId>
+    <Name>Address Book Manager</Name>
+    <FileName>WebGroupUsers.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>81</PartConfigId>
+    <PartId>51</PartId>
+    <Name>File Manager Configuration</Name>
+    <FileName>ConfigFileManager.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>82</PartConfigId>
+    <PartId>77</PartId>
+    <Name>Manage Calendar Events</Name>
+    <FileName>AdminCalendar.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>83</PartConfigId>
+    <PartId>86</PartId>
+    <Name>Sportsfest Registration Manager</Name>
+    <FileName>SportsfestManager.ascx</FileName>
+  </WebPartConfig>
+  <WebPartConfig>
+    <PartConfigId>84</PartConfigId>
+    <PartId>6</PartId>
+    <Name>Linked Menu Config</Name>
+    <FileName>ConfigLinkedMenu.ascx</FileName>
+  </WebPartConfig>
+</mPortal>

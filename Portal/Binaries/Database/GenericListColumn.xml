@@ -1,0 +1,88 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="GenericListColumn">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="ListId" type="xs:int" />
+                <xs:element name="PartitionId" type="xs:int" />
+                <xs:element name="Rank" type="xs:int" />
+                <xs:element name="Label">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="IsHorizontal" type="xs:int" />
+                <xs:element name="IsRequired" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//GenericListColumn" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <GenericListColumn>
+    <Id>1</Id>
+    <ListId>1</ListId>
+    <PartitionId>1</PartitionId>
+    <Rank>1</Rank>
+    <Label>Name</Label>
+    <IsHorizontal>0</IsHorizontal>
+    <IsRequired>1</IsRequired>
+  </GenericListColumn>
+  <GenericListColumn>
+    <Id>2</Id>
+    <ListId>1</ListId>
+    <PartitionId>1</PartitionId>
+    <Rank>2</Rank>
+    <Label>Date of Birth</Label>
+    <IsHorizontal>0</IsHorizontal>
+    <IsRequired>1</IsRequired>
+  </GenericListColumn>
+  <GenericListColumn>
+    <Id>3</Id>
+    <ListId>1</ListId>
+    <PartitionId>1</PartitionId>
+    <Rank>3</Rank>
+    <Label>Complete Address</Label>
+    <IsHorizontal>0</IsHorizontal>
+    <IsRequired>1</IsRequired>
+  </GenericListColumn>
+  <GenericListColumn>
+    <Id>4</Id>
+    <ListId>1</ListId>
+    <PartitionId>1</PartitionId>
+    <Rank>4</Rank>
+    <Label>Status</Label>
+    <IsHorizontal>0</IsHorizontal>
+    <IsRequired>1</IsRequired>
+  </GenericListColumn>
+  <GenericListColumn>
+    <Id>5</Id>
+    <ListId>2</ListId>
+    <PartitionId>2</PartitionId>
+    <Rank>1</Rank>
+    <Label>Name</Label>
+    <IsHorizontal>1</IsHorizontal>
+    <IsRequired>1</IsRequired>
+  </GenericListColumn>
+  <GenericListColumn>
+    <Id>6</Id>
+    <ListId>1</ListId>
+    <PartitionId>1</PartitionId>
+    <Rank>7</Rank>
+    <Label>Mobile</Label>
+    <IsHorizontal>0</IsHorizontal>
+    <IsRequired>0</IsRequired>
+  </GenericListColumn>
+</mPortal>

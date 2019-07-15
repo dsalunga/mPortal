@@ -1,0 +1,102 @@
+
+
+
+/* Global reset */
+/* Based upon 'reset.css' in the Yahoo! User Interface Library: http://developer.yahoo.com/yui */
+html, body, div, dl, dt, dd, /*ul, ol, li, input, th, td */ h1, h2, h3, h4, pre, form, label, fieldset, textarea, p, blockquote { margin:0; padding:0 }
+
+table { border-collapse:collapse; } /*border-spacing:0 */
+fieldset, img { border:0; margin-top:0; padding:0; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal }
+/* ol, ul, li { list-style:none } */
+caption, th { text-align:left }
+q:before, q:after { content:''}
+p { margin:2px 0 30px 0; font-size:12px; line-height:30px; color:#000000;  }
+
+/* Global reset-RESET */
+/* The below restores some sensible defaults */
+strong { font-weight: bold }
+em { font-style: italic }
+/** a { position:relative }  Gets links displaying over a PNG background */
+a { outline:none } /* Gets rid of Firefox's dotted borders */
+a img { border:none } /* Gets rid of IE's blue borders */
+q:before, q:after {content:'';}
+
+/* Typography reset */
+
+body, p, li, dt, dd, label{ font-size: 12px; font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;  color:#000000; }
+address { font-size:11px; color:#949494 }
+input, textarea, select, textarea { font-size:11px; color:#000; padding:2px }
+pre, code { margin:2px 0 16px 0; background:#000; color:#ccc; font:12px/16px 'Courier New', Courier, monospace }
+pre { padding:10px }
+a { color: #A4A13F; text-decoration:underline }
+a:hover { color:#5C5247; text-decoration:underline;  }
+a img, a:visited img {
+	border:none
+	}
+
+p+p { margin-top:-.8em; }
+p {color:#000000;}
+
+/* ----------------------------------------- */
+
+/* Utility */
+.indent { text-indent:-9999px; }
+.floatleft { float:left; }
+.floatright{ float:right; }
+.clear { clear:both; }
+.last { margin-right:0;  padding:0px;}
+.grey { color:#999999; }
+.white {color:#FFFFFF;}
+.black {color:#000000;}
+.red { color:#953b50; }
+.bold{font-weight: bold }
+.under{border-bottom: 1px dotted #999999; display:block; padding:0 0 3px 5px;}
+.cur_hand{cursor:pointer}
+.supersize_me {font-size:1.3em; line-height:25px  }
+.txtCentre{text-align:center}
+/* .button { text-transform: uppercase; padding:5px 10px 5px 10px; background:#86284d; color:#fff; } */
+img.icon { margin-bottom:-5px; }
+br.dirtyLittleTrick { clear:both; display:block; height:1px; margin:-1px 0 0 0 } /* Use this br class to clear your floated columns */
+
+ p.drop_cap:first-letter{ display:block; margin-bottom:-9px; margin-top:7px; margin-right:7px; line-height:0px;  float:left;   color:#000;   font-size:60px; font-family:Georgia;  }   
+ p.drop_cap_small:first-letter{ display:block; margin-bottom:-8px; margin-top:8px; margin-right:3px; line-height:20px;  float:left;   color:#000;   font-size:25px; font-family:Georgia;  }  
+ 
+ /* Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
+
+.clearfix:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+.clearfix {
+	display: block;
+}

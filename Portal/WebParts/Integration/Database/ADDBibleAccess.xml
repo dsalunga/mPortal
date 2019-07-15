@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="BibleReaderAccess">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="UserId" type="xs:int" />
+                <xs:element name="AppAccessCount" type="xs:int" />
+                <xs:element name="LastAccessed" type="xs:dateTime" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//BibleReaderAccess" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <BibleReaderAccess>
+    <Id>1</Id>
+    <UserId>1</UserId>
+    <AppAccessCount>4</AppAccessCount>
+    <LastAccessed>2012-01-14T11:13:19.643+08:00</LastAccessed>
+  </BibleReaderAccess>
+</mPortal>

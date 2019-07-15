@@ -1,0 +1,69 @@
+﻿@using WCMS.Framework
+@using WCMS.WebSystem.Apps.Integration;
+@{
+    var context = new WContext(this);
+    var element = context.Element;
+    var serviceSchedule = context.Get("s");
+    //var result = AttendanceStatus.UnknownError;
+    var result = "Unknown error";
+    var result2 = "";
+
+    if (!string.IsNullOrEmpty(serviceSchedule) && serviceSchedule.Length > 4)
+    {
+        var serviceScheduleId = QRCodeUtil.DecodeServiceSchedule(serviceSchedule);
+        if (serviceScheduleId > 0)
+        {
+            var user = WSession.Current.User;
+            var link = MemberLink.Provider.GetByUserId(user.Id);
+            if (link != null && link.MemberId > 0)
+            {
+                var r = ExternalHelper.LogAttendance(link.MemberId, serviceScheduleId);
+                if (r.Status == 200)
+                {
+                    // Display success
+                    //result = AttendanceStatus.Success;
+                    result = "Success!";
+                }
+                else
+                {
+                    //result = AttendanceStatus.SubmitError;
+                    result = "Attendance submit error.";
+                }
+            }
+            else
+            {
+                //result = AttendanceStatus.AccountNotLinked;
+                result = "Invalid account.";
+            }
+        }
+        else
+        {
+            //result = AttendanceStatus.InvalidSchedule;
+            result = "Invalid service schedule.";
+        }
+    }
+    else
+    {
+        //result = AttendanceStatus.InvalidSchedule;
+        result = "Invalid request.";
+    }
+}
+
+<style type="text/css">
+    .jumbotron {
+        text-align: center;
+        background-color: transparent;
+    }
+
+        .jumbotron .btn {
+            padding: 14px 24px;
+            font-size: 21px;
+        }
+</style>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>@result</h1>
+        @*<p class="lead">Experiencing an issue or need to report something? Got a great idea or wanted to suggestion an improvement? Or just wanted someone to contact directly about your concern?</p>*@
+    </div>
+</div>

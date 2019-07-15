@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Services>
+  <Service Text="Doctrines" Value="Doktrina" InstancesByDate="false" />
+  <Service Text="Prayers" Value="PY" />
+  <Service Text="Exposition" Value="EX" />
+  <Service Text="Prayer Meeting" AllowSeek="false" Value="PM" />
+  <Service Text="Worship Service" AllowSeek="false" Value="WS" />
+  <Service Text="Thanksgiving" Value="TG" AllowSeek="true" AllowSegmented="true" />
+  <Service Text="International Thanksgiving" Value="ITG" />
+  <Service Text="International Thanksgiving Day1" Value="ITG1" />
+  <Service Text="International Thanksgiving Day2" Value="ITG2" />
+  <Service Text="International Thanksgiving Day3" Value="ITG3" />
+  <Service Text="Tanging Awit" Value="TA" />
+  <Service Text="Hymns" Value="HYMNS" />
+  <Service Text="KNC" Value="KNC" />
+</Services>

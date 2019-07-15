@@ -1,0 +1,319 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebFile">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="FileId" type="xs:int" />
+                <xs:element name="FolderId" type="xs:int" />
+                <xs:element name="ObjectId" type="xs:int" />
+                <xs:element name="RecordId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebFile" />
+        <xs:field xpath="FileId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebFile>
+    <FileId>1</FileId>
+    <FolderId>2</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>2</RecordId>
+    <Name>test1</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>2</FileId>
+    <FolderId>2</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>10</RecordId>
+    <Name>test reminder</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>4</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>8</RecordId>
+    <Name>test222</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>5</FileId>
+    <FolderId>2</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>8</RecordId>
+    <Name>test222</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>6</FileId>
+    <FolderId>2</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>6</RecordId>
+    <Name>test45</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>7</FileId>
+    <FolderId>1</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>3</RecordId>
+    <Name>test21</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>8</FileId>
+    <FolderId>2</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>5</RecordId>
+    <Name>We Go Global! Singapore as a partaker....</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>9</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>12</RecordId>
+    <Name>Test Chuch Announcement</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>10</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>13</RecordId>
+    <Name>Worldwide Mass Indoctrination</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>11</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>11</RecordId>
+    <Name>First MCGI, Singapore Red Cross blood letting drive yield 87 donors</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>12</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>14</RecordId>
+    <Name>District Announcement</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>13</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>15</RecordId>
+    <Name>A Reciprocation of GOD’S Love</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>14</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>16</RecordId>
+    <Name>A Reciprocation of GOD’S Love</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>15</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>17</RecordId>
+    <Name>PROFESSIONAL MEMBERS IN ACTION</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>16</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>18</RecordId>
+    <Name>Free Computer Lesson and Bible Study</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>17</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>19</RecordId>
+    <Name>FIRST KAPI SINGAPORE FUN-DAY</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>18</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>20</RecordId>
+    <Name>Welcome Brethren… Happy Thanksgiving Day in Singapore!</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>19</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>21</RecordId>
+    <Name>Transient…out of compassion (from the big heart)</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>20</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>22</RecordId>
+    <Name>MCGI's Seven-Session Mass Indoctrination Set on February 8</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>21</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>23</RecordId>
+    <Name>MCGI-Singapore: All Set for International Thanksgiving</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>22</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>24</RecordId>
+    <Name>Thanksgiving and Tanging Awit Guidelines</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>23</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>25</RecordId>
+    <Name>Community Prayer (CP): Schedules and How To Attend</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>24</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>26</RecordId>
+    <Name>Locale Services Schedules</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>25</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>27</RecordId>
+    <Name>Services Make-up Procedues</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>26</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>28</RecordId>
+    <Name>Singapore Newcomer Orientation</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>27</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>29</RecordId>
+    <Name>Locale Toilet Usage - Guidelines</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>28</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>30</RecordId>
+    <Name>Blood Donation Drive (BDD) - Guidelines</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>29</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>31</RecordId>
+    <Name>Locale Committees Overview - Which one is for you</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>30</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>32</RecordId>
+    <Name>Integration Portal - User Manual</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>31</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>33</RecordId>
+    <Name>ADDCIT Announcement (this is a test)</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>32</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>34</RecordId>
+    <Name>Another ADDCIT announcement</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>33</FileId>
+    <FolderId>-1</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>35</RecordId>
+    <Name>test</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>34</FileId>
+    <FolderId>2</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>20</RecordId>
+    <Name>Welcome Brethren… Happy Thanksgiving Day in Singapore!</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>35</FileId>
+    <FolderId>2</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>23</RecordId>
+    <Name>MCGI-Singapore: All Set for International Thanksgiving</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>36</FileId>
+    <FolderId>2</FolderId>
+    <ObjectId>40</ObjectId>
+    <RecordId>18</RecordId>
+    <Name>Free Computer Lesson and Bible Study</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>37</FileId>
+    <FolderId>-2</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>15</RecordId>
+    <Name>We have a meeting now</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>38</FileId>
+    <FolderId>-2</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>16</RecordId>
+    <Name>test event on september</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>39</FileId>
+    <FolderId>-2</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>17</RecordId>
+    <Name>asd fasdf asdf</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>40</FileId>
+    <FolderId>1</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>18</RecordId>
+    <Name>Test Event</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>41</FileId>
+    <FolderId>-2</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>5</RecordId>
+    <Name>jan 1 to 15</Name>
+  </WebFile>
+  <WebFile>
+    <FileId>42</FileId>
+    <FolderId>-2</FolderId>
+    <ObjectId>28</ObjectId>
+    <RecordId>19</RecordId>
+    <Name>MEETING</Name>
+  </WebFile>
+</mPortal>
