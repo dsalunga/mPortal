@@ -94,7 +94,7 @@ namespace WCMS.WebSystem.WebParts.Central
                 }
                 else if (pageId > 0)
                 {
-                    // Page
+                    // Load page's contextual settings module.
                     var page = WPage.Get(pageId);
                     if (page != null)
                     {
