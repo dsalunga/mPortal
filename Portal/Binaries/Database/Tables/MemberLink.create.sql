@@ -35,155 +35,155 @@ CREATE TABLE [dbo].[MemberLink](
  CONSTRAINT [PK_MemberLink] PRIMARY KEY CLUSTERED 
 (
 	[MemberLinkId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_MemberId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_MemberId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_MemberId]  DEFAULT ((-1)) FOR [MemberId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_ExternalIdNo]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_ExternalIdNo]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_ExternalIdNo]  DEFAULT ('') FOR [ExternalIdNo]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_HomeAddressLine1]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_HomeAddressLine1]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_HomeAddressLine1]  DEFAULT ('') FOR [HomeAddressLine1]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_HomeAddressStateCode]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_HomeAddressStateCode]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_HomeAddressStateCode]  DEFAULT ((-1)) FOR [HomeAddressStateCode]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_HomeAddressCountryCode]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_HomeAddressCountryCode]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_HomeAddressCountryCode]  DEFAULT ((-1)) FOR [HomeAddressCountryCode]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_HomeAddressZipCode]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_HomeAddressZipCode]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_HomeAddressZipCode]  DEFAULT ('') FOR [HomeAddressZipCode]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_MobileNumber]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_MobileNumber]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_MobileNumber]  DEFAULT ('') FOR [MobileNumber]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_HomePhone]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_HomePhone]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_HomePhone]  DEFAULT ('') FOR [HomePhone]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_WorkAddressLine1]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_WorkAddressLine1]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_WorkAddressLine1]  DEFAULT ('') FOR [WorkAddressLine1]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_WorkAddressStateCode]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_WorkAddressStateCode]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_WorkAddressStateCode]  DEFAULT ((-1)) FOR [WorkAddressStateCode]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_WorkAddressCountryCode]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_WorkAddressCountryCode]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_WorkAddressCountryCode]  DEFAULT ((-1)) FOR [WorkAddressCountryCode]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_WorkAddressZipCode]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_WorkAddressZipCode]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_WorkAddressZipCode]  DEFAULT ('') FOR [WorkAddressZipCode]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_WorkDesignation]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_WorkDesignation]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_WorkDesignation]  DEFAULT ('') FOR [WorkDesignation]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_WorkPhone]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_WorkPhone]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_WorkPhone]  DEFAULT ('') FOR [WorkPhone]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_Nickname]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_Nickname]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_Nickname]  DEFAULT ('') FOR [Nickname]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_LastUpdate]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_LastUpdate]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_LastUpdate]  DEFAULT (getdate()) FOR [LastUpdate]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_PhotoPath]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_PhotoPath]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_PhotoPath]  DEFAULT ('') FOR [PhotoPath]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_MembershipDate]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_MembershipDate]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_MembershipDate]  DEFAULT (getdate()) FOR [MembershipDate]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_Approved]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_Approved]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_Approved]  DEFAULT ((0)) FOR [Approved]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_Locale]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_Locale]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_Locale]  DEFAULT ('') FOR [Locale]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_HomeAddressLine11]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_HomeAddressLine11]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_HomeAddressLine11]  DEFAULT ('') FOR [HomeAddressLine2]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_HomeAddressLine11_1]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_HomeAddressLine11_1]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_HomeAddressLine11_1]  DEFAULT ('') FOR [WorkAddressLine2]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_Private]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_Private]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_Private]  DEFAULT ((0)) FOR [Private]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MemberLink_AdditionalInformation]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MemberLink_AdditionalInformation]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_AdditionalInformation]  DEFAULT ('') FOR [AdditionalInfo]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MemberLin__Local__66A5BBE8]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MemberLin__Local__2334397B]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  DEFAULT ((-1)) FOR [LocaleId]
 END

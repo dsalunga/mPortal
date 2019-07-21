@@ -1737,26 +1737,6 @@
     <FriendlyName />
   </WebObject>
   <WebObject>
-    <Id>86</Id>
-    <Name>AuditTrail</Name>
-    <IdentityColumn>Id</IdentityColumn>
-    <ObjectType>T</ObjectType>
-    <Owner>Custom</Owner>
-    <Prefix />
-    <LastRecordId>0</LastRecordId>
-    <MaxCacheCount>-1</MaxCacheCount>
-    <AccessTypeId>-1</AccessTypeId>
-    <CacheTypeId>-1</CacheTypeId>
-    <MaxHistoryCount>-1</MaxHistoryCount>
-    <DataProviderName />
-    <TypeName />
-    <CacheInterval>0</CacheInterval>
-    <DateModified>2010-08-25T23:32:21.237+08:00</DateModified>
-    <ManagerName />
-    <NameColumn />
-    <FriendlyName />
-  </WebObject>
-  <WebObject>
     <Id>87</Id>
     <Name>MemberLink</Name>
     <IdentityColumn>MemberLinkId</IdentityColumn>

@@ -17,17 +17,17 @@ CREATE TABLE [dbo].[MenuObject](
  CONSTRAINT [PK_SiteMenu] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MenuObject_ParameterSetId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MenuObject_ParameterSetId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MenuObject] ADD  CONSTRAINT [DF_MenuObject_ParameterSetId]  DEFAULT ((-1)) FOR [ParameterSetId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MenuObject_RenderMode]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MenuObject_RenderMode]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MenuObject] ADD  CONSTRAINT [DF_MenuObject_RenderMode]  DEFAULT ((0)) FOR [RenderMode]
 END

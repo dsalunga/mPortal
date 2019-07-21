@@ -13,23 +13,23 @@ CREATE TABLE [dbo].[IncidentType](
  CONSTRAINT [PK_IncidentType] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_IncidentType_FollowStdSla]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_IncidentType_FollowStdSla]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentType] ADD  CONSTRAINT [DF_IncidentType_FollowStdSla]  DEFAULT ((1)) FOR [FollowStdSLA]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_IncidentType_Rank]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_IncidentType_Rank]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentType] ADD  CONSTRAINT [DF_IncidentType_Rank]  DEFAULT ((1)) FOR [Rank]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentT__Insta__3049AB37]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__IncidentT__Insta__2FCF1A8A]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentType] ADD  DEFAULT ((-1)) FOR [InstanceId]
 END

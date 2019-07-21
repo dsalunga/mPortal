@@ -14,23 +14,23 @@ CREATE TABLE [dbo].[WebFolder](
  CONSTRAINT [PK_WebFolder] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebFolder_ShareName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebFolder_ShareName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebFolder] ADD  CONSTRAINT [DF_WebFolder_ShareName]  DEFAULT ('') FOR [ShareName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebFolder_ObjectId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebFolder_ObjectId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebFolder] ADD  CONSTRAINT [DF_WebFolder_ObjectId]  DEFAULT ((-1)) FOR [ObjectId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebFolder_SiteId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebFolder_SiteId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebFolder] ADD  CONSTRAINT [DF_WebFolder_SiteId]  DEFAULT ((-1)) FOR [SiteId]
 END

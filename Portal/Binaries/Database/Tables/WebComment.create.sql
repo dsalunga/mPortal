@@ -17,23 +17,23 @@ CREATE TABLE [dbo].[WebComment](
  CONSTRAINT [PK_WebComment] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebComment_ParentId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebComment_ParentId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebComment] ADD  CONSTRAINT [DF_WebComment_ParentId]  DEFAULT ((-1)) FOR [ParentId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__WebCommen__UserName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__WebCommen__UserName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebComment] ADD  CONSTRAINT [DF__WebCommen__UserName]  DEFAULT ('') FOR [UserName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__WebCommen__UserEmail]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__WebCommen__UserEmail]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebComment] ADD  CONSTRAINT [DF__WebCommen__UserEmail]  DEFAULT ('') FOR [UserEmail]
 END

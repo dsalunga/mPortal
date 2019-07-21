@@ -26,53 +26,53 @@ CREATE TABLE [dbo].[EventCalendarEvents](
  CONSTRAINT [PK_EventCalendarEvents] PRIMARY KEY CLUSTERED 
 (
 	[EventId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_EventCalendarCategories_EventCategoryId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_EventCalendarCategories_EventCategoryId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[EventCalendarEvents] ADD  CONSTRAINT [DF_EventCalendarCategories_EventCategoryId]  DEFAULT ((-1)) FOR [CategoryId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_EventCalendarEvents_ReminderBefore]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_EventCalendarEvents_ReminderBefore]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[EventCalendarEvents] ADD  CONSTRAINT [DF_EventCalendarEvents_ReminderBefore]  DEFAULT ((-1)) FOR [ReminderBefore]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_EventCalendarEvents_LocationId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_EventCalendarEvents_LocationId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[EventCalendarEvents] ADD  CONSTRAINT [DF_EventCalendarEvents_LocationId]  DEFAULT ((-1)) FOR [LocationId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_EventCalendarEvents_Weekdays]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_EventCalendarEvents_Weekdays]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[EventCalendarEvents] ADD  CONSTRAINT [DF_EventCalendarEvents_Weekdays]  DEFAULT ((-1)) FOR [Weekdays]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_EventCalendarEvents_BookLocation]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_EventCalendarEvents_BookLocation]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[EventCalendarEvents] ADD  CONSTRAINT [DF_EventCalendarEvents_BookLocation]  DEFAULT ((0)) FOR [BookLocation]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_EventCalendarEvents_CalendarId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_EventCalendarEvents_CalendarId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[EventCalendarEvents] ADD  CONSTRAINT [DF_EventCalendarEvents_CalendarId]  DEFAULT ((-1)) FOR [CalendarId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_EventCalendarEvents_TemplateId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_EventCalendarEvents_TemplateId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[EventCalendarEvents] ADD  CONSTRAINT [DF_EventCalendarEvents_TemplateId]  DEFAULT ((-1)) FOR [TemplateId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_EventCalendarEvents_SendReminderVia]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_EventCalendarEvents_SendReminderVia]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[EventCalendarEvents] ADD  CONSTRAINT [DF_EventCalendarEvents_SendReminderVia]  DEFAULT ((2)) FOR [SendReminderVia]
 END

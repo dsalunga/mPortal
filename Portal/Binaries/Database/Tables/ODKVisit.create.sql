@@ -23,95 +23,95 @@ CREATE TABLE [dbo].[ODKVisit](
  CONSTRAINT [PK_ODKVisit] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_ODKVisit_Id]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_ODKVisit_Id]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_ODKVisit_Id]  DEFAULT ((-1)) FOR [Id]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Table1_UserId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Table1_UserId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_Table1_UserId]  DEFAULT ((-1)) FOR [CreatedUserId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_ODKVisit_DateCreated]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_ODKVisit_DateCreated]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_ODKVisit_DateCreated]  DEFAULT (getdate()) FOR [DateCreated]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Table1_VisitReport]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Table1_VisitReport]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_Table1_VisitReport]  DEFAULT ('') FOR [ActualReport]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Table1_Status]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Table1_Status]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_Table1_Status]  DEFAULT ('') FOR [Status]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_ODKVisit_GroupId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_ODKVisit_GroupId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_ODKVisit_GroupId]  DEFAULT ((-1)) FOR [GroupId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Table1_MemberName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Table1_MemberName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_Table1_MemberName]  DEFAULT ('') FOR [Name]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Table1_MemberUserId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Table1_MemberUserId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_Table1_MemberUserId]  DEFAULT ((-1)) FOR [VisitedUserId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_ODKVisit_DateVisited]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_ODKVisit_DateVisited]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_ODKVisit_DateVisited]  DEFAULT (getdate()) FOR [DateVisited]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_ODKVisit_ActionTaken]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_ODKVisit_ActionTaken]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_ODKVisit_ActionTaken]  DEFAULT ('') FOR [ActionTaken]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_ODKVisit_ContactNo]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_ODKVisit_ContactNo]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_ODKVisit_ContactNo]  DEFAULT ('') FOR [ContactNo]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_ODKVisit_TimesVisited]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_ODKVisit_TimesVisited]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_ODKVisit_TimesVisited]  DEFAULT ((0)) FOR [TimesVisited]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_ODKVisit_Address]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_ODKVisit_Address]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_ODKVisit_Address]  DEFAULT ('') FOR [Address]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_ODKVisit_MembershipDate]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_ODKVisit_MembershipDate]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_ODKVisit_MembershipDate]  DEFAULT (((1900)-(1))-(1)) FOR [MembershipDate]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_ODKVisit_Tags]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_ODKVisit_Tags]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[ODKVisit] ADD  CONSTRAINT [DF_ODKVisit_Tags]  DEFAULT ('') FOR [Tags]
 END

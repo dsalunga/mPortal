@@ -14,17 +14,17 @@ CREATE TABLE [dbo].[IncidentCategory](
  CONSTRAINT [PK_IncidentCategory] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_IncidentCategory_Rank]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_IncidentCategory_Rank]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentCategory] ADD  CONSTRAINT [DF_IncidentCategory_Rank]  DEFAULT ((0)) FOR [Rank]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__IncidentC__Insta__187221A6]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__IncidentC__Insta__17F790F9]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentCategory] ADD  DEFAULT ((-1)) FOR [InstanceId]
 END

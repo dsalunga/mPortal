@@ -19,29 +19,29 @@ CREATE TABLE [dbo].[MenuItem](
  CONSTRAINT [PK_MenuItems] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MenuItem_ParentId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MenuItem_ParentId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MenuItem] ADD  CONSTRAINT [DF_MenuItem_ParentId]  DEFAULT ((-1)) FOR [ParentId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MenuItem_PageId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MenuItem_PageId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MenuItem] ADD  CONSTRAINT [DF_MenuItem_PageId]  DEFAULT ((-1)) FOR [PageId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MenuItem_Type]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MenuItem_Type]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MenuItem] ADD  CONSTRAINT [DF_MenuItem_Type]  DEFAULT ((1)) FOR [Type]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MenuItem_CheckPermission]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MenuItem_CheckPermission]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MenuItem] ADD  CONSTRAINT [DF_MenuItem_CheckPermission]  DEFAULT ((0)) FOR [CheckPermission]
 END

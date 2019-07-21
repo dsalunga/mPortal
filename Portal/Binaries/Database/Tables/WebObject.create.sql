@@ -26,89 +26,89 @@ CREATE TABLE [dbo].[WebObject](
  CONSTRAINT [PK_WebObjects] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObjects_ObjectType]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObjects_ObjectType]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObjects_ObjectType]  DEFAULT ('T') FOR [ObjectType]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObject_Prefix]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObject_Prefix]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObject_Prefix]  DEFAULT ('') FOR [Prefix]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObjects_LastRecordId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObjects_LastRecordId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObjects_LastRecordId]  DEFAULT ((0)) FOR [LastRecordId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObjects_MaxCacheSize]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObjects_MaxCacheSize]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObjects_MaxCacheSize]  DEFAULT ((-1)) FOR [MaxCacheCount]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObjects_AccessTypeId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObjects_AccessTypeId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObjects_AccessTypeId]  DEFAULT ((-1)) FOR [AccessTypeId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObjects_CacheTypeId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObjects_CacheTypeId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObjects_CacheTypeId]  DEFAULT ((-1)) FOR [CacheTypeId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObjects_MaxHistorySize]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObjects_MaxHistorySize]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObjects_MaxHistorySize]  DEFAULT ((-1)) FOR [MaxHistoryCount]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObject_DataProviderName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObject_DataProviderName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObject_DataProviderName]  DEFAULT ('') FOR [DataProviderName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObject_TypeName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObject_TypeName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObject_TypeName]  DEFAULT ('') FOR [TypeName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObject_CacheInterval]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObject_CacheInterval]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObject_CacheInterval]  DEFAULT ((-1)) FOR [CacheInterval]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObject_DateModified]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObject_DateModified]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObject_DateModified]  DEFAULT (getdate()) FOR [DateModified]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObject_ManagerName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObject_ManagerName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObject_ManagerName]  DEFAULT ('') FOR [ManagerName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObject_NameColumn]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObject_NameColumn]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObject_NameColumn]  DEFAULT ('') FOR [NameColumn]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObject_FriendlyName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObject_FriendlyName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObject] ADD  CONSTRAINT [DF_WebObject_FriendlyName]  DEFAULT ('') FOR [FriendlyName]
 END

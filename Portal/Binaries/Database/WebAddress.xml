@@ -344,21 +344,6 @@
     <LastUpdated>2014-07-02T14:16:44.213+08:00</LastUpdated>
   </WebAddress>
   <WebAddress>
-    <Id>36</Id>
-    <AddressLine1>Blk. 426 Choa Chu Kang Ave. 4</AddressLine1>
-    <AddressLine2>#02-36</AddressLine2>
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>416</CountryCode>
-    <ZipCode>680426</ZipCode>
-    <PhoneNumber />
-    <ObjectId>21</ObjectId>
-    <RecordId>127</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2014-07-02T14:16:45.953+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
     <Id>38</Id>
     <AddressLine1>Blk 341 Ubi Ave. 1, 03-901</AddressLine1>
     <AddressLine2 />
@@ -1184,141 +1169,6 @@
     <LastUpdated>2011-04-03T21:25:49.84+08:00</LastUpdated>
   </WebAddress>
   <WebAddress>
-    <Id>104</Id>
-    <AddressLine1>blk 121 Serangoon North Ave 1</AddressLine1>
-    <AddressLine2 />
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>451</CountryCode>
-    <ZipCode />
-    <PhoneNumber>96723374</PhoneNumber>
-    <ObjectId>21</ObjectId>
-    <RecordId>219</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2015-03-19T00:39:18.127+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
-    <Id>105</Id>
-    <AddressLine1>Blk 844 Sims Ave. #01-700</AddressLine1>
-    <AddressLine2 />
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>416</CountryCode>
-    <ZipCode>400844</ZipCode>
-    <PhoneNumber />
-    <ObjectId>21</ObjectId>
-    <RecordId>220</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2011-04-03T21:25:56.99+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
-    <Id>106</Id>
-    <AddressLine1>Blk 426 Choa Chu Kang, Ave 4, #02-166</AddressLine1>
-    <AddressLine2 />
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>416</CountryCode>
-    <ZipCode>680426</ZipCode>
-    <PhoneNumber>91180398</PhoneNumber>
-    <ObjectId>21</ObjectId>
-    <RecordId>221</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2011-04-03T21:25:59.34+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
-    <Id>107</Id>
-    <AddressLine1>Blk 521 Hougang Ave. 6 #12-55</AddressLine1>
-    <AddressLine2>#01-489</AddressLine2>
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>416</CountryCode>
-    <ZipCode />
-    <PhoneNumber />
-    <ObjectId>21</ObjectId>
-    <RecordId>222</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2011-04-03T21:26:01.72+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
-    <Id>108</Id>
-    <AddressLine1>Blk 629 Bedok Reservoir Rd. #06-1630</AddressLine1>
-    <AddressLine2 />
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>416</CountryCode>
-    <ZipCode>470629</ZipCode>
-    <PhoneNumber>98950437</PhoneNumber>
-    <ObjectId>21</ObjectId>
-    <RecordId>223</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2011-04-03T21:26:03.84+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
-    <Id>110</Id>
-    <AddressLine1>4A Lim Ah Pin Rd.</AddressLine1>
-    <AddressLine2 />
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>416</CountryCode>
-    <ZipCode>547820</ZipCode>
-    <PhoneNumber>97958964</PhoneNumber>
-    <ObjectId>21</ObjectId>
-    <RecordId>225</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2011-04-03T21:26:08.117+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
-    <Id>111</Id>
-    <AddressLine1>672A Jurong West Street 65</AddressLine1>
-    <AddressLine2>#02-140</AddressLine2>
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>416</CountryCode>
-    <ZipCode />
-    <PhoneNumber />
-    <ObjectId>21</ObjectId>
-    <RecordId>226</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2011-04-03T21:26:10.43+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
-    <Id>115</Id>
-    <AddressLine1>Kentview Park 81 #01-03 Pasir Panjang Hill</AddressLine1>
-    <AddressLine2 />
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>416</CountryCode>
-    <ZipCode />
-    <PhoneNumber />
-    <ObjectId>21</ObjectId>
-    <RecordId>232</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2011-04-03T21:26:24.53+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
-    <Id>116</Id>
-    <AddressLine1>Blk 114 Depot Rd. #14-1031</AddressLine1>
-    <AddressLine2 />
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>416</CountryCode>
-    <ZipCode>100114</ZipCode>
-    <PhoneNumber>83871721</PhoneNumber>
-    <ObjectId>21</ObjectId>
-    <RecordId>235</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2011-04-03T21:26:31.2+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
     <Id>117</Id>
     <AddressLine1>Blk 122 Paya Lebar Way #1</AddressLine1>
     <AddressLine2 />
@@ -1407,21 +1257,6 @@
     <RecordId>275</RecordId>
     <Tag>Work</Tag>
     <LastUpdated>2013-01-14T10:37:36.757+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
-    <Id>132</Id>
-    <AddressLine1 />
-    <AddressLine2 />
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>-1</CountryCode>
-    <ZipCode />
-    <PhoneNumber />
-    <ObjectId>21</ObjectId>
-    <RecordId>276</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2013-02-15T18:09:04.043+08:00</LastUpdated>
   </WebAddress>
   <WebAddress>
     <Id>133</Id>

@@ -20,41 +20,41 @@ CREATE TABLE [dbo].[Sportsfest](
  CONSTRAINT [PK_Sportsfest] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Sportsfest_MemberId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Sportsfest_MemberId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[Sportsfest] ADD  CONSTRAINT [DF_Sportsfest_MemberId]  DEFAULT ((-1)) FOR [MemberId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Sportsfest_EntryDate]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Sportsfest_EntryDate]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[Sportsfest] ADD  CONSTRAINT [DF_Sportsfest_EntryDate]  DEFAULT (getdate()) FOR [EntryDate]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Sportsfest_Locale]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Sportsfest_Locale]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[Sportsfest] ADD  CONSTRAINT [DF_Sportsfest_Locale]  DEFAULT ('') FOR [Locale]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Sportsfest_Suggestion]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Sportsfest_Suggestion]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[Sportsfest] ADD  CONSTRAINT [DF_Sportsfest_Suggestion]  DEFAULT ('') FOR [Suggestion]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Sportsfest_CountryCode]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Sportsfest_CountryCode]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[Sportsfest] ADD  CONSTRAINT [DF_Sportsfest_CountryCode]  DEFAULT ((-1)) FOR [CountryCode]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Sportsfest_ShirtSize]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Sportsfest_ShirtSize]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[Sportsfest] ADD  CONSTRAINT [DF_Sportsfest_ShirtSize]  DEFAULT ('') FOR [ShirtSize]
 END

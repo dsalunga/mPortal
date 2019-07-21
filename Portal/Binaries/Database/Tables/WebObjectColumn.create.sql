@@ -11,19 +11,19 @@ CREATE TABLE [dbo].[WebObjectColumn](
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObjectColumn_Id]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObjectColumn_Id]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObjectColumn] ADD  CONSTRAINT [DF_WebObjectColumn_Id]  DEFAULT ((-1)) FOR [Id]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObjectColumn_ObjectId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObjectColumn_ObjectId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObjectColumn] ADD  CONSTRAINT [DF_WebObjectColumn_ObjectId]  DEFAULT ((-1)) FOR [ObjectId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebObjectColumn_Name]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebObjectColumn_Name]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebObjectColumn] ADD  CONSTRAINT [DF_WebObjectColumn_Name]  DEFAULT ('') FOR [Name]
 END

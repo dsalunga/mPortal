@@ -16,23 +16,23 @@ CREATE TABLE [dbo].[WebPartControlTemplate](
  CONSTRAINT [PK_WebPartControlTemplates] PRIMARY KEY CLUSTERED 
 (
 	[PartControlTemplateId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebPartControlTemplates_CompletePath]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebPartControlTemplates_CompletePath]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebPartControlTemplate] ADD  CONSTRAINT [DF_WebPartControlTemplates_CompletePath]  DEFAULT ('') FOR [Path]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__WebPartControlTemplate__Standalone]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__WebPartControlTemplate__Standalone]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebPartControlTemplate] ADD  CONSTRAINT [DF__WebPartControlTemplate__Standalone]  DEFAULT ((0)) FOR [Standalone]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebPartControlTemplate_EngineId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebPartControlTemplate_EngineId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebPartControlTemplate] ADD  CONSTRAINT [DF_WebPartControlTemplate_EngineId]  DEFAULT ((1)) FOR [TemplateEngineId]
 END

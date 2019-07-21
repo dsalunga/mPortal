@@ -887,7 +887,7 @@
   </WebPage>
   <WebPage>
     <PageId>59</PageId>
-    <Name>Web System Dashboard</Name>
+    <Name>System Dashboard</Name>
     <SiteId>9</SiteId>
     <Rank>100</Rank>
     <Active>1</Active>
@@ -1945,7 +1945,7 @@
   </WebPage>
   <WebPage>
     <PageId>105</PageId>
-    <Name>Web Resource Manager</Name>
+    <Name>Resource Manager</Name>
     <SiteId>9</SiteId>
     <Rank>785</Rank>
     <Active>1</Active>

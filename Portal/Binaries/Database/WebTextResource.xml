@@ -729,10 +729,10 @@ UNKNOWN
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.867+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.83+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.87+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.83+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -852,10 +852,10 @@ gfeedfetcher.prototype._displayresult=function(feeds){
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.873+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.84+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.877+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.833+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -928,10 +928,10 @@ MM_preloadImages('/Content/Assets/Images/WebSites/ADD/n_home_o.gif','/Content/As
 WCMS.Dom.AddEvent(window, "load", Page_Load);</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.88+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.85+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.88+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.843+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -1106,10 +1106,10 @@ function insertVideos(div,typ,q,results,overlay){
 //--&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.883+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.86+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.887+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.85+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -1131,10 +1131,10 @@ function loadLytebox(id) {
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.89+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.863+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.89+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.863+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -1236,10 +1236,10 @@ function loadLytebox(id) {
 	#lbPause.gold { background: url(/Content/Assets/Images/WebSites/ADD/pause_gold.png) no-repeat; }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.89+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.87+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.893+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.867+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -2092,10 +2092,10 @@ if (window.addEventListener) {
 function initLytebox() { myLytebox = new LyteBox(); }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.907+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.887+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.907+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.873+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -2281,10 +2281,10 @@ function initLytebox() { myLytebox = new LyteBox(); }</Content>
         }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.91+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.893+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.91+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.89+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/8_mcgi_Home.css</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -2314,10 +2314,10 @@ function MM_swapImage() { //v3.0
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.913+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.9+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.913+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.893+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -2396,10 +2396,10 @@ a:active
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.917+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.903+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.917+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.9+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -2420,10 +2420,10 @@ a:active
     }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.92+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.907+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.92+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.903+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -2578,10 +2578,10 @@ a:active
         }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.923+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.91+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.923+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.91+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -2767,10 +2767,10 @@ a:active
         }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.927+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.917+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.927+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.913+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -2791,10 +2791,10 @@ a:active
 WCMS.Dom.AddEvent(window, "load", Page_Load);</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.93+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.92+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.93+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.92+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -2804,10 +2804,10 @@ WCMS.Dom.AddEvent(window, "load", Page_Load);</Content>
     <Content>&lt;script type="text/javascript" src="http://www.google.com/jsapi?key=REPLACE_WITH_GOOGLE_JS_API_KEY"&gt;&lt;/script&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>-10</Rank>
-    <DateModified>2014-06-27T14:00:19.853+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.81+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.843+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.79+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -3046,10 +3046,10 @@ h1.central.page-header {
 </Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>1</Rank>
-    <DateModified>2014-06-27T14:03:25.617+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.09+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:03:22+08:00</DatePersisted>
+    <DatePersisted>2018-01-02T15:08:17+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Styles/WebSystem.Admin.css</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -3066,10 +3066,10 @@ a:hover
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>2</Rank>
-    <DateModified>2014-06-27T14:00:20.03+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.09+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.03+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.09+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -3081,10 +3081,10 @@ a:hover
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>3</Rank>
-    <DateModified>2014-06-27T14:00:20.037+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.1+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.037+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.1+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -3107,10 +3107,10 @@ function OpenClosePanel() {
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>1</Rank>
-    <DateModified>2014-06-27T14:00:20.027+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.083+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.027+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.08+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -3128,10 +3128,10 @@ function ViewTemplate(partControlId, hTemplateId) {
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>2</Rank>
-    <DateModified>2014-06-27T14:00:20.033+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.097+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.033+08:00</DatePersisted>
+    <DatePersisted>2018-01-02T15:08:16+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Scripts/WebSystem.Admin.js</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -3141,10 +3141,10 @@ function ViewTemplate(partControlId, hTemplateId) {
     <Content>alert('contact us');</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.93+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.933+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.933+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.927+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -3838,10 +3838,10 @@ ul
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.933+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.937+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.937+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.937+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -3854,10 +3854,10 @@ ul
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.937+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.94+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.94+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.94+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -3938,10 +3938,10 @@ margin-bottom:3px;
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.94+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.947+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.943+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.943+08:00</DatePersisted>
     <PhysicalPath>~\Content\Assets\Resources\35_FileManager.css</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -4280,10 +4280,10 @@ A.module_treenode:hover
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.943+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.95+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.943+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.947+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/36_QueryAnalyzer.css</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -4314,10 +4314,10 @@ A.module_treenode:hover
     &lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.947+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.953+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.947+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.953+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -4339,10 +4339,10 @@ A.module_treenode:hover
 &lt;![endif]--&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.95+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.957+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.95+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.957+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -4560,10 +4560,10 @@ h1, h2
 /* end news border corners*/</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.953+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.963+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.953+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.96+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -4584,10 +4584,10 @@ a.link-page {text-decoration: underline;}
 .websys.phone-number.number-input{width: 8em;}</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.957+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.967+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.957+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.963+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/40_Profile.ProfileUpdate.css</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -4625,10 +4625,10 @@ a.link-page {text-decoration: underline;}
             document.onclick = jsddm_close;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.96+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.97+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.96+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.97+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -4666,10 +4666,10 @@ a.link-page {text-decoration: underline;}
             document.onclick = jsddm_close;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.96+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.973+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.963+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.973+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -4728,10 +4728,10 @@ a.link-page {text-decoration: underline;}
             }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.963+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.977+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.963+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.977+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -4747,10 +4747,10 @@ a.link-page {text-decoration: underline;}
 &lt;![endif]--&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.967+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.98+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.967+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.98+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -4762,10 +4762,10 @@ a.link-page {text-decoration: underline;}
 .Contact-Us table tr td input[type="submit"] { margin-top:10px; }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.97+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.987+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.97+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.983+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/45_WebPart-Contact-Us.css</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -4778,10 +4778,10 @@ a.link-page {text-decoration: underline;}
 &lt;link rel="stylesheet" type="text/css" href="/Content/Plugins/fancybox/jquery.fancybox-1.3.1.css" media="screen" /&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.97+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.99+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.973+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.99+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -4859,10 +4859,10 @@ ul {
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.973+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.993+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.977+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.993+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -4899,10 +4899,10 @@ margin: 2px;
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.977+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.977+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.997+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -5016,10 +5016,10 @@ DIV.Event-List-Item A
 /* WebPart: EventCalendar -- End */</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.98+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.003+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.98+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/49_MyAttendance.css</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5031,10 +5031,10 @@ width: 920px;
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.98+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.007+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.983+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.007+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -5053,10 +5053,10 @@ a.link-page {text-decoration: underline;}
 .note {background-color: yellow; padding: 3px;}</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.983+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.01+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.987+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.01+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -5066,10 +5066,10 @@ a.link-page {text-decoration: underline;}
     <Content>.Contact-Us td {text-align: left;}</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.987+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.013+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.99+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.013+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -5185,10 +5185,10 @@ DIV.Event-List-Item A
 /* WebPart: EventCalendar -- End */</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.99+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.02+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.993+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.017+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/53_EventCalendar.css</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5198,10 +5198,10 @@ DIV.Event-List-Item A
     <Content>&lt;meta http-equiv="X-UA-Compatible" content="IE=8" /&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.993+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.023+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.993+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.02+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -5255,7 +5255,6 @@ img.image-link {
 } */
 
 .control-box {
-    /*background-image: url(/Content/Assets/Images/Common/backyellow.gif);*/
     min-height: 28px;
     width: 100%;
     float: left;
@@ -5417,6 +5416,7 @@ th.bootstrap-checkbox, td.bootstrap-checkbox {
 
 .input, .input-xlarge {
     min-height: 30px;
+    height: 30px;
     padding: 3px 6px;
     margin-bottom: 10px;
     /*font-size: 14px;
@@ -5435,6 +5435,7 @@ th.bootstrap-checkbox, td.bootstrap-checkbox {
 select.input {
     display: inline-block;
     min-height: 30px;
+    height: 30px;
     padding: 4px 6px;
     margin-bottom: 10px;
     font-size: 14px;
@@ -5459,10 +5460,10 @@ label {
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.993+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.03+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-05-15T05:46:37+08:00</DatePersisted>
+    <DatePersisted>2018-01-02T15:08:17+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Styles/WebSystem.css</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5654,10 +5655,10 @@ div.Event-List-Item {
 </Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.993+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.033+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-05-15T05:46:37+08:00</DatePersisted>
+    <DatePersisted>2018-01-02T15:08:17+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Styles/WebSystem.Controls.css</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5671,10 +5672,10 @@ div.Event-List-Item {
 &lt;script type="text/javascript" src="/Content/Themes/xtech/js/jquery-workarounds.js"&gt;&lt;/script&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.997+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.037+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.997+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.037+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/57_X-TECH Main Headers</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5684,10 +5685,10 @@ div.Event-List-Item {
     <Content>&lt;link href="/Content/Themes/xtech/themes/green/css/style.css" rel="stylesheet" type="text/css" /&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:02:13.917+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.04+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:02:13.813+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.04+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -5697,10 +5698,10 @@ div.Event-List-Item {
     <Content>&lt;link href="/Content/Themes/xtech/themes/original/css/style.css" rel="stylesheet" type="text/css" /&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:20+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.047+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.003+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.043+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -5729,10 +5730,10 @@ div.Event-List-Item {
 &lt;/script&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:20.007+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.05+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.007+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.047+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -5746,10 +5747,10 @@ div.Event-List-Item {
 &lt;/script&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:20.01+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.057+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.01+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.053+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/61_X-TECH GEP Contact Us Map</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5806,10 +5807,10 @@ li a {display:block;}
 &lt;![endif]--&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:20.013+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.063+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.013+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.06+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/62_area51-Main.html</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5827,10 +5828,10 @@ li a {display:block;}
 &lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/cont_slide.js"&gt;&lt;/script&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:20.017+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.067+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.017+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.067+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/63_area51 Index</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5859,10 +5860,10 @@ h2.colr {font-size: 14px}
 div.blog h4 {font-size: 14px; font-weight: bold;}</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:20.02+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.07+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.02+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.07+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/64_area51 Home Overrides</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5872,10 +5873,10 @@ div.blog h4 {font-size: 14px; font-weight: bold;}</Content>
     <Content>@media (min-width: 980px) {.col1 {width: 928px;}}</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:20.02+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.077+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.023+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.073+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/65_area51 Inside Sidebar Override - Hide</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5885,10 +5886,10 @@ div.blog h4 {font-size: 14px; font-weight: bold;}</Content>
     <Content>&lt;meta name="robots" content="none,noarchive"/&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:20.023+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:57.08+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:20.023+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:57.077+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/66_No-Cache-Headers.htm</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5905,10 +5906,10 @@ div.blog h4 {font-size: 14px; font-weight: bold;}</Content>
 &lt;script src="/content/plugins/bootstrap/js/bootstrap.min.js"&gt;&lt;/script&gt;</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>-10</Rank>
-    <DateModified>2014-06-27T14:00:19.857+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.817+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.857+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.813+08:00</DatePersisted>
     <PhysicalPath>~/Content/Assets/Resources/67_Bootstrap-CSS.htm</PhysicalPath>
   </WebTextResource>
   <WebTextResource>
@@ -5942,10 +5943,10 @@ background-color:#663366; }
 body{background:#2f082f;}</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.86+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.82+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.863+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.817+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
   <WebTextResource>
@@ -5987,10 +5988,10 @@ font-weight: bold;
 }</Content>
     <DirectoryId>-1</DirectoryId>
     <Rank>0</Rank>
-    <DateModified>2014-06-27T14:00:19.863+08:00</DateModified>
+    <DateModified>2019-07-19T22:48:56.827+08:00</DateModified>
     <OwnerObjectId>-1</OwnerObjectId>
     <OwnerRecordId>-1</OwnerRecordId>
-    <DatePersisted>2014-06-27T06:00:19.867+08:00</DatePersisted>
+    <DatePersisted>2019-07-19T14:48:56.823+08:00</DatePersisted>
     <PhysicalPath />
   </WebTextResource>
 </mPortal>

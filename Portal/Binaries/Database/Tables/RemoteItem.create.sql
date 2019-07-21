@@ -22,83 +22,83 @@ CREATE TABLE [dbo].[RemoteItem](
  CONSTRAINT [PK_RemoteItems] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_LibraryId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_LibraryId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_LibraryId]  DEFAULT ((-1)) FOR [LibraryId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_Name]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_Name]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_Name]  DEFAULT ('') FOR [Name]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_RelativePath]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_RelativePath]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_RelativePath]  DEFAULT ('') FOR [RelativePath]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_TypeId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_TypeId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_TypeId]  DEFAULT ((0)) FOR [TypeId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_DateModified]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_DateModified]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_DateModified]  DEFAULT (getdate()) FOR [DateModified]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_Size]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_Size]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_Size]  DEFAULT ((0)) FOR [Size]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_Content]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_Content]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_Content]  DEFAULT ('') FOR [Content]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_ParentId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_ParentId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_ParentId]  DEFAULT ((-1)) FOR [ParentId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_DownloadCount]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_DownloadCount]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_DownloadCount]  DEFAULT ((0)) FOR [DownloadCount]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_DisplayName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_DisplayName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_DisplayName]  DEFAULT ('') FOR [DisplayName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItems_IdxDateMdf]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItems_IdxDateMdf]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItems_IdxDateMdf]  DEFAULT (getdate()) FOR [IndexDateModified]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItem_FileCachedEnabled]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItem_FileCachedEnabled]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItem_FileCachedEnabled]  DEFAULT ((-1)) FOR [FileCacheEnabled]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_RemoteItem_Cached]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_RemoteItem_Cached]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[RemoteItem] ADD  CONSTRAINT [DF_RemoteItem_Cached]  DEFAULT ((0)) FOR [Cached]
 END

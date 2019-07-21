@@ -24,95 +24,95 @@ CREATE TABLE [dbo].[LessonReviewerSession](
  CONSTRAINT [PK_LessonReviewerSession] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_ServiceScheduleId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_ServiceScheduleId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_ServiceScheduleId]  DEFAULT ((-1)) FOR [ServiceScheduleID]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_ServiceStartDate]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_ServiceStartDate]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_ServiceStartDate]  DEFAULT (getdate()) FOR [ServiceStartDate]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_ServiceName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_ServiceName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_ServiceName]  DEFAULT ('') FOR [ServiceName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_DateStarted]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_DateStarted]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_DateStarted]  DEFAULT (getdate()) FOR [DateStarted]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_DateCompleted]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_DateCompleted]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_DateCompleted]  DEFAULT (getdate()) FOR [DateCompleted]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_MemberId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_MemberId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_MemberId]  DEFAULT ((-1)) FOR [MemberId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_AbsentReason]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_AbsentReason]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_AbsentReason]  DEFAULT ('') FOR [AbsentReason]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_RejectReason]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_RejectReason]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_RejectReason]  DEFAULT ('') FOR [WorkerNotes]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Table1_AssignedWorkerId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Table1_AssignedWorkerId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_Table1_AssignedWorkerId]  DEFAULT ((-1)) FOR [WorkerUserId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_Status]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_Status]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_Status]  DEFAULT ((0)) FOR [Status]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_DateApproved]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_DateApproved]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_DateApproved]  DEFAULT (getdate()) FOR [DateApproved]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_LessonReviewerSession_AdditionalNotes]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_LessonReviewerSession_AdditionalNotes]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF_LessonReviewerSession_AdditionalNotes]  DEFAULT ('') FOR [AdditionalNotes]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__ServiceMa__AttendanceType]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__ServiceMa__AttendanceType]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF__ServiceMa__AttendanceType]  DEFAULT ((1)) FOR [AttendanceType]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__ServiceMa__PageId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__ServiceMa__PageId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF__ServiceMa__PageId]  DEFAULT ((-1)) FOR [PageId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__ServiceMa__Extra__53F07822]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__ServiceMa__Extra__53F07822]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[LessonReviewerSession] ADD  CONSTRAINT [DF__ServiceMa__Extra__53F07822]  DEFAULT ('') FOR [Extra]
 END

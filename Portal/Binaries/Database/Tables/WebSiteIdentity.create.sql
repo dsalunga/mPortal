@@ -16,47 +16,47 @@ CREATE TABLE [dbo].[WebSiteIdentity](
  CONSTRAINT [PK_WebSiteIdentity] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSiteIdentity_SiteId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSiteIdentity_SiteId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSiteIdentity] ADD  CONSTRAINT [DF_WebSiteIdentity_SiteId]  DEFAULT ((-1)) FOR [SiteId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSiteIdentity_HostName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSiteIdentity_HostName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSiteIdentity] ADD  CONSTRAINT [DF_WebSiteIdentity_HostName]  DEFAULT ('') FOR [HostName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSiteIdentity_UrlPath]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSiteIdentity_UrlPath]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSiteIdentity] ADD  CONSTRAINT [DF_WebSiteIdentity_UrlPath]  DEFAULT ('') FOR [UrlPath]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSiteIdentity_Port]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSiteIdentity_Port]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSiteIdentity] ADD  CONSTRAINT [DF_WebSiteIdentity_Port]  DEFAULT ((80)) FOR [Port]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSiteIdentity_IPAddress]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSiteIdentity_IPAddress]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSiteIdentity] ADD  CONSTRAINT [DF_WebSiteIdentity_IPAddress]  DEFAULT ('') FOR [IPAddress]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__WebSiteId__RedirectUrl]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__WebSiteId__RedirectUrl]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSiteIdentity] ADD  CONSTRAINT [DF__WebSiteId__RedirectUrl]  DEFAULT ('') FOR [RedirectUrl]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSiteId_ProtocolId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSiteId_ProtocolId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSiteIdentity] ADD  CONSTRAINT [DF_WebSiteId_ProtocolId]  DEFAULT ((0)) FOR [ProtocolId]
 END

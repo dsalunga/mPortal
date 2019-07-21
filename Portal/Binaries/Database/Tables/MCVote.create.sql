@@ -21,71 +21,71 @@ CREATE TABLE [dbo].[MCVote](
  CONSTRAINT [PK_MCVote] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MCVote_Code]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MCVote_Code]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF_MCVote_Code]  DEFAULT ('') FOR [Code]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MCVote_FirstName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MCVote_FirstName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF_MCVote_FirstName]  DEFAULT ('') FOR [FirstName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MCVote_LastName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MCVote_LastName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF_MCVote_LastName]  DEFAULT ('') FOR [LastName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MCVote_MobileNumber]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MCVote_MobileNumber]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF_MCVote_MobileNumber]  DEFAULT ('') FOR [MobileNumber]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MCVote_Email]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MCVote_Email]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF_MCVote_Email]  DEFAULT ('') FOR [Email]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MCVote_CandidateId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MCVote_CandidateId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF_MCVote_CandidateId]  DEFAULT ((-1)) FOR [CandidateId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_MCVote_UserName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_MCVote_UserName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF_MCVote_UserName]  DEFAULT ('') FOR [UserName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MCVote__Status]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MCVote__Status]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF__MCVote__Status]  DEFAULT ((0)) FOR [Status]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MCVote__CompetitionId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MCVote__CompetitionId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF__MCVote__CompetitionId]  DEFAULT ((-1)) FOR [CompetitionId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MCVote__IPAddress]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MCVote__IPAddress]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF__MCVote__IPAddress]  DEFAULT ('') FOR [IPAddress]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MCVote__Spam]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MCVote__Spam]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MCVote] ADD  CONSTRAINT [DF__MCVote__Spam]  DEFAULT ((0)) FOR [Spam]
 END

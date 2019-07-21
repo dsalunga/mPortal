@@ -2306,7 +2306,7 @@
     <Name>Bible Browser</Name>
     <FileName>BibleBrowser.ascx</FileName>
     <Identity>Integration</Identity>
-    <Path>~/Content/Parts/Integration/Bible/BibleBrowser.ascx</Path>
+    <Path>~/Content/Parts/Integration/BibleReader/BibleBrowser.ascx</Path>
     <Standalone>0</Standalone>
     <TemplateEngineId>1</TemplateEngineId>
   </WebPartControlTemplate>

@@ -404,11 +404,11 @@
   </WebSite>
   <WebSite>
     <SiteId>25</SiteId>
-    <Name>Integration Portal</Name>
+    <Name>mPortal</Name>
     <Rank>45</Rank>
     <Active>1</Active>
     <Identity>Portal</Identity>
-    <Title>Integration Portal</Title>
+    <Title>mPortal</Title>
     <ParentId>-1</ParentId>
     <HomePageId>537</HomePageId>
     <DefaultMasterPageId>74</DefaultMasterPageId>

@@ -14,17 +14,17 @@ CREATE TABLE [dbo].[WApproval](
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WGroupApproval_DateApproved]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WGroupApproval_DateApproved]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WApproval] ADD  CONSTRAINT [DF_WGroupApproval_DateApproved]  DEFAULT (getdate()) FOR [ApprovalDate]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WGroupApproval_Comments]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WGroupApproval_Comments]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WApproval] ADD  CONSTRAINT [DF_WGroupApproval_Comments]  DEFAULT ('') FOR [Comments]
 END

@@ -61,7 +61,7 @@
   <WebPart>
     <PartId>51</PartId>
     <Name>File Manager</Name>
-    <Identity>FileManager</Identity>
+    <Identity>AppBundle/FileManager</Identity>
     <Active>1</Active>
   </WebPart>
   <WebPart>
@@ -169,7 +169,7 @@
   <WebPart>
     <PartId>85</PartId>
     <Name>Integration Registration</Name>
-    <Identity>Registration</Identity>
+    <Identity>Integration/Registration</Identity>
     <Active>1</Active>
   </WebPart>
   <WebPart>

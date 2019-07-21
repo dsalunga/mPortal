@@ -32,89 +32,89 @@ CREATE TABLE [dbo].[WebSite](
  CONSTRAINT [PK_WebSites] PRIMARY KEY CLUSTERED 
 (
 	[SiteId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSites_Published]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSites_Published]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSites_Published]  DEFAULT ((-1)) FOR [Published]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSites_VersionOfId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSites_VersionOfId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSites_VersionOfId]  DEFAULT ((-1)) FOR [VersionOf]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSites_AuthenticationTypeId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSites_AuthenticationTypeId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSites_AuthenticationTypeId]  DEFAULT ((128)) FOR [PublicAccess]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSites_DateCreated]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSites_DateCreated]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSites_DateCreated]  DEFAULT (getdate()) FOR [DateCreated]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSites_DateModified]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSites_DateModified]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSites_DateModified]  DEFAULT (getdate()) FOR [DateModified]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSites_LoginPage]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSites_LoginPage]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSites_LoginPage]  DEFAULT ('') FOR [LoginPage]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSites_AccessDeniedPage]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSites_AccessDeniedPage]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSites_AccessDeniedPage]  DEFAULT ('') FOR [AccessDeniedPage]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSite_PageTitleFormat]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSite_PageTitleFormat]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSite_PageTitleFormat]  DEFAULT ('') FOR [PageTitleFormat]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSite_ManagementAccess]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSite_ManagementAccess]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSite_ManagementAccess]  DEFAULT ((0)) FOR [ManagementAccess]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSite_BaseAddress]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSite_BaseAddress]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSite_BaseAddress]  DEFAULT ('') FOR [BaseAddress]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__WebSite__ThemeId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__WebSite__ThemeId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF__WebSite__ThemeId]  DEFAULT ((-1)) FOR [ThemeId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__WebSite__LocaleId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__WebSite__LocaleId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF__WebSite__LocaleId]  DEFAULT ((-1)) FOR [LocaleId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__WebSite__SkinId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__WebSite__SkinId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF__WebSite__SkinId]  DEFAULT ((-1)) FOR [SkinId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebSite_PrimaryIdentityId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebSite_PrimaryIdentityId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebSite] ADD  CONSTRAINT [DF_WebSite_PrimaryIdentityId]  DEFAULT ((-1)) FOR [PrimaryIdentityId]
 END

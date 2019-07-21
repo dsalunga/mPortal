@@ -11,23 +11,23 @@ CREATE TABLE [dbo].[WebParameterSet](
  CONSTRAINT [PK_WebParameterSet] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebParameterSet_Id]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebParameterSet_Id]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebParameterSet] ADD  CONSTRAINT [DF_WebParameterSet_Id]  DEFAULT ((-1)) FOR [Id]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebParameterSet_Name]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebParameterSet_Name]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebParameterSet] ADD  CONSTRAINT [DF_WebParameterSet_Name]  DEFAULT ('') FOR [Name]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebParameterSet_SchemaParameterName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebParameterSet_SchemaParameterName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebParameterSet] ADD  CONSTRAINT [DF_WebParameterSet_SchemaParameterName]  DEFAULT ('') FOR [SchemaParameterName]
 END

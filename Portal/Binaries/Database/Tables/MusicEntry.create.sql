@@ -15,41 +15,41 @@ CREATE TABLE [dbo].[MusicEntry](
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MusicEntr__MusicId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MusicEntr__MusicId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MusicEntry] ADD  CONSTRAINT [DF__MusicEntr__MusicId]  DEFAULT ((-1)) FOR [MusicId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MusicEntr__EntryTypeId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MusicEntr__EntryTypeId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MusicEntry] ADD  CONSTRAINT [DF__MusicEntr__EntryTypeId]  DEFAULT ((-1)) FOR [EntryTypeId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MusicEntr__FileName]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MusicEntr__FileName]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MusicEntry] ADD  CONSTRAINT [DF__MusicEntr__FileName]  DEFAULT ('') FOR [FileName]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MusicEntry__Tags]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MusicEntry__Tags]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MusicEntry] ADD  CONSTRAINT [DF__MusicEntry__Tags]  DEFAULT ('') FOR [Tags]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MusicEntr__DateModified]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MusicEntr__DateModified]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MusicEntry] ADD  CONSTRAINT [DF__MusicEntr__DateModified]  DEFAULT (getdate()) FOR [DateModified]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__MusicEntr__FileSize]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MusicEntr__FileSize]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MusicEntry] ADD  CONSTRAINT [DF__MusicEntr__FileSize]  DEFAULT ((0)) FOR [FileSize]
 END

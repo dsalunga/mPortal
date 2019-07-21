@@ -20,65 +20,65 @@ CREATE TABLE [dbo].[WebGroup](
  CONSTRAINT [PK_WebGroups] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebGroup_ParentId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebGroup_ParentId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebGroup] ADD  CONSTRAINT [DF_WebGroup_ParentId]  DEFAULT ((-1)) FOR [ParentId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebGroup_IsSystem]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebGroup_IsSystem]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebGroup] ADD  CONSTRAINT [DF_WebGroup_IsSystem]  DEFAULT ((0)) FOR [IsSystem]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebGroup_DateModified]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebGroup_DateModified]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebGroup] ADD  CONSTRAINT [DF_WebGroup_DateModified]  DEFAULT (getdate()) FOR [DateModified]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebGroup_OwnerId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebGroup_OwnerId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebGroup] ADD  CONSTRAINT [DF_WebGroup_OwnerId]  DEFAULT ((-1)) FOR [OwnerId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebGroup_JoinApproval]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebGroup_JoinApproval]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebGroup] ADD  CONSTRAINT [DF_WebGroup_JoinApproval]  DEFAULT ((0)) FOR [JoinApproval]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebGroup_JoinAlert]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebGroup_JoinAlert]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebGroup] ADD  CONSTRAINT [DF_WebGroup_JoinAlert]  DEFAULT ((0)) FOR [JoinAlert]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebGroup_PageUrl]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebGroup_PageUrl]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebGroup] ADD  CONSTRAINT [DF_WebGroup_PageUrl]  DEFAULT ('') FOR [PageUrl]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebGroup_PageId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebGroup_PageId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebGroup] ADD  CONSTRAINT [DF_WebGroup_PageId]  DEFAULT ((-1)) FOR [PageId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebGroup_Description]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebGroup_Description]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebGroup] ADD  CONSTRAINT [DF_WebGroup_Description]  DEFAULT ('') FOR [Description]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__WebGroup__Managers]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__WebGroup__Managers]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebGroup] ADD  CONSTRAINT [DF__WebGroup__Managers]  DEFAULT ('') FOR [Managers]
 END

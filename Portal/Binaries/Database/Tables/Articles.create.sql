@@ -22,17 +22,17 @@ CREATE TABLE [dbo].[Articles](
  CONSTRAINT [PK_Items] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Articles_DirectoryId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Articles_DirectoryId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[Articles] ADD  CONSTRAINT [DF_Articles_DirectoryId]  DEFAULT ((-1)) FOR [DirectoryId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Articles_Tags]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Articles_Tags]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[Articles] ADD  CONSTRAINT [DF_Articles_Tags]  DEFAULT ('') FOR [Tags]
 END

@@ -17,41 +17,41 @@ CREATE TABLE [dbo].[WebUserGroup](
  CONSTRAINT [PK_WebUserRoles] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebUserGroup_Active]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebUserGroup_Active]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebUserGroup] ADD  CONSTRAINT [DF_WebUserGroup_Active]  DEFAULT ((1)) FOR [Active]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebUserGroup_DateJoined]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebUserGroup_DateJoined]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebUserGroup] ADD  CONSTRAINT [DF_WebUserGroup_DateJoined]  DEFAULT (getdate()) FOR [DateJoined]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebUserGroup_ObjectId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebUserGroup_ObjectId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebUserGroup] ADD  CONSTRAINT [DF_WebUserGroup_ObjectId]  DEFAULT ((21)) FOR [ObjectId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebUserGroup_RecordId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebUserGroup_RecordId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebUserGroup] ADD  CONSTRAINT [DF_WebUserGroup_RecordId]  DEFAULT ((-1)) FOR [RecordId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebUserGroup_Remarks]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebUserGroup_Remarks]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebUserGroup] ADD  CONSTRAINT [DF_WebUserGroup_Remarks]  DEFAULT ('') FOR [Remarks]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebUserGroup_CreatedById]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebUserGroup_CreatedById]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebUserGroup] ADD  CONSTRAINT [DF_WebUserGroup_CreatedById]  DEFAULT ((-1)) FOR [CreatedById]
 END

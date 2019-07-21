@@ -30,17 +30,17 @@ CREATE TABLE [dbo].[Member](
  CONSTRAINT [PK_Member] PRIMARY KEY CLUSTERED 
 (
 	[MemberID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Member_Flag]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Member_Flag]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[Member] ADD  CONSTRAINT [DF_Member_Flag]  DEFAULT ('M') FOR [Flag]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Member_MembershipDate]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_Member_MembershipDate]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[Member] ADD  CONSTRAINT [DF_Member_MembershipDate]  DEFAULT (getdate()) FOR [MembershipDate]
 END

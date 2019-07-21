@@ -19,47 +19,47 @@ CREATE TABLE [dbo].[WebTextResource](
  CONSTRAINT [PK_WebTextResources] PRIMARY KEY CLUSTERED 
 (
 	[TextResourceId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebTextResources_DirectoryId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebTextResources_DirectoryId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebTextResource] ADD  CONSTRAINT [DF_WebTextResources_DirectoryId]  DEFAULT ((-1)) FOR [DirectoryId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebTextResources_Rank]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebTextResources_Rank]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebTextResource] ADD  CONSTRAINT [DF_WebTextResources_Rank]  DEFAULT ((0)) FOR [Rank]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebTextResource_DateModified]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebTextResource_DateModified]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebTextResource] ADD  CONSTRAINT [DF_WebTextResource_DateModified]  DEFAULT (getdate()) FOR [DateModified]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebTextResource_OwnerObjectId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebTextResource_OwnerObjectId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebTextResource] ADD  CONSTRAINT [DF_WebTextResource_OwnerObjectId]  DEFAULT ((-1)) FOR [OwnerObjectId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebTextResource_OwnerRecordId]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebTextResource_OwnerRecordId]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebTextResource] ADD  CONSTRAINT [DF_WebTextResource_OwnerRecordId]  DEFAULT ((-1)) FOR [OwnerRecordId]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebTextResource_DatePersisted]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebTextResource_DatePersisted]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebTextResource] ADD  CONSTRAINT [DF_WebTextResource_DatePersisted]  DEFAULT (getdate()) FOR [DatePersisted]
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_WebTextResource_PhysicalPath]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF_WebTextResource_PhysicalPath]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[WebTextResource] ADD  CONSTRAINT [DF_WebTextResource_PhysicalPath]  DEFAULT ('') FOR [PhysicalPath]
 END
