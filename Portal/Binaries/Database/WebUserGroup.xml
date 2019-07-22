@@ -155,39 +155,6 @@
     <CreatedById>-1</CreatedById>
   </WebUserGroup>
   <WebUserGroup>
-    <Id>683</Id>
-    <UserId>280</UserId>
-    <GroupId>12</GroupId>
-    <Active>1</Active>
-    <DateJoined>2011-05-02T00:49:44.7+08:00</DateJoined>
-    <ObjectId>21</ObjectId>
-    <RecordId>280</RecordId>
-    <Remarks />
-    <CreatedById>-1</CreatedById>
-  </WebUserGroup>
-  <WebUserGroup>
-    <Id>684</Id>
-    <UserId>280</UserId>
-    <GroupId>8</GroupId>
-    <Active>1</Active>
-    <DateJoined>2011-05-02T00:49:44.733+08:00</DateJoined>
-    <ObjectId>21</ObjectId>
-    <RecordId>280</RecordId>
-    <Remarks />
-    <CreatedById>-1</CreatedById>
-  </WebUserGroup>
-  <WebUserGroup>
-    <Id>685</Id>
-    <UserId>280</UserId>
-    <GroupId>15</GroupId>
-    <Active>1</Active>
-    <DateJoined>2011-05-02T00:49:46.84+08:00</DateJoined>
-    <ObjectId>21</ObjectId>
-    <RecordId>280</RecordId>
-    <Remarks />
-    <CreatedById>-1</CreatedById>
-  </WebUserGroup>
-  <WebUserGroup>
     <Id>692</Id>
     <UserId>286</UserId>
     <GroupId>12</GroupId>
@@ -437,17 +404,6 @@
     <DateJoined>2012-02-02T15:03:08.093+08:00</DateJoined>
     <ObjectId>21</ObjectId>
     <RecordId>237</RecordId>
-    <Remarks />
-    <CreatedById>-1</CreatedById>
-  </WebUserGroup>
-  <WebUserGroup>
-    <Id>758</Id>
-    <UserId>238</UserId>
-    <GroupId>88</GroupId>
-    <Active>1</Active>
-    <DateJoined>2012-04-02T07:24:23.013+08:00</DateJoined>
-    <ObjectId>21</ObjectId>
-    <RecordId>238</RecordId>
     <Remarks />
     <CreatedById>-1</CreatedById>
   </WebUserGroup>

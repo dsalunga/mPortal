@@ -219,34 +219,6 @@
     <LoginFailureCount>0</LoginFailureCount>
   </WebUser>
   <WebUser>
-    <UserId>238</UserId>
-    <UserName>asopuser</UserName>
-    <Password>4N0bGh450q6PUg03CJvsPsZqRSkC9K2WSIfripCI4BWWn9/X0RihEPiVvpxSuDyGOsEHdKoIsBTWIzPhZaU8DqwhVqC6Z4O1Ir1+Y80e7jh4ikM0j5Z5QpyA1GpdydeQBdkHsZsVr1kVvjGAMsb77VmrJzKJ+5md6ou/DaRJk5Q=</Password>
-    <FirstName>First</FirstName>
-    <MiddleName />
-    <LastName>Name</LastName>
-    <Email>daniel.salunga@mcgi.org.sg</Email>
-    <LastUpdate>1799-12-31T21:30:00+08:00</LastUpdate>
-    <Active>1</Active>
-    <ActivationKey />
-    <DateCreated>2012-04-02T07:23:55.563+08:00</DateCreated>
-    <NewEmail />
-    <Email2 />
-    <Gender>U</Gender>
-    <NameSuffix />
-    <MobileNumber />
-    <TelephoneNumber />
-    <LastLogin>2012-09-17T22:30:09.663+08:00</LastLogin>
-    <StatusText />
-    <PasswordExpiryDate>1799-12-31T21:30:00+08:00</PasswordExpiryDate>
-    <PhotoPath />
-    <ProviderId>-1</ProviderId>
-    <Status>1</Status>
-    <MaritalStatusId>-1</MaritalStatusId>
-    <LastLoginFailureDate>1800-01-01T00:00:00+08:00</LastLoginFailureDate>
-    <LoginFailureCount>0</LoginFailureCount>
-  </WebUser>
-  <WebUser>
     <UserId>264</UserId>
     <UserName>guest</UserName>
     <Password>2ThsN+NticR1Kf6xxmuFZ0wszgbTQDAL6v0IOj88KknJ4/7IGvyqB6xKoQJU5XeYNoknG1Dn+7Y+b0sCZgAZNUsYJGzDw5vlv+J593bxlLzGCWO86w0pH9c6q3shwDHoBCiX7uhldKacVoBQUvymEi8DbicxQe4oRS9odhcnhIc=</Password>
@@ -354,34 +326,6 @@
     <PhotoPath>/Content/Assets/User-Photos/U275.jpg</PhotoPath>
     <ProviderId>1</ProviderId>
     <Status>1</Status>
-    <MaritalStatusId>-1</MaritalStatusId>
-    <LastLoginFailureDate>1800-01-01T00:00:00+08:00</LastLoginFailureDate>
-    <LoginFailureCount>0</LoginFailureCount>
-  </WebUser>
-  <WebUser>
-    <UserId>280</UserId>
-    <UserName>a.a</UserName>
-    <Password>geimNKLJrpX2xyxuCweavFR0ZyOf605vjQqPhA24wh6vnaDHQff4JFfn5MujwDks6zNbv0Tzn+Q03QFwqoSVugNPoXVN6ZHI89oHTwwqZFrUVhcAU7weWq4XoGfVkW64CBkC0BGvK6lVQs+GxDXWZgzeGj5LOfbIsxRYmQ6K7kU=</Password>
-    <FirstName>a</FirstName>
-    <MiddleName />
-    <LastName>a</LastName>
-    <Email>a</Email>
-    <LastUpdate>1800-01-01T00:00:00+08:00</LastUpdate>
-    <Active>0</Active>
-    <ActivationKey />
-    <DateCreated>2013-05-26T11:18:26.463+08:00</DateCreated>
-    <NewEmail />
-    <Email2 />
-    <Gender>U</Gender>
-    <NameSuffix />
-    <MobileNumber>a</MobileNumber>
-    <TelephoneNumber>a</TelephoneNumber>
-    <LastLogin>1800-01-01T00:00:00+08:00</LastLogin>
-    <StatusText />
-    <PasswordExpiryDate>1900-01-01T00:00:00+08:00</PasswordExpiryDate>
-    <PhotoPath>http://localhost:9000/Content/Assets/Images/nophoto.png</PhotoPath>
-    <ProviderId>-1</ProviderId>
-    <Status>0</Status>
     <MaritalStatusId>-1</MaritalStatusId>
     <LastLoginFailureDate>1800-01-01T00:00:00+08:00</LastLoginFailureDate>
     <LoginFailureCount>0</LoginFailureCount>

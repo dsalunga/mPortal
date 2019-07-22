@@ -119,21 +119,6 @@
     <LastUpdated>2011-04-03T21:26:35.667+08:00</LastUpdated>
   </WebAddress>
   <WebAddress>
-    <Id>118</Id>
-    <AddressLine1>Blk 813 Jellicoe Rd. #06-28</AddressLine1>
-    <AddressLine2 />
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>416</CountryCode>
-    <ZipCode />
-    <PhoneNumber />
-    <ObjectId>21</ObjectId>
-    <RecordId>238</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2011-04-03T21:26:37.897+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
     <Id>130</Id>
     <AddressLine1 />
     <AddressLine2 />
@@ -162,20 +147,5 @@
     <RecordId>275</RecordId>
     <Tag>Work</Tag>
     <LastUpdated>2013-01-14T10:37:36.757+08:00</LastUpdated>
-  </WebAddress>
-  <WebAddress>
-    <Id>136</Id>
-    <AddressLine1>a</AddressLine1>
-    <AddressLine2 />
-    <CityTown />
-    <StateProvince />
-    <StateProvinceCode>-1</StateProvinceCode>
-    <CountryCode>-1</CountryCode>
-    <ZipCode />
-    <PhoneNumber />
-    <ObjectId>21</ObjectId>
-    <RecordId>280</RecordId>
-    <Tag>Home</Tag>
-    <LastUpdated>2013-05-26T11:18:26.63+08:00</LastUpdated>
   </WebAddress>
 </mPortal>

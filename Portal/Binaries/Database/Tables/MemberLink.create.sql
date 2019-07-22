@@ -183,7 +183,7 @@ ALTER TABLE [dbo].[MemberLink] ADD  CONSTRAINT [DF_MemberLink_AdditionalInformat
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MemberLin__Local__75785BC3]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__MemberLin__Local__4F52B2DB]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[MemberLink] ADD  DEFAULT ((-1)) FOR [LocaleId]
 END
