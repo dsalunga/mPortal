@@ -57,13 +57,24 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
             //DataSet ds = Audit.GetDataSetForDownload(null, roleId, -1, -1);
             //WebHelper.DownloadDataSet(ds);
+
+            var refDate = DataUtil.GetDateTime(cboDelete.SelectedValue);
+            WebUtil.DownloadAsXml(Select(refDate, hUserFormatString.Value));
         }
 
         protected void cmdClearLog_Click(object sender, EventArgs e)
         {
             if (cboDelete.Visible)
             {
-                //WebMessageQueue.Provider.Delete(DataHelper.GetDateTime(cboDelete.SelectedValue));
+                var refDate = DataUtil.GetDateTime(cboDelete.SelectedValue);
+                var items = WebMessageQueue.Provider.GetList();
+                foreach(var item in items)
+                {
+                    if(item.DateSent < refDate)
+                    {
+                        item.Delete();
+                    }
+                }
                 GridView1.DataBind();
             }
         }
@@ -118,10 +129,8 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 var provider = new NamedValueProvider();
                 provider.Add("UserId", user.Id);
                 provider.Add("Name", user.FirstAndLastName);
-
                 return Substituter.Substitute(formatString, provider);
             }
-
             return string.Empty;
         }
 
