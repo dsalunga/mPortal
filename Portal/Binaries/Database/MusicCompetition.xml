@@ -39,4 +39,15 @@
       </xs:unique>
     </xs:element>
   </xs:schema>
+  <MusicCompetition>
+    <Id>1</Id>
+    <Name>Competition 1</Name>
+    <Judges />
+    <ScoreLocked>1</ScoreLocked>
+    <CompetitionDate>1910-01-01T00:00:00+08:00</CompetitionDate>
+    <VoteLocked>1</VoteLocked>
+    <VoteMasked>0</VoteMasked>
+    <PeoplesChoiceId>-1</PeoplesChoiceId>
+    <BestInterpreterId>-1</BestInterpreterId>
+  </MusicCompetition>
 </mPortal>

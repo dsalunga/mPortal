@@ -97,7 +97,7 @@
   <WebPart>
     <PartId>64</PartId>
     <Name>Article</Name>
-    <Identity>Article</Identity>
+    <Identity>AppBundle/Article</Identity>
     <Active>1</Active>
   </WebPart>
   <WebPart>
@@ -235,7 +235,7 @@
   <WebPart>
     <PartId>96</PartId>
     <Name>Music Competition</Name>
-    <Identity>Music</Identity>
+    <Identity>Integration/MusicCompetition</Identity>
     <Active>1</Active>
   </WebPart>
   <WebPart>

@@ -3,7 +3,7 @@
 <%@ Import Namespace="WCMS.Common.Utilities" %>
 <%@ Register Assembly="FredCK.FCKeditorV2" Namespace="FredCK.FCKeditorV2" TagPrefix="FCKeditorV2" %>
 <%@ Register Src="~/Content/Controls/TabControl.ascx" TagName="TabControl" TagPrefix="uc1" %>
-<%@ Register Src="../Central/Controls/WebSiteElementSelector.ascx" TagName="WebSiteElementSelector"
+<%@ Register Src="~/Content/Parts/Central/Controls/WebSiteElementSelector.ascx" TagName="WebSiteElementSelector"
     TagPrefix="uc2" %>
 <%@ Register Src="Controls/AdminTabControl.ascx" TagName="AdminTabControl" TagPrefix="uc4" %>
 <uc4:AdminTabControl ID="AdminTabControl1" runat="server" />

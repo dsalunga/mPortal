@@ -987,7 +987,7 @@
   <WebRegistry>
     <RegistryId>156</RegistryId>
     <Key>ExecutablePath</Key>
-    <Value>~\..\Integration.Framewok.Agent\bin\Debug\WCMS.Framework.Agent.exe</Value>
+    <Value>~\..\WCMS.Framewok.Agent\bin\Debug\WCMS.Framework.Agent.exe</Value>
     <ParentId>28</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>

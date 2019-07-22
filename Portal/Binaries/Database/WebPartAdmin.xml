@@ -824,7 +824,7 @@
     <PartAdminId>215</PartAdminId>
     <PartId>99</PartId>
     <Name>Chapters</Name>
-    <FileName>BranchLocator/Admin/Chapters.ascx</FileName>
+    <FileName>Admin/Chapters.ascx</FileName>
     <ParentId>-1</ParentId>
     <Active>1</Active>
     <Visible>1</Visible>
@@ -836,7 +836,7 @@
     <PartAdminId>216</PartAdminId>
     <PartId>99</PartId>
     <Name>Chapter</Name>
-    <FileName>BranchLocator/Admin/Chapter.ascx</FileName>
+    <FileName>Admin/Chapter.ascx</FileName>
     <ParentId>-1</ParentId>
     <Active>1</Active>
     <Visible>0</Visible>
@@ -848,7 +848,7 @@
     <PartAdminId>217</PartAdminId>
     <PartId>99</PartId>
     <Name>Chapter Home</Name>
-    <FileName>BranchLocator/Admin/ChapterHome.ascx</FileName>
+    <FileName>Admin/ChapterHome.ascx</FileName>
     <ParentId>-1</ParentId>
     <Active>1</Active>
     <Visible>0</Visible>

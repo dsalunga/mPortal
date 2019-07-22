@@ -5,6 +5,7 @@
 <div class="control-box no-bottom-margin">
     <div>
         <div class="pull-left">
+            <asp:Button ID="cmdDelete" runat="server" Text="Delete" CssClass="btn btn-default btn-sm" OnClick="cmdDelete_Click" OnClientClick="return confirm('Delete selected item(s)?');" />
             <asp:Button ID="cmdSync" runat="server" Enabled="false" Text="Sync" CssClass="btn btn-default btn-sm"
                 OnClick="cmdSync_Click" />&nbsp;
         </div>
@@ -40,6 +41,15 @@
         PageSize="25">
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <Columns>
+            <asp:TemplateField>
+                    <HeaderTemplate>
+                        <input type="checkbox" value="chkMain" onclick="CheckAll(this, 'chkItems');" />
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <input type="checkbox" value='<%# Eval("Id") %>' name="chkItems" />
+                    </ItemTemplate>
+                    <HeaderStyle Width="10px" />
+                </asp:TemplateField>
             <asp:TemplateField HeaderText="">
                 <HeaderStyle HorizontalAlign="center" Width="18px" />
                 <ItemStyle HorizontalAlign="center" />

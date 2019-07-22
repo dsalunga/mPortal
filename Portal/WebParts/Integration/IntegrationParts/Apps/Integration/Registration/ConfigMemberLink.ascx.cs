@@ -14,10 +14,7 @@ using WCMS.Framework.Core;
 using WCMS.Framework.Net;
 using WCMS.Framework.Utilities;
 
-using WCMS.Framework.Core.Shared;
-
 using WCMS.WebSystem.Agent;
-using WCMS.WebSystem.Apps.Integration;
 using WCMS.WebSystem.Apps.Integration;
 using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
 
@@ -201,26 +198,34 @@ namespace WCMS.WebSystem.WebParts.Profile
                     cblMinistries.DataBind();
 
                     // Set Special Groups
-                    var specialGroups = WebGroup.SelectNode(specialGroupsPath).Children;
-                    cblSpecialGroups.DataSource = from ug in userGroups
-                                                  where specialGroups.FirstOrDefault(m => (g = m).Id == ug.GroupId) != null
-                                                  select new
-                                                  {
-                                                      Id = ug.GroupId,
-                                                      Name = ug.IsActive ? g.Name : g.Name + MemberConstants.PendingApprovalString
-                                                  };
-                    cblSpecialGroups.DataBind();
+                    var specialGroupRoot = WebGroup.SelectNode(specialGroupsPath);
+                    if (specialGroupRoot != null)
+                    {
+                        var specialGroups = specialGroupRoot.Children;
+                        cblSpecialGroups.DataSource = from ug in userGroups
+                                                      where specialGroups.FirstOrDefault(m => (g = m).Id == ug.GroupId) != null
+                                                      select new
+                                                      {
+                                                          Id = ug.GroupId,
+                                                          Name = ug.IsActive ? g.Name : g.Name + MemberConstants.PendingApprovalString
+                                                      };
+                        cblSpecialGroups.DataBind();
+                    }
 
                     // Set Group
-                    var groups = WebGroup.SelectNode(groupsPath).Children;
-                    rblLocaleGroups.DataSource = from ug in userGroups
-                                                 where groups.FirstOrDefault(m => (g = m).Id == ug.GroupId) != null
-                                                 select new
+                    var groupRoot = WebGroup.SelectNode(groupsPath);
+                    if (groupRoot != null)
+                    {
+                        var groups = groupRoot.Children;
+                        rblLocaleGroups.DataSource = from ug in userGroups
+                                                     where groups.FirstOrDefault(m => (g = m).Id == ug.GroupId) != null
+                                                     select new
                                                      {
                                                          Id = ug.GroupId,
                                                          Name = ug.IsActive ? g.Name : g.Name + MemberConstants.PendingApprovalString
                                                      };
-                    rblLocaleGroups.DataBind();
+                        rblLocaleGroups.DataBind();
+                    }
 
                     // Setup Account Link
                     context.Remove(WebColumns.PartAdminId);

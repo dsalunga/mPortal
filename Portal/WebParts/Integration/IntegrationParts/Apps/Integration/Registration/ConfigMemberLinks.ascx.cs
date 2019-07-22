@@ -76,7 +76,7 @@ namespace WCMS.WebSystem.Apps.Integration
             var query = new WQuery(true);
             query.SetLoad("ConfigMemberLink.ascx");
 
-            return DataHelper.ToDataSet(from i in MemberLink.Provider.GetList()
+            return DataUtil.ToDataSet(from i in MemberLink.Provider.GetList()
                                         where
                                             ((user = i.User) != null || user == null) &&
                                             (string.IsNullOrEmpty(filterGroup) || user != null && user.IsMemberOf(filterGroup)) &&
@@ -158,6 +158,27 @@ namespace WCMS.WebSystem.Apps.Integration
                 {
                     lblStatus.InnerHtml = "User account does not exist.";
                 }
+            }
+        }
+
+        protected void cmdDelete_Click(object sender, EventArgs e)
+        {
+            string strIDs = Request.Form["chkItems"];
+            if (!string.IsNullOrEmpty(strIDs))
+            {
+                var ids = DataHelper.ParseCommaSeparatedIdList(strIDs);
+                foreach (var sId in ids)
+                {
+                    var id = DataUtil.GetId(sId);
+                    if (id > 0)
+                    {
+                        var link = MemberLink.Provider.Get(id);
+                        WebUser.Delete(link.UserId);
+                        link.Delete();
+                    }
+                }
+
+                GridView1.DataBind();
             }
         }
     }
