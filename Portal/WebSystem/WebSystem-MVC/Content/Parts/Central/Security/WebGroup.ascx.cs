@@ -62,7 +62,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
 
         protected void cmdUpdate_Click(object sender, System.EventArgs e)
         {
-            int id = DataHelper.GetId(Request, WebColumns.GroupId);
+            int id = DataUtil.GetId(Request, WebColumns.GroupId);
             string pageUrl = txtPageUrl.Text.Trim();
 
             var owner = WebUser.Get(txtOwner.Text.Trim());

@@ -50,19 +50,19 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebJob From(SqlDataReader r)
         {
             WebJob item = new WebJob();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.RecurrenceId = DataHelper.GetInt32(r, "RecurrenceId");
-            item.Weekdays = DataHelper.GetInt32(r, "Weekdays");
-            item.OccursEvery = DataHelper.GetInt32(r, "OccursEvery");
-            item.ExecutionStartDate = DataHelper.GetDateTime(r, "ExecutionStartDate");
-            item.ExecutionEndDate = DataHelper.GetDateTime(r, "ExecutionEndDate");
-            item.ExecutionStatus = DataHelper.GetInt32(r, "ExecutionStatus");
-            item.ExecutionMessage = DataHelper.Get(r, "ExecutionMessage");
-            item.Enabled = DataHelper.GetInt32(r, "Enabled");
-            item.TypeName = DataHelper.Get(r, "TypeName");
-            item.StartDate = DataHelper.GetDateTime(r, "StartDate");
-            item.Description = DataHelper.Get(r, WebColumns.Description);
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.RecurrenceId = DataUtil.GetInt32(r, "RecurrenceId");
+            item.Weekdays = DataUtil.GetInt32(r, "Weekdays");
+            item.OccursEvery = DataUtil.GetInt32(r, "OccursEvery");
+            item.ExecutionStartDate = DataUtil.GetDateTime(r, "ExecutionStartDate");
+            item.ExecutionEndDate = DataUtil.GetDateTime(r, "ExecutionEndDate");
+            item.ExecutionStatus = DataUtil.GetInt32(r, "ExecutionStatus");
+            item.ExecutionMessage = DataUtil.Get(r, "ExecutionMessage");
+            item.Enabled = DataUtil.GetInt32(r, "Enabled");
+            item.TypeName = DataUtil.Get(r, "TypeName");
+            item.StartDate = DataUtil.GetDateTime(r, "StartDate");
+            item.Description = DataUtil.Get(r, WebColumns.Description);
 
             return item;
         }
@@ -113,7 +113,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@Description", item.Description)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

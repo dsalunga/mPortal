@@ -52,7 +52,7 @@ namespace WCMS.Framework.Diagnostics
                 sw.Stop();
 
                 PerformanceLog item = new PerformanceLog(content, sw.Elapsed, pageId);
-                PerformanceLog.AddToCache(item);
+                AddToCache(item);
             }
         }
 
@@ -63,7 +63,7 @@ namespace WCMS.Framework.Diagnostics
                 sw.Stop();
 
                 PerformanceLog item = new PerformanceLog(content, sw.Elapsed, pageId);
-                PerformanceLog.AddToCache(item);
+                AddToCache(item);
             }
         }
 
@@ -93,7 +93,7 @@ namespace WCMS.Framework.Diagnostics
             if (WConfig.EnablePerfLogging && sw != null)
             {
                 PerformanceLog perfLog = new PerformanceLog(content, sw.Elapsed, pageId);
-                PerformanceLog.AddToCache(perfLog);
+                AddToCache(perfLog);
             }
         }
 
@@ -110,7 +110,7 @@ namespace WCMS.Framework.Diagnostics
                 sw.Stop();
 
                 PerformanceLog perfLog = new PerformanceLog(content, sw.Elapsed, pageId == -1 ? id : pageId);
-                PerformanceLog.AddToCache(perfLog);
+                AddToCache(perfLog);
             }
             else
             {

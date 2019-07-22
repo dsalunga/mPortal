@@ -18,7 +18,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
         {
             if (!Page.IsPostBack)
             {
-                int id = DataHelper.GetId(Request, WebColumns.ThemeId);
+                int id = DataUtil.GetId(Request, WebColumns.ThemeId);
 
                 cboSkins.DataSource = WebSkin.Provider.GetList(WebObjects.WebTheme, id);
                 cboSkins.DataBind();
@@ -41,12 +41,12 @@ namespace WCMS.WebSystem.WebParts.Central.Template
                     txtIdentity.Text = item.Identity;
 
                     if (item.ParentId > 0)
-                        WebHelper.SetCboValue(cboParent, item.ParentId);
+                        WebUtil.SetCboValue(cboParent, item.ParentId);
 
                     if (cboTemplates.Items.Count > 0)
                     {
                         if (item.TemplateId > 0)
-                            WebHelper.SetCboValue(cboTemplates, item.TemplateId);
+                            WebUtil.SetCboValue(cboTemplates, item.TemplateId);
                     }
                     else
                     {
@@ -56,7 +56,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
                     if (cboSkins.Items.Count > 0)
                     {
                         if (item.SkinId > 0)
-                            WebHelper.SetCboValue(cboSkins, item.SkinId);
+                            WebUtil.SetCboValue(cboSkins, item.SkinId);
                     }
                     else
                     {
@@ -108,12 +108,12 @@ namespace WCMS.WebSystem.WebParts.Central.Template
         {
             WebTheme item = null;
 
-            int id = DataHelper.GetId(Request, WebColumns.ThemeId);
+            int id = DataUtil.GetId(Request, WebColumns.ThemeId);
             if (id > 0 && (item = WebTheme.Provider.Get(id)) != null)
             {
                 // Update
-                item.TemplateId = DataHelper.GetId(cboTemplates.SelectedValue);
-                item.SkinId = DataHelper.GetId(cboSkins.SelectedValue);
+                item.TemplateId = DataUtil.GetId(cboTemplates.SelectedValue);
+                item.SkinId = DataUtil.GetId(cboSkins.SelectedValue);
             }
             else
             {
@@ -121,7 +121,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
                 item = new WebTheme();
             }
 
-            item.ParentId = DataHelper.GetId(cboParent.SelectedValue);
+            item.ParentId = DataUtil.GetId(cboParent.SelectedValue);
             item.Identity = txtIdentity.Text.Trim();
             item.Name = txtName.Text.Trim();
             item.Update();

@@ -86,7 +86,7 @@ namespace WCMS.Framework.Core
 
         public string BuildAbsolutePhysicalPath()
         {
-            return WebHelper.MapPath(BuildRelativePhysicalPath());
+            return WebUtil.MapPath(BuildRelativePhysicalPath());
         }
 
         #endregion

@@ -313,12 +313,12 @@ namespace WCMS.Framework
 
         public string BuildRelativeUrl()
         {
-            return WebHelper.CombineAddress(Site.BuildRelativeUrl(), WebRewriter.BuildUrl(this));
+            return WebUtil.CombineAddress(Site.BuildRelativeUrl(), WebRewriter.BuildUrl(this));
         }
 
         public string BuildAbsoluteUrl()
         {
-            return WebHelper.CombineAddress(Site.BuildAbsoluteUrl(), WebRewriter.BuildUrl(this));
+            return WebUtil.CombineAddress(Site.BuildAbsoluteUrl(), WebRewriter.BuildUrl(this));
         }
 
         public int Update()
@@ -366,7 +366,7 @@ namespace WCMS.Framework
 
         public static IEnumerable<WPage> FilterPermitted(int siteId, int parentId)
         {
-            IEnumerable<WPage> pages = WPage.GetList(siteId, parentId);
+            IEnumerable<WPage> pages = GetList(siteId, parentId);
 
             if (!WSession.Current.IsAdministrator)
             {
@@ -440,7 +440,7 @@ namespace WCMS.Framework
                 string nodeName = nodeNames[i].Trim();
                 if (string.IsNullOrEmpty(nodeName))
                     continue;
-                parent = WPage.Provider.Get(siteId, parent == null ? -1 : parent.Id, nodeName);
+                parent = Provider.Get(siteId, parent == null ? -1 : parent.Id, nodeName);
             }
             return parent;
         }

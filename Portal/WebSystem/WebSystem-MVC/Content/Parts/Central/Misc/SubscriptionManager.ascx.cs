@@ -25,8 +25,8 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
         protected void cmdAddFull_Click(object sender, EventArgs e)
         {
             string pageUrl = txtNavigateURL.Text.Trim();
-            int partId = DataHelper.GetId(cboWebParts.SelectedValue);
-            int groupId = DataHelper.GetId(Request, WebColumns.GroupId);
+            int partId = DataUtil.GetId(cboWebParts.SelectedValue);
+            int groupId = DataUtil.GetId(Request, WebColumns.GroupId);
 
             if (!string.IsNullOrEmpty(pageUrl) && groupId > 0 && partId > 0)
             {
@@ -52,7 +52,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
             string selected = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(selected))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(selected);
+                var ids = DataUtil.ParseCommaSeparatedIdList(selected);
                 foreach (var id in ids)
                 {
                     WebSubscription.Provider.Delete(id);
@@ -67,7 +67,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
             switch (e.CommandName)
             {
                 case WConstants.CustomDeleteCmd:
-                    int id = DataHelper.GetId(e.CommandArgument);
+                    int id = DataUtil.GetId(e.CommandArgument);
                     if (id > 0)
                     {
                         WebSubscription.Provider.Delete(id);
@@ -90,7 +90,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
                                PartName = WPart.Get(i.PartId).Name
                            };
 
-            return DataHelper.ToDataSet(subItems);
+            return DataUtil.ToDataSet(subItems);
         }
 
         public IEnumerable<WPart> SelectPart()

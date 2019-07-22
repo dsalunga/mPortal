@@ -91,7 +91,7 @@ namespace WCMS.Common.Controls
 
             if (context.Cache[myUID] == null)
             {
-                context.Cache.Add(myUID, randString, null, Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(CacheExpiryInMin), System.Web.Caching.CacheItemPriority.Normal, null);
+                context.Cache.Add(myUID, randString, null, Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(CacheExpiryInMin), CacheItemPriority.Normal, null);
             }
             else
             {

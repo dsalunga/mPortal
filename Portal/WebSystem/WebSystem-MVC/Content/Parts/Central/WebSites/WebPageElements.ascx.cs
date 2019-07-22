@@ -45,7 +45,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             string sChecked = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(sChecked))
             {
-                var ids = DataHelper.ParseDelimitedStringToList(sChecked, ',');
+                var ids = DataUtil.ParseDelimitedStringToList(sChecked, ',');
                 foreach (var id in ids)
                 {
                     var key = new ObjectKey(id, '/');
@@ -63,10 +63,10 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
         protected void cmdMoveTo_Click(object sender, EventArgs e)
         {
-            int templatePanelId = DataHelper.GetId(Request, WebColumns.TemplatePanelId);
+            int templatePanelId = DataUtil.GetId(Request, WebColumns.TemplatePanelId);
             string sChecked = Request.Form["chkChecked"];
 
-            int selectedTemplatePanelId = DataHelper.GetId(cboPlaceholders.SelectedValue);
+            int selectedTemplatePanelId = DataUtil.GetId(cboPlaceholders.SelectedValue);
             if (selectedTemplatePanelId < 1)
                 return;
             else
@@ -75,7 +75,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
             if (!string.IsNullOrEmpty(sChecked))
             {
-                var ids = DataHelper.ParseDelimitedStringToList(sChecked);
+                var ids = DataUtil.ParseDelimitedStringToList(sChecked);
                 foreach (var id in ids)
                 {
                     var key = new ObjectKey(id, '/');
@@ -237,7 +237,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
                 );
             }
 
-            return DataHelper.ToDataSet(output);
+            return DataUtil.ToDataSet(output);
         }
 
         //public IQueryable<WebPageElement> Select(int pageId, int templatePanelId, int startRowIndex, int maximumRows, string sortExpression)

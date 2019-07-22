@@ -58,14 +58,14 @@ namespace WCMS.Framework.Core.SqlProvider
         public static WebPartControlTemplate From(DbDataReader r)
         {
             WebPartControlTemplate item = new WebPartControlTemplate();
-            item.Id = DataHelper.GetId(r, "PartControlTemplateId");
-            item.PartControlId = DataHelper.GetId(r, "PartControlId");
+            item.Id = DataUtil.GetId(r, "PartControlTemplateId");
+            item.PartControlId = DataUtil.GetId(r, "PartControlId");
             item.Name = r["Name"].ToString();
             item.FileName = r["FileName"].ToString();
             item.Identity = r["Identity"].ToString();
             item.Path = r["Path"].ToString();
-            item.Standalone = DataHelper.GetInt32(r, "Standalone");
-            item.TemplateEngineId = DataHelper.GetInt32(r, "TemplateEngineId");
+            item.Standalone = DataUtil.GetInt32(r, "Standalone");
+            item.TemplateEngineId = DataUtil.GetInt32(r, "TemplateEngineId");
 
             return item;
         }
@@ -83,7 +83,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@TemplateEngineId", item.TemplateEngineId)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 

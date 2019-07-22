@@ -192,12 +192,12 @@ namespace WCMS.Framework
             {
                 if (_internalPageId == -1)
                 {
-                    _internalPageId = DataHelper.GetId(Context.Request, WebColumns.PageIdInternal);
+                    _internalPageId = DataUtil.GetId(Context.Request, WebColumns.PageIdInternal);
                     if (_internalPageId == -1 && !_razor)
                     {
                         var hidden = _control.Page.Form.FindControl(WConstants.HIDDEN_PAGE_ID) as HtmlInputHidden;
                         if (hidden != null)
-                            _internalPageId = DataHelper.GetId(hidden.Value);
+                            _internalPageId = DataUtil.GetId(hidden.Value);
                     }
                 }
 
@@ -263,17 +263,17 @@ namespace WCMS.Framework
 
         public static void StaticRedirect()
         {
-            WQuery.StaticRedirect();
+            QueryParser.StaticRedirect();
         }
 
         public static void StaticRedirect(string destination)
         {
-            WQuery.StaticRedirect(destination);
+            QueryParser.StaticRedirect(destination);
         }
 
         public static void StaticRedirect(string addressOrBasePath, bool retainParameters)
         {
-            WQuery.StaticRedirect(addressOrBasePath, retainParameters);
+            QueryParser.StaticRedirect(addressOrBasePath, retainParameters);
         }
 
         public static Control GetParent(Control control)
@@ -348,8 +348,8 @@ namespace WCMS.Framework
 
             if (!string.IsNullOrEmpty(id) && id[0] == 'O')
             {
-                objectId = DataHelper.GetId(id.Substring(1, 3));
-                recordId = DataHelper.GetId(id.Substring(5));
+                objectId = DataUtil.GetId(id.Substring(1, 3));
+                recordId = DataUtil.GetId(id.Substring(5));
             }
 
             Initialize(objectId, recordId);

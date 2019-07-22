@@ -60,7 +60,7 @@ namespace WCMS.Framework.Utilities
         {
             // Get a byte array containing the combined password + salt.
             string authDetails = password + salt;
-            byte[] authBytes = System.Text.Encoding.ASCII.GetBytes(authDetails);
+            byte[] authBytes = Encoding.ASCII.GetBytes(authDetails);
 
             // Use MD5 to compute the hash of the byte array, and return the hash as
             // a Base64-encoded string.

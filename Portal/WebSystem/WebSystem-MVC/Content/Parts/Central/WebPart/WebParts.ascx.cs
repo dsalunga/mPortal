@@ -35,21 +35,21 @@ namespace WCMS.WebSystem.WebParts.Central
 
         protected void cmdAdd_Click(object sender, System.EventArgs e)
         {
-            WebHelper.Redirect(CentralPages.WebPart, Context);
+            WebUtil.Redirect(CentralPages.WebPart, Context);
         }
 
         public DataSet Select()
         {
             if (WSession.Current.IsAdministrator)
-                return DataHelper.ToDataSet(WPart.GetList());
+                return DataUtil.ToDataSet(WPart.GetList());
             else
-                return DataHelper.ToDataSet(WPart.GetPermissibleList(WSession.Current.UserId));
+                return DataUtil.ToDataSet(WPart.GetPermissibleList(WSession.Current.UserId));
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var query = new QueryParser(this);
-            int partId = DataHelper.GetId(e.CommandArgument);
+            int partId = DataUtil.GetId(e.CommandArgument);
 
             query.Set(WebColumns.PartId, partId);
 
@@ -110,7 +110,7 @@ namespace WCMS.WebSystem.WebParts.Central
                                         if ((control = controls.FirstOrDefault(i => i.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
                                             && i.Identity.Equals(identity, StringComparison.InvariantCultureIgnoreCase))) == null)
                                         {
-                                            var isEntryPoint = DataHelper.GetBool(XmlUtil.GetValue(controlNode, "IsEntryPoint"));
+                                            var isEntryPoint = DataUtil.GetBool(XmlUtil.GetValue(controlNode, "IsEntryPoint"));
 
                                             control = new WebPartControl(part);
                                             control.Name = name;

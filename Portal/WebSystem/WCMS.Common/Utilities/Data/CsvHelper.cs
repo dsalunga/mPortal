@@ -84,7 +84,7 @@ namespace WCMS.Common.Utilities
                     foreach (DataRow row in dt.Rows)
                     {
                         for (int i = 0; i < colCount; i++)
-                            writer.Write(CsvHelper.Format(row[i])); //row[i] + ",");
+                            writer.Write(Format(row[i])); //row[i] + ",");
 
                         writer.WriteLine();
                     }

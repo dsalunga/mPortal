@@ -20,7 +20,7 @@ namespace WCMS.Framework.Core
         public static List<DataStoreEntity> GetEntities()
         {
             List<DataStoreEntity> items = new List<DataStoreEntity>();
-            string dbPath = ConfigHelper.Get("BackupPath");
+            string dbPath = ConfigUtil.Get("BackupPath");
 
             // Map to exact path
             if (dbPath.StartsWith("~"))

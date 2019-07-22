@@ -41,7 +41,7 @@ namespace WCMS.WebSystem.WebParts.Common
         {
             WebUser user = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WebComment.Provider.GetList(-2, objectId, recordId, -2)
                 orderby i.DateCreated descending
                 select new
@@ -56,8 +56,8 @@ namespace WCMS.WebSystem.WebParts.Common
 
         protected void cmdPost_ServerClick(object sender, EventArgs e)
         {
-            var objectId = DataHelper.GetId(hObjectId.Value);
-            var recordId = DataHelper.GetId(hRecordId.Value);
+            var objectId = DataUtil.GetId(hObjectId.Value);
+            var recordId = DataUtil.GetId(hRecordId.Value);
 
             var user = WSession.Current.User;
 

@@ -17,7 +17,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
         {
             if (!Page.IsPostBack)
             {
-                int id = DataHelper.GetId(Request[WebColumns.FolderId]);
+                int id = DataUtil.GetId(Request[WebColumns.FolderId]);
                 if (id > 0)
                 {
                     WebFolder reg = WebFolder.Provider.Get(id);
@@ -43,7 +43,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            int id = DataHelper.GetId(Request[WebColumns.FolderId]);
+            int id = DataUtil.GetId(Request[WebColumns.FolderId]);
             WebFolder item = id > 0 ? WebFolder.Provider.Get(id) : new WebFolder();
             if (item == null)
             {
@@ -52,7 +52,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
             if (item.Id == -1)
             {
-                item.ParentId = DataHelper.GetId(Request[WebColumns.ParentId]);
+                item.ParentId = DataUtil.GetId(Request[WebColumns.ParentId]);
             }
 
             item.Name = txtID.Text.Trim();

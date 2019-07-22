@@ -18,12 +18,12 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebShare From(IDataReader r, WebShare source)
         {
             WebShare item = new WebShare();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.ShareObjectId = DataHelper.GetId(r, "ShareObjectId");
-            item.ShareRecordId = DataHelper.GetId(r, "ShareRecordId");
-            item.Allow = DataHelper.GetInt32(r, "Allow");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.ShareObjectId = DataUtil.GetId(r, "ShareObjectId");
+            item.ShareRecordId = DataUtil.GetId(r, "ShareRecordId");
+            item.Allow = DataUtil.GetInt32(r, "Allow");
 
             return item;
         }

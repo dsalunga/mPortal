@@ -24,7 +24,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
 
         protected void cmdAdd_Click(object sender, System.EventArgs e)
         {
-            WebHelper.Redirect(CentralPages.WebTheme, Context);
+            WebUtil.Redirect(CentralPages.WebTheme, Context);
         }
 
         private string ProcessTemplateResources(string src, string sdestFolder)
@@ -83,7 +83,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument.ToString());
+            int id = DataUtil.GetId(e.CommandArgument.ToString());
             QueryParser query = new QueryParser(this);
             query.Set(WebColumns.ThemeId, id);
 
@@ -147,7 +147,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
 
             QueryParser query = new QueryParser(true);
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WebTheme.Provider.GetList()
                 select new
                 {

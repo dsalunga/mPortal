@@ -110,7 +110,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
             treeElements.Nodes.Clear();
 
             int partId = SelectionPartId;
-            int siteId = DataHelper.GetId(cboWebSites.SelectedValue);
+            int siteId = DataUtil.GetId(cboWebSites.SelectedValue);
 
             if (siteId > 0)
             {
@@ -229,14 +229,14 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
 
         public int SelectionPartId
         {
-            get { return DataHelper.GetId(hidPartId.Value); }
+            get { return DataUtil.GetId(hidPartId.Value); }
             set { hidPartId.Value = value.ToString(); }
         }
 
         public int SiteId
         {
             set { cboWebSites.SelectedValue = value.ToString(); }
-            get { return DataHelper.GetId(cboWebSites.SelectedValue); }
+            get { return DataUtil.GetId(cboWebSites.SelectedValue); }
         }
     }
 }

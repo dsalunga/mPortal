@@ -35,18 +35,18 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebTemplate From(DbDataReader r)
         {
             WebTemplate item = new WebTemplate();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
             item.FileName = r["FileName"].ToString();
             item.Identity = r["Identity"].ToString();
-            item.PrimaryPanelId = DataHelper.GetId(r["PrimaryPanelId"].ToString());
+            item.PrimaryPanelId = DataUtil.GetId(r["PrimaryPanelId"].ToString());
             item.DateModified = (DateTime)r["DateModified"];
-            item.SkinId = DataHelper.GetId(r, WebColumns.SkinId);
-            item.Content = DataHelper.Get(r, WebColumns.Content);
-            item.Standalone = DataHelper.GetInt32(r, "Standalone");
-            item.ParentId = DataHelper.GetId(r, WebColumns.ParentId);
-            item.ThemeId = DataHelper.GetId(r, WebColumns.ThemeId);
-            item.TemplateEngineId = DataHelper.GetInt32(r, "TemplateEngineId");
+            item.SkinId = DataUtil.GetId(r, WebColumns.SkinId);
+            item.Content = DataUtil.Get(r, WebColumns.Content);
+            item.Standalone = DataUtil.GetInt32(r, "Standalone");
+            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
+            item.ThemeId = DataUtil.GetId(r, WebColumns.ThemeId);
+            item.TemplateEngineId = DataUtil.GetInt32(r, "TemplateEngineId");
 
             return item;
         }
@@ -103,7 +103,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@TemplateEngineId", item.TemplateEngineId)
             );
 
-            item.Id = DataHelper.GetId(o.ToString());
+            item.Id = DataUtil.GetId(o.ToString());
 
             return item.Id;
         }

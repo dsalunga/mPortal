@@ -140,7 +140,7 @@ namespace WCMS.WebSystem.WebParts.Central
                 WebParameter param = null;
                 if (id > 0 && (param = WebParameter.Get(id)) != null)
                 {
-                    WebHelper.AspNetAjaxComboBoxSelectText(cboName, param.Name);
+                    WebUtil.AspNetAjaxComboBoxSelectText(cboName, param.Name);
                     //cboName.SelectedIndex = 1;
                     txtValue.Text = param.Value;
                     chkRequired.Checked = param.IsRequired == 1;

@@ -36,10 +36,10 @@ namespace WCMS.WebSystem.WebParts.Central
 
                 cboSites.Items.AddRange(WebSiteViewModel.GenerateListItem(-1).ToArray());
 
-                var siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                var siteId = DataUtil.GetId(Request, WebColumns.SiteId);
                 if (siteId > 0)
                 {
-                    WebHelper.SetCboValue(cboSites, siteId);
+                    WebUtil.SetCboValue(cboSites, siteId);
                     cboSites.Visible = false;
                     //ObjectDataSource1.SelectParameters["siteId"].DefaultValue = siteId.ToString();
                 }
@@ -69,11 +69,11 @@ namespace WCMS.WebSystem.WebParts.Central
                             item.Rank,
                             item.DateModified,
                             TitleUrl = query.Set(WebColumns.TextResourceId, item.Id).BuildQuery(CentralPages.WebResource),
-                            Content = DataHelper.GetStringPreview(item.Content, 30),
+                            Content = DataUtil.GetStringPreview(item.Content, 30),
                             ContentType = item.ContentType.Value
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         //protected void cmdOpen_Click(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
                 case "Custom_Delete":
                     {
-                        int resourceId = DataHelper.GetId(e.CommandArgument);
+                        int resourceId = DataUtil.GetId(e.CommandArgument);
                         WebTextResource.Delete(resourceId);
 
                         GridView1.DataBind();
@@ -158,7 +158,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
         protected void cboContentTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var contentType = DataHelper.GetInt32(cboContentTypes.SelectedValue);
+            var contentType = DataUtil.GetInt32(cboContentTypes.SelectedValue);
             var query = new QueryParser(this);
 
             if (contentType > 0)

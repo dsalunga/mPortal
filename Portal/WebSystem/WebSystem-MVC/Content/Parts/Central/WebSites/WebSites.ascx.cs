@@ -16,7 +16,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
         {
             if (!Page.IsPostBack)
             {
-                int siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                int siteId = DataUtil.GetId(Request, WebColumns.SiteId);
                 if (siteId > 0) { }
                 else
                     WebSiteTab1.Visible = false;

@@ -18,8 +18,8 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
         {
             if (!IsPostBack)
             {
-                int masterPageId = DataHelper.GetId(Request, WebColumns.MasterPageId);
-                int siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                int masterPageId = DataUtil.GetId(Request, WebColumns.MasterPageId);
+                int siteId = DataUtil.GetId(Request, WebColumns.SiteId);
 
                 cboOwnerPage.Items.AddRange(WebPageViewModel.GenerateListItem(siteId, -1).ToArray());
                 if (cboOwnerPage.Items.Count == 0)
@@ -34,9 +34,9 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
                 if (masterPageId > 0 && (item = WebMasterPage.Get(masterPageId)) != null)
                 {
                     txtName.Text = item.Name;
-                    WebHelper.SetCboValue(cboPageTemplates, item.TemplateId);
-                    WebHelper.SetCboValue(cboOwnerPage, item.OwnerPageId);
-                    WebHelper.SetCboValue(cboParent, item.ParentId);
+                    WebUtil.SetCboValue(cboPageTemplates, item.TemplateId);
+                    WebUtil.SetCboValue(cboOwnerPage, item.OwnerPageId);
+                    WebUtil.SetCboValue(cboParent, item.ParentId);
 
                     LoadSkins(item.SkinId);
 
@@ -73,9 +73,9 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            int masterPageId = DataHelper.GetId(Request, WebColumns.MasterPageId);
-            int siteId = DataHelper.GetId(Request, WebColumns.SiteId);
-            int templateId = DataHelper.GetId(cboPageTemplates.SelectedValue);
+            int masterPageId = DataUtil.GetId(Request, WebColumns.MasterPageId);
+            int siteId = DataUtil.GetId(Request, WebColumns.SiteId);
+            int templateId = DataUtil.GetId(cboPageTemplates.SelectedValue);
             WebMasterPage item = null;
 
             if (masterPageId > 0)
@@ -86,7 +86,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
             #region Security
 
-            int publicAccess = DataHelper.GetInt32(cboPublicAccess.SelectedValue);
+            int publicAccess = DataUtil.GetInt32(cboPublicAccess.SelectedValue);
 
             if (chkAccount.Checked)
                 publicAccess += WebPublicAccess.AllAccountExceptEntries;
@@ -100,12 +100,12 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
             #endregion
 
-            item.SkinId = DataHelper.GetId(cboThemes.SelectedValue);
+            item.SkinId = DataUtil.GetId(cboThemes.SelectedValue);
             item.Name = txtName.Text.Trim();
             item.SiteId = siteId;
             item.TemplateId = templateId;
-            item.ParentId = DataHelper.GetId(cboParent.SelectedValue);
-            item.OwnerPageId = DataHelper.GetId(cboOwnerPage.SelectedValue);
+            item.ParentId = DataUtil.GetId(cboParent.SelectedValue);
+            item.OwnerPageId = DataUtil.GetId(cboOwnerPage.SelectedValue);
             item.Update();
 
             WSite site = item.Site;
@@ -162,7 +162,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             cboSkins.Items.Add(item);
             cboSkins.SelectedIndex = 0;
 
-            var templateId = DataHelper.GetId(cboPageTemplates.SelectedValue);
+            var templateId = DataUtil.GetId(cboPageTemplates.SelectedValue);
             if (templateId > 0)
             {
                 cboSkins.DataSource = WebSkin.Provider.GetList(WebObjects.WebTemplate, templateId);

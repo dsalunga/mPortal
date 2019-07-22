@@ -20,7 +20,7 @@ namespace WCMS.Common.Utilities
 
         static LogHelper()
         {
-            _logPath = ConfigHelper.Get("LogPath");
+            _logPath = ConfigUtil.Get("LogPath");
             if (string.IsNullOrEmpty(_logPath))
             {
                 CreateLogDirectory();
@@ -183,15 +183,15 @@ namespace WCMS.Common.Utilities
 
         public static void SendShoutEmail(string body, string _subject, bool appendSubject)
         {
-            string shoutEnabled = ConfigHelper.Get("ShoutEnabled");
-            string shoutSubject = ConfigHelper.Get("ShoutSubject");
-            string shoutTo = ConfigHelper.Get("ShoutTo");
-            string shoutFrom = ConfigHelper.Get("ShoutFrom");
-            string shoutFromName = ConfigHelper.Get("ShoutFromName");
+            string shoutEnabled = ConfigUtil.Get("ShoutEnabled");
+            string shoutSubject = ConfigUtil.Get("ShoutSubject");
+            string shoutTo = ConfigUtil.Get("ShoutTo");
+            string shoutFrom = ConfigUtil.Get("ShoutFrom");
+            string shoutFromName = ConfigUtil.Get("ShoutFromName");
 
             if (shoutEnabled != "1")
             {
-                LogHelper.WriteLog(false, "Email notification disabled.");
+                WriteLog(false, "Email notification disabled.");
                 return;
             }
 
@@ -216,7 +216,7 @@ namespace WCMS.Common.Utilities
             email.To.Add(shoutTo);
 
             if (File.Exists(CurrentLogFile))
-                email.Attachments.Add(new Attachment(LogHelper.CurrentLogFile));
+                email.Attachments.Add(new Attachment(CurrentLogFile));
 
             email.Priority = MailPriority.High;
             email.From = new MailAddress(shoutFrom, shoutFromName);

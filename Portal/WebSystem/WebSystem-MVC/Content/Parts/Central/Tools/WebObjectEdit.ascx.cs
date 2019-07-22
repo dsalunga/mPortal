@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             {
                 WContext context = new WContext(this);
 
-                var id = DataHelper.GetId(Request, WebColumns.Id);
+                var id = DataUtil.GetId(Request, WebColumns.Id);
                 if (id > 0)
                 {
                     var item = WebObject.Provider.Get(id);
@@ -47,7 +47,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            var id = DataHelper.GetId(Request, WebColumns.Id);
+            var id = DataUtil.GetId(Request, WebColumns.Id);
             var item = id > 0 ? WebObject.Provider.Get(id) : null; //new WebObject();
 
             if (item != null)
@@ -56,7 +56,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
                 item.Name = txtName.Text.Trim();
                 item.IdentityColumn = txtIdentityColumn.Text.Trim();
-                item.CacheTypeId = DataHelper.GetId(cboCacheType.SelectedValue);
+                item.CacheTypeId = DataUtil.GetId(cboCacheType.SelectedValue);
                 item.DataProviderName = txtDataProviderName.Text.Trim();
                 item.TypeName = txtTypeName.Text.Trim();
                 item.ManagerName = txtManagerName.Text.Trim();

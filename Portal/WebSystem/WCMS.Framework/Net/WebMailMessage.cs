@@ -52,7 +52,7 @@ namespace WCMS.Framework.Utilities
         {
             smtpNode = WConfig.SystemNode.SelectSingleNode("SMTP");
 
-            enabled = DataHelper.GetBool(smtpNode.SelectSingleNodeValue("Enabled"), true);
+            enabled = DataUtil.GetBool(smtpNode.SelectSingleNodeValue("Enabled"), true);
             if (enabled)
             {
                 var providerNode = smtpNode.SelectSingleNode(provider);

@@ -76,20 +76,20 @@ namespace WCMS.WebSystem.WebParts.Common
                     WSession.LogOff();
                     // WSession.ClearLoginCookie(Context);
 
-                    var signOutRedirect = Request[WQuery.SourceKey];
+                    var signOutRedirect = Request[QueryParser.SourceKey];
                     if (!string.IsNullOrEmpty(signOutRedirect))
                     {
-                        WQuery.StaticRedirect(signOutRedirect);
+                        QueryParser.StaticRedirect(signOutRedirect);
                     }
                     else
                     {
                         signOutRedirect = element.GetParameterValue(AccountConstants.SignOutRedirect, null);
                         if (!string.IsNullOrEmpty(signOutRedirect))
-                            WQuery.StaticRedirect(signOutRedirect, false);
+                            QueryParser.StaticRedirect(signOutRedirect, false);
                         else if (!string.IsNullOrEmpty(signOutRedirect = context.Get(AccountConstants.SignOutRedirect)))
-                            WQuery.StaticRedirect(signOutRedirect, false);
+                            QueryParser.StaticRedirect(signOutRedirect, false);
                         else
-                            WQuery.StaticBaseRedirect("/");
+                            QueryParser.StaticBaseRedirect("/");
                     }
                 }
                 else if (mode == AccountConstants.ModeForgot)
@@ -128,7 +128,7 @@ namespace WCMS.WebSystem.WebParts.Common
                     if (otpCache != null)
                     {
                         lblOtpType.InnerHtml = otpCache.OtpType == 0 ? "e-mail" : "mobile";
-                        lblOtpExpiry.InnerHtml = DateTimeHelper.TimeIntervalToString(OtpCodeGenerator.GetExpiry(), TimeInterval.Minute);
+                        lblOtpExpiry.InnerHtml = TimeUtil.TimeIntervalToString(OtpCodeGenerator.GetExpiry(), TimeInterval.Minute);
 
                         if (otpCache.SentToEmailInstead)
                             lblOtpMsg.Text = "There is no valid mobile number defined in your profile. The OTP PIN was sent to your e-mail instead.";
@@ -146,7 +146,7 @@ namespace WCMS.WebSystem.WebParts.Common
                 {
                     // Regular Login View
 
-                    var allowRememberLogin = DataHelper.GetBool(element.GetParameterValue(AccountConstants.EnableRememberMe), true);
+                    var allowRememberLogin = DataUtil.GetBool(element.GetParameterValue(AccountConstants.EnableRememberMe), true);
                     WebUser user = null;
                     if (!WSession.Current.IsLoggedIn)
                     {
@@ -170,16 +170,16 @@ namespace WCMS.WebSystem.WebParts.Common
                     {
                         // LoginHomeUrl User-Level
                         var redirUrl = WHelper.GetRedirectUrl(user, context, element);
-                        WQuery.StaticRedirect(redirUrl, false);
+                        QueryParser.StaticRedirect(redirUrl, false);
                     }
                     else
                     {
                         panelRememberMe.Visible = allowRememberLogin;
 
-                        var enableOtp = DataHelper.GetBool(element.GetParameterValue("EnableOTP"), false);
+                        var enableOtp = DataUtil.GetBool(element.GetParameterValue("EnableOTP"), false);
                         panelOtp.Visible = enableOtp;
                         if (enableOtp)
-                            rblOtp.Items[1].Enabled = DataHelper.GetBool(element.GetParameterValue("EnableSMS"), true);
+                            rblOtp.Items[1].Enabled = DataUtil.GetBool(element.GetParameterValue("EnableSMS"), true);
 
                         // Configure the Sign-Up Url
                         var signUpUrl = element.GetParameterValue(AccountConstants.SignUpUrl, null);
@@ -245,7 +245,7 @@ namespace WCMS.WebSystem.WebParts.Common
                 }
                 else
                 {
-                    var encRequired = DataHelper.GetBool(element.GetParameterValue("EncryptionRequired"), true);
+                    var encRequired = DataUtil.GetBool(element.GetParameterValue("EncryptionRequired"), true);
                     if (encRequired)
                     {
                         DisplayErrorMessage("Invalid input data.");
@@ -335,7 +335,7 @@ namespace WCMS.WebSystem.WebParts.Common
                 // Determine where to redirect
 
                 var updatePwdUrl = element.GetParameterValue(AccountConstants.UpdatePasswordUrl);
-                var rememberLogin = DataHelper.GetBool(element.GetParameterValue(AccountConstants.EnableRememberMe), true) && chkRememberMe.Checked;
+                var rememberLogin = DataUtil.GetBool(element.GetParameterValue(AccountConstants.EnableRememberMe), true) && chkRememberMe.Checked;
 
                 // Check and setup OTP if enabled
                 if (panelOtp.Visible)
@@ -379,19 +379,19 @@ namespace WCMS.WebSystem.WebParts.Common
                     if (user.IsPasswordExpired && !string.IsNullOrEmpty(updatePwdUrl))
                     {
                         var query = new WQuery(updatePwdUrl);
-                        query.Set(WQuery.SourceKey, redirUrl);
+                        query.Set(QueryParser.SourceKey, redirUrl);
                         query.Redirect();
                     }
                     else
                     {
-                        WQuery.StaticBaseRedirect(redirUrl);
+                        QueryParser.StaticBaseRedirect(redirUrl);
                     }
                 }
             };
 
             #endregion
 
-            bool enableExternalAccounts = DataHelper.GetBool(element.GetParameterValue(AccountConstants.EnableExternalAccounts), false);
+            bool enableExternalAccounts = DataUtil.GetBool(element.GetParameterValue(AccountConstants.EnableExternalAccounts), false);
             IUserProvider provider = null;
             if (enableExternalAccounts)
             {
@@ -462,7 +462,7 @@ namespace WCMS.WebSystem.WebParts.Common
                     Session[AccountConstants.LoginInfoSessionKey] = loginInfo;
 
                     var signUpUrl = element.GetParameterValue(AccountConstants.SignUpUrl);
-                    WQuery.StaticRedirect(signUpUrl);
+                    QueryParser.StaticRedirect(signUpUrl);
                     return;
                 }
             }
@@ -556,12 +556,12 @@ namespace WCMS.WebSystem.WebParts.Common
                         if (user.IsPasswordExpired && !string.IsNullOrEmpty(otpCache.UpdatePwdUrl))
                         {
                             var query = new WQuery(otpCache.UpdatePwdUrl);
-                            query.Set(WQuery.SourceKey, otpCache.RedirUrl);
+                            query.Set(QueryParser.SourceKey, otpCache.RedirUrl);
                             query.Redirect();
                         }
                         else
                         {
-                            WQuery.StaticBaseRedirect(otpCache.RedirUrl);
+                            QueryParser.StaticBaseRedirect(otpCache.RedirUrl);
                         }
 
                         return;

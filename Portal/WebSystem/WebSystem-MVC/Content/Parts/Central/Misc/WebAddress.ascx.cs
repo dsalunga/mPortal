@@ -21,13 +21,13 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
                 cboCountries.DataSource = Country.GetList();
                 cboCountries.DataBind();
 
-                var id = DataHelper.GetId(Request, "Id");
+                var id = DataUtil.GetId(Request, "Id");
                 if (id > 0)
                 {
                     WebAddress item = WebAddress.Provider.Get(id);
                     if (item != null)
                     {
-                        WebHelper.AspNetAjaxComboBoxSelectText(cboTag, item.Tag);
+                        WebUtil.AspNetAjaxComboBoxSelectText(cboTag, item.Tag);
 
                         txtAddressLine1.Text = item.AddressLine1;
                         txtAddressLine2.Text = item.AddressLine2;
@@ -49,8 +49,8 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            var id = DataHelper.GetId(Request, WebColumns.Id);
-            var userId = DataHelper.GetId(Request, WebColumns.UserId);
+            var id = DataUtil.GetId(Request, WebColumns.Id);
+            var userId = DataUtil.GetId(Request, WebColumns.UserId);
             var item = id > 0 ? WebAddress.Provider.Get(id) :
                 new WebAddress { ObjectId = WebObjects.WebUser, RecordId = userId };
 
@@ -59,7 +59,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
             item.AddressLine2 = txtAddressLine2.Text.Trim();
             item.CityTown = txtCityTown.Text.Trim();
 
-            var stateProvinceCode = DataHelper.GetId(cboStateProvince.SelectedValue);
+            var stateProvinceCode = DataUtil.GetId(cboStateProvince.SelectedValue);
             if (stateProvinceCode > 0)
             {
                 item.StateProvinceCode = stateProvinceCode;
@@ -71,7 +71,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
                 item.StateProvince = cboStateProvince.Text;
             }
 
-            item.CountryCode = DataHelper.GetId(cboCountries.SelectedValue);
+            item.CountryCode = DataUtil.GetId(cboCountries.SelectedValue);
             item.ZipCode = txtZipCode.Text.Trim();
             item.PhoneNumber = txtPhoneNumber.Text.Trim();
             item.Update();
@@ -97,7 +97,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
             cboStateProvince.Items.Clear();
             cboStateProvince.ClearSelection();
 
-            int countryCode = DataHelper.GetInt32(cboCountries.SelectedValue);
+            int countryCode = DataUtil.GetInt32(cboCountries.SelectedValue);
             var items = CountryState.GetList(countryCode);
             if (items.Count() > 0)
             {
@@ -111,13 +111,13 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
                 ListItem item = cboStateProvince.Items.FindByValue(stateProvinceCode.ToString());
                 if (item != null)
                 {
-                    WebHelper.AspNetAjaxComboBoxSelectText(cboStateProvince, item.Text);
+                    WebUtil.AspNetAjaxComboBoxSelectText(cboStateProvince, item.Text);
                     hasSelected = true;
                 }
             }
 
             if (!hasSelected && !string.IsNullOrEmpty(stateProvince))
-                WebHelper.AspNetAjaxComboBoxSelectText(cboStateProvince, stateProvince, "-1");
+                WebUtil.AspNetAjaxComboBoxSelectText(cboStateProvince, stateProvince, "-1");
         }
     }
 }

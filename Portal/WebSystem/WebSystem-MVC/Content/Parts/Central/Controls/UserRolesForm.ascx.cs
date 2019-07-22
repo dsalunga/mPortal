@@ -28,7 +28,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
             //List<WebRole> roles = user.Roles;
             foreach (ListItem role in CheckBoxList1.Items)
             {
-                if (user.IsMemberOf(DataHelper.GetId(role.Value)))
+                if (user.IsMemberOf(DataUtil.GetId(role.Value)))
                 {
                     role.Selected = true;
                 }
@@ -42,13 +42,13 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
 
         public void UpdateData(WebUser user)
         {
-            int userId = DataHelper.GetId(hidUserId.Value);
+            int userId = DataUtil.GetId(hidUserId.Value);
             if (user == null) user = WebUser.Get(userId);
             if (user != null)
             {
                 foreach (ListItem role in CheckBoxList1.Items)
                 {
-                    int groupId = DataHelper.GetId(role.Value);
+                    int groupId = DataUtil.GetId(role.Value);
 
                     if (role.Selected && !user.IsMemberOf(groupId)) user.AddToGroup(groupId);
                     if (!role.Selected && user.IsMemberOf(groupId)) user.RemoveToGroup(groupId);

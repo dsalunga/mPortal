@@ -20,12 +20,12 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebSubscription From(IDataReader r, WebSubscription source)
         {
             var item = source ?? new WebSubscription();
-            item.Id = DataHelper.GetId(r, WebColumns.SubscriptionId);
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.PartId = DataHelper.GetId(r, WebColumns.PartId);
-            item.PageId = DataHelper.GetId(r, WebColumns.PageId);
-            item.Allow = DataHelper.GetId(r, WebColumns.Allow);
+            item.Id = DataUtil.GetId(r, WebColumns.SubscriptionId);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.PartId = DataUtil.GetId(r, WebColumns.PartId);
+            item.PageId = DataUtil.GetId(r, WebColumns.PageId);
+            item.Allow = DataUtil.GetId(r, WebColumns.Allow);
 
             return item;
         }
@@ -57,7 +57,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@PageId", item.PageId),
                 new SqlParameter("@Allow", item.Allow));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

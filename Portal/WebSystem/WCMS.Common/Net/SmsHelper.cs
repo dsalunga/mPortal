@@ -14,7 +14,7 @@ namespace WCMS.Common.Net
     {
         public static bool SendMessage(string httpSmsUrl, string number, string message, bool checkResponse = false)
         {
-            var httpAddress = !string.IsNullOrEmpty(httpSmsUrl) ? httpSmsUrl : ConfigHelper.Get("HttpSmsUrl");
+            var httpAddress = !string.IsNullOrEmpty(httpSmsUrl) ? httpSmsUrl : ConfigUtil.Get("HttpSmsUrl");
             if (!string.IsNullOrEmpty(httpAddress))
             {
                 httpAddress = httpAddress.Replace("&amp;", "&");

@@ -13,7 +13,7 @@ namespace WCMS.WebSystem.Controls
     {
         public int CountryCode
         {
-            get { return DataHelper.GetInt32(hCountryCode.Value); }
+            get { return DataUtil.GetInt32(hCountryCode.Value); }
             set { hCountryCode.Value = value.ToString(); lblPhoneCode.InnerHtml = string.Format("+{0}", value); }
         }
 
@@ -21,7 +21,7 @@ namespace WCMS.WebSystem.Controls
 
         public int MaxDigits
         {
-            get { return DataHelper.GetInt32(hMaxDigits.Value); }
+            get { return DataUtil.GetInt32(hMaxDigits.Value); }
             set
             {
                 hMaxDigits.Value = value.ToString();
@@ -47,7 +47,7 @@ namespace WCMS.WebSystem.Controls
             get
             {
                 var countryCode = hCountryCode.Value;
-                var countryCodeInt = DataHelper.GetInt32(countryCode);
+                var countryCodeInt = DataUtil.GetInt32(countryCode);
 
                 if (countryCodeInt > 0)
                 {
@@ -71,7 +71,7 @@ namespace WCMS.WebSystem.Controls
 
             set
             {
-                var number = DataHelper.FormatPhoneNumber(value);
+                var number = DataUtil.FormatPhoneNumber(value);
                 var countryCode = hCountryCode.Value;
                 var countryCodePlus = CountryCodePlus;
                 var maxDigits = MaxDigits;

@@ -59,7 +59,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int registryId = DataHelper.GetId(e.CommandArgument);
+            int registryId = DataUtil.GetId(e.CommandArgument);
             QueryParser query = new QueryParser(this);
 
             switch (e.CommandName)
@@ -87,7 +87,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
             var items = WebRegistry.GetByParentId(parentId);
 
-            return DataHelper.ToDataSet(from i in items
+            return DataUtil.ToDataSet(from i in items
                                         select new
                                         {
                                             i.Id,

@@ -18,7 +18,7 @@ namespace WCMS.WebSystem.ViewModel
             q.Set(ObjectKey.KeyString, new ObjectKey(objectId, recordId));
 
             var fileName = query.BasePath;
-            if (!DataHelper.IsPresent(fileName, new string[] { CentralPages.WebParameters, CentralPages.WebResources, CentralPages.WebSecurity }))
+            if (!DataUtil.IsPresent(fileName, new string[] { CentralPages.WebParameters, CentralPages.WebResources, CentralPages.WebSecurity }))
                 q.Set(ObjectKey.KeySource, query.EncodedBasePath);
 
             tabControl.AddTab("tabSecurity", "Security", q.BuildQuery(CentralPages.WebSecurity), CentralPages.WebSecurity);

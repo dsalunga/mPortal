@@ -78,7 +78,7 @@ namespace FredCK.FCKeditorV2.FileBrowser
 
 		private void SetupResponse()
 		{
-			XmlResponseHandler.SetupResponse( this.Response );
+            SetupResponse( this.Response );
 		}
 
 		private static void SetupResponse( HttpResponse response )
@@ -91,7 +91,7 @@ namespace FredCK.FCKeditorV2.FileBrowser
 			response.CacheControl = "no-cache";
 
 			// Set the response format.
-			response.ContentEncoding = System.Text.UTF8Encoding.UTF8;
+			response.ContentEncoding = System.Text.Encoding.UTF8;
 			response.ContentType = "text/xml";
 		}
 

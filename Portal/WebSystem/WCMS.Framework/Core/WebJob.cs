@@ -99,7 +99,7 @@ namespace WCMS.Framework.Core
                     return new DateTime(refDate.Year, refDate.Month, refDate.Day).AddDays(1).Add(StartDate.TimeOfDay);
 
                 case RecurrenceType.Weekly:
-                    return DateTimeHelper.GetNextWeekdayDate(refDate, StartDate, Weekdays);
+                    return TimeUtil.GetNextWeekdayDate(refDate, StartDate, Weekdays);
 
                 case RecurrenceType.Monthly:
                     return new DateTime(refDate.Year, refDate.Month, 1).AddMonths(1).AddDays(StartDate.Day - 1).Add(StartDate.TimeOfDay);
@@ -124,22 +124,22 @@ namespace WCMS.Framework.Core
             switch (RecurrenceId)
             {
                 case RecurrenceType.None:
-                    if (DateTimeHelper.IsOccurring(refDate, StartDate, jobTimerInterval))
+                    if (TimeUtil.IsOccurring(refDate, StartDate, jobTimerInterval))
                         return true;
                     break;
 
                 case RecurrenceType.Daily:
-                    if (DateTimeHelper.IsOccurring(refDate, refDate.Date.Add(StartDate.TimeOfDay), jobTimerInterval))
+                    if (TimeUtil.IsOccurring(refDate, refDate.Date.Add(StartDate.TimeOfDay), jobTimerInterval))
                         return true;
                     break;
 
                 case RecurrenceType.Weekly:
-                    if (DateTimeHelper.IsOccurring(refDate, DateTimeHelper.GetNextWeekdayDate(refDate, StartDate, Weekdays), jobTimerInterval))
+                    if (TimeUtil.IsOccurring(refDate, TimeUtil.GetNextWeekdayDate(refDate, StartDate, Weekdays), jobTimerInterval))
                         return true;
                     break;
 
                 case RecurrenceType.Monthly:
-                    if (DateTimeHelper.IsOccurring(refDate, new DateTime(refDate.Year, refDate.Month, 1).AddDays(StartDate.Day - 1).Add(StartDate.TimeOfDay), jobTimerInterval))
+                    if (TimeUtil.IsOccurring(refDate, new DateTime(refDate.Year, refDate.Month, 1).AddDays(StartDate.Day - 1).Add(StartDate.TimeOfDay), jobTimerInterval))
                         return true;
                     break;
             }

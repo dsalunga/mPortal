@@ -97,7 +97,7 @@ namespace WCMS.Framework
 
         public static bool Delete(int partControlTemplateId)
         {
-            var template = WebPartControlTemplate.Get(partControlTemplateId);
+            var template = Get(partControlTemplateId);
             if (template != null)
                 return template.Delete();
 

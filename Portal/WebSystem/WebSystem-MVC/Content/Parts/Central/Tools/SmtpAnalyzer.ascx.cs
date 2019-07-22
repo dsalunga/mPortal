@@ -32,7 +32,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             try
             {
                 string host = txtHost.Text.Trim();
-                int port = DataHelper.GetInt32(txtPort.Text.Trim());
+                int port = DataUtil.GetInt32(txtPort.Text.Trim());
                 string username = txtUsername.Text.Trim();
                 string password = txtPassword.Text.Trim();
 

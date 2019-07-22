@@ -21,7 +21,7 @@ namespace WCMS.WebSystem.Controls
             if (!Page.IsPostBack)
             {
                 // Fill Combo
-                DateTimeFormatInfo fi = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat;
+                DateTimeFormatInfo fi = CultureInfo.InvariantCulture.DateTimeFormat;
                 for (int i = 1; i < 13; i++)
                 {
                     cboMonth.Items.Add(new ListItem(fi.GetMonthName(i), i.ToString()));

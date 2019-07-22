@@ -19,15 +19,15 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebAttachment From(IDataReader r, WebAttachment source)
         {
             WebAttachment item = source ?? new WebAttachment();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.FilePath = DataHelper.Get(r, "FilePath");
-            item.Size = DataHelper.GetInt64(r, WebColumns.Size);
-            item.DateUploaded = DataHelper.GetDateTime(r, "DateUploaded");
-            item.UserId = DataHelper.GetId(r, WebColumns.UserId);
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.BatchGuid = DataHelper.Get(r, "BatchGuid");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.FilePath = DataUtil.Get(r, "FilePath");
+            item.Size = DataUtil.GetInt64(r, WebColumns.Size);
+            item.DateUploaded = DataUtil.GetDateTime(r, "DateUploaded");
+            item.UserId = DataUtil.GetId(r, WebColumns.UserId);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.BatchGuid = DataUtil.Get(r, "BatchGuid");
 
             return item;
         }
@@ -45,7 +45,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@RecordId", item.RecordId),
                 new SqlParameter("@BatchGuid", item.BatchGuid));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

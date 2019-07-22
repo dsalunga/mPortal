@@ -46,7 +46,7 @@ namespace WCMS.WebSystem.WebParts.Central
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var query = new QueryParser(this);
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             query.Set(WebColumns.ParameterId, id);
 
             switch (e.CommandName)
@@ -76,13 +76,13 @@ namespace WCMS.WebSystem.WebParts.Central
                 items = WebParameter.GetList(objectId, recordId);
             }
 
-            return DataHelper.ToDataSet(from item in items
+            return DataUtil.ToDataSet(from item in items
                                         orderby item.Name
                                         select new
                                         {
                                             item.Id,
                                             item.Name,
-                                            Value = DataHelper.GetStringPreview(item.Value, WConstants.PreviewChars),
+                                            Value = DataUtil.GetStringPreview(item.Value, WConstants.PreviewChars),
                                             NameUrl = query.Set(WebColumns.ParameterId, item.Id).BuildQuery(CentralPages.WebParameter)
                                         }
                         );

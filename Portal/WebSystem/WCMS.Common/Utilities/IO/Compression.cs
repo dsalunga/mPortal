@@ -37,7 +37,7 @@ namespace WCMS.Common.Utilities
                 foreach (var archive in archives)
                     sb.AppendFormat(" \"{0}\"", archive);
 
-                var processPath = WebHelper.MapPath(ConfigHelper.Get("Extractor.Path"));
+                var processPath = WebUtil.MapPath(ConfigUtil.Get("Extractor.Path"));
 
                 Process m = new Process();
                 m.StartInfo.Arguments = sb.ToString();
@@ -58,7 +58,7 @@ namespace WCMS.Common.Utilities
 
         static Compression()
         {
-            var path = ConfigHelper.Get("Compressor.Path");
+            var path = ConfigUtil.Get("Compressor.Path");
             if (string.IsNullOrEmpty(path))
                 path = "~/Content/Plugins/7za/7za.exe";
 
@@ -130,13 +130,13 @@ namespace WCMS.Common.Utilities
         {
             string downloadFilename = string.IsNullOrWhiteSpace(baseFilename) ? "Download" : baseFilename;
 
-            return Download2(Context.Request.MapPath(string.Format(WebHelper.TEMP_DATA_PATH + "{0}_{1}.zip", downloadFilename, Convert.ToString(DateTime.Now.Ticks, 16))), sourcePath, password);
+            return Download2(Context.Request.MapPath(string.Format(WebUtil.TEMP_DATA_PATH + "{0}_{1}.zip", downloadFilename, Convert.ToString(DateTime.Now.Ticks, 16))), sourcePath, password);
         }
 
         public static int Extract(string sourcePath, string destPath, bool replaceAll, bool waitForExit)
         {
             // Extract with full paths (x), Replace all files (-y) SKIP: -aos, REPLACE: -aoa
-            string s7z = WebHelper.MapPath(binPath);
+            string s7z = WebUtil.MapPath(binPath);
             string sReplace = (replaceAll) ? "-aoa" : "-aos";
             string sDest = (destPath == string.Empty) ? string.Empty : string.Format("-o\"{0}\" ", destPath);
             string sArgs = string.Format("x \"{0}\" {1}-r {2}", sourcePath, sDest, sReplace);

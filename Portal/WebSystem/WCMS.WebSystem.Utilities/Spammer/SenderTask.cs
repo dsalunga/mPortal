@@ -32,7 +32,7 @@ namespace WCMS.WebSystem.Utilities.Spammer
                 string sourceXmlData = Attributes["SourceXmlData"];
 
                 //var valueKeys = DataHelper.ParseDelimitedStringToList(Attributes["ValueKeys"], ',');
-                int sendInterval = DataHelper.GetInt32(Attributes["SendInterval"], 500); // In milliseconds
+                int sendInterval = DataUtil.GetInt32(Attributes["SendInterval"], 500); // In milliseconds
 
 
                 if (!string.IsNullOrEmpty(sourceXPath) && ((!string.IsNullOrWhiteSpace(sourceXmlPath)) || (!string.IsNullOrEmpty(sourceXmlData))))

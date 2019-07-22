@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
         private bool IsSiteAuthor()
         {
-            int id = DataHelper.GetId(Request, WebColumns.SiteId);
+            int id = DataUtil.GetId(Request, WebColumns.SiteId);
             return WSite.IsUserSiteAuthor(id);
         }
 
@@ -42,7 +42,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             var query = new WQuery(this);
 
             switch (e.CommandName)
@@ -74,7 +74,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             {
                 if (IsSiteAuthor())
                 {
-                    var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                    var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
                     foreach (int id in ids)
                     {
                         var master = WebMasterPage.Get(id);
@@ -93,7 +93,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             var site = WSite.Get(siteId);
             var query = new WQuery(true);
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WebMasterPage.FilterPermitted(siteId)
                 select new
                 {

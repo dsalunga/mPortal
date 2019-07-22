@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int partControlId = DataHelper.GetId(e.CommandArgument);
+            int partControlId = DataUtil.GetId(e.CommandArgument);
             var query = new WQuery(this);
             query.Set(WebColumns.PartControlId, partControlId);
 
@@ -58,7 +58,7 @@ namespace WCMS.WebSystem.WebParts.Central
                 var queryName = new WQuery(true);
                 queryName.BasePath = CentralPages.WebPartControlHome;
 
-                return DataHelper.ToDataSet(
+                return DataUtil.ToDataSet(
                     from i in WebPartControl.GetList(partId)
                     select new
                     {

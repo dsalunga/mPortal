@@ -19,11 +19,11 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebSkin From(IDataReader r, WebSkin source)
         {
             WebSkin item = source ?? new WebSkin();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.Rank = DataHelper.GetInt32(r, WebColumns.Rank);
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.Rank = DataUtil.GetInt32(r, WebColumns.Rank);
 
             return item;
         }
@@ -38,7 +38,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@Rank", item.Rank)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
 
             return item.Id;
         }

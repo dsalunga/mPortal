@@ -82,7 +82,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
             // ObjectId
             // RecordId
 
-            return DataHelper.ToDataSet(WebPermission.GetList());
+            return DataUtil.ToDataSet(WebPermission.GetList());
         }
     }
 }

@@ -79,7 +79,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
             if (!_isValidated)
                 ValidateNewPassword();
 
-            int userId = DataHelper.GetId(hiddenUserName.Value);
+            int userId = DataUtil.GetId(hiddenUserName.Value);
 
             if (user == null)
                 user = WebUser.Get(userId);

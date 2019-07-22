@@ -61,8 +61,8 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebPartConfig From(DbDataReader r)
         {
             WebPartConfig item = new WebPartConfig();
-            item.Id = DataHelper.GetId(r["PartConfigId"]);
-            item.PartId = DataHelper.GetId(r["PartId"]);
+            item.Id = DataUtil.GetId(r["PartConfigId"]);
+            item.PartId = DataUtil.GetId(r["PartId"]);
             item.Name = r["Name"].ToString();
             item.FileName = r["FileName"].ToString();
 
@@ -81,7 +81,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@FileName", item.FileName)
                 );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 

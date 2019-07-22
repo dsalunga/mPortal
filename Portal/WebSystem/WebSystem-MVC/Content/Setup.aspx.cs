@@ -84,7 +84,7 @@ namespace WCMS.WebSystem
         protected void cmdReset_Click(object sender, EventArgs e)
         {
             SystemReset();
-            WQuery.StaticRedirect();
+            QueryParser.StaticRedirect();
         }
 
         /*
@@ -114,7 +114,7 @@ namespace WCMS.WebSystem
             {
                 var selected = SelectedObjects;
 
-                return DataHelper.ToDataSet(
+                return DataUtil.ToDataSet(
                     from i in WebObject.GetList()
                     select new
                     {
@@ -189,7 +189,7 @@ namespace WCMS.WebSystem
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -256,7 +256,7 @@ namespace WCMS.WebSystem
             if (File.Exists(thisPath))
             {
                 File.Move(thisPath, thisPath + "_");
-                WebHelper.Redirect("/", Context);
+                WebUtil.Redirect("/", Context);
             }
         }
 
@@ -265,7 +265,7 @@ namespace WCMS.WebSystem
             string selectedIds = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(selectedIds))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(selectedIds);
+                var ids = DataUtil.ParseCommaSeparatedIdList(selectedIds);
                 var selected = SelectedObjects;
                 foreach (var id in ids)
                     ToggleSelect(selected, id);

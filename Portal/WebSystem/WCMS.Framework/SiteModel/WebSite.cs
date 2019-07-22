@@ -207,7 +207,7 @@ namespace WCMS.Framework
                 if (ParentId < 1)
                     return null;
 
-                return WSite.Get(ParentId);
+                return Get(ParentId);
             }
         }
 
@@ -225,7 +225,7 @@ namespace WCMS.Framework
 
         public IEnumerable<WSite> Children
         {
-            get { return WSite.GetList(this.Id); }
+            get { return GetList(this.Id); }
         }
 
         public bool HasChildren
@@ -283,25 +283,25 @@ namespace WCMS.Framework
         public static explicit operator WSite(DbDataReader r)
         {
             var item = new WSite();
-            item.Id = DataHelper.GetId(r[WebColumns.SiteId].ToString());
+            item.Id = DataUtil.GetId(r[WebColumns.SiteId].ToString());
             item.Name = r["Name"].ToString();
             item.Rank = Convert.ToInt32(r["Rank"].ToString());
             item.Active = Convert.ToInt32(r["Active"].ToString());
             item.Identity = r["Identity"].ToString();
             item.Title = r["Title"].ToString();
-            item.ParentId = DataHelper.GetId(r["ParentId"].ToString());
-            item.HomePageId = DataHelper.GetId(r["HomePageId"].ToString());
-            item.DefaultMasterPageId = DataHelper.GetId(r["DefaultMasterPageId"].ToString());
+            item.ParentId = DataUtil.GetId(r["ParentId"].ToString());
+            item.HomePageId = DataUtil.GetId(r["HomePageId"].ToString());
+            item.DefaultMasterPageId = DataUtil.GetId(r["DefaultMasterPageId"].ToString());
             item.HostName = r["HostName"].ToString();
-            item.PublicAccess = DataHelper.GetInt32(r["PublicAccess"]);
+            item.PublicAccess = DataUtil.GetInt32(r["PublicAccess"]);
             item.LoginPage = r["LoginPage"].ToString();
             item.AccessDeniedPage = r["AccessDeniedPage"].ToString();
             item.PageTitleFormat = r["PageTitleFormat"].ToString();
-            item.ManagementAccess = DataHelper.GetInt32(r, "ManagementAccess");
-            item.BaseAddress = DataHelper.Get(r, "BaseAddress");
-            item.ThemeId = DataHelper.GetId(r, WebColumns.ThemeId);
-            item.SkinId = DataHelper.GetId(r, WebColumns.SkinId);
-            item.PrimaryIdentityId = DataHelper.GetId(r, "PrimaryIdentityId");
+            item.ManagementAccess = DataUtil.GetInt32(r, "ManagementAccess");
+            item.BaseAddress = DataUtil.Get(r, "BaseAddress");
+            item.ThemeId = DataUtil.GetId(r, WebColumns.ThemeId);
+            item.SkinId = DataUtil.GetId(r, WebColumns.SkinId);
+            item.PrimaryIdentityId = DataUtil.GetId(r, "PrimaryIdentityId");
 
             return item;
         }
@@ -353,7 +353,7 @@ namespace WCMS.Framework
 
         public static bool IsUserSiteAuthor(int siteId)
         {
-            var site = WSite.Get(siteId);
+            var site = Get(siteId);
             if (site != null)
                 return site.IsUserPermitted(Permissions.ManageInstance, 0);
 

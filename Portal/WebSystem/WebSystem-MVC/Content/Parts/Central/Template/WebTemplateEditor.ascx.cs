@@ -18,7 +18,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
         {
             if (!Page.IsPostBack)
             {
-                int templateId = DataHelper.GetId(Request, WebColumns.TemplateId);
+                int templateId = DataUtil.GetId(Request, WebColumns.TemplateId);
 
                 WebTemplate item = null;
                 if (templateId > 0 && (item = WebTemplate.Get(templateId)) != null)
@@ -90,7 +90,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
         {
             WebTemplate item = null;
 
-            int templateId = DataHelper.GetId(Request, WebColumns.TemplateId);
+            int templateId = DataUtil.GetId(Request, WebColumns.TemplateId);
             if (templateId > 0 && (item = WebTemplate.Get(templateId)) != null)
             {
                 // Update

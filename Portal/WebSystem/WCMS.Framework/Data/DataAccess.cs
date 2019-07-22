@@ -13,7 +13,7 @@ namespace WCMS.Framework.Core
     public sealed class DataAccess
     {
         //private static readonly string _path = ConfigHelper.Get["DefaultDataProvider"];
-        private static readonly string _xmlProviderPath = ConfigHelper.Get("WebObject.XmlProvider");
+        private static readonly string _xmlProviderPath = ConfigUtil.Get("WebObject.XmlProvider");
 
         /// <summary>
         /// Creates a specific provider instance based on the defined value in the configuration.
@@ -51,7 +51,7 @@ namespace WCMS.Framework.Core
         /// <returns></returns>
         public static IWebObjectProvider CreateWebObjectProvider()
         {
-            string providerPath = ConfigHelper.Get("WebObject.DataProvider");
+            string providerPath = ConfigUtil.Get("WebObject.DataProvider");
             IWebObjectProvider provider = (IWebObjectProvider)Activator.CreateInstance(Type.GetType(providerPath));
 
             return provider;

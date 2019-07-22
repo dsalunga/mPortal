@@ -19,7 +19,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
             if (!Page.IsPostBack)
             {
                 if (!WSession.Current.IsSiteManager)
-                    WQuery.StaticRedirect(WConstants.AbsoluteAccessDeniedPage);
+                    QueryParser.StaticRedirect(WConstants.AbsoluteAccessDeniedPage);
 
                 var query = new WQuery(this);
                 int id = query.GetId(WebColumns.UserId);
@@ -44,7 +44,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                         linkProperties.HRef = query.BuildQuery(CentralPages.UserProfile);
                     }
 
-                    query.Set(WQuery.SourceKey, CentralPages.WebUserHome);
+                    query.Set(QueryParser.SourceKey, CentralPages.WebUserHome);
                     linkSecurity.HRef = query.BuildQuery(CentralPages.ChangePassword);
                     linkGroups.HRef = query.BuildQuery(CentralPages.WebUserGroups);
 
@@ -93,7 +93,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                     // TODO: Fix the original file, not the thumbnail
 
                     var photoPath = item.PhotoPath;
-                    if (!WebHelper.IsAbsUrl(photoPath))
+                    if (!WebUtil.IsAbsUrl(photoPath))
                     {
                         var absPhotoPath = MapPath(photoPath);
                         using (var image = ImageUtil.FixOrientation(absPhotoPath))

@@ -48,7 +48,7 @@ namespace WCMS.WebSystem.Agent
                     var item = WebRegistry.SelectNode("/System/Agent/ExecutablePath");
                     if (item != null)
                     {
-                        _execPath = WebHelper.MapPath(item.Value, true);
+                        _execPath = WebUtil.MapPath(item.Value, true);
                         _execPathId = item.Id;
                     }
                     else

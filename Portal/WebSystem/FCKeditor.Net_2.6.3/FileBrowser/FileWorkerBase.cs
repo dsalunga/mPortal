@@ -165,7 +165,7 @@ namespace FredCK.FCKeditorV2.FileBrowser
 			byte[] buffer = new byte[ 1024 ];
 			file.InputStream.Read( buffer, 0, 1024 );
 
-			string firstKB = System.Text.ASCIIEncoding.ASCII.GetString( buffer );
+			string firstKB = System.Text.Encoding.ASCII.GetString( buffer );
 
 			if ( Regex.IsMatch( firstKB, @"<!DOCTYPE\W*X?HTML", RegexOptions.IgnoreCase | RegexOptions.Singleline ) )
 				return false;

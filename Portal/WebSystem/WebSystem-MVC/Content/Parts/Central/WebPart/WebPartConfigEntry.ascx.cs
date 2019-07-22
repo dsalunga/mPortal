@@ -22,7 +22,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
         private void LoadData()
         {
-            int partConfigId = DataHelper.GetId(Request[WebColumns.PartConfigId]);
+            int partConfigId = DataUtil.GetId(Request[WebColumns.PartConfigId]);
             WebPartConfig partConfig = null;
             if (partConfigId > 0 && (partConfig = WebPartConfig.Get(partConfigId)) != null)
             {
@@ -46,7 +46,7 @@ namespace WCMS.WebSystem.WebParts.Central
         {
             QueryParser qs = new QueryParser(this);
 
-            int partConfigId = DataHelper.GetId(qs[WebColumns.PartConfigId]);
+            int partConfigId = DataUtil.GetId(qs[WebColumns.PartConfigId]);
             int partId = qs.GetId(WebColumns.PartId);
             WebPartConfig partConfig = null;
 

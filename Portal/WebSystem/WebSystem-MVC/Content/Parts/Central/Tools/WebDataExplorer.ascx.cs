@@ -59,7 +59,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             QueryParser query = new QueryParser(this);
 
             switch (e.CommandName)
@@ -97,7 +97,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
         {
             var items = WebFolder.Provider.GetList(parentId);
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         public DataSet SelectFiles(int folderId) //, int startRowIndex, int maximumRows, string sortExpression)
@@ -112,7 +112,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                             ObjectName = WebObject.Get(i.ObjectId).FriendlyNameEval
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)

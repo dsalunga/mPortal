@@ -17,7 +17,7 @@ namespace WCMS.WebSystem.Windows
         {
             if (!Page.IsPostBack)
             {
-                int objectId = DataHelper.GetId(Request, WebColumns.ObjectId);
+                int objectId = DataUtil.GetId(Request, WebColumns.ObjectId);
 
                 if (objectId != -1)
                     cboType.Items.Clear();
@@ -38,10 +38,10 @@ namespace WCMS.WebSystem.Windows
                         cboType.SelectedValue = objectId.ToString();
                 }
 
-                hAppend.Value = DataHelper.GetId(Request, "AppendValue").ToString();
-                hBaseGroup.Value = DataHelper.Get(Request, "BaseGroup");
+                hAppend.Value = DataUtil.GetId(Request, "AppendValue").ToString();
+                hBaseGroup.Value = DataUtil.Get(Request, "BaseGroup");
 
-                int multi = DataHelper.GetInt32(Request, "Multi");
+                int multi = DataUtil.GetInt32(Request, "Multi");
                 if (multi == 0)
                 {
                     grdObjects.Columns[0].Visible = false;
@@ -140,7 +140,7 @@ namespace WCMS.WebSystem.Windows
                                     });
             }
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         protected void grdObjects_RowCommand(object sender, GridViewCommandEventArgs e)

@@ -100,11 +100,11 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebRegistry From(DbDataReader r)
         {
             WebRegistry item = new WebRegistry();
-            item.Id = DataHelper.GetId(r["RegistryId"]);
+            item.Id = DataUtil.GetId(r["RegistryId"]);
             item.Key = r["Key"].ToString();
             item.Value = r["Value"].ToString();
-            item.ParentId = DataHelper.GetId(r["ParentId"]);
-            item.StageId = DataHelper.GetId(r, "StageId");
+            item.ParentId = DataUtil.GetId(r["ParentId"]);
+            item.StageId = DataUtil.GetId(r, "StageId");
 
             return item;
         }
@@ -133,7 +133,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@StageId", item.StageId)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 

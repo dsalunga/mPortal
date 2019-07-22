@@ -19,12 +19,12 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebTheme From(IDataReader r, WebTheme source)
         {
             WebTheme item = source ?? new WebTheme();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.TemplateId = DataHelper.GetId(r, WebColumns.TemplateId);
-            item.ParentId = DataHelper.GetId(r, WebColumns.ParentId);
-            item.Identity = DataHelper.Get(r, WebColumns.Identity);
-            item.SkinId = DataHelper.GetId(r, WebColumns.SkinId);
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.TemplateId = DataUtil.GetId(r, WebColumns.TemplateId);
+            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
+            item.Identity = DataUtil.Get(r, WebColumns.Identity);
+            item.SkinId = DataUtil.GetId(r, WebColumns.SkinId);
 
             return item;
         }
@@ -40,7 +40,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@SkinId", item.SkinId)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
 
             return item.Id;
         }

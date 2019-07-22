@@ -86,8 +86,8 @@ namespace WCMS.Framework
             if (IsValid(keyString, separator.ToString()))
             {
                 string[] keys = keyString.Split(separator);
-                ObjectId = keys.Length > 0 ? DataHelper.GetId(keys[0]) : -1;
-                RecordId = keys.Length > 1 ? DataHelper.GetId(keys[1]) : -1;
+                ObjectId = keys.Length > 0 ? DataUtil.GetId(keys[0]) : -1;
+                RecordId = keys.Length > 1 ? DataUtil.GetId(keys[1]) : -1;
             }
             else
             {
@@ -129,8 +129,8 @@ namespace WCMS.Framework
         {
             string stringCode = objectCode.ToString();
 
-            ObjectId = DataHelper.GetId(stringCode.Substring(1, 3));
-            RecordId = DataHelper.GetId(stringCode.Substring(4));
+            ObjectId = DataUtil.GetId(stringCode.Substring(1, 3));
+            RecordId = DataUtil.GetId(stringCode.Substring(4));
         }
 
         public int ToInteger()

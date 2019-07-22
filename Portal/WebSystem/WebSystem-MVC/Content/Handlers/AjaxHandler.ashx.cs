@@ -36,10 +36,10 @@ namespace WCMS.WebSystem.Handlers
                         WSession.Current.InDesignPanelExpanded = expanded == "1";
 
                     if (!string.IsNullOrEmpty(left))
-                        WSession.Current.InDesignPanelLeft = DataHelper.GetInt32(left);
+                        WSession.Current.InDesignPanelLeft = DataUtil.GetInt32(left);
 
                     if (!string.IsNullOrEmpty(top))
-                        WSession.Current.InDesignPanelTop = DataHelper.GetInt32(top);
+                        WSession.Current.InDesignPanelTop = DataUtil.GetInt32(top);
 
                     if (!string.IsNullOrEmpty(init))
                         WSession.Current.IsDesignInitiated = init == "1";
@@ -48,8 +48,8 @@ namespace WCMS.WebSystem.Handlers
                     break;
 
                 case "GetText":
-                    var pageId = DataHelper.GetId(context.Request, "PageId");
-                    var pageUrl = DataHelper.Get(context.Request, "Url");
+                    var pageId = DataUtil.GetId(context.Request, "PageId");
+                    var pageUrl = DataUtil.Get(context.Request, "Url");
                     WPage page = null;
 
                     if (pageId > 0)

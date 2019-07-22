@@ -58,7 +58,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@RecordId", item.RecordId),
                 new SqlParameter("@TextResourceId", item.TextResourceId));
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 
@@ -119,10 +119,10 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebObjectHeader From(DbDataReader r)
         {
             WebObjectHeader item = new WebObjectHeader();
-            item.Id = DataHelper.GetId(r, "ObjectHeaderId");
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.TextResourceId = DataHelper.GetId(r, WebColumns.TextResourceId);
+            item.Id = DataUtil.GetId(r, "ObjectHeaderId");
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.TextResourceId = DataUtil.GetId(r, WebColumns.TextResourceId);
 
             return item;
         }

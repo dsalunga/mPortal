@@ -18,7 +18,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             if (!IsPostBack)
             {
                 var context = new WContext(this);
-                var id = DataHelper.GetId(Request, WebColumns.Id);
+                var id = DataUtil.GetId(Request, WebColumns.Id);
                 if (id > 0)
                 {
                     var item = WebShortUrl.Provider.Get(id);
@@ -47,7 +47,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            var id = DataHelper.GetId(Request, WebColumns.Id);
+            var id = DataUtil.GetId(Request, WebColumns.Id);
             var item = id > 0 ? WebShortUrl.Provider.Get(id) : new WebShortUrl();
             if (item != null)
             {

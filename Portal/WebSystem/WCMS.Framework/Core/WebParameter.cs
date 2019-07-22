@@ -37,7 +37,7 @@ namespace WCMS.Framework.Core
 
         public int ValueInt32
         {
-            get { return DataHelper.GetInt32(Value); }
+            get { return DataUtil.GetInt32(Value); }
             //set { Value = value.ToString(); }
         }
 

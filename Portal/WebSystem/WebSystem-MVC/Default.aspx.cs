@@ -52,7 +52,7 @@ namespace WCMS.WebSystem
             stopWatch = PerformanceLog.StartLog();
 
             // Search for PageId
-            pageId = DataHelper.GetId(Request, WebColumns.PageIdInternal);
+            pageId = DataUtil.GetId(Request, WebColumns.PageIdInternal);
             if (pageId == -1)
             {
                 var baseTemplate = LoadControl("~/Content/Themes/Default/ForAjaxControlToolkit.ascx");
@@ -588,9 +588,9 @@ namespace WCMS.WebSystem
                 }
 
                 // Page designer and dragdrop style
-                resources.AppendLine(WebHelper.CreateCssLinkText(WSConstants.PageDesignerCss));
-                resources.AppendLine(WebHelper.CreateCssLinkText(WSConstants.DragDropCss));
-                resources.AppendLine(WebHelper.CreateJavaScriptLinkText(WSConstants.DragDropJs));
+                resources.AppendLine(WebUtil.CreateCssLinkText(WSConstants.PageDesignerCss));
+                resources.AppendLine(WebUtil.CreateCssLinkText(WSConstants.DragDropCss));
+                resources.AppendLine(WebUtil.CreateJavaScriptLinkText(WSConstants.DragDropJs));
 
                 #endregion
             }
@@ -640,7 +640,7 @@ namespace WCMS.WebSystem
 
             SetValue("Title", page.BuildTitle(pageTitle));
             SetValue("Resources", resources);
-            SetValue("IsHomePage", DataHelper.ToString(site.HomePageId == page.Id, BoolStrings.ZeroOne));
+            SetValue("IsHomePage", DataUtil.ToString(site.HomePageId == page.Id, BoolStrings.ZeroOne));
 
             SetValue(WebColumns.UserId, session.UserId);
             //SetValue(WebColumns.PageId, page.Id);

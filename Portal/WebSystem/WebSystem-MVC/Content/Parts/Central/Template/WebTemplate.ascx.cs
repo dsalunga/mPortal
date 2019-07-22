@@ -18,8 +18,8 @@ namespace WCMS.WebSystem.WebParts.Central.Template
         {
             if (!Page.IsPostBack)
             {
-                int templateId = DataHelper.GetId(Request, WebColumns.TemplateId);
-                var themeId = DataHelper.GetId(Request, WebColumns.ThemeId);
+                int templateId = DataUtil.GetId(Request, WebColumns.TemplateId);
+                var themeId = DataUtil.GetId(Request, WebColumns.ThemeId);
 
                 cboSkins.DataSource = WebSkin.Provider.GetList(WebObjects.WebTemplate, templateId);
                 cboSkins.DataBind();
@@ -44,25 +44,25 @@ namespace WCMS.WebSystem.WebParts.Central.Template
                     chkStandalone.Checked = item.IsStandalone;
 
                     if (item.ThemeId > 0)
-                        WebHelper.SetCboValue(cboTheme, item.ThemeId);
+                        WebUtil.SetCboValue(cboTheme, item.ThemeId);
 
                     if (item.ParentId > 0)
-                        WebHelper.SetCboValue(cboParent, item.ParentId);
+                        WebUtil.SetCboValue(cboParent, item.ParentId);
 
                     cboPanels.DataBind();
 
                     if (cboPanels.Items.Count > 0)
-                        WebHelper.SetCboValue(cboPanels, item.PrimaryPanelId);
+                        WebUtil.SetCboValue(cboPanels, item.PrimaryPanelId);
                     else
                         panelDefaultPanel.Visible = false;
 
                     if (item.SkinId > 0 && cboSkins.Items.Count > 1)
-                        WebHelper.SetCboValue(cboSkins, item.SkinId);
+                        WebUtil.SetCboValue(cboSkins, item.SkinId);
 
                     if (cboSkins.Items.Count == 1)
                         panelDefaultSkin.Visible = false;
 
-                    WebHelper.SetCboValue(cboTemplateEngine, item.TemplateEngineId);
+                    WebUtil.SetCboValue(cboTemplateEngine, item.TemplateEngineId);
 
                     //txtIdentity.ReadOnly = true;
                 }
@@ -77,7 +77,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
                         if (theme != null)
                         {
                             txtIdentity.Text = theme.Identity;
-                            WebHelper.SetCboValue(cboTheme, themeId);
+                            WebUtil.SetCboValue(cboTheme, themeId);
                         }
                     }
                 }
@@ -127,12 +127,12 @@ namespace WCMS.WebSystem.WebParts.Central.Template
         {
             WebTemplate item = null;
 
-            int templateId = DataHelper.GetId(Request, WebColumns.TemplateId);
+            int templateId = DataUtil.GetId(Request, WebColumns.TemplateId);
             if (templateId > 0 && (item = WebTemplate.Get(templateId)) != null)
             {
                 // Update
-                item.PrimaryPanelId = DataHelper.GetId(cboPanels.SelectedValue);
-                item.SkinId = DataHelper.GetId(cboSkins.SelectedValue);
+                item.PrimaryPanelId = DataUtil.GetId(cboPanels.SelectedValue);
+                item.SkinId = DataUtil.GetId(cboSkins.SelectedValue);
             }
             else
             {
@@ -140,13 +140,13 @@ namespace WCMS.WebSystem.WebParts.Central.Template
                 item = new WebTemplate();
             }
 
-            item.ThemeId = DataHelper.GetId(cboTheme.SelectedValue);
-            item.ParentId = DataHelper.GetId(cboParent.SelectedValue);
+            item.ThemeId = DataUtil.GetId(cboTheme.SelectedValue);
+            item.ParentId = DataUtil.GetId(cboParent.SelectedValue);
             item.IsStandalone = chkStandalone.Checked;
             item.Identity = txtIdentity.Text.Trim();
             item.Name = txtName.Text.Trim();
             item.FileName = txtControlURL.Text.Trim();
-            item.TemplateEngineId = DataHelper.GetInt32(cboTemplateEngine.SelectedValue);
+            item.TemplateEngineId = DataUtil.GetInt32(cboTemplateEngine.SelectedValue);
             item.Update();
 
             Return(item.Id);

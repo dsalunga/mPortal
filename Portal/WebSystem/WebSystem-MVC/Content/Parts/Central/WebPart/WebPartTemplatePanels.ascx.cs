@@ -33,7 +33,7 @@ namespace WCMS.WebSystem.WebParts.Central
             string sChecked = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(sChecked))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
                 if (ids.Count > 0)
                 {
                     foreach (var id in ids)
@@ -127,7 +127,7 @@ namespace WCMS.WebSystem.WebParts.Central
         {
             var template = WebPartControlTemplate.Get(templateId);
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WebTemplatePanel.Provider.GetList(WebObjects.WebPartControlTemplate, templateId)
                 select new
                 {
@@ -143,7 +143,7 @@ namespace WCMS.WebSystem.WebParts.Central
             string templatePath = string.Empty;
 
             // GET TEMPLATE FILE
-            int templateId = DataHelper.GetId(Request, WebColumns.PartControlTemplateId);
+            int templateId = DataUtil.GetId(Request, WebColumns.PartControlTemplateId);
             var template = WebPartControlTemplate.Get(templateId);
             if (template != null)
                 templatePath = template.Path;

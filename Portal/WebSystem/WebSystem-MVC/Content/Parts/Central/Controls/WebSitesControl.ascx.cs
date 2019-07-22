@@ -41,7 +41,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
         private bool IfRootSiteAuthorOrAllowed()
         {
             bool allowed = true;
-            int id = DataHelper.GetId(Request, WebColumns.SiteId);
+            int id = DataUtil.GetId(Request, WebColumns.SiteId);
             if (id > 0)
             {
                 var site = WSite.Get(id);
@@ -117,7 +117,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
             {
                 if (IfRootSiteAuthorOrAllowed())
                 {
-                    var siteIds = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                    var siteIds = DataUtil.ParseCommaSeparatedIdList(sChecked);
                     foreach (var id in siteIds)
                     {
                         var site = WSite.Get(id);
@@ -133,7 +133,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int siteId = DataHelper.GetId(e.CommandArgument);
+            int siteId = DataUtil.GetId(e.CommandArgument);
             var query = new WQuery(this);
             query.Set("ParentSiteId", query.Get(WebColumns.SiteId));
             query.Set(WebColumns.SiteId, siteId);
@@ -169,7 +169,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
             {
                 if (IfRootSiteAuthorOrAllowed())
                 {
-                    var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                    var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
                     int parentId = int.Parse(cboSites.SelectedValue);
 
                     foreach (int id in ids)
@@ -209,7 +209,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
                         };
 
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
     }
 }

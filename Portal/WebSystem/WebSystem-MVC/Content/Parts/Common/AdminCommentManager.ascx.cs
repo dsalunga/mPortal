@@ -18,8 +18,8 @@ namespace WCMS.WebSystem.WebParts.Common
         {
             if (!Page.IsPostBack)
             {
-                int pageId = DataHelper.GetId(Request, WebColumns.PageId);
-                int elementId = DataHelper.GetId(Request, WebColumns.PageElementId);
+                int pageId = DataUtil.GetId(Request, WebColumns.PageId);
+                int elementId = DataUtil.GetId(Request, WebColumns.PageElementId);
 
                 if (elementId > 0)
                 {
@@ -41,7 +41,7 @@ namespace WCMS.WebSystem.WebParts.Common
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             QueryParser query = new QueryParser(this);
 
             switch (e.CommandName)
@@ -79,13 +79,13 @@ namespace WCMS.WebSystem.WebParts.Common
                          select new
                          {
                              i.Id,
-                             Content = DataHelper.GetStringPreview(i.Content),
+                             Content = DataUtil.GetStringPreview(i.Content),
                              i.DateCreated,
                              UserName = (user = i.User) != null ? string.Format("{0} ({1})", user.FirstAndLastName, user.UserName) : i.UserName,
                              UserEmail = user != null ? user.Email : i.UserEmail
                          };
 
-            return DataHelper.ToDataSet(result);
+            return DataUtil.ToDataSet(result);
         }
 
         protected void cmdDelete_Click(object sender, EventArgs e)
@@ -93,7 +93,7 @@ namespace WCMS.WebSystem.WebParts.Common
             var checkedValues = Request.Form.Get("chkChecked");
             if (!string.IsNullOrEmpty(checkedValues))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(checkedValues);
+                var ids = DataUtil.ParseCommaSeparatedIdList(checkedValues);
                 if (ids.Count > 0)
                 {
                     foreach (var id in ids)

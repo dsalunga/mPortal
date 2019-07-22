@@ -209,7 +209,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int templateId = DataHelper.GetId(e.CommandArgument.ToString());
+            int templateId = DataUtil.GetId(e.CommandArgument.ToString());
             QueryParser query = new QueryParser(this);
             query.Set(WebColumns.TemplateId, templateId);
 
@@ -272,7 +272,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
 
         protected void cmdParseDirectory_Click(object sender, EventArgs e)
         {
-            var themeId = DataHelper.GetId(Request, WebColumns.ThemeId);
+            var themeId = DataUtil.GetId(Request, WebColumns.ThemeId);
             if (themeId > 0)
             {
                 WebTemplate item = null;
@@ -352,7 +352,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
             WebTemplatePanel panel = null;
             WebTemplate parent = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WebTemplate.Provider.GetList(themeId)
                 where ((panel = i.PrimaryPanel) != null || true)
                 select new

@@ -133,7 +133,7 @@ namespace WCMS.Framework
         public static explicit operator WPart(DbDataReader r)
         {
             WPart item = new WPart();
-            item.Id = DataHelper.GetId(r["PartId"].ToString());
+            item.Id = DataUtil.GetId(r["PartId"].ToString());
             item.Name = r["Name"].ToString();
             item.Identity = r["Identity"].ToString();
             item.Active = Convert.ToInt32(r["Active"].ToString());

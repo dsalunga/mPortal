@@ -55,7 +55,7 @@ namespace WCMS.Framework.Core
                 string nodeName = nodeNames[i].Trim();
                 if (string.IsNullOrEmpty(nodeName)) continue;
 
-                parentId = WebRegistry.Get(nodeName, parentId).Id;
+                parentId = Get(nodeName, parentId).Id;
             }
 
             string lastNode = nodeNames[nodeNames.Length - 1];
@@ -126,7 +126,7 @@ namespace WCMS.Framework.Core
             get
             {
                 if (ParentId > 0)
-                    return WebRegistry.Get(this.ParentId);
+                    return Get(this.ParentId);
 
                 return null;
             }
@@ -155,10 +155,10 @@ namespace WCMS.Framework.Core
 
             string[] nodeNames = regPath.Split('/');
             for (int i = 0; i < nodeNames.Length - 1; i++)
-                parentId = WebRegistry.Get(nodeNames[i], parentId).Id;
+                parentId = Get(nodeNames[i], parentId).Id;
 
             string lastNode = nodeNames[nodeNames.Length - 1];
-            return WebRegistry.Get(lastNode, parentId);
+            return Get(lastNode, parentId);
         }
 
         public string SelectSingleNodeValue(string regPath, string defaultValue = null)
@@ -215,7 +215,7 @@ namespace WCMS.Framework.Core
                 string nodeName = nodeNames[i].Trim();
                 if (string.IsNullOrEmpty(nodeName)) continue;
 
-                var item = WebRegistry.Get(nodeName, parentId);
+                var item = Get(nodeName, parentId);
                 if (item != null)
                     parentId = item.Id;
                 else
@@ -223,7 +223,7 @@ namespace WCMS.Framework.Core
             }
 
             string lastNode = nodeNames[nodeNames.Length - 1];
-            return WebRegistry.Get(lastNode, parentId);
+            return Get(lastNode, parentId);
         }
 
         public static string SelectNodeValue(string regPath)
@@ -266,10 +266,10 @@ namespace WCMS.Framework.Core
                 string nodeName = nodeNames[i].Trim();
                 if (string.IsNullOrEmpty(nodeName)) continue;
 
-                parentId = WebRegistry.Get(nodeName, parentId).Id;
+                parentId = Get(nodeName, parentId).Id;
             }
 
-            return WebRegistry.GetByParentId(parentId);
+            return GetByParentId(parentId);
         }
 
         public static bool Delete(string key)

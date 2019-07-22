@@ -106,14 +106,14 @@ namespace WCMS.Framework
         public static explicit operator WebPartControl(DbDataReader r)
         {
             var item = new WebPartControl();
-            item.Id = DataHelper.GetId(r["PartControlId"].ToString());
-            item.PartId = DataHelper.GetId(r["PartId"].ToString());
-            item.Name = DataHelper.Get(r, WebColumns.Name);
+            item.Id = DataUtil.GetId(r["PartControlId"].ToString());
+            item.PartId = DataUtil.GetId(r["PartId"].ToString());
+            item.Name = DataUtil.Get(r, WebColumns.Name);
             item.Identity = r["Identity"].ToString();
             item.ConfigFileName = r["ConfigFileName"].ToString();
-            item.PartAdminId = DataHelper.GetId(r, WebColumns.PartAdminId);
-            item.EntryPoint = DataHelper.GetInt32(r, "EntryPoint");
-            item.ParentId = DataHelper.GetId(r, WebColumns.ParentId);
+            item.PartAdminId = DataUtil.GetId(r, WebColumns.PartAdminId);
+            item.EntryPoint = DataUtil.GetInt32(r, "EntryPoint");
+            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
 
             return item;
         }
@@ -147,7 +147,7 @@ namespace WCMS.Framework
 
         public static bool Delete(int partControlId)
         {
-            var control = WebPartControl.Get(partControlId);
+            var control = Get(partControlId);
             if (control != null)
                 return control.Delete();
 

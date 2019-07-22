@@ -155,7 +155,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
                     if (pageId > 0)
                     {
-                        WebHelper.SetCboValue(cboOwner, WebObjects.WebPage);
+                        WebUtil.SetCboValue(cboOwner, WebObjects.WebPage);
 
                         /*
                         var panel = WebPagePanel.Get(templatePanelId, pageId);
@@ -167,7 +167,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
                     }
                     else if (masterPageId > 0)
                     {
-                        WebHelper.SetCboValue(cboOwner, WebObjects.WebMasterPage);
+                        WebUtil.SetCboValue(cboOwner, WebObjects.WebMasterPage);
                     }
                 }
 
@@ -268,7 +268,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
             if (onUpdate)
             {
-                pair.ObjectId = DataHelper.GetId(cboOwner.SelectedValue);
+                pair.ObjectId = DataUtil.GetId(cboOwner.SelectedValue);
 
                 if (pair.ObjectId == WebObjects.WebMasterPage)
                 {
@@ -347,10 +347,10 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             var query = new QueryParser(this);
             var pair = this.GetObjectKeyPair(true);
 
-            int id = DataHelper.GetId(Request, WebColumns.PageElementId);
+            int id = DataUtil.GetId(Request, WebColumns.PageElementId);
             WebPageElement item = null;
 
-            var templateId = DataHelper.GetId(hiddenCSITID.Value);
+            var templateId = DataUtil.GetId(hiddenCSITID.Value);
             if (templateId <= 0)
                 throw new Exception("A WebPart must be selected");
 
@@ -361,7 +361,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
             item.ObjectId = pair.ObjectId;
             item.RecordId = pair.RecordId;
-            item.TemplatePanelId = DataHelper.GetId(cboPanel.SelectedValue);
+            item.TemplatePanelId = DataUtil.GetId(cboPanel.SelectedValue);
             item.Name = txtName.Text.Trim();
             item.Rank = Convert.ToInt32(txtRank.Text.Trim());
             item.PartControlTemplateId = templateId;
@@ -369,7 +369,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             item.UsePartTemplatePath = chkUsePartTemplatePath.Checked ? 1 : 0;
 
             // Public Security
-            int publicAccess = DataHelper.GetInt32(cboPublicAccess.SelectedValue);
+            int publicAccess = DataUtil.GetInt32(cboPublicAccess.SelectedValue);
             if (chkAccount.Checked) publicAccess += WebPublicAccess.AllAccountExceptEntries;
             if (chkIPAddress.Checked) publicAccess += WebPublicAccess.AllIPAddressExceptEntries;
             item.PublicAccess = publicAccess;
@@ -421,7 +421,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             tabNavigation.Visible = true;
 
             hiddenCSITID.Value = hiddenTempCSITID.Value;
-            this.DisplayTemplateInfo(DataHelper.GetId(hiddenCSITID.Value));
+            this.DisplayTemplateInfo(DataUtil.GetId(hiddenCSITID.Value));
         }
 
         protected void cmdTemplateCancel_Click(object sender, EventArgs e)
@@ -435,7 +435,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
         private void PopulateModuleTree()
         {
             // LOAD MODULES
-            int partControlTemplateId = DataHelper.GetId(hiddenCSITID.Value);
+            int partControlTemplateId = DataUtil.GetId(hiddenCSITID.Value);
 
             TreeNode tnRoot = WebPartViewModel.GenerateModuleChooserTree(partControlTemplateId, hiddenTempCSITID.ClientID, chkShowAll.Checked);
             tv1.Nodes.Clear();
@@ -458,9 +458,9 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
         protected void cboPanel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int elementId = DataHelper.GetId(hElementId.Value);
-            int masterPageId = DataHelper.GetId(hMasterPageId.Value);
-            int templatePanelId = DataHelper.GetId(cboPanel.SelectedValue);
+            int elementId = DataUtil.GetId(hElementId.Value);
+            int masterPageId = DataUtil.GetId(hMasterPageId.Value);
+            int templatePanelId = DataUtil.GetId(cboPanel.SelectedValue);
 
             if (masterPageId > 0)
             {

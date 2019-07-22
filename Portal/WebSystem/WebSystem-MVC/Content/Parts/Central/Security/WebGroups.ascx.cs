@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.Central
             if (!IsPostBack)
             {
                 if (!WebGlobalPolicy.IsUserPermitted(GlobalPolicies.Administration, Permissions.UsersManagement))
-                    WQuery.StaticRedirect(WConstants.AbsoluteAccessDeniedPage);
+                    QueryParser.StaticRedirect(WConstants.AbsoluteAccessDeniedPage);
             }
         }
 
@@ -57,7 +57,7 @@ namespace WCMS.WebSystem.WebParts.Central
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var query = new WQuery(this);
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -118,7 +118,7 @@ namespace WCMS.WebSystem.WebParts.Central
             var query = new WQuery(true);
             query.BasePath = CentralPages.WebGroupHome;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WebGroup.Provider.GetList(parentId)
                 where (isAdmin || (i.Id != SystemGroups.ADMINS_GROUP_ID))
                 select new

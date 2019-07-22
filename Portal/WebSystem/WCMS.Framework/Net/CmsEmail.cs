@@ -56,7 +56,7 @@ namespace WCMS.Framework.Utilities
             // Set max recipients per email
             var maxRecipients = WebRegistry.SelectNodeValue("System/SMTP/MaxRecipients");
             if (!string.IsNullOrWhiteSpace(maxRecipients))
-                this.MaxRecipients = DataHelper.GetInt32(maxRecipients);
+                this.MaxRecipients = DataUtil.GetInt32(maxRecipients);
 
             var replyTo = WebRegistry.SelectNodeValue("System/SMTP/ReplyTo");
             if (!string.IsNullOrWhiteSpace(replyTo))

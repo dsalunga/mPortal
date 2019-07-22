@@ -22,7 +22,7 @@ namespace WCMS.Framework.Core
 
         public XmlDataProvider()
         {
-            xmlPath = WebHelper.MapPath(ConfigHelper.Get("DbProvider.Path"));
+            xmlPath = WebUtil.MapPath(ConfigUtil.Get("DbProvider.Path"));
         }
 
         private XmlDocument LoadXmlDocument(string name)
@@ -77,11 +77,11 @@ namespace WCMS.Framework.Core
                     string value = XmlUtil.GetNodeText(node, prop.Name);
 
                     if (prop == pk)
-                        prop.SetValue(item, DataHelper.GetId(value), null);
+                        prop.SetValue(item, DataUtil.GetId(value), null);
                     else if (prop.PropertyType == typeof(DateTime))
-                        prop.SetValue(item, DataHelper.GetDateTime(value), null);
+                        prop.SetValue(item, DataUtil.GetDateTime(value), null);
                     else if (prop.PropertyType == typeof(int))
-                        prop.SetValue(item, DataHelper.GetInt32(value), null);
+                        prop.SetValue(item, DataUtil.GetInt32(value), null);
                     else
                         prop.SetValue(item, value.ToString(), null);
                 }
@@ -142,11 +142,11 @@ namespace WCMS.Framework.Core
                         object value = r[prop.Name];
 
                         if (prop == pk)
-                            prop.SetValue(item, DataHelper.GetId(value), null);
+                            prop.SetValue(item, DataUtil.GetId(value), null);
                         else if (prop.PropertyType == typeof(DateTime))
-                            prop.SetValue(item, DataHelper.GetDateTime(value), null);
+                            prop.SetValue(item, DataUtil.GetDateTime(value), null);
                         else if (prop.PropertyType == typeof(int))
-                            prop.SetValue(item, DataHelper.GetInt32(value), null);
+                            prop.SetValue(item, DataUtil.GetInt32(value), null);
                         else
                             prop.SetValue(item, value.ToString(), null);
                     }
@@ -210,11 +210,11 @@ namespace WCMS.Framework.Core
                         object value = r[prop.Name];
 
                         if (prop == pk)
-                            prop.SetValue(item, DataHelper.GetId(value), null);
+                            prop.SetValue(item, DataUtil.GetId(value), null);
                         else if (prop.PropertyType == typeof(DateTime))
-                            prop.SetValue(item, DataHelper.GetDateTime(value), null);
+                            prop.SetValue(item, DataUtil.GetDateTime(value), null);
                         else if (prop.PropertyType == typeof(int))
-                            prop.SetValue(item, DataHelper.GetInt32(value), null);
+                            prop.SetValue(item, DataUtil.GetInt32(value), null);
                         else
                             prop.SetValue(item, value.ToString(), null);
                     }
@@ -348,11 +348,11 @@ namespace WCMS.Framework.Core
                         string value = XmlUtil.GetNodeText(node, prop.Name);
 
                         if (prop == pk)
-                            prop.SetValue(item, DataHelper.GetId(value), null);
+                            prop.SetValue(item, DataUtil.GetId(value), null);
                         else if (prop.PropertyType == typeof(DateTime))
-                            prop.SetValue(item, DataHelper.GetDateTime(value), null);
+                            prop.SetValue(item, DataUtil.GetDateTime(value), null);
                         else if (prop.PropertyType == typeof(int))
-                            prop.SetValue(item, DataHelper.GetInt32(value), null);
+                            prop.SetValue(item, DataUtil.GetInt32(value), null);
                         else
                             prop.SetValue(item, value.ToString(), null);
                     }

@@ -405,8 +405,8 @@ namespace WCMS.Common.Utilities
             }
             else
             {
-                if (context.ContainsKey(Substituter.DefaultProviderKey) && context[Substituter.DefaultProviderKey].ContainsKey(sourceName))
-                    sourceValue = context[Substituter.DefaultProviderKey][sourceName];
+                if (context.ContainsKey(DefaultProviderKey) && context[DefaultProviderKey].ContainsKey(sourceName))
+                    sourceValue = context[DefaultProviderKey][sourceName];
                 /*else
                     throw new KeyNotFoundException(string.Format("The given key was not present in the dictionary: {0}.", sourceName));
                  */
@@ -440,8 +440,8 @@ namespace WCMS.Common.Utilities
             }
             else
             {
-                if (context.ContainsKey(Substituter.DefaultProviderKey) && context[Substituter.DefaultProviderKey].ContainsKey(sourceName))
-                    sourceValue = context[Substituter.DefaultProviderKey][sourceName];
+                if (context.ContainsKey(DefaultProviderKey) && context[DefaultProviderKey].ContainsKey(sourceName))
+                    sourceValue = context[DefaultProviderKey][sourceName];
                 /*else
                     throw new KeyNotFoundException(string.Format("The given key was not present in the dictionary: {0}.", sourceName));
                  */

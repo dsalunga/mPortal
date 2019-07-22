@@ -16,8 +16,8 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
         {
             if (!Page.IsPostBack)
             {
-                int pageId = DataHelper.GetId(Request[WebColumns.PageId]);
-                int templatePanelId = DataHelper.GetId(Request[WebColumns.TemplatePanelId]);
+                int pageId = DataUtil.GetId(Request[WebColumns.PageId]);
+                int templatePanelId = DataUtil.GetId(Request[WebColumns.TemplatePanelId]);
 
                 if (pageId > 0 && templatePanelId > 0)
                 {
@@ -37,8 +37,8 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            int pageId = DataHelper.GetId(Request, WebColumns.PageId);
-            int templatePanelId = DataHelper.GetId(Request, WebColumns.TemplatePanelId);
+            int pageId = DataUtil.GetId(Request, WebColumns.PageId);
+            int templatePanelId = DataUtil.GetId(Request, WebColumns.TemplatePanelId);
 
             if (pageId > 0 && templatePanelId > 0)
             {

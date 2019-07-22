@@ -55,7 +55,7 @@ namespace WCMS.Framework.Core
 
         public static WebParameterSet GetSchemaSet()
         {
-            return WebParameterSet.Get(SCHEMAS);
+            return Get(SCHEMAS);
         }
 
         #region ISelfManager Members

@@ -24,7 +24,7 @@ namespace WCMS.WebSystem.WebParts.Central.Agent
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             var query = new WQuery(this);
 
             switch (e.CommandName)
@@ -59,7 +59,7 @@ namespace WCMS.WebSystem.WebParts.Central.Agent
         {
             string kwl = string.IsNullOrEmpty(keyword) ? string.Empty : keyword.ToLower();
 
-            return DataHelper.ToDataSet(from i in WebJob.Provider.GetList()
+            return DataUtil.ToDataSet(from i in WebJob.Provider.GetList()
                                         /*where
                                             ((user = i.User) != null || user == null) &&
                                             ((status = i.Approved == MemberStatus.Approved ? MemberStatus.ApprovedString : MemberStatus.PendingString) != null) &&

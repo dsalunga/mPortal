@@ -16,7 +16,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
         {
             if (!Page.IsPostBack)
             {
-                int userId = DataHelper.GetId(Request, WebColumns.UserId);
+                int userId = DataUtil.GetId(Request, WebColumns.UserId);
                 WebUser user = null;
                 if (userId > 0 && (user = WebUser.Get(userId)) != null)
                     FormSecurity.LoadData(user);

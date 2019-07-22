@@ -205,7 +205,7 @@ namespace WCMS.Framework.Core
                                item.Public
                            };
 
-            return DataHelper.ToDataSet(subItems);
+            return DataUtil.ToDataSet(subItems);
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace WCMS.Framework.Core
 
         public static IEnumerable<WebPermission> GetUserPermissions(int userId, IWebObject obj, int isPublic)
         {
-            var sec = WebObjectSecurity.Get(obj.OBJECT_ID, obj.Id, WebObjects.WebUser, userId, isPublic);
+            var sec = Get(obj.OBJECT_ID, obj.Id, WebObjects.WebUser, userId, isPublic);
 
             if (sec != null)
             {
@@ -321,7 +321,7 @@ namespace WCMS.Framework.Core
 
         public static bool IsUserAdded(int userId, IWebObject obj, int public2 = 0)
         {
-            var sec = WebObjectSecurity.Get(obj.OBJECT_ID, obj.Id, WebObjects.WebUser, userId, public2);
+            var sec = Get(obj.OBJECT_ID, obj.Id, WebObjects.WebUser, userId, public2);
             if (sec == null)
             {
                 WebUser user = WebUser.Get(userId);

@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
         {
             get
             {
-                return DataHelper.GetInt32(RadioButtonList1.SelectedValue);
+                return DataUtil.GetInt32(RadioButtonList1.SelectedValue);
             }
 
             set

@@ -59,7 +59,7 @@ namespace WCMS.Framework.Agent
 
             #region Configure Logger
 
-            _logPath = ConfigHelper.Get("LogPath");
+            _logPath = ConfigUtil.Get("LogPath");
             if (string.IsNullOrEmpty(_logPath))
                 _logPath = AppDomain.CurrentDomain.BaseDirectory;
             else if (_logPath.StartsWith(@".\"))
@@ -115,7 +115,7 @@ namespace WCMS.Framework.Agent
                                         break;
 
                                     // Check for job refresh
-                                    if (DateTimeHelper.IsOccurring(DateTime.Now, lastCacheRefresh, jobCacheRefreshInterval))
+                                    if (TimeUtil.IsOccurring(DateTime.Now, lastCacheRefresh, jobCacheRefreshInterval))
                                         break;
                                 }
                                 else
@@ -155,7 +155,7 @@ namespace WCMS.Framework.Agent
                                 break;
 
                             // Check for job refresh
-                            if (DateTimeHelper.IsOccurring(lastCacheRefresh, DateTime.Now, jobCacheRefreshInterval))
+                            if (TimeUtil.IsOccurring(lastCacheRefresh, DateTime.Now, jobCacheRefreshInterval))
                                 break;
                         }
 

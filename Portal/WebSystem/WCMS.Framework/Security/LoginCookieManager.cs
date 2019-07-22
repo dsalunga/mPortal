@@ -66,7 +66,7 @@ namespace WCMS.Framework.Security
             if (values.Length != 2) return false;
 
             // Retrieve the username and hash from the split values.
-            int userId = DataHelper.GetInt32(values[0], -1);
+            int userId = DataUtil.GetInt32(values[0], -1);
             string hash = values[1];
 
             // You'll have to provide your GetPasswordForUser function.
@@ -83,7 +83,7 @@ namespace WCMS.Framework.Security
             if (values.Length != 2) return null;
 
             // Retrieve the username and hash from the split values.
-            int userId = DataHelper.GetInt32(values[0], -1);
+            int userId = DataUtil.GetInt32(values[0], -1);
             string hash = values[1];
 
             WebUser user = userId > 0 ? WebUser.Get(userId) : null;

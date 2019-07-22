@@ -41,9 +41,9 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
                 lblExtension.InnerHtml = WConfig.HasPageExt ? WConfig.PageExt : "/";
 
                 int partControlTemplateId = 1;
-                int _pageId = DataHelper.GetId(Request, WebColumns._PageId);
+                int _pageId = DataUtil.GetId(Request, WebColumns._PageId);
                 WPage item = _pageId > 0 ? WPage.Get(_pageId) : null;
-                var siteId = item == null ? DataHelper.GetId(Request, WebColumns.SiteId) : item.SiteId;
+                var siteId = item == null ? DataUtil.GetId(Request, WebColumns.SiteId) : item.SiteId;
 
                 txtName.Attributes["onblur"] = "if(WCMS.Dom.Get('" + txtIdentityName.ClientID + "').value==''){WCMS.Dom.Get('" + txtIdentityName.ClientID + "').value=GenerateUrlName(this.value);}";
 
@@ -112,7 +112,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
                     LoadThemes();
 
-                    var pageId = DataHelper.GetId(Request, WebColumns.PageId);
+                    var pageId = DataUtil.GetId(Request, WebColumns.PageId);
                     if (pageId > 0 && (item = WPage.Get(pageId)) != null)
                     {
                         lblUrlPre.InnerHtml = WebRewriter.BuildPreUrl(item, true);
@@ -146,7 +146,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             cboThemes.SelectedIndex = 0;
 
             WebMasterPage masterPage = null;
-            var masterPageId = DataHelper.GetId(cboMasterPage.SelectedValue);
+            var masterPageId = DataUtil.GetId(cboMasterPage.SelectedValue);
             if (masterPageId > 0 && (masterPage = WebMasterPage.Get(masterPageId)) != null)
             {
                 if (masterPage.TemplateId > 0)
@@ -228,11 +228,11 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
         private WPage SavePage()
         {
-            int siteId = DataHelper.GetId(Request, WebColumns.SiteId);
-            int editId = DataHelper.GetId(Request, WebColumns._PageId);
-            int pageId = DataHelper.GetId(Request, WebColumns.PageId);
+            int siteId = DataUtil.GetId(Request, WebColumns.SiteId);
+            int editId = DataUtil.GetId(Request, WebColumns._PageId);
+            int pageId = DataUtil.GetId(Request, WebColumns.PageId);
 
-            var templateId = DataHelper.GetId(hiddenCSITID.Value);
+            var templateId = DataUtil.GetId(hiddenCSITID.Value);
             if (templateId <= 0)
                 throw new Exception("A WebPart must be selected");
 
@@ -255,7 +255,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
             #region Security
 
-            int publicAccess = DataHelper.GetInt32(cboPublicAccess.SelectedValue);
+            int publicAccess = DataUtil.GetInt32(cboPublicAccess.SelectedValue);
             if (chkAccount.Checked)
                 publicAccess += WebPublicAccess.AllAccountExceptEntries;
 
@@ -280,11 +280,11 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             page.Active = chkIsActive.Checked ? 1 : 0;
             page.Identity = txtIdentityName.Text.Trim();
             page.Title = txtTitle.Text.Trim();
-            page.MasterPageId = DataHelper.GetInt32(cboMasterPage.SelectedValue);
+            page.MasterPageId = DataUtil.GetInt32(cboMasterPage.SelectedValue);
             page.PartControlTemplateId = templateId;
-            page.PageType = DataHelper.GetInt32(cboPageType.SelectedValue);
+            page.PageType = DataUtil.GetInt32(cboPageType.SelectedValue);
             page.UsePartTemplatePath = chkUsePartTemplatePath.Checked ? 1 : 0;
-            page.SkinId = DataHelper.GetId(cboThemes.SelectedValue);
+            page.SkinId = DataUtil.GetId(cboThemes.SelectedValue);
             page.Update();
 
             // Update site's home page if not yet set
@@ -319,7 +319,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             tabNavigation.Visible = true;
 
             hiddenCSITID.Value = hiddenTempCSITID.Value;
-            this.DisplayWebPartInfo(DataHelper.GetId(hiddenCSITID.Value));
+            this.DisplayWebPartInfo(DataUtil.GetId(hiddenCSITID.Value));
         }
 
         protected void cmdTemplateCancel_Click(object sender, EventArgs e)
@@ -333,7 +333,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
         private void PopulateModuleTree()
         {
             // LOAD MODULES
-            int partControlTemplateId = DataHelper.GetId(hiddenCSITID.Value);
+            int partControlTemplateId = DataUtil.GetId(hiddenCSITID.Value);
 
             var tnRoot = WebPartViewModel.GenerateModuleChooserTree(partControlTemplateId, hiddenTempCSITID.ClientID, chkShowAll.Checked);
             tv1.Nodes.Clear();
@@ -364,7 +364,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             if (siteId < 1 && pageId > 0)
                 siteId = WPage.Get(pageId).SiteId;
 
-            return DataHelper.ToDataSet(WebMasterPage.GetList(siteId));
+            return DataUtil.ToDataSet(WebMasterPage.GetList(siteId));
         }
 
         protected void chkShowAll_CheckedChanged(object sender, EventArgs e)

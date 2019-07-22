@@ -80,16 +80,16 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebPartAdmin From(DbDataReader r)
         {
             var item = new WebPartAdmin();
-            item.Id = DataHelper.GetId(r["PartAdminId"]);
-            item.PartId = DataHelper.GetId(r["PartId"]);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
+            item.Id = DataUtil.GetId(r["PartAdminId"]);
+            item.PartId = DataUtil.GetId(r["PartId"]);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
             item.FileName = r["FileName"].ToString();
-            item.ParentId = DataHelper.GetId(r, WebColumns.ParentId);
-            item.Active = DataHelper.GetInt32(r, WebColumns.Active);
-            item.Visible = DataHelper.GetInt32(r, WebColumns.Visible);
-            item.InSiteContext = DataHelper.GetInt32(r, "InSiteContext");
-            item.TemplateEngineId = DataHelper.GetInt32(r, "TemplateEngineId");
-            item.AutoTitle = DataHelper.GetInt32(r, "AutoTitle");
+            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
+            item.Active = DataUtil.GetInt32(r, WebColumns.Active);
+            item.Visible = DataUtil.GetInt32(r, WebColumns.Visible);
+            item.InSiteContext = DataUtil.GetInt32(r, "InSiteContext");
+            item.TemplateEngineId = DataUtil.GetInt32(r, "TemplateEngineId");
+            item.AutoTitle = DataUtil.GetInt32(r, "AutoTitle");
 
             return item;
         }
@@ -120,7 +120,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@AutoTitle", item.AutoTitle)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 

@@ -21,7 +21,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                 var context = new WContext(this);
                 var element = context.Element;
 
-                var dataEntryMode = DataHelper.GetBool(element.GetParameterValue("Data-Entry"), false);
+                var dataEntryMode = DataUtil.GetBool(element.GetParameterValue("Data-Entry"), false);
                 var groupFilter = element.GetParameterValue("GroupFilter");
 
                 FormProfile.SetEntryMode(!dataEntryMode);
@@ -30,13 +30,13 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                 hGroupFilter.Value = groupFilter;
                 hDataEntry.Value = dataEntryMode ? "1" : "0";
 
-                int userId = DataHelper.GetId(Request, WebColumns.UserId);
+                int userId = DataUtil.GetId(Request, WebColumns.UserId);
                 WebUser user = null;
 
                 if (userId > 0 && (user = WebUser.Get(userId)) != null)
                 {
                     if (!WSession.Current.IsAdministrator && user.IsAdministrator())
-                        WQuery.StaticRedirect(WConstants.AbsoluteAccessDeniedPage);
+                        QueryParser.StaticRedirect(WConstants.AbsoluteAccessDeniedPage);
 
                     FormProfile.LoadData(user.Id);
                     panelSecurity.Visible = false;
@@ -121,7 +121,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                 {
                     query.Redirect(CentralPages.WebUserHome);
                 }
-                else if ((userId = DataHelper.GetId(hNewUserId.Value)) > 0)
+                else if ((userId = DataUtil.GetId(hNewUserId.Value)) > 0)
                 {
                     query.Set(WebColumns.UserId, userId);
                     query.Redirect(CentralPages.WebUserHome);

@@ -21,10 +21,10 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             {
                 cboSites.Items.AddRange(WebSiteViewModel.GenerateListItem(-1).ToArray());
 
-                var siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                var siteId = DataUtil.GetId(Request, WebColumns.SiteId);
                 if (siteId > 0)
                 {
-                    WebHelper.SetCboValue(cboSites, siteId);
+                    WebUtil.SetCboValue(cboSites, siteId);
                     cboSites.Visible = false;
                     ObjectDataSource1.SelectParameters["siteId"].DefaultValue = siteId.ToString();
                 }
@@ -41,7 +41,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
         {
             WSite site = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in WebSiteIdentity.Provider.GetList(siteId)
                 select new
                 {
@@ -66,7 +66,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var query = new WQuery(this);
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {

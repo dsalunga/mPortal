@@ -38,7 +38,7 @@ namespace WCMS.Framework.Core
 
         public string SizeString { get { return FileHelper.GetSizeString(Size); } }
         public string Extension { get { return Path.GetExtension(Name); } }
-        public string AbsPath { get { return WebHelper.MapPath(FilePath); } }
+        public string AbsPath { get { return WebUtil.MapPath(FilePath); } }
         public WebUser User { get { return WebUser.Get(UserId); } }
 
         public override int OBJECT_ID { get { throw new NotImplementedException(); } }
@@ -47,7 +47,7 @@ namespace WCMS.Framework.Core
 
         public void Download()
         {
-            WebHelper.DownloadFile(this.FilePath, this.Name);
+            WebUtil.DownloadFile(this.FilePath, this.Name);
         }
 
         #region ISelfManager Members
@@ -84,7 +84,7 @@ namespace WCMS.Framework.Core
 
                 var absPath = item.AbsPath;
                 if (File.Exists(absPath))
-                    File.Move(absPath, WebHelper.MapPath(newFilePath));
+                    File.Move(absPath, WebUtil.MapPath(newFilePath));
 
                 item.FilePath = newFilePath;
                 item.RecordId = recordId;
@@ -101,9 +101,9 @@ namespace WCMS.Framework.Core
                 var fileNameWE = Path.GetFileNameWithoutExtension(fileName);
                 var newFileName = string.Format("O{0}-{1}-{2}{3}", recordId, batchGuid,
                     fileNameWE.Length > 50 ? fileNameWE.Substring(0, 50) : fileNameWE, ext);
-                var filePath = WebHelper.CombineAddress(
+                var filePath = WebUtil.CombineAddress(
                     string.Format("{0}/{1}", WConfig.AttachmentBasePath, objectId), newFileName);
-                var absFilePath = WebHelper.MapPath(filePath);
+                var absFilePath = WebUtil.MapPath(filePath);
 
                 var absFolder = FileHelper.GetFolder(absFilePath, '\\');
                 if (!Directory.Exists(absFolder))

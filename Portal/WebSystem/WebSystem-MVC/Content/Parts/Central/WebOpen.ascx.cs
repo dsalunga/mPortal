@@ -23,7 +23,7 @@ namespace WCMS.WebSystem.WebParts.Central
             QueryParser query = new QueryParser(this);
 
             int objectId = query.GetId(WebColumns.ObjectId);
-            int id = DataHelper.GetId(txtId.Text.Trim());
+            int id = DataUtil.GetId(txtId.Text.Trim());
             if (id > 0)
             {
                 switch (objectId)

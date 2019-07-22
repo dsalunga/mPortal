@@ -106,8 +106,8 @@ namespace WCMS.Framework
             {
                 if (!string.IsNullOrEmpty(_photoThumbPath))
                 {
-                    var thumbPath = WebHelper.CombineAddress(WConfig.UserPhotoPath, "thumb");
-                    _photoThumbPath = WebHelper.CombineAddress(thumbPath, VirtualPathUtility.GetFileName(PhotoPath));
+                    var thumbPath = WebUtil.CombineAddress(WConfig.UserPhotoPath, "thumb");
+                    _photoThumbPath = WebUtil.CombineAddress(thumbPath, VirtualPathUtility.GetFileName(PhotoPath));
                 }
 
                 return _photoPath;
@@ -119,10 +119,10 @@ namespace WCMS.Framework
         {
             get
             {
-                if (string.IsNullOrEmpty(_photoOriginalPath) && !string.IsNullOrEmpty(PhotoPath) && !WebHelper.IsAbsUrl(PhotoPath))
+                if (string.IsNullOrEmpty(_photoOriginalPath) && !string.IsNullOrEmpty(PhotoPath) && !WebUtil.IsAbsUrl(PhotoPath))
                 {
-                    var path = WebHelper.CombineAddress(WConfig.UserPhotoPath, "original");
-                    var absFolder = WebHelper.MapPath(path);
+                    var path = WebUtil.CombineAddress(WConfig.UserPhotoPath, "original");
+                    var absFolder = WebUtil.MapPath(path);
                     var fileName = VirtualPathUtility.GetFileName(PhotoPath);
                     var name = System.IO.Path.GetFileNameWithoutExtension(fileName);
 
@@ -130,7 +130,7 @@ namespace WCMS.Framework
                     if(files.Count() > 0)
                         fileName = System.IO.Path.GetFileName(files.First());
 
-                    _photoOriginalPath = WebHelper.CombineAddress(path, fileName);
+                    _photoOriginalPath = WebUtil.CombineAddress(path, fileName);
                 }
 
                 return _photoOriginalPath;
@@ -432,11 +432,11 @@ namespace WCMS.Framework
         {
             string[] parts = shortString.Split(AccountConstants.AccountSplitter);
 
-            int objectId = DataHelper.GetId(parts.First());
-            int recordId = DataHelper.GetId(parts[1]);
+            int objectId = DataUtil.GetId(parts.First());
+            int recordId = DataUtil.GetId(parts[1]);
 
             if (objectId == WebObjects.WebUser)
-                return WebUser.Get(recordId);
+                return Get(recordId);
             else
                 return null;
         }
@@ -449,7 +449,7 @@ namespace WCMS.Framework
         public static WebUser GetByUniqueName(string uniqueName)
         {
             if (IsValidUniqueName(uniqueName))
-                return WebUser.Get(uniqueName.Substring(AccountConstants.USER_PREFIX.Length));
+                return Get(uniqueName.Substring(AccountConstants.USER_PREFIX.Length));
 
             return null;
         }

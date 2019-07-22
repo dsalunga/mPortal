@@ -30,7 +30,7 @@ namespace WCMS.Framework
             else if (!WSession.Current.IsSiteManager)
             {
                 var context = new WContext(ctx);
-                WHelper.ShowAccessDeniedFromCentral(context);
+                ShowAccessDeniedFromCentral(context);
                 return false;
             }
 
@@ -159,7 +159,7 @@ namespace WCMS.Framework
 
         public static StringBuilder LoadResources(IWebObject part)
         {
-            return WHelper.LoadResources(part.OBJECT_ID, part.Id);
+            return LoadResources(part.OBJECT_ID, part.Id);
         }
 
         #endregion
@@ -167,7 +167,7 @@ namespace WCMS.Framework
         public static string ToAbsPath(string relPath)
         {
             if (relPath.StartsWith("/"))
-                return WebHelper.CombineAddress(WConfig.BaseAddress, relPath);
+                return WebUtil.CombineAddress(WConfig.BaseAddress, relPath);
             return relPath;
         }
 
@@ -231,7 +231,7 @@ namespace WCMS.Framework
             if (WSession.Current.IsAdministrator)
                 return Permissions.ManageInstance;
 
-            IPageElement item = WHelper.GetCurrentWebElement();
+            IPageElement item = GetCurrentWebElement();
             if (item != null)
             {
                 if (item.OBJECT_ID == WebObjects.WebPage)
@@ -333,7 +333,7 @@ namespace WCMS.Framework
             }
             else
             {
-                var pair = WHelper.GetObjectStruct();
+                var pair = GetObjectStruct();
                 return new ObjectKey(pair.ObjectId, pair.RecordId);
             }
         }
@@ -395,7 +395,7 @@ namespace WCMS.Framework
 
         public static string GenerateTempPath(string fileName = "")
         {
-            return WebHelper.CombineAddress(WConfig.TempFolder, FileHelper.GenerateTempFileName(fileName));
+            return WebUtil.CombineAddress(WConfig.TempFolder, FileHelper.GenerateTempFileName(fileName));
         }
 
         public static List<LinkedPart> GetLinkedParts(int pageId)
@@ -412,9 +412,9 @@ namespace WCMS.Framework
                 foreach (XmlNode lpNode in lpNodes)
                 {
                     LinkedPart item = new LinkedPart();
-                    item.PartConfigId = DataHelper.GetId(XmlUtil.GetAttributeValue(lpNode, "PartConfigId", "-1"));
-                    item.LinkedPartControlId = DataHelper.GetId(XmlUtil.GetAttributeValue(lpNode, "LinkedPartControlId", "-1"));
-                    item.TargetObjectId = DataHelper.GetId(XmlUtil.GetAttributeValue(lpNode, "TargetObjectId", "-1"));
+                    item.PartConfigId = DataUtil.GetId(XmlUtil.GetAttributeValue(lpNode, "PartConfigId", "-1"));
+                    item.LinkedPartControlId = DataUtil.GetId(XmlUtil.GetAttributeValue(lpNode, "LinkedPartControlId", "-1"));
+                    item.TargetObjectId = DataUtil.GetId(XmlUtil.GetAttributeValue(lpNode, "TargetObjectId", "-1"));
 
                     items.Add(item);
                 }
@@ -437,8 +437,8 @@ namespace WCMS.Framework
                 foreach (XmlNode itemNode in itemNodes)
                 {
                     PartDataManagerModel item = new PartDataManagerModel();
-                    item.PartId = DataHelper.GetId(XmlUtil.GetAttributeValue(itemNode, WebColumns.PartId, "-1"));
-                    item.PartControlId = DataHelper.GetId(XmlUtil.GetAttributeValue(itemNode, WebColumns.PartControlId, "-1"));
+                    item.PartId = DataUtil.GetId(XmlUtil.GetAttributeValue(itemNode, WebColumns.PartId, "-1"));
+                    item.PartControlId = DataUtil.GetId(XmlUtil.GetAttributeValue(itemNode, WebColumns.PartControlId, "-1"));
                     item.TypeName = XmlUtil.GetAttributeValue(itemNode, "TypeName", "");
 
                     items.Add(item);
@@ -461,7 +461,7 @@ namespace WCMS.Framework
 
             LogHelper.WriteLog(false, false, errorMsg);
 
-            if (DataHelper.GetBool(WebRegistry.SelectNodeValue("/System/Debugging/SendEmail"), false))
+            if (DataUtil.GetBool(WebRegistry.SelectNodeValue("/System/Debugging/SendEmail"), false))
             {
                 var notifyEmail = WebRegistry.SelectNodeValue("/System/Debugging/NotifyEmail");
                 if (!string.IsNullOrEmpty(notifyEmail))
@@ -516,7 +516,7 @@ namespace WCMS.Framework
                 }
             }
 
-            if (!WebHelper.IsSameDomain(context.Context, redirUrl))
+            if (!WebUtil.IsSameDomain(context.Context, redirUrl))
             {
                 var session = WSession.Current.UserSession;
                 //var browserSession = session == null ? null : WSession.UserSessions.BrowserCache.Values

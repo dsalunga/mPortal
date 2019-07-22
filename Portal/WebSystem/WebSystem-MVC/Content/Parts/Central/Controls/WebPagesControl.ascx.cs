@@ -15,7 +15,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
     {
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            int siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+            int siteId = DataUtil.GetId(Request, WebColumns.SiteId);
             if (!IsPostBack)
             {
                 this.PopulateTreeView(siteId);
@@ -30,7 +30,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
 
         private bool IsSiteAuthor()
         {
-            int siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+            int siteId = DataUtil.GetId(Request, WebColumns.SiteId);
             return WSite.IsUserSiteAuthor(siteId);
         }
 
@@ -96,7 +96,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
             if (IsSiteAuthor())
             {
                 string sChecked = Request.Form["chkChecked"];
-                var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
                 foreach (var id in ids)
                 {
                     var page = WPage.Get(id);
@@ -111,7 +111,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int pageId = DataHelper.GetId(e.CommandArgument);
+            int pageId = DataUtil.GetId(e.CommandArgument);
             var query = new QueryParser(this);
             query.Set(WebColumns.PageId, pageId);
 
@@ -159,7 +159,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
                     string sChecked = Request.Form["chkChecked"];
                     if (!string.IsNullOrEmpty(sChecked))
                     {
-                        var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                        var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
                         foreach (int id in ids)
                         {
                             var page = WPage.Get(id);
@@ -184,7 +184,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
 
         protected void cmdGO_Click(object sender, EventArgs e)
         {
-            var parentId = DataHelper.GetInt32(cboPages.SelectedValue);
+            var parentId = DataUtil.GetInt32(cboPages.SelectedValue);
             if (parentId >= -1)
             {
                 var query = new WQuery(this);
@@ -235,7 +235,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
                             RelativeUrl = i.BuildRelativeUrl()
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
     }
 }

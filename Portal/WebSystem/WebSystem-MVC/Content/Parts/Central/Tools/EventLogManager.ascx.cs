@@ -62,7 +62,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
         {
             if (cboDelete.Visible)
             {
-                EventLog.Provider.Delete(DataHelper.GetDateTime(cboDelete.SelectedValue));
+                EventLog.Provider.Delete(DataUtil.GetDateTime(cboDelete.SelectedValue));
                 GridView1.DataBind();
             }
         }
@@ -71,7 +71,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
         {
             var items = SelectInternal(fromDate);
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from l in items
                 select new
                 {
@@ -111,7 +111,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             switch (groupBy)
             {
                 case "User":
-                    return DataHelper.ToDataSet(SelectInternal(fromDate)
+                    return DataUtil.ToDataSet(SelectInternal(fromDate)
                         .GroupBy(i => i.UserId)
                         .Select(i => new
                         {
@@ -121,7 +121,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     ));
 
                 case "Event":
-                    return DataHelper.ToDataSet(SelectInternal(fromDate)
+                    return DataUtil.ToDataSet(SelectInternal(fromDate)
                         .GroupBy(i => i.EventName)
                         .Select(i => new
                         {
@@ -131,7 +131,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     ));
 
                 case "IPAddress":
-                    return DataHelper.ToDataSet(SelectInternal(fromDate)
+                    return DataUtil.ToDataSet(SelectInternal(fromDate)
                         .GroupBy(i => i.IPAddress)
                         .Select(i => new
                         {
@@ -141,7 +141,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     ));
             }
 
-            return DataHelper.GetEmptyDataSet();
+            return DataUtil.GetEmptyDataSet();
         }
 
         protected void cboGroupBy_SelectedIndexChanged(object sender, EventArgs e)

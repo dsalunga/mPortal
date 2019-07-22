@@ -24,7 +24,7 @@ namespace WCMS.Common.Utilities
 
         static SqlHelper()
         {
-            string tryTimeOut = ConfigHelper.Get("TimeOut");
+            string tryTimeOut = ConfigUtil.Get("TimeOut");
             timeOut = tryTimeOut == string.Empty ? 200 : Convert.ToInt32(tryTimeOut);
         }
 

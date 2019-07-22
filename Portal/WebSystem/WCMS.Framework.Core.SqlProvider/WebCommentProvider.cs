@@ -19,15 +19,15 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebComment From(IDataReader r, WebComment source)
         {
             WebComment item = source ?? new WebComment();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Content = DataHelper.Get(r, WebColumns.Content);
-            item.UserId = DataHelper.GetId(r, WebColumns.UserId);
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.DateCreated = DataHelper.GetDateTime(r, WebColumns.DateCreated);
-            item.ParentId = DataHelper.GetId(r, WebColumns.ParentId);
-            item.UserName = DataHelper.Get(r, WebColumns.UserName);
-            item.UserEmail = DataHelper.Get(r, "UserEmail");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Content = DataUtil.Get(r, WebColumns.Content);
+            item.UserId = DataUtil.GetId(r, WebColumns.UserId);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.DateCreated = DataUtil.GetDateTime(r, WebColumns.DateCreated);
+            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
+            item.UserName = DataUtil.Get(r, WebColumns.UserName);
+            item.UserEmail = DataUtil.Get(r, "UserEmail");
 
             return item;
         }
@@ -46,7 +46,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@UserEmail", item.UserEmail)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

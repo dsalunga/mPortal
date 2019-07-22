@@ -59,18 +59,18 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebGroup From(DbDataReader r)
         {
             WebGroup item = new WebGroup();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.ParentId = DataHelper.GetId(r, WebColumns.ParentId);
-            item.IsSystem = DataHelper.GetInt32(r, "IsSystem");
-            item.OwnerId = DataHelper.GetId(r, WebColumns.OwnerId);
-            item.JoinApproval = DataHelper.GetInt32(r, "JoinApproval");
-            item.JoinAlert = DataHelper.GetInt32(r, "JoinAlert");
-            item.PageUrl = DataHelper.Get(r, "PageUrl");
-            item.PageId = DataHelper.GetId(r, WebColumns.PageId);
-            item.Description = DataHelper.Get(r, WebColumns.Description);
-            item.DateModified = DataHelper.GetDateTime(r, WebColumns.DateModified);
-            item.Managers = DataHelper.Get(r, "Managers");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
+            item.IsSystem = DataUtil.GetInt32(r, "IsSystem");
+            item.OwnerId = DataUtil.GetId(r, WebColumns.OwnerId);
+            item.JoinApproval = DataUtil.GetInt32(r, "JoinApproval");
+            item.JoinAlert = DataUtil.GetInt32(r, "JoinAlert");
+            item.PageUrl = DataUtil.Get(r, "PageUrl");
+            item.PageId = DataUtil.GetId(r, WebColumns.PageId);
+            item.Description = DataUtil.Get(r, WebColumns.Description);
+            item.DateModified = DataUtil.GetDateTime(r, WebColumns.DateModified);
+            item.Managers = DataUtil.Get(r, "Managers");
 
             return item;
         }
@@ -120,7 +120,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@Managers", item.Managers)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 

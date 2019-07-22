@@ -12,11 +12,11 @@ namespace WCMS.Framework.Social.Providers
         protected override WallPlugin From(IDataReader r, WallPlugin source)
         {
             WallPlugin item = source ?? new WallPlugin();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.EventTypeId = DataHelper.GetId(r, "EventTypeId");
-            item.FileName = DataHelper.Get(r, "FileName");
-            item.TypeName = DataHelper.Get(r, "TypeName");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.EventTypeId = DataUtil.GetId(r, "EventTypeId");
+            item.FileName = DataUtil.Get(r, "FileName");
+            item.TypeName = DataUtil.Get(r, "TypeName");
 
             return item;
         }

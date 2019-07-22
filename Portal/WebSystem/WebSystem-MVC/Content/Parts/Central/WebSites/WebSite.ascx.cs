@@ -26,7 +26,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
                 txtName.Attributes["onblur"] = "if(WCMS.Dom.Get('" + txtUrlName.ClientID + "').value==''){WCMS.Dom.Get('" + txtUrlName.ClientID + "').value=GenerateUrlName(this.value);}";
 
-                int siteId = DataHelper.GetId(Request, WebColumns._SiteId);
+                int siteId = DataUtil.GetId(Request, WebColumns._SiteId);
 
                 #region Rank
 
@@ -93,18 +93,18 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
                     // Identity
                     cboPrimaryIdentity.DataSource = WebSiteIdentity.Provider.GetList(siteId);
                     cboPrimaryIdentity.DataBind();
-                    WebHelper.SetCboValue(cboPrimaryIdentity, site.PrimaryIdentityId);
+                    WebUtil.SetCboValue(cboPrimaryIdentity, site.PrimaryIdentityId);
                     panelPrimaryIdentity.Visible = true;
 
                     ManagementSecurityOption1.Value = site.ManagementAccess;
-                    WebHelper.SetCboValue(cboTheme, site.ThemeId);
+                    WebUtil.SetCboValue(cboTheme, site.ThemeId);
                 }
                 else
                 {
                     // Generate New Rank
                     cboRank.SelectedValue = (iRank + 5).ToString();
 
-                    int parentId = DataHelper.GetId(Request, "ParentSiteId");
+                    int parentId = DataUtil.GetId(Request, "ParentSiteId");
                     if (parentId > 0) { }
                     else
                     {
@@ -138,17 +138,17 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
         protected void cmdUpdate_Click(object sender, System.EventArgs e)
         {
-            int siteId = DataHelper.GetId(Request, WebColumns._SiteId);
-            int parentId = DataHelper.GetId(Request, "ParentSiteId");
+            int siteId = DataUtil.GetId(Request, WebColumns._SiteId);
+            int parentId = DataUtil.GetId(Request, "ParentSiteId");
 
             WSite site = null;
             if (siteId > 0 && (site = WSite.Get(siteId)) != null)
             {
                 // Update
-                int masterPageId = DataHelper.GetId(cboDefaultMasterPage.SelectedValue);
-                site.HomePageId = DataHelper.GetId(cboHomePage.SelectedValue);
+                int masterPageId = DataUtil.GetId(cboDefaultMasterPage.SelectedValue);
+                site.HomePageId = DataUtil.GetId(cboHomePage.SelectedValue);
                 site.DefaultMasterPageId = masterPageId;
-                site.PrimaryIdentityId = DataHelper.GetId(cboPrimaryIdentity.SelectedValue);
+                site.PrimaryIdentityId = DataUtil.GetId(cboPrimaryIdentity.SelectedValue);
             }
             else
             {
@@ -159,7 +159,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
             #region Security
 
-            int publicAccess = DataHelper.GetInt32(cboPublicAccess.SelectedValue);
+            int publicAccess = DataUtil.GetInt32(cboPublicAccess.SelectedValue);
             if (chkAccount.Checked)
                 publicAccess += WebPublicAccess.AllAccountExceptEntries;
 
@@ -179,7 +179,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             site.BaseAddress = txtBaseAddress.Text.Trim().TrimEnd('/');
             site.Active = chkIsActive.Checked ? 1 : 0;
             site.Rank = int.Parse(cboRank.SelectedValue);
-            site.ThemeId = DataHelper.GetId(cboTheme.SelectedValue);
+            site.ThemeId = DataUtil.GetId(cboTheme.SelectedValue);
             site.Update();
 
             ReturnPage();

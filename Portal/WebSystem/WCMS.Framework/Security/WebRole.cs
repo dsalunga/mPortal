@@ -33,7 +33,7 @@ namespace WCMS.Framework
 
         public WebRole Parent
         {
-            get { return WebRole.Get(ParentId); }
+            get { return Get(ParentId); }
         }
 
         public int Update()

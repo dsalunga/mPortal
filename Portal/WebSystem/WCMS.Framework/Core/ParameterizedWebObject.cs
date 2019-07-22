@@ -192,7 +192,7 @@ namespace WCMS.Framework.Core
                 writer.WriteStartElement("Parameters");
 
                 foreach (var parameter in parameters)
-                    writer.WriteRaw(DataHelper.ToXml(parameter));
+                    writer.WriteRaw(DataUtil.ToXml(parameter));
 
                 writer.WriteEndElement();
             }
@@ -210,7 +210,7 @@ namespace WCMS.Framework.Core
 
                     foreach (XmlNode node in nodes)
                     {
-                        var param = DataHelper.FromElementXml<WebParameter>(node.OuterXml);
+                        var param = DataUtil.FromElementXml<WebParameter>(node.OuterXml);
                         if (param != null)
                         {
                             var currParam = currParms.FirstOrDefault(i => i.Name.Equals(param.Name, StringComparison.InvariantCultureIgnoreCase));

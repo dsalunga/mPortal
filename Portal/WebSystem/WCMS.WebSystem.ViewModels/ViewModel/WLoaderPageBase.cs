@@ -48,7 +48,7 @@ namespace WCMS.WebSystem.ViewModel
                         return true;
                     }
 
-                    var sessionIdAuthAllowed = DataHelper.GetBool(page.GetParameterValue("AnyDeviceAuthBySessionId"), false);
+                    var sessionIdAuthAllowed = DataUtil.GetBool(page.GetParameterValue("AnyDeviceAuthBySessionId"), false);
                     if (sessionIdAuthAllowed)
                         return true;
                 }
@@ -60,10 +60,10 @@ namespace WCMS.WebSystem.ViewModel
             if (accessCheck == PublicAccessCheckResult.Granted)
             {
                 // If cookie present, not logged in, not in login page then trigger auth.
-                if (session.IsLoggedIn || !WSession.IsLoginCookiePresent() || WebHelper.IsSameUrl(query.BasePath, loginUrl))
+                if (session.IsLoggedIn || !WSession.IsLoginCookiePresent() || WebUtil.IsSameUrl(query.BasePath, loginUrl))
                     return true;
             }
-            else if (accessCheck == PublicAccessCheckResult.NotLoggedIn && WebHelper.IsSameUrl(query.BasePath, loginUrl))
+            else if (accessCheck == PublicAccessCheckResult.NotLoggedIn && WebUtil.IsSameUrl(query.BasePath, loginUrl))
             {
                 // Granted or this is a login page
                 return true;

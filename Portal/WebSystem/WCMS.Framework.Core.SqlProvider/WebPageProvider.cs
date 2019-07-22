@@ -145,7 +145,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@SkinId", item.SkinId)
                 );
 
-            item.Id = DataHelper.GetId(o.ToString());
+            item.Id = DataUtil.GetId(o.ToString());
 
             return item.Id;
         }
@@ -153,22 +153,22 @@ namespace WCMS.Framework.Core.SqlProvider
         public WPage From(DbDataReader r)
         {
             WPage item = new WPage();
-            item.Id = DataHelper.GetId(r, WebColumns.PageId);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.SiteId = DataHelper.GetId(r, WebColumns.SiteId);
-            item.Rank = DataHelper.GetInt32(r, WebColumns.Rank);
-            item.Active = DataHelper.GetInt32(r, WebColumns.Active);
-            item.Identity = DataHelper.Get(r, WebColumns.Identity);
-            item.ParentId = DataHelper.GetId(r, WebColumns.ParentId);
-            item.Title = DataHelper.Get(r, WebColumns.Title);
-            item.MasterPageId = DataHelper.GetInt32(r, WebColumns.MasterPageId);
-            item.PartControlTemplateId = DataHelper.GetId(r, WebColumns.PartControlTemplateId);
-            item.PublicAccess = DataHelper.GetInt32(r, "PublicAccess");
-            item.PageType = DataHelper.GetInt32(r, "PageType");
-            item.UsePartTemplatePath = DataHelper.GetInt32(r, "UsePartTemplatePath");
-            item.ManagementAccess = DataHelper.GetInt32(r, "ManagementAccess");
-            item.SkinId = DataHelper.GetId(r, WebColumns.SkinId);
-            item.ThemeId = DataHelper.GetId(r, WebColumns.ThemeId);
+            item.Id = DataUtil.GetId(r, WebColumns.PageId);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.SiteId = DataUtil.GetId(r, WebColumns.SiteId);
+            item.Rank = DataUtil.GetInt32(r, WebColumns.Rank);
+            item.Active = DataUtil.GetInt32(r, WebColumns.Active);
+            item.Identity = DataUtil.Get(r, WebColumns.Identity);
+            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
+            item.Title = DataUtil.Get(r, WebColumns.Title);
+            item.MasterPageId = DataUtil.GetInt32(r, WebColumns.MasterPageId);
+            item.PartControlTemplateId = DataUtil.GetId(r, WebColumns.PartControlTemplateId);
+            item.PublicAccess = DataUtil.GetInt32(r, "PublicAccess");
+            item.PageType = DataUtil.GetInt32(r, "PageType");
+            item.UsePartTemplatePath = DataUtil.GetInt32(r, "UsePartTemplatePath");
+            item.ManagementAccess = DataUtil.GetInt32(r, "ManagementAccess");
+            item.SkinId = DataUtil.GetId(r, WebColumns.SkinId);
+            item.ThemeId = DataUtil.GetId(r, WebColumns.ThemeId);
 
             return item;
         }
@@ -178,7 +178,7 @@ namespace WCMS.Framework.Core.SqlProvider
             object result = SqlHelper.ExecuteScalar("WebPage_GetMaxRank",
                 new SqlParameter("@SiteId", siteId));
 
-            return DataHelper.GetId(result);
+            return DataUtil.GetId(result);
         }
 
         #region IDataProvider<WebPage> Members

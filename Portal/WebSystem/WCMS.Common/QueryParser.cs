@@ -27,7 +27,7 @@ namespace WCMS.Common.Utilities
 
         public QueryParser(NameValueCollection queryString)
         {
-            base.Add(queryString);
+            Add(queryString);
         }
 
         public QueryParser(QueryParser toCopy)
@@ -202,12 +202,12 @@ namespace WCMS.Common.Utilities
 
         private void BaseRedirect(string path)
         {
-            WebHelper.Redirect(path, Context);
+            WebUtil.Redirect(path, Context);
         }
 
         public void AddParams(string queryString)
         {
-            base.Add(HttpUtility.ParseQueryString(queryString));
+            Add(HttpUtility.ParseQueryString(queryString));
         }
 
         public string Get(string key, string nullEmptyDefaultValue)
@@ -258,13 +258,13 @@ namespace WCMS.Common.Utilities
             if (!absolute || string.IsNullOrEmpty(BaseAddress))
                 return basePath + queryString;
             else
-                return WebHelper.CombineAddress(BaseAddress, basePath) + queryString;
+                return WebUtil.CombineAddress(BaseAddress, basePath) + queryString;
         }
 
         public void Redirect()
         {
             var absolute = !string.IsNullOrEmpty(BaseAddress);
-            WebHelper.Redirect(BuildQuery(absolute), Context);
+            WebUtil.Redirect(BuildQuery(absolute), Context);
         }
 
         public string GetSource()
@@ -274,14 +274,14 @@ namespace WCMS.Common.Utilities
 
         public void RedirectToSource()
         {
-            string source = GetDecode(QueryParser.SourceKey);
+            string source = GetDecode(SourceKey);
             Remove(SourceKey);
             BaseRedirect(BuildQuery(source));
         }
 
         public void Redirect(string basePath)
         {
-            WebHelper.Redirect(BuildQuery(basePath), Context);
+            WebUtil.Redirect(BuildQuery(basePath), Context);
         }
 
         public void SetSourceAndRedirect(string basePath)
@@ -293,21 +293,21 @@ namespace WCMS.Common.Utilities
 
         public int GetInt32(string name)
         {
-            return DataHelper.GetInt32(this[name]);
+            return DataUtil.GetInt32(this[name]);
         }
 
         public int GetInt32(string name, int defaultValue)
         {
-            return DataHelper.GetInt32(this[name], defaultValue);
+            return DataUtil.GetInt32(this[name], defaultValue);
         }
 
         public int GetId(string name)
         {
-            return DataHelper.GetId(this[name]);
+            return DataUtil.GetId(this[name]);
         }
         public bool GetBool(string name, bool defaultValue)
         {
-            return DataHelper.GetBool(this[name], defaultValue);
+            return DataUtil.GetBool(this[name], defaultValue);
         }
 
         //public string SetAndBuildQuery(string name, object value, string basePath)
@@ -408,7 +408,7 @@ namespace WCMS.Common.Utilities
 
         public static void StaticBaseRedirect(string basePath)
         {
-            WebHelper.Redirect(basePath, Context);
+            WebUtil.Redirect(basePath, Context);
         }
 
         public static void StaticRedirect()
@@ -426,7 +426,7 @@ namespace WCMS.Common.Utilities
             }
             else
             {
-                WebHelper.Redirect(addressOrBasePath, Context);
+                WebUtil.Redirect(addressOrBasePath, Context);
             }
         }
 

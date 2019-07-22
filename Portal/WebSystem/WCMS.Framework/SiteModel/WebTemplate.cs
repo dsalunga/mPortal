@@ -93,7 +93,7 @@ namespace WCMS.Framework
 
         public WebTemplate Parent
         {
-            get { return ParentId > 0 ? WebTemplate.Get(ParentId) : null; }
+            get { return ParentId > 0 ? Get(ParentId) : null; }
             set { ParentId = value == null ? -1 : value.Id; }
         }
 

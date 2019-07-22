@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.Central.Agent
         {
             if (!Page.IsPostBack)
             {
-                var id = DataHelper.GetId(Request, "Id");
+                var id = DataUtil.GetId(Request, "Id");
                 if (id > 0)
                 {
                     WebJob job = WebJob.Provider.Get(id);

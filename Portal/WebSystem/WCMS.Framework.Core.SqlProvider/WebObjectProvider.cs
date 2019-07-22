@@ -69,7 +69,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@ManagerName", item.ManagerName)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 
@@ -85,20 +85,20 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebObject From(DbDataReader r)
         {
             WebObject item = new WebObject();
-            item.Id = DataHelper.GetId(r["Id"].ToString());
+            item.Id = DataUtil.GetId(r["Id"].ToString());
             item.Name = r["Name"].ToString();
             item.IdentityColumn = r["IdentityColumn"].ToString();
             item.ObjectType = r["ObjectType"].ToString();
-            item.LastRecordId = DataHelper.GetInt32(r["LastRecordId"]);
+            item.LastRecordId = DataUtil.GetInt32(r["LastRecordId"]);
             item.MaxCacheCount = Convert.ToInt32(r["MaxCacheCount"].ToString());
-            item.AccessTypeId = DataHelper.GetId(r["AccessTypeId"]);
-            item.CacheTypeId = DataHelper.GetId(r["CacheTypeId"]);
+            item.AccessTypeId = DataUtil.GetId(r["AccessTypeId"]);
+            item.CacheTypeId = DataUtil.GetId(r["CacheTypeId"]);
             item.MaxHistoryCount = Convert.ToInt32(r["MaxHistoryCount"].ToString());
             item.Owner = r["Owner"].ToString();
             item.Prefix = r["Prefix"].ToString();
             item.DataProviderName = r["DataProviderName"].ToString();
             item.TypeName = r["TypeName"].ToString();
-            item.CacheInterval = DataHelper.GetInt32(r["TypeName"]);
+            item.CacheInterval = DataUtil.GetInt32(r["TypeName"]);
             item.DateModified = (DateTime)r["DateModified"];
             item.ManagerName = r["ManagerName"].ToString();
             item.NameColumn = r["NameColumn"].ToString();

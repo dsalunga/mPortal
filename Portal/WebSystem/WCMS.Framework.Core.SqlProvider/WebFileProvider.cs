@@ -68,10 +68,10 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebFile From(SqlDataReader r)
         {
             WebFile item = new WebFile();
-            item.Id = DataHelper.GetId(r, "FileId");
-            item.FolderId = DataHelper.GetId(r["FolderId"]);
-            item.ObjectId = DataHelper.GetId(r["ObjectId"]);
-            item.RecordId = DataHelper.GetId(r["RecordId"]);
+            item.Id = DataUtil.GetId(r, "FileId");
+            item.FolderId = DataUtil.GetId(r["FolderId"]);
+            item.ObjectId = DataUtil.GetId(r["ObjectId"]);
+            item.RecordId = DataUtil.GetId(r["RecordId"]);
             item.Name = r["Name"].ToString();
 
             return item;
@@ -140,7 +140,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@RecordId", item.RecordId),
                 new SqlParameter("@Name", item.Name));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

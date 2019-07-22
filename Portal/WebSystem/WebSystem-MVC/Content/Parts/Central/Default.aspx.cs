@@ -37,7 +37,7 @@ namespace WCMS.WebSystem.WebParts.Central
             var query = new WQuery(this);
             if (query.Count == 0)
             {
-                WebHelper.Redirect(CentralPages.CentrlHome, Context);
+                WebUtil.Redirect(CentralPages.CentrlHome, Context);
                 return;
             }
 

@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.WebParts.Common
 
             var returnUrl = element.GetParameterValue("ReturnUrl", "/");
             //var photoPath = WConfig.UserPhotoPath; //site.GetParameterValue("WCMS.UserPhotoPath", "/Content/Assets/User-Photos");
-            var photoSize = DataHelper.GetInt32(element.GetParameterValue("PhotoSize"), 600);
+            var photoSize = DataUtil.GetInt32(element.GetParameterValue("PhotoSize"), 600);
 
             if (!string.IsNullOrEmpty(returnUrl))
                 hReturnUrl.Value = returnUrl;
@@ -55,7 +55,7 @@ namespace WCMS.WebSystem.WebParts.Common
             var user = WSession.Current.User;
 
             //var photoPathUrl = WConfig.UserPhotoPath; //site.GetParameterValue("WCMS.UserPhotoPath", "/Content/Assets/User-Photos");
-            var thumbSize = DataHelper.GetInt32(element.GetParameterValue("ThumbSize"), 200);
+            var thumbSize = DataUtil.GetInt32(element.GetParameterValue("ThumbSize"), 200);
             var ext = hExtension.Value;
 
             AccountHelper.FinalizePhotoUpload(user, -1, ext, thumbSize);

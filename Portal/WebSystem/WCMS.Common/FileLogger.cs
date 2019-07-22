@@ -35,7 +35,7 @@ namespace WCMS.Common
         public FileLogger(string filePath)
         {
             if (filePath.StartsWith("~"))
-                filePath = WebHelper.MapPath(filePath);
+                filePath = WebUtil.MapPath(filePath);
 
             string fileName = Path.GetFileName(filePath);
 

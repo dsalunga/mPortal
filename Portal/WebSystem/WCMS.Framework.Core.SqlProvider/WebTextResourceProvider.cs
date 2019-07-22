@@ -96,7 +96,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@PhysicalPath", item.PhysicalPath)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
 
             return item.Id;
         }
@@ -112,15 +112,15 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebTextResource From(DbDataReader r)
         {
             WebTextResource item = new WebTextResource();
-            item.Id = DataHelper.GetId(r["TextResourceId"]);
-            item.ContentTypeId = DataHelper.GetId(r["ContentTypeId"]);
+            item.Id = DataUtil.GetId(r["TextResourceId"]);
+            item.ContentTypeId = DataUtil.GetId(r["ContentTypeId"]);
             item.Title = r["Title"].ToString();
             item.Content = r["Content"].ToString();
-            item.DirectoryId = DataHelper.GetId(r["DirectoryId"]);
-            item.Rank = DataHelper.GetInt32(r["Rank"]);
+            item.DirectoryId = DataUtil.GetId(r["DirectoryId"]);
+            item.Rank = DataUtil.GetInt32(r["Rank"]);
             item.DateModified = (DateTime)r["DateModified"];
             item.DatePersisted = (DateTime)r["DatePersisted"];
-            item.PhysicalPath = DataHelper.Get(r, "PhysicalPath");
+            item.PhysicalPath = DataUtil.Get(r, "PhysicalPath");
 
             return item;
         }
@@ -152,8 +152,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
             return from i in GetByDirectory(directoryId)
                    where noSearch
-                       || DataHelper.HasMatch(i.Title, loweredKeyword)
-                       || DataHelper.HasMatch(i.Content, loweredKeyword)
+                       || DataUtil.HasMatch(i.Title, loweredKeyword)
+                       || DataUtil.HasMatch(i.Content, loweredKeyword)
                    orderby i.DateModified descending
                    select new WebDirectoryEntry
                    {

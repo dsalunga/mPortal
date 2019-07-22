@@ -51,7 +51,7 @@ namespace WCMS.WebSystem.WebParts.Central
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             QueryParser query = new QueryParser(this);
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -70,7 +70,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
                 case "Custom_Delete":
                     {
-                        int groupId = DataHelper.GetId(e.CommandArgument);
+                        int groupId = DataUtil.GetId(e.CommandArgument);
                         if (groupId > 0)
                         {
                             WebRole.Delete(groupId);
@@ -90,7 +90,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
         public DataSet Get()
         {
-            return DataHelper.ToDataSet(WebRole.GetList());
+            return DataUtil.ToDataSet(WebRole.GetList());
         }
     }
 }

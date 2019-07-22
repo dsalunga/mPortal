@@ -133,7 +133,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@CreatedById", item.CreatedById)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 
@@ -171,15 +171,15 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebUserGroup From(DbDataReader r)
         {
             var item = new WebUserGroup();
-            item.Id = DataHelper.GetId(r["Id"]);
-            item.GroupId = DataHelper.GetId(r["GroupId"]);
+            item.Id = DataUtil.GetId(r["Id"]);
+            item.GroupId = DataUtil.GetId(r["GroupId"]);
             //item.UserId = DataHelper.GetId(r["UserId"]);
-            item.Active = DataHelper.GetInt32(r, "Active");
-            item.DateJoined = DataHelper.GetDateTime(r, "DateJoined");
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.Remarks = DataHelper.Get(r, "Remarks");
-            item.CreatedById = DataHelper.GetId(r, "CreatedById");
+            item.Active = DataUtil.GetInt32(r, "Active");
+            item.DateJoined = DataUtil.GetDateTime(r, "DateJoined");
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.Remarks = DataUtil.Get(r, "Remarks");
+            item.CreatedById = DataUtil.GetId(r, "CreatedById");
 
             return item;
         }

@@ -58,13 +58,13 @@ namespace WCMS.WebSystem.WebParts.Central.Template
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            var id = DataHelper.GetId(Request, WebColumns.SkinId);
+            var id = DataUtil.GetId(Request, WebColumns.SkinId);
             var item = id > 0 ? WebSkin.Provider.Get(id) : new WebSkin();
 
             item.Name = txtName.Text.Trim();
             item.ObjectId = WebObjects.WebTemplate;
-            item.RecordId = DataHelper.GetId(cboTemplates.SelectedValue);
-            item.Rank = DataHelper.GetInt32(txtRank.Text.Trim());
+            item.RecordId = DataUtil.GetId(cboTemplates.SelectedValue);
+            item.Rank = DataUtil.GetInt32(txtRank.Text.Trim());
             item.Update();
 
             if (chkSetDefault.Checked)

@@ -72,7 +72,7 @@ namespace WCMS.WebSystem.WebParts.Central.Agent
 
         protected void cmdRun_Click(object sender, EventArgs e)
         {
-            var processPath = WebHelper.MapPath(AgentConfig.ExecutablePath);
+            var processPath = WebUtil.MapPath(AgentConfig.ExecutablePath);
 
             //StringBuilder sb = new StringBuilder();
             Process m = new Process();

@@ -23,13 +23,13 @@ namespace WCMS.WebSystem.WebParts.Central.Security
 
         public DataSet Select()
         {
-            return DataHelper.ToDataSet(WebGlobalPolicy.Provider.GetList());
+            return DataUtil.ToDataSet(WebGlobalPolicy.Provider.GetList());
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             WContext context = new WContext(this);
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             context.Set(WebColumns.GlobalPolicyId, id);
 

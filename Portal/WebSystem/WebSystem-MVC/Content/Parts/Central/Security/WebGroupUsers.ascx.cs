@@ -112,14 +112,14 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                             u.DateJoined
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var query = new QueryParser(this);
 
-            int userId = DataHelper.GetId(e.CommandArgument);
+            int userId = DataUtil.GetId(e.CommandArgument);
             int id = query.GetId(WebColumns.GroupId);
 
             switch (e.CommandName)
@@ -143,11 +143,11 @@ namespace WCMS.WebSystem.WebParts.Central.Security
 
         protected void cmdDownload_Click(object sender, EventArgs e)
         {
-            int groupId = DataHelper.GetId(Request, WebColumns.GroupId);
+            int groupId = DataUtil.GetId(Request, WebColumns.GroupId);
 
             var users = Select(groupId);
 
-            WebHelper.DownloadAsXml(users, "Group", "Users");
+            WebUtil.DownloadAsXml(users, "Group", "Users");
         }
     }
 }

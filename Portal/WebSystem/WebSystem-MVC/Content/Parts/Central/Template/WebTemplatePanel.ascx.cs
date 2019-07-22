@@ -49,13 +49,13 @@ namespace WCMS.WebSystem.WebParts.Central.Template
 
         protected void cmdUpdate_Click(object sender, System.EventArgs e)
         {
-            int panelId = DataHelper.GetId(Request, WebColumns.TemplatePanelId);
-            int templateId = DataHelper.GetId(Request, WebColumns.TemplateId);
+            int panelId = DataUtil.GetId(Request, WebColumns.TemplatePanelId);
+            int templateId = DataUtil.GetId(Request, WebColumns.TemplateId);
 
             WebTemplatePanel item = (panelId > 0) ? WebTemplatePanel.Get(panelId) : new WebTemplatePanel();
             item.Name = txtName.Text.Trim();
             item.PanelName = txtPanelName.Text.Trim();
-            item.Rank = DataHelper.GetInt32(txtRank.Text.Trim());
+            item.Rank = DataUtil.GetInt32(txtRank.Text.Trim());
             item.ObjectId = WebObjects.WebTemplate;
             item.RecordId = templateId;
             item.Update();

@@ -24,7 +24,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             WContext query = new WContext(this);
 
             switch (e.CommandName)
@@ -60,7 +60,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
         {
             string kwl = string.IsNullOrEmpty(keyword) ? string.Empty : keyword.ToLower();
 
-            return DataHelper.ToDataSet(from i in WebAddress.Provider.GetList(WebObjects.WebUser, userId)
+            return DataUtil.ToDataSet(from i in WebAddress.Provider.GetList(WebObjects.WebUser, userId)
                                         select new
                                         {
                                             i.Id,

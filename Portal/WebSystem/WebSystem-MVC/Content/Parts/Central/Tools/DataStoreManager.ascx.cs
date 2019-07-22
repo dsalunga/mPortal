@@ -38,7 +38,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
             try
             {
-                var dataSet = DataHelper.ToDataSet(
+                var dataSet = DataUtil.ToDataSet(
                     from i in WebObject.GetList()
                     let manager = i.DataManager
                     select new
@@ -50,7 +50,7 @@ namespace WCMS.WebSystem.WebParts.Central
                         i.DateModified,
                         NameUrl = query.Set(WebColumns.Id, i.Id).BuildQuery(),
                         CacheType = CacheTypes.GetText(i.CacheTypeId),
-                        ManagerName = DataHelper.GetStringPreview(i.ManagerName, 30),
+                        ManagerName = DataUtil.GetStringPreview(i.ManagerName, 30),
                         CacheStatus = i.CacheStatus.ToString("G"),
                         CachedCount = i.GetCachedItemCount(),
                         Count = manager == null ? -1 : manager.GetCount()

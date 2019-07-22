@@ -35,7 +35,7 @@ namespace WCMS.WebSystem.Agent
                 var processes = Process.GetProcessesByName(AgentConfig.ProcessName);
                 if (processes.Length == 0)
                 {
-                    var processPath = WebHelper.MapPath(AgentConfig.ExecutablePath);
+                    var processPath = WebUtil.MapPath(AgentConfig.ExecutablePath);
                     var m = new Process();
                     m.StartInfo.Arguments = "/interactive";
                     m.StartInfo.FileName = processPath;
@@ -70,7 +70,7 @@ namespace WCMS.WebSystem.Agent
             {
                 if (forceExecute || (job != null && job.IsEnabled && job.ExecutionStatus != ExecutionStatus.Running))
                 {
-                    var processPath = WebHelper.MapPath(AgentConfig.ExecutablePath, true);
+                    var processPath = WebUtil.MapPath(AgentConfig.ExecutablePath, true);
 
                     Process m = new Process();
                     m.StartInfo.Arguments = string.Format(forceExecute ? "/task:{0} /force" : "/task:{0}", job.Name);

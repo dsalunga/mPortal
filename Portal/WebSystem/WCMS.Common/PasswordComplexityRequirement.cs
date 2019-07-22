@@ -73,9 +73,9 @@ namespace WCMS.Common
                 PasswordComplexityRequirement requirement = new PasswordComplexityRequirement();
 
                 var parentNode = xdoc.FirstChild;
-                requirement.MinChars = DataHelper.GetInt32(XmlUtil.GetAttributeValue(parentNode, "MinChars", "0"));
-                requirement.RequireLetter = DataHelper.GetBool(XmlUtil.GetAttributeValue(parentNode, "RequireLetter", "false"));
-                requirement.RequireNumber = DataHelper.GetBool(XmlUtil.GetAttributeValue(parentNode, "RequireNumber", "false"));
+                requirement.MinChars = DataUtil.GetInt32(XmlUtil.GetAttributeValue(parentNode, "MinChars", "0"));
+                requirement.RequireLetter = DataUtil.GetBool(XmlUtil.GetAttributeValue(parentNode, "RequireLetter", "false"));
+                requirement.RequireNumber = DataUtil.GetBool(XmlUtil.GetAttributeValue(parentNode, "RequireNumber", "false"));
 
                 return requirement;
             }

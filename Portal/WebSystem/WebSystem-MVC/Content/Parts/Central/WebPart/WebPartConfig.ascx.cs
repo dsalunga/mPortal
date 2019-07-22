@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.WebParts.Central
         protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             QueryParser query = new QueryParser(this);
-            int partConfigId = DataHelper.GetId(e.CommandArgument);
+            int partConfigId = DataUtil.GetId(e.CommandArgument);
             query.Set(WebColumns.PartConfigId, partConfigId);
 
             switch (e.CommandName)
@@ -50,7 +50,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
         public DataSet SelectConfig(int partId)
         {
-            return DataHelper.ToDataSet(WebPartConfig.GetList(partId));
+            return DataUtil.ToDataSet(WebPartConfig.GetList(partId));
         }
     }
 }

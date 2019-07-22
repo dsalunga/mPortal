@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
         {
             if (!IsPostBack)
             {
-                var templateId = DataHelper.GetId(Request, WebColumns.TemplateId);
+                var templateId = DataUtil.GetId(Request, WebColumns.TemplateId);
                 if (templateId > 0)
                     WebTemplateHome1.Visible = true;
                 else
@@ -39,7 +39,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
             var sChecked = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(sChecked))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
                 foreach (var id in ids)
                     WebSkin.Provider.Delete(id);
 
@@ -63,7 +63,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
 
         public DataSet Select(int templateId)
         {
-            return DataHelper.ToDataSet(WebSkin.Provider.GetList(WebObjects.WebTemplate, templateId));
+            return DataUtil.ToDataSet(WebSkin.Provider.GetList(WebObjects.WebTemplate, templateId));
         }
     }
 }

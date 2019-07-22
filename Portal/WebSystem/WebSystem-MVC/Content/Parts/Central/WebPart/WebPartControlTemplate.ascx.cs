@@ -29,7 +29,7 @@ namespace WCMS.WebSystem.WebParts.Central
                     txtPath.Text = item.Path;
                     chkStandalone.Checked = item.IsStandalone;
 
-                    WebHelper.SetCboValue(cboTemplateEngine, item.TemplateEngineId);
+                    WebUtil.SetCboValue(cboTemplateEngine, item.TemplateEngineId);
                     //imageThumbnail.ImageUrl = "Handlers/Handler.ashx?Section=SectionTemplate&ID=" + CSITID;
                 }
                 else
@@ -86,7 +86,7 @@ namespace WCMS.WebSystem.WebParts.Central
             item.FileName = Path.GetFileName(item.Path); //txtFileName.Text.Trim();
             item.Identity = txtIdentity.Text.Trim();
             item.IsStandalone = chkStandalone.Checked;
-            item.TemplateEngineId = DataHelper.GetInt32(cboTemplateEngine.SelectedValue);
+            item.TemplateEngineId = DataUtil.GetInt32(cboTemplateEngine.SelectedValue);
             item.Update();
 
             if (updateContinue)

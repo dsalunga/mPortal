@@ -210,7 +210,7 @@ namespace WCMS.Framework
 
         public static void LogOff(int userId = -1, bool force = false)
         {
-            var session = WSession.Current;
+            var session = Current;
 
             var uid = userId;
             if (userId == -1)

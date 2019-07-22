@@ -78,7 +78,7 @@ namespace WCMS.Framework
                 {
                     var admin = _provider.Get(part.Id, adminName);
                     if (admin != null)
-                        return WQuery.BuildQuery(admin.TemplateEngineId == TemplateEngineTypes.Razor ? CentralPages.LoaderRazor : CentralPages.LoaderMain, WebColumns.PartAdminId, admin.Id);
+                        return QueryParser.BuildQuery(admin.TemplateEngineId == TemplateEngineTypes.Razor ? CentralPages.LoaderRazor : CentralPages.LoaderMain, WebColumns.PartAdminId, admin.Id);
                 }
             }
 

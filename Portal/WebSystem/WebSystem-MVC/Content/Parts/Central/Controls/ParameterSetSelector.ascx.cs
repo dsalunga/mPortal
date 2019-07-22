@@ -22,13 +22,13 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
 
         public int ParameterSetId
         {
-            get { return DataHelper.GetId(cboParameterSet.SelectedValue); }
+            get { return DataUtil.GetId(cboParameterSet.SelectedValue); }
             set
             {
                 if (cboParameterSet.Items.Count == 1)
                     cboParameterSet.DataBind();
 
-                WebHelper.SetCboValue(cboParameterSet, value);
+                WebUtil.SetCboValue(cboParameterSet, value);
             }
         }
 

@@ -36,7 +36,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             DateTime now = DateTime.Now;
             UserSessionBrowser bs = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WSession.UserSessions.Sessions
                 where (bs = i.LastBrowserSession) != null && ((page = bs.LastPageId > 0 ? WPage.Get(bs.LastPageId) : null) == null || true)
                     && ((user = i.UserId > 0 ? WebUser.Get(i.UserId) : null) != null || true)
@@ -75,7 +75,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             string checkedIds = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(checkedIds))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(checkedIds);
+                var ids = DataUtil.ParseCommaSeparatedIdList(checkedIds);
                 if (ids.Count > 0)
                 {
                     var manager = WSession.UserSessions;

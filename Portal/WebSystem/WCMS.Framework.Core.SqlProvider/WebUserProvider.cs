@@ -119,7 +119,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@LoginFailureCount", item.LoginFailureCount)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 
@@ -140,33 +140,33 @@ namespace WCMS.Framework.Core.SqlProvider
 
         private WebUser From(DbDataReader r)
         {
-            string pwd = DataHelper.Get(r, "Password");
+            string pwd = DataUtil.Get(r, "Password");
             var item = new WebUser();
-            item.Id = DataHelper.GetId(r, WebColumns.UserId);
-            item.UserName = DataHelper.Get(r, WebColumns.UserName);
+            item.Id = DataUtil.GetId(r, WebColumns.UserId);
+            item.UserName = DataUtil.Get(r, WebColumns.UserName);
             item.Password = !string.IsNullOrEmpty(pwd) ? WCryptography.DecryptString(pwd) : string.Empty;
-            item.FirstName = DataHelper.Get(r, WebColumns.FirstName);
-            item.MiddleName = DataHelper.Get(r, WebColumns.MiddleName);
-            item.LastName = DataHelper.Get(r, WebColumns.LastName);
-            item.Email = DataHelper.Get(r, WebColumns.Email);
-            item.DateCreated = DataHelper.GetDateTime(r, "DateCreated");
-            item.LastUpdate = DataHelper.GetDateTime(r, "LastUpdate");
-            item.ActivationKey = DataHelper.Get(r,"ActivationKey");
-            item.NewEmail = DataHelper.Get(r, "NewEmail");
-            item.Email2 = DataHelper.Get(r, "Email2");
-            item.Gender = DataHelper.GetChar(r, "Gender");
-            item.NameSuffix = DataHelper.Get(r, "NameSuffix");
-            item.MobileNumber = DataHelper.Get(r, "MobileNumber");
-            item.TelephoneNumber = DataHelper.Get(r, "TelephoneNumber");
-            item.LastLogin = DataHelper.GetDateTime(r, "LastLogin");
-            item.StatusText = DataHelper.Get(r, "StatusText");
-            item.PasswordExpiryDate = DataHelper.GetDateTime(r, "PasswordExpiryDate");
-            item.PhotoPath = DataHelper.Get(r, "PhotoPath");
-            item.ProviderId = DataHelper.GetId(r, "ProviderId");
-            item.Status = DataHelper.GetInt32(r, WebColumns.Status);
-            item.MaritalStatusId = DataHelper.GetId(r, "MaritalStatusId");
-            item.LastLoginFailureDate = DataHelper.GetDateTime(r, "LastLoginFailureDate");
-            item.LoginFailureCount = DataHelper.GetInt32(r, "LoginFailureCount");
+            item.FirstName = DataUtil.Get(r, WebColumns.FirstName);
+            item.MiddleName = DataUtil.Get(r, WebColumns.MiddleName);
+            item.LastName = DataUtil.Get(r, WebColumns.LastName);
+            item.Email = DataUtil.Get(r, WebColumns.Email);
+            item.DateCreated = DataUtil.GetDateTime(r, "DateCreated");
+            item.LastUpdate = DataUtil.GetDateTime(r, "LastUpdate");
+            item.ActivationKey = DataUtil.Get(r,"ActivationKey");
+            item.NewEmail = DataUtil.Get(r, "NewEmail");
+            item.Email2 = DataUtil.Get(r, "Email2");
+            item.Gender = DataUtil.GetChar(r, "Gender");
+            item.NameSuffix = DataUtil.Get(r, "NameSuffix");
+            item.MobileNumber = DataUtil.Get(r, "MobileNumber");
+            item.TelephoneNumber = DataUtil.Get(r, "TelephoneNumber");
+            item.LastLogin = DataUtil.GetDateTime(r, "LastLogin");
+            item.StatusText = DataUtil.Get(r, "StatusText");
+            item.PasswordExpiryDate = DataUtil.GetDateTime(r, "PasswordExpiryDate");
+            item.PhotoPath = DataUtil.Get(r, "PhotoPath");
+            item.ProviderId = DataUtil.GetId(r, "ProviderId");
+            item.Status = DataUtil.GetInt32(r, WebColumns.Status);
+            item.MaritalStatusId = DataUtil.GetId(r, "MaritalStatusId");
+            item.LastLoginFailureDate = DataUtil.GetDateTime(r, "LastLoginFailureDate");
+            item.LoginFailureCount = DataUtil.GetInt32(r, "LoginFailureCount");
             return item;
         }
 

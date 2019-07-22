@@ -38,14 +38,14 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebSiteIdentity From(SqlDataReader r)
         {
             var item = new WebSiteIdentity();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.SiteId = DataHelper.GetId(r, WebColumns.SiteId);
-            item.HostName = DataHelper.Get(r, "HostName");
-            item.UrlPath = DataHelper.Get(r, "UrlPath");
-            item.Port = DataHelper.GetInt32(r, "Port");
-            item.IPAddress = DataHelper.Get(r, "IPAddress");
-            item.RedirectUrl = DataHelper.Get(r, "RedirectUrl");
-            item.ProtocolId = DataHelper.GetInt32(r, "ProtocolId");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.SiteId = DataUtil.GetId(r, WebColumns.SiteId);
+            item.HostName = DataUtil.Get(r, "HostName");
+            item.UrlPath = DataUtil.Get(r, "UrlPath");
+            item.Port = DataUtil.GetInt32(r, "Port");
+            item.IPAddress = DataUtil.Get(r, "IPAddress");
+            item.RedirectUrl = DataUtil.Get(r, "RedirectUrl");
+            item.ProtocolId = DataUtil.GetInt32(r, "ProtocolId");
 
             return item;
         }
@@ -103,7 +103,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@ProtocolId", item.ProtocolId)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
 
             return item.Id;
         }

@@ -77,7 +77,7 @@ namespace WCMS.Framework.Core
         {
             bool isUpdate = item.Id > 0;
 
-            item.Id = DataHelper.GetId(postUpdateResult);
+            item.Id = DataUtil.GetId(postUpdateResult);
 
             if (!isUpdate)
                 WebObject.OnRecordCreated(item);

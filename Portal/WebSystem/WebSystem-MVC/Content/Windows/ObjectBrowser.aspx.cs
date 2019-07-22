@@ -29,7 +29,7 @@ namespace WCMS.WebSystem.Windows
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            int objectId = DataHelper.GetId(Request, WebColumns.ObjectId);
+            int objectId = DataUtil.GetId(Request, WebColumns.ObjectId);
 
             if (!Page.IsPostBack)
             {
@@ -164,7 +164,7 @@ namespace WCMS.WebSystem.Windows
         {
             StringBuilder sb = new StringBuilder();
             QueryParser query = new QueryParser(this);
-            int folderId = DataHelper.GetId(tvNavigation.SelectedValue); //ctx.GetId(WebColumns.ParentId);
+            int folderId = DataUtil.GetId(tvNavigation.SelectedValue); //ctx.GetId(WebColumns.ParentId);
 
             while (folderId > 0)
             {
@@ -223,7 +223,7 @@ namespace WCMS.WebSystem.Windows
         {
             if (CurrentAction == ActionSave)
             {
-                int id = DataHelper.GetId(tvNavigation.SelectedValue);
+                int id = DataUtil.GetId(tvNavigation.SelectedValue);
 
                 WebFolder item = WebFolder.Provider.Get(id);
                 if (item != null)
@@ -235,7 +235,7 @@ namespace WCMS.WebSystem.Windows
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             QueryParser query = new QueryParser(this);
 
             switch (e.CommandName)
@@ -275,10 +275,10 @@ namespace WCMS.WebSystem.Windows
             bool noSearch = string.IsNullOrEmpty(loweredKeyword);
 
             var items = from i in WebFolder.Provider.GetList(folderId == -2 ? -1 : folderId)
-                        where noSearch || DataHelper.HasMatch(i.Name, loweredKeyword)
+                        where noSearch || DataUtil.HasMatch(i.Name, loweredKeyword)
                         select i;
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         public DataSet SelectFiles(int folderId, int objectId, string keyword)
@@ -320,8 +320,8 @@ namespace WCMS.WebSystem.Windows
 
                         var items = from i in WebTextResource.GetByDirectory(folderId)
                                     where noSearch
-                                        || DataHelper.HasMatch(i.Title, loweredKeyword)
-                                        || DataHelper.HasMatch(i.Content, loweredKeyword)
+                                        || DataUtil.HasMatch(i.Title, loweredKeyword)
+                                        || DataUtil.HasMatch(i.Content, loweredKeyword)
                                     orderby i.DateModified descending
                                     select new
                                     {
@@ -333,7 +333,7 @@ namespace WCMS.WebSystem.Windows
                                         i.DateModified
                                     };
 
-                        return DataHelper.ToDataSet(items);
+                        return DataUtil.ToDataSet(items);
                     }
 
                 default:
@@ -341,7 +341,7 @@ namespace WCMS.WebSystem.Windows
                         var items = from i in WebFile.Provider.GetList(folderId)
                                     where (objectId == -1 || i.ObjectId == objectId)
                                         && (noSearch
-                                            || DataHelper.HasMatch(i.Name, loweredKeyword))
+                                            || DataUtil.HasMatch(i.Name, loweredKeyword))
                                     select new
                                     {
                                         i.Id,
@@ -352,7 +352,7 @@ namespace WCMS.WebSystem.Windows
                                         DateModified = WConstants.DateTimeMinValue
                                     };
 
-                        return DataHelper.ToDataSet(items);
+                        return DataUtil.ToDataSet(items);
                     }
             }
         }

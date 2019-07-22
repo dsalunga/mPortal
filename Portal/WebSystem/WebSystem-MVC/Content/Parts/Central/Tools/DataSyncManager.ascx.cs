@@ -44,7 +44,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 {
                     cboGroups.Items.AddRange(WebGroupViewModel.GenerateListItem(-1).ToArray());
 
-                    id = DataHelper.GetId(Request, WebColumns.GroupId);
+                    id = DataUtil.GetId(Request, WebColumns.GroupId);
                     if (id > 0)
                     {
                         cboGroups.SelectedValue = id.ToString();
@@ -57,7 +57,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 hUserEditUrl.Value = element.GetParameterValue("UserEditUrl");
                 hUserHomeUrl.Value = element.GetParameterValue("UserHomeUrl");
 
-                var dataEntryMode = DataHelper.GetBool(element.GetParameterValue("Data-Entry"), false);
+                var dataEntryMode = DataUtil.GetBool(element.GetParameterValue("Data-Entry"), false);
                 if (dataEntryMode)
                 {
                     GridView1.Columns[2].Visible = false;
@@ -93,7 +93,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             string checkedItems = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(checkedItems))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(checkedItems);
+                var ids = DataUtil.ParseCommaSeparatedIdList(checkedItems);
                 if (ids.Count > 0)
                 {
                     foreach (var userId in ids)
@@ -106,7 +106,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             QueryParser query = new QueryParser(this);
 
             switch (e.CommandName)
@@ -155,7 +155,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
         private List<WebUserContainer> GetSyncData(int itemType)
         {
-            DataSyncClient client = new DataSyncClient("WCMS.BasicHttpBinding_IDataSync", ConfigHelper.Get("WCMS.RemoteInstance"));
+            DataSyncClient client = new DataSyncClient("WCMS.BasicHttpBinding_IDataSync", ConfigUtil.Get("WCMS.RemoteInstance"));
 
             var remoteUsers = client.GetObjectList(WebObjects.WebUser);
             var users = WebUser.GetList();
@@ -191,7 +191,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             var isAdmin = WSession.Current.IsAdministrator;
             var keywordL = string.IsNullOrEmpty(keyword) ? string.Empty : keyword.ToLower();
 
-            return DataHelper.ToDataSet(from i in items
+            return DataUtil.ToDataSet(from i in items
                                         where (groupId == -1 || i.User.IsMemberOf(groupId))
                                             && (isAdmin || !i.User.IsMemberOf(SystemGroups.ADMINS_GROUP_ID))
                                             && (string.IsNullOrEmpty(keywordL) ||
@@ -236,7 +236,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
             if (isDataEntry)
             {
-                return DataHelper.ToDataSet(
+                return DataUtil.ToDataSet(
                     from i in data
                     select new
                     {
@@ -253,7 +253,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             }
             else
             {
-                return DataHelper.ToDataSet(
+                return DataUtil.ToDataSet(
                     from i in data
                     select new
                     {
@@ -283,11 +283,11 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
         protected void cmdDownload_Click(object sender, EventArgs e)
         {
             var keyword = txtSearch.Text.Trim();
-            var groupId = DataHelper.GetId(hGroupId.Value.Trim());
+            var groupId = DataUtil.GetId(hGroupId.Value.Trim());
 
             var ds = SelectDownload(groupId, keyword);
 
-            WebHelper.DownloadAsCsv(ds, "Users");
+            WebUtil.DownloadAsCsv(ds, "Users");
         }
 
         protected void cboItemTypes_SelectedIndexChanged(object sender, EventArgs e)
@@ -300,11 +300,11 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             string checkedItems = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(checkedItems))
             {
-                var userNames = DataHelper.ParseDelimitedStringToList(checkedItems);
-                int itemType = DataHelper.GetInt32(cboItemTypes.SelectedValue);
+                var userNames = DataUtil.ParseDelimitedStringToList(checkedItems);
+                int itemType = DataUtil.GetInt32(cboItemTypes.SelectedValue);
 
                 var items = GetSyncData(itemType);
-                var client = new DataSyncClient("WCMS.BasicHttpBinding_IDataSync", ConfigHelper.Get("WCMS.RemoteInstance"));
+                var client = new DataSyncClient("WCMS.BasicHttpBinding_IDataSync", ConfigUtil.Get("WCMS.RemoteInstance"));
 
                 var selectedUsers = items.Where(i => userNames.Find(a => a.Equals(i.User.UserName, StringComparison.InvariantCultureIgnoreCase)) != null);
 

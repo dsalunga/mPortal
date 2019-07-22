@@ -20,16 +20,16 @@ namespace WCMS.Framework.Core.Shared
         protected override Country From(IDataReader r, Country source)
         {
             var item = source ?? new Country();
-            item.Id = DataHelper.GetId(r, "CountryCode");
-            item.CountryName = DataHelper.Get(r, "CountryName");
-            item.RegionCode = DataHelper.GetId(r, "RegionCode");
-            item.Description = DataHelper.Get(r, WebColumns.Description);
-            item.ISOCode = DataHelper.Get(r, "ISOCode");
-            item.DialingCode = DataHelper.GetInt32(r, "DialingCode");
-            item.MaxPhoneDigit = DataHelper.GetInt32(r, "MaxPhoneDigit");
-            item.ISOCode3 = DataHelper.Get(r, "ISOCode3");
-            item.ISONumeric = DataHelper.Get(r, "ISONumeric");
-            item.ShortName = DataHelper.Get(r, "ShortName");
+            item.Id = DataUtil.GetId(r, "CountryCode");
+            item.CountryName = DataUtil.Get(r, "CountryName");
+            item.RegionCode = DataUtil.GetId(r, "RegionCode");
+            item.Description = DataUtil.Get(r, WebColumns.Description);
+            item.ISOCode = DataUtil.Get(r, "ISOCode");
+            item.DialingCode = DataUtil.GetInt32(r, "DialingCode");
+            item.MaxPhoneDigit = DataUtil.GetInt32(r, "MaxPhoneDigit");
+            item.ISOCode3 = DataUtil.Get(r, "ISOCode3");
+            item.ISONumeric = DataUtil.Get(r, "ISONumeric");
+            item.ShortName = DataUtil.Get(r, "ShortName");
 
             return item;
         }

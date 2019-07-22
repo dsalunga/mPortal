@@ -24,10 +24,10 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebShortUrl From(IDataReader r, WebShortUrl source)
         {
             var item = source ?? new WebShortUrl();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.PageId = DataHelper.GetId(r, WebColumns.PageId);
-            item.PageUrl = DataHelper.Get(r, "PageUrl");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.PageId = DataUtil.GetId(r, WebColumns.PageId);
+            item.PageUrl = DataUtil.Get(r, "PageUrl");
 
             return item;
         }

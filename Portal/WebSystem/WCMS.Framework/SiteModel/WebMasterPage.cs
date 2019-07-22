@@ -145,7 +145,7 @@ namespace WCMS.Framework
 
         public static IEnumerable<WebMasterPage> FilterPermitted(int siteId)
         {
-            IEnumerable<WebMasterPage> masterPages = WebMasterPage.GetList(siteId);
+            IEnumerable<WebMasterPage> masterPages = GetList(siteId);
 
             if (!WSession.Current.IsAdministrator)
             {

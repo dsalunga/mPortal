@@ -26,9 +26,9 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override UserProvider From(IDataReader r, UserProvider source)
         {
             var item = new UserProvider();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.ProviderName = DataHelper.Get(r, "ProviderName");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.ProviderName = DataUtil.Get(r, "ProviderName");
 
             return item;
         }

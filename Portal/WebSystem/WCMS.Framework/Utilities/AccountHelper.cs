@@ -109,14 +109,14 @@ namespace WCMS.Framework.Utilities
         {
             string[] parts = uniqueString.Split(AccountConstants.AccountSplitter);
 
-            return DataHelper.GetId(parts.First());
+            return DataUtil.GetId(parts.First());
         }
 
         public static int GetRecordId(string uniqueString)
         {
             string[] parts = uniqueString.Split(AccountConstants.AccountSplitter);
 
-            return DataHelper.GetId(parts[1]);
+            return DataUtil.GetId(parts[1]);
         }
 
         public static string ToAccountsString(IEnumerable<NamedWebObject> accounts, bool useUnique = true, char? delim = null)
@@ -144,12 +144,12 @@ namespace WCMS.Framework.Utilities
 
         public static string AddAccount(string accounts, NamedWebObject account)
         {
-            var items = AccountHelper.FromAccountsString(accounts);
+            var items = FromAccountsString(accounts);
             var item = items.Find(i => i.OBJECT_ID == account.OBJECT_ID && i.Id == account.Id);
             if (item == null)
                 items.Add(account);
 
-            return AccountHelper.ToAccountsString(items);
+            return ToAccountsString(items);
         }
 
         public static string RemoveAccount(string accounts, NamedWebObject account)
@@ -159,7 +159,7 @@ namespace WCMS.Framework.Utilities
             if (item != null)
                 items.Remove(item);
 
-            return AccountHelper.ToAccountsString(items);
+            return ToAccountsString(items);
         }
 
         /// <summary>
@@ -246,8 +246,8 @@ namespace WCMS.Framework.Utilities
                                 // UniqueShortName
                                 string[] parts = item.Split(AccountConstants.AccountSplitter);
 
-                                int objectId = DataHelper.GetId(parts.First());
-                                int recordId = DataHelper.GetId(parts[1]);
+                                int objectId = DataUtil.GetId(parts.First());
+                                int recordId = DataUtil.GetId(parts[1]);
 
                                 if (objectId > 0 && recordId > 0)
                                 {
@@ -329,8 +329,8 @@ namespace WCMS.Framework.Utilities
                                 // UniqueShortName
                                 string[] parts = item.Split(AccountConstants.AccountSplitter);
 
-                                int objectId = DataHelper.GetId(parts.First());
-                                int recordId = DataHelper.GetId(parts[1]);
+                                int objectId = DataUtil.GetId(parts.First());
+                                int recordId = DataUtil.GetId(parts[1]);
 
                                 if (objectId > 0 && recordId > 0)
                                 {
@@ -388,10 +388,10 @@ namespace WCMS.Framework.Utilities
                 }
                 else
                 {
-                    var objectId = DataHelper.GetId(prefix);
+                    var objectId = DataUtil.GetId(prefix);
                     if (objectId > 0)
                     {
-                        var recordId = DataHelper.GetId(name);
+                        var recordId = DataUtil.GetId(name);
                         if (recordId > 0)
                         {
                             if (objectId == WebObjects.WebGroup)
@@ -410,8 +410,8 @@ namespace WCMS.Framework.Utilities
         {
             string[] parts = uniqueString.Split(AccountConstants.AccountSplitter);
 
-            int objectId = DataHelper.GetId(parts.First());
-            int recordId = DataHelper.GetId(parts[1]);
+            int objectId = DataUtil.GetId(parts.First());
+            int recordId = DataUtil.GetId(parts[1]);
 
             if (objectId == WebObjects.WebGroup)
                 return WebGroup.Get(recordId);
@@ -480,8 +480,8 @@ namespace WCMS.Framework.Utilities
                                 // UniqueShortName
                                 string[] parts = item.Split(AccountConstants.AccountSplitter);
 
-                                int objectId = DataHelper.GetId(parts.First());
-                                int recordId = DataHelper.GetId(parts[1]);
+                                int objectId = DataUtil.GetId(parts.First());
+                                int recordId = DataUtil.GetId(parts[1]);
 
                                 if (objectId > 0 && recordId > 0)
                                 {
@@ -565,8 +565,8 @@ namespace WCMS.Framework.Utilities
                                 // UniqueShortName
                                 string[] parts = item.Split(AccountConstants.AccountSplitter);
 
-                                int objectId = DataHelper.GetId(parts.First());
-                                int recordId = DataHelper.GetId(parts[1]);
+                                int objectId = DataUtil.GetId(parts.First());
+                                int recordId = DataUtil.GetId(parts[1]);
 
                                 if (objectId > 0 && recordId > 0)
                                 {
@@ -650,8 +650,8 @@ namespace WCMS.Framework.Utilities
                                 // UniqueShortName
                                 string[] parts = item.Split(AccountConstants.AccountSplitter);
 
-                                int objectId = DataHelper.GetId(parts.First());
-                                int recordId = DataHelper.GetId(parts[1]);
+                                int objectId = DataUtil.GetId(parts.First());
+                                int recordId = DataUtil.GetId(parts[1]);
 
                                 if (objectId > 0 && recordId > 0)
                                 {
@@ -742,8 +742,8 @@ namespace WCMS.Framework.Utilities
                                 // UniqueShortName
                                 string[] parts = item.Split(AccountConstants.AccountSplitter);
 
-                                int objectId = DataHelper.GetId(parts.First());
-                                int recordId = DataHelper.GetId(parts[1]);
+                                int objectId = DataUtil.GetId(parts.First());
+                                int recordId = DataUtil.GetId(parts[1]);
 
                                 if (objectId > 0 && recordId > 0)
                                 {
@@ -835,8 +835,8 @@ namespace WCMS.Framework.Utilities
                                 // UniqueShortName
                                 string[] parts = item.Split(AccountConstants.AccountSplitter);
 
-                                int objectId = DataHelper.GetId(parts.First());
-                                int recordId = DataHelper.GetId(parts[1]);
+                                int objectId = DataUtil.GetId(parts.First());
+                                int recordId = DataUtil.GetId(parts[1]);
 
                                 if (objectId > 0 && recordId > 0)
                                 {
@@ -1075,8 +1075,8 @@ namespace WCMS.Framework.Utilities
                             // UniqueShortName
                             string[] parts = item.Split(AccountConstants.AccountSplitter);
 
-                            int objectId = DataHelper.GetId(parts.First());
-                            int recordId = DataHelper.GetId(parts[1]);
+                            int objectId = DataUtil.GetId(parts.First());
+                            int recordId = DataUtil.GetId(parts[1]);
 
                             if (objectId > 0 && recordId > 0)
                             {
@@ -1129,8 +1129,8 @@ namespace WCMS.Framework.Utilities
         {
             if (user != null && !string.IsNullOrEmpty(formatString))
             {
-                var displayName = AccountHelper.GetPrefixedName(user, NamePrefixes.Brotherhood, firstNameOnly);
-                return FormatUserDisplay(user.Id, showPreviewOnly ? DataHelper.GetStringPreview(displayName, 18) : displayName, formatString);
+                var displayName = GetPrefixedName(user, NamePrefixes.Brotherhood, firstNameOnly);
+                return FormatUserDisplay(user.Id, showPreviewOnly ? DataUtil.GetStringPreview(displayName, 18) : displayName, formatString);
             }
 
             return string.Empty;
@@ -1160,10 +1160,10 @@ namespace WCMS.Framework.Utilities
             var oldFileName = string.Format("U{0}{1}", oldUserId, ext);
             var newFileName = string.Format("U{0}{1}", user.Id, ext);
 
-            var photoFileUrl = WebHelper.CombineAddress(photoPathUrl, newFileName);
+            var photoFileUrl = WebUtil.CombineAddress(photoPathUrl, newFileName);
 
-            var absPhotoPath = WebHelper.MapPath(photoPathUrl);
-            var absPhotoFilePath = WebHelper.MapPath(photoFileUrl);
+            var absPhotoPath = WebUtil.MapPath(photoPathUrl);
+            var absPhotoFilePath = WebUtil.MapPath(photoFileUrl);
 
             var tempAbsPath = FileHelper.Combine(absPhotoPath, "temp");
             var origAbsFilePath = FileHelper.Combine(absPhotoPath, @"original\" + newFileName);
@@ -1201,7 +1201,7 @@ namespace WCMS.Framework.Utilities
         public static string UploadPhotoForPreview(int userId, FileUpload photoUpload, int photoSize = 600)
         {
             var photoPathUrl = WConfig.UserPhotoPath;
-            var absPhotoPath = WebHelper.MapPath(photoPathUrl);
+            var absPhotoPath = WebUtil.MapPath(photoPathUrl);
             var tempAbsPath = FileHelper.Combine(absPhotoPath, "temp");
             var origAbsPath = FileHelper.Combine(absPhotoPath, "original");
             var thumbsAbsPath = FileHelper.Combine(absPhotoPath, "thumb");
@@ -1235,7 +1235,7 @@ namespace WCMS.Framework.Utilities
             photoUpload.PostedFile.SaveAs(tempFile);
             ImageUtil.GenerateThumbnail(tempFile, tempThumbFile, photoSize, photoSize, true);
 
-            return WebHelper.CombineAddress(photoPathUrl, "temp", newPreviewName);
+            return WebUtil.CombineAddress(photoPathUrl, "temp", newPreviewName);
         }
     }
 }

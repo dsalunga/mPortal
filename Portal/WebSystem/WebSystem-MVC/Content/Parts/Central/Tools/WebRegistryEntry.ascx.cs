@@ -19,8 +19,8 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             if (!IsPostBack)
             {
                 TextEditor1.EditorToolbarSet = "Basic";
-                txtParent.Text = DataHelper.Get(Request, WebColumns.ParentId);
-                int id = DataHelper.GetId(Request, WebColumns.RegistryId);
+                txtParent.Text = DataUtil.Get(Request, WebColumns.ParentId);
+                int id = DataUtil.GetId(Request, WebColumns.RegistryId);
                 if (id > 0)
                 {
                     var item = WebRegistry.Get(id);
@@ -48,8 +48,8 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            int id = DataHelper.GetId(Request, WebColumns.RegistryId);
-            var parentId = DataHelper.GetId(txtParent.Text.Trim());
+            int id = DataUtil.GetId(Request, WebColumns.RegistryId);
+            var parentId = DataUtil.GetId(txtParent.Text.Trim());
             var item = id > 0 ? WebRegistry.Get(id) : new WebRegistry();
             if (item == null)
                 item = new WebRegistry();

@@ -115,7 +115,7 @@ namespace WCMS.Framework
                         }
                     }
                     while ((parentSite = parentSite.Parent) != null);
-                    return builder.Length == 0 ? WConfig.BaseAddress : WebHelper.CombineAddress(WConfig.BaseAddress, builder.ToString());
+                    return builder.Length == 0 ? WConfig.BaseAddress : WebUtil.CombineAddress(WConfig.BaseAddress, builder.ToString());
                 }
                 else
                 {
@@ -125,7 +125,7 @@ namespace WCMS.Framework
                     if (context != null)
                     {
                         string hostName = context.Request.ServerVariables["SERVER_NAME"];
-                        int port = DataHelper.GetInt32(context.Request.ServerVariables["SERVER_PORT"], 80);
+                        int port = DataUtil.GetInt32(context.Request.ServerVariables["SERVER_PORT"], 80);
 
                         defaultSiteId = WebSiteIdentity.GetDefaultSite(hostName, port);
                         if (defaultSiteId == site.Id)

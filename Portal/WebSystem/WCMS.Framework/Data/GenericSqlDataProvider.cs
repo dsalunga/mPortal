@@ -121,16 +121,16 @@ namespace WCMS.Framework.Core
                         if (prop == pk)
                         {
                             object value = r[mappingName];
-                            prop.SetValue(item, DataHelper.GetId(value), null);
+                            prop.SetValue(item, DataUtil.GetId(value), null);
                         }
                         else
                         {
                             object value = r[prop.Name];
 
                             if (prop.PropertyType == typeof(DateTime))
-                                prop.SetValue(item, DataHelper.GetDateTime(value), null);
+                                prop.SetValue(item, DataUtil.GetDateTime(value), null);
                             else if (prop.PropertyType == typeof(int))
-                                prop.SetValue(item, DataHelper.GetInt32(value), null);
+                                prop.SetValue(item, DataUtil.GetInt32(value), null);
                             else
                                 prop.SetValue(item, value.ToString(), null);
                         }
@@ -197,15 +197,15 @@ namespace WCMS.Framework.Core
                         if (prop == pk)
                         {
                             object value = r[mappingName];
-                            prop.SetValue(item, DataHelper.GetId(value), null);
+                            prop.SetValue(item, DataUtil.GetId(value), null);
                         }
                         else
                         {
                             object value = r[prop.Name];
                             if (prop.PropertyType == typeof(DateTime))
-                                prop.SetValue(item, DataHelper.GetDateTime(value), null);
+                                prop.SetValue(item, DataUtil.GetDateTime(value), null);
                             else if (prop.PropertyType == typeof(int))
-                                prop.SetValue(item, DataHelper.GetInt32(value), null);
+                                prop.SetValue(item, DataUtil.GetInt32(value), null);
                             else
                                 prop.SetValue(item, value.ToString(), null);
                         }
@@ -274,15 +274,15 @@ namespace WCMS.Framework.Core
                         if (prop == pk)
                         {
                             object value = r[mappingName];
-                            prop.SetValue(item, DataHelper.GetId(value), null);
+                            prop.SetValue(item, DataUtil.GetId(value), null);
                         }
                         else
                         {
                             object value = r[prop.Name];
                             if (prop.PropertyType == typeof(DateTime))
-                                prop.SetValue(item, DataHelper.GetDateTime(value), null);
+                                prop.SetValue(item, DataUtil.GetDateTime(value), null);
                             else if (prop.PropertyType == typeof(int))
-                                prop.SetValue(item, DataHelper.GetInt32(value), null);
+                                prop.SetValue(item, DataUtil.GetInt32(value), null);
                             else
                                 prop.SetValue(item, value.ToString(), null);
                         }
@@ -435,15 +435,15 @@ namespace WCMS.Framework.Core
                         if (prop == pk)
                         {
                             object value = r[mappingName];
-                            prop.SetValue(item, DataHelper.GetId(value), null);
+                            prop.SetValue(item, DataUtil.GetId(value), null);
                         }
                         else
                         {
                             object value = r[prop.Name];
                             if (prop.PropertyType == typeof(DateTime))
-                                prop.SetValue(item, DataHelper.GetDateTime(value), null);
+                                prop.SetValue(item, DataUtil.GetDateTime(value), null);
                             else if (prop.PropertyType == typeof(int))
-                                prop.SetValue(item, DataHelper.GetInt32(value), null);
+                                prop.SetValue(item, DataUtil.GetInt32(value), null);
                             else
                                 prop.SetValue(item, value.ToString(), null);
                         }

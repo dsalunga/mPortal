@@ -102,7 +102,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
                         q.Set(ObjectKey.KeyString, new ObjectKey(WebObjects.WebParameterSet, parameterSetId));
 
                         var fileName = query.BasePath;
-                        if (!DataHelper.IsPresent(fileName, new string[] { CentralPages.WebParameters }))
+                        if (!DataUtil.IsPresent(fileName, new string[] { CentralPages.WebParameters }))
                             q.Set(ObjectKey.KeySource, query.EncodedBasePath);
 
                         GenericTab.AddTab("tabParameters", "Parameters", q.BuildQuery(CentralPages.WebParameters), CentralPages.WebParameters);

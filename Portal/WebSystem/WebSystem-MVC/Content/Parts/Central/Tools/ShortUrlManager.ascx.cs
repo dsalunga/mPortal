@@ -23,7 +23,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             WPage page = null;
             string url;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WebShortUrl.Provider.GetList()
                 select new
                 {
@@ -31,7 +31,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     i.Name,
                     i.PageId,
                     PageUrl = (url = i.EvalUrl),
-                    PageName = (page = i.Page) != null ? page.Name : DataHelper.GetStringPreview(url, 30),
+                    PageName = (page = i.Page) != null ? page.Name : DataUtil.GetStringPreview(url, 30),
                 }
             );
         }
@@ -39,7 +39,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var context = new WContext(this);
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {

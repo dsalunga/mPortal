@@ -38,7 +38,7 @@ namespace WCMS.Common.Utilities
 
         public static bool GetBool(string name, bool defaultIfNull = false)
         {
-            return DataHelper.GetBool(Get(name), defaultIfNull);
+            return DataUtil.GetBool(Get(name), defaultIfNull);
         }
 
         //public static string Get2(string name)

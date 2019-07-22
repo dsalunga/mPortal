@@ -16,7 +16,7 @@ namespace WCMS.WebSystem.WebParts.Central
         {
             if (!Page.IsPostBack)
             {
-                int id = DataHelper.GetId(Request, WebColumns.PartControlTemplateId);
+                int id = DataUtil.GetId(Request, WebColumns.PartControlTemplateId);
                 if (id > 0)
                 {
                     WebPartControlTemplate item = WebPartControlTemplate.Get(id);

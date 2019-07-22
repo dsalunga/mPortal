@@ -17,12 +17,12 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebParameter From(IDataReader r, WebParameter source)
         {
             WebParameter item = source ?? new WebParameter();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.Value = DataHelper.Get(r, WebColumns.Value);
-            item.IsRequired = DataHelper.GetInt32(r, "IsRequired");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.Value = DataUtil.Get(r, WebColumns.Value);
+            item.IsRequired = DataUtil.GetInt32(r, "IsRequired");
 
             return item;
         }
@@ -37,7 +37,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@Value", item.Value),
                 new SqlParameter("@IsRequired", item.IsRequired));
 
-            return base.UpdatePostProcess(item, obj);
+            return UpdatePostProcess(item, obj);
         }
 
         #region IWebParameterProvider Members

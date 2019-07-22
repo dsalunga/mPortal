@@ -154,7 +154,7 @@ namespace FredCK.FCKeditorV2.FileBrowser
 
 		internal bool CheckIsTypeAllowed( string typeName )
 		{
-			return ( System.Array.IndexOf( this.AllowedTypes, typeName ) >= 0 );
+			return (Array.IndexOf( this.AllowedTypes, typeName ) >= 0 );
 		}
 
 		internal bool CheckIsNonHtmlExtension( string extension )

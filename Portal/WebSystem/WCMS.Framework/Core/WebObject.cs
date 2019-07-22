@@ -261,7 +261,7 @@ namespace WCMS.Framework.Core
 
         public static void UnloadCache()
         {
-            var items = WebObject.Provider.GetList();
+            var items = Provider.GetList();
             foreach (var item in items)
             {
                 dynamic manager = item.DataManager;
@@ -275,7 +275,7 @@ namespace WCMS.Framework.Core
         public static bool UpdateLastRecord(WebObject item)
         {
             // Get the last recordId
-            int lastRecordId = DataHelper.GetId(SqlHelper.ExecuteScalar(CommandType.Text,
+            int lastRecordId = DataUtil.GetId(SqlHelper.ExecuteScalar(CommandType.Text,
                 string.Format(DataConstants.SELECT_MAX, item.IdentityColumn, item.Name)));
 
             // If no record, assign default value of 0
@@ -295,7 +295,7 @@ namespace WCMS.Framework.Core
 
         public static IEnumerable<WebObject> UpdateLastRecords()
         {
-            var items = WebObject.GetList();
+            var items = GetList();
             var updatedObjects = new List<WebObject>();
 
             for (int i = 0; i < items.Count(); i++)
@@ -329,7 +329,7 @@ namespace WCMS.Framework.Core
 
         public static int GetCount(WebObject item)
         {
-            int count = DataHelper.GetInt32(SqlHelper.ExecuteScalar(CommandType.Text,
+            int count = DataUtil.GetInt32(SqlHelper.ExecuteScalar(CommandType.Text,
                 string.Format(DataConstants.SELECT_COUNT, item.Name)), 0);
 
             return count;
@@ -373,7 +373,7 @@ namespace WCMS.Framework.Core
 
         public static int GetNextRecordId(string name)
         {
-            WebObject item = WebObject.Get(name);
+            WebObject item = Get(name);
             if (item != null)
                 return GetNextRecordId(item.Id);
 
@@ -435,7 +435,7 @@ namespace WCMS.Framework.Core
 
         public static WebObject Get<T>()
         {
-            return WebObject.Get(typeof(T));
+            return Get(typeof(T));
         }
 
         public static WebObject Get(Type type)
@@ -469,7 +469,7 @@ namespace WCMS.Framework.Core
         {
             Type type = typeof(T);
 
-            WebObject item = WebObject.Get(type.Name);
+            WebObject item = Get(type.Name);
             if (item != null)
                 return item.GetDataProvider<T>();
 
@@ -478,7 +478,7 @@ namespace WCMS.Framework.Core
 
         public static TP ResolveProvider<T, TP>(int oid = -1) where T : IWebObject
         {
-            WebObject item = oid > 0 ? WebObject.Get(oid) : WebObject.Get<T>();
+            WebObject item = oid > 0 ? Get(oid) : Get<T>();
             if (item != null)
             {
                 if (item._dataProvider == null)
@@ -525,7 +525,7 @@ namespace WCMS.Framework.Core
 
         public static TM ResolveManager<T, TM>(TM provider, int oid = -1) where T : IWebObject
         {
-            WebObject item = oid > 0 ? WebObject.Get(oid) : WebObject.Get<T>();
+            WebObject item = oid > 0 ? Get(oid) : Get<T>();
             if (item != null)
             {
                 if (item._dataManager == null)
@@ -551,7 +551,7 @@ namespace WCMS.Framework.Core
 
         public static IDataProvider ResolveProvider(Type type)
         {
-            WebObject item = WebObject.Get(type.Name);
+            WebObject item = Get(type.Name);
             if (item != null)
             {
                 if (item._dataProvider == null)

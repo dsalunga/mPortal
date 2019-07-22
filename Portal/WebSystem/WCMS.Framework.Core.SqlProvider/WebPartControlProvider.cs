@@ -85,7 +85,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@ParentId", item.ParentId)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 

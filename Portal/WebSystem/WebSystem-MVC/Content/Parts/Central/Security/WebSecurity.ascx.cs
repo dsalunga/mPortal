@@ -21,7 +21,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
             if (!IsPostBack)
             {
                 var key = WHelper.GetObjectKey();
-                var selectedTab = DataHelper.Get(Request, "SelectedTab");
+                var selectedTab = DataUtil.Get(Request, "SelectedTab");
 
                 Action permitted = () =>
                 {
@@ -113,12 +113,12 @@ namespace WCMS.WebSystem.WebParts.Central.Security
         public DataSet SelectIPAccess(int objectId, int recordId)
         {
             var accounts = WebObjectIPAddress.GetList(objectId, recordId);
-            return DataHelper.ToDataSet(accounts);
+            return DataUtil.ToDataSet(accounts);
         }
 
         protected void gridAccounts_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -191,7 +191,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
         {
             if (hidSetId.Value.Contains(","))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(hidSetId.Value);
+                var ids = DataUtil.ParseCommaSeparatedIdList(hidSetId.Value);
 
                 // Get all object permissions
                 foreach (var id in ids)
@@ -205,7 +205,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                             if (objSecPerm == null)
                             {
                                 objSecPerm = new WebObjectSecurityPermission();
-                                objSecPerm.PermissionId = DataHelper.GetId(item.Value);
+                                objSecPerm.PermissionId = DataUtil.GetId(item.Value);
                                 objSecPerm.ObjectSecurityId = id;
                                 objSecPerm.Update();
                             }
@@ -215,7 +215,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
             }
             else
             {
-                int id = DataHelper.GetId(hidSetId.Value);
+                int id = DataUtil.GetId(hidSetId.Value);
 
                 // Get all object permissions
                 var permissions = WebObjectSecurityPermission.GetList(id);
@@ -227,7 +227,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                         if (objSecPerm == null)
                         {
                             objSecPerm = new WebObjectSecurityPermission();
-                            objSecPerm.PermissionId = DataHelper.GetId(item.Value);
+                            objSecPerm.PermissionId = DataUtil.GetId(item.Value);
                             objSecPerm.ObjectSecurityId = id;
                             objSecPerm.Update();
                         }
@@ -254,7 +254,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
             string newAccounts = txtAdd.Text.Trim();
             if (!string.IsNullOrEmpty(newAccounts))
             {
-                var accountList = DataHelper.ParseDelimitedStringToList(newAccounts, AccountConstants.AccountDelimiter); // newAccounts.Split(AccountConstants.AccountDelimiter).AsEnumerable();
+                var accountList = DataUtil.ParseDelimitedStringToList(newAccounts, AccountConstants.AccountDelimiter); // newAccounts.Split(AccountConstants.AccountDelimiter).AsEnumerable();
                 if (accountList.Count > 0)
                 {
                     foreach (string account in accountList)
@@ -381,7 +381,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
 
         protected void gridIPAddresses_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -394,7 +394,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
 
         protected void gridPublicAccounts_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -447,7 +447,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
             string newAccounts = txtPublicAdd.Text.Trim();
             if (!string.IsNullOrEmpty(newAccounts))
             {
-                var accountList = DataHelper.ParseDelimitedStringToList(newAccounts, AccountConstants.AccountDelimiter); // newAccounts.Split(AccountConstants.AccountDelimiter).AsEnumerable();
+                var accountList = DataUtil.ParseDelimitedStringToList(newAccounts, AccountConstants.AccountDelimiter); // newAccounts.Split(AccountConstants.AccountDelimiter).AsEnumerable();
                 if (accountList.Count > 0)
                 {
                     foreach (string account in accountList)
@@ -548,7 +548,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
         {
             if (hidSetId.Value.Contains(","))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(hidSetId.Value);
+                var ids = DataUtil.ParseCommaSeparatedIdList(hidSetId.Value);
 
                 foreach (var id in ids)
                 {
@@ -562,7 +562,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                             if (objSecPerm == null)
                             {
                                 objSecPerm = new WebObjectSecurityPermission();
-                                objSecPerm.PermissionId = DataHelper.GetId(item.Value);
+                                objSecPerm.PermissionId = DataUtil.GetId(item.Value);
                                 objSecPerm.ObjectSecurityId = id;
                                 objSecPerm.Update();
                             }
@@ -572,7 +572,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
             }
             else
             {
-                int id = DataHelper.GetId(hidSetId.Value);
+                int id = DataUtil.GetId(hidSetId.Value);
 
                 // Get all object permissions
                 var permissions = WebObjectSecurityPermission.GetList(id);
@@ -584,7 +584,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                         if (objSecPerm == null)
                         {
                             objSecPerm = new WebObjectSecurityPermission();
-                            objSecPerm.PermissionId = DataHelper.GetId(item.Value);
+                            objSecPerm.PermissionId = DataUtil.GetId(item.Value);
                             objSecPerm.ObjectSecurityId = id;
                             objSecPerm.Update();
                         }

@@ -15,14 +15,14 @@ namespace WCMS.Framework.Social.Providers
         protected override WallUpdate From(IDataReader r, WallUpdate source)
         {
             WallUpdate item = source ?? new WallUpdate();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.UpdateObjectId = DataHelper.GetId(r, "UpdateObjectId");
-            item.UpdateRecordId = DataHelper.GetId(r, "UpdateRecordId");
-            item.ByObjectId = DataHelper.GetId(r, "ByObjectId");
-            item.ByRecordId = DataHelper.GetId(r, "ByRecordId");
-            item.Content = DataHelper.Get(r, "Content");
-            item.UpdateDate = DataHelper.GetDateTime(r, "UpdateDate");
-            item.EventTypeId = DataHelper.GetInt32(r, "EventTypeId");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.UpdateObjectId = DataUtil.GetId(r, "UpdateObjectId");
+            item.UpdateRecordId = DataUtil.GetId(r, "UpdateRecordId");
+            item.ByObjectId = DataUtil.GetId(r, "ByObjectId");
+            item.ByRecordId = DataUtil.GetId(r, "ByRecordId");
+            item.Content = DataUtil.Get(r, "Content");
+            item.UpdateDate = DataUtil.GetDateTime(r, "UpdateDate");
+            item.EventTypeId = DataUtil.GetInt32(r, "EventTypeId");
 
             return item;
         }

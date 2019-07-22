@@ -78,7 +78,7 @@ namespace WCMS.Framework.Core
         public static bool AddHeader(int objectId, int recordId, int textResourceId)
         {
             // Check if Header is already added
-            WebObjectHeader item = WebObjectHeader.Get(objectId, recordId, textResourceId);
+            WebObjectHeader item = Get(objectId, recordId, textResourceId);
             if (item == null)
             {
                 // Create a new WebObjectHeader

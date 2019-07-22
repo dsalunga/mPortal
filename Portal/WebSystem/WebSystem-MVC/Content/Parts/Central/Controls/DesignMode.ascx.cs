@@ -284,7 +284,7 @@ namespace WCMS.WebSystem.Controls
 
         protected void cboPanels_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int previewMode = DataHelper.GetInt32(cboPanels.SelectedValue);
+            int previewMode = DataUtil.GetInt32(cboPanels.SelectedValue);
 
             SetPreviewMode(previewMode);
         }
@@ -294,12 +294,12 @@ namespace WCMS.WebSystem.Controls
             WSession.Current.InDesign = previewMode;
 
             // This still needs improvement
-            WebHelper.Redirect(Request.RawUrl, Context);
+            WebUtil.Redirect(Request.RawUrl, Context);
         }
 
         protected void cmdToggle_Click(object sender, ImageClickEventArgs e)
         {
-            int current = DataHelper.GetInt32(cboPanels.SelectedValue);
+            int current = DataUtil.GetInt32(cboPanels.SelectedValue);
             if (current != DesignerConstants.PreviewMode)
                 SetPreviewMode(DesignerConstants.PreviewMode);
             else

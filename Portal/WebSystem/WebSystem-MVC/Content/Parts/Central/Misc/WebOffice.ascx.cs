@@ -64,8 +64,8 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
 
         protected void cmdUpdate_Click(object sender, System.EventArgs e)
         {
-            int id = DataHelper.GetId(Request, WebColumns.OfficeId);
-            int parentId = DataHelper.GetId(txtParent.Text.Trim());
+            int id = DataUtil.GetId(Request, WebColumns.OfficeId);
+            int parentId = DataUtil.GetId(txtParent.Text.Trim());
 
             WebOffice parent = WebOffice.Get(parentId); //txtParent.Text.Trim());
 

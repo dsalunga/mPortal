@@ -43,15 +43,15 @@ namespace WCMS.Framework.Core
         {
             if (this.NullValue == null && this.Value == null) return true;
 
-            return DataHelper.CompareValues(this.Value, this.NullValue);
+            return DataUtil.CompareValues(this.Value, this.NullValue);
         }
 
         public override bool Equals(object obj)
         {
             if (IsValueNull())
-                return DataHelper.CompareValues(obj, this.NullValue);
+                return DataUtil.CompareValues(obj, this.NullValue);
 
-            return DataHelper.CompareValues(obj, this.Value);
+            return DataUtil.CompareValues(obj, this.Value);
         }
 
         public static QueryFilterElement Create(PropertyInfo prop, object value)

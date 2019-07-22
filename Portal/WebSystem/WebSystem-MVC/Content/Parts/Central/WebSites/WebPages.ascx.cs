@@ -15,7 +15,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
         protected void Page_Load(object sender, System.EventArgs e)
         {
             //sUserID = (Roles.IsUserInRole("Content Managers")) ? Membership.GetUser().ProviderUserKey.ToString() : null;
-            int siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+            int siteId = DataUtil.GetId(Request, WebColumns.SiteId);
 
             if (!IsPostBack)
             {
@@ -37,7 +37,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
             }
 
             // Store the Page URL to hidden field
-            int currentPageId = DataHelper.GetId(Request[WebColumns.PageId]); //tvSections.SelectedValue);
+            int currentPageId = DataUtil.GetId(Request[WebColumns.PageId]); //tvSections.SelectedValue);
             if (currentPageId > 0)
             {
                 WPage page = WPage.Get(currentPageId);

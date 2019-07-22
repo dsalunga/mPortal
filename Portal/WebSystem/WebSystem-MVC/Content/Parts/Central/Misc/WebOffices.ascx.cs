@@ -60,7 +60,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             QueryParser query = new QueryParser(this);
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -98,7 +98,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
 
         public DataSet Get(int parentId)
         {
-            return DataHelper.ToDataSet(WebOffice.GetList(parentId));
+            return DataUtil.ToDataSet(WebOffice.GetList(parentId));
         }
 
     }

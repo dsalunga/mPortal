@@ -19,9 +19,9 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebParameterSet From(IDataReader r, WebParameterSet source)
         {
             WebParameterSet item = source ?? new WebParameterSet();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.SchemaParameterName = DataHelper.Get(r, "SchemaParameterName");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.SchemaParameterName = DataUtil.Get(r, "SchemaParameterName");
 
             return item;
         }
@@ -34,7 +34,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@SchemaParameterName", item.SchemaParameterName)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
     }

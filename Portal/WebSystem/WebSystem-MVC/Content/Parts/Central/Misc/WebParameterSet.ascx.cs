@@ -67,7 +67,7 @@ namespace WCMS.WebSystem.WebParts.Central.Misc
 
         protected void cmdUpdate_Click(object sender, System.EventArgs e)
         {
-            int id = DataHelper.GetId(Request, WebColumns.ParameterSetId);
+            int id = DataUtil.GetId(Request, WebColumns.ParameterSetId);
 
             WebParameterSet item = (id > 0) ? WebParameterSet.Provider.Get(id) : new WebParameterSet();
             item.Name = txtName.Text.Trim();

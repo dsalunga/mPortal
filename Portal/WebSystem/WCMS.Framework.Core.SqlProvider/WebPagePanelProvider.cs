@@ -45,9 +45,9 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebPagePanel From(DbDataReader r)
         {
             WebPagePanel item = new WebPagePanel();
-            item.Id = DataHelper.GetId(r["PagePanelId"]);
-            item.TemplatePanelId = DataHelper.GetId(r["TemplatePanelId"]);
-            item.PageId = DataHelper.GetId(r["PageId"]);
+            item.Id = DataUtil.GetId(r["PagePanelId"]);
+            item.TemplatePanelId = DataUtil.GetId(r["TemplatePanelId"]);
+            item.PageId = DataUtil.GetId(r["PageId"]);
             item.UsageTypeId = Convert.ToInt32(r["UsageTypeId"].ToString());
 
             return item;
@@ -76,7 +76,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@UsageTypeId", item.UsageTypeId)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 

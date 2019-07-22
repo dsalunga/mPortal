@@ -105,7 +105,7 @@ namespace WCMS.WebSystem.WebParts.Central
             if (string.IsNullOrEmpty(userName))
                 userName = Guid.NewGuid().ToString("D");
 
-            int userId = DataHelper.GetId(hiddenUserId.Value);
+            int userId = DataUtil.GetId(hiddenUserId.Value);
             var user = userId > 0 ? WebUser.Get(userId) : new WebUser();
             user.FirstName = this.FirstName;
             user.UserName = userName;
@@ -224,14 +224,14 @@ namespace WCMS.WebSystem.WebParts.Central
 
         public int Status
         {
-            get { return DataHelper.GetInt32(cboStatus.SelectedValue); }
-            set { WebHelper.SetCboValue(cboStatus, value); }
+            get { return DataUtil.GetInt32(cboStatus.SelectedValue); }
+            set { WebUtil.SetCboValue(cboStatus, value); }
         }
 
         public int ProviderId
         {
-            get { return DataHelper.GetInt32(cboUserProviders.SelectedValue); }
-            set { WebHelper.SetCboValue(cboUserProviders, value); }
+            get { return DataUtil.GetInt32(cboUserProviders.SelectedValue); }
+            set { WebUtil.SetCboValue(cboUserProviders, value); }
         }
 
         public string EmailAddress

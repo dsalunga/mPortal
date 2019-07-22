@@ -30,7 +30,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             WPage page = null;
             var cache = PerformanceLog.Cache;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in cache
                 where ((page = i.PageId > 0 ? WPage.Get(i.PageId) : null) == null || true)
                 select new
@@ -63,7 +63,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             WPage page = null;
             var cache = PerformanceLog.Cache;
 
-            var ds = DataHelper.ToDataSet(
+            var ds = DataUtil.ToDataSet(
                 from i in cache
                 where ((page = i.PageId > 0 ? WPage.Get(i.PageId) : null) == null || true)
                 select new
@@ -78,7 +78,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 }
             );
 
-            WebHelper.DownloadAsXml(ds);
+            WebUtil.DownloadAsXml(ds);
         }
 
         protected void cmdToggle_Click(object sender, EventArgs e)

@@ -50,12 +50,12 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebFolder From(SqlDataReader r)
         {
             WebFolder item = new WebFolder();
-            item.Id = DataHelper.GetId(r["Id"]);
+            item.Id = DataUtil.GetId(r["Id"]);
             item.Name = r["Name"].ToString();
-            item.ParentId = DataHelper.GetId(r["ParentId"]);
+            item.ParentId = DataUtil.GetId(r["ParentId"]);
             item.ShareName = r["ShareName"].ToString();
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.SiteId = DataHelper.GetId(r, WebColumns.SiteId);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.SiteId = DataUtil.GetId(r, WebColumns.SiteId);
 
             return item;
         }
@@ -127,7 +127,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@ObjectId", item.ObjectId),
                 new SqlParameter("@SiteId", item.SiteId));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

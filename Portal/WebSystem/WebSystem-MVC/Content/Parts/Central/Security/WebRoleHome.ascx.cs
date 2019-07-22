@@ -17,7 +17,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
             if (!Page.IsPostBack)
             {
                 QueryParser qs = new QueryParser(this);
-                int id = DataHelper.GetId(qs[WebColumns.RoleId]);
+                int id = DataUtil.GetId(qs[WebColumns.RoleId]);
                 if (id > 0)
                 {
                     linkProperties.HRef = qs.BuildQuery(CentralPages.WebRole);

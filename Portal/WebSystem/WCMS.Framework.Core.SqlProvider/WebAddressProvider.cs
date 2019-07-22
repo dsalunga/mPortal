@@ -48,19 +48,19 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebAddress From(IDataReader r, WebAddress source)
         {
             WebAddress item = source ?? new WebAddress();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.AddressLine1 = DataHelper.Get(r, "AddressLine1");
-            item.AddressLine2 = DataHelper.Get(r, "AddressLine2");
-            item.CityTown = DataHelper.Get(r, "CityTown");
-            item.StateProvince = DataHelper.Get(r, "StateProvince");
-            item.StateProvinceCode = DataHelper.GetId(r, "StateProvinceCode");
-            item.CountryCode = DataHelper.GetId(r, "CountryCode");
-            item.ZipCode = DataHelper.Get(r, "ZipCode");
-            item.PhoneNumber = DataHelper.Get(r, "PhoneNumber");
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.Tag = DataHelper.Get(r, "Tag");
-            item.LastUpdated = DataHelper.GetDateTime(r, "LastUpdated");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.AddressLine1 = DataUtil.Get(r, "AddressLine1");
+            item.AddressLine2 = DataUtil.Get(r, "AddressLine2");
+            item.CityTown = DataUtil.Get(r, "CityTown");
+            item.StateProvince = DataUtil.Get(r, "StateProvince");
+            item.StateProvinceCode = DataUtil.GetId(r, "StateProvinceCode");
+            item.CountryCode = DataUtil.GetId(r, "CountryCode");
+            item.ZipCode = DataUtil.Get(r, "ZipCode");
+            item.PhoneNumber = DataUtil.Get(r, "PhoneNumber");
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.Tag = DataUtil.Get(r, "Tag");
+            item.LastUpdated = DataUtil.GetDateTime(r, "LastUpdated");
 
             return item;
         }
@@ -89,7 +89,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@LastUpdated", item.LastUpdated)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

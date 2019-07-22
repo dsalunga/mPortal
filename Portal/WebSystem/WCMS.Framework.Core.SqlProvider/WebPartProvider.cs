@@ -87,7 +87,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@Active", item.Active)
                 );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 

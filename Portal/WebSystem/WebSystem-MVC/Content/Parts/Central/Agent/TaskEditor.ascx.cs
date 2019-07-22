@@ -31,7 +31,7 @@ namespace WCMS.WebSystem.WebParts.Central.Agent
                 cboExecutionStatus.DataSource = ExecutionStatus.KeyValues;
                 cboExecutionStatus.DataBind();
 
-                var id = DataHelper.GetId(Request, "Id");
+                var id = DataUtil.GetId(Request, "Id");
                 if (id > 0)
                 {
                     WebJob job = WebJob.Provider.Get(id);
@@ -47,7 +47,7 @@ namespace WCMS.WebSystem.WebParts.Central.Agent
 
                         foreach (ListItem item in cblWeekdays.Items)
                         {
-                            var value = DataHelper.GetInt32(item.Value);
+                            var value = DataUtil.GetInt32(item.Value);
                             if(value > 0)
                                 item.Selected = (job.Weekdays & value) > 0;
                         }
@@ -68,26 +68,26 @@ namespace WCMS.WebSystem.WebParts.Central.Agent
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            var id = DataHelper.GetId(Request, "Id");
+            var id = DataUtil.GetId(Request, "Id");
             var item = id > 0 ? WebJob.Provider.Get(id) : new WebJob();
 
             item.Name = txtName.Text.Trim();
-            item.RecurrenceId = DataHelper.GetId(cboRecurrence.SelectedValue);
+            item.RecurrenceId = DataUtil.GetId(cboRecurrence.SelectedValue);
 
             int weekdays = 0;
             foreach (ListItem i in cblWeekdays.Items)
             {
                 if (i.Selected)
-                    weekdays += DataHelper.GetInt32(i.Value);
+                    weekdays += DataUtil.GetInt32(i.Value);
             }
 
             item.Weekdays = weekdays;
-            item.OccursEvery = DataHelper.GetInt32(txtOccursEvery.Text.Trim());
+            item.OccursEvery = DataUtil.GetInt32(txtOccursEvery.Text.Trim());
             item.Enabled = chkEnabled.Checked ? 1 : 0;
             item.TypeName = txtTypeName.Text.Trim();
-            item.StartDate = DataHelper.GetDateTime(txtStartDate.Text.Trim());
+            item.StartDate = DataUtil.GetDateTime(txtStartDate.Text.Trim());
             item.Description = txtDesription.Text.Trim();
-            item.ExecutionStatus = DataHelper.GetInt32(cboExecutionStatus.SelectedValue);
+            item.ExecutionStatus = DataUtil.GetInt32(cboExecutionStatus.SelectedValue);
             item.Update();
 
             this.ReturnPage(item.Id);

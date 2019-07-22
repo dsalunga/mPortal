@@ -65,10 +65,10 @@ namespace WCMS.WebSystem.WebParts.Central
                             item.Rank,
                             item.DateModified,
                             TitleUrl = query.Set(WebColumns.TextResourceId, item.Id).BuildQuery(CentralPages.WebResource),
-                            Content = DataHelper.GetStringPreview(item.Content, WConstants.PreviewChars)
+                            Content = DataUtil.GetStringPreview(item.Content, WConstants.PreviewChars)
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         protected void cmdOpen_Click(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace WCMS.WebSystem.WebParts.Central
                     string keyString = query.Get(ObjectKey.KeyString);
                     if (!string.IsNullOrEmpty(keyString))
                     {
-                        int resourceId = DataHelper.GetId(e.CommandArgument);
+                        int resourceId = DataUtil.GetId(e.CommandArgument);
                         var key = new ObjectKey(keyString);
 
                         var objectHeader = WebObjectHeader.Get(key.ObjectId, key.RecordId, resourceId);
@@ -115,7 +115,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
         protected void cboContentTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var contentType = DataHelper.GetInt32(cboContentTypes.SelectedValue);
+            var contentType = DataUtil.GetInt32(cboContentTypes.SelectedValue);
             var query = new QueryParser(this);
 
             if (contentType > 0)

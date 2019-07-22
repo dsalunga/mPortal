@@ -79,12 +79,12 @@ namespace WCMS.Framework
 
         public WebGroup Parent
         {
-            get { return WebGroup.Get(ParentId); }
+            get { return Get(ParentId); }
         }
 
         public IEnumerable<WebGroup> Children
         {
-            get { return WebGroup.Provider.GetList(this.Id); }
+            get { return Provider.GetList(this.Id); }
         }
 
         public static IWebGroupProvider Provider
@@ -297,11 +297,11 @@ namespace WCMS.Framework
         {
             string[] parts = shortString.Split('\\');
 
-            int objectId = DataHelper.GetId(parts.First());
-            int recordId = DataHelper.GetId(parts[1]);
+            int objectId = DataUtil.GetId(parts.First());
+            int recordId = DataUtil.GetId(parts[1]);
 
             if (objectId == WebObjects.WebGroup)
-                return WebGroup.Get(recordId);
+                return Get(recordId);
             else
                 return null;
         }
@@ -327,14 +327,14 @@ namespace WCMS.Framework
                     if (string.IsNullOrEmpty(nodeName))
                         continue;
 
-                    parentId = WebGroup.Provider.Get(parentId, nodeName).Id;
+                    parentId = Provider.Get(parentId, nodeName).Id;
                 }
 
                 string lastNode = nodeNames[nodeNames.Length - 1];
-                return WebGroup.Provider.Get(parentId, lastNode);
+                return Provider.Get(parentId, lastNode);
             }
 
-            return WebGroup.GetByAny(path);
+            return GetByAny(path);
         }
 
         public static bool IsValidUniqueName(string uniqueName)
@@ -345,7 +345,7 @@ namespace WCMS.Framework
         public static WebGroup GetByUniqueName(string uniqueName)
         {
             if (IsValidUniqueName(uniqueName))
-                return WebGroup.Get(uniqueName.Substring(AccountConstants.GROUP_PREFIX.Length));
+                return Get(uniqueName.Substring(AccountConstants.GROUP_PREFIX.Length));
 
             return null;
         }
@@ -358,7 +358,7 @@ namespace WCMS.Framework
         public static WebGroup GetByAny(string name)
         {
             if (IsValidUniqueName(name))
-                return WebGroup.Get(name.Substring(AccountConstants.GROUP_PREFIX.Length));
+                return Get(name.Substring(AccountConstants.GROUP_PREFIX.Length));
             else
                 return Get(name);
         }

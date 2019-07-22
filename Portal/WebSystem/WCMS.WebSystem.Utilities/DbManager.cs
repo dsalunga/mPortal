@@ -79,7 +79,7 @@ namespace WCMS.WebSystem.Utilities
 
                 try
                 {
-                    var items = from id in DataHelper.ParseCommaSeparatedIdList(selected)
+                    var items = from id in DataUtil.ParseCommaSeparatedIdList(selected)
                                 select WebObject.Get(id);
 
                     foreach (var item in items)

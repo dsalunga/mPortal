@@ -18,7 +18,7 @@ namespace WCMS.WebSystem.WebParts.Central
         {
             if (!Page.IsPostBack)
             {
-                int partId = DataHelper.GetId(Request, WebColumns.PartId);
+                int partId = DataUtil.GetId(Request, WebColumns.PartId);
                 WPart part = null;
                 if (partId > 0 && (part = WPart.Get(partId)) != null)
                     lblName.InnerHtml = part.Name;
@@ -26,7 +26,7 @@ namespace WCMS.WebSystem.WebParts.Central
                 this.PopulateTreeView();
 
                 // LOCATE THE SELECTED NODE
-                int parentId = DataHelper.GetId(Request, WebColumns.ParentId);
+                int parentId = DataUtil.GetId(Request, WebColumns.ParentId);
                 if (parentId > 0)
                     this.FindTreeNode(tvSections.Nodes, parentId);
 
@@ -118,7 +118,7 @@ namespace WCMS.WebSystem.WebParts.Central
             {
                 foreach (string s in sChecked.Split(','))
                 {
-                    int partAdminId = DataHelper.GetId(s);
+                    int partAdminId = DataUtil.GetId(s);
                     if (partAdminId > 0)
                         WebPartAdmin.Delete(partAdminId);
                 }
@@ -130,7 +130,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int partAdminId = DataHelper.GetId(e.CommandArgument);
+            int partAdminId = DataUtil.GetId(e.CommandArgument);
             var query = new QueryParser(this);
             query.Set(WebColumns.PartAdminId, partAdminId);
 
@@ -156,10 +156,10 @@ namespace WCMS.WebSystem.WebParts.Central
             string sChecked = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(sChecked))
             {
-                int parentId = DataHelper.GetId(cboSections.SelectedValue);
+                int parentId = DataUtil.GetId(cboSections.SelectedValue);
                 if (parentId > 0)
                 {
-                    var items = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                    var items = DataUtil.ParseCommaSeparatedIdList(sChecked);
                     foreach (var id in items)
                     {
                         var item = WebPartAdmin.Get(id);
@@ -177,7 +177,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
         protected void cmdGO_Click(object sender, EventArgs e)
         {
-            this.FindTreeNode(tvSections.Nodes, DataHelper.GetId(cboSections.SelectedValue));
+            this.FindTreeNode(tvSections.Nodes, DataUtil.GetId(cboSections.SelectedValue));
         }
 
         private bool FindTreeNode(TreeNodeCollection nodes, int sValue)
@@ -205,7 +205,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
         protected void tvSections_SelectedNodeChanged(object sender, EventArgs e)
         {
-            this.SelectSection(DataHelper.GetId(tvSections.SelectedValue));
+            this.SelectSection(DataUtil.GetId(tvSections.SelectedValue));
             tvSections.SelectedNode.Expand();
         }
 
@@ -245,7 +245,7 @@ namespace WCMS.WebSystem.WebParts.Central
         public DataSet Select(int partId, int parentId)
         {
             if (partId > 0)
-                return DataHelper.ToDataSet(WebPartAdmin.GetList(partId, parentId));
+                return DataUtil.ToDataSet(WebPartAdmin.GetList(partId, parentId));
             else
                 return null;
         }

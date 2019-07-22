@@ -73,7 +73,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     return;
                 }
 
-                string folder = Server.MapPath(WebHelper.TEMP_DATA_PATH);
+                string folder = Server.MapPath(WebUtil.TEMP_DATA_PATH);
 
                 // Create the directory if it does not exists.
                 if (!Directory.Exists(folder))
@@ -177,7 +177,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             {
                 try
                 {
-                    string folder = Server.MapPath(WebHelper.TEMP_DATA_PATH);
+                    string folder = Server.MapPath(WebUtil.TEMP_DATA_PATH);
 
                     // Create the directory if it does not exists.
                     //if (!Directory.Exists(sFolder))

@@ -56,7 +56,7 @@ namespace WCMS.Common.Utilities
 
         public static string ToCompactTime(string dateString)
         {
-            return DataHelper.GetDateTime(dateString).ToString("HH:mm");
+            return DataUtil.GetDateTime(dateString).ToString("HH:mm");
         }
 
         public static DateTime ParseTicks(string dateTicks)

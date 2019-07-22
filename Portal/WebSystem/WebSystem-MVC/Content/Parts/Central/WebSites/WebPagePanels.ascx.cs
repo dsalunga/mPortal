@@ -46,7 +46,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
                                    PanelUsage = PanelUsage.ToString((tempPanel = WebPagePanel.Get(panel.Id, pageId)) == null ? -1 : tempPanel.UsageTypeId)
                                };
 
-            return DataHelper.ToDataSet(resultPanels);
+            return DataUtil.ToDataSet(resultPanels);
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)

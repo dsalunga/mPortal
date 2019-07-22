@@ -99,11 +99,11 @@ namespace WCMS.Framework.Core
                 string nodeName = nodeNames[i].Trim();
                 if (string.IsNullOrEmpty(nodeName)) continue;
 
-                parentId = WebFolder.Provider.Get(parentId, nodeName).Id;
+                parentId = Provider.Get(parentId, nodeName).Id;
             }
 
             string lastNode = nodeNames[nodeNames.Length - 1];
-            return WebFolder.Provider.Get(parentId, lastNode);
+            return Provider.Get(parentId, lastNode);
         }
 
         #endregion

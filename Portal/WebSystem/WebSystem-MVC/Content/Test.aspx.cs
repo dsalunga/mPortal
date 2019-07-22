@@ -120,7 +120,7 @@ namespace WCMS.WebSystem
             watch.Start();
             for (int i = 0; i < 100; i++)
             {
-                var ds = DataHelper.ToDataSet(sites);
+                var ds = DataUtil.ToDataSet(sites);
 
                 //foreach (var item in sites)
                 //{
@@ -137,7 +137,7 @@ namespace WCMS.WebSystem
             watch.Start();
             for (int i = 0; i < 100; i++)
             {
-                var ds = DataHelper.ToDataSet(from s in sites
+                var ds = DataUtil.ToDataSet(from s in sites
                                               select new
                                               {
                                                   s.Id,
@@ -285,9 +285,9 @@ namespace WCMS.WebSystem
         {
             var sites = WSite.GetList();
 
-            var sitesXml = DataHelper.ToXml(sites, "Sites");
+            var sitesXml = DataUtil.ToXml(sites, "Sites");
 
-            var sites2 = DataHelper.FromXml<WSite>(sitesXml);
+            var sites2 = DataUtil.FromXml<WSite>(sitesXml);
         }
 
         protected void cmdFtpDownload_Click(object sender, EventArgs e)

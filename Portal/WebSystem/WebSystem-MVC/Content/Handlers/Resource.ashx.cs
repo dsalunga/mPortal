@@ -23,12 +23,12 @@ namespace WCMS.WebSystem.Handlers
         public void ProcessRequest(HttpContext context)
         {
             WebTextResource res = null;
-            int id = DataHelper.GetId(context.Request, WebColumns.Id);
+            int id = DataUtil.GetId(context.Request, WebColumns.Id);
 
             if (id > 0 && (res = WebTextResource.Get(id)) != null) { }
             else
             {
-                var name = DataHelper.Get(context.Request, WebColumns.Name);
+                var name = DataUtil.Get(context.Request, WebColumns.Name);
                 if (!string.IsNullOrEmpty(name))
                     res = WebTextResource.Provider.Get(name);
             }

@@ -68,7 +68,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@Rank", item.Rank)
             );
 
-            item.Id = DataHelper.GetId(o.ToString());
+            item.Id = DataUtil.GetId(o.ToString());
 
             return item.Id;
         }
@@ -85,12 +85,12 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebTemplatePanel From(DbDataReader r)
         {
             WebTemplatePanel item = new WebTemplatePanel();
-            item.Id = DataHelper.GetId(r, "TemplatePanelId");
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
+            item.Id = DataUtil.GetId(r, "TemplatePanelId");
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
             item.PanelName = r["PanelName"].ToString();
-            item.Rank = DataHelper.GetInt32(r, WebColumns.Rank);
+            item.Rank = DataUtil.GetInt32(r, WebColumns.Rank);
 
             return item;
         }

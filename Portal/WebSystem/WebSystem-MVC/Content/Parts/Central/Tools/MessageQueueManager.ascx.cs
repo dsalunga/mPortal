@@ -72,7 +72,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
         {
             var items = SelectInternal(fromDate);
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from l in items
                 orderby l.DateCreated descending
                 select new
@@ -98,7 +98,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             switch (groupBy)
             {
                 case "User":
-                    return DataHelper.ToDataSet(SelectInternal(fromDate)
+                    return DataUtil.ToDataSet(SelectInternal(fromDate)
                         .GroupBy(i => i.Sender.Id)
                         .Select(i => new
                         {
@@ -108,7 +108,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     ));
             }
 
-            return DataHelper.GetEmptyDataSet();
+            return DataUtil.GetEmptyDataSet();
         }
 
         private static string FormatUserData(WebUser user, string formatString)
@@ -150,7 +150,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             switch (e.CommandName)
             {
                 case "Custom_Delete":
-                    var id = DataHelper.GetId(e.CommandArgument);
+                    var id = DataUtil.GetId(e.CommandArgument);
                     if (id > 0)
                     {
                         WebMessageQueue.Provider.Delete(id);

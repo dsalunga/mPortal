@@ -41,7 +41,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 }
             }
 
-            return DataHelper.GetEmptyDataSet();
+            return DataUtil.GetEmptyDataSet();
         }
     }
 }

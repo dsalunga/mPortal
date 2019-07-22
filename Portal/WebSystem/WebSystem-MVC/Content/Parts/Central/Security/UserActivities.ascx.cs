@@ -74,7 +74,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
         {
             if (cboDelete.Visible)
             {
-                EventLog.Provider.Delete(DataHelper.GetDateTime(cboDelete.SelectedValue));
+                EventLog.Provider.Delete(DataUtil.GetDateTime(cboDelete.SelectedValue));
                 GridView1.DataBind();
             }
         }
@@ -83,7 +83,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
         {
             var items = SelectInternal(userId, fromDate);
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from l in items
                 select new
                 {
@@ -133,7 +133,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                 //    ));
 
                 case "Event":
-                    return DataHelper.ToDataSet(items
+                    return DataUtil.ToDataSet(items
                         .GroupBy(i => i.EventName)
                         .Select(i => new
                         {
@@ -143,7 +143,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                     ));
 
                 case "IPAddress":
-                    return DataHelper.ToDataSet(items
+                    return DataUtil.ToDataSet(items
                         .GroupBy(i => i.IPAddress)
                         .Select(i => new
                         {
@@ -153,7 +153,7 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                     ));
             }
 
-            return DataHelper.GetEmptyDataSet();
+            return DataUtil.GetEmptyDataSet();
         }
 
         protected void cboGroupBy_SelectedIndexChanged(object sender, EventArgs e)

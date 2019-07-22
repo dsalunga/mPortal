@@ -80,7 +80,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@ObjectId", objectId),
                 new SqlParameter("@TemplatePanelId", templatePanelId));
 
-            return DataHelper.GetId(o);
+            return DataUtil.GetId(o);
         }
 
         public int GetMaxRank(int recordId, int objectId, int templatePanelId)
@@ -90,7 +90,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@ObjectId", objectId),
                 new SqlParameter("@TemplatePanelId", templatePanelId));
 
-            return DataHelper.GetId(o);
+            return DataUtil.GetId(o);
         }
 
         public int Update(WebPageElement item)
@@ -112,7 +112,7 @@ namespace WCMS.Framework.Core.SqlProvider
             );
 
             if (o != null)
-                item.Id = DataHelper.GetId(o.ToString());
+                item.Id = DataUtil.GetId(o.ToString());
 
             return item.Id;
         }
@@ -128,17 +128,17 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebPageElement From(DbDataReader r)
         {
             WebPageElement item = new WebPageElement();
-            item.Id = DataHelper.GetId(r["PageElementId"].ToString());
-            item.RecordId = DataHelper.GetId(r["RecordId"].ToString());
+            item.Id = DataUtil.GetId(r["PageElementId"].ToString());
+            item.RecordId = DataUtil.GetId(r["RecordId"].ToString());
             item.Name = r["Name"].ToString();
-            item.TemplatePanelId = DataHelper.GetId(r["TemplatePanelId"].ToString());
+            item.TemplatePanelId = DataUtil.GetId(r["TemplatePanelId"].ToString());
             item.Rank = Convert.ToInt32(r["Rank"].ToString());
             item.Active = Convert.ToInt32(r["Active"].ToString());
-            item.PartControlTemplateId = DataHelper.GetId(r["PartControlTemplateId"].ToString());
-            item.ObjectId = DataHelper.GetId(r["ObjectId"]);
-            item.UsePartTemplatePath = DataHelper.GetInt32(r["UsePartTemplatePath"]);
-            item.PublicAccess = DataHelper.GetId(r["PublicAccess"]);
-            item.ManagementAccess = DataHelper.GetInt32(r, "ManagementAccess");
+            item.PartControlTemplateId = DataUtil.GetId(r["PartControlTemplateId"].ToString());
+            item.ObjectId = DataUtil.GetId(r["ObjectId"]);
+            item.UsePartTemplatePath = DataUtil.GetInt32(r["UsePartTemplatePath"]);
+            item.PublicAccess = DataUtil.GetId(r["PublicAccess"]);
+            item.ManagementAccess = DataUtil.GetInt32(r, "ManagementAccess");
 
             return item;
         }
@@ -176,7 +176,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public int GetCount()
         {
             object o = SqlHelper.ExecuteScalar("WebPageElement_GetCount");
-            return DataHelper.GetId(o);
+            return DataUtil.GetId(o);
         }
 
         #endregion

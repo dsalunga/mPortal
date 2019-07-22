@@ -39,7 +39,7 @@ namespace WCMS.Framework.Core.SqlProvider
         private WebGlobalPolicy From(SqlDataReader r)
         {
             WebGlobalPolicy item = new WebGlobalPolicy();
-            item.Id = DataHelper.GetId(r["GlobalPolicyId"]);
+            item.Id = DataUtil.GetId(r["GlobalPolicyId"]);
             item.Name = r["Name"].ToString();
             return item;
         }
@@ -80,7 +80,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@GlobalPolicyId", item.Id),
                 new SqlParameter("@Name", item.Name));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

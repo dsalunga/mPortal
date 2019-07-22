@@ -26,7 +26,7 @@ namespace WCMS.Framework.Core.SqlProvider.Smo
             var server = new Server(new ServerConnection(new SqlConnection(connString)));
 
             //Reference the AdventureWorks database. 
-            var db = server.Databases[ConfigHelper.Get("WebObject.SqlDbName")];
+            var db = server.Databases[ConfigUtil.Get("WebObject.SqlDbName")];
 
             foreach (Table tb in db.Tables)
             {
@@ -54,7 +54,7 @@ namespace WCMS.Framework.Core.SqlProvider.Smo
         {
             //Connect to the local, default instance of SQL Server. 
             string connString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            string dbName = ConfigHelper.Get("WebObject.SqlDbName");
+            string dbName = ConfigUtil.Get("WebObject.SqlDbName");
 
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connString);
             builder.InitialCatalog = "master";
@@ -80,7 +80,7 @@ namespace WCMS.Framework.Core.SqlProvider.Smo
             string connString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             var server = new Server(new ServerConnection(new SqlConnection(connString)));
 
-            var dbName = ConfigHelper.Get("WebObject.SqlDbName");
+            var dbName = ConfigUtil.Get("WebObject.SqlDbName");
 
             //Reference the database. 
             var db = server.Databases[dbName];

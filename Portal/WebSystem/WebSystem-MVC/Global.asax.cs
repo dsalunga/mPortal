@@ -98,7 +98,7 @@ namespace WCMS.WebSystem
                     WebObject.LoadCache();
                 }
 
-                if (DataHelper.GetBool(ConfigHelper.Get("WCMS:AgentAutoStart"), false))
+                if (DataUtil.GetBool(ConfigUtil.Get("WCMS:AgentAutoStart"), false))
                     AgentHelper.ExecuteAutoStart();
             };
 
@@ -170,7 +170,7 @@ namespace WCMS.WebSystem
                     Server.ClearError();
 
                     var url = string.Format("/Error.aspx?Message={0}&Url={1}", Server.UrlEncode(description), Server.UrlEncode(requestUrl));
-                    WebHelper.Redirect(url, Context);
+                    WebUtil.Redirect(url, Context);
                 }
             }
             catch (Exception ex)
@@ -193,7 +193,7 @@ namespace WCMS.WebSystem
             catch (Exception ex)
             {
                 LogHelper.WriteLog(ex);
-                WebHelper.Redirect(CentralPages.Setup, Context);
+                WebUtil.Redirect(CentralPages.Setup, Context);
             }
         }
 
@@ -269,7 +269,7 @@ namespace WCMS.WebSystem
                 }
                 else if (result.Item2 != null)
                 {
-                    WebHelper.Redirect(result.Item2, Context);
+                    WebUtil.Redirect(result.Item2, Context);
                 }
 
                 //else if (!File.Exists(Request.MapPath(urlPath))) // TODO: Cache the physical files so no need to check disk

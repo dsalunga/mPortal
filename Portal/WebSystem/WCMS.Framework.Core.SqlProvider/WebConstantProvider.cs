@@ -101,7 +101,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@Text", item.Text)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
 
             //if (WebConstant.ObjectCache.ContainsKey(item.Id))
             //{
@@ -131,7 +131,7 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebConstant From(IDataReader r, WebConstant source)
         {
             WebConstant item = source ?? new WebConstant();
-            item.Id = DataHelper.GetId(r["ConstantId"]);
+            item.Id = DataUtil.GetId(r["ConstantId"]);
             item.Value = r["Value"] as string;
             item.Rank = Convert.ToInt32(r["Rank"] as string);
             item.Category = r["Category"] as string;

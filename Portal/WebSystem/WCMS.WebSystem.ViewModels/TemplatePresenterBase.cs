@@ -21,7 +21,7 @@ namespace WCMS.WebSystem
         public TemplatePresenterBase(string sourceXmlPath)
             : this()
         {
-            string path = WebHelper.MapPath(sourceXmlPath);
+            string path = WebUtil.MapPath(sourceXmlPath);
 
             XmlDocument xdoc = new XmlDocument();
             xdoc.Load(path);

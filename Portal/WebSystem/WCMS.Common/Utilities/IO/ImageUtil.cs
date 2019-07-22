@@ -172,7 +172,7 @@ namespace WCMS.Common.Utilities
             var codecEncoder = GetEncoder(format);
 
             var encoderParameters = new EncoderParameters(1);
-            encoderParameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Compression, compression);          // 100% Percent Compression (Lowest quality)
+            encoderParameters.Param[0] = new EncoderParameter(Encoder.Compression, compression);          // 100% Percent Compression (Lowest quality)
             //encoderParameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100);          // Opposite of Compression
 
             using (var memStream = new MemoryStream())
@@ -202,7 +202,7 @@ namespace WCMS.Common.Utilities
             else
                 thumbWidth = (imageSource.Width * maxHeight) / imageSource.Height;
 
-            return ImageUtil.CreateThumbnail(imageSource, thumbnailImage, thumbWidth, thumbHeight, ImageFormat.Jpeg);
+            return CreateThumbnail(imageSource, thumbnailImage, thumbWidth, thumbHeight, ImageFormat.Jpeg);
         }
 
         public static bool GenerateThumbnailW(string sourceImage, string thumbnailImage, int width)
@@ -210,7 +210,7 @@ namespace WCMS.Common.Utilities
             using (Image imageSource = new Bitmap(sourceImage))
             {
                 int height = (int)((double)imageSource.Height * width) / imageSource.Width; ;
-                return ImageUtil.GenerateThumbnail(sourceImage, thumbnailImage, width, height, ImageFormat.Jpeg);
+                return GenerateThumbnail(sourceImage, thumbnailImage, width, height, ImageFormat.Jpeg);
             }
         }
         public static bool GenerateThumbnailH(string sourceImage, string thumbnailImage, int height)
@@ -218,7 +218,7 @@ namespace WCMS.Common.Utilities
             using (Image imageSource = new Bitmap(sourceImage))
             {
                 int iWidth = (int)((double)imageSource.Width * height) / imageSource.Height;
-                return ImageUtil.GenerateThumbnail(sourceImage, thumbnailImage, iWidth, height, ImageFormat.Jpeg);
+                return GenerateThumbnail(sourceImage, thumbnailImage, iWidth, height, ImageFormat.Jpeg);
             }
         }
 
@@ -288,7 +288,7 @@ namespace WCMS.Common.Utilities
                 }
                 else
                 {
-                    return Image.FromFile(WebHelper.MapPath(url));
+                    return Image.FromFile(WebUtil.MapPath(url));
                 }
             }
             catch (Exception ex)

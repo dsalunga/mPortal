@@ -36,7 +36,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
         public DataSet GetList()
         {
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in WebParameterSet.Provider.GetList()
                 select new
                 {
@@ -62,7 +62,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
         protected void cmdExport_Click(object sender, EventArgs e)
         {
-            var id = DataHelper.GetId(cboParamSets.SelectedValue);
+            var id = DataUtil.GetId(cboParamSets.SelectedValue);
             if (id > 0)
             {
                 var item = WebParameterSet.Provider.Get(id);
@@ -80,7 +80,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     writer.WriteStartElement("ParameterSets");
                     writer.WriteStartElement("ParameterSet");
 
-                    writer.WriteRaw(DataHelper.ToXml<WebParameterSet>(item, "Item"));
+                    writer.WriteRaw(DataUtil.ToXml(item, "Item"));
 
                     ParameterizedWebObject.WriteParameters(item, writer);
 
@@ -88,12 +88,12 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     writer.WriteEndElement();
                     writer.Flush();
 
-                    var webPath = WebHelper.CombineAddress(WConfig.TempFolder, string.Format("ParameterSet-XML-{0:yyyyMMdd}.xml", DateTime.Now));
-                    var path = WebHelper.MapPath(webPath);
+                    var webPath = WebUtil.CombineAddress(WConfig.TempFolder, string.Format("ParameterSet-XML-{0:yyyyMMdd}.xml", DateTime.Now));
+                    var path = WebUtil.MapPath(webPath);
 
                     FileHelper.WriteFile(output.ToString(), path);
 
-                    WebHelper.DownloadFile(path, needMapping: false);
+                    WebUtil.DownloadFile(path, needMapping: false);
                 }
             }
         }
@@ -103,13 +103,13 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             if (FileUpload1.HasFile)
             {
                 // Make sure TempFolder is present
-                var absTempPath = WebHelper.MapPath(WConfig.TempFolder);
+                var absTempPath = WebUtil.MapPath(WConfig.TempFolder);
                 if (!Directory.Exists(absTempPath))
                     Directory.CreateDirectory(absTempPath);
 
                 var fileName = FileUpload1.FileName;
-                var webPath = WebHelper.CombineAddress(WConfig.TempFolder, fileName);
-                var path = WebHelper.MapPath(webPath);
+                var webPath = WebUtil.CombineAddress(WConfig.TempFolder, fileName);
+                var path = WebUtil.MapPath(webPath);
 
                 FileUpload1.PostedFile.SaveAs(path);
 
@@ -124,7 +124,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                         var item = paramSetNode.SelectSingleNode("Item");
                         if (item != null)
                         {
-                            var parmSet = DataHelper.FromElementXml<WebParameterSet>(item.OuterXml, "Item");
+                            var parmSet = DataUtil.FromElementXml<WebParameterSet>(item.OuterXml, "Item");
                             if (parmSet != null)
                             {
                                 var currParmSet = WebParameterSet.Get(parmSet.Name);

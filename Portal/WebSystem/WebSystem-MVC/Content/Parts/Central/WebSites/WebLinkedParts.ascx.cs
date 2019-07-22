@@ -24,7 +24,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
         {
             WebPartConfig config = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in WHelper.GetLinkedParts(pageId)
                 where (config = item.PartConfig) != null
                 select new
@@ -40,7 +40,7 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             WContext context = new WContext(this);
             context.Set("PartConfigId", id);
 

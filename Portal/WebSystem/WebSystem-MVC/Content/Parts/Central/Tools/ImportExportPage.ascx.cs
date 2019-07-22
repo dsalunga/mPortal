@@ -140,7 +140,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     writer.WriteAttributeString("Identity", site.Identity);
 
                     if (webSite)
-                        writer.WriteRaw(DataHelper.ToXml(site, "Item"));
+                        writer.WriteRaw(DataUtil.ToXml(site, "Item"));
 
 
                     if (chkWebPages.Checked || chkCurrentPage.Checked)
@@ -174,7 +174,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                                 writer.WriteStartElement("MasterPage");
                                 writer.WriteAttributeString("Name", masterPage.Name);
 
-                                writer.WriteRaw(DataHelper.ToXml(masterPage, "Item"));
+                                writer.WriteRaw(DataUtil.ToXml(masterPage, "Item"));
 
                                 if (chkElements.Checked)
                                     WriteElements(masterPage.Elements, writer);
@@ -216,7 +216,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                                 writer.WriteStartElement("Identities");
 
                                 foreach (var identity in identities)
-                                    writer.WriteRaw(DataHelper.ToXml(identity));
+                                    writer.WriteRaw(DataUtil.ToXml(identity));
 
                                 writer.WriteEndElement();
                             }
@@ -252,12 +252,12 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
                     writer.Flush();
 
-                    var webPath = WebHelper.CombineAddress(WConfig.TempFolder, string.Format("Backup-XML-{0:yyyyMMdd}.xml", DateTime.Now));
-                    var path = WebHelper.MapPath(webPath);
+                    var webPath = WebUtil.CombineAddress(WConfig.TempFolder, string.Format("Backup-XML-{0:yyyyMMdd}.xml", DateTime.Now));
+                    var path = WebUtil.MapPath(webPath);
 
                     FileHelper.WriteFile(output.ToString(), path);
 
-                    WebHelper.DownloadFile(path, needMapping: false);
+                    WebUtil.DownloadFile(path, needMapping: false);
                 }
             }
         }
@@ -268,7 +268,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             writer.WriteAttributeString("Identity", page.Identity);
 
             // Page Item
-            var pageXml = DataHelper.ToXml(page, "Item");
+            var pageXml = DataUtil.ToXml(page, "Item");
             writer.WriteRaw(pageXml);
 
             // Panels
@@ -280,7 +280,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     writer.WriteStartElement("Panels");
 
                     foreach (var panel in panels)
-                        writer.WriteRaw(DataHelper.ToXml(panel));
+                        writer.WriteRaw(DataUtil.ToXml(panel));
 
                     writer.WriteEndElement();
                 }
@@ -353,7 +353,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 {
                     writer.WriteStartElement("Element");
 
-                    var elementXml = DataHelper.ToXml(element, "Item");
+                    var elementXml = DataUtil.ToXml(element, "Item");
                     writer.WriteRaw(elementXml);
 
                     // Element Data
@@ -391,7 +391,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 {
                     writer.WriteStartElement("ObjectSecurity");
 
-                    writer.WriteRaw(DataHelper.ToXml(security, "Item"));
+                    writer.WriteRaw(DataUtil.ToXml(security, "Item"));
 
                     var perms = security.ObjectSecurityPermissions;
                     if (perms.Count() > 0)
@@ -399,7 +399,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                         writer.WriteStartElement("SecurityPermissions");
 
                         foreach (var perm in perms)
-                            writer.WriteRaw(DataHelper.ToXml(perm));
+                            writer.WriteRaw(DataUtil.ToXml(perm));
 
                         writer.WriteEndElement();
                     }
@@ -420,7 +420,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 writer.WriteStartElement("Resources");
 
                 foreach (var resource in resources)
-                    writer.WriteRaw(DataHelper.ToXml(resource));
+                    writer.WriteRaw(DataUtil.ToXml(resource));
 
                 writer.WriteEndElement();
             }
@@ -437,16 +437,16 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     WPage refPage = null;
                     int parentId = -1;
 
-                    var restore = DataHelper.GetInt32(cboRestore.SelectedValue);
+                    var restore = DataUtil.GetInt32(cboRestore.SelectedValue);
 
                     // Make sure TempFolder is present
-                    var absTempPath = WebHelper.MapPath(WConfig.TempFolder);
+                    var absTempPath = WebUtil.MapPath(WConfig.TempFolder);
                     if (!Directory.Exists(absTempPath))
                         Directory.CreateDirectory(absTempPath);
 
                     var fileName = FileUpload1.FileName;
-                    var webPath = WebHelper.CombineAddress(WConfig.TempFolder, fileName);
-                    var path = WebHelper.MapPath(webPath);
+                    var webPath = WebUtil.CombineAddress(WConfig.TempFolder, fileName);
+                    var path = WebUtil.MapPath(webPath);
 
                     FileUpload1.PostedFile.SaveAs(path);
 
@@ -459,7 +459,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
                     if (pageUrl == "/" && chkWebSite.Checked)
                     {
-                        site = DataHelper.FromElementXml<WSite>(siteNode.SelectSingleNode("Item").OuterXml, "Item");
+                        site = DataUtil.FromElementXml<WSite>(siteNode.SelectSingleNode("Item").OuterXml, "Item");
                         if (site != null)
                         {
                             site.Id = -1;
@@ -512,7 +512,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 var siblings = WPage.GetList(site.Id, parentId);
                 foreach (XmlNode pageNode in pageNodes)
                 {
-                    var page = DataHelper.FromElementXml<WPage>(pageNode.SelectSingleNode("Item").OuterXml, "Item");
+                    var page = DataUtil.FromElementXml<WPage>(pageNode.SelectSingleNode("Item").OuterXml, "Item");
                     if (page != null)
                     {
                         var currPage = siblings.FirstOrDefault(i => i.Identity.Equals(page.Identity, StringComparison.InvariantCultureIgnoreCase));
@@ -577,7 +577,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     {
                         foreach (XmlNode panelNode in panelNodes)
                         {
-                            var panel = DataHelper.FromElementXml<WebPagePanel>(panelNode.OuterXml);
+                            var panel = DataUtil.FromElementXml<WebPagePanel>(panelNode.OuterXml);
                             if (panel != null)
                             {
                                 panel.Id = -1;
@@ -618,7 +618,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 {
                     foreach (XmlNode masterPageNode in masterPageNodes)
                     {
-                        var masterPage = DataHelper.FromElementXml<WebMasterPage>(masterPageNode.SelectSingleNode("Item").OuterXml, "Item");
+                        var masterPage = DataUtil.FromElementXml<WebMasterPage>(masterPageNode.SelectSingleNode("Item").OuterXml, "Item");
                         if (masterPage != null)
                         {
                             var oldId = masterPage.Id;
@@ -662,7 +662,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                 {
                     foreach (XmlNode elementNode in elementNodes)
                     {
-                        var element = DataHelper.FromElementXml<WebPageElement>(elementNode.SelectSingleNode("Item").OuterXml, "Item");
+                        var element = DataUtil.FromElementXml<WebPageElement>(elementNode.SelectSingleNode("Item").OuterXml, "Item");
                         if (element != null)
                         {
                             // Reset
@@ -705,7 +705,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
 
                         if (node != null)
                         {
-                            var objectSecurity = DataHelper.FromElementXml<WebObjectSecurity>(node.OuterXml, "Item");
+                            var objectSecurity = DataUtil.FromElementXml<WebObjectSecurity>(node.OuterXml, "Item");
                             if (objectSecurity != null)
                             {
                                 objectSecurity.Id = -1;
@@ -722,7 +722,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                                     {
                                         foreach (XmlNode permissionNode in permissionNodes)
                                         {
-                                            var securityPermission = DataHelper.FromElementXml<WebObjectSecurityPermission>(permissionNode.OuterXml);
+                                            var securityPermission = DataUtil.FromElementXml<WebObjectSecurityPermission>(permissionNode.OuterXml);
                                             if (securityPermission != null)
                                             {
                                                 securityPermission.Id = -1;
@@ -757,7 +757,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                     {
                         foreach (XmlNode node in nodes)
                         {
-                            var param = DataHelper.FromElementXml<WebObjectHeader>(node.OuterXml);
+                            var param = DataUtil.FromElementXml<WebObjectHeader>(node.OuterXml);
                             if (param != null)
                             {
                                 param.Id = -1;

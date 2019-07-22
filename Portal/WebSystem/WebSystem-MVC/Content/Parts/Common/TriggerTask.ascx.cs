@@ -24,7 +24,7 @@ namespace WCMS.WebSystem.Content.Parts.Common
                 var name = element.GetParameterValue("TaskName");
                 if (!string.IsNullOrEmpty(name))
                 {
-                    var force = DataHelper.GetBool(element.GetParameterValue("Force"), true);
+                    var force = DataUtil.GetBool(element.GetParameterValue("Force"), true);
 
                     var job = WebJob.Provider.Get(name);
                     if (job.ExecutionStatus != ExecutionStatus.Running)

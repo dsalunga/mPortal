@@ -43,7 +43,7 @@ namespace WCMS.WebSystem
             query.Remove(WConstants.Load);
 
             builder.Append(LinkStaticHome);
-            builder.AppendFormat(LinkAppendFormatTargetTop, siteId > 0 ? WQuery.BuildQuery(CentralPages.CentrlHome, WebColumns.SiteId, siteId) : CentralPages.CentrlHome, "Dashboard");
+            builder.AppendFormat(LinkAppendFormatTargetTop, siteId > 0 ? Common.Utilities.QueryParser.BuildQuery(CentralPages.CentrlHome, WebColumns.SiteId, siteId) : CentralPages.CentrlHome, "Dashboard");
 
             if (basePath.StartsWith("/Central/", StringComparison.InvariantCultureIgnoreCase) || basePath.StartsWith(CentralPages.LoaderMain, StringComparison.InvariantCultureIgnoreCase))
                 GeneratePath(query, builder, basePath);

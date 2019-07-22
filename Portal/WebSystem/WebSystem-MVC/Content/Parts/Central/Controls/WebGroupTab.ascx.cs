@@ -46,7 +46,7 @@ namespace WCMS.WebSystem.WebParts.Central.Controls
                 // ObjectKey
                 var q = query.Clone();
                 q.Set(ObjectKey.KeyString, new ObjectKey(WebObjects.WebGroup, id));
-                q.Set(ObjectKey.KeySource, WebHelper.UrlEncode(query.BuildQuery(CentralPages.WebGroupHome)));
+                q.Set(ObjectKey.KeySource, WebUtil.UrlEncode(query.BuildQuery(CentralPages.WebGroupHome)));
 
                 TabControl1.AddTab("tabParameters", "Parameters", q.BuildQuery(CentralPages.WebParameters), CentralPages.WebParameters);
                 TabControl1.SelectTab(query.BasePath);

@@ -86,7 +86,7 @@ namespace WCMS.Framework
 
         public static T GetEnvValue<T>(T prod, T dev)
         {
-            return WConfig.Environment != SystemEnvironment.PROD ? dev : prod;
+            return Environment != SystemEnvironment.PROD ? dev : prod;
         }
 
         private static bool? _hasPageExt;
@@ -101,10 +101,10 @@ namespace WCMS.Framework
         public static string EvalPageExt { get { return HasPageExt ? PageExt : "/"; } }
 
         private static bool? _agentEnabled;
-        public static bool AgentEnabled { get { return (_agentEnabled ?? (_agentEnabled = ConfigHelper.GetBool(AGENT_ENABLED, true))).Value; } }
+        public static bool AgentEnabled { get { return (_agentEnabled ?? (_agentEnabled = ConfigUtil.GetBool(AGENT_ENABLED, true))).Value; } }
 
         private static string _pageExt;
-        public static String PageExt { get { return _pageExt ?? (_pageExt = ConfigHelper.Get(PAGE_EXT_KEY)); } }
+        public static String PageExt { get { return _pageExt ?? (_pageExt = ConfigUtil.Get(PAGE_EXT_KEY)); } }
 
         private static SystemEnvironment _sysEnv = SystemEnvironment.NULL;
         public static SystemEnvironment Environment
@@ -113,7 +113,7 @@ namespace WCMS.Framework
             {
                 if (_sysEnv == SystemEnvironment.NULL)
                 {
-                    var sysEnv = ConfigHelper.Get(ENVIRONMENT).ToUpper();
+                    var sysEnv = ConfigUtil.Get(ENVIRONMENT).ToUpper();
                     switch (sysEnv)
                     {
                         case UAT:
@@ -174,7 +174,7 @@ namespace WCMS.Framework
                         var xdoc = new XmlDocument();
                         xdoc.LoadXml(configValue);
 
-                        _smsConfigNode.IsFilterBlock = DataHelper.GetBool(XmlUtil.GetAttributeValue(xdoc, "IsFilterBlock"));
+                        _smsConfigNode.IsFilterBlock = DataUtil.GetBool(XmlUtil.GetAttributeValue(xdoc, "IsFilterBlock"));
                         _smsConfigNode.RecipientFilter = XmlUtil.GetAttributeValue(xdoc, "RecipientFilter");
                     }
                 }
@@ -218,7 +218,7 @@ namespace WCMS.Framework
         private static string _tempFolder = null;
         public static string TempFolder
         {
-            get { return _tempFolder ?? ((_tempFolder = SystemNode.SelectSingleNodeValue("TempFolder")) ?? WebHelper.TEMP_DATA_PATH); }
+            get { return _tempFolder ?? ((_tempFolder = SystemNode.SelectSingleNodeValue("TempFolder")) ?? WebUtil.TEMP_DATA_PATH); }
         }
 
         private static string _baseAddress = null;
@@ -263,7 +263,7 @@ namespace WCMS.Framework
                     var node = SystemNode.SelectSingleNode("Resources.ExternalMode");
                     if (node != null)
                     {
-                        _resExternalMode = DataHelper.GetBool(node.Value, false);
+                        _resExternalMode = DataUtil.GetBool(node.Value, false);
                         RESOURCES_EXTERNAL_MODE = node.Id;
                     }
                     else
@@ -288,7 +288,7 @@ namespace WCMS.Framework
             get
             {
                 if (_defaultSite == null)
-                    _defaultSite = WSite.Get(DataHelper.GetId(SystemNode.SelectSingleNodeValue("DefaultSite")));
+                    _defaultSite = WSite.Get(DataUtil.GetId(SystemNode.SelectSingleNodeValue("DefaultSite")));
 
                 return _defaultSite;
             }
@@ -306,7 +306,7 @@ namespace WCMS.Framework
             get
             {
                 if (_enableLogging == null)
-                    _enableLogging = DataHelper.GetBool(DebuggingNode.SelectSingleNodeValue("EnableLogging"), false);
+                    _enableLogging = DataUtil.GetBool(DebuggingNode.SelectSingleNodeValue("EnableLogging"), false);
                 return _enableLogging.Value;
             }
         }
@@ -321,7 +321,7 @@ namespace WCMS.Framework
                     var node = DebuggingNode.SelectSingleNode("AutoLogin");
                     if (node != null)
                     {
-                        _autoLogin = DataHelper.GetBool(node.Value, false);
+                        _autoLogin = DataUtil.GetBool(node.Value, false);
                         AUTO_LOGIN_ID = node.Id;
                     }
                     else
@@ -369,7 +369,7 @@ namespace WCMS.Framework
                     var node = SystemNode.SelectSingleNode("Designer.PanelExpanded");
                     if (node != null)
                     {
-                        _panelExpanded = DataHelper.GetBool(node.Value, true);
+                        _panelExpanded = DataUtil.GetBool(node.Value, true);
                         PANEL_EXPANDED_ID = node.Id;
                     }
                     else
@@ -391,7 +391,7 @@ namespace WCMS.Framework
                     var node = SystemNode.SelectSingleNode("Central.EnableInlineEditor");
                     if (node != null)
                     {
-                        _enableInlineEditor = DataHelper.GetBool(node.Value, false);
+                        _enableInlineEditor = DataUtil.GetBool(node.Value, false);
                         ENABLE_INLINE_EDITOR_ID = node.Id;
                     }
                     else
@@ -410,17 +410,17 @@ namespace WCMS.Framework
             {
                 if (_allowFullCache == null)
                 {
-                    var wcfg = ConfigHelper.Get(ALLOW_CACHE);
+                    var wcfg = ConfigUtil.Get(ALLOW_CACHE);
                     if (!string.IsNullOrEmpty(wcfg))
                     {
-                        _allowFullCache = DataHelper.GetBool(wcfg, false);
+                        _allowFullCache = DataUtil.GetBool(wcfg, false);
                     }
                     else
                     {
                         var node = SystemNode.SelectSingleNode("AllowCache");
                         if (node != null)
                         {
-                            _allowFullCache = DataHelper.GetBool(node.Value, false);
+                            _allowFullCache = DataUtil.GetBool(node.Value, false);
                             ALLOW_FULL_CACHE = node.Id;
                         }
                         else
@@ -439,7 +439,7 @@ namespace WCMS.Framework
             get
             {
                 if (_userPhotoPath == null)
-                    _userPhotoPath = ConfigHelper.Get(USER_PHOTO_PATH);
+                    _userPhotoPath = ConfigUtil.Get(USER_PHOTO_PATH);
                 return _userPhotoPath;
             }
         }
@@ -451,7 +451,7 @@ namespace WCMS.Framework
             {
                 if (_fileCachePath == null)
                 {
-                    _fileCachePath = ConfigHelper.Get(FILE_CACHE_PATH);
+                    _fileCachePath = ConfigUtil.Get(FILE_CACHE_PATH);
                     if(string.IsNullOrEmpty(_fileCachePath))
                         _fileCachePath = @"C:\WCMS-Cache";
                 }
@@ -465,7 +465,7 @@ namespace WCMS.Framework
             get
             {
                 if (0 > _minDiskFreeMB)
-                    _minDiskFreeMB = DataHelper.GetInt32(ConfigHelper.Get(MIN_DISK_FREE_MB), 10240);
+                    _minDiskFreeMB = DataUtil.GetInt32(ConfigUtil.Get(MIN_DISK_FREE_MB), 10240);
                 return _minDiskFreeMB;
             }
         }

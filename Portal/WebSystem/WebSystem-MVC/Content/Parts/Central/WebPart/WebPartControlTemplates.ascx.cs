@@ -61,7 +61,7 @@ namespace WCMS.WebSystem.WebParts.Central
             var debugUrl = WebRegistry.SelectNodeValue("/System/Debugging/DebugPageUrl");
             var query = new QueryParser(string.IsNullOrEmpty(debugUrl) ? "/" : debugUrl);
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WebPartControlTemplate.GetList(partControlId)
                 select new
                 {
@@ -78,7 +78,7 @@ namespace WCMS.WebSystem.WebParts.Central
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var query = new QueryParser(this);
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             query.Set(WebColumns.PartControlTemplateId, id);
 
             switch (e.CommandName)

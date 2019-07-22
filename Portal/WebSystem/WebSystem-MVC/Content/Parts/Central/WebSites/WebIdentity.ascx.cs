@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             {
                 cboSites.Items.AddRange(WebSiteViewModel.GenerateListItem(-1).ToArray());
 
-                int id = DataHelper.GetId(Request, "SiteIdentityId");
+                int id = DataUtil.GetId(Request, "SiteIdentityId");
                 if (id > 0)
                 {
                     var item = WebSiteIdentity.Provider.Get(id);
@@ -33,16 +33,16 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
                         txtRedirectUrl.Text = item.RedirectUrl;
 
                         cboSites.DataBind();
-                        WebHelper.SetCboValue(cboSites, item.SiteId);
-                        WebHelper.SetCboValue(cboProtocols, item.ProtocolId);
+                        WebUtil.SetCboValue(cboSites, item.SiteId);
+                        WebUtil.SetCboValue(cboProtocols, item.ProtocolId);
                     }
                 }
 
-                var siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                var siteId = DataUtil.GetId(Request, WebColumns.SiteId);
                 if (siteId > 0)
                 {
                     if (cboSites.SelectedIndex == 0)
-                        WebHelper.SetCboValue(cboSites, siteId);
+                        WebUtil.SetCboValue(cboSites, siteId);
                     cboSites.Enabled = false;
                 }
             }
@@ -63,7 +63,7 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
             int siteId = int.Parse(cboSites.SelectedValue);
-            int id = DataHelper.GetId(Request, "SiteIdentityId");
+            int id = DataUtil.GetId(Request, "SiteIdentityId");
             WebSiteIdentity item = null;
 
             if (id > 0)
@@ -73,16 +73,16 @@ namespace WCMS.WebSystem.WebParts.Central.Tools
             else
             {
                 item = new WebSiteIdentity();
-                item.SiteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                item.SiteId = DataUtil.GetId(Request, WebColumns.SiteId);
             }
 
             item.SiteId = siteId;
             item.HostName = txtHostHeader.Text.Trim();
-            item.Port = DataHelper.GetInt32(txtPort.Text.Trim(), 80);
+            item.Port = DataUtil.GetInt32(txtPort.Text.Trim(), 80);
             item.UrlPath = txtUrlPath.Text.Trim();
             item.IPAddress = txtIP.Text.Trim();
             item.RedirectUrl = txtRedirectUrl.Text.Trim().TrimEnd('/');
-            item.ProtocolId = DataHelper.GetInt32(cboProtocols.SelectedValue);
+            item.ProtocolId = DataUtil.GetInt32(cboProtocols.SelectedValue);
             item.Update();
 
             this.ReturnPage();

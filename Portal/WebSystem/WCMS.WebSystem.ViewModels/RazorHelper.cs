@@ -30,7 +30,7 @@ namespace WCMS.WebSystem
         public static string RenderPage(string template, object model, string cacheName)
         {
             string tmpl = null;
-            if (WCMS.Framework.WConfig.Environment == WCMS.Framework.SystemEnvironment.PROD)
+            if (Framework.WConfig.Environment == Framework.SystemEnvironment.PROD)
             {
                 var fileCacheName = "WCMS.RazorTmpl-" + cacheName;
                 var cache = MemoryCache.Default;
@@ -66,7 +66,7 @@ namespace WCMS.WebSystem
 
         public static string FormatJsString(string s)
         {
-            return WebHelper.FormatJsString(s);
+            return WebUtil.FormatJsString(s);
         }
     }
 }

@@ -66,7 +66,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (o != null)
             {
-                item.Id = DataHelper.GetId(o.ToString());
+                item.Id = DataUtil.GetId(o.ToString());
                 return item.Id;
             }
 
@@ -76,16 +76,16 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebMasterPage From(DbDataReader r)
         {
             var item = new WebMasterPage();
-            item.Id = DataHelper.GetId(r["MasterPageId"].ToString());
-            item.SiteId = DataHelper.GetId(r[WebColumns.SiteId].ToString());
-            item.TemplateId = DataHelper.GetId(r["TemplateId"].ToString());
+            item.Id = DataUtil.GetId(r["MasterPageId"].ToString());
+            item.SiteId = DataUtil.GetId(r[WebColumns.SiteId].ToString());
+            item.TemplateId = DataUtil.GetId(r["TemplateId"].ToString());
             item.Name = r["Name"].ToString();
-            item.PublicAccess = DataHelper.GetInt32(r["PublicAccess"]);
-            item.OwnerPageId = DataHelper.GetInt32(r["OwnerPageId"]);
-            item.ManagementAccess = DataHelper.GetInt32(r, "ManagementAccess");
-            item.SkinId = DataHelper.GetId(r, WebColumns.SkinId);
-            item.ThemeId = DataHelper.GetId(r, WebColumns.ThemeId);
-            item.ParentId = DataHelper.GetId(r, WebColumns.ParentId);
+            item.PublicAccess = DataUtil.GetInt32(r["PublicAccess"]);
+            item.OwnerPageId = DataUtil.GetInt32(r["OwnerPageId"]);
+            item.ManagementAccess = DataUtil.GetInt32(r, "ManagementAccess");
+            item.SkinId = DataUtil.GetId(r, WebColumns.SkinId);
+            item.ThemeId = DataUtil.GetId(r, WebColumns.ThemeId);
+            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
 
             return item;
         }

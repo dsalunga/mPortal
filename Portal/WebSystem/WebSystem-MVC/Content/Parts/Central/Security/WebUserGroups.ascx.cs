@@ -21,11 +21,11 @@ namespace WCMS.WebSystem.WebParts.Central.Security
             {
                 var manageUser = WebGlobalPolicy.IsUserPermitted(GlobalPolicies.Administration, Permissions.UsersManagement);
                 if (!manageUser)
-                    WQuery.StaticRedirect(WConstants.AbsoluteAccessDeniedPage);
+                    QueryParser.StaticRedirect(WConstants.AbsoluteAccessDeniedPage);
 
                 var isAdmin = WSession.Current.IsAdministrator;
 
-                int id = DataHelper.GetId(Request, WebColumns.UserId);
+                int id = DataUtil.GetId(Request, WebColumns.UserId);
                 if (!isAdmin && (!manageUser || WSession.Current.UserId == -1 || WSession.Current.UserId == id))
                 {
                     rowControls.Visible = false;
@@ -85,13 +85,13 @@ namespace WCMS.WebSystem.WebParts.Central.Security
                             u.Active
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var query = new QueryParser(this);
-            int groupId = DataHelper.GetId(e.CommandArgument);
+            int groupId = DataUtil.GetId(e.CommandArgument);
             int userId = query.GetId(WebColumns.UserId);
 
             switch (e.CommandName)

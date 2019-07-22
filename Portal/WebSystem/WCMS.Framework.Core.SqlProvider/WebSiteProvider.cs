@@ -99,7 +99,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@PrimaryIdentityId", item.PrimaryIdentityId)
             );
 
-            item.Id = DataHelper.GetId(o.ToString());
+            item.Id = DataUtil.GetId(o.ToString());
             return item.Id;
         }
 
@@ -125,7 +125,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public int GetMaxRank()
         {
             object result = SqlHelper.ExecuteScalar("WebSite_GetMaxRank");
-            return DataHelper.GetId(result);
+            return DataUtil.GetId(result);
         }
 
         public IEnumerable<WebDirectoryEntry> GetByDirectory(int directoryId, string loweredKeyword)

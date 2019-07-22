@@ -18,9 +18,9 @@ namespace WCMS.Framework.Core.XmlProvider
 
         public WebObjectProvider()
         {
-            var xmlPath = ConfigHelper.Get("DbProvider.Path");
+            var xmlPath = ConfigUtil.Get("DbProvider.Path");
 
-            string providerAbsolutePath = WebHelper.IsWeb ? WebHelper.MapPath(xmlPath, true) : xmlPath;
+            string providerAbsolutePath = WebUtil.IsWeb ? WebUtil.MapPath(xmlPath, true) : xmlPath;
             path = Path.Combine(providerAbsolutePath, "WebObject.xml");
         }
 
@@ -41,15 +41,15 @@ namespace WCMS.Framework.Core.XmlProvider
         private static WebObject From(XmlNode node)
         {
             WebObject item = new WebObject();
-            item.Id = DataHelper.GetId(XmlUtil.GetNodeText(node, "Id"));
+            item.Id = DataUtil.GetId(XmlUtil.GetNodeText(node, "Id"));
             item.Name = node.SelectSingleNode("Name").InnerText;
             item.IdentityColumn = node.SelectSingleNode("IdentityColumn").InnerText;
             item.ObjectType = node.SelectSingleNode("ObjectType").InnerText;
-            item.LastRecordId = DataHelper.GetId(node.SelectSingleNode("LastRecordId").InnerText);
-            item.MaxCacheCount = DataHelper.GetInt32(node.SelectSingleNode("MaxCacheCount").InnerText);
-            item.AccessTypeId = DataHelper.GetId(node.SelectSingleNode("AccessTypeId").InnerText);
-            item.CacheTypeId = DataHelper.GetId(node.SelectSingleNode("CacheTypeId").InnerText);
-            item.MaxHistoryCount = DataHelper.GetInt32(node.SelectSingleNode("MaxHistoryCount").InnerText);
+            item.LastRecordId = DataUtil.GetId(node.SelectSingleNode("LastRecordId").InnerText);
+            item.MaxCacheCount = DataUtil.GetInt32(node.SelectSingleNode("MaxCacheCount").InnerText);
+            item.AccessTypeId = DataUtil.GetId(node.SelectSingleNode("AccessTypeId").InnerText);
+            item.CacheTypeId = DataUtil.GetId(node.SelectSingleNode("CacheTypeId").InnerText);
+            item.MaxHistoryCount = DataUtil.GetInt32(node.SelectSingleNode("MaxHistoryCount").InnerText);
 
             return item;
         }

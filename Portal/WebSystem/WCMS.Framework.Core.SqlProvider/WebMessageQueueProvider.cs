@@ -20,21 +20,21 @@ namespace WCMS.Framework.Core.SqlProvider
         protected override WebMessageQueue From(IDataReader r, WebMessageQueue source)
         {
             var item = source ?? new WebMessageQueue();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.FromObjectId = DataHelper.GetId(r, "FromObjectId");
-            item.FromRecordId = DataHelper.GetId(r, "FromRecordId");
-            item.EmailMessage = DataHelper.Get(r, "EmailMessage");
-            item.EmailSubject = DataHelper.Get(r, "EmailSubject");
-            item.SmsMessage = DataHelper.Get(r, "SmsMessage");
-            item.To = DataHelper.Get(r, "To");
-            item.ToExcluded = DataHelper.Get(r, "ToExcluded");
-            item.ToFailed = DataHelper.Get(r, "ToFailed");
-            item.ToOrBcc = DataHelper.GetInt32(r, "ToOrBcc");
-            item.DateCreated = DataHelper.GetDateTime(r, "DateCreated");
-            item.DateSent = DataHelper.GetDateTime(r, "DateSent");
-            item.Status = DataHelper.GetInt32(r, "Status");
-            item.SendVia = DataHelper.GetInt32(r, "SendVia");
-            item.EnableMonitor = DataHelper.GetInt32(r, "EnableMonitor") == 1;
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.FromObjectId = DataUtil.GetId(r, "FromObjectId");
+            item.FromRecordId = DataUtil.GetId(r, "FromRecordId");
+            item.EmailMessage = DataUtil.Get(r, "EmailMessage");
+            item.EmailSubject = DataUtil.Get(r, "EmailSubject");
+            item.SmsMessage = DataUtil.Get(r, "SmsMessage");
+            item.To = DataUtil.Get(r, "To");
+            item.ToExcluded = DataUtil.Get(r, "ToExcluded");
+            item.ToFailed = DataUtil.Get(r, "ToFailed");
+            item.ToOrBcc = DataUtil.GetInt32(r, "ToOrBcc");
+            item.DateCreated = DataUtil.GetDateTime(r, "DateCreated");
+            item.DateSent = DataUtil.GetDateTime(r, "DateSent");
+            item.Status = DataUtil.GetInt32(r, "Status");
+            item.SendVia = DataUtil.GetInt32(r, "SendVia");
+            item.EnableMonitor = DataUtil.GetInt32(r, "EnableMonitor") == 1;
 
             return item;
         }
@@ -58,7 +58,7 @@ namespace WCMS.Framework.Core.SqlProvider
                 new SqlParameter("@SendVia", item.SendVia),
                 new SqlParameter("@EnableMonitor", item.EnableMonitor ? 1 : 0));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

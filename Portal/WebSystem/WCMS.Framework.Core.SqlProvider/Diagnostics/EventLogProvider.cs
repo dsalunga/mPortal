@@ -26,12 +26,12 @@ namespace WCMS.Framework.Core.SqlProvider.Diagnostics
         protected override EventLog From(IDataReader r, EventLog source)
         {
             var item = source ?? new EventLog();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.UserId = DataHelper.GetId(r, WebColumns.UserId);
-            item.EventDate = DataHelper.GetDateTime(r, "EventDate");
-            item.Content = DataHelper.Get(r, "Content");
-            item.EventName = DataHelper.Get(r, "EventName");
-            item.IPAddress = DataHelper.Get(r, "IPAddress");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.UserId = DataUtil.GetId(r, WebColumns.UserId);
+            item.EventDate = DataUtil.GetDateTime(r, "EventDate");
+            item.Content = DataUtil.Get(r, "Content");
+            item.EventName = DataUtil.Get(r, "EventName");
+            item.IPAddress = DataUtil.Get(r, "IPAddress");
 
             return item;
         }
@@ -60,7 +60,7 @@ namespace WCMS.Framework.Core.SqlProvider.Diagnostics
                 new SqlParameter("@EventName", item.EventName),
                 new SqlParameter("@IPAddress", item.IPAddress));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

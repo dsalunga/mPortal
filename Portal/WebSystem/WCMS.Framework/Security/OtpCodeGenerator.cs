@@ -54,7 +54,7 @@ namespace WCMS.Framework
                 {
                     _valueProvider.Add("PIN", _otpCode);
                     _valueProvider.Add("NAME", user.FirstAndLastName);
-                    _valueProvider.Add("EXPIRY", DateTimeHelper.TimeIntervalToString(GetExpiry(), TimeInterval.Minute));
+                    _valueProvider.Add("EXPIRY", TimeUtil.TimeIntervalToString(GetExpiry(), TimeInterval.Minute));
 
                     var email = new WebMailMessage();
                     email.Body = Substituter.Substitute(template, _valueProvider);
@@ -79,7 +79,7 @@ namespace WCMS.Framework
                 {
                     _valueProvider.Add("PIN", _otpCode);
                     _valueProvider.Add("NAME", user.FirstAndLastName);
-                    _valueProvider.Add("EXPIRY", DateTimeHelper.TimeIntervalToString(GetExpiry(), TimeInterval.Minute));
+                    _valueProvider.Add("EXPIRY", TimeUtil.TimeIntervalToString(GetExpiry(), TimeInterval.Minute));
 
                     try
                     {
@@ -123,7 +123,7 @@ namespace WCMS.Framework
 
         public static int GetExpiry()
         {
-            return DataHelper.GetInt32(WebRegistry.SelectNodeValue("/System/Security/OtpExpiry", "5"));
+            return DataUtil.GetInt32(WebRegistry.SelectNodeValue("/System/Security/OtpExpiry", "5"));
         }
 
         public static string Generate()

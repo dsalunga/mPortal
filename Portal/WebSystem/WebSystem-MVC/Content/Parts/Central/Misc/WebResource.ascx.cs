@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.Central
                 cboContentType.DataSource = WebTextResource.GetContentTypes();
                 cboContentType.DataBind();
 
-                int webTextResourceId = DataHelper.GetId(Request, WebColumns.TextResourceId);
+                int webTextResourceId = DataUtil.GetId(Request, WebColumns.TextResourceId);
                 if (webTextResourceId > 0)
                 {
                     WebTextResource item = WebTextResource.Get(webTextResourceId);
@@ -62,8 +62,8 @@ namespace WCMS.WebSystem.WebParts.Central
 
             item.Content = txtContent.Text.Trim();
             item.Title = txtTitle.Text.Trim();
-            item.ContentTypeId = DataHelper.GetId(cboContentType.SelectedValue);
-            item.Rank = DataHelper.GetInt32(txtRank.Text);
+            item.ContentTypeId = DataUtil.GetId(cboContentType.SelectedValue);
+            item.Rank = DataUtil.GetInt32(txtRank.Text);
             item.DatePersisted = DateTime.Now;
             item.DateModified = DateTime.Now;
             item.PhysicalPath = txtPhysicalPath.Text.Trim();

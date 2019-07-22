@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.Central
             if (!IsPostBack)
             {
                 if (!WebGlobalPolicy.IsUserPermitted(GlobalPolicies.Administration, Permissions.UsersManagement))
-                    WQuery.StaticRedirect(WConstants.AbsoluteAccessDeniedPage);
+                    QueryParser.StaticRedirect(WConstants.AbsoluteAccessDeniedPage);
 
                 var context = new WContext(this);
                 var element = context.Element;
@@ -43,7 +43,7 @@ namespace WCMS.WebSystem.WebParts.Central
                 else
                 {
                     cboGroups.Items.AddRange(WebGroupViewModel.GenerateListItem(-1).ToArray());
-                    id = DataHelper.GetId(Request, WebColumns.GroupId);
+                    id = DataUtil.GetId(Request, WebColumns.GroupId);
                     if (id > 0)
                     {
                         cboGroups.SelectedValue = id.ToString();
@@ -55,7 +55,7 @@ namespace WCMS.WebSystem.WebParts.Central
                 hUserEditUrl.Value = element.GetParameterValue("UserEditUrl");
                 hUserHomeUrl.Value = element.GetParameterValue("UserHomeUrl");
 
-                var dataEntryMode = DataHelper.GetBool(element.GetParameterValue("Data-Entry"), false);
+                var dataEntryMode = DataUtil.GetBool(element.GetParameterValue("Data-Entry"), false);
                 if (dataEntryMode)
                 {
                     GridView1.Columns[2].Visible = false;
@@ -99,7 +99,7 @@ namespace WCMS.WebSystem.WebParts.Central
             string checkedItems = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(checkedItems))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(checkedItems);
+                var ids = DataUtil.ParseCommaSeparatedIdList(checkedItems);
                 if (ids.Count > 0)
                 {
                     foreach (var userId in ids)
@@ -111,7 +111,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             var query = new WQuery(this);
 
             switch (e.CommandName)
@@ -167,7 +167,7 @@ namespace WCMS.WebSystem.WebParts.Central
             var isAdmin = WSession.Current.IsAdministrator;
             var keywordL = string.IsNullOrEmpty(keyword) ? string.Empty : keyword.ToLower();
 
-            return DataHelper.ToDataSet(from i in WebUser.GetList()
+            return DataUtil.ToDataSet(from i in WebUser.GetList()
                                         where (groupId == -1
                                                 || (groupId > 0 && i.IsMemberOf(groupId))
                                                 || (groupId == -2 && i.Groups.Count() == 0)
@@ -218,7 +218,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
             if (isDataEntry)
             {
-                return DataHelper.ToDataSet(
+                return DataUtil.ToDataSet(
                     from i in data
                     select new
                         {
@@ -235,7 +235,7 @@ namespace WCMS.WebSystem.WebParts.Central
             }
             else
             {
-                return DataHelper.ToDataSet(
+                return DataUtil.ToDataSet(
                     from i in data
                     select new
                          {
@@ -265,9 +265,9 @@ namespace WCMS.WebSystem.WebParts.Central
         protected void cmdDownload_Click(object sender, EventArgs e)
         {
             var keyword = txtSearch.Text.Trim();
-            var groupId = DataHelper.GetId(hGroupId.Value.Trim());
+            var groupId = DataUtil.GetId(hGroupId.Value.Trim());
             var ds = SelectDownload(groupId, keyword);
-            WebHelper.DownloadAsCsv(ds, "Users");
+            WebUtil.DownloadAsCsv(ds, "Users");
         }
     }
 }

@@ -38,7 +38,7 @@ namespace WCMS.WebSystem.WebParts.Central.Template
                     lblTheme.InnerHtml = theme != null ? theme.Name : string.Empty;
                     lblDefaultPanel.InnerHtml = panel != null ? panel.Name : string.Empty;
                     lblDefaultSkin.InnerHtml = skin != null ? skin.Name : string.Empty;
-                    lblStandalone.InnerHtml = DataHelper.ToString(item.IsStandalone, BoolStrings.YesNo);
+                    lblStandalone.InnerHtml = DataUtil.ToString(item.IsStandalone, BoolStrings.YesNo);
 
                     WebTemplate parent = null;
                     if (item.ParentId > 0 && (parent = item.Parent) != null)

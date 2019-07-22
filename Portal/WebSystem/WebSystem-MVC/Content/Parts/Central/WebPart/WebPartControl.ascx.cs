@@ -30,7 +30,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
                 cboParts.DataSource = WPart.GetList();
                 cboParts.DataBind();
-                WebHelper.SetCboValue(cboParts, partId);
+                WebUtil.SetCboValue(cboParts, partId);
 
                 int partControlId = query.GetId(WebColumns.PartControlId);
                 if (partControlId > 0 && (item = WebPartControl.Get(partControlId)) != null)
@@ -79,7 +79,7 @@ namespace WCMS.WebSystem.WebParts.Central
             WebPartControl item = null;
 
             var partControlId = query.GetId(WebColumns.PartControlId);
-            var partId = DataHelper.GetId(cboParts.SelectedValue); //query.GetId(WebColumns.PartId);
+            var partId = DataUtil.GetId(cboParts.SelectedValue); //query.GetId(WebColumns.PartId);
             if (partControlId > 0 && (item = WebPartControl.Get(partControlId)) != null) { }
             else
             {
@@ -89,7 +89,7 @@ namespace WCMS.WebSystem.WebParts.Central
             item.PartId = partId;
             item.Name = txtName.Text.Trim();
             item.Identity = txtIdentity.Text.Trim();
-            item.PartAdminId = DataHelper.GetId(cboPartAdmins.SelectedValue);
+            item.PartAdminId = DataUtil.GetId(cboPartAdmins.SelectedValue);
             item.ConfigFileName = cboConfig.SelectedValue;
             item.EntryPoint = chkEntryPoint.Checked ? 1 : 0;
             item.Update();

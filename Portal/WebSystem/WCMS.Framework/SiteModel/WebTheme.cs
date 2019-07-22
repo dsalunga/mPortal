@@ -29,7 +29,7 @@ namespace WCMS.Framework
         public int SkinId { get; set; }
 
         public WebTemplate Template { get { return TemplateId > 0 ? WebTemplate.Get(TemplateId) : null; } }
-        public WebTheme Parent { get { return ParentId > 0 ? WebTheme.Provider.Get(ParentId) : null; } }
+        public WebTheme Parent { get { return ParentId > 0 ? Provider.Get(ParentId) : null; } }
         public WebSkin Skin { get { return SkinId > 0 ? WebSkin.Provider.Get(SkinId) : null; } }
 
         public override int OBJECT_ID

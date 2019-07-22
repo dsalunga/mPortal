@@ -16,8 +16,8 @@ namespace WCMS.WebSystem.WebParts.Central
         {
             if (!Page.IsPostBack)
             {
-                int partId = DataHelper.GetId(Request, WebColumns.PartId);
-                int partAdminId = DataHelper.GetId(Request, WebColumns.PartAdminId);
+                int partId = DataUtil.GetId(Request, WebColumns.PartId);
+                int partAdminId = DataUtil.GetId(Request, WebColumns.PartAdminId);
 
                 WPart part = WPart.Get(partId);
                 WebPartAdmin item = null;
@@ -25,7 +25,7 @@ namespace WCMS.WebSystem.WebParts.Central
 
                 cboParts.DataSource = WPart.GetList();
                 cboParts.DataBind();
-                WebHelper.SetCboValue(cboParts, partId);
+                WebUtil.SetCboValue(cboParts, partId);
 
                 if (partAdminId > 0 && (item = WebPartAdmin.Get(partAdminId)) != null)
                 {
@@ -35,7 +35,7 @@ namespace WCMS.WebSystem.WebParts.Central
                     chkVisible.Checked = item.IsVisible;
                     chkInSiteContext.Checked = item.IsInSiteContext;
                     chkAutoTitle.Checked = item.IsAutoTitle;
-                    WebHelper.SetCboValue(cboTemplateEngine, item.TemplateEngineId);
+                    WebUtil.SetCboValue(cboTemplateEngine, item.TemplateEngineId);
                 }
                 else
                 {
@@ -56,7 +56,7 @@ namespace WCMS.WebSystem.WebParts.Central
             //var oldPartId = query.GetId(WebColumns.PartId);
             var partAdminId = query.GetId(WebColumns.PartAdminId);
             var parentId = query.GetId(WebColumns.ParentId);
-            var partId = DataHelper.GetId(cboParts.SelectedValue);
+            var partId = DataUtil.GetId(cboParts.SelectedValue);
 
             WebPartAdmin item = null;
             if (partAdminId < 1 || (item = WebPartAdmin.Get(partAdminId)) == null)
@@ -72,7 +72,7 @@ namespace WCMS.WebSystem.WebParts.Central
             item.IsVisible = chkVisible.Checked;
             item.IsAutoTitle = chkAutoTitle.Checked;
             item.IsInSiteContext = chkInSiteContext.Checked;
-            item.TemplateEngineId = DataHelper.GetInt32(cboTemplateEngine.SelectedValue);
+            item.TemplateEngineId = DataUtil.GetInt32(cboTemplateEngine.SelectedValue);
             item.Update();
             Return();
         }
