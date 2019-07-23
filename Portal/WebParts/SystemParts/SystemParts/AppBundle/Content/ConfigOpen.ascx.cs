@@ -25,7 +25,7 @@ namespace WCMS.WebSystem.WebParts.Content
 
         protected void cmdOpenContent_Click(object sender, EventArgs e)
         {
-            int contentId = DataHelper.GetId(txtContentId.Text.Trim());
+            int contentId = DataUtil.GetId(txtContentId.Text.Trim());
 
             // Replace or create new Content-Object link
             IPageElement item = WHelper.GetCurrentWebElement();

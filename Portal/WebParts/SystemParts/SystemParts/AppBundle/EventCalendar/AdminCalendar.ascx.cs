@@ -33,7 +33,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var eventId = DataHelper.GetId(Request, "EventId");
+            var eventId = DataUtil.GetId(Request, "EventId");
             if (eventId > 0)
             {
                 WContext context = new WContext(this);
@@ -49,8 +49,8 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
             if (!Page.IsPostBack)
             {
                 string dateString = Request["Date"];
-                int calendarId = DataHelper.GetId(Request, "CalendarId");
-                DateTime date = DateTimeHelper.ParseTicks(dateString);
+                int calendarId = DataUtil.GetId(Request, "CalendarId");
+                DateTime date = TimeUtil.ParseTicks(dateString);
 
                 tabView.SelectedIndex = 0;
 
@@ -82,7 +82,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 WContext context = new WContext(this);
                 if (context.ContextType == WContextTypes.EditMode)
                 {
-                    var tmpCalendarId = DataHelper.GetId(context.Element.GetParameterValue("CalendarId", "-1"));
+                    var tmpCalendarId = DataUtil.GetId(context.Element.GetParameterValue("CalendarId", "-1"));
                     if (tmpCalendarId > 0)
                         calendarId = tmpCalendarId;
 
@@ -131,7 +131,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
             DateTime startDateFrom = DateTime.Now;
             DateTime endDateFrom = DateTime.Now;
             IEnumerable<CalendarEvent> events = null;
-            int calendarId = cboCalendar.Items.Count > 0 ? DataHelper.GetId(cboCalendar.SelectedValue) : -1;
+            int calendarId = cboCalendar.Items.Count > 0 ? DataUtil.GetId(cboCalendar.SelectedValue) : -1;
 
             if (chkMonth.Checked)
             {
@@ -155,13 +155,13 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 events = CalendarEvent.GetList(calendarId);
             }
 
-            GridView1.DataSource = DataHelper.ToDataSet(events);
+            GridView1.DataSource = DataUtil.ToDataSet(events);
             GridView1.DataBind();
         }
 
         protected void cmdAddEvent_Click(object sender, EventArgs e)
         {
-            int calendarId = cboCalendar.Items.Count > 0 ? DataHelper.GetId(cboCalendar.SelectedValue) : -1;
+            int calendarId = cboCalendar.Items.Count > 0 ? DataUtil.GetId(cboCalendar.SelectedValue) : -1;
 
             var query = new WQuery(this);
             query.Set("Date", monthCalendar.VisibleDate.AddHours(DateTime.Now.Hour).Ticks);
@@ -171,7 +171,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         private void ReloadData()
         {
-            int calendarId = cboCalendar.Items.Count > 0 ? DataHelper.GetId(cboCalendar.SelectedValue) : -1;
+            int calendarId = cboCalendar.Items.Count > 0 ? DataUtil.GetId(cboCalendar.SelectedValue) : -1;
 
             var query = new WQuery(this);
             query.Set("Date", monthCalendar.VisibleDate.Ticks);
@@ -198,7 +198,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
         protected void monthCalendar_DayRender(object sender, DayRenderEventArgs e)
         {
             DateTime date = e.Day.Date;
-            int calendarId = cboCalendar.Items.Count > 0 ? DataHelper.GetId(cboCalendar.SelectedValue) : -1;
+            int calendarId = cboCalendar.Items.Count > 0 ? DataUtil.GetId(cboCalendar.SelectedValue) : -1;
 
             if (events == null)
                 events = CalendarEvent.GetCalendarEvents(monthCalendar.VisibleDate, calendarId);
@@ -237,7 +237,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 query.Set("EventId", ev.Id);
 
                 todayText.AppendFormat(eventListItemFormat,
-                    DateTimeHelper.ToCompactTime(ev.StartDate),
+                    TimeUtil.ToCompactTime(ev.StartDate),
                     ev.Subject,
                     query.BuildQuery(),
                     ev.Template.WebForeColor,
@@ -250,7 +250,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void monthCalendar_VisibleMonthChanged(object sender, MonthChangedEventArgs e)
         {
-            int calendarId = cboCalendar.Items.Count > 0 ? DataHelper.GetId(cboCalendar.SelectedValue) : -1;
+            int calendarId = cboCalendar.Items.Count > 0 ? DataUtil.GetId(cboCalendar.SelectedValue) : -1;
 
             events = CalendarEvent.GetCalendarEvents(monthCalendar.VisibleDate, calendarId);
 

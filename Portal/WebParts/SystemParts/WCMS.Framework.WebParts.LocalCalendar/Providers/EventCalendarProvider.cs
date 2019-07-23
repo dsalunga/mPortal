@@ -39,9 +39,9 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
         private CalendarItem From(SqlDataReader r)
         {
             CalendarItem item = new CalendarItem();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.SiteId = DataHelper.GetId(r, WebColumns.SiteId);
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.SiteId = DataUtil.GetId(r, WebColumns.SiteId);
 
             return item;
         }
@@ -97,7 +97,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 new SqlParameter("@SiteId", item.SiteId)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

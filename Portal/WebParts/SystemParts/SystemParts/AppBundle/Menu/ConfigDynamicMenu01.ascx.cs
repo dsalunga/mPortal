@@ -37,7 +37,7 @@ namespace WCMS.WebSystem.WebParts.Menu
                 var item = MenuObject.Provider.Get(key.ObjectId, key.RecordId);
                 if (item != null)
                 {
-                    WebHelper.SetCboValue(cboMenu, item.MenuId);
+                    WebUtil.SetCboValue(cboMenu, item.MenuId);
                     ParameterSetSelector1.ParameterSetId = item.ParameterSetId;
                     cboRenderMode.SelectedValue = item.RenderMode.ToString();
 
@@ -69,8 +69,8 @@ namespace WCMS.WebSystem.WebParts.Menu
             //int height = DataHelper.GetInt32(txtHeight.Text.Trim());
             //int isHorizontal = DataHelper.GetInt32(cboOrientation.SelectedValue);
 
-            int renderMode = DataHelper.GetInt32(cboRenderMode.SelectedValue);
-            int menuId = DataHelper.GetId(cboMenu.SelectedValue);
+            int renderMode = DataUtil.GetInt32(cboRenderMode.SelectedValue);
+            int menuId = DataUtil.GetId(cboMenu.SelectedValue);
 
             var item = MenuObject.Provider.Get(key.ObjectId, key.RecordId);
             if (item == null)

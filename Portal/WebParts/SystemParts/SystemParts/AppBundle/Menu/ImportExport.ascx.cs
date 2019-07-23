@@ -35,7 +35,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         public DataSet GetList()
         {
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in MenuEntity.Provider.GetList()
                 select new
                 {
@@ -61,7 +61,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         protected void cmdExport_Click(object sender, EventArgs e)
         {
-            var id = DataHelper.GetId(cboMenus.SelectedValue);
+            var id = DataUtil.GetId(cboMenus.SelectedValue);
             if (id > 0)
             {
                 var item = MenuEntity.Provider.Get(id);
@@ -73,12 +73,12 @@ namespace WCMS.WebSystem.WebParts.Menu
 
                     var output = manager.ExportData();
 
-                    var webPath = WebHelper.CombineAddress(WConfig.TempFolder, string.Format("Menu-XML-{0:yyyyMMdd}.xml", DateTime.Now));
-                    var path = WebHelper.MapPath(webPath);
+                    var webPath = WebUtil.CombineAddress(WConfig.TempFolder, string.Format("Menu-XML-{0:yyyyMMdd}.xml", DateTime.Now));
+                    var path = WebUtil.MapPath(webPath);
 
                     FileHelper.WriteFile(output, path);
 
-                    WebHelper.DownloadFile(path, string.Empty, false);
+                    WebUtil.DownloadFile(path, string.Empty, false);
                 }
             }
         }
@@ -88,8 +88,8 @@ namespace WCMS.WebSystem.WebParts.Menu
             if (FileUpload1.HasFile)
             {
                 var fileName = FileUpload1.FileName;
-                var webPath = WebHelper.CombineAddress(WConfig.TempFolder, fileName);
-                var path = WebHelper.MapPath(webPath);
+                var webPath = WebUtil.CombineAddress(WConfig.TempFolder, fileName);
+                var path = WebUtil.MapPath(webPath);
 
                 FileUpload1.PostedFile.SaveAs(path);
 

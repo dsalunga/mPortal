@@ -43,7 +43,7 @@ namespace WCMS.WebSystem.WebParts.Article
                 cboSiteId.Items.AddRange(items);
                 cboSites.Items.AddRange(items);
 
-                var siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                var siteId = DataUtil.GetId(Request, WebColumns.SiteId);
                 if (cboSites.Items.FindByValue(siteId.ToString()) != null)
                     cboSites.SelectedValue = siteId.ToString();
 
@@ -60,19 +60,19 @@ namespace WCMS.WebSystem.WebParts.Article
                 for (int x = 1; x < 32; x++)
                     ddlDay.Items.Add(new ListItem(x.ToString(), x.ToString()));
 
-                WebHelper.SetCboValue(ddlDay, DateTime.Now.Day);
+                WebUtil.SetCboValue(ddlDay, DateTime.Now.Day);
 
                 // Months
                 for (int x = 1; x < 13; x++)
                     ddlMonth.Items.Add(new ListItem(DateTimeFormatInfo.CurrentInfo.GetMonthName(x), x.ToString()));
 
-                WebHelper.SetCboValue(ddlMonth, DateTime.Now.Month);
+                WebUtil.SetCboValue(ddlMonth, DateTime.Now.Month);
 
                 // Years
                 for (int x = DateTime.Now.Year - 45; x < DateTime.Now.Year + 10; x++)
                     ddlYear.Items.Add(new ListItem(x.ToString(), x.ToString()));
 
-                WebHelper.SetCboValue(ddlYear, DateTime.Now.Year);
+                WebUtil.SetCboValue(ddlYear, DateTime.Now.Year);
 
                 #endregion
 
@@ -82,7 +82,7 @@ namespace WCMS.WebSystem.WebParts.Article
                     panelInsertExisting.Visible = false;
 
 
-                var defaultView = DataHelper.GetInt32(Request, "DefaultView");
+                var defaultView = DataUtil.GetInt32(Request, "DefaultView");
                 switch (defaultView)
                 {
                     case 1:
@@ -93,7 +93,7 @@ namespace WCMS.WebSystem.WebParts.Article
                     default:
                         mtvInstance.SetActiveView(viwContent);
 
-                        var articleId = DataHelper.GetId(Request, "ArticleId");
+                        var articleId = DataUtil.GetId(Request, "ArticleId");
                         if (articleId > 0)
                             LoadEditView(articleId);
 
@@ -141,7 +141,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         private void SetSelectedObjects()
         {
-            int id = DataHelper.GetId(litID.Text);
+            int id = DataUtil.GetId(litID.Text);
             if (id > 0)
             {
                 // Remove all unselected
@@ -183,7 +183,7 @@ namespace WCMS.WebSystem.WebParts.Article
                         link.Rank = 1;
                         link.ArticleId = id;
                         link.SiteId = elementSelector.SiteId;
-                        link.CommentOn = DataHelper.GetId(cboCommentOn.SelectedValue);
+                        link.CommentOn = DataUtil.GetId(cboCommentOn.SelectedValue);
                         link.Update();
                     }
                 }
@@ -195,7 +195,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         private Article UpdateArticle()
         {
-            int id = DataHelper.GetId(litID.Text);
+            int id = DataUtil.GetId(litID.Text);
             Article item = null;
 
             if (id > 0 && (item = Article.Get(id)) != null)
@@ -222,7 +222,7 @@ namespace WCMS.WebSystem.WebParts.Article
             item.Date = dtDate;
             item.Content = fckContent.Value;
             item.Author = txtAuthor.Text.Trim();
-            item.SiteId = DataHelper.GetId(cboSiteId.SelectedValue);
+            item.SiteId = DataUtil.GetId(cboSiteId.SelectedValue);
             item.Active = chkIsActive.Checked ? 1 : 0;
             item.DateModified = DateTime.Now;
             item.ModifiedUserId = WSession.Current.UserId;
@@ -259,7 +259,7 @@ namespace WCMS.WebSystem.WebParts.Article
             switch (e.CommandName)
             {
                 case "ContentEdit":
-                    LoadEditView(DataHelper.GetId(e.CommandArgument));
+                    LoadEditView(DataUtil.GetId(e.CommandArgument));
                     break;
 
                 case "A_SendEmail":
@@ -310,7 +310,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
                 // COMMENTS
                 panelComment.Visible = true;
-                WebHelper.SetCboValue(cboCommentOn, link.CommentOn);
+                WebUtil.SetCboValue(cboCommentOn, link.CommentOn);
 
                 // Load from WebFS
                 saveToFolder.FolderId = saveToFolder.GetFolder(Article.ID, article.Id);
@@ -331,10 +331,10 @@ namespace WCMS.WebSystem.WebParts.Article
 
             link.ObjectId = item.OBJECT_ID;
             link.RecordId = item.Id;
-            link.Rank = DataHelper.GetInt32(ddlRank.SelectedValue);
+            link.Rank = DataUtil.GetInt32(ddlRank.SelectedValue);
             link.ArticleId = article.Id;
-            link.SiteId = DataHelper.GetId(cboSiteId.SelectedValue);
-            link.CommentOn = DataHelper.GetId(cboCommentOn.SelectedValue);
+            link.SiteId = DataUtil.GetId(cboSiteId.SelectedValue);
+            link.CommentOn = DataUtil.GetId(cboCommentOn.SelectedValue);
             link.Update();
 
             panelComment.Visible = false;
@@ -408,7 +408,7 @@ namespace WCMS.WebSystem.WebParts.Article
             if (!string.IsNullOrEmpty(ids))
             {
                 IPageElement item = WHelper.GetCurrentWebElement();
-                var strIds = DataHelper.ParseCommaSeparatedIdList(ids);
+                var strIds = DataUtil.ParseCommaSeparatedIdList(ids);
                 var list = ArticleList.Get(item.OBJECT_ID, item.Id);
 
                 if (list != null && list.FolderId > 0)
@@ -464,7 +464,7 @@ namespace WCMS.WebSystem.WebParts.Article
             string ids = Request.Form["grvContent"];
             if (!String.IsNullOrEmpty(ids))
             {
-                var strIds = DataHelper.ParseCommaSeparatedIdList(ids);
+                var strIds = DataUtil.ParseCommaSeparatedIdList(ids);
                 var item = WHelper.GetCurrentWebElement();
                 var list = ArticleList.Get(item.OBJECT_ID, item.Id);
 
@@ -497,7 +497,7 @@ namespace WCMS.WebSystem.WebParts.Article
             IPageElement item = WHelper.GetCurrentWebElement();
 
             //string dateFormatString = txtDateFormat.Text.Trim();
-            int pageSize = DataHelper.GetInt32(txtPageSize.Text.Trim(), 10);
+            int pageSize = DataUtil.GetInt32(txtPageSize.Text.Trim(), 10);
 
             ArticleList list = ArticleList.Get(item.OBJECT_ID, item.Id);
             if (list == null)
@@ -508,7 +508,7 @@ namespace WCMS.WebSystem.WebParts.Article
             }
 
             list.SiteId = item.OBJECT_ID == WebObjects.WebSite ? item.Id : -1;
-            list.TemplateId = DataHelper.GetId(cboTemplate.SelectedValue);
+            list.TemplateId = DataUtil.GetId(cboTemplate.SelectedValue);
 
             list.PageSize = pageSize;
             //link.DateFormatString = dateFormatString;
@@ -602,7 +602,7 @@ namespace WCMS.WebSystem.WebParts.Article
             string sChecked = Request.Form["grvContentAll"];
             if (!string.IsNullOrEmpty(sChecked))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
 
                 grvContentAll.DataBind();
             }
@@ -610,7 +610,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         protected void grvContentAll_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int articleId = DataHelper.GetId(e.CommandArgument);
+            int articleId = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -635,7 +635,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
             if (list != null && list.FolderId > 0)
             {
-                return DataHelper.ToDataSet(from a in list.Articles
+                return DataUtil.ToDataSet(from a in list.Articles
                                             orderby a.Date descending
                                             select new
                                             {
@@ -651,7 +651,7 @@ namespace WCMS.WebSystem.WebParts.Article
             }
             else
             {
-                return DataHelper.ToDataSet(from a in ArticleLink.GetList(objectId, recordId, siteId)
+                return DataUtil.ToDataSet(from a in ArticleLink.GetList(objectId, recordId, siteId)
                                             orderby a.Article.Date descending
                                             where (article = a.Article) != null
                                             select new
@@ -694,7 +694,7 @@ namespace WCMS.WebSystem.WebParts.Article
                            select i;
             }
 
-            return DataHelper.ToDataSet(from i in subItems
+            return DataUtil.ToDataSet(from i in subItems
                                         orderby i.Date descending
                                         select new
                                         {

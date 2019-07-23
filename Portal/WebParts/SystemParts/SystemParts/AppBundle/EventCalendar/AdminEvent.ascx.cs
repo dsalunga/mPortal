@@ -38,7 +38,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 var context = new WContext(this);
                 var element = context.ParameterizedObject;
 
-                int eventId = DataHelper.GetId(Request, "EventId");
+                int eventId = DataUtil.GetId(Request, "EventId");
                 if (eventId > 0 && (item = CalendarEvent.Get(eventId)) != null)
                 {
                     txtSubject.Text = item.Subject;
@@ -125,7 +125,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 {
                     if (calendarId == -1)
                     {
-                        var tmpCalendarId = DataHelper.GetId(element.GetParameterValue("CalendarId", "-1"));
+                        var tmpCalendarId = DataUtil.GetId(element.GetParameterValue("CalendarId", "-1"));
                         if (tmpCalendarId > 0)
                             calendarId = tmpCalendarId;
                     }
@@ -175,7 +175,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void cmdCancel_Click(object sender, EventArgs e)
         {
-            int eventId = DataHelper.GetId(Request, "EventId");
+            int eventId = DataUtil.GetId(Request, "EventId");
 
             if (eventId > 0)
                 this.ReturnToEventView();
@@ -211,7 +211,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
         private void Initialize()
         {
             string dateString = Request["Date"];
-            DateTime date = DateTimeHelper.ParseTicks(dateString);
+            DateTime date = TimeUtil.ParseTicks(dateString);
 
             cboLocations.DataSource = CalendarLocation.GetList();
             cboLocations.DataBind();
@@ -257,8 +257,8 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
             DateTime endDate = date.TimeOfDay.Ticks == 0 ? date : date.AddMinutes(30);
 
-            txtStartDate.Text = DateTimeHelper.ToCompactDateTime(date, "dd-MMM-yyyy", "dd-MMM-yyyy hh:mm tt");
-            txtEndDate.Text = DateTimeHelper.ToCompactDateTime(endDate, "dd-MMM-yyyy", "dd-MMM-yyyy hh:mm tt");
+            txtStartDate.Text = TimeUtil.ToCompactDateTime(date, "dd-MMM-yyyy", "dd-MMM-yyyy hh:mm tt");
+            txtEndDate.Text = TimeUtil.ToCompactDateTime(endDate, "dd-MMM-yyyy", "dd-MMM-yyyy hh:mm tt");
             txtRepeatUntil.Text = txtEndDate.Text;
             //txtReminderToEmail.Text = WebRegistry.SelectNode("/Apps/EventCalendar/DefaultReminderToEmail").Value;
 
@@ -269,7 +269,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            int eventId = DataHelper.GetId(Request, "EventId");
+            int eventId = DataUtil.GetId(Request, "EventId");
 
             CalendarEvent item = eventId > 0 ? CalendarEvent.Get(eventId) : new CalendarEvent();
             if (item == null)
@@ -280,15 +280,15 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 if (cblWeekdays.Items.FindByValue(i.ToString()).Selected)
                     weekdays += i;
 
-            var recurrenceId = DataHelper.GetId(rblRecurrence.SelectedValue);
+            var recurrenceId = DataUtil.GetId(rblRecurrence.SelectedValue);
             if (recurrenceId == RecurrenceType.Weekly && weekdays == 0)
             {
                 lblStatus.InnerHtml = "You have selected a Weekly recurrence but no Weekdays were selected. Kindly select at least one Weekday.";
                 return;
             }
 
-            var categoryId = DataHelper.GetId(cboCategory.SelectedValue);
-            var templateId = DataHelper.GetInt32(cboTemplates.SelectedValue);
+            var categoryId = DataUtil.GetId(cboCategory.SelectedValue);
+            var templateId = DataUtil.GetInt32(cboTemplates.SelectedValue);
             var startDate = Convert.ToDateTime(txtStartDate.Text.Trim());
             var endDate = Convert.ToDateTime(txtEndDate.Text.Trim());
 
@@ -308,7 +308,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
             item.RepeatUntil = chkNoEnd.Checked ? WConstants.DateTimeMinValue : Convert.ToDateTime(txtRepeatUntil.Text.Trim());
             item.ReminderTo = hRecipients.Value; //txtReminderToEmail.Text.Trim().Replace(",", ";");
             item.ReminderBefore = Convert.ToInt32(cboReminderBefore.SelectedValue);
-            item.SendReminderVia = DataHelper.GetInt32(rblSendVia.SelectedValue);
+            item.SendReminderVia = DataUtil.GetInt32(rblSendVia.SelectedValue);
             item.Weekdays = weekdays;
 
             if (categoryId > 0)
@@ -326,11 +326,11 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
             // Set Calendar
             if (cboCalendar.Items.Count > 0)
-                item.CalendarId = DataHelper.GetId(cboCalendar.SelectedValue);
+                item.CalendarId = DataUtil.GetId(cboCalendar.SelectedValue);
 
             if (!chkOtherLocation.Checked)
             {
-                item.LocationId = DataHelper.GetId(cboLocations.SelectedValue);
+                item.LocationId = DataUtil.GetId(cboLocations.SelectedValue);
                 item.LocationString = string.Empty;
             }
             else
@@ -368,7 +368,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void cmdDelete_Click(object sender, EventArgs e)
         {
-            int eventId = DataHelper.GetId(Request, "EventId");
+            int eventId = DataUtil.GetId(Request, "EventId");
             CalendarEvent.Delete(eventId);
 
             this.Return();
@@ -376,7 +376,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void cmdSendReminder_Click(object sender, EventArgs e)
         {
-            int eventId = DataHelper.GetId(Request, "EventId");
+            int eventId = DataUtil.GetId(Request, "EventId");
             CalendarEvent evnt = null;
 
             if (eventId > 0 && (evnt = CalendarEvent.Get(eventId)) != null)
@@ -400,11 +400,11 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void cmdCheckLocation_Click(object sender, EventArgs e)
         {
-            int locationId = DataHelper.GetId(cboLocations.SelectedValue);
+            int locationId = DataUtil.GetId(cboLocations.SelectedValue);
             CalendarLocation location = CalendarLocation.Get(locationId);
             if (location != null)
             {
-                int eventId = DataHelper.GetId(Request, "EventId");
+                int eventId = DataUtil.GetId(Request, "EventId");
 
                 CalendarEvent item = eventId > 0 ? CalendarEvent.Get(eventId) : new CalendarEvent();
                 if (item == null)
@@ -418,10 +418,10 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 item.Subject = txtSubject.Text.Trim();
                 item.Message = txtMessage.Value.Trim();
                 item.LocationString = txtLocation.Text.Trim();
-                item.CategoryId = DataHelper.GetId(cboCategory.SelectedValue);
+                item.CategoryId = DataUtil.GetId(cboCategory.SelectedValue);
                 item.StartDate = Convert.ToDateTime(txtStartDate.Text.Trim());
                 item.EndDate = Convert.ToDateTime(txtEndDate.Text.Trim());
-                item.RecurrenceId = DataHelper.GetId(rblRecurrence.SelectedValue);
+                item.RecurrenceId = DataUtil.GetId(rblRecurrence.SelectedValue);
                 item.RepeatUntil = Convert.ToDateTime(txtRepeatUntil.Text.Trim());
                 item.ReminderTo = hRecipients.Value; //txtReminderToEmail.Text.Trim().Replace(",", ";");
                 item.ReminderBefore = Convert.ToInt32(cboReminderBefore.SelectedValue);
@@ -429,7 +429,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
                 if (!chkOtherLocation.Checked)
                 {
-                    item.LocationId = DataHelper.GetId(cboLocations.SelectedValue);
+                    item.LocationId = DataUtil.GetId(cboLocations.SelectedValue);
                     item.LocationString = string.Empty;
                 }
                 else
@@ -454,7 +454,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 // Update location status
                 foreach (ListItem listItem in cboLocations.Items)
                 {
-                    int locId = DataHelper.GetId(listItem.Value);
+                    int locId = DataUtil.GetId(listItem.Value);
                     CalendarLocation loc = null;
                     if (locId > 0 && (loc = CalendarLocation.Get(locId)) != null)
                         if (!loc.IsAvailable(nextOccurence, eventEnd, item))
@@ -465,7 +465,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         public DataSet GetRecipients(string customRecipients)
         {
-            var includeList = DataHelper.ParseDelimitedStringToList(customRecipients, AccountConstants.AccountDelimiter);
+            var includeList = DataUtil.ParseDelimitedStringToList(customRecipients, AccountConstants.AccountDelimiter);
 
             List<WebUser> includeUserList = new List<WebUser>();
             List<WebGroup> includeGroupList = new List<WebGroup>();
@@ -541,7 +541,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                                       });
             }
 
-            return DataHelper.ToDataSet(result);
+            return DataUtil.ToDataSet(result);
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -553,7 +553,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                     string shortString = e.CommandArgument.ToString();
 
                     // Check if present in custom recipients list
-                    var includedList = DataHelper.ParseDelimitedStringToList(hRecipients.Value.Trim(), AccountConstants.AccountDelimiter);
+                    var includedList = DataUtil.ParseDelimitedStringToList(hRecipients.Value.Trim(), AccountConstants.AccountDelimiter);
                     if (includedList.Count > 0)
                     {
                         foreach (var included in includedList)
@@ -561,7 +561,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                             if (included == shortString)
                             {
                                 includedList.Remove(included);
-                                hRecipients.Value = DataHelper.ToDelimitedString(includedList, AccountConstants.AccountDelimiter);
+                                hRecipients.Value = DataUtil.ToDelimitedString(includedList, AccountConstants.AccountDelimiter);
                                 break;
                             }
                         }
@@ -580,13 +580,13 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         private bool AddRecipients(string newAccounts)
         {
-            var includeList = DataHelper.ParseDelimitedStringToList(hRecipients.Value, AccountConstants.AccountDelimiter);
+            var includeList = DataUtil.ParseDelimitedStringToList(hRecipients.Value, AccountConstants.AccountDelimiter);
 
             bool accountAdded = false;
 
             if (!string.IsNullOrEmpty(newAccounts))
             {
-                var accountList = DataHelper.ParseDelimitedStringToList(newAccounts, AccountConstants.AccountDelimiter);
+                var accountList = DataUtil.ParseDelimitedStringToList(newAccounts, AccountConstants.AccountDelimiter);
                 if (accountList.Count > 0)
                 {
                     //List<WebGroup> groups = new List<WebGroup>();
@@ -627,7 +627,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
             if (accountAdded)
             {
-                hRecipients.Value = DataHelper.ToDelimitedString(includeList, AccountConstants.AccountDelimiter);
+                hRecipients.Value = DataUtil.ToDelimitedString(includeList, AccountConstants.AccountDelimiter);
 
                 gridRecipients.DataBind();
 

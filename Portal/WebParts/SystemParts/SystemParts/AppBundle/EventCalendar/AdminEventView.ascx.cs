@@ -17,7 +17,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
         {
             if (!Page.IsPostBack)
             {
-                int eventId = DataHelper.GetId(Request, "EventId");
+                int eventId = DataUtil.GetId(Request, "EventId");
                 if (eventId > 0)
                 {
                     WContext context = new WContext(this);
@@ -25,7 +25,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                     CalendarEvent item = CalendarEvent.Get(eventId);
                     if (item != null)
                     {
-                        DateTime date = DateTimeHelper.ParseTicks(context.Get("Date"));
+                        DateTime date = TimeUtil.ParseTicks(context.Get("Date"));
 
                         lblEventSubject.InnerHtml = item.Subject;
                         lblEventDescription.InnerHtml = item.Message;
@@ -53,7 +53,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void cmdDelete_Click(object sender, EventArgs e)
         {
-            int eventId = DataHelper.GetId(Request, "EventId");
+            int eventId = DataUtil.GetId(Request, "EventId");
             CalendarEvent.Delete(eventId);
 
             this.Return();
@@ -80,7 +80,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void cmdSendReminder_Click(object sender, EventArgs e)
         {
-            int eventId = DataHelper.GetId(Request, "EventId");
+            int eventId = DataUtil.GetId(Request, "EventId");
             CalendarEvent evnt = null;
 
             if (eventId > 0 && (evnt = CalendarEvent.Get(eventId)) != null)

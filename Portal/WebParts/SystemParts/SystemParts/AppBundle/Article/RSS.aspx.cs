@@ -23,7 +23,7 @@ namespace WCMS.WebSystem.WebParts.Article
         {
             //string strPath = Request.Url.IsDefaultPort ? "http://" + Request.Url.Host : "http://" + Request.Url.Host + ":" + Request.Url.Port.ToString();
 
-            int query = Request.QueryString.Count > 0 ? DataHelper.GetId(Request.QueryString[0]) : -1;
+            int query = Request.QueryString.Count > 0 ? DataUtil.GetId(Request.QueryString[0]) : -1;
             if (!(query > 0))
             {
                 Response.Redirect("/", false);

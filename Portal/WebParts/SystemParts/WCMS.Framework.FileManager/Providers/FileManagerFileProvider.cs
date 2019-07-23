@@ -15,13 +15,13 @@ namespace WCMS.WebSystem.WebParts.FileManager
         {
             List<FileManagerFile> items = new List<FileManagerFile>();
 
-            var files = Directory.EnumerateFiles(WebHelper.MapPath(path)); // + @"\" + sFileType); // images / documents
+            var files = Directory.EnumerateFiles(WebUtil.MapPath(path)); // + @"\" + sFileType); // images / documents
             foreach (string file in files)
             {
                 FileInfo fileInfo = new FileInfo(file);
                 FileManagerFile item = new FileManagerFile();
                 item.Name = Path.GetFileName(file); ;
-                item.FullPath = WebHelper.CombineAddress(path, item.Name);
+                item.FullPath = WebUtil.CombineAddress(path, item.Name);
                 item.Size = fileInfo.Length;
                 item.Extension = fileInfo.Extension.TrimStart('.');
                 item.DateModified = fileInfo.LastWriteTime;
@@ -34,7 +34,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
         public bool Delete(string sFile, string sPath)
         {
-            string virtualFile = WebHelper.CombineAddress(sPath, sFile);
+            string virtualFile = WebUtil.CombineAddress(sPath, sFile);
 
             return Delete(virtualFile);
         }
@@ -43,7 +43,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
         {
             try
             {
-                File.Delete(WebHelper.MapPath(sVirtualFile));
+                File.Delete(WebUtil.MapPath(sVirtualFile));
             }
             catch (Exception)
             {

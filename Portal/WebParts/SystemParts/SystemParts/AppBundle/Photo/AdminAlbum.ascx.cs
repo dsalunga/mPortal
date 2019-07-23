@@ -29,7 +29,7 @@ namespace WCMS.WebSystem.WebParts.Photo
 
         public DataSet Select()
         {
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in Album.Provider.GetList()
                 select new
                 {
@@ -65,7 +65,7 @@ namespace WCMS.WebSystem.WebParts.Photo
             string formChecked = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(formChecked))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(formChecked);
+                var ids = DataUtil.ParseCommaSeparatedIdList(formChecked);
                 if (ids.Count > 0)
                 {
                     foreach (var id in ids)
@@ -84,7 +84,7 @@ namespace WCMS.WebSystem.WebParts.Photo
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            var id = DataHelper.GetId(e.CommandArgument);
+            var id = DataUtil.GetId(e.CommandArgument);
             switch (e.CommandName)
             {
                 case "edit_item":

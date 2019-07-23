@@ -102,7 +102,7 @@ namespace WCMS.WebSystem.WebParts.Article
             string selected = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(selected))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(selected);
+                var ids = DataUtil.ParseCommaSeparatedIdList(selected);
                 foreach (var id in ids)
                     WebSubscription.Provider.Delete(id);
 
@@ -112,7 +112,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             switch (e.CommandName)
             {
                 case WConstants.CustomDeleteCmd:
@@ -154,7 +154,7 @@ namespace WCMS.WebSystem.WebParts.Article
                                PageName = page.Name
                            };
 
-            return DataHelper.ToDataSet(subItems);
+            return DataUtil.ToDataSet(subItems);
         }
 
         #region IUpdatable Members

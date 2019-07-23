@@ -202,7 +202,7 @@ namespace WCMS.WebSystem.WebParts.GenericForm
             string sChecked = Request.Form["chkCheckedAll"];
             if (!string.IsNullOrEmpty(sChecked))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
                 foreach (int id in ids)
                 {
                     SqlHelper.ExecuteNonQuery("GenericListLink_Set",

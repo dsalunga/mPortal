@@ -62,7 +62,7 @@ namespace WCMS.WebSystem.WebParts.FileManager.Controls
                     {
                         parentPath += "/" + folder;
 
-                        if (i + 1 == len && (!FileHelper.IsFolder(WebHelper.MapPath(currentPath)))) // || (!string.IsNullOrEmpty(openParam) && openParam.Equals(FileManagerConstants.ViewFile, StringComparison.InvariantCultureIgnoreCase)))
+                        if (i + 1 == len && (!FileHelper.IsFolder(WebUtil.MapPath(currentPath)))) // || (!string.IsNullOrEmpty(openParam) && openParam.Equals(FileManagerConstants.ViewFile, StringComparison.InvariantCultureIgnoreCase)))
                             query.SetOpen(FileManagerConstants.ViewFile);
 
                         query.Set(FileManagerConstants.PathKey, ToVirtualPath(parentPath, rootPath));

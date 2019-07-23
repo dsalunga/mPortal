@@ -24,7 +24,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 foreach (var sourceType in RemoteSourceTypes.Values)
                     cboSourceType.Items.Add(new ListItem(sourceType.Value, sourceType.Key.ToString()));
 
-                var id = DataHelper.GetId(Request, "LibraryId");
+                var id = DataUtil.GetId(Request, "LibraryId");
                 if (id > 0)
                 {
                     var item = RemoteLibrary.Provider.Get(id);
@@ -39,7 +39,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
                         txtPassword.Attributes["value"] = item.Password;
 
-                        WebHelper.SetCboValue(cboSourceType, item.SourceTypeId);
+                        WebUtil.SetCboValue(cboSourceType, item.SourceTypeId);
                     }
                 }
             }
@@ -53,7 +53,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
             RemoteLibrary item = null;
-            int id = DataHelper.GetId(Request, "LibraryId");
+            int id = DataUtil.GetId(Request, "LibraryId");
             if (id > 0 && (item = RemoteLibrary.Provider.Get(id)) != null) { }
             else
             {
@@ -67,7 +67,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
             item.Password = txtPassword.Text;
             item.DisplayBaseAddress = txtDisplayBaseAddress.Text.Trim();
             item.Active = chkActive.Checked ? 1 : 0;
-            item.SourceTypeId = DataHelper.GetInt32(cboSourceType.SelectedValue);
+            item.SourceTypeId = DataUtil.GetInt32(cboSourceType.SelectedValue);
             item.Update();
 
             this.ReturnPage();

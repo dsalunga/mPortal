@@ -51,14 +51,14 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
         {
             Album item = new Album();
 
-            item.Id = DataHelper.GetId(r, "CategoryID");
+            item.Id = DataUtil.GetId(r, "CategoryID");
             item.Title = r["Title"].ToString();
             item.ImageFile = r["ImageURL"].ToString();
             item.FolderName = r["FolderName"].ToString();
-            item.Width = DataHelper.GetId(r, "Width");
-            item.PhotoHeight = DataHelper.GetId(r, "PhotoHeight");
-            item.PhotoWidth = DataHelper.GetId(r, "PhotoWidth");
-            item.DateModified = DataHelper.GetDateTime(r, "DateModified");
+            item.Width = DataUtil.GetId(r, "Width");
+            item.PhotoHeight = DataUtil.GetId(r, "PhotoHeight");
+            item.PhotoWidth = DataUtil.GetId(r, "PhotoWidth");
+            item.DateModified = DataUtil.GetDateTime(r, "DateModified");
 
             return item;
         }
@@ -120,7 +120,7 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
                 new SqlParameter("@DateModified", item.DateModified)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
 
             return item.Id;
         }

@@ -63,7 +63,7 @@ namespace WCMS.WebSystem.WebParts.GenericForm
                 if (sSID < 1)
                 {
                     // GET IT DIRECTLY TO THE DATABASE IF NOT IN QS
-                    sSID = DataHelper.GetId(obj);
+                    sSID = DataUtil.GetId(obj);
                 }
                 // END: GET SURVEY ID #####################
             }
@@ -84,7 +84,7 @@ namespace WCMS.WebSystem.WebParts.GenericForm
                 obj = SqlHelper.ExecuteScalar("GenericListPartition_GetNext",
                     new SqlParameter("@ListId", sSID));
 
-                sPID = DataHelper.GetId(obj);
+                sPID = DataUtil.GetId(obj);
 
                 // FIRST TIME (FIRST PAGE)
                 using (SqlDataReader r = SqlHelper.ExecuteReader("GenericListColumn_GetPartition",
@@ -117,12 +117,12 @@ namespace WCMS.WebSystem.WebParts.GenericForm
                                     new SqlParameter("@IsCompleted", isCompleted)
                                     );
 
-                                sRID = DataHelper.GetId(obj);
+                                sRID = DataUtil.GetId(obj);
                                 ViewState["_R" + sSID] = sRID;
                             }
                             else
                             {
-                                sRID = DataHelper.GetId(obj);
+                                sRID = DataUtil.GetId(obj);
                             }
                         }
                         // END: GET SURVEY ID
@@ -186,7 +186,7 @@ namespace WCMS.WebSystem.WebParts.GenericForm
 
                         if (obj != null)
                         {
-                            sPID = DataHelper.GetId(obj);
+                            sPID = DataUtil.GetId(obj);
 
                             using (SqlDataReader r = SqlHelper.ExecuteReader("GenericListColumn_GetPartition",
                                       new SqlParameter("@PartitionId", sPID)))

@@ -62,7 +62,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 {
                     calendarName = calendar.Name;
 
-                    var pageId = DataHelper.GetId(calendar.GetParameterValue(WebColumns.PageId));
+                    var pageId = DataUtil.GetId(calendar.GetParameterValue(WebColumns.PageId));
                     if (pageId > 0)
                     {
                         var page = WPage.Get(pageId);

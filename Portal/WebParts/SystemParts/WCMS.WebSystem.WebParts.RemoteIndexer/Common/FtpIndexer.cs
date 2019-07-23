@@ -64,7 +64,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Common
 
                     using (var response = ftpClient.GetResponse() as FtpWebResponse)
                     {
-                        var reader = new StreamReader(response.GetResponseStream(), System.Text.Encoding.ASCII);
+                        var reader = new StreamReader(response.GetResponseStream(), Encoding.ASCII);
                         string responseString = reader.ReadToEnd();
 
                         reader.Close();
@@ -219,26 +219,26 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Common
             var reader = new StringReader(tempString);
 
             var fileStruct = new FileStruct();
-            fileStruct.Flags = DataHelper.ReadNextWord(reader); //tempString.Substring(0, 9);
+            fileStruct.Flags = DataUtil.ReadNextWord(reader); //tempString.Substring(0, 9);
             fileStruct.IsDirectory = (fileStruct.Flags[0] == 'd');
 
             //fileStruct.Owner = _cutSubstringFromStringWithTrim(ref tempString, ' ', 0);
             //fileStruct.Group = _cutSubstringFromStringWithTrim(ref tempString, ' ', 0);
-            DataHelper.ReadNextWord(reader);
+            DataUtil.ReadNextWord(reader);
 
-            fileStruct.Owner = DataHelper.ReadNextWord(reader);
-            fileStruct.Group = DataHelper.ReadNextWord(reader);
+            fileStruct.Owner = DataUtil.ReadNextWord(reader);
+            fileStruct.Group = DataUtil.ReadNextWord(reader);
 
             //string size = tempString.Substring(28, 14);
-            fileStruct.Size = long.Parse(DataHelper.ReadNextWord(reader)); //size);
+            fileStruct.Size = long.Parse(DataUtil.ReadNextWord(reader)); //size);
 
             // Skip Date
-            var date = DataHelper.ReadNextWord(reader);
-            date += " " + DataHelper.ReadNextWord(reader);
-            date += " " + DataHelper.ReadNextWord(reader);
+            var date = DataUtil.ReadNextWord(reader);
+            date += " " + DataUtil.ReadNextWord(reader);
+            date += " " + DataUtil.ReadNextWord(reader);
 
             //string dateString = tempString.Substring(43, 12); //DateTime.Parse(_cutSubstringFromStringWithTrim(ref tempString, ' ', 8)
-            fileStruct.DateModified = DataHelper.GetDateTime(date); //DateTime.Now; //DateTime.Parse(dateString);
+            fileStruct.DateModified = DataUtil.GetDateTime(date); //DateTime.Now; //DateTime.Parse(dateString);
             fileStruct.Name = reader.ReadToEnd().Trim(); //tempString.Substring(56).Trim();   //Rest of the part is name
 
             return fileStruct;

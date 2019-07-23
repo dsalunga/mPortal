@@ -20,11 +20,11 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
         protected override AlbumLink From(IDataReader r, AlbumLink source)
         {
             var item = source ?? new AlbumLink();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.SiteId = DataHelper.GetId(r, WebColumns.SiteId);
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.AlbumId = DataHelper.GetId(r, "CategoryId");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.SiteId = DataUtil.GetId(r, WebColumns.SiteId);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.AlbumId = DataUtil.GetId(r, "CategoryId");
 
             return item;
         }

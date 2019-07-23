@@ -100,7 +100,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
                 new SqlParameter("@SendReminderVia", item.SendReminderVia)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 
@@ -116,24 +116,24 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
         public CalendarEvent From(DbDataReader r)
         {
             CalendarEvent item = new CalendarEvent();
-            item.Id = DataHelper.GetId(r["EventId"]);
+            item.Id = DataUtil.GetId(r["EventId"]);
             item.Subject = r["Subject"].ToString();
             item.Message = r["Message"].ToString();
             item.LocationString = r["Location"].ToString();
-            item.CategoryId = DataHelper.GetId(r["CategoryId"]);
-            item.RecurrenceId = DataHelper.GetId(r["RecurrenceId"]);
+            item.CategoryId = DataUtil.GetId(r["CategoryId"]);
+            item.RecurrenceId = DataUtil.GetId(r["RecurrenceId"]);
             item.EndDate = (DateTime)r["EndDate"];
             item.ReminderBefore = Convert.ToInt32(r["ReminderBefore"].ToString());
             item.ReminderTo = r["ReminderTo"].ToString();
             item.RepeatUntil = (DateTime)r["RepeatUntil"];
             item.StartDate = (DateTime)r["StartDate"];
-            item.LocationId = DataHelper.GetId(r["LocationId"]);
+            item.LocationId = DataUtil.GetId(r["LocationId"]);
             item.Weekdays = Convert.ToInt32(r["Weekdays"].ToString());
             item.LastReminderSent = (DateTime)r["LastReminderSent"];
             item.BookLocation = Convert.ToInt32(r["BookLocation"].ToString());
-            item.CalendarId = DataHelper.GetId(r, "CalendarId");
-            item.TemplateId = DataHelper.GetId(r, "TemplateId");
-            item.SendReminderVia = DataHelper.GetInt32(r, "SendReminderVia");
+            item.CalendarId = DataUtil.GetId(r, "CalendarId");
+            item.TemplateId = DataUtil.GetId(r, "TemplateId");
+            item.SendReminderVia = DataUtil.GetInt32(r, "SendReminderVia");
 
             return item;
         }

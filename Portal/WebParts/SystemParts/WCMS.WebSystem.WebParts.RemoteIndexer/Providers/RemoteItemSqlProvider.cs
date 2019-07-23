@@ -31,20 +31,20 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
         private RemoteItem From(SqlDataReader r)
         {
             var item = new RemoteItem();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.LibraryId = DataHelper.GetId(r, "LibraryId");
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.RelativePath = DataHelper.Get(r, "RelativePath");
-            item.TypeId = DataHelper.GetInt32(r, "TypeId");
-            item.DateModified = DataHelper.GetDateTime(r, "DateModified");
-            item.Size = DataHelper.GetInt64(r, "Size");
-            item.Content = DataHelper.Get(r, "Content");
-            item.ParentId = DataHelper.GetId(r, WebColumns.ParentId);
-            item.DownloadCount = DataHelper.GetInt32(r, "DownloadCount");
-            item.DisplayName = DataHelper.Get(r, "DisplayName");
-            item.IndexDateModified = DataHelper.GetDateTime(r, "IndexDateModified");
-            item.FileCacheEnabled = DataHelper.GetInt32(r, "FileCacheEnabled");
-            item.Cached = DataHelper.GetInt32(r, "Cached");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.LibraryId = DataUtil.GetId(r, "LibraryId");
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.RelativePath = DataUtil.Get(r, "RelativePath");
+            item.TypeId = DataUtil.GetInt32(r, "TypeId");
+            item.DateModified = DataUtil.GetDateTime(r, "DateModified");
+            item.Size = DataUtil.GetInt64(r, "Size");
+            item.Content = DataUtil.Get(r, "Content");
+            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
+            item.DownloadCount = DataUtil.GetInt32(r, "DownloadCount");
+            item.DisplayName = DataUtil.Get(r, "DisplayName");
+            item.IndexDateModified = DataUtil.GetDateTime(r, "IndexDateModified");
+            item.FileCacheEnabled = DataUtil.GetInt32(r, "FileCacheEnabled");
+            item.Cached = DataUtil.GetInt32(r, "Cached");
 
             return item;
         }
@@ -118,7 +118,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
                 new SqlParameter("@Cached", item.Cached)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

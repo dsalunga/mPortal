@@ -38,8 +38,8 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         public static string BuildEventTimeString(CalendarEvent item, DateTime startDate)
         {
-            var endDate = CalendarHelper.GetEventEndDate(item, startDate);
-            var durationString = DateTimeHelper.TimeSpanToString(endDate - startDate);
+            var endDate = GetEventEndDate(item, startDate);
+            var durationString = TimeUtil.TimeSpanToString(endDate - startDate);
 
             StringBuilder sb = new StringBuilder();
             sb.Append(startDate.ToShortTimeString());

@@ -45,7 +45,7 @@ namespace WCMS.WebSystem.WebParts.Contact
         protected void cmdDelete_Click(object sender, System.EventArgs e)
         {
             string sChecked = Request.Form["chkChecked"];
-            var items = DataHelper.ParseCommaSeparatedIdList(sChecked);
+            var items = DataUtil.ParseCommaSeparatedIdList(sChecked);
             if (items.Count > 0)
             {
                 foreach (int id in items)
@@ -60,7 +60,7 @@ namespace WCMS.WebSystem.WebParts.Contact
         protected void cmdActive_Click(object sender, System.EventArgs e)
         {
             string sChecked = Request.Form["chkChecked"];
-            var items = DataHelper.ParseCommaSeparatedIdList(sChecked);
+            var items = DataUtil.ParseCommaSeparatedIdList(sChecked);
             if (items.Count > 0)
             {
                 foreach (int id in items)
@@ -80,7 +80,7 @@ namespace WCMS.WebSystem.WebParts.Contact
         protected void cmdDeactivate_Click(object sender, System.EventArgs e)
         {
             string sChecked = Request.Form["chkChecked"];
-            var items = DataHelper.ParseCommaSeparatedIdList(sChecked);
+            var items = DataUtil.ParseCommaSeparatedIdList(sChecked);
             if (items.Count > 0)
             {
                 foreach (int id in items)
@@ -99,7 +99,7 @@ namespace WCMS.WebSystem.WebParts.Contact
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            QueryParser query = new QueryParser(this);
+            WQuery query = new WQuery(this);
             string sID = e.CommandArgument.ToString();
 
             switch (e.CommandName)
@@ -125,7 +125,7 @@ namespace WCMS.WebSystem.WebParts.Contact
 
         public DataSet Select()
         {
-            return DataHelper.ToDataSet(from item in ContactInquiry.GetList()
+            return DataUtil.ToDataSet(from item in ContactInquiry.GetList()
                                         select new
                                         {
                                             item.InquiryId,
@@ -145,16 +145,16 @@ namespace WCMS.WebSystem.WebParts.Contact
             string sFile = "ContactUs_Inquiries.xls";
             string sFilePath = MapPath("~/Admin/Data/" + sFile);
             DataSet ds = null;
-            int siteId = DataHelper.GetId(cboSites.SelectedValue);
+            int siteId = DataUtil.GetId(cboSites.SelectedValue);
 
             string sDir = Path.GetDirectoryName(sFilePath);
             if (!Directory.Exists(sDir))
                 Directory.CreateDirectory(sDir);
 
             if (siteId > 0)
-                ds = DataHelper.ToDataSet(ContactInquiry.GetList(WebObjects.WebSite, siteId));
+                ds = DataUtil.ToDataSet(ContactInquiry.GetList(WebObjects.WebSite, siteId));
             else
-                ds = DataHelper.ToDataSet(ContactInquiry.GetList());
+                ds = DataUtil.ToDataSet(ContactInquiry.GetList());
 
             ds.DataSetName = "ContactUs";
             ds.Tables[0].TableName = "Inquiries";

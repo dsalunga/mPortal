@@ -24,9 +24,9 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            menuID = DataHelper.GetId(Request, "MenuId");
-            menuItemID = DataHelper.GetId(Request, "MenuItemID");
-            SiteId = DataHelper.GetId(Request, WebColumns.SiteId);
+            menuID = DataUtil.GetId(Request, "MenuId");
+            menuItemID = DataUtil.GetId(Request, "MenuItemID");
+            SiteId = DataUtil.GetId(Request, WebColumns.SiteId);
 
             if (!Page.IsPostBack)
             {
@@ -74,8 +74,8 @@ namespace WCMS.WebSystem.WebParts.Menu
             {
                 /* INSERT */
                 item = new MenuItem();
-                item.ParentId = DataHelper.GetId(Request, "ParentID");
-                item.MenuId = DataHelper.GetId(Request, "MenuId");
+                item.ParentId = DataUtil.GetId(Request, "ParentID");
+                item.MenuId = DataUtil.GetId(Request, "MenuId");
             }
 
             item.Text = txtCaption.Text.Trim();
@@ -96,7 +96,7 @@ namespace WCMS.WebSystem.WebParts.Menu
             }
 
             item.Target = cboTarget.SelectedValue;
-            item.Rank = DataHelper.GetInt32(txtRank.Text.Trim());
+            item.Rank = DataUtil.GetInt32(txtRank.Text.Trim());
 
             item.Update();
 
@@ -112,7 +112,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         public DataSet GetLinkTargets()
         {
-            return DataHelper.ToDataSet(WebConstant.Provider.GetList("LinkTargets"));
+            return DataUtil.ToDataSet(WebConstant.Provider.GetList("LinkTargets"));
         }
     }
 }

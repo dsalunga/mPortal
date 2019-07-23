@@ -38,7 +38,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
             if (!Page.IsPostBack)
             {
-                var pageSize = DataHelper.GetInt32(element.GetParameterValue("PageSize"));
+                var pageSize = DataUtil.GetInt32(element.GetParameterValue("PageSize"));
                 if (pageSize > 0)
                     gridViewFolders.PageSize = pageSize;
 
@@ -92,7 +92,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
             currentPathFolders.DefaultValue = currentPath;
             selectedPathFolders.DefaultValue = rootPath;
 
-            hEnableVersion.Value = (DataHelper.GetBool(context.Element.GetParameterValue(FileManagerConstants.EnableVersioningKey, "false")) ? 1 : 0).ToString();
+            hEnableVersion.Value = (DataUtil.GetBool(context.Element.GetParameterValue(FileManagerConstants.EnableVersioningKey, "false")) ? 1 : 0).ToString();
             hObjectId.Value = context.ObjectId.ToString();
             hRecordId.Value = context.RecordId.ToString();
 
@@ -166,7 +166,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
             try
             {
-                WebHelper.DownloadFile(virtualFileAndPath);
+                WebUtil.DownloadFile(virtualFileAndPath);
             }
             catch (Exception ex)
             {
@@ -181,7 +181,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
             switch (e.CommandName)
             {
                 case "View-File":
-                    currentPath = WebHelper.CombineAddress(currentPath, HttpUtility.UrlEncode(name));
+                    currentPath = WebUtil.CombineAddress(currentPath, HttpUtility.UrlEncode(name));
 
                     context.Set(FileManagerConstants.PathKey, ToVirtualPath(currentPath, rootPath));
                     //context.Set("Return", HttpUtility.UrlEncode(Page.Request.RawUrl));
@@ -220,7 +220,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 //    break;
 
                 case "View-SubFolders":
-                    currentPath = WebHelper.CombineAddress(currentPath, HttpUtility.UrlEncode(name) + "/");
+                    currentPath = WebUtil.CombineAddress(currentPath, HttpUtility.UrlEncode(name) + "/");
 
                     context.Set(FileManagerConstants.PathKey, ToVirtualPath(currentPath, rootPath));
                     context.Redirect();
@@ -283,11 +283,11 @@ namespace WCMS.WebSystem.WebParts.FileManager
                                 "Checked-Out by " + user.FirstAndLastName : string.Empty
                     });
 
-                return DataHelper.ToDataSet(result);
+                return DataUtil.ToDataSet(result);
             }
             catch (Exception)
             {
-                return DataHelper.GetEmptyDataSet();
+                return DataUtil.GetEmptyDataSet();
             }
         }
 

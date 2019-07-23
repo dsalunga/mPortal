@@ -18,7 +18,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
             {
                 var path = GetCurrentPath();
                 if (!string.IsNullOrEmpty(path))
-                    txtContent.Text = FileHelper.ReadFile(WebHelper.MapPath(path));
+                    txtContent.Text = FileHelper.ReadFile(WebUtil.MapPath(path));
             }
         }
 
@@ -40,7 +40,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
             if (!string.IsNullOrEmpty(path))
             {
-                FileHelper.WriteFile(txtContent.Text, WebHelper.MapPath(path));
+                FileHelper.WriteFile(txtContent.Text, WebUtil.MapPath(path));
             }
 
             this.ReturnParentPage();

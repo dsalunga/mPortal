@@ -34,15 +34,15 @@ namespace WCMS.WebSystem.WebParts.Menu.Providers
         {
             MenuObject item = source ?? new MenuObject();
 
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.Width = DataHelper.GetInt32(r, "Width");
-            item.Height = DataHelper.GetInt32(r, "Height");
-            item.Horizontal = DataHelper.GetInt32(r, "Horizontal");
-            item.MenuId = DataHelper.GetId(r, "MenuId");
-            item.ParameterSetId = DataHelper.GetId(r, "ParameterSetId");
-            item.RenderMode = DataHelper.GetInt32(r, "RenderMode");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.Width = DataUtil.GetInt32(r, "Width");
+            item.Height = DataUtil.GetInt32(r, "Height");
+            item.Horizontal = DataUtil.GetInt32(r, "Horizontal");
+            item.MenuId = DataUtil.GetId(r, "MenuId");
+            item.ParameterSetId = DataUtil.GetId(r, "ParameterSetId");
+            item.RenderMode = DataUtil.GetInt32(r, "RenderMode");
 
             return item;
         }
@@ -61,7 +61,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Providers
                 new SqlParameter("@RenderMode", item.RenderMode)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
     }

@@ -128,7 +128,7 @@ namespace WCMS.WebSystem.WebParts.Content
                             {
                                 i.Id,
                                 i.Title,
-                                Content = DataHelper.GetStringPreview(i.Content, WConstants.PreviewChars),
+                                Content = DataUtil.GetStringPreview(i.Content, WConstants.PreviewChars),
                                 i.DateModified
                             };
 
@@ -149,7 +149,7 @@ namespace WCMS.WebSystem.WebParts.Content
                             {
                                 i.Id,
                                 i.Title,
-                                Content = DataHelper.GetStringPreview(i.Content, WConstants.PreviewChars),
+                                Content = DataUtil.GetStringPreview(i.Content, WConstants.PreviewChars),
                                 i.VersionNo,
                                 i.DateModified
                             };
@@ -185,7 +185,7 @@ namespace WCMS.WebSystem.WebParts.Content
                 else
                 {
                     // Archive or promote item here and create history
-                    int contentId = DataHelper.GetId(hidId.Value);
+                    int contentId = DataUtil.GetId(hidId.Value);
                     if (contentId > 0)
                     {
                         WebContent item = WebContent.Get(contentId);
@@ -230,7 +230,7 @@ namespace WCMS.WebSystem.WebParts.Content
 
         protected void cmdSaveDraft_Click(object sender, EventArgs e)
         {
-            int contentId = DataHelper.GetId(hidId.Value);
+            int contentId = DataUtil.GetId(hidId.Value);
 
             WebContent item = WebContent.Get(contentId);
             if (item != null)
@@ -258,7 +258,7 @@ namespace WCMS.WebSystem.WebParts.Content
 
         protected void grdDraft_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -290,7 +290,7 @@ namespace WCMS.WebSystem.WebParts.Content
 
         protected void grdHistory_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {

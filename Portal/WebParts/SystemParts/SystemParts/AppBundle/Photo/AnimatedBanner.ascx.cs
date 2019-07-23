@@ -19,8 +19,8 @@ namespace WCMS.WebSystem.WebParts.Photo
 
             var element = context.Element;
 
-            var albumId = DataHelper.GetId(element.GetParameterValue("AlbumId"));
-            var renderMode = DataHelper.GetInt32(element.GetParameterValue("RenderMode"), 0);
+            var albumId = DataUtil.GetId(element.GetParameterValue("AlbumId"));
+            var renderMode = DataUtil.GetInt32(element.GetParameterValue("RenderMode"), 0);
 
             var set = context.GetParameterSet();
             var album = Album.Provider.Get(albumId);

@@ -57,11 +57,12 @@
     <Reference Include="AjaxMin, Version=5.14.5506.26196, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
       <HintPath>..\..\..\Binaries\Nuget-Packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
     </Reference>
-    <Reference Include="FredCK.FCKeditorV2">
+    <Reference Include="FredCK.FCKeditorV2, Version=2.6.3.30927, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\FredCK.FCKeditorV2.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.6.8.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Binaries\Nuget-Packages\HtmlAgilityPack.1.6.8\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Binaries\Nuget-Packages\HtmlAgilityPack.1.11.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -130,16 +131,20 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WCMS.Common">
+    <Reference Include="WCMS.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.Common.dll</HintPath>
     </Reference>
-    <Reference Include="WCMS.Framework">
+    <Reference Include="WCMS.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="WCMS.WebSystem">
+    <Reference Include="WCMS.WebSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.WebSystem.dll</HintPath>
     </Reference>
-    <Reference Include="WCMS.WebSystem.WebApp">
+    <Reference Include="WCMS.WebSystem.WebApp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\WebSystem\WebSystem-MVC\bin\WCMS.WebSystem.WebApp.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -1095,7 +1100,10 @@
       <Name>WCMS.WebSystem.Apps.WeeklyScheduler</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\..\Binaries\Nuget-Packages\Microsoft.DependencyValidation.Analyzers.0.10.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
+    <Analyzer Include="..\..\..\Binaries\Nuget-Packages\Microsoft.DependencyValidation.Analyzers.0.10.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

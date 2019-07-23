@@ -50,9 +50,9 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
         public CalendarCategory From(DbDataReader r)
         {
             CalendarCategory item = new CalendarCategory();
-            item.Id = DataHelper.GetId(r["CategoryId"]);
+            item.Id = DataUtil.GetId(r["CategoryId"]);
             item.Name = r["Name"].ToString();
-            item.TemplateId = DataHelper.GetId(r["TemplateId"]);
+            item.TemplateId = DataUtil.GetId(r["TemplateId"]);
 
             return item;
         }
@@ -89,7 +89,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
                 new SqlParameter("@Name", item.Name),
                 new SqlParameter("@TemplateId", item.TemplateId));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

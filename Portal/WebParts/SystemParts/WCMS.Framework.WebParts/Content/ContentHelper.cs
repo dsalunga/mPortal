@@ -22,7 +22,7 @@ namespace WCMS.WebSystem.WebParts.Content
             {
                 var user = WSession.Current.User;
 
-                return DataHelper.GetBool(user.GetParameterValue(ContentConstants.USER_EDITOR_CONFIG), false);
+                return DataUtil.GetBool(user.GetParameterValue(ContentConstants.USER_EDITOR_CONFIG), false);
             }
 
             return false;

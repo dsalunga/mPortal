@@ -23,10 +23,10 @@ namespace WCMS.WebSystem.Content.Parts.FileManager
                 var context = new WContext(this);
                 var element = context.Element;
 
-                var libraryId = DataHelper.GetInt32(element.GetParameterValue("LibraryId"));
+                var libraryId = DataUtil.GetInt32(element.GetParameterValue("LibraryId"));
                 if (libraryId > 0)
                 {
-                    var maxItems = DataHelper.GetInt32(element.GetParameterValue("MaxItems"), 15);
+                    var maxItems = DataUtil.GetInt32(element.GetParameterValue("MaxItems"), 15);
                     var libraryPageUrl = element.GetParameterValue("LibraryPageUrl");
 
                     var items = GetIndexes(libraryId, context.Query, maxItems, libraryPageUrl);
@@ -65,7 +65,7 @@ namespace WCMS.WebSystem.Content.Parts.FileManager
                                     )
                              select i;
 
-                return DataHelper.ToDataSet(from i in result.Take(maxItems)
+                return DataUtil.ToDataSet(from i in result.Take(maxItems)
                                             select new
                                             {
                                                 i.Id,
@@ -82,7 +82,7 @@ namespace WCMS.WebSystem.Content.Parts.FileManager
                                             });
             }
 
-            return DataHelper.GetEmptyDataSet();
+            return DataUtil.GetEmptyDataSet();
         }
     }
 }

@@ -53,7 +53,7 @@ namespace WCMS.WebSystem.WebParts.Article
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var query = new WQuery(this);
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -82,7 +82,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         public DataSet Get(int parentId)
         {
-            return DataHelper.ToDataSet(WebGroup.Provider.GetList(parentId));
+            return DataUtil.ToDataSet(WebGroup.Provider.GetList(parentId));
         }
     }
 }

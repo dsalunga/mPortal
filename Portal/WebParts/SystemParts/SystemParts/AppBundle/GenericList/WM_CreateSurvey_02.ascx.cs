@@ -40,13 +40,13 @@ namespace WCMS.WebSystem.WebParts.GenericForm
 
                             try
                             {
-                                chkActive.Checked = DataHelper.GetInt32(r["IsActive"]) == 1;
+                                chkActive.Checked = DataUtil.GetInt32(r["IsActive"]) == 1;
                             }
                             catch { }
 
                             try
                             {
-                                chkPageTitle.Checked = DataHelper.GetInt32(r["ShowPageCaption"]) == 1;
+                                chkPageTitle.Checked = DataUtil.GetInt32(r["ShowPageCaption"]) == 1;
                             }
                             catch { }
                         }

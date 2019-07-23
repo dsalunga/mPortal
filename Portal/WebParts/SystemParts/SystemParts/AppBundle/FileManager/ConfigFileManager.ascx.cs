@@ -35,7 +35,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
             if (!string.IsNullOrEmpty(rootPath))
             {
-                long totalSize = FileHelper.GetDirectorySize(WebHelper.MapPath(rootPath));
+                long totalSize = FileHelper.GetDirectorySize(WebUtil.MapPath(rootPath));
 
                 lblStorageSize.InnerHtml = quotaValue > 0 ? FileHelper.GetSizeString(quotaValue) : FileManagerConstants.UNLIMITED;
                 lblStorageUsage.InnerHtml = FileHelper.GetSizeString(totalSize);

@@ -130,7 +130,7 @@ namespace WCMS.WebSystem.WebParts.Photo
 
         public static bool Delete(int id)
         {
-            AlbumPhoto item = AlbumPhoto.Provider.Get(id);
+            AlbumPhoto item = Provider.Get(id);
             if (item != null)
                 return item.Delete();
 

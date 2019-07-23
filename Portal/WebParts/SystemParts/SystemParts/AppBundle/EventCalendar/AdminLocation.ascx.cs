@@ -21,7 +21,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
         {
             if (!Page.IsPostBack)
             {
-                var id = DataHelper.GetId(Request, "Id");
+                var id = DataUtil.GetId(Request, "Id");
                 if (id > 0)
                 {
                     var item = CalendarLocation.Provider.Get(id);
@@ -41,7 +41,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            var id = DataHelper.GetId(Request, "Id");
+            var id = DataUtil.GetId(Request, "Id");
             var item = id > 0 ? CalendarLocation.Provider.Get(id) : new CalendarLocation();
 
             item.Name = txtName.Text.Trim();

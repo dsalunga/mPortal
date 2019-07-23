@@ -23,10 +23,10 @@ namespace WCMS.WebSystem.WebParts.Menu
             {
                 cboSites.Items.AddRange(WebSiteViewModel.GenerateListItem(-1).ToArray());
 
-                var siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                var siteId = DataUtil.GetId(Request, WebColumns.SiteId);
                 if (siteId > 0)
                 {
-                    WebHelper.SetCboValue(cboSites, siteId);
+                    WebUtil.SetCboValue(cboSites, siteId);
                     cboSites.Visible = false;
 
                     ObjectDataSource1.SelectParameters["siteId"].DefaultValue = siteId.ToString();
@@ -47,7 +47,7 @@ namespace WCMS.WebSystem.WebParts.Menu
             string sChecked = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(sChecked))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
                 if (ids.Count > 0)
                 {
                     foreach (var id in ids)
@@ -68,7 +68,7 @@ namespace WCMS.WebSystem.WebParts.Menu
             var query = new WQuery(true);
             query.Set(WConstants.Load, "ConfigMenuItems.ascx");
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in MenuEntity.Provider.GetList()
                 where siteId == -2 || item.SiteId == siteId
                 select new

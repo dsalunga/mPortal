@@ -21,7 +21,7 @@ namespace WCMS.WebSystem.WebParts.Contact
 
 			if(!Page.IsPostBack)
 			{
-                int contactId = DataHelper.GetId(Request["__id"]);
+                int contactId = DataUtil.GetId(Request["__id"]);
 				if(contactId > 0)
 				{
                     // EDIT
@@ -56,7 +56,7 @@ namespace WCMS.WebSystem.WebParts.Contact
 
 		protected void cmdUpdate_Click(object sender, System.EventArgs e)
 		{
-            int contactId = DataHelper.GetId(Request["__id"]);
+            int contactId = DataUtil.GetId(Request["__id"]);
             Contact item = null;
             if (contactId > 0 && (item = Contact.Get(contactId)) != null)
             { }
@@ -70,7 +70,7 @@ namespace WCMS.WebSystem.WebParts.Contact
             item.Details = txtDetails.Value.Trim();
             item.IsActive = chkActive.Checked ? 1 : 0;
             item.Subject = txtSubject.Text.Trim();
-            item.Rank = DataHelper.GetInt32(txtRank.Text.Trim());
+            item.Rank = DataUtil.GetInt32(txtRank.Text.Trim());
             item.Update();
 
 			this.ReturnPage();

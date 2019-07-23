@@ -45,8 +45,8 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
             events = (from e in events
                       where e.LocationId > 0 && e.LocationId == this.Id &&
                             e.Id != currEvent.Id &&
-                            e.BookLocation == 1 && 
-                            DateTimeHelper.IsWithin(fromDate, toDate, e.GetNextOccurence(currEvent.StartDate > now ? currEvent.StartDate : now)) &&
+                            e.BookLocation == 1 &&
+                            TimeUtil.IsWithin(fromDate, toDate, e.GetNextOccurence(currEvent.StartDate > now ? currEvent.StartDate : now)) &&
                             e.Location.IsBookable
                       select e).ToList();
 

@@ -66,7 +66,7 @@ namespace WCMS.WebSystem.WebParts.Article.Controls
                     var element = string.IsNullOrEmpty(parmSetName) ? context.Element : (ParameterizedWebObject)WebParameterSet.Get(parmSetName);
 
                     // Display Item Count
-                    itemCount = DataHelper.GetInt32(element.GetParameterValue(ArticleConstants.MaxDisplayItemKey, ArticleConstants.MaxDisplayItem.ToString()));
+                    itemCount = DataUtil.GetInt32(element.GetParameterValue(ArticleConstants.MaxDisplayItemKey, ArticleConstants.MaxDisplayItem.ToString()));
                     listTemplate = element.GetParameterValue(ArticleConstants.ListTemplateKey, ArticleConstants.ListTemplate);
                     itemTemplate = element.GetParameterValue(ArticleConstants.ItemTemplateKey, ArticleConstants.ItemTemplate);
                     firstItemTemplate = element.GetParameterValue(ArticleConstants.FirstItemTemplateKey, ArticleConstants.ItemTemplate);

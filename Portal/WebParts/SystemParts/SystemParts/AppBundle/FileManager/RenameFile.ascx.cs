@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 SetAccess();
 
                 var currentPath = GetCurrentPath();
-                var absPath = WebHelper.MapPath(currentPath);
+                var absPath = WebUtil.MapPath(currentPath);
                 bool isFolder = FileHelper.IsFolder(absPath);
 
                 if (isFolder)
@@ -70,7 +70,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
             if (!string.IsNullOrEmpty(newName))
             {
                 var currentPath = GetCurrentPath();
-                var absPath = WebHelper.MapPath(currentPath);
+                var absPath = WebUtil.MapPath(currentPath);
                 bool isFolder = FileHelper.IsFolder(absPath);
 
                 // Rename file or folder
@@ -79,7 +79,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                     if (isFolder)
                     {
                         newPath = FileHelper.Combine(FileHelper.GetFolder(currentPath, '/'), newName, '/');
-                        var absNewFolder = WebHelper.MapPath(newPath);
+                        var absNewFolder = WebUtil.MapPath(newPath);
                         if (!Directory.Exists(absNewFolder))
                         {
                             Directory.Move(absPath, absNewFolder);
@@ -94,7 +94,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                     {
                         var currentFolder = FileHelper.GetFolder(currentPath, '/');
                         newPath = FileHelper.Combine(currentFolder, newName, '/');
-                        var absNewFilePath = WebHelper.MapPath(newPath);
+                        var absNewFilePath = WebUtil.MapPath(newPath);
                         if (!File.Exists(absNewFilePath))
                         {
                             File.Move(absPath, absNewFilePath);

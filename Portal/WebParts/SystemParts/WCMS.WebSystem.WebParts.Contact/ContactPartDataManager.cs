@@ -21,7 +21,7 @@ namespace WCMS.WebSystem.WebParts.Contact
             var item = ContactLink.Get(element.OBJECT_ID, element.Id);
 
             if (item != null)
-                return DataHelper.ToXml<ContactLink>(item, "Item");
+                return DataUtil.ToXml(item, "Item");
 
             return string.Empty;
         }
@@ -42,7 +42,7 @@ namespace WCMS.WebSystem.WebParts.Contact
 
             if (itemNode != null)
             {
-                var item = DataHelper.FromElementXml<ContactLink>(itemNode.OuterXml, "Item");
+                var item = DataUtil.FromElementXml<ContactLink>(itemNode.OuterXml, "Item");
 
                 item.Id = -1;
                 item.ObjectId = element.OBJECT_ID;

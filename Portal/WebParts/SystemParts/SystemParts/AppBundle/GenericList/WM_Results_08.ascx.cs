@@ -65,7 +65,7 @@ namespace WCMS.WebSystem.WebParts.GenericForm
 
         protected void cmdDownload_Click(object sender, System.EventArgs e)
         {
-            int surveyId = DataHelper.GetId(Request["ListId"]);
+            int surveyId = DataUtil.GetId(Request["ListId"]);
             string fileName = "Responses.xls";
             string filePath = MapPath("~/Admin/Data/" + fileName);
             DataSet ds = SqlHelper.ExecuteDataSet("GenericForm_Responses_GetXml",

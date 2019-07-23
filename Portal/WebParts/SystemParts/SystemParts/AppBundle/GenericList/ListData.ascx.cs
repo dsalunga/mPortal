@@ -34,7 +34,7 @@ namespace WCMS.WebSystem.WebParts.GenericForm
 
             if (listId <= 0)
             {
-                listId = DataHelper.GetId(
+                listId = DataUtil.GetId(
                                     SqlHelper.ExecuteScalar("GenericListLink_Get",
                                         new SqlParameter("@RecordId", ctx.RecordId),
                                         new SqlParameter("@ObjectId", ctx.ObjectId))

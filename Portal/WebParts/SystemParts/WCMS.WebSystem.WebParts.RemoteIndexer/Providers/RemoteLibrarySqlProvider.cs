@@ -41,23 +41,23 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
         private RemoteLibrary From(SqlDataReader r)
         {
             var item = new RemoteLibrary();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.SourceTypeId = DataHelper.GetInt32(r, "SourceTypeId");
-            item.BaseAddress = DataHelper.Get(r, "BaseAddress");
-            item.UserName = DataHelper.Get(r, "UserName");
-            item.Password = DataHelper.Get(r, "Password");
-            item.LastIndexDate = DataHelper.GetDateTime(r, "LastIndexDate");
-            item.Active = DataHelper.GetInt32(r, WebColumns.Active);
-            item.DisplayBaseAddress = DataHelper.Get(r, "DisplayBaseAddress");
-            item.FileCacheEnabled = DataHelper.GetInt32(r, "FileCacheEnabled");
-            item.DownloadCountSince = DataHelper.GetDateTime(r, "DownloadCountSince");
-            item.FileCacheFolder = DataHelper.Get(r, "FileCacheFolder");
-            item.FileCacheMinDownloadCount = DataHelper.GetInt32(r, "FileCacheMinDownloadCount");
-            item.FileCacheCeilingSize = DataHelper.GetInt32(r, "FileCacheCeilingSize");
-            item.FileCacheMaxSize = DataHelper.GetInt32(r, "FileCacheMaxSize");
-            item.FileCacheMinDiskFreeMB = DataHelper.GetInt32(r, "FileCacheMinDiskFreeMB");
-            item.Size = DataHelper.GetInt64(r, WebColumns.Size);
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.SourceTypeId = DataUtil.GetInt32(r, "SourceTypeId");
+            item.BaseAddress = DataUtil.Get(r, "BaseAddress");
+            item.UserName = DataUtil.Get(r, "UserName");
+            item.Password = DataUtil.Get(r, "Password");
+            item.LastIndexDate = DataUtil.GetDateTime(r, "LastIndexDate");
+            item.Active = DataUtil.GetInt32(r, WebColumns.Active);
+            item.DisplayBaseAddress = DataUtil.Get(r, "DisplayBaseAddress");
+            item.FileCacheEnabled = DataUtil.GetInt32(r, "FileCacheEnabled");
+            item.DownloadCountSince = DataUtil.GetDateTime(r, "DownloadCountSince");
+            item.FileCacheFolder = DataUtil.Get(r, "FileCacheFolder");
+            item.FileCacheMinDownloadCount = DataUtil.GetInt32(r, "FileCacheMinDownloadCount");
+            item.FileCacheCeilingSize = DataUtil.GetInt32(r, "FileCacheCeilingSize");
+            item.FileCacheMaxSize = DataUtil.GetInt32(r, "FileCacheMaxSize");
+            item.FileCacheMinDiskFreeMB = DataUtil.GetInt32(r, "FileCacheMinDiskFreeMB");
+            item.Size = DataUtil.GetInt64(r, WebColumns.Size);
 
             return item;
         }
@@ -111,7 +111,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
                 new SqlParameter("@Size", item.Size)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
 
             return item.Id;
         }

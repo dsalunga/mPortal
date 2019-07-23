@@ -33,11 +33,11 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 WContext context = new WContext(this);
                 var element = context.Element;
 
-                var calendarId = DataHelper.GetId(element.GetParameterValue("CalendarId"));
+                var calendarId = DataUtil.GetId(element.GetParameterValue("CalendarId"));
                 if (calendarId > 0)
                 {
-                    var monthsToCheck = DataHelper.GetInt32(element.GetParameterValue("MonthsToCheck"), 3);
-                    var maxItemsToDisplay = DataHelper.GetInt32(element.GetParameterValue("MaxItemsToDisplay"), 10);
+                    var monthsToCheck = DataUtil.GetInt32(element.GetParameterValue("MonthsToCheck"), 3);
+                    var maxItemsToDisplay = DataUtil.GetInt32(element.GetParameterValue("MaxItemsToDisplay"), 10);
 
                     var startDateCheck = DateTime.Now;
                     var endDateCheck = DateTime.Now.AddMonths(monthsToCheck);
@@ -46,7 +46,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                     StringBuilder output = new StringBuilder();
                     NamedValueProvider provider = null;
 
-                    var calendarPageId = DataHelper.GetId(element.GetParameterValue("CalendarPageId"));
+                    var calendarPageId = DataUtil.GetId(element.GetParameterValue("CalendarPageId"));
                     var page = calendarPageId > 0 ? WPage.Get(calendarPageId) : null;
                     if (page == null)
                         return;
@@ -92,7 +92,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                                 var eventItem = recurringEvents[i];
 
                                 var newStartDate = eventItem.Source.GetNextOccurence(eventItem.StartDate.AddSeconds(1));
-                                if (DateTimeHelper.IsWithin(startDateCheck, endDateCheck, newStartDate))
+                                if (TimeUtil.IsWithin(startDateCheck, endDateCheck, newStartDate))
                                 {
                                     eventItem.StartDate = newStartDate;
                                     selectedOccurrences.Add(new CalendarEventOccurrence(newStartDate, eventItem.Source));

@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.WebParts.Photo
                     txtImageURL.ClientID, PhotoConstants.GalleryPath));
                 txtTitle.Attributes["onblur"] = "if(WCMS.Dom.Get('" + txtFolderName.ClientID + "').value==''){WCMS.Dom.Get('" + txtFolderName.ClientID + "').value=GenerateFolderName(this.value);}";
 
-                var id = DataHelper.GetId(Request, "CategoryId");
+                var id = DataUtil.GetId(Request, "CategoryId");
                 var item = id > 0 ? Album.Provider.Get(id) : null;
                 if (item != null)
                 {
@@ -55,11 +55,11 @@ namespace WCMS.WebSystem.WebParts.Photo
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            int id = DataHelper.GetId(Request, "CategoryId");
+            int id = DataUtil.GetId(Request, "CategoryId");
             string title = txtTitle.Text.Trim();
             string imageFile = txtImageURL.Text.Trim();
-            int width = DataHelper.GetId(txtWidth.Text.Trim());
-            int photoHeight = DataHelper.GetId(txtPhotoHeight.Text.Trim());
+            int width = DataUtil.GetId(txtWidth.Text.Trim());
+            int photoHeight = DataUtil.GetId(txtPhotoHeight.Text.Trim());
             string folderName = txtFolderName.Text.Trim();
             string sourceImage = MapPath(PhotoConstants.GalleryPath + imageFile);
             string destImage = MapPath(PhotoConstants.GalleryPath + "Resized." + imageFile);

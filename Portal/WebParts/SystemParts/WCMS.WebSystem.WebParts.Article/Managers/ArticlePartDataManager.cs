@@ -50,7 +50,7 @@ namespace WCMS.WebSystem.WebParts.Article.Managers
 
             var articleObject = ArticleList.Get(element.OBJECT_ID, element.Id);
             if (articleObject != null)
-                writer.WriteRaw(DataHelper.ToXml<ArticleList>(articleObject, "Object"));
+                writer.WriteRaw(DataUtil.ToXml(articleObject, "Object"));
 
             var links = ArticleLink.GetList(element.OBJECT_ID, element.Id);
 
@@ -59,7 +59,7 @@ namespace WCMS.WebSystem.WebParts.Article.Managers
                 writer.WriteStartElement("Links");
 
                 foreach (var link in links)
-                    writer.WriteRaw(DataHelper.ToXml<ArticleLink>(link));
+                    writer.WriteRaw(DataUtil.ToXml(link));
 
                 writer.WriteEndElement();
             }
@@ -79,7 +79,7 @@ namespace WCMS.WebSystem.WebParts.Article.Managers
             var objectNode = elementDataNode.SelectSingleNode("Object");
             if (objectNode != null)
             {
-                var item = DataHelper.FromElementXml<ArticleList>(objectNode.OuterXml, "Object");
+                var item = DataUtil.FromElementXml<ArticleList>(objectNode.OuterXml, "Object");
                 if (item != null)
                 {
                     item.Id = -1;
@@ -97,7 +97,7 @@ namespace WCMS.WebSystem.WebParts.Article.Managers
                     {
                         foreach (XmlNode linkNode in linkNodes)
                         {
-                            var link = DataHelper.FromElementXml<ArticleLink>(linkNode.OuterXml);
+                            var link = DataUtil.FromElementXml<ArticleLink>(linkNode.OuterXml);
                             if (link != null)
                             {
                                 link.Id = -1;

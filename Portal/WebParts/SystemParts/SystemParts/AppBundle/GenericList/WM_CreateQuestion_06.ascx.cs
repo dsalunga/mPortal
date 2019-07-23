@@ -43,13 +43,13 @@ namespace WCMS.WebSystem.WebParts.GenericForm
 
                             try
                             {
-                                chkHorizontal.Checked = DataHelper.GetInt32(r["IsHorizontal"]) == 1;
+                                chkHorizontal.Checked = DataUtil.GetInt32(r["IsHorizontal"]) == 1;
                             }
                             catch { }
 
                             try
                             {
-                                chkRequired.Checked = DataHelper.GetInt32(r["IsRequired"]) == 1;
+                                chkRequired.Checked = DataUtil.GetInt32(r["IsRequired"]) == 1;
                             }
                             catch { }
                         }

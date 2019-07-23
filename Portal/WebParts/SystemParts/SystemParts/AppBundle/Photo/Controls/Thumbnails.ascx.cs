@@ -44,7 +44,7 @@ namespace WCMS.WebSystem.WebParts.Photo.Controls
                         lCategory.Text = r["Title"].ToString();
                         PhotoHeight = r["PhotoHeight"].ToString();
 
-                        folder = DataHelper.Get(r, "FolderName");
+                        folder = DataUtil.Get(r, "FolderName");
                         if (!string.IsNullOrEmpty(folder))
                             albumFolder += folder + "/";
                     }

@@ -37,7 +37,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
             bool hasSeparator = !string.IsNullOrEmpty(separator);
 
-            var menuId = DataHelper.GetId(ParameterizedWebObject.GetValue(ParameterKeys.MenuId, element, set));
+            var menuId = DataUtil.GetId(ParameterizedWebObject.GetValue(ParameterKeys.MenuId, element, set));
             IEnumerable<MenuItem> items = null;
             MenuItem item = null;
             MenuItem home = null;

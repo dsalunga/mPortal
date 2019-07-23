@@ -31,7 +31,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -50,20 +50,20 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
         public DataSet Select()
         {
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in RemoteLibrary.Provider.GetList()
                 select new
                 {
                     i.Id,
                     i.Name,
                     i.SourceTypeId,
-                    BaseAddress = DataHelper.GetStringPreview(i.BaseAddress, 30),
+                    BaseAddress = DataUtil.GetStringPreview(i.BaseAddress, 30),
                     i.UserName,
                     i.Password,
                     i.LastIndexDate,
                     i.Active,
                     i.Size,
-                    DisplayBaseAddress = DataHelper.GetStringPreview(i.DisplayBaseAddress, 30),
+                    DisplayBaseAddress = DataUtil.GetStringPreview(i.DisplayBaseAddress, 30),
                     SourceType = RemoteSourceTypes.ToString(i.SourceTypeId)
                 }
             );

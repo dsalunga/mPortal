@@ -33,7 +33,7 @@ namespace WCMS.WebSystem.WebParts.Article
             string strIDs = Request.Form["grvContent"];
             if (!string.IsNullOrEmpty(strIDs))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(strIDs);
+                var ids = DataUtil.ParseCommaSeparatedIdList(strIDs);
                 if (ids.Count > 0)
                     foreach (var id in ids)
                         ArticleTemplate.Delete(id);
@@ -58,7 +58,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            int templateId = DataHelper.GetId(litID.Text);
+            int templateId = DataUtil.GetId(litID.Text);
             ArticleTemplate item = null;
 
             if (templateId > 0 && (item = ArticleTemplate.Get(templateId)) != null)
@@ -92,7 +92,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         protected void grvContent_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             if (e.CommandName == "ContentEdit")
                 LoadDataEdit(id);
         }
@@ -117,7 +117,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         public DataSet GetTemplates()
         {
-            return DataHelper.ToDataSet(ArticleTemplate.GetList());
+            return DataUtil.ToDataSet(ArticleTemplate.GetList());
         }
     }
 }

@@ -33,7 +33,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
         public CalendarRecurrence From(DbDataReader r)
         {
             CalendarRecurrence item = new CalendarRecurrence();
-            item.Id = DataHelper.GetId(r["RecurrenceId"]);
+            item.Id = DataUtil.GetId(r["RecurrenceId"]);
             item.Name = r["Name"].ToString();
             item.Rank = Convert.ToInt32(r["Rank"].ToString());
 

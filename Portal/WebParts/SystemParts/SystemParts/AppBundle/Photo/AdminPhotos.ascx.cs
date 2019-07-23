@@ -62,7 +62,7 @@ namespace WCMS.WebSystem.WebParts.Photo
             litDateCreated.Text = DateTime.Now.ToString();
 
             if (!string.IsNullOrEmpty(cboAlbum.SelectedValue))
-                WebHelper.SetCboValue(cboAlbum, cboAlbum.SelectedValue);
+                WebUtil.SetCboValue(cboAlbum, cboAlbum.SelectedValue);
         }
 
         protected void btnCancel_Click(object sender, System.EventArgs e)
@@ -137,7 +137,7 @@ namespace WCMS.WebSystem.WebParts.Photo
 
                 item.Caption = txtCaption.Text.Trim();
                 item.PhotoName = imageFile;
-                item.SiteId = DataHelper.GetId(ddlSites.SelectedValue);
+                item.SiteId = DataUtil.GetId(ddlSites.SelectedValue);
                 item.AlbumId = categoryId;
                 item.IsActive = chkIsActive.Checked;
                 item.Update();
@@ -153,7 +153,7 @@ namespace WCMS.WebSystem.WebParts.Photo
         protected void btnDelete_Click(object sender, System.EventArgs e)
         {
             string checkedItems = Request.Form["chkChecked"];
-            var list = DataHelper.ParseCommaSeparatedIdList(checkedItems);
+            var list = DataUtil.ParseCommaSeparatedIdList(checkedItems);
             if (list.Count > 0)
             {
                 foreach (var item in list)
@@ -170,7 +170,7 @@ namespace WCMS.WebSystem.WebParts.Photo
         }
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            var id = DataHelper.GetId(e.CommandArgument);
+            var id = DataUtil.GetId(e.CommandArgument);
             switch (e.CommandName)
             {
                 case "edit_item":
@@ -182,8 +182,8 @@ namespace WCMS.WebSystem.WebParts.Photo
                         txtImageURL.Text = item.PhotoName;
                         litDateCreated.Text = item.DateCreated.ToString();
 
-                        WebHelper.SetCboValue(ddlSites, item.SiteId);
-                        WebHelper.SetCboValue(cboAlbumEdit, item.AlbumId);
+                        WebUtil.SetCboValue(ddlSites, item.SiteId);
+                        WebUtil.SetCboValue(cboAlbumEdit, item.AlbumId);
 
                         chkIsActive.Checked = item.IsActive;
 
@@ -197,7 +197,7 @@ namespace WCMS.WebSystem.WebParts.Photo
         public DataSet Select(int albumId)
         {
             var album = Album.Provider.Get(albumId);
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in AlbumPhoto.Provider.GetList(albumId)
                 select new
                 {
@@ -219,7 +219,7 @@ namespace WCMS.WebSystem.WebParts.Photo
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int categoryId = DataHelper.GetId(cboAlbum.SelectedValue);
+            int categoryId = DataUtil.GetId(cboAlbum.SelectedValue);
             var query = new WQuery(this);
             if (categoryId > 0)
                 query.Set("CategoryId", categoryId);
@@ -230,7 +230,7 @@ namespace WCMS.WebSystem.WebParts.Photo
 
         protected void cmdRegenerate_Click(object sender, EventArgs e)
         {
-            int categoryId = DataHelper.GetId(cboAlbum.SelectedValue);
+            int categoryId = DataUtil.GetId(cboAlbum.SelectedValue);
             if (categoryId > 0)
             {
                 string galleryPath = PhotoConstants.GalleryPath;
@@ -325,7 +325,7 @@ namespace WCMS.WebSystem.WebParts.Photo
         {
             MultiView1.SetActiveView(viewBatchUpload);
 
-            int categoryId = DataHelper.GetId(cboAlbum.SelectedValue);
+            int categoryId = DataUtil.GetId(cboAlbum.SelectedValue);
             if (categoryId > 0)
             {
                 Album item = Album.Provider.Get(categoryId);
@@ -336,7 +336,7 @@ namespace WCMS.WebSystem.WebParts.Photo
 
         protected void cmdProcessCollection_Click(object sender, EventArgs e)
         {
-            int categoryId = DataHelper.GetId(cboAlbum.SelectedValue);
+            int categoryId = DataUtil.GetId(cboAlbum.SelectedValue);
             Album album = Album.Provider.Get(categoryId);
 
             string archiveName = txtPhotoCollection.Text.Trim();

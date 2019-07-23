@@ -38,11 +38,11 @@ namespace WCMS.WebSystem.WebParts.FileManager
         private FileVersion From(SqlDataReader r)
         {
             FileVersion item = new FileVersion();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.FileId = DataHelper.GetId(r, "FileId");
-            item.VersionDate = DataHelper.GetDateTime(r, "VersionDate");
-            item.Activity = DataHelper.GetInt32(r, "Activity");
-            item.UserId = DataHelper.GetId(r, WebColumns.UserId);
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.FileId = DataUtil.GetId(r, "FileId");
+            item.VersionDate = DataUtil.GetDateTime(r, "VersionDate");
+            item.Activity = DataUtil.GetInt32(r, "Activity");
+            item.UserId = DataUtil.GetId(r, WebColumns.UserId);
 
             return item;
         }
@@ -105,7 +105,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 new SqlParameter("@Activity", item.Activity),
                 new SqlParameter("@UserId", item.UserId));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

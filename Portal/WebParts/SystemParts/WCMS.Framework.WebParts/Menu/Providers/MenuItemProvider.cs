@@ -20,17 +20,17 @@ namespace WCMS.WebSystem.WebParts.Menu.Providers
         protected override MenuItem From(IDataReader r, MenuItem source)
         {
             MenuItem item = source ?? new MenuItem();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
             item.NavigateUrl = r["NavigateUrl"].ToString();
             item.Text = r["Text"].ToString();
-            item.Target = DataHelper.Get(r, "Target");
-            item.ParentId = DataHelper.GetId(r, WebColumns.ParentId);
-            item.MenuId = DataHelper.GetId(r, "MenuId");
-            item.Active = DataHelper.GetInt32(r, "IsActive");
-            item.Rank = DataHelper.GetInt32(r, WebColumns.Rank);
-            item.PageId = DataHelper.GetId(r, WebColumns.PageId);
-            item.Type = DataHelper.GetInt32(r, "Type");
-            item.CheckPermission = DataHelper.GetInt32(r, "CheckPermission");
+            item.Target = DataUtil.Get(r, "Target");
+            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
+            item.MenuId = DataUtil.GetId(r, "MenuId");
+            item.Active = DataUtil.GetInt32(r, "IsActive");
+            item.Rank = DataUtil.GetInt32(r, WebColumns.Rank);
+            item.PageId = DataUtil.GetId(r, WebColumns.PageId);
+            item.Type = DataUtil.GetInt32(r, "Type");
+            item.CheckPermission = DataUtil.GetInt32(r, "CheckPermission");
 
             return item;
         }
@@ -67,7 +67,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Providers
                 new SqlParameter("@CheckPermission", item.CheckPermission)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 

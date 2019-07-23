@@ -17,7 +17,7 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
         protected override ArticleTemplate From(IDataReader r, ArticleTemplate source)
         {
             var item = source ?? new ArticleTemplate();
-            item.Id = DataHelper.GetId(r, "Id");
+            item.Id = DataUtil.GetId(r, "Id");
             item.Name = r["Name"].ToString();
             item.Date = (DateTime)r["Date"];
             item.File = r["File"].ToString();
@@ -25,7 +25,7 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
             item.ListItemTemplate = r["ListItemTemplate"].ToString();
             item.ListTemplate = r["ListTemplate"].ToString();
             item.DetailsTemplate = r["DetailsTemplate"].ToString();
-            item.DateFormat = DataHelper.Get(r, "DateFormat");
+            item.DateFormat = DataUtil.Get(r, "DateFormat");
 
             return item;
         }
@@ -44,7 +44,7 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
                 new SqlParameter("@DateFormat", item.DateFormat)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

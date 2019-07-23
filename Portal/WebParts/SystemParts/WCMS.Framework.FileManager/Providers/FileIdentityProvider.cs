@@ -54,12 +54,12 @@ namespace WCMS.WebSystem.WebParts.FileManager
         private FileIdentity From(SqlDataReader r)
         {
             FileIdentity item = new FileIdentity();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.LibraryId = DataHelper.GetId(r, "LibraryId");
-            item.FilePath = DataHelper.Get(r, "FilePath");
-            item.Name = DataHelper.Get(r, WebColumns.Name);
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.LibraryId = DataUtil.GetId(r, "LibraryId");
+            item.FilePath = DataUtil.Get(r, "FilePath");
+            item.Name = DataUtil.Get(r, WebColumns.Name);
 
             return item;
         }
@@ -122,7 +122,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 new SqlParameter("@FilePath", item.FilePath),
                 new SqlParameter("@Name", item.Name));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
 

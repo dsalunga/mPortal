@@ -17,7 +17,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
         {
             List<FileManagerFolder> items = new List<FileManagerFolder>();
 
-            var parentFolder = WebHelper.MapPath(path);
+            var parentFolder = WebUtil.MapPath(path);
 
             if (true || Directory.Exists(parentFolder)) // Check folder exists ???
             {
@@ -40,7 +40,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
         {
             try
             {
-                Directory.Delete(WebHelper.MapPath(path), true);
+                Directory.Delete(WebUtil.MapPath(path), true);
             }
             catch (Exception)
             {

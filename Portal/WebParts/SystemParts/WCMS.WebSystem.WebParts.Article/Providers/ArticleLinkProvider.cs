@@ -88,7 +88,7 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
                 new SqlParameter("@CommentOn", item.CommentOn)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 
@@ -106,14 +106,14 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
         protected override ArticleLink From(IDataReader r, ArticleLink source)
         {
             ArticleLink item = source ?? new ArticleLink();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
             item.Rank = (int)r["Rank"];
             item.Style = r["Style"].ToString();
-            item.ObjectId = DataHelper.GetId(r, WebColumns.ObjectId);
-            item.RecordId = DataHelper.GetId(r, WebColumns.RecordId);
-            item.ArticleId = DataHelper.GetId(r["ArticleId"]);
-            item.SiteId = DataHelper.GetId(r, WebColumns.SiteId);
-            item.CommentOn = DataHelper.GetInt32(r, "CommentOn");
+            item.ObjectId = DataUtil.GetId(r, WebColumns.ObjectId);
+            item.RecordId = DataUtil.GetId(r, WebColumns.RecordId);
+            item.ArticleId = DataUtil.GetId(r["ArticleId"]);
+            item.SiteId = DataUtil.GetId(r, WebColumns.SiteId);
+            item.CommentOn = DataUtil.GetInt32(r, "CommentOn");
 
             return item;
         }

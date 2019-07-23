@@ -18,8 +18,8 @@ namespace WCMS.WebSystem.WebParts.Article
         {
             context.Response.ContentType = "text/html";
 
-            int id = DataHelper.GetId(context.Request, "ArticleId");
-            int pageId = DataHelper.GetId(context.Request, "PageId");
+            int id = DataUtil.GetId(context.Request, "ArticleId");
+            int pageId = DataUtil.GetId(context.Request, "PageId");
             Article item = Article.Get(id);
             var page = WPage.Get(pageId);
             if (item != null && page != null)

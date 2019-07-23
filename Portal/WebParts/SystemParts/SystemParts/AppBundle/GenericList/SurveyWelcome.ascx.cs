@@ -58,7 +58,7 @@ namespace WCMS.WebSystem.WebParts.GenericForm
         {
             WContext query = new WContext(this);
 
-            int siteId = DataHelper.GetId(ViewState["ListId"]);
+            int siteId = DataUtil.GetId(ViewState["ListId"]);
 
             /*
             if(Session["ResponseID"] == null)

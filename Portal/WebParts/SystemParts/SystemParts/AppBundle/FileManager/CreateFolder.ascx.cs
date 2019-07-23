@@ -55,11 +55,11 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 try
                 {
                     string virtualFolder = Path.Combine(currentPath, newFolder);
-                    if (!Directory.Exists(WebHelper.MapPath(virtualFolder)))
+                    if (!Directory.Exists(WebUtil.MapPath(virtualFolder)))
                     {
                         // CREATE FOLDER
 
-                        Directory.CreateDirectory(WebHelper.MapPath(virtualFolder));
+                        Directory.CreateDirectory(WebUtil.MapPath(virtualFolder));
 
                     }
                     else

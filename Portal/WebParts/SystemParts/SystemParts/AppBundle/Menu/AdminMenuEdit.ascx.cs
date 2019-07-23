@@ -22,7 +22,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            menuId = DataHelper.GetId(Request, "MenuId");
+            menuId = DataUtil.GetId(Request, "MenuId");
 
             if (!Page.IsPostBack)
             {
@@ -38,15 +38,15 @@ namespace WCMS.WebSystem.WebParts.Menu
                         chkIsActive.Checked = item.IsActive == 1;
 
                         cboSites.DataBind();
-                        WebHelper.SetCboValue(cboSites, item.SiteId);
+                        WebUtil.SetCboValue(cboSites, item.SiteId);
                     }
                 }
 
-                var siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                var siteId = DataUtil.GetId(Request, WebColumns.SiteId);
                 if (siteId > 0)
                 {
                     if (cboSites.SelectedIndex == 0)
-                        WebHelper.SetCboValue(cboSites, siteId);
+                        WebUtil.SetCboValue(cboSites, siteId);
 
                     cboSites.Enabled = false;
                 }
@@ -60,7 +60,7 @@ namespace WCMS.WebSystem.WebParts.Menu
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
             string name = txtCaption.Text.Trim();
-            int siteId = DataHelper.GetId(cboSites.SelectedValue);
+            int siteId = DataUtil.GetId(cboSites.SelectedValue);
 
             MenuEntity item = null;
             if (menuId > 0 && (item = MenuEntity.Provider.Get(menuId)) != null) { }

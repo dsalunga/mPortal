@@ -42,7 +42,7 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
                 new SqlParameter("@CommentOn", item.CommentOn)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 
@@ -57,15 +57,15 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
         protected override ArticleList From(IDataReader r, ArticleList source)
         {
             ArticleList item = source ?? new ArticleList();
-            item.Id = DataHelper.GetId(r["ListId"]);
+            item.Id = DataUtil.GetId(r["ListId"]);
             item.PageSize = (int)r["PageSize"];
             //item.DateFormatString = r["DateFormatString"].ToString();
-            item.ObjectId = DataHelper.GetId(r["ObjectId"]);
-            item.RecordId = DataHelper.GetId(r["RecordId"]);
-            item.TemplateId = DataHelper.GetId(r, WebColumns.TemplateId);
-            item.SiteId = DataHelper.GetId(r, WebColumns.SiteId);
-            item.FolderId = DataHelper.GetId(r, WebColumns.FolderId);
-            item.CommentOn = DataHelper.GetInt32(r, "CommentOn");
+            item.ObjectId = DataUtil.GetId(r["ObjectId"]);
+            item.RecordId = DataUtil.GetId(r["RecordId"]);
+            item.TemplateId = DataUtil.GetId(r, WebColumns.TemplateId);
+            item.SiteId = DataUtil.GetId(r, WebColumns.SiteId);
+            item.FolderId = DataUtil.GetId(r, WebColumns.FolderId);
+            item.CommentOn = DataUtil.GetInt32(r, "CommentOn");
 
             return item;
         }

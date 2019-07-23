@@ -24,14 +24,14 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            menuId = DataHelper.GetId(Request, "MenuId");
+            menuId = DataUtil.GetId(Request, "MenuId");
             if (!Page.IsPostBack)
             {
                 this.PopulateTreeView();
 
                 string sParentID = Request["ParentId"];
                 if (!string.IsNullOrEmpty(sParentID))
-                    WebHelper.FindTreeNode(TreeView1.Nodes, sParentID);
+                    WebUtil.FindTreeNode(TreeView1.Nodes, sParentID);
             }
         }
 
@@ -81,7 +81,7 @@ namespace WCMS.WebSystem.WebParts.Menu
                 tnRoot.ChildNodes.Add(node);
 
                 // COMBO BOX
-                ListItem listItem = new ListItem(tab + "\u2022\u00a0" + DataHelper.GetStringPreview(menuItem.Text, 50), menuItem.Id.ToString());
+                ListItem listItem = new ListItem(tab + "\u2022\u00a0" + DataUtil.GetStringPreview(menuItem.Text, 50), menuItem.Id.ToString());
                 DropDownList1.Items.Add(listItem);
 
                 LoadRecursiveTree(menuItem.Id, menuItems, node, tab);
@@ -100,7 +100,7 @@ namespace WCMS.WebSystem.WebParts.Menu
             string sChecked = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(sChecked))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
                 foreach (var id in ids)
                     MenuItem.Provider.Delete(id);
 
@@ -134,7 +134,7 @@ namespace WCMS.WebSystem.WebParts.Menu
             if (!string.IsNullOrEmpty(sChecked))
             {
                 int parentId = int.Parse(DropDownList1.SelectedValue);
-                var ids = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                var ids = DataUtil.ParseCommaSeparatedIdList(sChecked);
                 if (ids.Count > 0)
                 {
                     foreach (var id in ids)
@@ -155,7 +155,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         protected void cmdGO_Click(object sender, EventArgs e)
         {
-            WebHelper.FindTreeNode(TreeView1.Nodes, DropDownList1.SelectedValue);
+            WebUtil.FindTreeNode(TreeView1.Nodes, DropDownList1.SelectedValue);
         }
 
         protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
@@ -167,7 +167,7 @@ namespace WCMS.WebSystem.WebParts.Menu
         {
             var query = new WQuery(true);
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in MenuItem.Provider.GetList(menuId, parentId)
                 select new
                 {

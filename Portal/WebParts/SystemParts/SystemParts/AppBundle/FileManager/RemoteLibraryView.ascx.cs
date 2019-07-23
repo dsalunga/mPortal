@@ -30,7 +30,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                 {
                     var element = context.Element;
 
-                    int libraryId = libraryId = DataHelper.GetId(element.GetParameterValue(IndexerConstants.LibraryId));
+                    int libraryId = libraryId = DataUtil.GetId(element.GetParameterValue(IndexerConstants.LibraryId));
                     if (libraryId == -1)
                     {
                         libraryId = context.GetId(IndexerConstants.LibraryId);
@@ -68,7 +68,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
 
                         hLibraryId.Value = libraryId.ToString();
 
-                        var pageSize = DataHelper.GetInt32(element.GetParameterValue("PageSize"));
+                        var pageSize = DataUtil.GetInt32(element.GetParameterValue("PageSize"));
                         if (pageSize > 0)
                             gridViewFolders.PageSize = pageSize;
 
@@ -76,7 +76,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                         if (!string.IsNullOrEmpty(downloadUrl))
                             hDownloadUrl.Value = downloadUrl;
 
-                        var timeOut = DataHelper.GetInt32(element.GetParameterValue("DownloadTimeOut", "0"));
+                        var timeOut = DataUtil.GetInt32(element.GetParameterValue("DownloadTimeOut", "0"));
                         if (timeOut > 0)
                             hDownloadTimeOut.Value = timeOut.ToString();
 
@@ -101,8 +101,8 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
 
         protected void GridViewFolders_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
-            int libraryId = DataHelper.GetId(cboRemoteLibraries.SelectedValue);
+            int id = DataUtil.GetId(e.CommandArgument);
+            int libraryId = DataUtil.GetId(cboRemoteLibraries.SelectedValue);
 
             switch (e.CommandName)
             {
@@ -121,7 +121,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                     break;
 
                 case "Download-File":
-                    RemoteLibraryHelper.InvokeDownload(id, true, DataHelper.GetInt32(hDownloadTimeOut.Value, 0));
+                    RemoteLibraryHelper.InvokeDownload(id, true, DataUtil.GetInt32(hDownloadTimeOut.Value, 0));
                     break;
             }
         }
@@ -166,10 +166,10 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                                  ItemUrl = itemQuery.Set("Id", i.Id).BuildQuery()
                              };
 
-                return DataHelper.ToDataSet(result);
+                return DataUtil.ToDataSet(result);
             }
 
-            return DataHelper.GetEmptyDataSet();
+            return DataUtil.GetEmptyDataSet();
         }
 
         protected void cmdSearch_Click(object sender, EventArgs e)
@@ -185,7 +185,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
         protected void cboRemoteLibraries_SelectedIndexChanged(object sender, EventArgs e)
         {
             int libraryId = context.GetId("LibraryId");
-            int newLibraryId = DataHelper.GetId(cboRemoteLibraries.SelectedValue);
+            int newLibraryId = DataUtil.GetId(cboRemoteLibraries.SelectedValue);
             if (libraryId > 0 && libraryId != newLibraryId)
             {
                 context.Remove(WebColumns.Id);

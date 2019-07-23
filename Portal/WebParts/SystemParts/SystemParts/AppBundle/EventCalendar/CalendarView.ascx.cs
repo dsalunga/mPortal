@@ -34,14 +34,14 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
             if (!Page.IsPostBack)
             {
                 WContext context = new WContext(this);
-                var tmpCalendarId = DataHelper.GetId(context.Element.GetParameterValue("CalendarId", "-1"));
+                var tmpCalendarId = DataUtil.GetId(context.Element.GetParameterValue("CalendarId", "-1"));
                 if (tmpCalendarId > 0)
                     hCalendarId.Value = tmpCalendarId.ToString();
                 else
                     monthCalendar.Enabled = false;
 
                 string dateString = Request["Date"];
-                DateTime date = DateTimeHelper.ParseTicks(dateString);
+                DateTime date = TimeUtil.ParseTicks(dateString);
 
                 if (monthCalendar.VisibleDate.Ticks == 0)
                     monthCalendar.VisibleDate = date.Date;
@@ -80,7 +80,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
             // Get all Events for current date
             DateTime date = e.Day.Date;
             if (events == null)
-                events = CalendarEvent.GetCalendarEvents(monthCalendar.VisibleDate, DataHelper.GetId(hCalendarId.Value));
+                events = CalendarEvent.GetCalendarEvents(monthCalendar.VisibleDate, DataUtil.GetId(hCalendarId.Value));
 
             // Filter per date
             var dayEvents = CalendarEvent.GetDayEventsFromSets(events, date);
@@ -114,7 +114,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 query.Set("EventId", evnt.Id);
 
                 todayText.AppendFormat(eventListItemFormat,
-                    DateTimeHelper.ToCompactTime(evnt.StartDate),
+                    TimeUtil.ToCompactTime(evnt.StartDate),
                     evnt.Subject,
                     query.BuildQuery(),
                     evnt.Template.WebForeColor,
@@ -127,7 +127,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void monthCalendar_VisibleMonthChanged(object sender, MonthChangedEventArgs e)
         {
-            events = CalendarEvent.GetCalendarEvents(monthCalendar.VisibleDate, DataHelper.GetId(hCalendarId.Value));
+            events = CalendarEvent.GetCalendarEvents(monthCalendar.VisibleDate, DataUtil.GetId(hCalendarId.Value));
 
             this.UpdateMonthYearCombo(monthCalendar.VisibleDate);
         }

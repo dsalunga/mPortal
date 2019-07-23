@@ -44,11 +44,11 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
             {
                 var networkCredential = new NetworkCredential(library.UserName, library.Password);
                 new NetworkConnection(library.BaseAddress, networkCredential);
-                WebHelper.DownloadFile(item.FullPath, item.Name, true, force);
+                WebUtil.DownloadFile(item.FullPath, item.Name, true, force);
             }
             else
             {
-                WebHelper.DownloadFile(item.FullPath, item.Name, true, force);
+                WebUtil.DownloadFile(item.FullPath, item.Name, true, force);
             }
         }
 

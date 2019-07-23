@@ -84,7 +84,7 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
                 new SqlParameter("@RecordId", item.RecordId)
             );
 
-            item.Id = DataHelper.GetId(o.ToString());
+            item.Id = DataUtil.GetId(o.ToString());
             return item.Id;
         }
 
@@ -99,10 +99,10 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
         public WebObjectContent From(DbDataReader r)
         {
             WebObjectContent item = new WebObjectContent();
-            item.Id = DataHelper.GetId(r["ObjectContentId"].ToString());
-            item.ContentId = DataHelper.GetId(r["ContentId"].ToString());
-            item.ObjectId = DataHelper.GetId(r["ObjectId"].ToString());
-            item.RecordId = DataHelper.GetId(r["RecordId"].ToString());
+            item.Id = DataUtil.GetId(r["ObjectContentId"].ToString());
+            item.ContentId = DataUtil.GetId(r["ContentId"].ToString());
+            item.ObjectId = DataUtil.GetId(r["ObjectId"].ToString());
+            item.RecordId = DataUtil.GetId(r["RecordId"].ToString());
 
             return item;
         }
@@ -110,10 +110,10 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
         public WebObjectContent From(DataRow r)
         {
             WebObjectContent item = new WebObjectContent();
-            item.Id = DataHelper.GetId(r["ObjectContentId"].ToString());
-            item.ContentId = DataHelper.GetId(r["ContentId"].ToString());
-            item.ObjectId = DataHelper.GetId(r["ObjectId"].ToString());
-            item.RecordId = DataHelper.GetId(r["RecordId"].ToString());
+            item.Id = DataUtil.GetId(r["ObjectContentId"].ToString());
+            item.ContentId = DataUtil.GetId(r["ContentId"].ToString());
+            item.ObjectId = DataUtil.GetId(r["ObjectId"].ToString());
+            item.RecordId = DataUtil.GetId(r["RecordId"].ToString());
 
             return item;
         }

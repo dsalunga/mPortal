@@ -49,11 +49,11 @@ namespace WCMS.WebSystem.WebParts.Photo
                     //if (string.IsNullOrEmpty(controlFile)) 
                     //    controlFile = "Album.ascx";
 
-                    maxPhotoWidth = DataHelper.GetInt32(r, "MaxPhotoWidth");
-                    albumColumns = DataHelper.GetInt32(r["AlbumColumns"], albumColumns);
-                    albumCellPadding = DataHelper.GetInt32(r["AlbumCellPadding"], albumCellPadding);
-                    thumbColumns = DataHelper.GetInt32(r["ThumbColumns"], thumbColumns);
-                    thumbRows = DataHelper.GetInt32(r["ThumbRows"], thumbRows);
+                    maxPhotoWidth = DataUtil.GetInt32(r, "MaxPhotoWidth");
+                    albumColumns = DataUtil.GetInt32(r["AlbumColumns"], albumColumns);
+                    albumCellPadding = DataUtil.GetInt32(r["AlbumCellPadding"], albumCellPadding);
+                    thumbColumns = DataUtil.GetInt32(r["ThumbColumns"], thumbColumns);
+                    thumbRows = DataUtil.GetInt32(r["ThumbRows"], thumbRows);
                 }
             }
 

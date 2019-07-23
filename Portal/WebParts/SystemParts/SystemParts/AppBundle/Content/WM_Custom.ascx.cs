@@ -39,7 +39,7 @@ namespace WCMS.WebSystem.WebParts.Content
                 // Default Editor
                 var isPlainTextDefault = ContentHelper.IsPlainTextDefault();
 
-                hIsPlainTextDefault.Value = DataHelper.ToString(isPlainTextDefault);
+                hIsPlainTextDefault.Value = DataUtil.ToString(isPlainTextDefault);
                 txtContent.IsPlainTextDefault = isPlainTextDefault;
                 
 
@@ -48,10 +48,10 @@ namespace WCMS.WebSystem.WebParts.Content
                 cboSites.Items.AddRange(sites);
                 cboSiteID.Items.AddRange(sites);
 
-                var siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                var siteId = DataUtil.GetId(Request, WebColumns.SiteId);
                 if (siteId > 0)
                 {
-                    WebHelper.SetCboValue(cboSites, siteId);
+                    WebUtil.SetCboValue(cboSites, siteId);
                     grvContent.DataBind();
                 }
             }
@@ -75,9 +75,9 @@ namespace WCMS.WebSystem.WebParts.Content
         {
             mtvContent.SetActiveView(viwBasic);
 
-            var siteId = DataHelper.GetId(cboSites.SelectedValue);
+            var siteId = DataUtil.GetId(cboSites.SelectedValue);
             if (siteId > 0)
-                WebHelper.SetCboValue(cboSiteID, siteId);
+                WebUtil.SetCboValue(cboSiteID, siteId);
 
             litID.Text = string.Empty;
             txtTitle.Text = string.Empty;
@@ -95,7 +95,7 @@ namespace WCMS.WebSystem.WebParts.Content
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            int id = DataHelper.GetId(litID.Text.Trim());
+            int id = DataUtil.GetId(litID.Text.Trim());
 
             WebContent content = id > 0 ? WebContent.Get(id) : new WebContent();
             content.Title = txtTitle.Text.Trim();
@@ -104,7 +104,7 @@ namespace WCMS.WebSystem.WebParts.Content
             content.IsEditorSensitive = chkEditorSensitive.Checked;
             content.VersionNo = 1;
             content.IsActiveContent = chkActiveContent.Checked;
-            content.SiteId = DataHelper.GetId(cboSiteID.SelectedValue);
+            content.SiteId = DataUtil.GetId(cboSiteID.SelectedValue);
             content.Update();
 
             pnlContent.Visible = true;
@@ -114,7 +114,7 @@ namespace WCMS.WebSystem.WebParts.Content
 
         protected void grvContent_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -144,7 +144,7 @@ namespace WCMS.WebSystem.WebParts.Content
             WebContent content = WebContent.Get(id);
             if (content != null)
             {
-                if (content.IsEditorSensitive || DataHelper.GetBool(hIsPlainTextDefault.Value))
+                if (content.IsEditorSensitive || DataUtil.GetBool(hIsPlainTextDefault.Value))
                     txtContent.SetPlainTextEditor();
 
                 pnlContent.Visible = false;
@@ -163,7 +163,7 @@ namespace WCMS.WebSystem.WebParts.Content
             string ids = Request.Form["grvContent"];
             if (!string.IsNullOrEmpty(ids))
             {
-                var items = DataHelper.ParseCommaSeparatedIdList(ids);
+                var items = DataUtil.ParseCommaSeparatedIdList(ids);
                 foreach (var item in items)
                     WebContent.Delete(item);
 
@@ -194,7 +194,7 @@ namespace WCMS.WebSystem.WebParts.Content
 
         public DataSet Select(int siteId)
         {
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WebContent.GetListActive()
                 where siteId <=0 || i.SiteId == siteId
                 select new
@@ -203,7 +203,7 @@ namespace WCMS.WebSystem.WebParts.Content
                     i.Title,
                     i.Active,
                     i.DateModified,
-                    Content = DataHelper.GetStringPreview(i.Content, WConstants.PreviewChars)
+                    Content = DataUtil.GetStringPreview(i.Content, WConstants.PreviewChars)
                 }
             );
         }

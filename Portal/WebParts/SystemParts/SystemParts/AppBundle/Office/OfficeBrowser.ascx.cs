@@ -22,7 +22,7 @@ namespace WCMS.WebSystem.WebParts.Office
             {
                 BindLevel1(-1);
 
-                int id = DataHelper.GetId(Request[WebColumns.OfficeId]);
+                int id = DataUtil.GetId(Request[WebColumns.OfficeId]);
                 if (id > 0)
                 {
                     cboLevel1.SelectedValue = id.ToString();
@@ -37,7 +37,7 @@ namespace WCMS.WebSystem.WebParts.Office
             switch (e.CommandName)
             {
                 case "View_Children":
-                    var id = DataHelper.GetId(e.CommandArgument);
+                    var id = DataUtil.GetId(e.CommandArgument);
                     SelectItem(id);
                     break;
             }
@@ -45,9 +45,9 @@ namespace WCMS.WebSystem.WebParts.Office
 
         private void SelectItem(int id)
         {
-            var level1 = DataHelper.GetId(cboLevel1.SelectedValue);
-            var level2 = DataHelper.GetId(cboLevel2.SelectedValue);
-            var level3 = DataHelper.GetId(cboLevel3.SelectedValue);
+            var level1 = DataUtil.GetId(cboLevel1.SelectedValue);
+            var level2 = DataUtil.GetId(cboLevel2.SelectedValue);
+            var level3 = DataUtil.GetId(cboLevel3.SelectedValue);
 
             if (level1 < 0)
                 BindLevel1(id);
@@ -71,7 +71,7 @@ namespace WCMS.WebSystem.WebParts.Office
 
         private void BindLevel2(int id)
         {
-            int level1 = DataHelper.GetInt32(cboLevel1.SelectedValue);
+            int level1 = DataUtil.GetInt32(cboLevel1.SelectedValue);
 
             cboLevel2.Items.Clear();
 
@@ -95,7 +95,7 @@ namespace WCMS.WebSystem.WebParts.Office
 
         private void BindLevel3(int id)
         {
-            int level2 = DataHelper.GetInt32(cboLevel2.SelectedValue);
+            int level2 = DataUtil.GetInt32(cboLevel2.SelectedValue);
 
             cboLevel3.Items.Clear();
 
@@ -131,7 +131,7 @@ namespace WCMS.WebSystem.WebParts.Office
 
             string kwl = string.IsNullOrEmpty(keyword) ? string.Empty : keyword.ToLower();
 
-            return DataHelper.ToDataSet(from i in items
+            return DataUtil.ToDataSet(from i in items
                                         where (level1 == -2 || i.ParentId == parentId) &&
                                             (string.IsNullOrEmpty(kwl) ||
                                                 (i.Name.ToLower().Contains(kwl) ||

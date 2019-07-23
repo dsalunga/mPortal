@@ -51,7 +51,7 @@ namespace WCMS.WebSystem.WebParts.Contact
                 TabControl1.AddTab("tabGeneral", "General");
                 TabControl1.AddTab("tabInquiries", ContactConstants.CONST_Inquiries);
 
-                string tab = DataHelper.Get(Request, "Tab");
+                string tab = DataUtil.Get(Request, "Tab");
                 if (!string.IsNullOrWhiteSpace(tab) && tab.Equals(ContactConstants.CONST_Inquiries, StringComparison.InvariantCultureIgnoreCase))
                     TabControl1.SelectedTab = "tabInquiries";
             }
@@ -73,7 +73,7 @@ namespace WCMS.WebSystem.WebParts.Contact
 
         public DataSet Select(int objectId, int recordId)
         {
-            return DataHelper.ToDataSet(ContactInquiry.GetList(objectId, recordId));
+            return DataUtil.ToDataSet(ContactInquiry.GetList(objectId, recordId));
         }
 
         public IEnumerable<Contact> GetContacts()
@@ -84,7 +84,7 @@ namespace WCMS.WebSystem.WebParts.Contact
         protected void cmdDelete_Click(object sender, System.EventArgs e)
         {
             string sChecked = Request.Form["chkChecked"];
-            var items = DataHelper.ParseCommaSeparatedIdList(sChecked);
+            var items = DataUtil.ParseCommaSeparatedIdList(sChecked);
             if (items.Count > 0)
             {
                 foreach (int id in items)
@@ -99,7 +99,7 @@ namespace WCMS.WebSystem.WebParts.Contact
         protected void cmdActive_Click(object sender, System.EventArgs e)
         {
             string sChecked = Request.Form["chkChecked"];
-            var items = DataHelper.ParseCommaSeparatedIdList(sChecked);
+            var items = DataUtil.ParseCommaSeparatedIdList(sChecked);
             if (items.Count > 0)
             {
                 foreach (int id in items)
@@ -119,7 +119,7 @@ namespace WCMS.WebSystem.WebParts.Contact
         protected void cmdDeactivate_Click(object sender, System.EventArgs e)
         {
             string sChecked = Request.Form["chkChecked"];
-            var items = DataHelper.ParseCommaSeparatedIdList(sChecked);
+            var items = DataUtil.ParseCommaSeparatedIdList(sChecked);
             if (items.Count > 0)
             {
                 foreach (int id in items)
@@ -162,7 +162,7 @@ namespace WCMS.WebSystem.WebParts.Contact
             string sFilePath = MapPath("~/Admin/Data/" + sFile);
 
             var pair = WHelper.GetObjectStruct();
-            DataSet ds = DataHelper.ToDataSet(ContactInquiry.GetList(pair.ObjectId, pair.RecordId));
+            DataSet ds = DataUtil.ToDataSet(ContactInquiry.GetList(pair.ObjectId, pair.RecordId));
 
             //int siteId = DataHelper.GetId(cboSites.SelectedValue);
             //if (siteId > 0)
@@ -195,8 +195,8 @@ namespace WCMS.WebSystem.WebParts.Contact
                 link.ObjectId = pair.ObjectId;
             }
 
-            link.ContactId = DataHelper.GetId(DropDownList1.SelectedValue);
-            link.Mode = DataHelper.GetInt32(cboMode.SelectedValue);
+            link.ContactId = DataUtil.GetId(DropDownList1.SelectedValue);
+            link.Mode = DataUtil.GetInt32(cboMode.SelectedValue);
             link.Update();
 
             return true;

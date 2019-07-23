@@ -30,7 +30,7 @@ namespace WCMS.WebSystem.WebParts.Messaging
                 var element = context.Element;
                 var canSendMulti = false;
 
-                var useNamePrefix = DataHelper.GetBool(element.GetParameterValue("UseNamePrefix"), false);
+                var useNamePrefix = DataUtil.GetBool(element.GetParameterValue("UseNamePrefix"), false);
                 var smsTemplate = element.GetParameterValue("SMS-Template");
                 var emailTemplate = element.GetParameterValue("Email-Template");
                 var emailSubjectTemplate = element.GetParameterValue("EmailSubject-Template");
@@ -39,7 +39,7 @@ namespace WCMS.WebSystem.WebParts.Messaging
                 if (!string.IsNullOrWhiteSpace(canSendMultiList))
                     canSendMulti = AccountHelper.IsPresentOrMember(canSendMultiList, true);
 
-                var maxSMS = DataHelper.GetInt32(element.GetParameterValue("MaxSMS", "-1"));
+                var maxSMS = DataUtil.GetInt32(element.GetParameterValue("MaxSMS", "-1"));
                 if (maxSMS > 0)
                     hMaxSMS.Value = maxSMS.ToString();
 
@@ -50,7 +50,7 @@ namespace WCMS.WebSystem.WebParts.Messaging
 
                 //PrepareRecipientAndSubject(canSendMulti, useNamePrefix);
 
-                int userId = DataHelper.GetId(Request, WebColumns.UserId);
+                int userId = DataUtil.GetId(Request, WebColumns.UserId);
                 WebUser toUser = userId > 0 ? WebUser.Get(userId) : null;
                 var currentUser = WSession.Current.User;
 
@@ -214,8 +214,8 @@ namespace WCMS.WebSystem.WebParts.Messaging
 
         public DataSet GetRecipients(string view, string customRecipients, string exclude)
         {
-            var includeList = DataHelper.ParseDelimitedStringToList(customRecipients, AccountConstants.AccountDelimiter);
-            var excludeList = DataHelper.ParseDelimitedStringToList(exclude, AccountConstants.AccountDelimiter);
+            var includeList = DataUtil.ParseDelimitedStringToList(customRecipients, AccountConstants.AccountDelimiter);
+            var excludeList = DataUtil.ParseDelimitedStringToList(exclude, AccountConstants.AccountDelimiter);
 
             List<WebUser> includeUserList = new List<WebUser>();
             List<WebGroup> includeGroupList = new List<WebGroup>();
@@ -235,8 +235,8 @@ namespace WCMS.WebSystem.WebParts.Messaging
                     {
                         string[] parts = include.Split(AccountConstants.AccountSplitter);
 
-                        int objectId = DataHelper.GetId(parts.First());
-                        int recordId = DataHelper.GetId(parts[1]);
+                        int objectId = DataUtil.GetId(parts.First());
+                        int recordId = DataUtil.GetId(parts[1]);
 
                         if (objectId > 0 && recordId > 0)
                         {
@@ -272,8 +272,8 @@ namespace WCMS.WebSystem.WebParts.Messaging
                 {
                     string[] parts = ex.Split(AccountConstants.AccountSplitter);
 
-                    int objectId = DataHelper.GetId(parts.First());
-                    int recordId = DataHelper.GetId(parts[1]);
+                    int objectId = DataUtil.GetId(parts.First());
+                    int recordId = DataUtil.GetId(parts[1]);
 
                     if (objectId > 0 && recordId > 0)
                     {
@@ -314,7 +314,7 @@ namespace WCMS.WebSystem.WebParts.Messaging
                 if (excludeUserList.Count > 0)
                     users = users.Except(excludeUserList).ToList();
 
-                return DataHelper.ToDataSet(
+                return DataUtil.ToDataSet(
                        (from user in users
                         select new
                         {
@@ -372,7 +372,7 @@ namespace WCMS.WebSystem.WebParts.Messaging
                                           });
                 }
 
-                return DataHelper.ToDataSet(result);
+                return DataUtil.ToDataSet(result);
             }
         }
 
@@ -398,7 +398,7 @@ namespace WCMS.WebSystem.WebParts.Messaging
                     bool isIncluded = false;
 
                     // Check if present in custom recipients list
-                    var includedList = DataHelper.ParseDelimitedStringToList(hRecipients.Value.Trim(), AccountConstants.AccountDelimiter);
+                    var includedList = DataUtil.ParseDelimitedStringToList(hRecipients.Value.Trim(), AccountConstants.AccountDelimiter);
                     if (includedList.Count > 0)
                     {
                         foreach (var included in includedList)
@@ -407,7 +407,7 @@ namespace WCMS.WebSystem.WebParts.Messaging
                             {
                                 isIncluded = true;
                                 includedList.Remove(included);
-                                hRecipients.Value = DataHelper.ToDelimitedString(includedList, AccountConstants.AccountDelimiter);
+                                hRecipients.Value = DataUtil.ToDelimitedString(includedList, AccountConstants.AccountDelimiter);
                                 break;
                             }
                         }
@@ -416,11 +416,11 @@ namespace WCMS.WebSystem.WebParts.Messaging
                     // If not included in custom recipients, put it in exclude list
                     if (!isIncluded)
                     {
-                        var excludedList = DataHelper.ParseDelimitedStringToList(hExcluded.Value.Trim(), AccountConstants.AccountDelimiter);
+                        var excludedList = DataUtil.ParseDelimitedStringToList(hExcluded.Value.Trim(), AccountConstants.AccountDelimiter);
                         if (excludedList.Find(i => i == shortString) == null)
                         {
                             excludedList.Add(shortString);
-                            hExcluded.Value = DataHelper.ToDelimitedString(excludedList, AccountConstants.AccountDelimiter);
+                            hExcluded.Value = DataUtil.ToDelimitedString(excludedList, AccountConstants.AccountDelimiter);
                         }
                     }
 
@@ -459,8 +459,8 @@ namespace WCMS.WebSystem.WebParts.Messaging
             if (chkSendSMSCopy.Checked && user != null && !string.IsNullOrEmpty(user.MobileNumber))
                 msg.AddTo(user.MobileNumber);
 
-            msg.ToOrBcc = isSingleRecipient ? MessageToOrBccStatus.ToIndividual : DataHelper.GetInt32(radioSendAs.SelectedValue);
-            msg.SendVia = DataHelper.GetInt32(rblSendVia.SelectedValue);
+            msg.ToOrBcc = isSingleRecipient ? MessageToOrBccStatus.ToIndividual : DataUtil.GetInt32(radioSendAs.SelectedValue);
+            msg.SendVia = DataUtil.GetInt32(rblSendVia.SelectedValue);
 
             if (!string.IsNullOrEmpty(msg.To))
             {
@@ -520,14 +520,14 @@ namespace WCMS.WebSystem.WebParts.Messaging
 
         private bool AddRecipients(string newAccounts)
         {
-            var includeList = DataHelper.ParseDelimitedStringToList(hRecipients.Value, AccountConstants.AccountDelimiter);
-            var excludeList = DataHelper.ParseDelimitedStringToList(hExcluded.Value, AccountConstants.AccountDelimiter);
+            var includeList = DataUtil.ParseDelimitedStringToList(hRecipients.Value, AccountConstants.AccountDelimiter);
+            var excludeList = DataUtil.ParseDelimitedStringToList(hExcluded.Value, AccountConstants.AccountDelimiter);
 
             bool accountAdded = false;
 
             if (!string.IsNullOrEmpty(newAccounts))
             {
-                var accountList = DataHelper.ParseDelimitedStringToList(newAccounts, AccountConstants.AccountDelimiter);
+                var accountList = DataUtil.ParseDelimitedStringToList(newAccounts, AccountConstants.AccountDelimiter);
                 if (accountList.Count > 0)
                 {
                     //List<WebGroup> groups = new List<WebGroup>();
@@ -617,8 +617,8 @@ namespace WCMS.WebSystem.WebParts.Messaging
 
             if (accountAdded)
             {
-                hExcluded.Value = DataHelper.ToDelimitedString(excludeList, AccountConstants.AccountDelimiter);
-                hRecipients.Value = DataHelper.ToDelimitedString(includeList, AccountConstants.AccountDelimiter);
+                hExcluded.Value = DataUtil.ToDelimitedString(excludeList, AccountConstants.AccountDelimiter);
+                hRecipients.Value = DataUtil.ToDelimitedString(includeList, AccountConstants.AccountDelimiter);
 
                 gridRecipients.DataBind();
 

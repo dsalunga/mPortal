@@ -27,8 +27,8 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
 
             return from i in GetList(-1, -1, -1, directoryId)
                    where noSearch
-                       || DataHelper.HasMatch(i.Title, loweredKeyword)
-                       || DataHelper.HasMatch(i.Content, loweredKeyword)
+                       || DataUtil.HasMatch(i.Title, loweredKeyword)
+                       || DataUtil.HasMatch(i.Content, loweredKeyword)
                    orderby i.DateModified descending
                    select new WebDirectoryEntry
                    {
@@ -129,7 +129,7 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
                 new SqlParameter("@ActiveContent", item.ActiveContent)
             );
 
-            item.Id = DataHelper.GetId(o.ToString());
+            item.Id = DataUtil.GetId(o.ToString());
             return item.Id;
         }
 
@@ -144,17 +144,17 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
         public WebContent From(DbDataReader r)
         {
             WebContent item = new WebContent();
-            item.Id = DataHelper.GetId(r, WebContentEnum.ContentId);
-            item.Title = DataHelper.Get(r, WebContentEnum.Title);
-            item.Content = DataHelper.Get(r, WebContentEnum.Content);
-            item.VersionOf = DataHelper.GetId(r, WebContentEnum.VersionOf);
-            item.VersionNo = DataHelper.GetInt32(r, WebContentEnum.VersionNo);
-            item.DirectoryId = DataHelper.GetId(r, "DirectoryId");
-            item.Active = DataHelper.GetInt32(r, WebColumns.Active);
-            item.DateModified = DataHelper.GetDateTime(r, WebColumns.DateModified);
-            item.SiteId = DataHelper.GetId(r, WebColumns.SiteId);
-            item.EditorSensitive = DataHelper.GetInt32(r, "EditorSensitive");
-            item.ActiveContent = DataHelper.GetInt32(r, "ActiveContent");
+            item.Id = DataUtil.GetId(r, WebContentEnum.ContentId);
+            item.Title = DataUtil.Get(r, WebContentEnum.Title);
+            item.Content = DataUtil.Get(r, WebContentEnum.Content);
+            item.VersionOf = DataUtil.GetId(r, WebContentEnum.VersionOf);
+            item.VersionNo = DataUtil.GetInt32(r, WebContentEnum.VersionNo);
+            item.DirectoryId = DataUtil.GetId(r, "DirectoryId");
+            item.Active = DataUtil.GetInt32(r, WebColumns.Active);
+            item.DateModified = DataUtil.GetDateTime(r, WebColumns.DateModified);
+            item.SiteId = DataUtil.GetId(r, WebColumns.SiteId);
+            item.EditorSensitive = DataUtil.GetInt32(r, "EditorSensitive");
+            item.ActiveContent = DataUtil.GetInt32(r, "ActiveContent");
 
             return item;
         }

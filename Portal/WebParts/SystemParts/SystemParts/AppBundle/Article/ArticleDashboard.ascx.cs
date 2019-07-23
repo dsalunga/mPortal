@@ -38,8 +38,8 @@ namespace WCMS.WebSystem.WebParts.Article
             var parms = element.Parameters;
 
             // ShowEmptySubscriptions
-            bool showEmptySubs = DataHelper.GetBool(WebParameter.GetValue(parms, "ShowEmptySubscriptions"), true);
-            var titleMaxChars = DataHelper.GetInt32(WebParameter.GetValue(parms, "TitleMaxChars"), -1);
+            bool showEmptySubs = DataUtil.GetBool(WebParameter.GetValue(parms, "ShowEmptySubscriptions"), true);
+            var titleMaxChars = DataUtil.GetInt32(WebParameter.GetValue(parms, "TitleMaxChars"), -1);
 
             // Tag
             var tagFilter = WebParameter.GetValue(parms, "TagFilter");
@@ -54,8 +54,8 @@ namespace WCMS.WebSystem.WebParts.Article
                 var dateFilterValue = context.Get(dateFilterParam);
                 if (!string.IsNullOrEmpty(dateFilterValue))
                 {
-                    dateFilter = DataHelper.GetDateTime(dateFilterValue);
-                    dateFilterDaysMargin = DataHelper.GetInt32(WebParameter.GetValue(parms, "DateFilterDaysMargin", "2"));
+                    dateFilter = DataUtil.GetDateTime(dateFilterValue);
+                    dateFilterDaysMargin = DataUtil.GetInt32(WebParameter.GetValue(parms, "DateFilterDaysMargin", "2"));
                     dateFilterEnabled = true;
                 }
                 else
@@ -89,7 +89,7 @@ namespace WCMS.WebSystem.WebParts.Article
             var subMode = element.GetParameterValue(ArticleConstants.ModeKey, SubscriptionModes.AllGroups.ToString());
             var partId = WPart.Get("Article").Id;
 
-            switch (DataHelper.GetInt32(subMode))
+            switch (DataUtil.GetInt32(subMode))
             {
                 case SubscriptionModes.AllGroups:
                     GetAllUserGroupSubscriptions(subs, partId, ignoreGroups);
@@ -121,14 +121,14 @@ namespace WCMS.WebSystem.WebParts.Article
 
             if (string.IsNullOrEmpty(context.Get(Article.ArticleKey)))
             {
-                bool usePageParm = DataHelper.GetBool(WebParameter.GetValue(parms, ArticleConstants.UsePageParameterKey));
+                bool usePageParm = DataUtil.GetBool(WebParameter.GetValue(parms, ArticleConstants.UsePageParameterKey));
                 bool thereAreItems = false;
                 foreach (var sub in subs)
                 {
                     var page = sub.Page;
                     if (page != null)
                     {
-                        var itemCount = DataHelper.GetInt32(WebParameter.GetValue(parms, ArticleConstants.MaxDisplayItemKey), WConstants.NullData);
+                        var itemCount = DataUtil.GetInt32(WebParameter.GetValue(parms, ArticleConstants.MaxDisplayItemKey), WConstants.NullData);
                         var listTmpl = WebParameter.GetValue(parms, ArticleConstants.ListTemplateKey, ArticleConstants.ListTemplate);
                         var itemTmpl = WebParameter.GetValue(parms, ArticleConstants.ItemTemplateKey, ArticleConstants.ItemTemplate);
                         var dateFormat = WebParameter.GetValue(parms, ArticleConstants.DateFormatStringKey, ArticleConstants.DateFormatString);
@@ -157,7 +157,7 @@ namespace WCMS.WebSystem.WebParts.Article
                                 dateFormat = WebParameter.GetValue(refParms, ArticleConstants.DateFormatStringKey, ArticleConstants.DateFormatString);
 
                                 if (itemCount == WConstants.NullData)
-                                    itemCount = DataHelper.GetInt32(WebParameter.GetValue(refParms, ArticleConstants.MaxDisplayItemKey), WConstants.NullData);
+                                    itemCount = DataUtil.GetInt32(WebParameter.GetValue(refParms, ArticleConstants.MaxDisplayItemKey), WConstants.NullData);
 
                                 if (firstItemTmpl == null)
                                     firstItemTmpl = WebParameter.GetValue(refParms, ArticleConstants.FirstItemTemplateKey, null);
@@ -219,7 +219,7 @@ namespace WCMS.WebSystem.WebParts.Article
                                 context.Set(Article.ArticleKey, article.Id);
 
                                 var itemProvider = new NamedValueProvider();
-                                itemProvider.Add("Title", titleMaxChars > 0 ? DataHelper.GetStringPreview(article.Title, titleMaxChars) : article.Title);
+                                itemProvider.Add("Title", titleMaxChars > 0 ? DataUtil.GetStringPreview(article.Title, titleMaxChars) : article.Title);
                                 itemProvider.Add("Date", string.Format(dateFormat, article.Date));
                                 itemProvider.Add("ShortDate", article.Date.ToString(article.Date.Year == DateTime.Now.Year ? ArticleConstants.ShortDateFormat : ArticleConstants.ShortDateFormatFull));
                                 itemProvider.Add("Content", article.Content);
@@ -289,7 +289,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         private static void GetAllUserGroupSubscriptions(List<WebSubscription> subs, int partId, string ignoreGroups)
         {
-            var ignoreList = DataHelper.ParseDelimitedStringToList(ignoreGroups, AccountConstants.AccountDelimiter);
+            var ignoreList = DataUtil.ParseDelimitedStringToList(ignoreGroups, AccountConstants.AccountDelimiter);
             var groups = WSession.Current.User.Groups;
 
             foreach (var g in groups)

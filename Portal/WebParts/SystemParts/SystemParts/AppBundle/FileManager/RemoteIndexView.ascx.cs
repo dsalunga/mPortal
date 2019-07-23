@@ -24,7 +24,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                 var context = new WContext(this);
                 var element = context.Element;
 
-                int libraryId = libraryId = DataHelper.GetId(element.GetParameterValue(IndexerConstants.LibraryId));
+                int libraryId = libraryId = DataUtil.GetId(element.GetParameterValue(IndexerConstants.LibraryId));
                 if (libraryId == -1)
                     libraryId = context.GetId(IndexerConstants.LibraryId);
 

@@ -38,13 +38,13 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
         private static AlbumPhoto From(SqlDataReader r)
         {
             AlbumPhoto item = new AlbumPhoto();
-            item.Id = DataHelper.GetId(r, "GalleryID");
+            item.Id = DataUtil.GetId(r, "GalleryID");
             item.Caption = r["Caption"].ToString();
             //txtThumbnail.Text = r["Thumbnail"].ToString();
             item.PhotoName = r["ImageURL"].ToString();
-            item.DateCreated = DataHelper.GetDateTime(r, "DateCreated");
-            item.SiteId = DataHelper.GetId(r, "SiteID");
-            item.AlbumId = DataHelper.GetId(r, "CategoryID");
+            item.DateCreated = DataUtil.GetDateTime(r, "DateCreated");
+            item.SiteId = DataUtil.GetId(r, "SiteID");
+            item.AlbumId = DataUtil.GetId(r, "CategoryID");
             item.Active = (bool)r["IsActive"] ? 1 : 0;
 
             return item;
@@ -104,7 +104,7 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
                 new SqlParameter("@IsActive", item.IsActive)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
 
             return item.Id;
         }

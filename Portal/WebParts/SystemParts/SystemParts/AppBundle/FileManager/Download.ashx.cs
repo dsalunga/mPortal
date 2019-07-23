@@ -36,11 +36,11 @@ namespace WCMS.WebSystem.WebParts.FileManager
                     {
                         var networkCredential = new NetworkCredential(Library.UserName, Library.Password);
                         new NetworkConnection(Library.BaseAddress, networkCredential);
-                        WebHelper.DownloadFile(Item.FullPath, Item.Name, true, Force);
+                        WebUtil.DownloadFile(Item.FullPath, Item.Name, true, Force);
                     }
                     else
                     {
-                        WebHelper.DownloadFile(Item.FullPath, Item.Name, true, Force);
+                        WebUtil.DownloadFile(Item.FullPath, Item.Name, true, Force);
                     }
                     break;
 
@@ -255,8 +255,8 @@ namespace WCMS.WebSystem.WebParts.FileManager
         {
             var Request = context.Request;
 
-            int id = DataHelper.GetId(Request, "Id");
-            bool force = DataHelper.GetBool(Request, "Force", false);
+            int id = DataUtil.GetId(Request, "Id");
+            bool force = DataUtil.GetBool(Request, "Force", false);
             //RemoteLibraryHelper.InvokeDownload(id, force, 0);
 
             var requestedFile = new FileInfoMock();

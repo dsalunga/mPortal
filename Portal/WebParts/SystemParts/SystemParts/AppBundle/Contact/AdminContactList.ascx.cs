@@ -37,7 +37,7 @@ namespace WCMS.WebSystem.WebParts.Contact
             string sChecked = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(sChecked))
             {
-                var items = DataHelper.ParseCommaSeparatedIdList(sChecked);
+                var items = DataUtil.ParseCommaSeparatedIdList(sChecked);
                 if (items.Count > 0)
                     foreach (int id in items)
                         Contact.Delete(id);
@@ -63,7 +63,7 @@ namespace WCMS.WebSystem.WebParts.Contact
 
         public DataSet GetContacts()
         {
-            return DataHelper.ToDataSet(Contact.GetList());
+            return DataUtil.ToDataSet(Contact.GetList());
         }
     }
 }

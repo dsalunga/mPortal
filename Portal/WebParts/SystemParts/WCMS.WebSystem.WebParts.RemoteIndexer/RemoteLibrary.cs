@@ -91,7 +91,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
         {
             if (_cachePath == null)
             {
-                _cachePath = FileHelper.Combine(WebHelper.MapPath(WConfig.FileCachePath), Path.DirectorySeparatorChar, "Indexer", this.Id.ToString());
+                _cachePath = FileHelper.Combine(WebUtil.MapPath(WConfig.FileCachePath), Path.DirectorySeparatorChar, "Indexer", this.Id.ToString());
 
                 if (!Directory.Exists(_cachePath))
                     Directory.CreateDirectory(_cachePath);

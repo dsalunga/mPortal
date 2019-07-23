@@ -48,7 +48,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Managers
                 foreach (var menu in _menus.Values)
                 {
                     writer.WriteStartElement("Menu");
-                    writer.WriteRaw(DataHelper.ToXml(menu, "Item"));
+                    writer.WriteRaw(DataUtil.ToXml(menu, "Item"));
 
                     var items = menu.Children; //_dataItems.FindAll(i => i.MenuId == menu.Id);
                     if (items.Count() > 0)
@@ -63,7 +63,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Managers
                             if (!string.IsNullOrEmpty(pageUrl))
                                 menuItem.NavigateUrl = pageUrl;
 
-                            writer.WriteRaw(DataHelper.ToXml(menuItem, "Item"));
+                            writer.WriteRaw(DataUtil.ToXml(menuItem, "Item"));
 
                             menuItem.NavigateUrl = navigateUrl;
                         }
@@ -84,7 +84,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Managers
                     foreach (var parmSet in _sets.Values)
                     {
                         writer.WriteStartElement("ParameterSet");
-                        writer.WriteRaw(DataHelper.ToXml(parmSet, "Item"));
+                        writer.WriteRaw(DataUtil.ToXml(parmSet, "Item"));
 
                         var items = parmSet.Parameters; //_dataItems.FindAll(i => i.MenuId == menu.Id);
                         if (items.Count() > 0)
@@ -92,7 +92,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Managers
                             writer.WriteStartElement("Parameters");
 
                             foreach (var parameter in items)
-                                writer.WriteRaw(DataHelper.ToXml(parameter, "Item"));
+                                writer.WriteRaw(DataUtil.ToXml(parameter, "Item"));
 
                             writer.WriteEndElement();
                         }
@@ -133,7 +133,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Managers
                     }
                 }
 
-                return DataHelper.ToXml<MenuObject>(menuObject, "Item");
+                return DataUtil.ToXml(menuObject, "Item");
             }
 
             return string.Empty;
@@ -250,7 +250,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Managers
             var itemNode = elementDataNode.SelectSingleNode("Item");
             if (itemNode != null)
             {
-                var item = DataHelper.FromElementXml<MenuObject>(itemNode.OuterXml, "Item");
+                var item = DataUtil.FromElementXml<MenuObject>(itemNode.OuterXml, "Item");
 
                 item.Id = -1;
                 item.ObjectId = element.OBJECT_ID;
@@ -286,7 +286,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Managers
                     {
                         foreach (XmlNode itemNode in itemNodes)
                         {
-                            var item = DataHelper.FromElementXml<MenuEntity>(itemNode.OuterXml, "Item");
+                            var item = DataUtil.FromElementXml<MenuEntity>(itemNode.OuterXml, "Item");
                             if (item != null)
                                 _menus.Add(item.Id, item);
 
@@ -297,7 +297,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Managers
                                 List<MenuItem> menuItems = new List<MenuItem>();
                                 foreach (XmlNode menuItemNode in menuItemNodes)
                                 {
-                                    var menuItem = DataHelper.FromElementXml<MenuItem>(menuItemNode.OuterXml, "Item");
+                                    var menuItem = DataUtil.FromElementXml<MenuItem>(menuItemNode.OuterXml, "Item");
                                     if (menuItem != null)
                                         menuItems.Add(menuItem);
                                 }
@@ -317,7 +317,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Managers
                     {
                         foreach (XmlNode itemNode in itemNodes)
                         {
-                            var item = DataHelper.FromElementXml<WebParameterSet>(itemNode.OuterXml, "Item");
+                            var item = DataUtil.FromElementXml<WebParameterSet>(itemNode.OuterXml, "Item");
                             if (item != null)
                                 _sets.Add(item.Id, item);
 
@@ -328,7 +328,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Managers
                                 List<WebParameter> parms = new List<WebParameter>();
                                 foreach (XmlNode parmNode in parmsNodes)
                                 {
-                                    var parm = DataHelper.FromElementXml<WebParameter>(parmNode.OuterXml, "Item");
+                                    var parm = DataUtil.FromElementXml<WebParameter>(parmNode.OuterXml, "Item");
                                     if (parm != null)
                                         parms.Add(parm);
                                 }

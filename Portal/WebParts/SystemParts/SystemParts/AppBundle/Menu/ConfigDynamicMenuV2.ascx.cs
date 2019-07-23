@@ -42,7 +42,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
                 var set = element.GetParameterSet();
 
-                var menuId = DataHelper.GetId(element.GetParameterValue(ParameterKeys.MenuId));
+                var menuId = DataUtil.GetId(element.GetParameterValue(ParameterKeys.MenuId));
                 var parameterSetId = set != null ? set.Id : -1;
 
                 if (menuId > 0)
@@ -74,7 +74,7 @@ namespace WCMS.WebSystem.WebParts.Menu
             var set = ParameterSetSelector1.GetParameterSet();
 
             var param = element.GetOrCreateParameter(ParameterKeys.MenuId);
-            param.Value = DataHelper.GetId(cboMenu.SelectedValue).ToString();
+            param.Value = DataUtil.GetId(cboMenu.SelectedValue).ToString();
             param.Update();
 
             param = element.GetOrCreateParameter(WConstants.ParameterSetKey);

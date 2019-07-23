@@ -27,8 +27,8 @@ namespace WCMS.WebSystem.WebParts.Photo
 
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            int pageId = DataHelper.GetId(Request, WebColumns.PageId);
-            int elementId = DataHelper.GetId(Request, WebColumns.PageElementId);
+            int pageId = DataUtil.GetId(Request, WebColumns.PageId);
+            int elementId = DataUtil.GetId(Request, WebColumns.PageElementId);
 
             recordId = elementId > 0 ? elementId : pageId;
             objectId = elementId > 0 ? WebObjects.WebPageElement : WebObjects.WebPage;
@@ -55,13 +55,13 @@ namespace WCMS.WebSystem.WebParts.Photo
                 {
                     if (r.Read())
                     {
-                        WebHelper.SetCboValue(cboControls, r["InitialControl"].ToString());
+                        WebUtil.SetCboValue(cboControls, r["InitialControl"].ToString());
 
                         txtAlbumColumns.Text = r["AlbumColumns"].ToString();
                         txtThumbColumns.Text = r["ThumbColumns"].ToString();
                         txtThumbRows.Text = r["ThumbRows"].ToString();
                         txtAlbumPadding.Text = r["AlbumCellPadding"].ToString();
-                        txtMaxPhotoWidth.Text = DataHelper.Get(r, "MaxPhotoWidth");
+                        txtMaxPhotoWidth.Text = DataUtil.Get(r, "MaxPhotoWidth");
                     }
                 }
 
@@ -98,7 +98,7 @@ namespace WCMS.WebSystem.WebParts.Photo
             var inserted = AlbumLink.Provider.GetList(objectId, recordId);
             AlbumLink item = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in Album.Provider.GetList(objectId, recordId)
                 select new
                 {
@@ -119,7 +119,7 @@ namespace WCMS.WebSystem.WebParts.Photo
             var inserted = Album.Provider.GetList(objectId, recordId);
             var all = Album.Provider.GetList();
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in all.Except(inserted, new AlbumEqualityComparer())
                 select new
                 {

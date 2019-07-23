@@ -16,8 +16,8 @@ namespace WCMS.WebSystem.Content.Parts.FileManager
         {
             if (!IsPostBack)
             {
-                int id = DataHelper.GetId(Request, "Id");
-                bool force = DataHelper.GetBool(Request, "Force", false);
+                int id = DataUtil.GetId(Request, "Id");
+                bool force = DataUtil.GetBool(Request, "Force", false);
                 RemoteLibraryHelper.InvokeDownload(id, force, 0);
             }
         }

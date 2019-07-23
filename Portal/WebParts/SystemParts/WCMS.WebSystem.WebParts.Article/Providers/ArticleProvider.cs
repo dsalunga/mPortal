@@ -45,25 +45,25 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
                 new SqlParameter("@Tags", item.Tags)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 
         protected override Article From(IDataReader r, Article source)
         {
             Article item = source ?? new Article();
-            item.Id = DataHelper.GetId(r["Id"]);
+            item.Id = DataUtil.GetId(r["Id"]);
             item.Title = r["Title"].ToString();
             item.Image = r["Image"].ToString();
             item.Description = r["Description"].ToString();
             item.Date = (DateTime)r["Date"];
             item.Content = r["Content"].ToString();
             item.Author = r["Author"].ToString();
-            item.SiteId = DataHelper.GetId(r[WebColumns.SiteId]);
+            item.SiteId = DataUtil.GetId(r[WebColumns.SiteId]);
             item.Active = Convert.ToInt32(r["Active"].ToString());
             item.DateModified = (DateTime)r["DateModified"];
-            item.UserId = DataHelper.GetId(r["UserId"]);
-            item.ModifiedUserId = DataHelper.GetId(r["ModifiedUserId"]);
+            item.UserId = DataUtil.GetId(r["UserId"]);
+            item.ModifiedUserId = DataUtil.GetId(r["ModifiedUserId"]);
             item.Tags = r["Tags"].ToString();
 
             return item;

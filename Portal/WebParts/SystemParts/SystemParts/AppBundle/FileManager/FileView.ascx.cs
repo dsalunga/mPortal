@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 bool checkedOutByOtherUser = false;
 
                 var currentPath = GetCurrentPath();
-                var absPath = WebHelper.MapPath(currentPath);
+                var absPath = WebUtil.MapPath(currentPath);
                 bool isFolder = FileHelper.IsFolder(absPath);
                 bool isReadOnly = !element.IsUserMgmtPermitted(Permissions.ManageContent);
 
@@ -142,7 +142,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                             panelExtractHere.Visible = true;
 
                         // Check Versioning
-                        var enableVersioning = DataHelper.GetBool(element.GetParameterValue(FileManagerConstants.EnableVersioningKey, "false"));
+                        var enableVersioning = DataUtil.GetBool(element.GetParameterValue(FileManagerConstants.EnableVersioningKey, "false"));
                         if (enableVersioning)
                         {
                             panelVersioning.Visible = true;
@@ -182,7 +182,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                     panelDelete.Visible = !checkedOutByOtherUser;
                 }
 
-                linkPermalink.InnerHtml = WebHelper.CombineAddress(WConfig.BaseAddress, currentPath);
+                linkPermalink.InnerHtml = WebUtil.CombineAddress(WConfig.BaseAddress, currentPath);
                 linkPermalink.HRef = linkPermalink.InnerHtml;
 
                 PerformanceLog.EndLog(string.Format("FileManager-View: {0}/{1}", context.ObjectId, context.RecordId), sw, context.PageId);
@@ -204,7 +204,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
             WebUser user = null;
             var versions = FileVersion.Provider.GetList(fileId);
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from version in versions
                 select new
                 {
@@ -221,19 +221,19 @@ namespace WCMS.WebSystem.WebParts.FileManager
         protected void cmdDownload_Click(object sender, EventArgs e)
         {
             var currentPath = GetCurrentPath();
-            var absPath = WebHelper.MapPath(currentPath);
+            var absPath = WebUtil.MapPath(currentPath);
             var isFolder = FileHelper.IsFolder(absPath);
 
             if (isFolder)
-                WebHelper.DownloadFolder(currentPath, Path.GetFileName(currentPath));
+                WebUtil.DownloadFolder(currentPath, Path.GetFileName(currentPath));
             else
-                WebHelper.DownloadFile(currentPath);
+                WebUtil.DownloadFile(currentPath);
         }
 
         protected void cmdDelete_Click(object sender, EventArgs e)
         {
             var currentPath = GetCurrentPath();
-            var absPath = WebHelper.MapPath(currentPath);
+            var absPath = WebUtil.MapPath(currentPath);
             var isFolder = FileHelper.IsFolder(absPath);
 
             if (isFolder)
@@ -245,7 +245,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 FileManagerFile.Delete(currentPath);
 
                 var context = new WContext(this);
-                var enableVersioning = DataHelper.GetBool(context.Element.GetParameterValue(FileManagerConstants.EnableVersioningKey, "false"));
+                var enableVersioning = DataUtil.GetBool(context.Element.GetParameterValue(FileManagerConstants.EnableVersioningKey, "false"));
                 if (enableVersioning)
                 {
                     FileIdentity file = FileIdentity.GetByPath(currentPath, context.ObjectId, context.RecordId);
@@ -328,7 +328,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
         protected void cmdExtractHere_Click(object sender, EventArgs e)
         {
             var currentPath = GetCurrentPath();
-            var absPath = WebHelper.MapPath(currentPath);
+            var absPath = WebUtil.MapPath(currentPath);
             Compression.Extract(absPath, FileHelper.GetFolder(absPath, '\\'), true, true);
         }
     }

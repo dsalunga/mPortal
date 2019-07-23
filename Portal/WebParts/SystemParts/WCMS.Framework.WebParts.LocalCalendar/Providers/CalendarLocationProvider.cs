@@ -22,9 +22,9 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
         protected override CalendarLocation From(IDataReader r, CalendarLocation source)
         {
             CalendarLocation item = source ?? new CalendarLocation();
-            item.Id = DataHelper.GetId(r, "LocationId");
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.Bookable = DataHelper.GetInt32(r, "Bookable");
+            item.Id = DataUtil.GetId(r, "LocationId");
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.Bookable = DataUtil.GetInt32(r, "Bookable");
 
             return item;
         }
@@ -36,7 +36,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
                 new SqlParameter("@Name", item.Name),
                 new SqlParameter("@Bookable", item.Bookable));
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
             return item.Id;
         }
     }

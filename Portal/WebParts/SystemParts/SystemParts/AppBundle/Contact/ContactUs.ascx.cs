@@ -61,7 +61,7 @@ namespace WCMS.WebSystem.WebParts.Contact
                     }
                     else
                     {
-                        var requireCode = DataHelper.GetBool(element.GetParameterValue("RequireCode", "1"));
+                        var requireCode = DataUtil.GetBool(element.GetParameterValue("RequireCode", "1"));
                         if (!requireCode)
                             rowCode.Visible = false;
                     }
@@ -278,7 +278,7 @@ namespace WCMS.WebSystem.WebParts.Contact
 
                     // SEND REPLY
 
-                    bool sendReply = DataHelper.GetBool(element.GetParameterValue(ContactConstants.SendReplyFlagKey), true);
+                    bool sendReply = DataUtil.GetBool(element.GetParameterValue(ContactConstants.SendReplyFlagKey), true);
                     if (sendReply)
                     {
                         // To Inquirer Template

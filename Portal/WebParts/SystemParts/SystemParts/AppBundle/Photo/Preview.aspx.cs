@@ -21,8 +21,8 @@ namespace WCMS.WebSystem.WebParts.Photo
         {
             if (!Page.IsPostBack)
             {
-                var id = DataHelper.GetId(Request, "PID");
-                string folder = DataHelper.Get(Request, "Album");
+                var id = DataUtil.GetId(Request, "PID");
+                string folder = DataUtil.Get(Request, "Album");
 
                 if (id > 0)
                 {

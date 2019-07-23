@@ -32,7 +32,7 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
                         _data.Add(content.Id, content);
                 }
 
-                return DataHelper.ToXml<WebObjectContent>(objectContent, "Item");
+                return DataUtil.ToXml(objectContent, "Item");
             }
 
             return string.Empty;
@@ -41,7 +41,7 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
         public string ExportData()
         {
             if (_data.Count > 0)
-                return DataHelper.ToXml(_data.Values.AsEnumerable(), "Item", "WebContent");
+                return DataUtil.ToXml(_data.Values.AsEnumerable(), "Item", "WebContent");
 
             return string.Empty;
         }
@@ -72,7 +72,7 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
 
             if (itemNode != null)
             {
-                var item = DataHelper.FromElementXml<WebObjectContent>(itemNode.OuterXml, "Item");
+                var item = DataUtil.FromElementXml<WebObjectContent>(itemNode.OuterXml, "Item");
 
                 item.Id = -1;
                 item.ObjectId = element.OBJECT_ID;
@@ -103,7 +103,7 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
                     {
                         foreach (XmlNode itemNode in itemNodes)
                         {
-                            var item = DataHelper.FromElementXml<WebContent>(itemNode.OuterXml, "Item");
+                            var item = DataUtil.FromElementXml<WebContent>(itemNode.OuterXml, "Item");
                             if (item != null)
                                 _data.Add(item.Id, item);
                         }

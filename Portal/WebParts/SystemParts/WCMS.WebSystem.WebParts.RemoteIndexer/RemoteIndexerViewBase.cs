@@ -26,7 +26,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
 
         protected void DeleteFolder(string sFolder, string currentPath)
         {
-            string sVirtualFolder = WebHelper.CombineAddress(currentPath, sFolder);
+            string sVirtualFolder = WebUtil.CombineAddress(currentPath, sFolder);
 
             // START DELETE
             Directory.Delete(MapPath(sVirtualFolder), true);

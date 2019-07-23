@@ -16,8 +16,8 @@ namespace WCMS.WebSystem.WebParts.Article
         {
             if (!Page.IsPostBack)
             {
-                int id = DataHelper.GetId(Request, "ArticleId");
-                int pageId = DataHelper.GetId(Request, "PageId");
+                int id = DataUtil.GetId(Request, "ArticleId");
+                int pageId = DataUtil.GetId(Request, "PageId");
                 Article item = Article.Get(id);
                 var page = WPage.Get(pageId);
                 if (item != null && page != null)

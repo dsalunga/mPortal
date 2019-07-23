@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.Menu
             if (!Page.IsPostBack)
             {
                 // Display Page Url
-                int pageId = DataHelper.GetId(Request, WebColumns.PageId);
+                int pageId = DataUtil.GetId(Request, WebColumns.PageId);
                 WPage page = null;
                 if (pageId > 0 && (page = WPage.Get(pageId)) != null)
                     lblHeader.InnerHtml = string.Format("{0} {1} Menu Items", page.Name, WConstants.Arrow);
@@ -35,7 +35,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -56,7 +56,7 @@ namespace WCMS.WebSystem.WebParts.Menu
         {
             MenuEntity menu = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in MenuItem.GetListByPageId(pageId)
                 select new
                 {

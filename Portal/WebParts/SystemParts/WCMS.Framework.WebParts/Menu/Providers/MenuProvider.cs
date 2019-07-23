@@ -20,14 +20,14 @@ namespace WCMS.WebSystem.WebParts.Menu.Providers
         protected override MenuEntity From(IDataReader r, MenuEntity source)
         {
             MenuEntity item = source ?? new MenuEntity();
-            item.Id = DataHelper.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.IsActive = DataHelper.GetInt32(r, "IsActive");
-            item.DateCreated = DataHelper.GetDateTime(r, "DateCreated");
-            item.SiteId = DataHelper.GetId(r, WebColumns.SiteId);
-            item.UserId = DataHelper.GetId(r, WebColumns.UserId);
-            item.PageId = DataHelper.GetId(r, WebColumns.PageId);
-            item.IncludeChildren = DataHelper.GetInt32(r, "IncludeChildren");
+            item.Id = DataUtil.GetId(r, WebColumns.Id);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.IsActive = DataUtil.GetInt32(r, "IsActive");
+            item.DateCreated = DataUtil.GetDateTime(r, "DateCreated");
+            item.SiteId = DataUtil.GetId(r, WebColumns.SiteId);
+            item.UserId = DataUtil.GetId(r, WebColumns.UserId);
+            item.PageId = DataUtil.GetId(r, WebColumns.PageId);
+            item.IncludeChildren = DataUtil.GetInt32(r, "IncludeChildren");
 
             return item;
         }
@@ -44,7 +44,7 @@ namespace WCMS.WebSystem.WebParts.Menu.Providers
                 new SqlParameter("@IncludeChildren", item.IncludeChildren)
             );
 
-            item.Id = DataHelper.GetId(obj);
+            item.Id = DataUtil.GetId(obj);
 
             return item.Id;
         }

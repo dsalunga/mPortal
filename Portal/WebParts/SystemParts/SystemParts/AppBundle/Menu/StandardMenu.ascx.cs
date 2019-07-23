@@ -29,8 +29,8 @@ namespace WCMS.WebSystem.WebParts.Menu
             {
                 if (r.Read())
                 {
-                    siteId = DataHelper.GetId(r, "SiteID");
-                    parentId = DataHelper.GetId(r, "SiteSectionID");
+                    siteId = DataUtil.GetId(r, "SiteID");
+                    parentId = DataUtil.GetId(r, "SiteSectionID");
                 }
             }
 

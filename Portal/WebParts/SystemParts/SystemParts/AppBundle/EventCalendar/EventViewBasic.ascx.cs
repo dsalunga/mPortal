@@ -16,7 +16,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int eventId = DataHelper.GetId(Request, "EventId");
+            int eventId = DataUtil.GetId(Request, "EventId");
             if (eventId > 0)
             {
                 var sw = PerformanceLog.StartLog();
@@ -26,7 +26,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 CalendarEvent item = CalendarEvent.Get(eventId);
                 if (item != null)
                 {
-                    DateTime date = DateTimeHelper.ParseTicks(context.Get("Date"));
+                    DateTime date = TimeUtil.ParseTicks(context.Get("Date"));
 
                     lblEventSubject.InnerHtml = item.Subject;
                     lblEventDescription.InnerHtml = item.Message;
@@ -47,7 +47,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
                     QueryParser query = new QueryParser(this);
                     query.Remove("Date");
-                    query.BasePath = WebHelper.CombineAddress(WConfig.BaseAddress, query.BasePath);
+                    query.BasePath = WebUtil.CombineAddress(WConfig.BaseAddress, query.BasePath);
                     //query.Remove(WebColumns.PageIdInternal);
 
                     var permalink = query.BuildQuery();

@@ -66,7 +66,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 if (!double.TryParse(element.GetParameterValue(FileManagerConstants.QuotaWarningPercentageKey), out quotaWarningPercentage))
                     quotaWarningPercentage = 85;
 
-                long totalSize = FileHelper.GetDirectorySize(WebHelper.MapPath(rootPath));
+                long totalSize = FileHelper.GetDirectorySize(WebUtil.MapPath(rootPath));
                 var percentUsage = quotaValue > 0 ? (totalSize / (double)quotaValue) * 100 : 0;
 
                 lblStorageInfo.Text = string.Format("{0} of {1}", FileHelper.GetSizeString(totalSize), quotaValue > 0 ? FileHelper.GetSizeString(quotaValue) : FileManagerConstants.UNLIMITED);
@@ -76,10 +76,10 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
         protected void DeleteFolder(string sFolder, string currentPath)
         {
-            string sVirtualFolder = WebHelper.CombineAddress(currentPath, sFolder);
+            string sVirtualFolder = WebUtil.CombineAddress(currentPath, sFolder);
 
             // START DELETE
-            Directory.Delete(WebHelper.MapPath(sVirtualFolder), true);
+            Directory.Delete(WebUtil.MapPath(sVirtualFolder), true);
         }
 
         protected string GetCurrentPath()

@@ -44,7 +44,7 @@ namespace WCMS.WebSystem.WebParts.Menu
             var paramSet = parameterSetId > 0 ? WebParameterSet.Provider.Get(parameterSetId) as ParameterizedWebObject : null;
             var element = paramSet ?? context.Element;
             var model = new MenuModel(element.GetParameterValue(ParameterKeys.ItemTemplate, null));
-            var siteMapMode = DataHelper.GetBool(element.GetParameterValue("SiteMapMode"), false);
+            var siteMapMode = DataUtil.GetBool(element.GetParameterValue("SiteMapMode"), false);
 
             //menu.Header = element.GetParameterValue(ParameterKeys.Header, null);
             //menu.Footer = element.GetParameterValue(ParameterKeys.Footer, null);

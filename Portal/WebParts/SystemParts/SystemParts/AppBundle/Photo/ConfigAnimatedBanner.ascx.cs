@@ -22,17 +22,17 @@ namespace WCMS.WebSystem.WebParts.Photo
             {
                 var context = new WContext(this);
                 var element = context.Element;
-                var albumId = DataHelper.GetId(element.GetParameterValue("AlbumId"));
-                var renderMode = DataHelper.GetInt32(element.GetParameterValue("RenderMode"), 0);
+                var albumId = DataUtil.GetId(element.GetParameterValue("AlbumId"));
+                var renderMode = DataUtil.GetInt32(element.GetParameterValue("RenderMode"), 0);
 
                 cboAlbum.DataSource = Album.Provider.GetList();
                 cboAlbum.DataBind();
 
                 if (albumId > 0)
-                    WebHelper.SetCboValue(cboAlbum, albumId);
+                    WebUtil.SetCboValue(cboAlbum, albumId);
 
                 if (renderMode >= 0)
-                    WebHelper.SetCboValue(cboAlbum, renderMode);
+                    WebUtil.SetCboValue(cboAlbum, renderMode);
 
                 var set = context.GetParameterSet();
                 if (set != null)
@@ -46,8 +46,8 @@ namespace WCMS.WebSystem.WebParts.Photo
         {
             var context = new WContext(this);
             var element = context.Element;
-            int renderMode = DataHelper.GetInt32(cboRenderMode.SelectedValue);
-            int albumId = DataHelper.GetId(cboAlbum.SelectedValue);
+            int renderMode = DataUtil.GetInt32(cboRenderMode.SelectedValue);
+            int albumId = DataUtil.GetId(cboAlbum.SelectedValue);
             var setId = ParameterSetSelector1.ParameterSetId;
 
             // AlbumId

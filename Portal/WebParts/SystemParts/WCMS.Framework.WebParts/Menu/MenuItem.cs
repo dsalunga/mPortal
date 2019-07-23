@@ -122,7 +122,7 @@ namespace WCMS.WebSystem.WebParts.Menu
             get
             {
                 if (_parent == null && ParentId > 0)
-                    _parent = MenuItem.Provider.Get(ParentId);
+                    _parent = Provider.Get(ParentId);
 
                 return _parent;
             }

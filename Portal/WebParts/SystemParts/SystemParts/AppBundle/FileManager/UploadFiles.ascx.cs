@@ -23,7 +23,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 WContext context = new WContext(this);
                 DisplayStorageInfo(context, panelStorageInfo, lblStorageInfo);
 
-                panelPasswordAndArchive.Visible = DataHelper.GetBool(context.Element.GetParameterValue(FileManagerConstants.EnableUploadArchiveAndPasswordKey, "false"));
+                panelPasswordAndArchive.Visible = DataUtil.GetBool(context.Element.GetParameterValue(FileManagerConstants.EnableUploadArchiveAndPasswordKey, "false"));
             }
         }
 
@@ -55,7 +55,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
             var context = new WContext(this);
             var element = context.Element;
 
-            var enableVersioning = DataHelper.GetBool(element.GetParameterValue(FileManagerConstants.EnableVersioningKey, "false"));
+            var enableVersioning = DataUtil.GetBool(element.GetParameterValue(FileManagerConstants.EnableVersioningKey, "false"));
             var rootPath = element
                 .GetParameterValue(FileManagerConstants.RootPathKey, FileManagerConstants.DefaultRoot)
                 .TrimEnd(new char[] { '/', '\\' });
@@ -72,7 +72,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
             if (!string.IsNullOrEmpty(rootPath))
             {
-                totalSize = FileHelper.GetDirectorySize(WebHelper.MapPath(rootPath));
+                totalSize = FileHelper.GetDirectorySize(WebUtil.MapPath(rootPath));
 
                 //lblStorageSize.InnerHtml = quotaValue > 0 ? FileHelper.GetSizeString(quotaValue) : FileManagerConstants.UNLIMITED;
                 //lblStorageUsage.InnerHtml = FileHelper.GetSizeString(totalSize);
@@ -113,7 +113,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 var combineArchive = chkArchive.Checked && !string.IsNullOrEmpty(combinedArchiveName);
                 if (!combinedArchiveName.EndsWith(".zip", StringComparison.InvariantCultureIgnoreCase))
                     combinedArchiveName = FileHelper.ChangeExtension(combinedArchiveName, ".zip");
-                var combinedArchivePath = WebHelper.MapPath(Path.Combine(currentPath, combinedArchiveName));
+                var combinedArchivePath = WebUtil.MapPath(Path.Combine(currentPath, combinedArchiveName));
 
                 var combinedVersioningDone = false;
 
@@ -134,7 +134,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
                                 if (string.IsNullOrEmpty(newFile))
                                     continue;
 
-                                var newFilePath = Path.Combine(WebHelper.MapPath(currentPath), newFile);
+                                var newFilePath = Path.Combine(WebUtil.MapPath(currentPath), newFile);
 
                                 // For extractor
                                 if (chkDeployer.Checked && Compression.IsSupportedArchive(newFile))
@@ -143,12 +143,12 @@ namespace WCMS.WebSystem.WebParts.FileManager
                                 if (setPassword || combineArchive)
                                 {
                                     newFile = combineArchive ? combinedArchiveName : FileHelper.ChangeExtension(newFile, ".zip");
-                                    newFilePath = combineArchive ? combinedArchivePath : Path.Combine(WebHelper.MapPath(currentPath), newFile);
+                                    newFilePath = combineArchive ? combinedArchivePath : Path.Combine(WebUtil.MapPath(currentPath), newFile);
                                 }
 
                                 if (0 >= quotaValue || ((quotaValue - (totalSize + totalAddedSize)) > fileUpload.PostedFile.ContentLength))
                                 {
-                                    var tempPath = WebHelper.MapPath(Path.Combine(WConfig.TempFolder, newFile));
+                                    var tempPath = WebUtil.MapPath(Path.Combine(WConfig.TempFolder, newFile));
 
                                     Action UploadTheFile = () =>
                                         {

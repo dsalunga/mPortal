@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            menuItemId = DataHelper.GetId(Request, "MenuItemId");
+            menuItemId = DataUtil.GetId(Request, "MenuItemId");
 
             if (!Page.IsPostBack)
             {
@@ -58,7 +58,7 @@ namespace WCMS.WebSystem.WebParts.Menu
                 }
 
                 // Display Page Url
-                int pageId = DataHelper.GetId(Request, WebColumns.PageId);
+                int pageId = DataUtil.GetId(Request, WebColumns.PageId);
                 WPage page = null;
                 if (pageId > 0 && (page = WPage.Get(pageId)) != null)
                 {
@@ -122,7 +122,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            int pageId = DataHelper.GetId(Request, WebColumns.PageId);
+            int pageId = DataUtil.GetId(Request, WebColumns.PageId);
             if (pageId > 0)
             {
                 MenuItem item = null;
@@ -134,7 +134,7 @@ namespace WCMS.WebSystem.WebParts.Menu
                     item = new MenuItem();
                 }
 
-                item.MenuId = DataHelper.GetId(cboMenus.SelectedValue);
+                item.MenuId = DataUtil.GetId(cboMenus.SelectedValue);
                 item.Text = txtCaption.Text.Trim();
                 item.Active = chkIsActive.Checked ? 1 : 0;
                 item.CheckPermission = chkCheckPermission.Checked ? 1 : 0;
@@ -146,10 +146,10 @@ namespace WCMS.WebSystem.WebParts.Menu
                 item.Target = cboTarget.SelectedValue;
 
                 // Set Parent and Rank
-                int relItemId = DataHelper.GetId(cboMenuItems.SelectedValue);
+                int relItemId = DataUtil.GetId(cboMenuItems.SelectedValue);
                 MenuItem relItem = null;
                 List<MenuItem> items = new List<MenuItem>();
-                int relPosition = DataHelper.GetInt32(cboItemPostion.SelectedValue);
+                int relPosition = DataUtil.GetInt32(cboItemPostion.SelectedValue);
 
                 if (relItemId > 0)
                 {
@@ -243,7 +243,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         public DataSet GetLinkTargets()
         {
-            return DataHelper.ToDataSet(WebConstant.Provider.GetList("LinkTargets"));
+            return DataUtil.ToDataSet(WebConstant.Provider.GetList("LinkTargets"));
         }
 
         public void BindMenuItems(int menuId, int excludeId = -1)
@@ -255,7 +255,7 @@ namespace WCMS.WebSystem.WebParts.Menu
 
         protected void cboMenus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int menuId = DataHelper.GetId(cboMenus.SelectedValue);
+            int menuId = DataUtil.GetId(cboMenus.SelectedValue);
             if (menuId > 0)
             {
                 BindMenuItems(menuId);

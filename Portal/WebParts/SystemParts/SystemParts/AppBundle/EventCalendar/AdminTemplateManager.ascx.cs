@@ -22,7 +22,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
             var query = new WQuery(this);
 
             switch (e.CommandName)
@@ -57,7 +57,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
         {
             string kwl = string.IsNullOrEmpty(keyword) ? string.Empty : keyword.ToLower();
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in CalendarTemplate.Provider.GetList()
                 select new
                 {

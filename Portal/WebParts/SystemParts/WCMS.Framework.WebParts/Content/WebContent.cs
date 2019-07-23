@@ -83,7 +83,7 @@ namespace WCMS.WebSystem.WebParts.Content
                 WebContent item = null;
 
                 if (this.VersionOf > 0)
-                    item = WebContent.Get(this.VersionOf);
+                    item = Get(this.VersionOf);
 
                 if (item == null)
                     item = this;

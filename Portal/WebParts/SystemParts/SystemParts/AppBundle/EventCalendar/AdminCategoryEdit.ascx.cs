@@ -19,7 +19,7 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
                 cboTemplates.DataSource = CalendarTemplate.Provider.GetList();
                 cboTemplates.DataBind();
 
-                var id = DataHelper.GetId(Request, "Id");
+                var id = DataUtil.GetId(Request, "Id");
                 if (id > 0)
                 {
                     var item = CalendarCategory.Provider.Get(id);
@@ -44,11 +44,11 @@ namespace WCMS.WebSystem.WebParts.EventCalendar
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
-            var id = DataHelper.GetId(Request, "Id");
+            var id = DataUtil.GetId(Request, "Id");
             var item = id > 0 ? CalendarCategory.Provider.Get(id) : new CalendarCategory();
 
             item.Name = txtName.Text.Trim();
-            item.TemplateId = DataHelper.GetId(cboTemplates.SelectedValue);
+            item.TemplateId = DataUtil.GetId(cboTemplates.SelectedValue);
             item.Update();
 
             this.ReturnPage();

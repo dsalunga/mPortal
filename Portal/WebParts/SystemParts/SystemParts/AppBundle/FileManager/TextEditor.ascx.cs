@@ -47,7 +47,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
             if (!string.IsNullOrEmpty(src))
             {
-                FileHelper.WriteFile(txtContent.Text, WebHelper.MapPath(src));
+                FileHelper.WriteFile(txtContent.Text, WebUtil.MapPath(src));
             }
 
             this.ReturnParentPage();

@@ -1,15 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 using WCMS.Common.Utilities;
@@ -78,10 +72,10 @@ namespace WCMS.WebSystem.WebParts.Article
 
                 PopulateDate();
 
-                var siteId = DataHelper.GetId(Request, WebColumns.SiteId);
+                var siteId = DataUtil.GetId(Request, WebColumns.SiteId);
                 if (siteId > 0)
                 {
-                    WebHelper.SetCboValue(cboSites, siteId);
+                    WebUtil.SetCboValue(cboSites, siteId);
                     grvContent.DataBind();
                 }
             }
@@ -101,17 +95,17 @@ namespace WCMS.WebSystem.WebParts.Article
 
             for (x = 1; x < 32; x++)
                 ddlDay.Items.Add(new ListItem(x.ToString(), x.ToString()));
-            WebHelper.SetCboValue(ddlDay, DateTime.Now.Day);
+            WebUtil.SetCboValue(ddlDay, DateTime.Now.Day);
 
 
             for (x = 1; x < 13; x++)
                 ddlMonth.Items.Add(new ListItem(DateTimeFormatInfo.CurrentInfo.GetMonthName(x), x.ToString()));
-            WebHelper.SetCboValue(ddlMonth, DateTime.Now.Month);
+            WebUtil.SetCboValue(ddlMonth, DateTime.Now.Month);
             
 
             for (x = DateTime.Now.Year - 50; x < DateTime.Now.Year + 5; x++)
                 ddlYear.Items.Add(new ListItem(x.ToString(), x.ToString()));
-            WebHelper.SetCboValue(ddlYear, DateTime.Now.Year);
+            WebUtil.SetCboValue(ddlYear, DateTime.Now.Year);
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -147,7 +141,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         private int UpdateArticle()
         {
-            int id = DataHelper.GetId(litID.Text);
+            int id = DataUtil.GetId(litID.Text);
             Article item = null;
 
             if (id > 0 && (item = Article.Get(id)) != null)
@@ -175,7 +169,7 @@ namespace WCMS.WebSystem.WebParts.Article
             item.Content = fckContent.Value;
             item.Tags = txtTags.Text.Trim();
             item.Author = txtAuthor.Text.Trim();
-            item.SiteId = DataHelper.GetId(ddlSiteID.SelectedValue);
+            item.SiteId = DataUtil.GetId(ddlSiteID.SelectedValue);
             item.Active = chkIsActive.Checked ? 1 : 0;
             item.DateModified = DateTime.Now;
             item.ModifiedUserId = WSession.Current.UserId;
@@ -187,7 +181,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         protected void grvContent_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = DataHelper.GetId(e.CommandArgument);
+            int id = DataUtil.GetId(e.CommandArgument);
 
             switch (e.CommandName)
             {
@@ -240,7 +234,7 @@ namespace WCMS.WebSystem.WebParts.Article
             string strIDs = Request.Form["grvContent"];
             if (!string.IsNullOrEmpty(strIDs))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(strIDs);
+                var ids = DataUtil.ParseCommaSeparatedIdList(strIDs);
                 foreach (var sId in ids)
                 {
                     Article.Delete(sId);
@@ -275,7 +269,7 @@ namespace WCMS.WebSystem.WebParts.Article
         {
             WebUser createdBy = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in Article.GetList(siteId)
                 select new
                 {
@@ -290,7 +284,7 @@ namespace WCMS.WebSystem.WebParts.Article
 
         private void SetSelectedObjects()
         {
-            int id = DataHelper.GetId(litID.Text);
+            int id = DataUtil.GetId(litID.Text);
             if (id > 0)
             {
                 // Remove all unselected

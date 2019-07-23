@@ -52,19 +52,19 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
                 new SqlParameter("@SmsContent", item.SmsContent)
             );
 
-            item.Id = DataHelper.GetId(o);
+            item.Id = DataUtil.GetId(o);
             return item.Id;
         }
 
         private CalendarTemplate From(DbDataReader r)
         {
             CalendarTemplate item = new CalendarTemplate();
-            item.Id = DataHelper.GetId(r["TemplateId"]);
+            item.Id = DataUtil.GetId(r["TemplateId"]);
             item.Name = r["Name"].ToString();
             item.BackColor = r["BackColor"].ToString();
             item.ForeColor = r["ForeColor"].ToString();
             item.ReminderHtml = r["ReminderHtml"].ToString();
-            item.SmsContent = DataHelper.Get(r, "SmsContent");
+            item.SmsContent = DataUtil.Get(r, "SmsContent");
 
             return item;
         }
