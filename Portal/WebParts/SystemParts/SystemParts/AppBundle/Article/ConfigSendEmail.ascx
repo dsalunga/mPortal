@@ -38,7 +38,7 @@
 <div class="no-bottom-margin">
     <asp:Button ID="cmdAdd" runat="server" CssClass="btn btn-default" Text="Add" OnClick="cmdAdd_Click" />
     <asp:TextBox ID="txtAdd" runat="server" Columns="60"></asp:TextBox>
-    <input id="cmdBrowse" onclick="ShowAccountBrowser('<% =txtAdd.ClientID %>    ', -1, 1, 1);"
+    <input id="cmdBrowse" onclick="ShowAccountBrowser('<% =txtAdd.ClientID %>', -1, 1, 1);"
         type="button" class="btn btn-default" value="Browse..." />
     <asp:Button ID="cmdReset" CssClass="btn btn-default" runat="server" Text="Reset Recipients" OnClick="cmdReset_Click" />
 </div>

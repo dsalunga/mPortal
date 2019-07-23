@@ -1,19 +1,12 @@
-using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Web;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core.Shared;
+using WCMS.Framework;
 
 namespace WCMS.WebSystem.WebParts.Contact
 {
-	/// <summary>
-	///		Summary description for CMS_Inquiries_02.
-	/// </summary>
+    /// <summary>
+    ///		Summary description for CMS_Inquiries_02.
+    /// </summary>
     public partial class AdminInquiriesDetails : System.Web.UI.UserControl
 	{
 		protected void Page_Load(object sender, System.EventArgs e)
@@ -22,10 +15,13 @@ namespace WCMS.WebSystem.WebParts.Contact
 
 			if(!Page.IsPostBack)
 			{
-                int inquiryId = DataHelper.GetId(Request["__id"]);
-                ContactInquiry item = null;
+                int inquiryId = DataUtil.GetId(Request["__id"]);
+                ContactInquiry item;
                 if (inquiryId > 0 && (item = ContactInquiry.Get(inquiryId)) != null)
                 {
+                    var country = Country.Get(item.CountryCode);
+                    var countryState = CountryState.Get(item.StateCode);
+
                     lblSubject.Text = item.Subject;
                     lblInquiryType.Text = item.InquiryType;
                     lblName.Text = item.SenderName;
@@ -33,8 +29,8 @@ namespace WCMS.WebSystem.WebParts.Contact
                     lblAddressLine1.Text = item.Address1;
                     lblAddressLine2.Text = item.Address2;
                     lblCity.Text = item.City;
-                    lblCountry.Text = Country.Get(item.CountryCode).CountryName;
-                    lblState.Text = CountryState.Get(item.StateCode).StateName;
+                    lblCountry.Text = country != null ? country.CountryName : "";
+                    lblState.Text = countryState != null ? countryState.StateName : "";
                     lblZipCode.Text = item.ZipCode;
 
                     lblPhone.Text = item.Phone;
@@ -49,7 +45,7 @@ namespace WCMS.WebSystem.WebParts.Contact
 
 		protected void cmdReturn_Click(object sender, System.EventArgs e)
 		{
-			QueryParser query = new QueryParser(this);
+			WQuery query = new WQuery(this);
 			query.Remove("Load");
 			query.Remove("__id");
             query.Redirect();

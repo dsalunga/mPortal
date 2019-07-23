@@ -30,7 +30,7 @@
                         <!-- List Items / Visible -->
                         <asp:GridView ID="grvContent" runat="server" CssClass="table table-borderless" CellPadding="4" ForeColor="#333333"
                             GridLines="None" Width="100%" AllowPaging="True" AutoGenerateColumns="False"
-                            OnRowCommand="grvContent_RowCommand" PageSize="15" DataSourceID="ObjectDataSourceInsertedArticles"
+                            OnRowCommand="grvContent_RowCommand" PageSize="20" DataSourceID="ObjectDataSourceInsertedArticles"
                             AllowSorting="True">
                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                             <RowStyle BackColor="#EFF3FB" />

@@ -72,7 +72,7 @@
         <div class="table-responsive">
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
             CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" AutoGenerateColumns="False"
-            Width="100%" GridLines="None" OnRowCommand="GridView1_RowCommand" PageSize="15" CssClass="table table-borderless">
+            Width="100%" GridLines="None" OnRowCommand="GridView1_RowCommand" PageSize="20" CssClass="table table-borderless">
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
             <RowStyle BackColor="#EFF3FB" />
             <EditRowStyle BackColor="#2461BF" />

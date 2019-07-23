@@ -27,7 +27,7 @@
         <asp:GridView ID="grvContent" runat="server" CellPadding="4" ForeColor="#333333" CssClass="table table-borderless"
             GridLines="None" Width="100%" AutoGenerateColumns="False" AllowPaging="True"
             DataSourceID="ObjectDataSource1" OnRowCommand="grvContent_RowCommand" AllowSorting="True"
-            PageSize="15">
+            PageSize="20">
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
             <RowStyle BackColor="#EFF3FB" />
             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />

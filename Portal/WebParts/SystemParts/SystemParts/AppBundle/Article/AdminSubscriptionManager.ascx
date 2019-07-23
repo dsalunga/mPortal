@@ -11,7 +11,7 @@
             <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False"
                 CellPadding="4" DataKeyNames="Id" DataSourceID="ObjectDataSource1" ForeColor="#333333"
                 GridLines="None" Width="100%" OnRowCommand="GridView1_RowCommand"
-                PageSize="15">
+                PageSize="20">
                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                 <Columns>
                     <asp:TemplateField HeaderText="Actions">
