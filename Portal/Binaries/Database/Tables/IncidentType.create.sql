@@ -29,7 +29,7 @@ ALTER TABLE [dbo].[IncidentType] ADD  CONSTRAINT [DF_IncidentType_Rank]  DEFAULT
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__IncidentT__Insta__5BED93EA]') AND type = 'D')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DF__IncidentT__Insta__2D3D91F9]') AND type = 'D')
 BEGIN
 ALTER TABLE [dbo].[IncidentType] ADD  DEFAULT ((-1)) FOR [InstanceId]
 END

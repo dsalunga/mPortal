@@ -45,22 +45,6 @@
     <InstanceId>-1</InstanceId>
   </IncidentCategory>
   <IncidentCategory>
-    <Id>2</Id>
-    <Name>AMS &amp; ODK</Name>
-    <GroupId>84</GroupId>
-    <Description>AMS &amp; ODK</Description>
-    <Rank>0</Rank>
-    <InstanceId>-1</InstanceId>
-  </IncidentCategory>
-  <IncidentCategory>
-    <Id>3</Id>
-    <Name>ADD Construction</Name>
-    <GroupId>86</GroupId>
-    <Description>ADD Construction</Description>
-    <Rank>0</Rank>
-    <InstanceId>-1</InstanceId>
-  </IncidentCategory>
-  <IncidentCategory>
     <Id>4</Id>
     <Name>Audio, Video &amp; Streaming</Name>
     <GroupId>82</GroupId>
@@ -73,14 +57,6 @@
     <Name>Internet &amp; Network</Name>
     <GroupId>81</GroupId>
     <Description>Internet &amp; Network</Description>
-    <Rank>0</Rank>
-    <InstanceId>-1</InstanceId>
-  </IncidentCategory>
-  <IncidentCategory>
-    <Id>6</Id>
-    <Name>Portal &amp; Make-Up</Name>
-    <GroupId>83</GroupId>
-    <Description>Portal &amp; Make-Up</Description>
     <Rank>0</Rank>
     <InstanceId>-1</InstanceId>
   </IncidentCategory>

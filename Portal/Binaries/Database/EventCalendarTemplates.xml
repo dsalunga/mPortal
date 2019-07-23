@@ -57,7 +57,9 @@
   <EventCalendarTemplates>
     <TemplateId>1</TemplateId>
     <Name>Basic Template</Name>
-    <ReminderHtml>&lt;div&gt;&lt;img border="0" alt="" src="/Content/Themes/Integration/mcgi_website/assets/images/mcgisg_logo.png" /&gt;&lt;br /&gt;
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
 &lt;style type="text/css"&gt;
 h3
         {
@@ -130,7 +132,9 @@ WHERE: $(Location)</SmsContent>
   <EventCalendarTemplates>
     <TemplateId>2</TemplateId>
     <Name>Green Template</Name>
-    <ReminderHtml>&lt;div&gt;&lt;img border="0" src="/Content/Themes/Integration/mcgi_website/assets/images/mcgisg_logo.png" alt="" /&gt;&lt;br /&gt;
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
 &lt;style type="text/css"&gt;
 h3
         {
@@ -199,7 +203,9 @@ WHERE: $(Location)</SmsContent>
   <EventCalendarTemplates>
     <TemplateId>3</TemplateId>
     <Name>Pink Template</Name>
-    <ReminderHtml>&lt;div&gt;&lt;img border="0" alt="" src="/Content/Themes/Integration/mcgi_website/assets/images/mcgisg_logo.png" /&gt;&lt;br /&gt;
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
 &lt;style type="text/css"&gt;
 h3
         {
@@ -271,7 +277,9 @@ WHERE: $(Location)</SmsContent>
   <EventCalendarTemplates>
     <TemplateId>4</TemplateId>
     <Name>Orange Template</Name>
-    <ReminderHtml>&lt;div&gt;&lt;img border="0" src="/Content/Themes/Integration/mcgi_website/assets/images/mcgisg_logo.png" alt="" /&gt;&lt;br /&gt;
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
 &lt;style type="text/css"&gt;
 h3
         {
@@ -343,7 +351,9 @@ WHERE: $(Location)</SmsContent>
   <EventCalendarTemplates>
     <TemplateId>5</TemplateId>
     <Name>Yellow Template</Name>
-    <ReminderHtml>&lt;div&gt;&lt;img border="0" src="/Content/Themes/Integration/mcgi_website/assets/images/mcgisg_logo.png" alt="" /&gt;&lt;br /&gt;
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
 &lt;style type="text/css"&gt;
 h3
         {
@@ -415,7 +425,9 @@ WHERE: $(Location)</SmsContent>
   <EventCalendarTemplates>
     <TemplateId>6</TemplateId>
     <Name>Blue Template</Name>
-    <ReminderHtml>&lt;div&gt;&lt;img border="0" src="/Content/Themes/Integration/mcgi_website/assets/images/mcgisg_logo.png" alt="" /&gt;&lt;br /&gt;
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
 &lt;style type="text/css"&gt;
 h3
         {
