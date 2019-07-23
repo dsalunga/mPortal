@@ -42,7 +42,7 @@ namespace WCMS.WebSystem.Apps.Integration
             {
                 var user = VisitedUser;
 
-                return user == null ? _name : AccountHelper.GetPrefixedName(user, NamePrefixes.Brotherhood);
+                return user == null ? _name : AccountHelper.GetPrefixedName(user, NamePrefixes.Salutation);
             }
 
             set { _name = value; }

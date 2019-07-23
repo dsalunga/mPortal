@@ -29,7 +29,7 @@ namespace WCMS.Framework.Utilities
             switch (key.ToUpper())
             {
                 case NAME_PREFIX:
-                    var prefix = AccountHelper.GetNamePrefix(User, NamePrefixes.Brotherhood);
+                    var prefix = AccountHelper.GetNamePrefix(User, NamePrefixes.Salutation);
                     return string.IsNullOrEmpty(prefix) ? prefix : string.Format("{0}. ", prefix);
 
                 case FIRST_NAME:

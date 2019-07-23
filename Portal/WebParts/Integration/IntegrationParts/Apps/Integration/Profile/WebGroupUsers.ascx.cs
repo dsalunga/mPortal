@@ -234,7 +234,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                                 user.DateCreated,
                                 member.LastUpdate,
                                 member.PhotoPath,
-                                Salutation = AccountHelper.GetNamePrefix(user, NamePrefixes.Brotherhood)
+                                Salutation = AccountHelper.GetNamePrefix(user, NamePrefixes.Salutation)
                             };
 
                 var users = DataUtil.ToDataSet(items);

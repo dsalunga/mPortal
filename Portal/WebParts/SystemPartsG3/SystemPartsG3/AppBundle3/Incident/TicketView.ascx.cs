@@ -51,7 +51,7 @@ namespace WCMS.WebSystem.WebParts.Incident
                 var set = element.GetParameterSet();
                 var user = WSession.Current.User;
                 var isSupportUser = IncidentHelper.IsSupportUser(context, user);
-                var editing = DataHelper.GetBool(context.Get("Edit"));
+                var editing = DataUtil.GetBool(context.Get("Edit"));
                 var userDisplayFormat = set.GetParameterValue(IncidentConstants.UserDisplayFormatString);
 
                 hUserDisplayFormatString.Value = userDisplayFormat;
@@ -140,28 +140,28 @@ namespace WCMS.WebSystem.WebParts.Incident
 
                     if (item.CategoryId > -1)
                     {
-                        WebHelper.RemoveDropDownListItemByValue(cboCategory, -1);
+                        WebUtil.RemoveDropDownListItemByValue(cboCategory, -1);
                         cboCategory.SelectedValue = item.CategoryId.ToString();
                         lblCategory.InnerHtml = cboCategory.SelectedItem.Text;
                     }
 
                     if (item.TypeId > -1)
                     {
-                        WebHelper.RemoveDropDownListItemByValue(cboType, -1);
+                        WebUtil.RemoveDropDownListItemByValue(cboType, -1);
                         cboType.SelectedValue = item.TypeId.ToString();
                         lblType.InnerHtml = cboType.SelectedItem.Text;
                     }
 
                     if (item.Status > -1)
                     {
-                        WebHelper.RemoveDropDownListItemByValue(cboStatus, -1);
+                        WebUtil.RemoveDropDownListItemByValue(cboStatus, -1);
                         cboStatus.SelectedValue = item.Status.ToString();
                         lblStatus.InnerHtml = TicketStatus.GetText(item.Status);
                     }
 
                     if (item.AssignedUserId > 0)
                     {
-                        WebHelper.RemoveDropDownListItemByValue(cboAssignedUser, -1);
+                        WebUtil.RemoveDropDownListItemByValue(cboAssignedUser, -1);
                         cboAssignedUser.SelectedValue = item.AssignedUserId.ToString();
                         lblAssignedUser.InnerHtml = AccountHelper.FormatUserDisplay(item.AssignedUserId, cboAssignedUser.SelectedItem.Text, userDisplayFormat);
                     }
@@ -291,7 +291,7 @@ namespace WCMS.WebSystem.WebParts.Incident
                     context.Remove("Tab");
                     context.RemoveOpen();
                 }
-                WebHelper.CreateButtonLink(cmdCancel, context.BuildQuery());
+                WebUtil.CreateButtonLink(cmdCancel, context.BuildQuery());
 
                 PerformanceLog.EndLog(string.Format("Incident-TicketView-Load: {0}/{1}", context.ObjectId, context.RecordId), sw, context.PageId);
             }
@@ -399,7 +399,7 @@ namespace WCMS.WebSystem.WebParts.Incident
         private void Return(bool force = false)
         {
             WContext context = new WContext(this);
-            var editMode = DataHelper.GetBool(context.Get("Edit"));
+            var editMode = DataUtil.GetBool(context.Get("Edit"));
             int id = context.GetId("TicketId");
 
             if (force || !editMode || id <= 0)
@@ -419,7 +419,7 @@ namespace WCMS.WebSystem.WebParts.Incident
         protected void cmdUpdate_Click(object sender, EventArgs e)
         {
             var context = new WContext(this);
-            var editMode = DataHelper.GetBool(context.Get("Edit"));
+            var editMode = DataUtil.GetBool(context.Get("Edit"));
             int id = context.GetId("TicketId");
 
             if (editMode || id <= 0)
@@ -792,7 +792,7 @@ namespace WCMS.WebSystem.WebParts.Incident
 
             if (alertContent.Length > 0)
             {
-                alertContent.Append(BuildUpdateRowContent(emailUpdateAlertRowTemplate, "Modified By", string.Empty, AccountHelper.GetPrefixedName(user, NamePrefixes.Brotherhood)));
+                alertContent.Append(BuildUpdateRowContent(emailUpdateAlertRowTemplate, "Modified By", string.Empty, AccountHelper.GetPrefixedName(user, NamePrefixes.Salutation)));
                 alertContent.Append(BuildUpdateRowContent(emailUpdateAlertRowTemplate, "Date Modified", string.Empty, DateTime.Now.ToString(DATE_TIME_FORMAT)));
             }
 
@@ -819,7 +819,7 @@ namespace WCMS.WebSystem.WebParts.Incident
                 values.Add("STATUS", newStatus);
                 values.Add("ASSIGNED_TO", IncidentHelper.GetUserDisplayName(item.AssignedUserId));
                 values.Add("SUPPORT_GROUP", IncidentHelper.GetGroupName(item.AssignedGroupId));
-                values.Add("URL", WebHelper.CombineAddress(site.BuildAbsoluteUrl(), query.BuildQuery()));
+                values.Add("URL", WebUtil.CombineAddress(site.BuildAbsoluteUrl(), query.BuildQuery()));
 
                 values.Add("TICKET_UPDATES", alertContent.Length > 0 ? Substituter.Substitute(emailUpdateAlertTableTemplate, "UPDATE_ROWS", alertContent.ToString()) : string.Empty);
 
@@ -827,7 +827,7 @@ namespace WCMS.WebSystem.WebParts.Incident
                 alertMsg.SendVia = alertType;
                 alertMsg.ToOrBcc = MessageToOrBccStatus.ToGroup;
                 alertMsg.EmailMessage = Substituter.Substitute(emailUpdateAlertTemplate, values);
-                alertMsg.EmailSubject = string.Format("{0} {1}: {2} - {3}", emailSubjectPrefix, item.TicketGuid, newStatus, DataHelper.GetStringPreview(item.Description, WConstants.PreviewChars));
+                alertMsg.EmailSubject = string.Format("{0} {1}: {2} - {3}", emailSubjectPrefix, item.TicketGuid, newStatus, DataUtil.GetStringPreview(item.Description, WConstants.PreviewChars));
 
                 if (chkSendSMS.Checked)
                 {
@@ -837,7 +837,7 @@ namespace WCMS.WebSystem.WebParts.Incident
 
                     values = new NamedValueProvider();
                     values.Add("TICKET_GUID", item.TicketGuid);
-                    values.Add("NOTE_FROM", AccountHelper.GetPrefixedName(user, NamePrefixes.Brotherhood, true));
+                    values.Add("NOTE_FROM", AccountHelper.GetPrefixedName(user, NamePrefixes.Salutation, true));
                     values.Add("FROM_NUMBER", user.MobileNumber);
                     values.Add("FROM_NUMBER_FORMATTED", !string.IsNullOrEmpty(user.MobileNumber) ? string.Format(" ({0})", user.MobileNumber) : "");
                     values.Add("NOTE", commentText);
@@ -1106,7 +1106,7 @@ namespace WCMS.WebSystem.WebParts.Incident
 
                 if (string.IsNullOrEmpty(txtNewNote.Text.Trim()))
                 {
-                    txtNewNote.Text = DataHelper.GetStringPreview(txtDescription.Text, WConstants.PreviewChars);
+                    txtNewNote.Text = DataUtil.GetStringPreview(txtDescription.Text, WConstants.PreviewChars);
 
                     SelectTab(TAB_NOTES);
                 }
@@ -1127,13 +1127,13 @@ namespace WCMS.WebSystem.WebParts.Incident
 
         private bool AddRecipients(string newAccounts)
         {
-            var includeList = DataHelper.ParseDelimitedStringToList(hRecipients.Value, AccountConstants.AccountDelimiter);
+            var includeList = DataUtil.ParseDelimitedStringToList(hRecipients.Value, AccountConstants.AccountDelimiter);
 
             bool accountAdded = false;
 
             if (!string.IsNullOrEmpty(newAccounts))
             {
-                var accountList = DataHelper.ParseDelimitedStringToList(newAccounts, AccountConstants.AccountDelimiter);
+                var accountList = DataUtil.ParseDelimitedStringToList(newAccounts, AccountConstants.AccountDelimiter);
                 if (accountList.Count > 0)
                 {
                     //List<WebGroup> groups = new List<WebGroup>();
@@ -1207,7 +1207,7 @@ namespace WCMS.WebSystem.WebParts.Incident
 
             if (accountAdded)
             {
-                hRecipients.Value = DataHelper.ToDelimitedString(includeList, AccountConstants.AccountDelimiter);
+                hRecipients.Value = DataUtil.ToDelimitedString(includeList, AccountConstants.AccountDelimiter);
 
                 gridRecipients.DataBind();
 
@@ -1247,7 +1247,7 @@ namespace WCMS.WebSystem.WebParts.Incident
                     string shortString = e.CommandArgument.ToString();
 
                     // Check if present in custom recipients list
-                    var includedList = DataHelper.ParseDelimitedStringToList(hRecipients.Value.Trim(), AccountConstants.AccountDelimiter);
+                    var includedList = DataUtil.ParseDelimitedStringToList(hRecipients.Value.Trim(), AccountConstants.AccountDelimiter);
                     if (includedList.Count > 0)
                     {
                         foreach (var included in includedList)
@@ -1255,7 +1255,7 @@ namespace WCMS.WebSystem.WebParts.Incident
                             if (included == shortString)
                             {
                                 includedList.Remove(included);
-                                hRecipients.Value = DataHelper.ToDelimitedString(includedList, AccountConstants.AccountDelimiter);
+                                hRecipients.Value = DataUtil.ToDelimitedString(includedList, AccountConstants.AccountDelimiter);
                                 break;
                             }
                         }
@@ -1268,7 +1268,7 @@ namespace WCMS.WebSystem.WebParts.Incident
 
         public DataSet GetNotifyAlsoRecipients(string customRecipients)
         {
-            var includeList = DataHelper.ParseDelimitedStringToList(customRecipients, AccountConstants.AccountDelimiter);
+            var includeList = DataUtil.ParseDelimitedStringToList(customRecipients, AccountConstants.AccountDelimiter);
 
             List<WebUser> includeUserList = new List<WebUser>();
             List<WebGroup> includeGroupList = new List<WebGroup>();

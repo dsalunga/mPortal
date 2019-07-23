@@ -40,7 +40,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
                 throw new Exception("CompetitionId is required.");
 
             var user = WSession.Current.User;
-            JudgeName = user == null ? "Bro. Anonymous" : AccountHelper.GetPrefixedName(user, NamePrefixes.Brotherhood);
+            JudgeName = user == null ? "Mr. Anonymous" : AccountHelper.GetPrefixedName(user, NamePrefixes.Salutation);
 
             var item = MCCompetition.Provider.Get(competitionId);
             CompetitionName = item.Name;

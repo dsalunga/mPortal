@@ -8,6 +8,7 @@ namespace WCMS.Framework
 {
     public enum NamePrefixes
     {
+        Salutation = 0,
         Brotherhood = 1
     }
 

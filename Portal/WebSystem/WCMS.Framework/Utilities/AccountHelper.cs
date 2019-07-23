@@ -29,7 +29,7 @@ namespace WCMS.Framework.Utilities
 
         public static string GetPrefixedName(WebUser user, bool firstNameOnly = false)
         {
-            return GetPrefixedName(user, NamePrefixes.Brotherhood, firstNameOnly);
+            return GetPrefixedName(user, NamePrefixes.Salutation, firstNameOnly);
         }
 
         public static string GetNamePrefix(WebUser user, NamePrefixes prefixType)
@@ -38,6 +38,8 @@ namespace WCMS.Framework.Utilities
             {
                 switch (prefixType)
                 {
+                    case NamePrefixes.Salutation:
+                        return user.Gender == GenderTypes.Male ? "Mr" : (user.Gender == GenderTypes.Female ? "Ms" : "");
                     case NamePrefixes.Brotherhood:
                         return user.Gender == GenderTypes.Male ? "Bro" : (user.Gender == GenderTypes.Female ? "Sis" : "");
                 }
@@ -1129,7 +1131,7 @@ namespace WCMS.Framework.Utilities
         {
             if (user != null && !string.IsNullOrEmpty(formatString))
             {
-                var displayName = GetPrefixedName(user, NamePrefixes.Brotherhood, firstNameOnly);
+                var displayName = GetPrefixedName(user, NamePrefixes.Salutation, firstNameOnly);
                 return FormatUserDisplay(user.Id, showPreviewOnly ? DataUtil.GetStringPreview(displayName, 18) : displayName, formatString);
             }
 

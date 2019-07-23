@@ -105,9 +105,9 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
                 );
 
             if (user != null)
-                response.Add(new JProperty("name", AccountHelper.GetPrefixedName(user, NamePrefixes.Brotherhood)));
+                response.Add(new JProperty("name", AccountHelper.GetPrefixedName(user, NamePrefixes.Salutation)));
             else if (member != null)
-                response.Add(new JProperty("name", AccountHelper.GetPrefixedName(MemberHelper.CreateDraftUser(member), NamePrefixes.Brotherhood)));
+                response.Add(new JProperty("name", AccountHelper.GetPrefixedName(MemberHelper.CreateDraftUser(member), NamePrefixes.Salutation)));
 
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }

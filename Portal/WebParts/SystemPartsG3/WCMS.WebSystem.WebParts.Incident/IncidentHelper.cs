@@ -234,7 +234,7 @@ namespace WCMS.WebSystem.WebParts.Incident
         public static string GetUserDisplayName(int userId)
         {
             var user = WebUser.Get(userId);
-            return user != null ? AccountHelper.GetPrefixedName(user, NamePrefixes.Brotherhood) : string.Empty;
+            return user != null ? AccountHelper.GetPrefixedName(user, NamePrefixes.Salutation) : string.Empty;
         }
 
         /*
@@ -242,7 +242,7 @@ namespace WCMS.WebSystem.WebParts.Incident
         {
             if (user != null && !string.IsNullOrEmpty(formatString))
             {
-                var displayName = AccountHelper.GetPrefixedName(user, NamePrefixes.Brotherhood, firstNameOnly);
+                var displayName = AccountHelper.GetPrefixedName(user, NamePrefixes.Salutation, firstNameOnly);
                 return FormatUserDisplay(user.Id, showPreviewOnly ? DataHelper.GetStringPreview(displayName, 18) : displayName, formatString);
             }
 

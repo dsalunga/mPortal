@@ -44,7 +44,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
             View = query.Get("View", "");
 
             var user = WSession.Current.User;
-            JudgeName = user == null ? "Bro. Anonymous" : AccountHelper.GetPrefixedName(user, NamePrefixes.Brotherhood);
+            JudgeName = user == null ? "Bro. Anonymous" : AccountHelper.GetPrefixedName(user, NamePrefixes.Salutation);
 
             // Check Lock
             var set = context.GetParameterSet();

@@ -69,7 +69,7 @@ namespace WCMS.WebSystem.WebParts.Incident
                 if (filterBy != -1 && cboFilterBy.Items.FindByValue(filterBy.ToString()) != null)
                     cboFilterBy.SelectedValue = filterBy.ToString();
 
-                WebHelper.CreateButtonLink(cmdNewTicket, context.BuildQuery());
+                WebUtil.CreateButtonLink(cmdNewTicket, context.BuildQuery());
                 hParameterSet.Value = parameterSet;
 
                 GridView1.DataBind();
@@ -128,15 +128,15 @@ namespace WCMS.WebSystem.WebParts.Incident
                                     && (isSupportUser ? true : user.Id == currentUser.Id || currentUser.Id == item.SubmitterId || (!string.IsNullOrEmpty(item.NotifyAlso) && AccountHelper.IsPresentOrMember(item.NotifyAlso)))
                                     && (string.IsNullOrEmpty(kwl) ||
                                            (
-                                               DataHelper.HasMatch(item.TicketGuid, kwl)
-                                            || DataHelper.HasMatch(user.UserName, kwl)
-                                            || DataHelper.HasMatch(user.FirstName, kwl)
-                                            || DataHelper.HasMatch(user.LastName, kwl)
-                                            || DataHelper.HasMatch(user.MiddleName, kwl)
-                                            || DataHelper.HasMatch(user.Email, kwl)
+                                               DataUtil.HasMatch(item.TicketGuid, kwl)
+                                            || DataUtil.HasMatch(user.UserName, kwl)
+                                            || DataUtil.HasMatch(user.FirstName, kwl)
+                                            || DataUtil.HasMatch(user.LastName, kwl)
+                                            || DataUtil.HasMatch(user.MiddleName, kwl)
+                                            || DataUtil.HasMatch(user.Email, kwl)
                                             //|| (link != null && DataHelper.HasMatch(link.MemberId, kwl))
-                                            || DataHelper.HasMatch(item.Description, kwl)
-                                            || (supportGroup != null && DataHelper.HasMatch(supportGroup.Name, kwl))
+                                            || DataUtil.HasMatch(item.Description, kwl)
+                                            || (supportGroup != null && DataUtil.HasMatch(supportGroup.Name, kwl))
                                            )
                                        )
                                  select new
@@ -147,11 +147,11 @@ namespace WCMS.WebSystem.WebParts.Incident
                                      item.DateCreated,
                                      item.Urgency,
                                      UrgencyDisplay = TicketUrgency.GetText(item.Urgency),
-                                     Description = DataHelper.GetStringPreview(item.Description, 38),
+                                     Description = DataUtil.GetStringPreview(item.Description, 38),
                                      Name = AccountHelper.FormatUserDisplay(user, userDisplayFormatString, true, true),
                                      AssignedUserDisplay = AccountHelper.FormatUserDisplay(assignedTo, userDisplayFormatString, true, true),
                                      AssignedUser = assignedTo != null ? assignedTo.FirstAndLastName : "",
-                                     AssignedGroup = supportGroup != null ? DataHelper.GetStringPreview(supportGroup.Name, 14) : "",
+                                     AssignedGroup = supportGroup != null ? DataUtil.GetStringPreview(supportGroup.Name, 14) : "",
                                      StatusDisplay = IncidentHelper.FormatStatus(item.Status),
                                      item.Status
                                      //PhotoPath = link.GetPhotoPathIfNull("200x200"),
