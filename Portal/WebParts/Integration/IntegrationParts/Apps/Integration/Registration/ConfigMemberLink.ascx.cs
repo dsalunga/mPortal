@@ -312,7 +312,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                     string loginUrl = paramSet.GetParameterValue("LoginUrl", "/public/Login/");
                     var country = link.LocaleCountry;
                     if (loginUrl.StartsWith("/"))
-                        loginUrl = WebHelper.CombineAddress(WConfig.BaseAddress, loginUrl);
+                        loginUrl = WebUtil.CombineAddress(WConfig.BaseAddress, loginUrl);
 
                     var provider = new NamedValueProvider();
                     provider.Add("CHURCH_ID_NO", link.ExternalIdNo);

@@ -23,17 +23,17 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             MCVote item = source ?? new MCVote();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
-            item.Code = DataHelper.Get(r, "Code");
-            item.FirstName = DataHelper.Get(r, "FirstName");
-            item.LastName = DataHelper.Get(r, "LastName");
-            item.MobileNumber = DataHelper.Get(r, "MobileNumber");
-            item.Email = DataHelper.Get(r, "Email");
+            item.Code = DataUtil.Get(r, "Code");
+            item.FirstName = DataUtil.Get(r, "FirstName");
+            item.LastName = DataUtil.Get(r, "LastName");
+            item.MobileNumber = DataUtil.Get(r, "MobileNumber");
+            item.Email = DataUtil.Get(r, "Email");
             item.CandidateId = DataUtil.GetId(r, "CandidateId");
             item.DateVoted = DataUtil.GetDateTime(r, "DateVoted");
-            item.UserName = DataHelper.Get(r, WebColumns.UserName);
+            item.UserName = DataUtil.Get(r, WebColumns.UserName);
             item.Status = DataUtil.GetInt32(r, "Status");
             item.CompetitionId = DataUtil.GetId(r, "CompetitionId");
-            item.IPAddress = DataHelper.Get(r, "IPAddress");
+            item.IPAddress = DataUtil.Get(r, "IPAddress");
             item.Spam = DataUtil.GetInt32(r, "Spam");
 
             return item;

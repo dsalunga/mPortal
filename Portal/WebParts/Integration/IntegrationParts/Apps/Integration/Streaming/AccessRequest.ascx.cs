@@ -67,7 +67,7 @@ namespace WCMS.WebSystem.Apps.Integration.Streaming
 
                 var requestGroupName = ParameterizedWebObject.GetValue("StreamGroup", element, set);
                 var adminGroupName = ParameterizedWebObject.GetValue("AdminGroup", element, set);
-                var approvalUrl = WebHelper.CombineAddress(context.Site.BuildAbsoluteUrl(), ParameterizedWebObject.GetValue("ApprovalUrl", element, set));
+                var approvalUrl = WebUtil.CombineAddress(context.Site.BuildAbsoluteUrl(), ParameterizedWebObject.GetValue("ApprovalUrl", element, set));
                 if (!string.IsNullOrEmpty(requestGroupName) && !string.IsNullOrEmpty(adminGroupName) && !string.IsNullOrEmpty(approvalUrl))
                 {
                     var requestGroup = WebGroup.SelectNode(requestGroupName);

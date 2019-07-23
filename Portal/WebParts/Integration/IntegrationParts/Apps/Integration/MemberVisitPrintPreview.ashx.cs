@@ -51,7 +51,7 @@ namespace WCMS.WebSystem.Apps.Integration
                 string templatePath = "~/Content/Parts/Registration/Template/ODKPrint.htm";
                 string customTemplateFile = page.GetParameterValue(MemberConstants.ODKPrintTemplateFileKey, "");
                 if (!string.IsNullOrWhiteSpace(customTemplateFile))
-                    templatePath = WebHelper.CombineAddress("~/Content/Parts/Registration/Template/", customTemplateFile);
+                    templatePath = WebUtil.CombineAddress("~/Content/Parts/Registration/Template/", customTemplateFile);
 
                 string printPreview = FileHelper.ReadFile(context.Server.MapPath(templatePath));
                 printPreview = Substituter.Substitute(printPreview, values);

@@ -18,7 +18,7 @@ namespace WCMS.WebSystem.Apps.Integration
         {
             if (!Page.IsPostBack)
             {
-                string keyword = DataHelper.Get(Request, "Keyword");
+                string keyword = DataUtil.Get(Request, "Keyword");
                 if (!string.IsNullOrEmpty(keyword))
                 {
                     txtSearch.Text = keyword;
@@ -53,7 +53,7 @@ namespace WCMS.WebSystem.Apps.Integration
         public IEnumerable<Member> Select(string sortBy, int startRowIndex, int maximumRows, string keyword)
         {
             var items = Select(keyword);
-            return DataHelper.PageWithSort(items, sortBy, startRowIndex, maximumRows);
+            return DataUtil.PageWithSort(items, sortBy, startRowIndex, maximumRows);
         }
 
         private IEnumerable<Member> Select(string keyword)

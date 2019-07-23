@@ -143,7 +143,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                             if (string.IsNullOrEmpty(loginUrl))
                                 loginUrl = parameterSet.GetParameterValue(LoginUrl);
                             if (loginUrl.StartsWith("/"))
-                                loginUrl = WebHelper.CombineAddress(string.IsNullOrEmpty(baseAddress) ? WConfig.BaseAddress : baseAddress, loginUrl);
+                                loginUrl = WebUtil.CombineAddress(string.IsNullOrEmpty(baseAddress) ? WConfig.BaseAddress : baseAddress, loginUrl);
 
                             var provider = new NamedValueProvider();
                             if ((!string.IsNullOrEmpty(emailTemplate) || !string.IsNullOrEmpty(emailTemplatePath)) && !string.IsNullOrEmpty(emailSubjectTemplate)

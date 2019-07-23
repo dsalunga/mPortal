@@ -62,13 +62,13 @@ namespace WCMS.WebSystem.WebParts.Profile
                     var orderedResult = (from i in users
                                          where i != null && (link = members.FirstOrDefault(m => m.UserId == i.Id)) != null
                                             && (string.IsNullOrEmpty(loweredKeyword) ||
-                                                 (DataHelper.HasMatch(i.UserName, loweredKeyword) ||
-                                                     DataHelper.HasMatch(i.FirstName, loweredKeyword) ||
-                                                     DataHelper.HasMatch(i.LastName, loweredKeyword) ||
-                                                     DataHelper.HasMatch(i.MiddleName, loweredKeyword) ||
-                                                     DataHelper.HasMatch(i.Email, loweredKeyword) ||
-                                                     DataHelper.HasMatch(i.MobileNumber, loweredKeyword) ||
-                                                     DataHelper.HasMatch(link.ExternalIdNo, loweredKeyword)))
+                                                 (DataUtil.HasMatch(i.UserName, loweredKeyword) ||
+                                                     DataUtil.HasMatch(i.FirstName, loweredKeyword) ||
+                                                     DataUtil.HasMatch(i.LastName, loweredKeyword) ||
+                                                     DataUtil.HasMatch(i.MiddleName, loweredKeyword) ||
+                                                     DataUtil.HasMatch(i.Email, loweredKeyword) ||
+                                                     DataUtil.HasMatch(i.MobileNumber, loweredKeyword) ||
+                                                     DataUtil.HasMatch(link.ExternalIdNo, loweredKeyword)))
                                          select new
                                          {
                                              i.Id,
@@ -95,7 +95,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                         var indexes = new int[maxIndex + 1];
                         for (int i = 0; i <= maxIndex; i++)
                             indexes[i] = i;
-                        DataHelper.Shuffle(indexes);
+                        DataUtil.Shuffle(indexes);
 
                         for (int i = 0; i < maxItems; i++)
                         {
@@ -118,7 +118,7 @@ namespace WCMS.WebSystem.WebParts.Profile
 
                             values = new NamedValueProvider();
                             values.Add(ParameterKeys.MainPageUrl, mainPageUrl);
-                            values.Add(TemplateKeys.CelebrantsMonth, DateTimeHelper.GetMonthName(celebrantsFilter > 0 ? celebrantsFilter : 1));
+                            values.Add(TemplateKeys.CelebrantsMonth, TimeUtil.GetMonthName(celebrantsFilter > 0 ? celebrantsFilter : 1));
                             values.Add(Substituter.DefaultKey, sb);
                             literalOutput.Text = Substituter.Substitute(containerTemplate, values);
                         }
@@ -131,7 +131,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                     {
                         values = new NamedValueProvider();
                         values.Add(ParameterKeys.MainPageUrl, mainPageUrl);
-                        values.Add(TemplateKeys.CelebrantsMonth, DateTimeHelper.GetMonthName());
+                        values.Add(TemplateKeys.CelebrantsMonth, TimeUtil.GetMonthName());
                         literalOutput.Text = Substituter.Substitute(emptyTemplate, values);
                     }
                 }

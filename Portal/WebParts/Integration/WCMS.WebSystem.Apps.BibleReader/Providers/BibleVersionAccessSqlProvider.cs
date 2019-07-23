@@ -23,7 +23,7 @@ namespace WCMS.WebSystem.WebParts.BibleReader.Providers
             item.BibleAccessId = DataUtil.GetId(r, "BibleAccessId");
             item.BibleVersionId = DataUtil.GetId(r, "BibleVersionId");
             item.VersionAccessCount = DataUtil.GetInt32(r, "VersionAccessCount");
-            item.BibleVersionName = DataHelper.Get(r, "BibleVersionName");
+            item.BibleVersionName = DataUtil.Get(r, "BibleVersionName");
             item.LastAccessed = DataUtil.GetDateTime(r, "LastAccessed");
 
             return item;

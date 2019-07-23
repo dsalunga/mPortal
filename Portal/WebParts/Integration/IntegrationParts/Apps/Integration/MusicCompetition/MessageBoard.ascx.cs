@@ -41,7 +41,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
         {
             WebUser user = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WebComment.Provider.GetList(-2, objectId, recordId, -2)
                 orderby i.DateCreated descending
                 select new

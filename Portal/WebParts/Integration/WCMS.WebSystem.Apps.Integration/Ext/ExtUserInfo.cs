@@ -13,12 +13,12 @@ namespace WCMS.WebSystem.Apps.Integration.Ext
         public static ExtUserInfo From(DataRow userInfo)
         {
             var item = new ExtUserInfo();
-            item.UserName = DataHelper.Get(userInfo, "username");
-            item.ExternalId = DataHelper.Get(userInfo, "idno");
-            item.LastName = DataHelper.Get(userInfo, "lname");
-            item.FirstName = DataHelper.Get(userInfo, "fname");
-            item.MiddleName = DataHelper.Get(userInfo, "mname");
-            item.Email = DataHelper.Get(userInfo, "emailprimary");
+            item.UserName = DataUtil.Get(userInfo, "username");
+            item.ExternalId = DataUtil.Get(userInfo, "idno");
+            item.LastName = DataUtil.Get(userInfo, "lname");
+            item.FirstName = DataUtil.Get(userInfo, "fname");
+            item.MiddleName = DataUtil.Get(userInfo, "mname");
+            item.Email = DataUtil.Get(userInfo, "emailprimary");
 
             return item;
         }

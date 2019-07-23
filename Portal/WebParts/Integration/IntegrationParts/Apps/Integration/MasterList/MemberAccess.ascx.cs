@@ -57,7 +57,7 @@ namespace WCMS.WebSystem.Apps.Integration.MusicMinistry.MasterList
             if (!string.IsNullOrEmpty(checkedIds))
             {
                 //var groupId = DataHelper.GetId(hGroupId.Value);
-                var ids = DataHelper.ParseCommaSeparatedIdList(checkedIds);
+                var ids = DataUtil.ParseCommaSeparatedIdList(checkedIds);
                 if (groupId > 0 && ids.Count > 0)
                 {
                     var manager = WSession.UserSessions;
@@ -99,7 +99,7 @@ namespace WCMS.WebSystem.Apps.Integration.MusicMinistry.MasterList
                             u.Remarks
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         private void AddClick(int groupId, TextBox textBox, GridView grid)

@@ -92,23 +92,23 @@ namespace WCMS.WebSystem.Apps.Integration
                            where
                             (string.IsNullOrEmpty(loweredKeyword) || (
                                    (user != null &&
-                                       (DataHelper.HasMatch(user.UserName, loweredKeyword) ||
-                                       DataHelper.HasMatch(user.FirstName, loweredKeyword) ||
-                                       DataHelper.HasMatch(user.LastName, loweredKeyword) ||
-                                       DataHelper.HasMatch(user.MiddleName, loweredKeyword) ||
-                                       DataHelper.HasMatch(user.Email, loweredKeyword) ||
-                                       DataHelper.HasMatch(user.MobileNumber, loweredKeyword))
+                                       (DataUtil.HasMatch(user.UserName, loweredKeyword) ||
+                                       DataUtil.HasMatch(user.FirstName, loweredKeyword) ||
+                                       DataUtil.HasMatch(user.LastName, loweredKeyword) ||
+                                       DataUtil.HasMatch(user.MiddleName, loweredKeyword) ||
+                                       DataUtil.HasMatch(user.Email, loweredKeyword) ||
+                                       DataUtil.HasMatch(user.MobileNumber, loweredKeyword))
                                    ) ||
-                                   (user == null && DataHelper.HasMatch(i.Name, loweredKeyword)) ||
-                                   (g != null && DataHelper.HasMatch(g.Name, loweredKeyword)) ||
-                                   DataHelper.HasMatch(i.Status, loweredKeyword) ||
-                                   DataHelper.HasMatch(i.ActionTaken, loweredKeyword) ||
-                                   DataHelper.HasMatch(i.ActualReport, loweredKeyword)
+                                   (user == null && DataUtil.HasMatch(i.Name, loweredKeyword)) ||
+                                   (g != null && DataUtil.HasMatch(g.Name, loweredKeyword)) ||
+                                   DataUtil.HasMatch(i.Status, loweredKeyword) ||
+                                   DataUtil.HasMatch(i.ActionTaken, loweredKeyword) ||
+                                   DataUtil.HasMatch(i.ActualReport, loweredKeyword)
                                ))
                            select new
                            {
                                i.Id,
-                               Status = DataHelper.GetStringPreview(i.Status, MemberConstants.ODKStatusPrevChars - 3),
+                               Status = DataUtil.GetStringPreview(i.Status, MemberConstants.ODKStatusPrevChars - 3),
                                i.DateVisited,
                                PhotoUrl = user != null ? user.GetPhotoPath("200x200") : WConstants.NoPhotoThumb,
                                GroupName = g != null ? g.Name : "",
@@ -122,7 +122,7 @@ namespace WCMS.WebSystem.Apps.Integration
                                ReadOnly = readOnly == 1
                            };
 
-            return DataHelper.ToDataSet(subItems);
+            return DataUtil.ToDataSet(subItems);
         }
 
         protected void gridView_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -189,9 +189,9 @@ namespace WCMS.WebSystem.Apps.Integration
                             u.Tags
                         };
 
-            var users = DataHelper.ToDataSet(items);
+            var users = DataUtil.ToDataSet(items);
 
-            WebHelper.DownloadAsXml(users, "MemberVisit", "Visit Sheet");
+            WebUtil.DownloadAsXml(users, "MemberVisit", "Visit Sheet");
         }
 
         protected void cmdSearch_Click(object sender, EventArgs e)

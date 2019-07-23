@@ -69,14 +69,14 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
                                  where (userId > 0 && link != null || (link = a.Member) != null)
                                  && (user = link.User) != null
                                  && (string.IsNullOrEmpty(keywordLowered) ||
-                                     (DataHelper.HasMatch(user.UserName, keywordLowered) || //i.UserName.ToLower().Contains(kwl) ||
-                                         DataHelper.HasMatch(user.FirstName, keywordLowered) || //i.FirstName.ToLower().Contains(kwl) ||
-                                         DataHelper.HasMatch(user.LastName, keywordLowered) || //i.LastName.ToLower().Contains(kwl) ||
-                                         DataHelper.HasMatch(user.MiddleName, keywordLowered) || //i.MiddleName.ToLower().Contains(kwl) ||
-                                         DataHelper.HasMatch(user.Email, keywordLowered) || //i.Email.ToLower().Contains(kwl) ||
-                                         DataHelper.HasMatch(user.MobileNumber, keywordLowered) || //i.MobileNumber.ToLower().Contains(kwl) ||
-                                         DataHelper.HasMatch(link.ExternalIdNo, keywordLowered) ||
-                                         DataHelper.HasMatch(a.ServiceName, keywordLowered)))  //memberLink.ExternalIdNo.ToLower().Contains(kwl)))
+                                     (DataUtil.HasMatch(user.UserName, keywordLowered) || //i.UserName.ToLower().Contains(kwl) ||
+                                         DataUtil.HasMatch(user.FirstName, keywordLowered) || //i.FirstName.ToLower().Contains(kwl) ||
+                                         DataUtil.HasMatch(user.LastName, keywordLowered) || //i.LastName.ToLower().Contains(kwl) ||
+                                         DataUtil.HasMatch(user.MiddleName, keywordLowered) || //i.MiddleName.ToLower().Contains(kwl) ||
+                                         DataUtil.HasMatch(user.Email, keywordLowered) || //i.Email.ToLower().Contains(kwl) ||
+                                         DataUtil.HasMatch(user.MobileNumber, keywordLowered) || //i.MobileNumber.ToLower().Contains(kwl) ||
+                                         DataUtil.HasMatch(link.ExternalIdNo, keywordLowered) ||
+                                         DataUtil.HasMatch(a.ServiceName, keywordLowered)))  //memberLink.ExternalIdNo.ToLower().Contains(kwl)))
                                  select new
                                  {
                                      a.Id,
@@ -89,7 +89,7 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
                                      UserProfileUrl = string.Format(userDetailsFormat, user.Id),
                                      a.Status
                                  }).OrderByDescending(i => i.DateStarted).AsEnumerable();
-            return DataHelper.ToDataSet(orderedResult);
+            return DataUtil.ToDataSet(orderedResult);
         }
 
         protected void cmdSearch_Click(object sender, EventArgs e)

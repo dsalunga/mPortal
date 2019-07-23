@@ -164,7 +164,7 @@ namespace WCMS.WebSystem.Apps.Integration.MusicMinistry.MasterList
             int groupId = DataUtil.GetId(Request, WebColumns.GroupId);
             var users = Select(groupId);
 
-            WebHelper.DownloadAsXml(users, "Group", "Users");
+            WebUtil.DownloadAsXml(users, "Group", "Users");
         }
 
         public DataSet Select(int groupId)
@@ -184,7 +184,7 @@ namespace WCMS.WebSystem.Apps.Integration.MusicMinistry.MasterList
                             user.MobileNumber
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         public DataSet Get(int parentId)
@@ -212,7 +212,7 @@ namespace WCMS.WebSystem.Apps.Integration.MusicMinistry.MasterList
                             PhotoPath = link == null ? WConstants.NoPhotoThumb : link.GetPhotoPathIfNull("200x200")
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         protected void cmdRemove_Click(object sender, EventArgs e)
@@ -222,7 +222,7 @@ namespace WCMS.WebSystem.Apps.Integration.MusicMinistry.MasterList
             {
                 var groupId = DataUtil.GetInt32(hGroupId.Value);
 
-                var ids = DataHelper.ParseCommaSeparatedIdList(selected);
+                var ids = DataUtil.ParseCommaSeparatedIdList(selected);
                 foreach (var id in ids)
                 {
                     var item = WebUser.Get(id);

@@ -32,20 +32,20 @@ namespace WCMS.WebSystem.Apps.Integration
         {
             GenericRegistration item = source ?? new GenericRegistration();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
             item.EntryDate = DataUtil.GetDateTime(r, "EntryDate");
-            item.Country = DataHelper.Get(r, "Country");
-            item.Locale = DataHelper.Get(r, "Locale");
-            item.ExternalId = DataHelper.Get(r, "ExternalId");
-            item.Designation = DataHelper.Get(r, "Designation");
+            item.Country = DataUtil.Get(r, "Country");
+            item.Locale = DataUtil.Get(r, "Locale");
+            item.ExternalId = DataUtil.Get(r, "ExternalId");
+            item.Designation = DataUtil.Get(r, "Designation");
             item.ArrivalDate = DataUtil.GetDateTime(r, "ArrivalDate");
-            item.Airline = DataHelper.Get(r, "Airline");
-            item.FlightNo = DataHelper.Get(r, "FlightNo");
+            item.Airline = DataUtil.Get(r, "Airline");
+            item.FlightNo = DataUtil.Get(r, "FlightNo");
             item.DepartureDate = DataUtil.GetDateTime(r, "DepartureDate");
-            item.Address = DataHelper.Get(r, "Address");
+            item.Address = DataUtil.Get(r, "Address");
             item.Age = DataUtil.GetInt32(r, "Age");
-            item.PlaceType = DataHelper.Get(r, "PlaceType");
-            item.Gender = DataHelper.Get(r, "Gender");
+            item.PlaceType = DataUtil.Get(r, "PlaceType");
+            item.Gender = DataUtil.Get(r, "Gender");
 
             return item;
         }

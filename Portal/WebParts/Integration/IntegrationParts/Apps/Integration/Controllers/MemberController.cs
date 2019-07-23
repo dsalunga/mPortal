@@ -66,7 +66,7 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
 
             if ((checkExternal == 1 && userId == -1 || checkExternal == 2) && MemberHelper.IsExternalId(id))
             {
-                var client = WCMS.WebSystem.Apps.Integration.ExternalMemberWS.MemberSoapClient.GetNewClientInstance();
+                var client = MemberSoapClient.GetNewClientInstance();
                 memberId = (int)client.GetMemberID(id);
             }
 
@@ -93,7 +93,7 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
 
             if (MemberHelper.IsExternalId(id))
             {
-                var client = WCMS.WebSystem.Apps.Integration.ExternalMemberWS.MemberSoapClient.GetNewClientInstance();
+                var client = MemberSoapClient.GetNewClientInstance();
                 memberId = (int)client.GetMemberID(id);
                 if (memberId > 0)
                     member = Member.RemoteProvider.Get(memberId);

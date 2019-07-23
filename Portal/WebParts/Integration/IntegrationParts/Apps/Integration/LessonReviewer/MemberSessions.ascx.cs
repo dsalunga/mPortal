@@ -40,7 +40,7 @@ namespace WCMS.WebSystem.Apps.Integration.MakeUpView
             UserSessionBrowser bs = null;
             var sessions = LessonReviewerSession.Provider.GetList(-1, LessonReviewerSessionStatus.Draft);
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in WSession.UserSessions.Sessions
                 where (bs = i.LastBrowserSession) != null && ((page = bs.LastPageId > 0 ? WPage.Get(bs.LastPageId) : null) == null || true)
                     && ((user = i.UserId > 0 ? WebUser.Get(i.UserId) : null) != null || true)

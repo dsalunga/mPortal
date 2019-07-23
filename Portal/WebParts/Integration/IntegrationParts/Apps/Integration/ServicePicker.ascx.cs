@@ -175,7 +175,7 @@ namespace WCMS.WebSystem.Integration
                         //var duration = monthVideos.FirstOrDefault(i => i.ServiceScheduleId == item.ServiceScheduleID);
                         //bool hasDuration = duration != null;
                         string bgColor = ONTIME_COLOR; //hasDuration ? ONTIME_COLOR : ABSENT_COLOR;
-                        string time = DateTimeHelper.ToCompactTime(item.StartServiceDateTime);
+                        string time = TimeUtil.ToCompactTime(item.StartServiceDateTime);
 
                         //query.Set("ServiceType", ProfileHelper.GetShortService(item.ServiceID));
                         query.Set("Date", DataUtil.GetDateTime(date).ToString("yyyy-MM-dd"));

@@ -98,7 +98,7 @@ namespace WCMS.WebSystem.Apps.Integration.MusicMinistry.MasterList
                             i.DateModified
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         protected void cmdRemove_Click(object sender, EventArgs e)
@@ -107,7 +107,7 @@ namespace WCMS.WebSystem.Apps.Integration.MusicMinistry.MasterList
             if (!string.IsNullOrEmpty(selected))
             {
                 var groupId = DataUtil.GetInt32(hGroupId.Value);
-                var ids = DataHelper.ParseCommaSeparatedIdList(selected);
+                var ids = DataUtil.ParseCommaSeparatedIdList(selected);
                 foreach (var id in ids)
                 {
                     var g = WebGroup.Get(id);

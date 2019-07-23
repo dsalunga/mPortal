@@ -139,7 +139,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                 MemberLink memberLink = null;
                 Country country = null;
 
-                return DataHelper.ToDataSet(from userGroup in userGroups
+                return DataUtil.ToDataSet(from userGroup in userGroups
                                             where (i = userGroup.User) != null
 
                                                 && ((i.Status == AccountStatus.PENDING) || !userGroup.IsActive && i.Status == AccountStatus.ACTIVE)
@@ -151,17 +151,17 @@ namespace WCMS.WebSystem.WebParts.Profile
                                                 && (countryCode > 0 && country != null && country.CountryCode == countryCode || countryCode <= 0)
 
                                                 && (string.IsNullOrEmpty(loweredKeyword)
-                                                  || (DataHelper.HasMatch(i.UserName, loweredKeyword)
-                                                  || DataHelper.HasMatch(i.FirstName, loweredKeyword)
-                                                  || DataHelper.HasMatch(i.LastName, loweredKeyword)
-                                                  || DataHelper.HasMatch(i.MiddleName, loweredKeyword)
-                                                  || DataHelper.HasMatch(i.Email, loweredKeyword)
-                                                  || DataHelper.HasMatch(i.MobileNumber, loweredKeyword)
-                                                  || (memberLink != null && DataHelper.HasMatch(memberLink.ExternalIdNo, loweredKeyword))
+                                                  || (DataUtil.HasMatch(i.UserName, loweredKeyword)
+                                                  || DataUtil.HasMatch(i.FirstName, loweredKeyword)
+                                                  || DataUtil.HasMatch(i.LastName, loweredKeyword)
+                                                  || DataUtil.HasMatch(i.MiddleName, loweredKeyword)
+                                                  || DataUtil.HasMatch(i.Email, loweredKeyword)
+                                                  || DataUtil.HasMatch(i.MobileNumber, loweredKeyword)
+                                                  || (memberLink != null && DataUtil.HasMatch(memberLink.ExternalIdNo, loweredKeyword))
                                                   || ((home = i.GetAddress(AddressTags.Home)) != null
-                                                       && (DataHelper.HasMatch(home.AddressLine1, loweredKeyword)
-                                                            || DataHelper.HasMatch(home.AddressLine2, loweredKeyword)
-                                                            || DataHelper.HasMatch(home.ZipCode, loweredKeyword)
+                                                       && (DataUtil.HasMatch(home.AddressLine1, loweredKeyword)
+                                                            || DataUtil.HasMatch(home.AddressLine2, loweredKeyword)
+                                                            || DataUtil.HasMatch(home.ZipCode, loweredKeyword)
                                                           )
                                                       )
                                                  )
@@ -182,7 +182,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                                         );
             }
 
-            return DataHelper.GetEmptyDataSet();
+            return DataUtil.GetEmptyDataSet();
         }
 
         protected void cmdRejectSubmit_Click(object sender, EventArgs e)

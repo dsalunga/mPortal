@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.Apps.Integration
             var users = WebUser.GetList();
             //var memberStatuses = db.MemberStatuses;
 
-            var xmlPath = WebHelper.MapPath(this.Attributes["XmlPath"]);
+            var xmlPath = WebUtil.MapPath(this.Attributes["XmlPath"]);
             if (!string.IsNullOrEmpty(xmlPath) && File.Exists(xmlPath))
             {
                 XmlDocument xdoc = new XmlDocument();

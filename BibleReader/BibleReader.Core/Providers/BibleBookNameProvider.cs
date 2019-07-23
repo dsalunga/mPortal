@@ -54,9 +54,9 @@ namespace WCMS.BibleReader.Core.Providers
             item.Id = DataUtil.GetId(r, "Id");
             item.BookNameCode = DataUtil.GetId(r, "BookNameCode");
             item.BookCode = DataUtil.GetId(r, "BookCode");
-            item.Name = DataHelper.Get(r, "Name");
+            item.Name = DataUtil.Get(r, "Name");
             item.MaxChapter = DataUtil.GetInt32(r, "MaxChapter");
-            item.ShortName = DataHelper.Get(r, "ShortName");
+            item.ShortName = DataUtil.Get(r, "ShortName");
 
             return item;
         }

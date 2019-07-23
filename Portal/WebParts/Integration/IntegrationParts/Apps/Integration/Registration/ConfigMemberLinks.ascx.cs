@@ -166,7 +166,7 @@ namespace WCMS.WebSystem.Apps.Integration
             string strIDs = Request.Form["chkItems"];
             if (!string.IsNullOrEmpty(strIDs))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(strIDs);
+                var ids = DataUtil.ParseCommaSeparatedIdList(strIDs);
                 foreach (var sId in ids)
                 {
                     var id = DataUtil.GetId(sId);

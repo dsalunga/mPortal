@@ -59,7 +59,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
             var query = new WQuery(true);
             query.SetLoad("AdminCompetitionEdit.ascx");
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in MCCompetition.Provider.GetList()
                 select new
                 {

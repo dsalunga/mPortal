@@ -85,7 +85,7 @@ namespace WCMS.WebSystem.Apps.Integration
             get
             {
                 if (_MCBasePath == null)
-                    _MCBasePath = ConfigHelper.Get("Integration:MCBasePath");
+                    _MCBasePath = ConfigUtil.Get("Integration:MCBasePath");
 
                 return _MCBasePath;
             }
@@ -139,7 +139,7 @@ namespace WCMS.WebSystem.Apps.Integration
                     _emailUnixCmd = new UnixCommand();
                     _emailUnixCmd.Server = XmlUtil.GetValue(firstNode, "Server");
                     _emailUnixCmd.Username = XmlUtil.GetValue(firstNode, "Username");
-                    _emailUnixCmd.PrivateKeyPath = WebHelper.MapPath(XmlUtil.GetValue(firstNode, "PrivateKeyPath"));
+                    _emailUnixCmd.PrivateKeyPath = WebUtil.MapPath(XmlUtil.GetValue(firstNode, "PrivateKeyPath"));
                     _emailUnixCmd.Command = XmlUtil.GetValue(firstNode, "Command");
                 }
             }

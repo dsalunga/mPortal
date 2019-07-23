@@ -77,18 +77,18 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             item.Id = DataUtil.GetId(r, WebColumns.Id);
             item.CreatedUserId = DataUtil.GetId(r, "CreatedUserId");
             item.DateCreated = DataUtil.GetDateTime(r, "DateCreated");
-            item.ActualReport = DataHelper.Get(r, "ActualReport");
-            item.Status = DataHelper.Get(r, "Status");
+            item.ActualReport = DataUtil.Get(r, "ActualReport");
+            item.Status = DataUtil.Get(r, "Status");
             item.GroupId = DataUtil.GetId(r, WebColumns.GroupId);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
+            item.Name = DataUtil.Get(r, WebColumns.Name);
             item.VisitedUserId = DataUtil.GetId(r, "VisitedUserId");
             item.DateVisited = DataUtil.GetDateTime(r, "DateVisited");
-            item.ActionTaken = DataHelper.Get(r, "ActionTaken");
-            item.ContactNo = DataHelper.Get(r, "ContactNo");
+            item.ActionTaken = DataUtil.Get(r, "ActionTaken");
+            item.ContactNo = DataUtil.Get(r, "ContactNo");
             item.TimesVisited = DataUtil.GetInt32(r, "TimesVisited");
-            item.Address = DataHelper.Get(r, "Address");
+            item.Address = DataUtil.Get(r, "Address");
             item.MembershipDate = DataUtil.GetDateTime(r, "MembershipDate");
-            item.Tags = DataHelper.Get(r, "Tags");
+            item.Tags = DataUtil.Get(r, "Tags");
 
             return item;
         }

@@ -26,7 +26,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
         {
             if (!IsPostBack)
             {
-                string key = DataHelper.Get(Request, "key");
+                string key = DataUtil.Get(Request, "key");
                 if (string.IsNullOrWhiteSpace(key))
                 {
                     SetProfileInformation();
@@ -81,8 +81,8 @@ namespace WCMS.WebSystem.Apps.Integration.Account
                 lblLastUpdate.InnerHtml = user.LastUpdate.ToString("d MMMM yyyy h:mm tt");
 
                 txtStatusText.Text = user.StatusText;
-                WebHelper.SetCboValue(cboGender, user.Gender);
-                WebHelper.SetCboValue(cboMaritalStatus, user.MaritalStatusId);
+                WebUtil.SetCboValue(cboGender, user.Gender);
+                WebUtil.SetCboValue(cboMaritalStatus, user.MaritalStatusId);
 
                 txtFirstName.Text = user.FirstName;
                 txtMiddleName.Text = user.MiddleName;
@@ -113,7 +113,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
                 }
 
 
-                var forcePrivate = DataHelper.GetBool(element.GetParameterValue("ForcePrivate"), false);
+                var forcePrivate = DataUtil.GetBool(element.GetParameterValue("ForcePrivate"), false);
                 if (forcePrivate)
                     panelPrivacy.Visible = false;
 
@@ -199,8 +199,8 @@ namespace WCMS.WebSystem.Apps.Integration.Account
             //lblHomePhone.Attributes["for"] = homePhone.NumberControl.ClientID;
 
             // Set default combo values
-            WebHelper.SetCboValue(cboHomeAddressState, -1);
-            WebHelper.SetCboValue(cboWorkAddressState, -1);
+            WebUtil.SetCboValue(cboHomeAddressState, -1);
+            WebUtil.SetCboValue(cboWorkAddressState, -1);
         }
 
         private void ConfigureCancel()
@@ -294,7 +294,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
                     user.LastName = txtLastName.Text.Trim();
 
                     user.StatusText = txtStatusText.Text.Trim();
-                    user.Gender = DataHelper.GetChar(cboGender.SelectedValue);
+                    user.Gender = DataUtil.GetChar(cboGender.SelectedValue);
                     user.MaritalStatusId = DataUtil.GetId(cboMaritalStatus.SelectedValue);
 
                     #region Update Email and Send Confirmation - spag code
@@ -327,7 +327,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
                         string content = FileHelper.ReadFile(MapPath("~/Content/Parts/Profile/Template/ConfirmNewEmail.htm"));
                         var requesterName = string.IsNullOrWhiteSpace(user.FirstName) ? user.FullName : user.FirstName;
                         var basePath = context.BasePath;
-                        basePath = basePath.StartsWith("/") ? WebHelper.CombineAddress(context.Site.BuildAbsoluteUrl(), basePath) : basePath; //context.PageElement.GetParameterValue(MemberConstants.ConfirmNewEmailUrlKey);
+                        basePath = basePath.StartsWith("/") ? WebUtil.CombineAddress(context.Site.BuildAbsoluteUrl(), basePath) : basePath; //context.PageElement.GetParameterValue(MemberConstants.ConfirmNewEmailUrlKey);
 
                         string e1 = "", e2 = "", key = "";
                         for (int i = 0; i < 2; i++)

@@ -70,9 +70,9 @@ namespace WCMS.WebSystem.WebParts.Profile
             {
                 var element = context.Element;
                 var managers = element.GetParameterValue("Managers");
-                var disableAdminTabs = DataHelper.GetBool(element.GetParameterValue("DisableAdminTabs"), false);
-                var hideGroups = DataHelper.GetBool(element.GetParameterValue("HideGroups", "0"));
-                var forcePrivate = DataHelper.GetBool(element.GetParameterValue("ForcePrivate"), false);
+                var disableAdminTabs = DataUtil.GetBool(element.GetParameterValue("DisableAdminTabs"), false);
+                var hideGroups = DataUtil.GetBool(element.GetParameterValue("HideGroups", "0"));
+                var forcePrivate = DataUtil.GetBool(element.GetParameterValue("ForcePrivate"), false);
 
                 ViewerIsManager = isAdmin || (!string.IsNullOrEmpty(managers) && AccountHelper.IsPresentOrMember(managers));
 

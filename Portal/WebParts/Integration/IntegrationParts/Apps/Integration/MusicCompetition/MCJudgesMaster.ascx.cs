@@ -97,7 +97,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
                                 (score.Musicality * 0.3 + score.LyricsMessage * 0.4 + score.OverallImpact * 0.3).ToString("N2") + "%" : string.Empty
                          };
 
-            return DataHelper.ToDataSet(result);
+            return DataUtil.ToDataSet(result);
         }
 
         public DataSet GetInterpreterScores(int competitionId)
@@ -107,7 +107,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
             MCInterpreterScore score = null;
             var candidates = MCCandidate.Provider.GetList();
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in candidates
                 orderby i.Entry
                 select new

@@ -67,13 +67,13 @@ namespace WCMS.WebSystem.WebParts.Profile
                 item.Address = txtAddress.Text.Trim();
                 item.PlaceType = txtPlaceType.Text.Trim();
 
-                if (item.ArrivalDate.Equals(DataHelper.MinDate))
+                if (item.ArrivalDate.Equals(DataUtil.MinDate))
                 {
                     lblStatus.Text = "Please enter a valid DATE OF ARRIVAL.";
                     return;
                 }
 
-                if (item.DepartureDate.Equals(DataHelper.MinDate))
+                if (item.DepartureDate.Equals(DataUtil.MinDate))
                 {
                     lblStatus.Text = "Please enter a valid DATE OF DEPARTURE.";
                     return;

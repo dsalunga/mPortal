@@ -217,7 +217,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                 var client = new MemberSoapClient(false);
                 var attendances = client.GetAttendances(memberId, -1, -1, startDate, endDate);
 
-                return DataHelper.ToDataSet(
+                return DataUtil.ToDataSet(
                             from a in attendances
                             where ((makeUpPA = makeUpPAItems.Count > 0 ?
                                 makeUpPAItems.Find(i => a.AttendanceID <= 0 && i.ServiceScheduleID == a.ServiceScheduleID) : null) == null || true)
@@ -234,7 +234,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                         );
             }
 
-            return DataHelper.GetEmptyDataSet();
+            return DataUtil.GetEmptyDataSet();
         }
 
         private string BuildServiceType(MemberAttendance item, WQuery query, string makeUpUrl, string gridItemFormat, LessonReviewerSession makeUpPA)
@@ -252,7 +252,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                 {
                     // MU: Pending Approval
                     bgColor = MAKEUP_PA_COLOR;
-                    time = DateTimeHelper.ToCompactTime(item.ServiceDateTime);
+                    time = TimeUtil.ToCompactTime(item.ServiceDateTime);
                     toolTip = string.Format("Make-Up: Pending Approval (You can still continue your make-up if you haven't finished this yet) - {0} #{1}", makeUpPA.DateStarted, makeUpPA.Id);
                     foreColor = "#FF7575"; //"#fff";
                 }
@@ -260,13 +260,13 @@ namespace WCMS.WebSystem.WebParts.Profile
                 {
                     // Absent
                     bgColor = ABSENT_COLOR;
-                    time = DateTimeHelper.ToCompactTime(item.ServiceDateTime);
+                    time = TimeUtil.ToCompactTime(item.ServiceDateTime);
                     toolTip = string.Format("{0} @ {1} #{2}", item.Status, string.IsNullOrEmpty(item.DateTimeIn) ? item.ServiceDateTime : item.DateTimeIn, item.AttendanceID);
                 }
             }
             else
             {
-                time = DateTimeHelper.ToCompactTime(item.DateTimeIn);
+                time = TimeUtil.ToCompactTime(item.DateTimeIn);
                 if (item.Status.Equals(AttendanceConstants.LATE, StringComparison.InvariantCultureIgnoreCase))
                     bgColor = LATE_COLOR;
                 else if (item.Status.Equals(AttendanceConstants.ON_TIME, StringComparison.InvariantCultureIgnoreCase))
@@ -367,7 +367,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                             {
                                 // MU: Pending Approval
                                 bgColor = MAKEUP_PA_COLOR;
-                                time = DateTimeHelper.ToCompactTime(item.ServiceDateTime);
+                                time = TimeUtil.ToCompactTime(item.ServiceDateTime);
 
                                 toolTip = string.Format("Make-Up: Pending Approval (You can still continue your make-up if you haven't finished this yet) - {0} #{1}", makeUpPA.DateStarted, makeUpPA.Id);
                                 foreColor = "#FF7575"; //"#fff";
@@ -376,14 +376,14 @@ namespace WCMS.WebSystem.WebParts.Profile
                             {
                                 // Absent
                                 bgColor = ABSENT_COLOR;
-                                time = DateTimeHelper.ToCompactTime(item.ServiceDateTime);
+                                time = TimeUtil.ToCompactTime(item.ServiceDateTime);
 
                                 toolTip = string.Format("{0} @ {1} #{2}", item.Status, string.IsNullOrEmpty(item.DateTimeIn) ? item.ServiceDateTime : item.DateTimeIn, item.AttendanceID > 0 ? item.AttendanceID.ToString() : "SvcSchedId" + item.ServiceScheduleID);
                             }
                         }
                         else
                         {
-                            time = DateTimeHelper.ToCompactTime(item.DateTimeIn);
+                            time = TimeUtil.ToCompactTime(item.DateTimeIn);
 
                             if (item.Status.Equals(AttendanceConstants.LATE, StringComparison.InvariantCultureIgnoreCase))
                                 bgColor = LATE_COLOR;

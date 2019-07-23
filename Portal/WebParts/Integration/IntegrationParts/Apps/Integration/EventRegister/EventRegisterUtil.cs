@@ -19,13 +19,13 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
         public static void DownloadCard(WebUser user)
         {
             // Create temporary folder
-            var tmpPath = WebHelper.MapPath(WebHelper.CombineAddress(WConfig.TempFolder, "EventRegister"));
+            var tmpPath = WebUtil.MapPath(WebUtil.CombineAddress(WConfig.TempFolder, "EventRegister"));
 
             if (!Directory.Exists(tmpPath))
-                System.IO.Directory.CreateDirectory(tmpPath);
+                Directory.CreateDirectory(tmpPath);
 
-            var cardFilename = EventRegisterUtil.GenerateCard(user, tmpPath);
-            WebHelper.DownloadFile(cardFilename);
+            var cardFilename = GenerateCard(user, tmpPath);
+            WebUtil.DownloadFile(cardFilename);
         }
 
         public static string GenerateCard(WebUser user, string savePath)
@@ -238,7 +238,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
             var keywordL = string.IsNullOrEmpty(keyword) ? string.Empty : keyword.ToLower();
             var groupUsers = isAdmin ? WebUserGroup.Provider.GetByGroupId(groupId, -1) : WebUserGroup.Provider.GetByCreatedById(groupId, createdById, -1);
 
-            return DataHelper.ToDataSet(from i in WebUser.GetList(groupId)
+            return DataUtil.ToDataSet(from i in WebUser.GetList(groupId)
                                         let gu = groupUsers.FirstOrDefault(gu => i.Id == gu.UserId && (isAdmin || gu.CreatedById == createdById))
                                         let link = MemberLink.Provider.GetByUserId(i.Id)
                                         where link != null && (isAdmin || gu != null) && (string.IsNullOrEmpty(keywordL) ||
@@ -273,7 +273,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
         public static DataSet SelectDownload(int groupId, string keyword)
         {
             var users = SelectDownloadRaw(groupId, keyword);
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                     from i in users
                     let link = MemberLink.Provider.GetByUserId(i.Id)
                     let country = link != null ? link.LocaleCountry : null

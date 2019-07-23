@@ -44,7 +44,7 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
                             query.Set("Method", "Status");
                             query.Set("VarName", "makeUpTest");
                             query.Set("Ticks", DateTime.Now.Ticks);
-                            scriptMakeUpTest.Text = WebHelper.BuildScriptTagWithSource(query.BuildQuery(true));
+                            scriptMakeUpTest.Text = WebUtil.BuildScriptTagWithSource(query.BuildQuery(true));
                         }
 
                         lblName.InnerHtml = AccountHelper.GetPrefixedName(user);
@@ -69,7 +69,7 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
                                 query.Set("Method", "Verify");
                                 query.Set("VarName", "playbackTest");
                                 query.Set("Ticks", DateTime.Now.Ticks);
-                                scriptPlaybackTest.Text = WebHelper.BuildScriptTagWithSource(query.BuildQuery(true));
+                                scriptPlaybackTest.Text = WebUtil.BuildScriptTagWithSource(query.BuildQuery(true));
                             }
                         }
                     }
@@ -127,9 +127,9 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
         private static void CancelRedirect(string makeUpHomeUrl)
         {
             if (!string.IsNullOrEmpty(makeUpHomeUrl))
-                WQuery.StaticRedirect(makeUpHomeUrl, false);
+                QueryParser.StaticRedirect(makeUpHomeUrl, false);
             else
-                WQuery.StaticRedirect("/", false);
+                QueryParser.StaticRedirect("/", false);
         }
     }
 }

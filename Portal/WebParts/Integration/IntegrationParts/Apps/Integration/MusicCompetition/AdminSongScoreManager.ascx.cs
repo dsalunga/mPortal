@@ -24,7 +24,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
 
                 var competitionId = DataUtil.GetId(Request, "CompetitionId");
                 if (competitionId > 0)
-                    WebHelper.SetCboValue(cboCompetition, competitionId);
+                    WebUtil.SetCboValue(cboCompetition, competitionId);
 
                 GridView1.DataBind();
             }
@@ -80,7 +80,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
                                 (i.Musicality * 0.3 + i.LyricsMessage * 0.4 + i.OverallImpact * 0.3).ToString("N2") + "%" : string.Empty
                          };
 
-            return DataHelper.ToDataSet(result);
+            return DataUtil.ToDataSet(result);
         }
 
         protected void cmdDelete_Click(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
             var checkedValues = Request.Form.Get("chkChecked");
             if (!string.IsNullOrEmpty(checkedValues))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(checkedValues);
+                var ids = DataUtil.ParseCommaSeparatedIdList(checkedValues);
                 if (ids.Count > 0)
                 {
                     foreach (var id in ids)

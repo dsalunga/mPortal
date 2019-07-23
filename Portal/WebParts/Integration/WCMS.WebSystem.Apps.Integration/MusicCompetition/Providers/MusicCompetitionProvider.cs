@@ -19,8 +19,8 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             var item = source ?? new MCCompetition();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.Judges = DataHelper.Get(r, "Judges");
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.Judges = DataUtil.Get(r, "Judges");
             item.ScoreLocked = DataUtil.GetInt32(r, "ScoreLocked");
             item.CompetitionDate = DataUtil.GetDateTime(r, "CompetitionDate");
             item.VoteLocked = DataUtil.GetInt32(r, "VoteLocked");

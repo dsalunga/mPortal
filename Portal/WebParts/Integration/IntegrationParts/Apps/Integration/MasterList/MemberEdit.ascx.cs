@@ -130,13 +130,13 @@ namespace WCMS.WebSystem.Apps.Integration.MusicMinistry.MasterList
                 var position = user.GetParameterValue(MasterListConstants.MEMBER_POSITION_KEY);
                 if (!string.IsNullOrEmpty(position))
                 {
-                    WebHelper.SetCboValue(cboOfficerPosition, position);
+                    WebUtil.SetCboValue(cboOfficerPosition, position);
                     chkIsOfficer.Checked = true;
                 }
 
                 var voiceDesignation = user.GetParameterValue(MasterListConstants.MEMBER_VOICE_DESIGNATION_KEY);
                 if (!string.IsNullOrEmpty(voiceDesignation))
-                    WebHelper.SetCboValue(cboVoiceDesignation, voiceDesignation);
+                    WebUtil.SetCboValue(cboVoiceDesignation, voiceDesignation);
 
                 if (group != null)
                 {

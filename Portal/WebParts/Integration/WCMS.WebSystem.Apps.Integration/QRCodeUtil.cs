@@ -14,13 +14,13 @@ namespace WCMS.WebSystem.Apps.Integration
         public static string EncodeServiceSchedule(int serviceScheduleId)
         {
             var code = DateTime.Now.Minute.ToString("D2").Replace("0", "9") + serviceScheduleId + DateTime.Now.Second.ToString("D2").Replace("0", "9");
-            code = String.Format("{0:X}", DataHelper.GetInt64(DataHelper.ReverseString(code)));
+            code = String.Format("{0:X}", DataUtil.GetInt64(DataUtil.ReverseString(code)));
             return code;
         }
 
         public static int DecodeServiceSchedule(string hex)
         {
-            var number = DataHelper.ReverseString(Convert.ToInt64(hex, 16).ToString());
+            var number = DataUtil.ReverseString(Convert.ToInt64(hex, 16).ToString());
             return DataUtil.GetInt32(number.Substring(2, number.Length - 4));
         }
 

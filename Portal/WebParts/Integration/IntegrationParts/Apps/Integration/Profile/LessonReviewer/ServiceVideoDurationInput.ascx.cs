@@ -79,7 +79,7 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
                                 query.Set("Method", "Status");
                                 query.Set("VarName", "makeUpTest");
                                 query.Set("Ticks", DateTime.Now.Ticks);
-                                scriptMakeUpTest.Text = WebHelper.BuildScriptTagWithSource(query.BuildQuery(true));
+                                scriptMakeUpTest.Text = WebUtil.BuildScriptTagWithSource(query.BuildQuery(true));
                             }
 
                             var language = "TL";
@@ -308,7 +308,7 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
                         var duration = monthVideos.FirstOrDefault(i => i.ServiceScheduleId == item.ServiceScheduleID);
                         bool hasDuration = duration != null;
                         string bgColor = hasDuration ? ONTIME_COLOR : ABSENT_COLOR;
-                        string time = DateTimeHelper.ToCompactTime(item.StartServiceDateTime);
+                        string time = TimeUtil.ToCompactTime(item.StartServiceDateTime);
 
                         //query.Set("ServiceType", ProfileHelper.GetShortService(item.ServiceID));
                         query.Set("Date", DataUtil.GetDateTime(date).ToString("yyyy-MM-dd"));

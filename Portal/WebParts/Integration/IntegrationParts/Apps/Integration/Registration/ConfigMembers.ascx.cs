@@ -42,7 +42,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
         public DataSet Select()
         {
-            return DataHelper.ToDataSet(Member.Provider.GetList());
+            return DataUtil.ToDataSet(Member.Provider.GetList());
         }
 
         protected void cmdSync_Click(object sender, EventArgs e)

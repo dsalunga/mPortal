@@ -113,7 +113,7 @@ namespace WCMS.WebSystem.Apps.Integration
             string status = null;
             var isAdmin = WSession.Current.IsAdministrator;
 
-            return DataHelper.ToDataSet(from i in items
+            return DataUtil.ToDataSet(from i in items
                                         where
                                             ((user = i.Link.User) != null || user == null) &&
                                             (string.IsNullOrEmpty(filterGroup) || user != null && user.IsMemberOf(filterGroup)) &&

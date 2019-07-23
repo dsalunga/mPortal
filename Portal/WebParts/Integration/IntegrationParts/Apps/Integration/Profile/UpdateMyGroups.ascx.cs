@@ -261,11 +261,11 @@ namespace WCMS.WebSystem.WebParts.Profile
 
                                             string userProfileUrl = string.Format(MemberConstants.UserProfilePageFormat, user.Id);
                                             if (userProfileUrl.StartsWith("/"))
-                                                userProfileUrl = WebHelper.CombineAddress(WConfig.BaseAddress, userProfileUrl);
+                                                userProfileUrl = WebUtil.CombineAddress(WConfig.BaseAddress, userProfileUrl);
 
                                             string approvalLink = MemberConstants.GroupApprovalLink;
                                             if (approvalLink.StartsWith("/"))
-                                                approvalLink = WebHelper.CombineAddress(WConfig.BaseAddress, approvalLink);
+                                                approvalLink = WebUtil.CombineAddress(WConfig.BaseAddress, approvalLink);
 
                                             NamedValueProvider values = new NamedValueProvider();
                                             values.Add("ManagerName", "Managers");

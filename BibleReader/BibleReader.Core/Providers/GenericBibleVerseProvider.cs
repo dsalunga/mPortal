@@ -41,7 +41,7 @@ namespace WCMS.BibleReader.Core.Providers
 
                     item.VerseCode = DataUtil.GetId(r, "VerseCode");
                     item.CompositeCode = DataUtil.GetId(r, "CompositeCode");
-                    item.Content = DataHelper.Get(r, "Content");
+                    item.Content = DataUtil.Get(r, "Content");
                     item.Id = DataUtil.GetId(r, "Id");
 
                     return item;
@@ -75,7 +75,7 @@ namespace WCMS.BibleReader.Core.Providers
 
                     item.VerseCode = DataUtil.GetId(r, "VerseCode");
                     item.CompositeCode = DataUtil.GetId(r, "CompositeCode");
-                    item.Content = DataHelper.Get(r, "Content");
+                    item.Content = DataUtil.Get(r, "Content");
                     item.Id = DataUtil.GetId(r, "Id");
 
                     items.Add(item);
@@ -115,7 +115,7 @@ namespace WCMS.BibleReader.Core.Providers
                     var item = new BibleVerse(chapter);
                     item.VerseCode = DataUtil.GetId(r, "VerseCode");
                     item.CompositeCode = DataUtil.GetId(r, "CompositeCode");
-                    item.Content = DataHelper.Get(r, "Content");
+                    item.Content = DataUtil.Get(r, "Content");
                     item.Id = DataUtil.GetId(r, "Id");
 
                     items.Add(item);

@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.Apps.Integration.Streaming
             var context = new WContext(this);
             var set = context.Element.GetParameterSet(true);
 
-            WebHelper.SetCboValue(cboStreamType, set.GetParameterValue("StreamType", AttendanceTypes.Live.ToString()));
+            WebUtil.SetCboValue(cboStreamType, set.GetParameterValue("StreamType", AttendanceTypes.Live.ToString()));
             hServiceScheduleId.Value = set.GetParameterValue("ServiceScheduleId", "-1");
             txtStartDate.Text = set.GetParameterValue("StartTime", "");
             cboDuration.SelectedValue = TimeSpan.ParseExact(set.GetParameterValue("Duration", "00:00"), @"hh\:mm", CultureInfo.CurrentCulture).ToString(@"hh\:mm");

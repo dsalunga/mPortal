@@ -33,7 +33,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
 
                 var competitionId = DataUtil.GetId(Request, "CompetitionId");
                 if (competitionId > 0)
-                    WebHelper.SetCboValue(cboCompetition, competitionId);
+                    WebUtil.SetCboValue(cboCompetition, competitionId);
 
                 GridView1.DataBind();
             }
@@ -89,7 +89,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
             var candidates = MCCandidate.Provider.GetList(competitionId);
             MCCandidate candidate = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from i in MCVote.Provider.GetList(competitionId)
                 where i.CandidateId > 0
                     && (string.IsNullOrEmpty(kwl) ||
@@ -135,7 +135,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
             var candidates = MCCandidate.Provider.GetList();
             MCCandidate candidate = null;
 
-            var ds = DataHelper.ToDataSet(
+            var ds = DataUtil.ToDataSet(
                 from item in MCVote.Provider.GetList(competitionId)
                 where item.CandidateId > 0
                 select new
@@ -155,7 +155,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
                     item.Spam
                 });
 
-            WebHelper.DownloadAsCsv(ds, "ASOP-Votes");
+            WebUtil.DownloadAsCsv(ds, "ASOP-Votes");
         }
 
         //protected void cmdDownloadCodes_Click(object sender, EventArgs e)

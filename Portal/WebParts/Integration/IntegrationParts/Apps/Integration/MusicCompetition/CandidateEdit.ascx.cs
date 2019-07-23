@@ -51,7 +51,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
 
                 if (competitionId > 0)
                 {
-                    WebHelper.SetCboValue(cboCompetition, competitionId);
+                    WebUtil.SetCboValue(cboCompetition, competitionId);
                     hCompetitionId.Value = competitionId.ToString();
                 }
 

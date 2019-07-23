@@ -58,16 +58,16 @@ namespace WCMS.WebSystem.Apps.Integration
             Sportsfest item = new Sportsfest();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
             item.MemberId = DataUtil.GetId(r, "MemberId");
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.GroupColor = DataHelper.Get(r, "GroupColor");
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.GroupColor = DataUtil.Get(r, "GroupColor");
             item.Age = DataUtil.GetInt32(r, "Age");
-            item.ShirtSize = DataHelper.Get(r, "ShirtSize");
-            item.Mobile = DataHelper.Get(r, "Mobile");
+            item.ShirtSize = DataUtil.Get(r, "ShirtSize");
+            item.Mobile = DataUtil.Get(r, "Mobile");
             item.EntryDate = DataUtil.GetDateTime(r, "EntryDate");
-            item.Sports = DataHelper.Get(r, "Sports");
+            item.Sports = DataUtil.Get(r, "Sports");
             item.CountryCode = DataUtil.GetInt32(r, "CountryCode");
-            item.Locale = DataHelper.Get(r, "Locale");
-            item.Suggestion = DataHelper.Get(r, "Suggestion");
+            item.Locale = DataUtil.Get(r, "Locale");
+            item.Suggestion = DataUtil.Get(r, "Suggestion");
 
             return item;
         }

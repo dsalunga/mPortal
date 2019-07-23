@@ -26,11 +26,11 @@ namespace WCMS.BibleReader.Core.Providers
         {
             BibleVersion item = new BibleVersion();
             item.Id = DataUtil.GetId(r, "Id");
-            item.Name = DataHelper.Get(r, "Name");
-            item.BibleTableName = DataHelper.Get(r, "BibleTableName");
+            item.Name = DataUtil.Get(r, "Name");
+            item.BibleTableName = DataUtil.Get(r, "BibleTableName");
             item.BookNameCode = DataUtil.GetId(r, "BookNameCode");
             item.Active = DataUtil.GetInt32(r, "Active");
-            item.ShortName = DataHelper.Get(r, "ShortName");
+            item.ShortName = DataUtil.Get(r, "ShortName");
             item.OldAndNew = DataUtil.GetInt32(r, "OldAndNew");
             item.LanguageType = DataUtil.GetInt32(r, "TranslationType");
             item.TranslationType = DataUtil.GetInt32(r, "TranslationType");

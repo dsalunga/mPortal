@@ -70,7 +70,7 @@ namespace WCMS.WebSystem.Apps.Integration
                     var subject = paramSet.GetParameterValue("AccountApprovedEmailToUserSubject", "Integration Portal: Congratulations! Your New Account is Now Approved!");
                     var loginUrl = paramSet.GetParameterValue("LoginUrl");
                     if (loginUrl.StartsWith("/"))
-                        loginUrl = WebHelper.CombineAddress(baseAddress, loginUrl);
+                        loginUrl = WebUtil.CombineAddress(baseAddress, loginUrl);
                     var country = link.LocaleCountry;
                     var userPhotoUrl = link.GetPhotoPathIfNull();
 
@@ -79,7 +79,7 @@ namespace WCMS.WebSystem.Apps.Integration
                     values.Add("MEMBERSHIP_DATE", link.MembershipDate.ToString("dd-MMM-yyyy"));
                     values.Add("BASE_ADDRESS", baseAddress);
                     //provider.Add("PHOTO_URL", member.GetPhotoPath("200x200"));
-                    values.Add("PHOTO_URL", WebHelper.BuildAddress(baseAddress, string.IsNullOrEmpty(userPhotoUrl) ? WConstants.NoPhotoThumb : userPhotoUrl));
+                    values.Add("PHOTO_URL", WebUtil.BuildAddress(baseAddress, string.IsNullOrEmpty(userPhotoUrl) ? WConstants.NoPhotoThumb : userPhotoUrl));
                     values.Add("FIRST_NAME", user.FirstName);
                     values.Add("LAST_NAME", user.LastName);
                     values.Add("MOBILE", user.MobileNumber);
@@ -307,7 +307,7 @@ namespace WCMS.WebSystem.Apps.Integration
                 var client = new MemberSoapClient(false);
 
                 var attendances = client.GetAttendances(memberId, -1, -1, date, date);
-                var attendance = attendances.FirstOrDefault(i => MemberHelper.GetShortService(i.ServiceType).Equals(serviceType, StringComparison.InvariantCultureIgnoreCase));
+                var attendance = attendances.FirstOrDefault(i => GetShortService(i.ServiceType).Equals(serviceType, StringComparison.InvariantCultureIgnoreCase));
                 if (attendance != null)
                 {
                     attendance.ExternalIdNo = link.ExternalIdNo;
@@ -329,7 +329,7 @@ namespace WCMS.WebSystem.Apps.Integration
             var sessionIdString = context.Get("SessionId");
             if (!string.IsNullOrEmpty(sessionIdString))
             {
-                var sessionId = DataHelper.GetLong(sessionIdString);
+                var sessionId = DataUtil.GetLong(sessionIdString);
                 if (sessionId > 0)
                 {
                     try
@@ -373,7 +373,7 @@ namespace WCMS.WebSystem.Apps.Integration
                 {
                     var client = new MemberSoapClient(false);
                     var attendances = client.GetAttendances(memberId, -1, -1, date, date);
-                    var attendance = attendances.FirstOrDefault(i => MemberHelper.GetShortService(i.ServiceType).Equals(serviceType, StringComparison.InvariantCultureIgnoreCase));
+                    var attendance = attendances.FirstOrDefault(i => GetShortService(i.ServiceType).Equals(serviceType, StringComparison.InvariantCultureIgnoreCase));
                     if (attendance != null)
                     {
                         attendance.ExternalIdNo = link.ExternalIdNo;

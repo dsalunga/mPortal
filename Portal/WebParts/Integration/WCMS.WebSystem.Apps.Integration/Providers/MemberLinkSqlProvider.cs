@@ -81,7 +81,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             item.Approved = DataUtil.GetInt32(r, "Approved");
             item.Private = DataUtil.GetInt32(r, "Private");
             item.Locale = r["Locale"].ToString();
-            item.AdditionalInfo = DataHelper.Get(r, "AdditionalInfo");
+            item.AdditionalInfo = DataUtil.Get(r, "AdditionalInfo");
 
             return item;
         }

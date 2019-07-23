@@ -33,7 +33,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
                 if (session.IsLoggedIn)
                 {
                     var url = WHelper.GetRedirectUrl(session.User, context, element);
-                    WQuery.StaticRedirect(url, false);
+                    QueryParser.StaticRedirect(url, false);
                     return;
                 }
 
@@ -377,7 +377,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
                 if (string.IsNullOrEmpty(loginUrl))
                     loginUrl = parameterSet.GetParameterValue(LoginUrl);
                 if (loginUrl.StartsWith("/"))
-                    loginUrl = WebHelper.CombineAddress(string.IsNullOrEmpty(baseAddress) ? WConfig.BaseAddress : baseAddress, loginUrl);
+                    loginUrl = WebUtil.CombineAddress(string.IsNullOrEmpty(baseAddress) ? WConfig.BaseAddress : baseAddress, loginUrl);
 
                 var provider = new NamedValueProvider();
                 if ((!string.IsNullOrEmpty(emailTemplate) || !string.IsNullOrEmpty(emailTemplatePath)) && !string.IsNullOrEmpty(emailSubjectTemplate)

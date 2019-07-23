@@ -46,8 +46,8 @@ namespace WCMS.WebSystem.Apps.Integration.Account
                 var set = context.GetParameterSet();
 
                 var loginUrl = ParameterizedWebObject.GetValue(AccountConstants.LoginUrl, element, set);
-                var disableLocalRegistration = DataHelper.GetBool(ParameterizedWebObject.GetValue(AccountConstants.DisableLocalRegistration, element, set), false);
-                var enableExternalAccounts = DataHelper.GetBool(ParameterizedWebObject.GetValue(AccountConstants.EnableExternalAccounts, element, set), false);
+                var disableLocalRegistration = DataUtil.GetBool(ParameterizedWebObject.GetValue(AccountConstants.DisableLocalRegistration, element, set), false);
+                var enableExternalAccounts = DataUtil.GetBool(ParameterizedWebObject.GetValue(AccountConstants.EnableExternalAccounts, element, set), false);
 
                 var loginInfoObj = Session[AccountConstants.LoginInfoSessionKey];
                 if (disableLocalRegistration && loginInfoObj == null)
@@ -59,7 +59,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
                 cboCountries.DataSource = Country.GetList();
                 cboCountries.DataBind();
 
-                var photoRequired = DataHelper.GetBool(element.GetParameterValue("PhotoRequired"), false);
+                var photoRequired = DataUtil.GetBool(element.GetParameterValue("PhotoRequired"), false);
                 if (photoRequired)
                     panelSkip.Visible = false;
 
@@ -251,7 +251,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
         protected void cmdAgree_Click(object sender, EventArgs e)
         {
             // From Terms view
-            bool isExternalRegister = DataHelper.GetBool(hLinkExternalRegister.Value, false);
+            bool isExternalRegister = DataUtil.GetBool(hLinkExternalRegister.Value, false);
             if (isExternalRegister)
                 BeginONERegistration();
             else
@@ -261,7 +261,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
         protected void cmdONESetupContinue_ServerClick(object sender, EventArgs e)
         {
             // Skip Terms view if no terms content.
-            bool hasTerms = DataHelper.GetBool(hHasTerms.Value, false);
+            bool hasTerms = DataUtil.GetBool(hHasTerms.Value, false);
             if (hasTerms)
                 MultiView1.SetActiveView(viewTerms);
             else
@@ -435,7 +435,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
             //var userName = txtUserName.Text.Trim();
 
             ExtUserInfo userInfo = null;
-            bool isExternalRegister = DataHelper.GetBool(hLinkExternalRegister.Value, false);
+            bool isExternalRegister = DataUtil.GetBool(hLinkExternalRegister.Value, false);
             if (isExternalRegister)
             {
                 var loginInfoObj = Session[AccountConstants.LoginInfoSessionKey];
@@ -580,7 +580,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
 
             var approvalUrl = paramSet.GetParameterValue("ApprovalUrl");
             if (approvalUrl.StartsWith("/"))
-                approvalUrl = WebHelper.CombineAddress(string.IsNullOrEmpty(baseAddress) ? WConfig.BaseAddress : baseAddress, approvalUrl);
+                approvalUrl = WebUtil.CombineAddress(string.IsNullOrEmpty(baseAddress) ? WConfig.BaseAddress : baseAddress, approvalUrl);
 
             var country = link.LocaleCountry;
             var userPhotoUrl = link.GetPhotoPathIfNull();
@@ -590,7 +590,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
             provider.Add("MEMBERSHIP_DATE", link.MembershipDate.ToString("dd-MMM-yyyy"));
             provider.Add("BASE_ADDRESS", baseAddress);
             //provider.Add("PHOTO_URL", link.GetPhotoPathIfNull("200x200"));
-            provider.Add("PHOTO_URL", WebHelper.BuildAddress(baseAddress, string.IsNullOrEmpty(userPhotoUrl) ? WConstants.NoPhotoThumb : userPhotoUrl));
+            provider.Add("PHOTO_URL", WebUtil.BuildAddress(baseAddress, string.IsNullOrEmpty(userPhotoUrl) ? WConstants.NoPhotoThumb : userPhotoUrl));
             provider.Add("FIRST_NAME", user.FirstName);
             provider.Add("LAST_NAME", user.LastName);
             provider.Add("MEMBER_NAME", AccountHelper.GetPrefixedName(user, true));
@@ -605,7 +605,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
             var emailSubject = Substituter.Substitute(emailSubjectTemplate, provider);
             var recipients = AccountHelper.CollectEmailString(accountReviwers);
             recipients.AddRange(AccountHelper.CollectMobileNumbers(accountReviwers));
-            var to = DataHelper.ToDelimitedString(recipients, ';');
+            var to = DataUtil.ToDelimitedString(recipients, ';');
 
             var message = WebMessageQueue.Create(emailContent, string.Empty, MessageSendVia.Email, to, emailSubject, null);
             message.EnableMonitor = false;
@@ -634,7 +634,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
             provider.Add("MEMBERSHIP_DATE", link.MembershipDate.ToString("dd-MMM-yyyy"));
             provider.Add("BASE_ADDRESS", baseAddress);
             //provider.Add("PHOTO_URL", member.GetPhotoPath("200x200"));
-            provider.Add("PHOTO_URL", WebHelper.BuildAddress(baseAddress, string.IsNullOrEmpty(userPhotoUrl) ? WConstants.NoPhotoThumb : userPhotoUrl));
+            provider.Add("PHOTO_URL", WebUtil.BuildAddress(baseAddress, string.IsNullOrEmpty(userPhotoUrl) ? WConstants.NoPhotoThumb : userPhotoUrl));
             provider.Add("FIRST_NAME", user.FirstName);
             provider.Add("LAST_NAME", user.LastName);
             provider.Add("MOBILE", user.MobileNumber);

@@ -49,7 +49,7 @@ namespace WCMS.WebSystem.WebParts.Profile
 
                                 string groupUrl = group.PageUrl;
                                 if (groupUrl.StartsWith("/"))
-                                    groupUrl = WebHelper.CombineAddress(WConfig.BaseAddress, groupUrl);
+                                    groupUrl = WebUtil.CombineAddress(WConfig.BaseAddress, groupUrl);
 
                                 NamedValueProvider values = new NamedValueProvider();
                                 values.Add("RequesterName", string.IsNullOrWhiteSpace(user.FirstName) ? user.FullName : user.FirstName);
@@ -132,7 +132,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                 return false;
             };
 
-            return DataHelper.ToDataSet(from ug in userGroups
+            return DataUtil.ToDataSet(from ug in userGroups
                                         where (user = ug.User) != null && (g = ug.Group) != null &&
                                             (memberLink = MemberLink.Provider.GetByUserId(user.Id)) != null &&
                                             IsApprover(g)

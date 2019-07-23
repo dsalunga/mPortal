@@ -21,13 +21,13 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             var item = source ?? new MCComposer();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.Entry = DataHelper.Get(r, "Entry");
-            item.Locale = DataHelper.Get(r, WebColumns.Locale);
-            item.Work = DataHelper.Get(r, WebColumns.Work);
-            item.Description = DataHelper.Get(r, WebColumns.Description);
-            item.PhotoFile = DataHelper.Get(r, "PhotoFile");
-            item.NickName = DataHelper.Get(r, "NickName");
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.Entry = DataUtil.Get(r, "Entry");
+            item.Locale = DataUtil.Get(r, WebColumns.Locale);
+            item.Work = DataUtil.Get(r, WebColumns.Work);
+            item.Description = DataUtil.Get(r, WebColumns.Description);
+            item.PhotoFile = DataUtil.Get(r, "PhotoFile");
+            item.NickName = DataUtil.Get(r, "NickName");
             item.Active = DataUtil.GetInt32(r, WebColumns.Active);
             item.CompetitionId = DataUtil.GetId(r, "CompetitionId");
 

@@ -60,7 +60,7 @@ namespace WCMS.WebSystem.WebParts.Profile
             var countries = Country.GetList();
             Country country = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in Sportsfest.Provider.GetList()
                 select new
                 {
@@ -81,12 +81,12 @@ namespace WCMS.WebSystem.WebParts.Profile
 
         protected void cmdDownload_Click(object sender, EventArgs e)
         {
-            WebHelper.DownloadAsCsv(Select(), "Sportsfest");
+            WebUtil.DownloadAsCsv(Select(), "Sportsfest");
         }
 
         protected void cmdDownloadXml_Click(object sender, EventArgs e)
         {
-            WebHelper.DownloadAsXml(Select(), "Sportsfest", "Registration");
+            WebUtil.DownloadAsXml(Select(), "Sportsfest", "Registration");
         }
     }
 }

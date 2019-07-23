@@ -35,7 +35,7 @@ namespace WCMS.WebSystem.Apps.Integration.Bible
                 var search = query.Get("Search");
                 if (!string.IsNullOrEmpty(search))
                 {
-                    query.Set("Search", WebHelper.UrlEncode(search));
+                    query.Set("Search", WebUtil.UrlEncode(search));
                 }
 
                 linkSearch.HRef = query.BuildQuery();
@@ -148,14 +148,14 @@ namespace WCMS.WebSystem.Apps.Integration.Bible
                 {
                     var currentChapter = DataUtil.GetInt32(Request, "Chapter", -1); // cboChapters.SelectedValue;
                     if (currentChapter > 0)
-                        WebHelper.SetCboValue(cboChapters, currentChapter);
+                        WebUtil.SetCboValue(cboChapters, currentChapter);
                     else if (currentChapter == 0)
-                        WebHelper.SetCboValue(cboChapters, cboChapters.Items[cboChapters.Items.Count - 1].Value);
+                        WebUtil.SetCboValue(cboChapters, cboChapters.Items[cboChapters.Items.Count - 1].Value);
                 };
 
                 if (newSelectedBookName != null)
                 {
-                    WebHelper.SetCboValue(cboBooks, newSelectedBookName.Id);
+                    WebUtil.SetCboValue(cboBooks, newSelectedBookName.Id);
 
                     SetChapters();
                     selectChapter();
@@ -258,7 +258,7 @@ namespace WCMS.WebSystem.Apps.Integration.Bible
             cboVersions.DataBind();
 
             if (versionId > 0)
-                WebHelper.SetCboValue(cboVersions, versionId);
+                WebUtil.SetCboValue(cboVersions, versionId);
 
             //WebHelper.SetCboValue(cboLanguages, langaugeId);
 

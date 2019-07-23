@@ -36,8 +36,8 @@ namespace WCMS.WebSystem.Apps.Integration
                 else if(!string.IsNullOrEmpty(item.AdditionalNotes) && item.AdditionalNotes.Contains('|'))
                 {
                     var notes = item.AdditionalNotes.Split('|');
-                    var pos_curr = DataHelper.GetDouble(notes[0]);
-                    var pos_new = DataHelper.GetDouble(pos);
+                    var pos_curr = DataUtil.GetDouble(notes[0]);
+                    var pos_new = DataUtil.GetDouble(pos);
                     if ((pos_new == 0 && file.Equals("Playback")) || (pos_curr > pos_new && notes[1].Equals(file)))
                     {
                         context.Response.Write("RWD");

@@ -29,7 +29,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
 
                 var competitionId = DataUtil.GetId(Request, "CompetitionId");
                 if (competitionId > 0)
-                    WebHelper.SetCboValue(cboCompetition, competitionId);
+                    WebUtil.SetCboValue(cboCompetition, competitionId);
 
                 GridView1.DataBind();
 
@@ -83,7 +83,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
             query.Set("CompetitionId", competitionId);
             query.Set(WConstants.Load, "CandidateEdit.ascx");
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in MCCandidate.Provider.GetList(competitionId)
                 select new
                 {
@@ -129,7 +129,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
                 if (competition != null)
                 {
                     var checkedIds = Request.Form["chkChecked"];
-                    var ids = DataHelper.ParseCommaSeparatedIdList(checkedIds);
+                    var ids = DataUtil.ParseCommaSeparatedIdList(checkedIds);
                     if (ids.Count > 0)
                     {
                         bool hasCopyError = false;
@@ -232,7 +232,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
         protected void cmdDelete_Click(object sender, EventArgs e)
         {
             var checkedIds = Request.Form["chkChecked"];
-            var ids = DataHelper.ParseCommaSeparatedIdList(checkedIds);
+            var ids = DataUtil.ParseCommaSeparatedIdList(checkedIds);
             if (ids.Count > 0)
             {
                 foreach (var id in ids)

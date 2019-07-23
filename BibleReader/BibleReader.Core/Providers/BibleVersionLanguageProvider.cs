@@ -26,7 +26,7 @@ namespace WCMS.BibleReader.Core.Providers
         {
             var item = new BibleVersionLanguage();
             item.Id = DataUtil.GetId(r, "Id");
-            item.Name = DataHelper.Get(r, "Name");
+            item.Name = DataUtil.Get(r, "Name");
             //item.BibleTableName = DataHelper.Get(r, "BibleTableName");
             //item.BookNameCode = DataHelper.GetId(r, "BookNameCode");
             //item.Active = DataHelper.GetInt32(r, "Active");

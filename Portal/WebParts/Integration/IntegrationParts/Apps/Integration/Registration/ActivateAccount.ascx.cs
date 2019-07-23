@@ -32,7 +32,7 @@ namespace WCMS.WebSystem.Apps.Integration
             {
                 var context = new WContext(this);
                 int id = DataUtil.GetId(Request, "id");
-                string key = DataHelper.Get(Request, "key");
+                string key = DataUtil.Get(Request, "key");
                 if (id > 0 && !string.IsNullOrEmpty(key))
                 {
                     WebUser user = WebUser.Get(id);

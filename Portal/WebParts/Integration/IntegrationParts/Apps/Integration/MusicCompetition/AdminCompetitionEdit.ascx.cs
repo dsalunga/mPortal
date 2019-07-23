@@ -42,7 +42,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
                         cboInterpreters.DataBind();
 
                         if (item.BestInterpreterId > 0)
-                            WebHelper.SetCboValue(cboInterpreters, item.BestInterpreterId);
+                            WebUtil.SetCboValue(cboInterpreters, item.BestInterpreterId);
 
                         cboPeoplesChoice.DataSource = from i in candidates
                                                       select new
@@ -53,7 +53,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
                         cboPeoplesChoice.DataBind();
 
                         if (item.PeoplesChoiceId > 0)
-                            WebHelper.SetCboValue(cboPeoplesChoice, item.PeoplesChoiceId);
+                            WebUtil.SetCboValue(cboPeoplesChoice, item.PeoplesChoiceId);
 
                         panelBestInterpreter.Visible = true;
                         panelPeoplesChoice.Visible = true;

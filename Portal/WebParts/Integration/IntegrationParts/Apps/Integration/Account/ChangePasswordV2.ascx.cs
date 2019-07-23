@@ -52,11 +52,11 @@ namespace WCMS.WebSystem.WebParts.Profile
                 }
                 else
                 {
-                    var updateGlobalPwd = DataHelper.GetBool(element.GetParameterValue("UpdateEmailPassword"), false);
+                    var updateGlobalPwd = DataUtil.GetBool(element.GetParameterValue("UpdateEmailPassword"), false);
                     var emailDomainFilter = element.GetParameterValue("EmailDomainFilter");
                     var emailFilterPassed = string.IsNullOrEmpty(emailDomainFilter) || user.Email.EndsWith(emailDomainFilter, StringComparison.InvariantCultureIgnoreCase);
 
-                    string view = DataHelper.Get(Request, "View");
+                    string view = DataUtil.Get(Request, "View");
                     if (!string.IsNullOrEmpty(view) && view.Equals("Success", StringComparison.InvariantCultureIgnoreCase))
                     {
                         var successUpdateNote = element.GetParameterValue("SuccessUpdateNote");
@@ -123,7 +123,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                         var context = new WContext(this);
                         var element = context.Element;
                         var emailDomainFilter = element.GetParameterValue("EmailDomainFilter");
-                        var updateGlobalPwd = DataHelper.GetBool(element.GetParameterValue("UpdateEmailPassword"), false);
+                        var updateGlobalPwd = DataUtil.GetBool(element.GetParameterValue("UpdateEmailPassword"), false);
 
                         // Update Global Password
                         if (updateGlobalPwd && !string.IsNullOrEmpty(emailDomainFilter) && user.Email.EndsWith(emailDomainFilter, StringComparison.InvariantCultureIgnoreCase))
@@ -139,7 +139,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                             if (!string.IsNullOrEmpty(returnUrl))
                             {
                                 returnUrl = HttpUtility.UrlDecode(returnUrl);
-                                WQuery.StaticBaseRedirect(returnUrl);
+                                QueryParser.StaticBaseRedirect(returnUrl);
                             }
                             else
                             {

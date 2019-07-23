@@ -57,7 +57,7 @@ namespace WCMS.WebSystem.WebParts.Profile
         {
             string kwl = string.IsNullOrEmpty(keyword) ? string.Empty : keyword.ToLower();
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in GenericRegistration.Provider.GetList()
                 select new
                 {
@@ -82,12 +82,12 @@ namespace WCMS.WebSystem.WebParts.Profile
 
         protected void cmdDownload_Click(object sender, EventArgs e)
         {
-            WebHelper.DownloadAsCsv(Select(), "Registration");
+            WebUtil.DownloadAsCsv(Select(), "Registration");
         }
 
         protected void cmdDownloadXml_Click(object sender, EventArgs e)
         {
-            WebHelper.DownloadAsXml(Select(), "Registration", "Registration");
+            WebUtil.DownloadAsXml(Select(), "Registration", "Registration");
         }
     }
 }

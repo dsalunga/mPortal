@@ -11,7 +11,7 @@ namespace WCMS.WebSystem.Apps.Integration
     {
         public static string GenerateCode(DateTime datetime)
         {
-            return DataHelper.ReverseString(string.Format("{0:X16}", datetime.Ticks));
+            return DataUtil.ReverseString(string.Format("{0:X16}", datetime.Ticks));
         }
     }
 }

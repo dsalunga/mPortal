@@ -23,19 +23,19 @@ namespace WCMS.WebSystem.Apps.Integration
             item.Id = DataUtil.GetId(r, WebColumns.Id);
             item.ServiceScheduleID = DataUtil.GetInt32(r, "ServiceScheduleID");
             item.ServiceStartDate = DataUtil.GetDateTime(r, "ServiceStartDate");
-            item.ServiceName = DataHelper.Get(r, "ServiceName");
+            item.ServiceName = DataUtil.Get(r, "ServiceName");
             item.DateStarted = DataUtil.GetDateTime(r, "DateStarted");
             item.DateCompleted = DataUtil.GetDateTime(r, "DateCompleted");
             item.MemberId = DataUtil.GetId(r, "MemberId");
-            item.AbsentReason = DataHelper.Get(r, "AbsentReason");
-            item.CouncillorNotes = DataHelper.Get(r, "CouncillorNotes");
+            item.AbsentReason = DataUtil.Get(r, "AbsentReason");
+            item.CouncillorNotes = DataUtil.Get(r, "CouncillorNotes");
             item.CouncillorUserId = DataUtil.GetId(r, "CouncillorUserId");
             item.Status = DataUtil.GetInt32(r, "Status");
             item.DateApproved = DataUtil.GetDateTime(r, "DateApproved");
-            item.AdditionalNotes = DataHelper.Get(r, "AdditionalNotes");
+            item.AdditionalNotes = DataUtil.Get(r, "AdditionalNotes");
             item.AttendanceType = DataUtil.GetInt32(r, "AttendanceType");
             item.PageId = DataUtil.GetId(r, WebColumns.PageId);
-            item.Extra = DataHelper.Get(r, "Extra");
+            item.Extra = DataUtil.Get(r, "Extra");
             return item;
         }
 

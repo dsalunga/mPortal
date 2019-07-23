@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
             if (!Page.IsPostBack)
             {
                 var set = WebParameterSet.Get("ASOP Nomination");
-                var code = DataHelper.Get(Request, "Code");
+                var code = DataUtil.Get(Request, "Code");
                 var id = DataUtil.GetId(Request, "Id");
 
                 VoteUrl = set.GetParameterValue("Vote-Url");

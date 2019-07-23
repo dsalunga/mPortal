@@ -49,9 +49,9 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
         private static void CancelRedirect(string makeUpHomeUrl)
         {
             if (!string.IsNullOrEmpty(makeUpHomeUrl))
-                WQuery.StaticRedirect(makeUpHomeUrl, false);
+                QueryParser.StaticRedirect(makeUpHomeUrl, false);
             else
-                WQuery.StaticRedirect("/", false);
+                QueryParser.StaticRedirect("/", false);
         }
 
         protected void cmdContinue_Click(object sender, EventArgs e)

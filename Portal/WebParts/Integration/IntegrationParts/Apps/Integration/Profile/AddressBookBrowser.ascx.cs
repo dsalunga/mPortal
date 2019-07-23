@@ -35,7 +35,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                 var dropDownVisible = element.GetParameterValue(MemberConstants.DropDownVisibleKey);
                 var celebrantsFilter = element.GetParameterValue(MemberConstants.CelebrantsFilterVisible);
 
-                var forcePrivate = DataHelper.GetBool(element.GetParameterValue("ForcePrivate"), false);
+                var forcePrivate = DataUtil.GetBool(element.GetParameterValue("ForcePrivate"), false);
                 if (forcePrivate)
                     ObjectDataSource1.SelectParameters["forcePrivate"].DefaultValue = "true";
 
@@ -64,10 +64,10 @@ namespace WCMS.WebSystem.WebParts.Profile
 
                 #region Celebrants Filter
 
-                if (DataHelper.GetBool(celebrantsFilter, true))
+                if (DataUtil.GetBool(celebrantsFilter, true))
                 {
                     var now = DateTime.Now;
-                    var monthNames = DateTimeHelper.GetMonthNames();
+                    var monthNames = TimeUtil.GetMonthNames();
 
                     cboCelebrants.Items.Add(new ListItem(string.Format("* {0} *", monthNames[now.Month - 1].ToUpper()), now.Month.ToString()));
                     for (int i = 0; i < 12; i++)
@@ -85,7 +85,7 @@ namespace WCMS.WebSystem.WebParts.Profile
 
                 #region Group Filter
 
-                if (DataHelper.GetBool(dropDownVisible, true))
+                if (DataUtil.GetBool(dropDownVisible, true))
                 {
                     cboGroups.Items.AddRange(WebGroupViewModel.GenerateListItem(groupId, true).ToArray());
 
@@ -129,17 +129,17 @@ namespace WCMS.WebSystem.WebParts.Profile
                                         && (groupId == -1 || i.IsMemberOf(groupId))
                                         //&& (!(celebrantsFilter > 0 && celebrantsFilter < 13) || memberLink.MembershipDate.Month == celebrantsFilter)
                                         && (string.IsNullOrEmpty(loweredKeyword)
-                                            || (DataHelper.HasMatch(i.UserName, loweredKeyword)
-                                              || DataHelper.HasMatch(i.FirstName, loweredKeyword)
-                                              || DataHelper.HasMatch(i.LastName, loweredKeyword)
-                                              || DataHelper.HasMatch(i.MiddleName, loweredKeyword)
-                                              || DataHelper.HasMatch(i.Email, loweredKeyword)
-                                              || DataHelper.HasMatch(i.MobileNumber, loweredKeyword)
-                                              || DataHelper.HasMatch(memberLink.ExternalIdNo, loweredKeyword)
+                                            || (DataUtil.HasMatch(i.UserName, loweredKeyword)
+                                              || DataUtil.HasMatch(i.FirstName, loweredKeyword)
+                                              || DataUtil.HasMatch(i.LastName, loweredKeyword)
+                                              || DataUtil.HasMatch(i.MiddleName, loweredKeyword)
+                                              || DataUtil.HasMatch(i.Email, loweredKeyword)
+                                              || DataUtil.HasMatch(i.MobileNumber, loweredKeyword)
+                                              || DataUtil.HasMatch(memberLink.ExternalIdNo, loweredKeyword)
                                               || ((home = i.GetAddress(AddressTags.Home)) != null
-                                                   && (DataHelper.HasMatch(home.AddressLine1, loweredKeyword)
-                                                        || DataHelper.HasMatch(home.AddressLine2, loweredKeyword)
-                                                        || DataHelper.HasMatch(home.ZipCode, loweredKeyword)
+                                                   && (DataUtil.HasMatch(home.AddressLine1, loweredKeyword)
+                                                        || DataUtil.HasMatch(home.AddressLine2, loweredKeyword)
+                                                        || DataUtil.HasMatch(home.ZipCode, loweredKeyword)
                                                       )
                                                   )
                                              )
@@ -160,10 +160,10 @@ namespace WCMS.WebSystem.WebParts.Profile
                                      })
                 .OrderByDescending(i => i.LastUpdate).AsEnumerable();
 
-                return DataHelper.ToDataSet(orderedResult);
+                return DataUtil.ToDataSet(orderedResult);
             }
 
-            return DataHelper.GetEmptyDataSet();
+            return DataUtil.GetEmptyDataSet();
         }
 
         protected void cmdSearch_Click(object sender, EventArgs e)

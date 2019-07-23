@@ -35,7 +35,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                     #region Celebrants Filter
 
                     var now = DateTime.Now;
-                    var monthNames = DateTimeHelper.GetMonthNames();
+                    var monthNames = TimeUtil.GetMonthNames();
 
                     cboCelebrants.Items.Add(new ListItem(string.Format("* {0} *", monthNames[now.Month - 1].ToUpper()), now.Month.ToString()));
                     for (int i = 0; i < 12; i++)
@@ -127,10 +127,10 @@ namespace WCMS.WebSystem.WebParts.Profile
                                 UserProfileUrl = string.Format(userDetailsFormat, user.Id)
                             };
 
-                return DataHelper.ToDataSet(items);
+                return DataUtil.ToDataSet(items);
             }
 
-            return DataHelper.GetEmptyDataSet();
+            return DataUtil.GetEmptyDataSet();
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -237,9 +237,9 @@ namespace WCMS.WebSystem.WebParts.Profile
                                 Salutation = AccountHelper.GetNamePrefix(user, NamePrefixes.Brotherhood)
                             };
 
-                var users = DataHelper.ToDataSet(items);
+                var users = DataUtil.ToDataSet(items);
 
-                WebHelper.DownloadAsCsv(users, "Group_Users");
+                WebUtil.DownloadAsCsv(users, "Group_Users");
             }
         }
 

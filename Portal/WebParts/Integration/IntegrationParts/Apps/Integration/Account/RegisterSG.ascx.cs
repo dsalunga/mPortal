@@ -352,7 +352,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
                                 var email = txtEmail.Text.Trim();
                                 if (!string.IsNullOrEmpty(email) && Validator.IsRegexMatch(email, RegexPresets.Email))
                                 {
-                                    string noPhotoUrl = WebHelper.CombineAddress(WConfig.BaseAddress, WebRegistry.SelectNodeValue(MemberConstants.NoPhotoPathKey));
+                                    string noPhotoUrl = WebUtil.CombineAddress(WConfig.BaseAddress, WebRegistry.SelectNodeValue(MemberConstants.NoPhotoPathKey));
 
                                     member = new Member();
                                     member.MembershipDate = DataUtil.GetDateTime(txtMembershipDate.Text.Trim());
@@ -458,7 +458,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
 
             var loginUrl = paramSet.GetParameterValue("LoginUrl");
             if (loginUrl.StartsWith("/"))
-                loginUrl = WebHelper.CombineAddress(WConfig.BaseAddress, loginUrl);
+                loginUrl = WebUtil.CombineAddress(WConfig.BaseAddress, loginUrl);
 
             NamedValueProvider provider = new NamedValueProvider();
             provider.Add("CHURCH_ID_NO", member.EvalExternalId);
@@ -481,7 +481,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
             var recipients = AccountHelper.CollectEmailString(accountReviwers);
             recipients.AddRange(AccountHelper.CollectMobileNumbers(accountReviwers));
 
-            var to = DataHelper.ToDelimitedString(recipients, ';');
+            var to = DataUtil.ToDelimitedString(recipients, ';');
 
             WebMessageQueue msg = WebMessageQueue.Create(emailContent, smsContent, sendVia, to, emailSubject, null);
             msg.Update();
@@ -507,7 +507,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
 
             var loginUrl = paramSet.GetParameterValue("LoginUrl");
             if (loginUrl.StartsWith("/"))
-                loginUrl = WebHelper.CombineAddress(WConfig.BaseAddress, loginUrl);
+                loginUrl = WebUtil.CombineAddress(WConfig.BaseAddress, loginUrl);
 
             NamedValueProvider provider = new NamedValueProvider();
             provider.Add("CHURCH_ID_NO", member.ExternalIDNo);

@@ -128,7 +128,7 @@ namespace WCMS.WebSystem.Apps.Integration.Streaming
             UserSession i = null;
             UserSessionBrowser bs = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from user in users
                 where (i = sessions.Contains(user.Id) ? sessions.SessionCache[user.Id] : null) != null
                     && (bs = i.LastBrowserSession) != null
@@ -273,14 +273,14 @@ namespace WCMS.WebSystem.Apps.Integration.Streaming
                             Location = location
                         };
 
-            return DataHelper.ToDataSet(items);
+            return DataUtil.ToDataSet(items);
         }
 
         protected void cmdDownload_Click(object sender, EventArgs e)
         {
             int groupId = DataUtil.GetId(Request, WebColumns.GroupId);
             var users = SelectUsers(groupId, 1);
-            WebHelper.DownloadAsCsv(users, "Users");
+            WebUtil.DownloadAsCsv(users, "Users");
         }
 
         protected void cmdRevoke_Click(object sender, EventArgs e)
@@ -299,7 +299,7 @@ namespace WCMS.WebSystem.Apps.Integration.Streaming
             if (!string.IsNullOrEmpty(checkedIds))
             {
                 //var groupId = DataHelper.GetId(hGroupId.Value);
-                var ids = DataHelper.ParseCommaSeparatedIdList(checkedIds);
+                var ids = DataUtil.ParseCommaSeparatedIdList(checkedIds);
                 if (groupId > 0 && ids.Count > 0)
                 {
                     var manager = WSession.UserSessions;
@@ -319,7 +319,7 @@ namespace WCMS.WebSystem.Apps.Integration.Streaming
             string checkedIds = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(checkedIds))
             {
-                var ids = DataHelper.ParseCommaSeparatedIdList(checkedIds);
+                var ids = DataUtil.ParseCommaSeparatedIdList(checkedIds);
                 if (ids.Count > 0)
                 {
                     var manager = WSession.UserSessions;
@@ -362,7 +362,7 @@ namespace WCMS.WebSystem.Apps.Integration.Streaming
 
             var sb = new StringBuilder();
 
-            var idList = DataHelper.ParseCommaSeparatedIdList(ids);
+            var idList = DataUtil.ParseCommaSeparatedIdList(ids);
             foreach (var id in idList)
             {
                 var user = WebUser.Get(id);
@@ -377,7 +377,7 @@ namespace WCMS.WebSystem.Apps.Integration.Streaming
         {
             var checkedIds = hSelectedIds.Value;
             var groupId = DataUtil.GetId(hGroupId.Value);
-            var ids = DataHelper.ParseCommaSeparatedIdList(checkedIds);
+            var ids = DataUtil.ParseCommaSeparatedIdList(checkedIds);
             if (groupId > 0 && ids.Count > 0)
             {
                 var context = new WContext(this);
@@ -389,7 +389,7 @@ namespace WCMS.WebSystem.Apps.Integration.Streaming
                     // Send Notification Email
                     var contentTemplate = FileHelper.ReadFile(MapPath(ParameterizedWebObject.GetValue("ApprovedEmailToUser", element, set)));
                     var subjectTemplate = ParameterizedWebObject.GetValue("ApprovedEmailToUserSubject", "Integration Streaming Service - Congratulations! Your request has been approved", element, set);
-                    var streamingUrl = WebHelper.CombineAddress(context.Site.BuildAbsoluteUrl(), ParameterizedWebObject.GetValue("StreamUrl", element, set));
+                    var streamingUrl = WebUtil.CombineAddress(context.Site.BuildAbsoluteUrl(), ParameterizedWebObject.GetValue("StreamUrl", element, set));
 
                     foreach (int id in ids)
                     {
@@ -436,7 +436,7 @@ namespace WCMS.WebSystem.Apps.Integration.Streaming
         {
             var checkedIds = hSelectedIds.Value;
             var groupId = DataUtil.GetId(hGroupId.Value);
-            var ids = DataHelper.ParseCommaSeparatedIdList(checkedIds);
+            var ids = DataUtil.ParseCommaSeparatedIdList(checkedIds);
             if (groupId > 0 && ids.Count > 0)
             {
                 var reason = txtReason.Text.Trim();

@@ -21,14 +21,14 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             MCCandidate item = source ?? new MCCandidate();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
-            item.Name = DataHelper.Get(r, WebColumns.Name);
-            item.Entry = DataHelper.Get(r, "Entry");
-            item.Lyrics = DataHelper.Get(r, "Lyrics");
-            item.SourceUrl2 = DataHelper.Get(r, "SourceUrl2");
-            item.SourceUrl = DataHelper.Get(r, "SourceUrl");
-            item.Lyricist = DataHelper.Get(r, "Lyricist");
-            item.Interpreter = DataHelper.Get(r, "Interpreter");
-            item.PhotoFile = DataHelper.Get(r, "PhotoFile");
+            item.Name = DataUtil.Get(r, WebColumns.Name);
+            item.Entry = DataUtil.Get(r, "Entry");
+            item.Lyrics = DataUtil.Get(r, "Lyrics");
+            item.SourceUrl2 = DataUtil.Get(r, "SourceUrl2");
+            item.SourceUrl = DataUtil.Get(r, "SourceUrl");
+            item.Lyricist = DataUtil.Get(r, "Lyricist");
+            item.Interpreter = DataUtil.Get(r, "Interpreter");
+            item.PhotoFile = DataUtil.Get(r, "PhotoFile");
             item.CompetitionId = DataUtil.GetId(r, "CompetitionId");
             item.Rank = DataUtil.GetInt32(r, WebColumns.Rank);
             item.WinnerRank = DataUtil.GetInt32(r, "WinnerRank");

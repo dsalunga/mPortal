@@ -53,7 +53,7 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
                         if (item.Status == LessonReviewerSessionStatus.Draft && item.AdditionalNotes.Contains('|'))
                         {
                             var notes = item.AdditionalNotes.Split('|');
-                            var pos = DataHelper.GetDouble(notes[0]);
+                            var pos = DataUtil.GetDouble(notes[0]);
                             var file = notes[1];
                             if (!string.IsNullOrEmpty(file) && !file.Equals("Playback"))
                             {
@@ -73,7 +73,7 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
                                 query.Set("Method", "Status");
                                 query.Set("VarName", "makeUpTest");
                                 query.Set("Ticks", DateTime.Now.Ticks);
-                                scriptMakeUpTest.Text = WebHelper.BuildScriptTagWithSource(query.BuildQuery(true));
+                                scriptMakeUpTest.Text = WebUtil.BuildScriptTagWithSource(query.BuildQuery(true));
                             }
                             else
                             {
@@ -93,7 +93,7 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
                                     initQuery.Set("Play", play);
                                     hPlay.Value = play;
                                 }
-                                scriptMakeUpTest.Text = WebHelper.BuildScriptTagWithSource(initQuery.BuildQuery(true));
+                                scriptMakeUpTest.Text = WebUtil.BuildScriptTagWithSource(initQuery.BuildQuery(true));
                                 #endregion
 
                                 hShowExitAlert.Value = "1";
@@ -193,9 +193,9 @@ namespace WCMS.WebSystem.WebParts.Profile.LessonReviewer
         private static void CancelRedirect(string makeUpHomeUrl)
         {
             if (!string.IsNullOrEmpty(makeUpHomeUrl))
-                WQuery.StaticRedirect(makeUpHomeUrl, false);
+                QueryParser.StaticRedirect(makeUpHomeUrl, false);
             else
-                WQuery.StaticRedirect("/", false);
+                QueryParser.StaticRedirect("/", false);
         }
     }
 }

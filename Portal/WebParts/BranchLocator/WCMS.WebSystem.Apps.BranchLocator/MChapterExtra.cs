@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.Apps.BranchLocator
 
         public MChapterAnnouncement(JObject announce)
         {
-            Content = announce == null ? new JObject() : announce;
+            Content = announce ?? new JObject();
             Init();
         }
         public MChapterAnnouncement(string json)

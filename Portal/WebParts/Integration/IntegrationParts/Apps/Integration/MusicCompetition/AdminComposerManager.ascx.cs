@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
 
                 var competitionId = DataUtil.GetId(Request, "CompetitionId");
                 if (competitionId > 0)
-                    WebHelper.SetCboValue(cboCompetition, competitionId);
+                    WebUtil.SetCboValue(cboCompetition, competitionId);
 
                 GridView1.DataBind();
             }
@@ -75,7 +75,7 @@ namespace WCMS.WebSystem.Apps.MusicCompetition
             string kwl = string.IsNullOrEmpty(keyword) ? string.Empty : keyword.ToLower();
             MCCompetition competition = null;
 
-            return DataHelper.ToDataSet(
+            return DataUtil.ToDataSet(
                 from item in MCComposer.Provider.GetList(competitionId)
                 select new
                 {

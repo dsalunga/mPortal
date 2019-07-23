@@ -26,7 +26,7 @@ namespace WCMS.WebSystem.WebParts.Profile
         {
             if (!IsPostBack)
             {
-                string key = DataHelper.Get(Request, "key");
+                string key = DataUtil.Get(Request, "key");
                 if (string.IsNullOrWhiteSpace(key))
                 {
                     SetProfileInformation();
@@ -75,7 +75,7 @@ namespace WCMS.WebSystem.WebParts.Profile
                 txtEmail.Text = user.Email;
                 txtNewEmail.Text = user.NewEmail;
 
-                var forcePrivate = DataHelper.GetBool(element.GetParameterValue("ForcePrivate"), false);
+                var forcePrivate = DataUtil.GetBool(element.GetParameterValue("ForcePrivate"), false);
                 if (forcePrivate)
                     panelPrivacy.Visible = false;
 
@@ -272,7 +272,7 @@ namespace WCMS.WebSystem.WebParts.Profile
 
                         string confirmLink = context.BasePath; //context.PageElement.GetParameterValue(MemberConstants.ConfirmNewEmailUrlKey);
                         if (confirmLink.StartsWith("/"))
-                            confirmLink = WebHelper.CombineAddress(WConfig.BaseAddress, confirmLink);
+                            confirmLink = WebUtil.CombineAddress(WConfig.BaseAddress, confirmLink);
 
                         if (!string.IsNullOrEmpty(confirmLink))
                         {
