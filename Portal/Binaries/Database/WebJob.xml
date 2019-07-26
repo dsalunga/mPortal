@@ -58,14 +58,14 @@
   <WebJob>
     <Id>1</Id>
     <Name>RemoteIndexer</Name>
-    <RecurrenceId>2</RecurrenceId>
+    <RecurrenceId>-1</RecurrenceId>
     <Weekdays>36</Weekdays>
     <OccursEvery>1</OccursEvery>
-    <ExecutionStartDate>2014-11-20T01:49:00.79+08:00</ExecutionStartDate>
-    <ExecutionEndDate>2014-11-20T01:40:03.703+08:00</ExecutionEndDate>
-    <ExecutionStatus>1</ExecutionStatus>
+    <ExecutionStartDate>2019-07-26T17:48:40.817+08:00</ExecutionStartDate>
+    <ExecutionEndDate>2019-07-26T17:48:40.957+08:00</ExecutionEndDate>
+    <ExecutionStatus>2</ExecutionStatus>
     <ExecutionMessage />
-    <Enabled>0</Enabled>
+    <Enabled>1</Enabled>
     <TypeName>WCMS.WebSystem.WebParts.RemoteIndexer, WCMS.WebSystem.WebParts.RemoteIndexer.RemoteIndexerTask</TypeName>
     <StartDate>2010-11-18T14:46:10+08:00</StartDate>
     <Description>Indexes remote file system and storage libraries like FTP, HTTP FTP, Windows filesystem, UNIX filesystem, etc.</Description>
@@ -95,7 +95,7 @@
     <ExecutionEndDate>2012-08-05T14:22:39.333+08:00</ExecutionEndDate>
     <ExecutionStatus>1</ExecutionStatus>
     <ExecutionMessage>Thread was being aborted.</ExecutionMessage>
-    <Enabled>1</Enabled>
+    <Enabled>0</Enabled>
     <TypeName>WCMS.WebSystem.WebParts.EventCalendar,WCMS.WebSystem.WebParts.EventCalendar.EventReminderSender</TypeName>
     <StartDate>1909-12-31T21:30:00+08:00</StartDate>
     <Description>Event Calendar - Reminder Sender</Description>
@@ -125,7 +125,7 @@
     <ExecutionEndDate>2015-03-14T11:10:19.767+08:00</ExecutionEndDate>
     <ExecutionStatus>2</ExecutionStatus>
     <ExecutionMessage />
-    <Enabled>1</Enabled>
+    <Enabled>0</Enabled>
     <TypeName>WCMS.Framework,WCMS.Framework.Net.MessageProcessorTask</TypeName>
     <StartDate>2009-12-31T21:30:00+08:00</StartDate>
     <Description>Sends queued e-mail and/or SMS messages.</Description>
@@ -170,7 +170,7 @@
     <ExecutionEndDate>2012-09-24T14:36:15.6+08:00</ExecutionEndDate>
     <ExecutionStatus>2</ExecutionStatus>
     <ExecutionMessage />
-    <Enabled>1</Enabled>
+    <Enabled>0</Enabled>
     <TypeName>WCMS.WebSystem.WebParts.Registration,WCMS.WebSystem.WebParts.Registration.Task.MCVoteReminderTask</TypeName>
     <StartDate>1909-12-31T21:30:00+08:00</StartDate>
     <Description />
@@ -185,7 +185,7 @@
     <ExecutionEndDate>2012-10-26T19:59:35.39+08:00</ExecutionEndDate>
     <ExecutionStatus>2</ExecutionStatus>
     <ExecutionMessage />
-    <Enabled>1</Enabled>
+    <Enabled>0</Enabled>
     <TypeName>WCMS.WebSystem.Utilities, WCMS.WebSystem.Utilities.Spammer.SenderTask</TypeName>
     <StartDate>2012-10-01T00:00:00+08:00</StartDate>
     <Description>Email blaster based on XML data</Description>

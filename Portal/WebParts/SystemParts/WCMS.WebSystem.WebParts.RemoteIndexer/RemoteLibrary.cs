@@ -106,9 +106,9 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
 
         public void RunIndexer(string taskName, RemoteIndexerTask task = null)
         {
-            RemoteLibraryIndexer idxr = new RemoteLibraryIndexer(this.MaxSkip, task);
-            idxr.TaskName = taskName;
-            idxr.Start(this);
+            var indexer = new RemoteLibraryIndexer(this.MaxSkip, task);
+            indexer.TaskName = taskName;
+            indexer.Start(this);
 
             this.LastIndexDate = DateTime.Now;
             this.Update();

@@ -12,12 +12,14 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
     public class RemoteLibraryIndexer
     {
         private int _maxSkip;
+        private int _remSkips;
         private RemoteIndexerTask _task;
         private int _maxRetry = 3;
 
         public RemoteLibraryIndexer(int maxSkip, RemoteIndexerTask task)
         {
             _maxSkip = maxSkip;
+            _remSkips = maxSkip;
             _task = task;
         }
 
@@ -143,19 +145,23 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                         item.DeleteNode();
                     }
                 }
+
+                // reset the remaining skips if proceeding tries succeeded.
+                if (_maxSkip > _remSkips)
+                    _remSkips = _maxSkip;
             }
             catch (Exception ex)
             {
-                if (_maxSkip == 0)
+                if (_remSkips == 0)
                 {
                     throw ex;
                 }
-                else if (_maxSkip > 0)
+                else if (_remSkips > 0)
                 {
-                    WriteLog("Exception encountered. Skipping this error... (Skip remaining: {0})", _maxSkip);
+                    WriteLog("Exception encountered. Skipping this error... (Skip remaining: {0})", _remSkips);
                     WriteLog(ex.ToString());
 
-                    _maxSkip--;
+                    _remSkips--;
                 }
             }
 

@@ -64,7 +64,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Common
 
                     using (var response = ftpClient.GetResponse() as FtpWebResponse)
                     {
-                        var reader = new StreamReader(response.GetResponseStream(), Encoding.ASCII);
+                        var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                         string responseString = reader.ReadToEnd();
 
                         reader.Close();
@@ -150,7 +150,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Common
                     if (count != 0)
                     {
                         // translate from bytes to ASCII text
-                        tempString = Encoding.ASCII.GetString(buffer, 0, count);
+                        tempString = Encoding.UTF8.GetString(buffer, 0, count);
 
                         // continue building the string
                         sb.Append(tempString);
