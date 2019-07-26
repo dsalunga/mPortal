@@ -1,5 +1,10 @@
 @echo off
 
+SET mypath=%~dp0
+REM echo %mypath:~0,-1%
+
+cd /d %mypath:~0,-1%
+
 REM call "IISExpress - SetVars.cmd"
 cd ..
 set PortalPath=%cd%
