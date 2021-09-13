@@ -210,4 +210,24 @@
     <RedirectUrl />
     <ProtocolId>0</ProtocolId>
   </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>19</Id>
+    <SiteId>25</SiteId>
+    <HostName>naswi.myasustor.com</HostName>
+    <UrlPath />
+    <Port>9000</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>20</Id>
+    <SiteId>25</SiteId>
+    <HostName>naswi.myasustor.com</HostName>
+    <UrlPath />
+    <Port>44300</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>1</ProtocolId>
+  </WebSiteIdentity>
 </mPortal>

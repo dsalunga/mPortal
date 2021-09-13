@@ -137,7 +137,7 @@
   <WebUser>
     <UserId>3</UserId>
     <UserName>admin</UserName>
-    <Password>Vwl9clkx06QD3nM/dE4s60Z/2HmV0khR5zAU5BrdZKyiXHAu5jo6wI2tIzIXr9iBNhVmhyGK1XfoDWMKjmAw6I7yXae8KqZIepy/sErqo9nunwtrA62Y5jdpn1l3YyEcMQtkEJcDeMKRKYBNMIa13XA7O0tl+ontlbXxnJHogyM=</Password>
+    <Password>NwykM5LQ4cBbLy3i68O12QcgxK95Ipb74SZESCgUYUxZ4iPLizaqO1G1YDtHaFRt00x9//OwgvAXPJR9WUGyzd3fF5eVBqqS3SSwqbJNVjb8HW4dprntXPQbFU5XIsGddgWNK6WsW9YacgdAO5Cohf+WbTICqV/i1RHoyxI2LHs=</Password>
     <FirstName>Portal</FirstName>
     <MiddleName />
     <LastName>Administrator</LastName>
@@ -155,7 +155,7 @@
     <LastLogin>2012-10-10T12:48:36.53+08:00</LastLogin>
     <StatusText />
     <PasswordExpiryDate>1800-01-01T00:00:00+08:00</PasswordExpiryDate>
-    <PhotoPath>https://ams.mcgi.church/images/uploads/brethren/photos/MAG00049.jpg</PhotoPath>
+    <PhotoPath>/Content/Assets/User-Photos/U3.jpg</PhotoPath>
     <ProviderId>-1</ProviderId>
     <Status>1</Status>
     <MaritalStatusId>2</MaritalStatusId>

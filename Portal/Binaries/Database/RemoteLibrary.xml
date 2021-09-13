@@ -95,10 +95,10 @@
     <Name>Local FTP</Name>
     <SourceTypeId>0</SourceTypeId>
     <BaseAddress>ftp://localhost/</BaseAddress>
-    <UserName />
-    <Password />
+    <UserName>admin</UserName>
+    <Password>dev123</Password>
     <LastIndexDate>2014-11-20T01:40:03.7+08:00</LastIndexDate>
-    <Active>1</Active>
+    <Active>0</Active>
     <DisplayBaseAddress />
     <DownloadCountSince>2013-03-24T10:34:32.463+08:00</DownloadCountSince>
     <FileCacheEnabled>0</FileCacheEnabled>
@@ -127,5 +127,24 @@
     <FileCacheMaxSize>0</FileCacheMaxSize>
     <FileCacheMinDiskFreeMB>-1</FileCacheMinDiskFreeMB>
     <Size>0</Size>
+  </RemoteLibrary>
+  <RemoteLibrary>
+    <Id>5</Id>
+    <Name>Daniel's Photos</Name>
+    <SourceTypeId>0</SourceTypeId>
+    <BaseAddress>ftp://naswi/Daniel/Photos/</BaseAddress>
+    <UserName>daniel</UserName>
+    <Password>Dcs431900</Password>
+    <LastIndexDate>2019-07-26T23:59:21.297+08:00</LastIndexDate>
+    <Active>1</Active>
+    <DisplayBaseAddress />
+    <DownloadCountSince>2019-07-26T02:10:47.86+08:00</DownloadCountSince>
+    <FileCacheEnabled>0</FileCacheEnabled>
+    <FileCacheFolder />
+    <FileCacheMinDownloadCount>-1</FileCacheMinDownloadCount>
+    <FileCacheCeilingSize>-1</FileCacheCeilingSize>
+    <FileCacheMaxSize>-1</FileCacheMaxSize>
+    <FileCacheMinDiskFreeMB>-1</FileCacheMinDiskFreeMB>
+    <Size>545023036424</Size>
   </RemoteLibrary>
 </mPortal>
