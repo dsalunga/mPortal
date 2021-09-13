@@ -87,34 +87,37 @@ namespace WCMS.WebSystem.WebParts.Article
             var subs = new List<WebSubscription>();
             var ignoreGroups = element.GetParameterValue(ArticleConstants.IgnoreGroupsKey);
             var subMode = element.GetParameterValue(ArticleConstants.ModeKey, SubscriptionModes.AllGroups.ToString());
-            var partId = WPart.Get("Article").Id;
-
-            switch (DataUtil.GetInt32(subMode))
+            var articlePart = WPart.Get("Article");
+            if (articlePart != null)
             {
-                case SubscriptionModes.AllGroups:
-                    GetAllUserGroupSubscriptions(subs, partId, ignoreGroups);
-                    break;
+                var partId = articlePart.Id;
+                switch (DataUtil.GetInt32(subMode))
+                {
+                    case SubscriptionModes.AllGroups:
+                        GetAllUserGroupSubscriptions(subs, partId, ignoreGroups);
+                        break;
 
-                case SubscriptionModes.GroupSpecific:
-                    var subGroup = element.GetParameterValue(ArticleConstants.GroupKey);
-                    if (!string.IsNullOrEmpty(subGroup))
-                    {
-                        var g = WebGroup.Get(subGroup);
-                        if (g != null)
-                            subs.AddRange(from sub in WebSubscription.GetList(WebObjects.WebGroup, g.Id, partId)
-                                          where sub.IsAllowed
-                                          select sub);
-                    }
-                    break;
+                    case SubscriptionModes.GroupSpecific:
+                        var subGroup = element.GetParameterValue(ArticleConstants.GroupKey);
+                        if (!string.IsNullOrEmpty(subGroup))
+                        {
+                            var g = WebGroup.Get(subGroup);
+                            if (g != null)
+                                subs.AddRange(from sub in WebSubscription.GetList(WebObjects.WebGroup, g.Id, partId)
+                                              where sub.IsAllowed
+                                              select sub);
+                        }
+                        break;
 
-                case SubscriptionModes.ByInstance:
-                    GetInstanceSubscriptions(context, subs, partId);
-                    break;
+                    case SubscriptionModes.ByInstance:
+                        GetInstanceSubscriptions(context, subs, partId);
+                        break;
 
-                case SubscriptionModes.AllGroupsPlusInstance:
-                    GetAllUserGroupSubscriptions(subs, partId, ignoreGroups);
-                    GetInstanceSubscriptions(context, subs, partId);
-                    break;
+                    case SubscriptionModes.AllGroupsPlusInstance:
+                        GetAllUserGroupSubscriptions(subs, partId, ignoreGroups);
+                        GetInstanceSubscriptions(context, subs, partId);
+                        break;
+                }
             }
 
             #endregion

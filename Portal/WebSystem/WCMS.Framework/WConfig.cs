@@ -74,6 +74,7 @@ namespace WCMS.Framework
             else if (id == ALLOW_FULL_CACHE)
             {
                 _allowFullCache = null;
+                // Re-update the static/cache value when Registry is updated.
                 var value = AllowCache;
             }
             //else if (id == ENABLE_PERF_LOGGING_ID)
@@ -413,6 +414,7 @@ namespace WCMS.Framework
                     var wcfg = ConfigUtil.Get(ALLOW_CACHE);
                     if (!string.IsNullOrEmpty(wcfg))
                     {
+                        // The web.config entry takes higher priority and can override whatever is in the Registry.
                         _allowFullCache = DataUtil.GetBool(wcfg, false);
                     }
                     else
