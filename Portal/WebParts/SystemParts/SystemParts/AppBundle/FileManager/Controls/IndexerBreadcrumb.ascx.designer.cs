@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WCMS.WebSystem.WebParts.RemoteIndexer.Controls {
-    
-    
-    public partial class IndexerBreadcrumb {
-        
+namespace WCMS.WebSystem.WebParts.RemoteIndexer.Controls
+{
+
+
+    public partial class IndexerBreadcrumb
+    {
+
         /// <summary>
         /// lRoot control.
         /// </summary>

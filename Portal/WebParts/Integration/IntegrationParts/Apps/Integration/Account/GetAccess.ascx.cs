@@ -14,7 +14,7 @@ using WCMS.WebSystem.Agent;
 using WCMS.WebSystem.Apps.Integration;
 using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
 using WCMS.WebSystem.Apps.Integration;
-using WCMS.WebSystem.Apps.Integration.Ext;
+using WCMS.WebSystem.Apps.Integration.ExtApp;
 
 namespace WCMS.WebSystem.Apps.Integration.Account
 {
@@ -188,7 +188,7 @@ namespace WCMS.WebSystem.Apps.Integration.Account
                 if (!string.IsNullOrEmpty(externalId))
                 {
                     // Check external ONE
-                    var info = ExtProvider.GetUserInfo(externalId);
+                    var info = ExtAppProvider.GetUserInfo(externalId);
                     if (info != null)
                     {
                         recoverStatus = AccountRecoverStatus.NewUserWithONE;

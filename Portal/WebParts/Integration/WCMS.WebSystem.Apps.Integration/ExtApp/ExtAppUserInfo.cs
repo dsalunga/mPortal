@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using WCMS.Common.Utilities;
 
-namespace WCMS.WebSystem.Apps.Integration.Ext
+namespace WCMS.WebSystem.Apps.Integration.ExtApp
 {
-    public class ExtUserInfo : MemberProfileModel
+    public class ExtAppUserInfo : MemberProfileModel
     {
-        public static ExtUserInfo From(DataRow userInfo)
+        public static ExtAppUserInfo From(DataRow userInfo)
         {
-            var item = new ExtUserInfo();
+            var item = new ExtAppUserInfo();
             item.UserName = DataUtil.Get(userInfo, "username");
             item.ExternalId = DataUtil.Get(userInfo, "idno");
             item.LastName = DataUtil.Get(userInfo, "lname");

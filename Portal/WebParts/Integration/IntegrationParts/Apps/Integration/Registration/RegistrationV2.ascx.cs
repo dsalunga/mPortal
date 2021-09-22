@@ -25,7 +25,7 @@ using WCMS.Framework.Core.Shared;
 using WCMS.Framework.Security;
 
 using WCMS.WebSystem.Agent;
-using WCMS.WebSystem.Apps.Integration.Ext;
+using WCMS.WebSystem.Apps.Integration.ExtApp;
 using WCMS.WebSystem.Apps.Integration;
 using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
 
@@ -61,9 +61,9 @@ namespace WCMS.WebSystem.Apps.Integration
                 if (enableExternalAccounts && loginInfoObj != null)
                 {
                     var loginInfo = (KeyValuePair<string, string>)loginInfoObj;
-                    var oneAppName = element.GetParameterValue(Ext.ExtConstants.PARAM_APP_ONE_NAME);
+                    var oneAppName = element.GetParameterValue(ExtApp.ExtAppConstants.PARAM_APP_ONE_NAME);
 
-                    var userInfo = ExtProvider.GetUserInfo(loginInfo.Key, context);
+                    var userInfo = ExtAppProvider.GetUserInfo(loginInfo.Key, context);
                     if (userInfo != null)
                     {
                         cboCountries.DataSource = Country.GetList();
@@ -285,7 +285,7 @@ namespace WCMS.WebSystem.Apps.Integration
             var loginInfoObj = Session[AccountConstants.LoginInfoSessionKey];
             if (loginInfoObj != null)
             {
-                var userInfo = Session[IntegrationAppSessions.EXT_USER_INFO_KEY] as ExtUserInfo;
+                var userInfo = Session[IntegrationAppSessions.EXT_USER_INFO_KEY] as ExtAppUserInfo;
                 if (userInfo != null)
                 {
                     var isAccountDirty = false;
@@ -418,7 +418,7 @@ namespace WCMS.WebSystem.Apps.Integration
             var externalId = txtExternalID.Text.Trim();
             //var userName = txtExternalID.Text.Trim(); //txtUserName.Text.Trim();
 
-            ExtUserInfo userInfo = null;
+            ExtAppUserInfo userInfo = null;
             bool isExternalRegister = DataUtil.GetBool(hLinkExternalRegister.Value, false);
             if (isExternalRegister)
             {
@@ -426,7 +426,7 @@ namespace WCMS.WebSystem.Apps.Integration
                 if (loginInfoObj != null)
                 {
                     var loginInfo = (KeyValuePair<string, string>)loginInfoObj;
-                    userInfo = Session[IntegrationAppSessions.EXT_USER_INFO_KEY] as ExtUserInfo;
+                    userInfo = Session[IntegrationAppSessions.EXT_USER_INFO_KEY] as ExtAppUserInfo;
                     if (userInfo != null)
                     {
                         email = userInfo.Email;

@@ -172,9 +172,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MusicModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Ext\ExtConstants.cs" />
-    <Compile Include="Ext\ExtProvider.cs" />
-    <Compile Include="Ext\ExtUserInfo.cs" />
+    <Compile Include="ExtApp\ExtAppConstants.cs" />
+    <Compile Include="ExtApp\ExtAppProvider.cs" />
+    <Compile Include="ExtApp\ExtAppUserInfo.cs" />
     <Compile Include="ProfileUpdateEvent.cs" />
     <Compile Include="MusicCompetition\Providers\MCCandidateSqlProvider.cs" />
     <Compile Include="MusicCompetition\Providers\MCComposerProvider.cs" />

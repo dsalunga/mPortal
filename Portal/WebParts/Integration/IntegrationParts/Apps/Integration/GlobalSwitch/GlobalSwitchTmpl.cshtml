@@ -157,18 +157,18 @@
             @if (isMember)
             {
                 <li><a href="@portalRootUrl/chapters/@portalSessionId"><span class="glyphicon glyphicon-map-marker nav-icon"></span>Chapters</a></li>
-                <li><a href="https://musicministry.someorg.org/Files/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mm_logo.jpg" />Hymns</a></li>
+                <li><a href="/musicportal/Files/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mm_logo.jpg" />Files</a></li>
                 <li><a href="@portalRootUrl/LiveStream/@portalSessionId"><span class="glyphicon glyphicon-film nav-icon"></span>Live Stream</a></li>
-                <li><a href="https://teatrokristiano.someorg.org/Files/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />TK Library</a></li>
-                <li><a href="https://external.someorg.org" target="_blank"><span class="glyphicon glyphicon-user nav-icon"></span>Integration External</a></li>
+                @*<li><a href="https://teatrokristiano.someorg.org/Files/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />TK Library</a></li>*@
+                @*<li><a href="https://external.someorg.org" target="_blank"><span class="glyphicon glyphicon-user nav-icon"></span>Integration External</a></li>*@
                 if (wsession.IsSiteManager)
                 {
                     <li><a href="@portalRootUrl/settings/@portalSessionId"><span class="glyphicon glyphicon-cog nav-icon"></span>Settings</a></li>
                 }
-                else
+                @*else
                 {
                     <li><a href="https://mail.someorg.org.sg/" target="_blank"><img style="margin-top: 26px; margin-bottom" class="img-icon" src="/Content/Parts/Integration/Assets/images/zimbra-logo.png" />SG Mail</a></li>
-                }
+                }*@
                 @*<li><a href="http://link.someorg.org" target="_blank"><img style="margin-top: 26px; margin-bottom: 10px" class="img-icon" src="/Content/Parts/Integration/Assets/images/link_logo.jpg" />Integration Link</a></li>*@
             }
             else
@@ -176,42 +176,43 @@
                 @*<li><a href="@portalRootUrl/Apps/"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi-broadcast-app.jpg" />Integration &amp; UNTV Apps</a></li>*@
                 <li><a href="@portalRootUrl/chapters"><span class="glyphicon glyphicon-map-marker nav-icon"></span>Chapters</a></li>
                 @*<li><a href="http://www.someorg.org/community-prayer/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/cp.png" />Community Prayer</a></li>*@
-                <li><a href="http://www.someorg.org/mcgi-calendar/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi-calendar.png" />Integration Calendar</a></li>
+                @*<li><a href="http://www.someorg.org/mcgi-calendar/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi-calendar.png" />Integration Calendar</a></li>*@
                 <li><a href="@portalRootUrl/help-feedback"><span class="glyphicon glyphicon-question-sign nav-icon"></span>Help &amp; Feedback</a></li>
             }
         </ul>
         @if (isMember)
         {
             //var isSitePortal = portalSite.Id == site.Id;
-            <h3 class="popover-title" style="padding-top: 10px">Ministries &amp; Groups</h3>
-            <ul class="bs-glyphicons">
-                @if (isSG)
-                {
-                    <li><a href="https://sg.someorg.org/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Singapore</a></li>
-                }
-                <li><a href="https://musicministry.someorg.org/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mm_logo.jpg" />Music Ministry</a></li>
-                <li><a href="https://teatrokristiano.someorg.org/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Teatro Kristiano</a></li>
+    <h3 class="popover-title" style="padding-top: 10px">Groups &amp; Communities</h3>
+    <ul class="bs-glyphicons">
+        @if (isSG)
+        {
+            <li><a href="/SingaporeV2/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Singapore Portal</a></li>
+            <li><a href="/Singapore/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Singapore Portal (V1)</a></li>
+        }
+        <li><a href="/musicportal/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mm_logo.jpg" />Music Portal</a></li>
+        @*<li><a href="https://teatrokristiano.someorg.org/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Teatro Kristiano</a></li>*@
 
-                @*@if (!isSitePortal)
-                    {
-                        <li><a href="@portalRootUrl/@portalSessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Integration Portal</a></li>
-                    }*@
-            </ul>
+        @*@if (!isSitePortal)
+        {
+            <li><a href="@portalRootUrl/@portalSessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Integration Portal</a></li>
+        }*@
+    </ul>
         }
         else
         {
             <h3 class="popover-title" style="padding-top: 10px">Social Media</h3>
             <ul class="bs-glyphicons">
-                <li><a href="http://esoriano.wordpress.com/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/webawards.png">Bro Eli's Blog</a></li>
-                <li><a href="https://twitter.com/BroEliSoriano" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/BroEliSorianoTwitter.jpg">Bro Eli's Twitter</a></li>
-                <li><a href="https://www.facebook.com/Integration.org" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/Integration-fb.png">MCGI.org FB</a></li>
+                @*<li><a href="http://esoriano.wordpress.com/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/webawards.png">Bro Eli's Blog</a></li>*@
+                <li><a href="https://twitter.com/dsalunga" target="_blank"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>@@dsalunga's Twitter</a></li>
+                @*<li><a href="https://www.facebook.com/Integration.org" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/Integration-fb.png">MCGI.org FB</a></li>*@
             </ul>
         }
-        <h3 class="popover-title" style="padding-top: 10px">Websites</h3>
+        <h3 class="popover-title" style="padding-top: 10px">Official Websites</h3>
         <ul class="bs-glyphicons">
-            <li><a href="http://www.someorg.org/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">Integration.org</a></li>
-            <li><a href="http://www.untvweb.com/" target="_blank"><img class="img-icon" style="padding-top: 12px; padding-bottom: 10px" src="/Content/Parts/Integration/Assets/images/untv-logo2.png">UNTVweb.com</a></li>
-            <li><a href="http://www.untvweb.com/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/angdatingdaan.com_.png">Ang Dating Daan</a></li>
+            <li><a href="/en-SG/" target="_blank"><img class="img-icon flag-shadow" src="/Content/Assets/images/flags/sg.png">Singapore Group</a></li>
+            @*<li><a href="http://www.untvweb.com/" target="_blank"><img class="img-icon" style="padding-top: 12px; padding-bottom: 10px" src="/Content/Parts/Integration/Assets/images/untv-logo2.png">UNTVweb.com</a></li>
+            <li><a href="http://www.untvweb.com/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/angdatingdaan.com_.png">Ang Dating Daan</a></li>*@
         </ul>
         <div style="background-color: #f5f5f5;" class="text-center more-apps">
             <a href="@portalRootUrl/Explore/@portalSessionId" @*target="_blank"*@ style="color: #333; padding: 10px; text-decoration: none; display: block; margin-top: 10px">Explore more...</a>

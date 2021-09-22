@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
 
 using WCMS.Common.Utilities;
-using WCMS.WebSystem.Apps.Integration.Ext;
+using WCMS.WebSystem.Apps.Integration.ExtApp;
 
 namespace WCMS.WebSystem.WebParts.Profile
 {
@@ -49,7 +49,7 @@ namespace WCMS.WebSystem.WebParts.Profile
             var externalId = txtSearchExternalId.Text.Trim();
             if (!string.IsNullOrEmpty(externalId))
             {
-                var userInfo = ExtProvider.GetUserInfo(externalId);
+                var userInfo = ExtAppProvider.GetUserInfo(externalId);
                 if (userInfo != null)
                 {
                     lblUsername.InnerHtml = userInfo.UserName;

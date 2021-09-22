@@ -173,7 +173,7 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
 
         public int GetCount()
         {
-            throw new NotImplementedException();
+            return GetList().Count();
         }
 
         #endregion

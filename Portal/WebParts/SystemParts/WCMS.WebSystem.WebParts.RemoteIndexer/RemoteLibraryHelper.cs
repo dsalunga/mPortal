@@ -31,6 +31,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                         break;
                 }
             }
+            HttpContext.Current.Response.End();
         }
 
         public static void InvokeWindowsFileDownload(RemoteItem item, bool force)
@@ -97,7 +98,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
             {
                 if (request.Headers["If-Range"].Replace("\"", "") != eTag)
                 {
-                    response.StatusCode = 412;
+                    response.StatusCode = (int)HttpStatusCode.PreconditionFailed;
                     return;
                 }
             }
@@ -111,6 +112,9 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                         long fileLength = ftpResponse.ContentLength;
                         long startBytes = 0;
 
+                        if(fileLength < 0)
+                            fileLength = item.Size;
+
                         response.Clear();
                         response.Buffer = false;
                         //httpResponse.AddHeader("Content-MD5", GetMd5Hash(myFile));
@@ -120,11 +124,11 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
 
                         if (force)
                         {
-                            response.AppendHeader("content-disposition", string.Format("attachment; filename=\"{0}\"", item.Name));
+                            response.AppendHeader("Content-Disposition", string.Format("attachment; filename=\"{0}\"", item.Name));
                         }
                         else
                         {
-                            response.AppendHeader("content-disposition", string.Format("filename=\"{0}\"", item.Name));
+                            response.AppendHeader("Content-Disposition", string.Format("filename=\"{0}\"", item.Name));
                             response.ContentType = MIMEHelper.GetMIMEType(item.Name);
                         }
                         response.AddHeader("Content-Length", fileLength.ToString());
@@ -134,11 +138,14 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
 
                         if (request.Headers["Range"] != null)
                         {
-                            response.StatusCode = 206;
+                            response.StatusCode = (int)HttpStatusCode.PartialContent;
                             string[] range = request.Headers["Range"].Split(new char[] { '=', '-' });
                             startBytes = Convert.ToInt64(range[1]);
                             if (startBytes < 0 || startBytes >= fileLength)
+                            {
                                 return;
+                            }
+                                
                         }
 
                         if (startBytes > 0)
@@ -166,6 +173,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                             }
                             while (readCount > 0 && response.IsClientConnected);
 
+                            //response.StatusCode = (int)HttpStatusCode.OK;
                             responseStream.Close();
 
                             // #1 should resolve:
@@ -189,8 +197,6 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
 
                 LogHelper.WriteLog(ex);
             }
-
-            response.End();
         }
     }
 }

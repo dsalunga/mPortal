@@ -2,9 +2,9 @@
     CodeBehind="ConfigPublication.ascx.cs" %>
 <%@ Register Assembly="FredCK.FCKeditorV2" Namespace="FredCK.FCKeditorV2" TagPrefix="FCKeditorV2" %>
 <%@ Register Src="~/Content/Controls/TabControl.ascx" TagName="TabControl" TagPrefix="uc1" %>
-<%@ Register Src="../Central/Controls/WebSiteElementSelector.ascx" TagName="WebSiteElementSelector"
+<%@ Register Src="~/Content/Parts/Central/Controls/WebSiteElementSelector.ascx" TagName="WebSiteElementSelector"
     TagPrefix="uc2" %>
-<%@ Register Src="../Central/Controls/SaveInFolder.ascx" TagName="SaveInFolder" TagPrefix="uc3" %>
+<%@ Register Src="~/Content/Parts/Central/Controls/SaveInFolder.ascx" TagName="SaveInFolder" TagPrefix="uc3" %>
 <%@ Register Src="Controls/AdminTabControl.ascx" TagName="AdminTabControl" TagPrefix="uc4" %>
 <asp:HiddenField ID="hidObjectId" runat="server" Value="-1" />
 <asp:HiddenField ID="hidRecordId" runat="server" Value="-1" />

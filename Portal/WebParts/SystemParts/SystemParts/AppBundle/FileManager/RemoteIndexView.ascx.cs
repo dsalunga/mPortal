@@ -45,9 +45,8 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                     //var absPath = MapPath(currentPath);
                     //bool isFolder = FileHelper.IsFolder(absPath);
 
-                    imgThumbnail.Src = item.IsDirectory ? "~/Content/Assets/Images/SkyDrive/NonEmptyDocumentFolder.png" : "~/Content/Assets/Images/SkyDrive/Default.png";
-
                     context.SetOpen("Download");
+                    context.Set("Name", item.Name);
 
                     var userSession = WSession.Current.UserSession;
                     if (userSession != null)
@@ -75,15 +74,15 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                     lblDateModified.InnerHtml = item.DateModified.ToString();
 
                     var q = context.Query.Clone();
-                    q.SetOpen("Download");
-                    q.Set("Name", item.Name);
+                    //q.SetOpen("Download");
+                    //q.Set("Name", item.Name);
                     q.BaseAddress = context.Site.BuildAbsoluteUrl();
-
                     var permalink = q.BuildQuery();
                     linkPermalink.InnerHtml = permalink; //item.FullPath; // WebHelper.CombineAddress(WConfig.BaseAddress, item.RelativePath);
                     linkPermalink.HRef = permalink;
 
                     linkOpen.HRef = context.BuildQuery();
+                    imgThumbnail.Src = item.IsDirectory ? "~/Content/Assets/Images/SkyDrive/NonEmptyDocumentFolder.png" : item.IsWebImage && item.Size <= FileHelper.Megabyte * 10 ? context.BuildQuery() : item.IsWebImage ? "~/Content/Assets/Images/image.png" : "~/Content/Assets/Images/www_link.png";
                     linkDownload.HRef = context.Set("Force", "true").BuildQuery();
 
                     PerformanceLog.EndLog(string.Format("RemoteIndexer-IndexView: {0}/{1}", context.ObjectId, context.RecordId), sw, context.PageId);

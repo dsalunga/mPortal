@@ -163,7 +163,10 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                                  FullPath = i.BuildDisplayPath(library),
                                  IsFolder = i.IsDirectory,
                                  FolderLinkFormat = query.BuildQuery(),
-                                 ItemUrl = itemQuery.Set("Id", i.Id).BuildQuery()
+                                 ItemUrl = itemQuery.Set("Id", i.Id).BuildQuery(),
+                                 IsWebImage = i.IsWebImage,
+                                 CanPreview = i.CanPreview,
+                                 PreviewUrl = i.CanPreview ? itemQuery.Clone().SetOpen("Download").Set("Name", i.Name).BuildQuery() : ""
                              };
 
                 return DataUtil.ToDataSet(result);

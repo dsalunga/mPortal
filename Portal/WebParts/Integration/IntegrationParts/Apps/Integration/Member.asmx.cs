@@ -7,7 +7,7 @@ using WCMS.Framework;
 using WCMS.Framework.Security;
 using WCMS.Framework.Utilities;
 using WCMS.WebSystem.Apps.Integration;
-using WCMS.WebSystem.Apps.Integration.Ext;
+using WCMS.WebSystem.Apps.Integration.ExtApp;
 
 namespace WCMS.WebSystem.Apps.Integration
 {
@@ -38,12 +38,12 @@ namespace WCMS.WebSystem.Apps.Integration
         public WSUserInfo OneLogin(string userName, string password, bool loginSession = false)
         {
             WSUserInfo userInfo = null;
-            var provider = new ExtProvider();
+            var provider = new ExtAppProvider();
             var result = provider.LoginCheck(userName, password);
 
             if (result.StatusCode == LoginCodes.Success)
             {
-                var oneUser = ExtProvider.GetUserInfo(userName);
+                var oneUser = ExtAppProvider.GetUserInfo(userName);
                 if (oneUser != null)
                 {
                     userInfo = new WSUserInfo();

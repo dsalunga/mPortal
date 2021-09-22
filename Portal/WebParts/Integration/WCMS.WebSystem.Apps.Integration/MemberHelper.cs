@@ -12,7 +12,7 @@ using WCMS.Framework.Utilities;
 using WCMS.WebSystem.Apps.Integration;
 using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
 using WCMS.WebSystem.Apps.Integration.CommonWS;
-using WCMS.WebSystem.Apps.Integration.Ext;
+using WCMS.WebSystem.Apps.Integration.ExtApp;
 using WCMS.Framework.Net;
 using WCMS.WebSystem.Agent;
 using WCMS.Framework.Core;
@@ -129,7 +129,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
                         if (searchONEUsersAndCreate && user == null) // && !item.Contains('@'))
                         {
-                            var oneUser = ExtProvider.GetUserInfo(item);
+                            var oneUser = ExtAppProvider.GetUserInfo(item);
                             if (oneUser != null)
                             {
                                 user = new WebUser();

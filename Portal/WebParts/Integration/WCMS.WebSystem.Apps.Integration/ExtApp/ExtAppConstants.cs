@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WCMS.WebSystem.Apps.Integration.Ext
+namespace WCMS.WebSystem.Apps.Integration.ExtApp
 {
-    public class ExtConstants
+    public class ExtAppConstants
     {
         public const string MMP_APP_ONE_KEY = "M4348DFFF32DF342ERKLK";
         public const string MMP_APP_ONE_NAME = "MM Portal";

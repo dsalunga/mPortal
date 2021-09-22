@@ -1,6 +1,6 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="WCMS.WebSystem.WebParts.Menu.MENU_CMS_Menu_01"
     CodeBehind="ConfigDynamicMenu01.ascx.cs" %>
-<%@ Register Src="../Central/Controls/ParameterSetSelector.ascx" TagName="ParameterSetSelector"
+<%@ Register Src="~/Content/Parts/Central/Controls/ParameterSetSelector.ascx" TagName="ParameterSetSelector"
     TagPrefix="uc1" %>
 <%@ Register Src="Controls/AdminTabControl.ascx" TagName="AdminTabControl" TagPrefix="uc2" %>
 <uc2:AdminTabControl ID="AdminTabControl1" runat="server" />

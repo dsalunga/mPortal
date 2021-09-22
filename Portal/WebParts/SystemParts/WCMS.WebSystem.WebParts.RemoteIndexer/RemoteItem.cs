@@ -209,5 +209,33 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
 
             return false;
         }
+
+        public bool CanPreview
+        {
+            get
+            {
+                return IsWebImage && Size <= FileHelper.Kilobyte * 100;
+            }
+        }
+
+        public bool IsWebImage
+        {
+            get
+            {
+                switch (this.Extension.ToLower())
+                {
+                    case "apng":
+                    case "avif":
+                    case "gif":
+                    case "jpg":
+                    case "jpeg":
+                    case "png":
+                    case "svg":
+                    case "webp":
+                        return true;
+                }
+                return false;
+            }
+        }
     }
 }

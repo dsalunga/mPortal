@@ -10,9 +10,9 @@ using WCMS.Framework.Security;
 using WCMS.WebSystem.Apps.Integration;
 using WCMS.WebSystem.Apps.Integration.ExtWebService;
 
-namespace WCMS.WebSystem.Apps.Integration.Ext
+namespace WCMS.WebSystem.Apps.Integration.ExtApp
 {
-    public class ExtProvider : IUserProvider
+    public class ExtAppProvider : IUserProvider
     {
         public WContext Context { get; set; }
 
@@ -48,8 +48,8 @@ namespace WCMS.WebSystem.Apps.Integration.Ext
 
                 WSite site = Context == null ? null : Context.Site;
                 //PageElementBase element = context == null ? null : context.Element;
-                var integrationPortalName = ParameterizedWebObject.GetValue(ExtConstants.PARAM_APP_ONE_NAME, "", site);
-                var oneAppKey = integrationPortalName.Equals(ExtConstants.TKP_APP_ONE_NAME, StringComparison.InvariantCultureIgnoreCase) ? ExtConstants.TKP_APP_ONE_KEY : ExtConstants.MMP_APP_ONE_KEY;
+                var integrationPortalName = ParameterizedWebObject.GetValue(ExtAppConstants.PARAM_APP_ONE_NAME, "", site);
+                var oneAppKey = integrationPortalName.Equals(ExtAppConstants.TKP_APP_ONE_NAME, StringComparison.InvariantCultureIgnoreCase) ? ExtAppConstants.TKP_APP_ONE_KEY : ExtAppConstants.MMP_APP_ONE_KEY;
 
                 response1 = client.CheckUserAppPermission1(oneAppKey, externalId, password);
             }
@@ -70,11 +70,11 @@ namespace WCMS.WebSystem.Apps.Integration.Ext
             return LoginCheck(null, userName, password);
         }
 
-        public static ExtUserInfo GetUserInfo(string externalId, WContext context = null)
+        public static ExtAppUserInfo GetUserInfo(string externalId, WContext context = null)
         {
             if (WConfig.Environment == SystemEnvironment.DEV_ISOLATED)
             {
-                var item = new ExtUserInfo();
+                var item = new ExtAppUserInfo();
                 item.UserName = "UserName";
                 item.ExternalId = "ExternalId";
                 item.LastName = "LastName";
@@ -98,16 +98,16 @@ namespace WCMS.WebSystem.Apps.Integration.Ext
 
             WSite site = context == null ? null : context.Site;
             //PageElementBase element = context == null ? null : context.Element;
-            var appName = ParameterizedWebObject.GetValue(ExtConstants.PARAM_APP_ONE_NAME, "", site);
+            var appName = ParameterizedWebObject.GetValue(ExtAppConstants.PARAM_APP_ONE_NAME, "", site);
 
-            var oneAppKey = !string.IsNullOrEmpty(appName) && appName.Equals(ExtConstants.TKP_APP_ONE_NAME, StringComparison.InvariantCultureIgnoreCase) ? ExtConstants.TKP_APP_ONE_KEY : ExtConstants.MMP_APP_ONE_KEY;
+            var oneAppKey = !string.IsNullOrEmpty(appName) && appName.Equals(ExtAppConstants.TKP_APP_ONE_NAME, StringComparison.InvariantCultureIgnoreCase) ? ExtAppConstants.TKP_APP_ONE_KEY : ExtAppConstants.MMP_APP_ONE_KEY;
 
             var response = client.GetUserInfo1(oneAppKey, externalId);
             if (response != null && response.Tables.Count > 0)
             {
                 var userInfoTable = response.Tables[0];
                 if (userInfoTable.Rows.Count > 0)
-                    return ExtUserInfo.From(userInfoTable.Rows[0]);
+                    return ExtAppUserInfo.From(userInfoTable.Rows[0]);
             }
 
             return null;

@@ -2,8 +2,8 @@
     Inherits="WCMS.WebSystem.WebParts.EventCalendar.AdminEvent" %>
 <%@ Register Src="~/Content/Controls/TabControl.ascx" TagName="TabControl" TagPrefix="uc1" %>
 <%@ Register Assembly="FredCK.FCKeditorV2" Namespace="FredCK.FCKeditorV2" TagPrefix="FCKeditorV2" %>
-<%@ Register Src="../../Controls/TextEditor.ascx" TagName="TextEditor" TagPrefix="uc2" %>
-<%@ Register Src="../Central/Controls/SaveInFolder.ascx" TagName="SaveInFolder" TagPrefix="uc3" %>
+<%@ Register Src="~/Content/Controls/TextEditor.ascx" TagName="TextEditor" TagPrefix="uc2" %>
+<%@ Register Src="~/Content/Parts/Central/Controls/SaveInFolder.ascx" TagName="SaveInFolder" TagPrefix="uc3" %>
 <style type="text/css">
     #rblSendVia label {
         margin-right: 10px;

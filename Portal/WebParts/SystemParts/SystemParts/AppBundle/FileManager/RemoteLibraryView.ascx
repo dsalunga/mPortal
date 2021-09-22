@@ -32,7 +32,7 @@
             <Columns>
                 <asp:TemplateField HeaderText="Name" SortExpression="Name" HeaderStyle-HorizontalAlign="Left">
                     <ItemTemplate>
-                        <img src='<%# (bool)Eval("IsFolder") ? "/Content/Assets/Images/Common/folder2.gif" : "/Content/Assets/Images/Common/txt.gif" %>' />
+                        <img style="width: 32px" src='<%# (bool)Eval("IsFolder") ? "/Content/Assets/Images/SkyDrive/NonEmptyDocumentFolder.png" : (bool)Eval("CanPreview") ? Eval("PreviewUrl") : (bool)Eval("IsWebImage") ? "/Content/Assets/Images/image.png" : "/Content/Assets/Images/www_link.png" %>' />
 
                         <%-- Folder --%>
                         <a href='<%# String.Format(Eval("FolderLinkFormat").ToString(), Eval("Id")) %>' enableviewstate="false" title='<%# Eval("Name") %>' runat="server" visible='<%# (bool)Eval("IsFolder") %>'><%# Eval("Name") %></a>

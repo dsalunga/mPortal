@@ -2,7 +2,7 @@
     CodeBehind="ConfigContent.ascx.cs" %>
 <%@ Register Assembly="FredCK.FCKeditorV2" Namespace="FredCK.FCKeditorV2" TagPrefix="FCKeditorV2" %>
 <%@ Register Src="~/Content/Controls/TabControl.ascx" TagName="TabControl" TagPrefix="uc1" %>
-<%@ Register Src="../../Controls/TextEditor.ascx" TagName="TextEditor" TagPrefix="uc2" %>
+<%@ Register Src="~/Content/Controls/TextEditor.ascx" TagName="TextEditor" TagPrefix="uc2" %>
 <div style="padding: 0 0 4px 0" runat="server" id="linkViewAll">
     <table border="0" cellpadding="0">
         <tr>

@@ -99,7 +99,6 @@ namespace WCMS.WebSystem.Apps.Integration.Bible
                 foreach (var v in verses)
                 {
                     var chapter = v.Chapter;
-
                     var match = Regex.Match(v.Content, search, RegexOptions.IgnoreCase);
                     var content = v.Content.Replace(match.Value, "<strong class='found'>" + match.Value + "</strong>");
 

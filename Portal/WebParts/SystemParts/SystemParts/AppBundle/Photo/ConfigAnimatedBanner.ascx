@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ConfigAnimatedBanner.ascx.cs" Inherits="WCMS.WebSystem.WebParts.Photo.ConfigAnimatedBanner" %>
-<%@ Register Src="../Central/Controls/ParameterSetSelector.ascx" TagName="ParameterSetSelector"
+<%@ Register Src="~/Content/Parts/Central/Controls/ParameterSetSelector.ascx" TagName="ParameterSetSelector"
     TagPrefix="uc1" %>
 <table>
     <tr>

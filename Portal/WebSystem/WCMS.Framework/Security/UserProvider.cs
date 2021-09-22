@@ -57,8 +57,11 @@ namespace WCMS.Framework.Security
         public IUserProvider ResolveProvider()
         {
             if (_provider == null && !string.IsNullOrEmpty(ProviderName))
-                _provider = Activator.CreateInstance(Type.GetType(ProviderName)) as IUserProvider;
-
+            {
+                Type providerType = Type.GetType(ProviderName);
+                if(providerType != null)
+                    _provider = Activator.CreateInstance(providerType) as IUserProvider;
+            }
             return _provider;
         }
 

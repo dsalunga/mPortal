@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SmtpAnalyzer.ascx.cs"
     Inherits="WCMS.WebSystem.WebParts.Central.Tools.SmtpAnalyzer" %>
-<%@ Register Src="../../../Controls/TextEditor.ascx" TagName="TextEditor" TagPrefix="uc1" %>
+<%@ Register Src="~/Content/Controls/TextEditor.ascx" TagName="TextEditor" TagPrefix="uc1" %>
 <div>
     <strong>SMTP Host Configuration</strong>
 </div>

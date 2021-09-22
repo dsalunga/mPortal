@@ -45,7 +45,7 @@ namespace WCMS.WebSystem.WebParts.Jobs
         private void LoadCountries()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(Server.MapPath("~/Content/Parts/Jobs/Xml/countries.xml"));
+            doc.Load(Server.MapPath("~/Content/Parts/AppBundle3/Jobs/Xml/countries.xml"));
 
             foreach (XmlNode node in doc.SelectNodes("//country"))
             {

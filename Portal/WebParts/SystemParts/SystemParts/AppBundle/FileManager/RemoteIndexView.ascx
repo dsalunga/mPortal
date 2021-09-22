@@ -8,7 +8,7 @@
     </div>
     <div class="file-view">
         <br />
-        <img alt="File or folder thumbnail" runat="server" id="imgThumbnail" />
+        <img alt="File or folder thumbnail" runat="server" id="imgThumbnail" src="~/Content/Assets/Images/www_link.png" style="max-width: 100%" />
         <br />
         <br />
         <h3 id="lblFileName" runat="server">file name goes here</h3>

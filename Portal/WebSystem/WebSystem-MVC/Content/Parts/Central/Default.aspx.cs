@@ -54,7 +54,7 @@ namespace WCMS.WebSystem.WebParts.Central
                     var item = WebPageElement.Get(pageElementId);
                     if (item != null)
                     {
-                        title = string.Format("{0} - App Settings" + item.Name);
+                        title = string.Format("{0} - App Settings", item.Name);
 
                         try
                         {
@@ -98,7 +98,7 @@ namespace WCMS.WebSystem.WebParts.Central
                     var page = WPage.Get(pageId);
                     if (page != null)
                     {
-                        title = string.Format("{0} - App Settings" + page.Name);
+                        title = string.Format("{0} - App Settings", page.Name);
 
                         try
                         {

@@ -301,6 +301,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
 #if DEBUG
                         LogResponseHttpHeaders(LogFilePath, context.Response);
 #endif
+                        context.Response.End();
                         return;
                     }
 
@@ -311,9 +312,6 @@ namespace WCMS.WebSystem.WebParts.FileManager
                 else
                     ReturnPartialEntity(context);
 
-
-
-
                 switch (library.SourceTypeId)
                 {
                     case RemoteSourceTypes.WindowShare:
@@ -321,9 +319,8 @@ namespace WCMS.WebSystem.WebParts.FileManager
                     case RemoteSourceTypes.Ftp:
                         break;
                 }
-
-                return;
             }
+            context.Response.End();
         }
 
         private void ReturnEntireEntity(HttpContext context)
@@ -412,10 +409,11 @@ namespace WCMS.WebSystem.WebParts.FileManager
                             bytesToReadRemaining -= chunkSize;
 
                             Response.Flush();
-
 #if DEBUG
                             System.Threading.Thread.Sleep(DEBUGGING_SLEEP_TIME);
 #endif
+
+                            break;
                         }
                         else
                         {

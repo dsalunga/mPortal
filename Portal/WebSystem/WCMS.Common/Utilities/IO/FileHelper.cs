@@ -9,9 +9,9 @@ namespace WCMS.Common.Utilities
     /// </summary>
     public abstract class FileHelper
     {
-        private static readonly long Gigabyte = 1024 * 1024 * 1024;
-        private static readonly long Megabyte = 1024 * 1024;
-        private static readonly long Kilobyte = 1024;
+        public static readonly long Gigabyte = 1024 * 1024 * 1024;
+        public static readonly long Megabyte = 1024 * 1024;
+        public static readonly long Kilobyte = 1024;
 
         public static bool WriteFile(string content, string fileName)
         {
