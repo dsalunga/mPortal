@@ -8,7 +8,7 @@ using System.Text;
 using WCMS.Common;
 using WCMS.Common.Utilities;
 using WCMS.Common.Media;
-using WCMS.WebSystem.WebParts.Registration.Net;
+using WCMS.WebSystem.Apps.Integration.Net;
 
 using WCMS.LessonReviewer.Core;
 

@@ -7,7 +7,7 @@ using System.Xml;
 using System.Web;
 
 using WCMS.Common.Utilities;
-using WCMS.WebSystem.WebParts.Registration.Net;
+using WCMS.WebSystem.Apps.Integration.Net;
 
 namespace WCMS.LessonReviewer.Core
 {

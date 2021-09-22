@@ -46,8 +46,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Portal\WebSystem\WebSystem-MVC\bin\WCMS.Common.dll</HintPath>
     </Reference>
-    <Reference Include="WCMS.WebSystem.WebParts.MCGI">
-      <HintPath>..\..\MCGI-Portal\WebSystem\WebSystem-MVC\bin\WCMS.WebSystem.WebParts.MCGI.dll</HintPath>
+    <Reference Include="WCMS.WebSystem.Apps.Integration">
+      <HintPath>..\..\Portal\WebSystem\WebSystem-MVC\bin\WCMS.WebSystem.Apps.Integration.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
