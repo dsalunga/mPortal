@@ -37,7 +37,7 @@
   <WebPart>
     <PartId>1</PartId>
     <Name>Content</Name>
-    <Identity>Content</Identity>
+    <Identity>AppBundle/Content</Identity>
     <Active>1</Active>
   </WebPart>
   <WebPart>

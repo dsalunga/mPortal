@@ -921,10 +921,10 @@ Regards,&lt;/div&gt;
   </Articles>
   <Articles>
     <Id>39</Id>
-    <Title>MCGI Portal Features and Releases</Title>
+    <Title>Portal Features and Releases</Title>
     <Image />
-    <Description>&lt;p&gt;Provides general overview of the MCGI Portal features and features for each releases to update the Members on what is available to them for use,&lt;/p&gt;</Description>
-    <Date>2010-07-13T21:30:00+08:00</Date>
+    <Description>&lt;p&gt;Provides general overview of the Portal features and features for each releases to update the Members on what is available to them for use,&lt;/p&gt;</Description>
+    <Date>2010-07-13T00:00:00+08:00</Date>
     <Content>&lt;p&gt;14 July 2010 - Initial Version&lt;/p&gt;
 &lt;ul&gt;
     &lt;li&gt;Home - Dashboard&lt;/li&gt;
@@ -962,7 +962,7 @@ Regards,&lt;/div&gt;
     <Author />
     <SiteId>7</SiteId>
     <Active>1</Active>
-    <DateModified>2010-07-15T01:19:29.103+08:00</DateModified>
+    <DateModified>2021-09-23T03:57:04.503+08:00</DateModified>
     <UserId>3</UserId>
     <ModifiedUserId>3</ModifiedUserId>
     <DirectoryId>-1</DirectoryId>

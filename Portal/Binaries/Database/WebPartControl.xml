@@ -1657,7 +1657,7 @@
   <WebPartControl>
     <PartControlId>314</PartControlId>
     <PartId>86</PartId>
-    <Name>Make-Up Start</Name>
+    <Name>Reviewer Session Start</Name>
     <Identity>Profile</Identity>
     <ConfigFileName />
     <PartAdminId>-1</PartAdminId>

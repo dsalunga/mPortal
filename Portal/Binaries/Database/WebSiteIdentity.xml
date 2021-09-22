@@ -230,4 +230,14 @@
     <RedirectUrl />
     <ProtocolId>1</ProtocolId>
   </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>21</Id>
+    <SiteId>16</SiteId>
+    <HostName>naswi.myasustor.com</HostName>
+    <UrlPath>/musicportal</UrlPath>
+    <Port>44300</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>1</ProtocolId>
+  </WebSiteIdentity>
 </mPortal>

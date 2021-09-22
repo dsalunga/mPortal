@@ -4336,8 +4336,8 @@
   </WebPageElement>
   <WebPageElement>
     <PageElementId>462</PageElementId>
-    <ObjectId>5</ObjectId>
-    <RecordId>53</RecordId>
+    <ObjectId>3</ObjectId>
+    <RecordId>-1</RecordId>
     <Name>GlobalSwitch</Name>
     <TemplatePanelId>213</TemplatePanelId>
     <Rank>6</Rank>
@@ -4388,6 +4388,20 @@
     <UsePartTemplatePath>1</UsePartTemplatePath>
     <PublicAccess>1</PublicAccess>
     <DateModified>2014-07-04T16:28:45.113+08:00</DateModified>
+    <ManagementAccess>0</ManagementAccess>
+  </WebPageElement>
+  <WebPageElement>
+    <PageElementId>469</PageElementId>
+    <ObjectId>5</ObjectId>
+    <RecordId>53</RecordId>
+    <Name>GlobalSwitch</Name>
+    <TemplatePanelId>213</TemplatePanelId>
+    <Rank>6</Rank>
+    <PartControlTemplateId>627</PartControlTemplateId>
+    <Active>1</Active>
+    <UsePartTemplatePath>1</UsePartTemplatePath>
+    <PublicAccess>1</PublicAccess>
+    <DateModified>2021-09-16T17:32:14.06+08:00</DateModified>
     <ManagementAccess>0</ManagementAccess>
   </WebPageElement>
 </mPortal>

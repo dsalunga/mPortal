@@ -572,4 +572,15 @@
     <Remarks />
     <CreatedById>-1</CreatedById>
   </WebUserGroup>
+  <WebUserGroup>
+    <Id>879</Id>
+    <UserId>-1</UserId>
+    <GroupId>89</GroupId>
+    <Active>1</Active>
+    <DateJoined>2021-09-16T17:19:23.107+08:00</DateJoined>
+    <ObjectId>21</ObjectId>
+    <RecordId>3</RecordId>
+    <Remarks />
+    <CreatedById>-1</CreatedById>
+  </WebUserGroup>
 </mPortal>

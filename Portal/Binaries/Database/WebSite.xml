@@ -118,7 +118,7 @@
   </WebSite>
   <WebSite>
     <SiteId>4</SiteId>
-    <Name>Singapore Portal V1</Name>
+    <Name>Singapore Portal</Name>
     <Rank>2</Rank>
     <Active>1</Active>
     <Identity>Singapore</Identity>
@@ -144,7 +144,7 @@
   </WebSite>
   <WebSite>
     <SiteId>7</SiteId>
-    <Name>Integration Singapore</Name>
+    <Name>Singapore Community</Name>
     <Rank>1</Rank>
     <Active>1</Active>
     <Identity>en-SG</Identity>
@@ -262,7 +262,7 @@
     <PublicAccess>2</PublicAccess>
     <DateCreated>2012-06-20T12:23:52.053+08:00</DateCreated>
     <DateModified>2012-06-20T12:23:52.053+08:00</DateModified>
-    <LoginPage>http://local.musicportal.org/public/Login/</LoginPage>
+    <LoginPage>/musicportal/public/Login/</LoginPage>
     <AccessDeniedPage />
     <PageTitleFormat />
     <ManagementAccess>1</ManagementAccess>
@@ -270,14 +270,14 @@
     <ThemeId>-1</ThemeId>
     <LocaleId>-1</LocaleId>
     <SkinId>-1</SkinId>
-    <PrimaryIdentityId>-1</PrimaryIdentityId>
+    <PrimaryIdentityId>21</PrimaryIdentityId>
   </WebSite>
   <WebSite>
     <SiteId>18</SiteId>
     <Name>Music Competition Asia-Oceania</Name>
     <Rank>20</Rank>
     <Active>1</Active>
-    <Identity>asia-oceania1</Identity>
+    <Identity>asia-oceania</Identity>
     <Title />
     <ParentId>19</ParentId>
     <HomePageId>463</HomePageId>
@@ -300,10 +300,10 @@
   </WebSite>
   <WebSite>
     <SiteId>19</SiteId>
-    <Name>Music Competition Website</Name>
+    <Name>Music Competition</Name>
     <Rank>25</Rank>
     <Active>1</Active>
-    <Identity>Music-Competition</Identity>
+    <Identity>music-competition</Identity>
     <Title />
     <ParentId>16</ParentId>
     <HomePageId>-1</HomePageId>

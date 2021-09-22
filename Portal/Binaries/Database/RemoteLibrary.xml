@@ -132,10 +132,10 @@
     <Id>5</Id>
     <Name>Daniel's Photos</Name>
     <SourceTypeId>0</SourceTypeId>
-    <BaseAddress>ftp://naswi/Daniel/Photos/</BaseAddress>
+    <BaseAddress>ftp://naswi/Daniel/My Photos/</BaseAddress>
     <UserName>daniel</UserName>
     <Password>Dcs431900</Password>
-    <LastIndexDate>2019-07-26T23:59:21.297+08:00</LastIndexDate>
+    <LastIndexDate>2021-09-14T06:39:33.29+08:00</LastIndexDate>
     <Active>1</Active>
     <DisplayBaseAddress />
     <DownloadCountSince>2019-07-26T02:10:47.86+08:00</DownloadCountSince>
@@ -145,6 +145,6 @@
     <FileCacheCeilingSize>-1</FileCacheCeilingSize>
     <FileCacheMaxSize>-1</FileCacheMaxSize>
     <FileCacheMinDiskFreeMB>-1</FileCacheMinDiskFreeMB>
-    <Size>545023036424</Size>
+    <Size>638925301339</Size>
   </RemoteLibrary>
 </mPortal>

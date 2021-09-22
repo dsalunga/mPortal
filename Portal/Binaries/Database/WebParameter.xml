@@ -11130,7 +11130,7 @@ $(Content)</Value>
     <Value>&lt;div class="alert"&gt;
 &lt;button type="button" class="close" data-dismiss="alert"&gt;&amp;times;&lt;/button&gt;
 &lt;h4&gt;Note!&lt;/h4&gt;
-In the near future, Music Ministry Portal will be requiring all users to use their MCGI ONE account for login. Existing Portal users without ONE account or their Portal account not yet linked to their ONE account will be required to create a ONE account and link it to their Portal account. To register a ONE account, please click the Register menu.
+In the near future, Music Portal will be requiring all users to use their mPortal ONE account for login. Existing Portal users without ONE account or their Portal account not yet linked to their ONE account will be required to create a ONE account and link it to their Portal account. To register a ONE account, please click the Register menu.
 &lt;br/&gt;
 &lt;br/&gt;
 If you already have a ONE account, kindly start using it now.
@@ -12501,6 +12501,24 @@ $(Content)</Value>
     <RecordId>35</RecordId>
     <Name>PageId</Name>
     <Value>560</Value>
+    <IsRequired>0</IsRequired>
+  </WebParameter>
+  <WebParameter>
+    <Id>1389</Id>
+    <ObjectId>22</ObjectId>
+    <RecordId>469</RecordId>
+    <Name>MenuId</Name>
+    <Value>14</Value>
+    <IsRequired>0</IsRequired>
+  </WebParameter>
+  <WebParameter>
+    <Id>1390</Id>
+    <ObjectId>12</ObjectId>
+    <RecordId>391</RecordId>
+    <Name>Parameter-Schema</Name>
+    <Value>&lt;Parameters&gt;
+  &lt;Parameter Name="MenuId" Value="-1" /&gt;
+&lt;/Parameters&gt;</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
 </mPortal>

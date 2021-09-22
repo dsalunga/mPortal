@@ -871,8 +871,8 @@
   <WebPartAdmin>
     <PartAdminId>220</PartAdminId>
     <PartId>86</PartId>
-    <Name>Make-Up Administration</Name>
-    <FileName>~/Content/Parts/Integration/MakeUp/AdminMakeUp.cshtml</FileName>
+    <Name>Reviewer Administration</Name>
+    <FileName>~/Content/Parts/Integration/LessonReviewer/AdminReviewer.cshtml</FileName>
     <ParentId>-1</ParentId>
     <Active>1</Active>
     <Visible>1</Visible>
@@ -896,7 +896,7 @@
     <PartAdminId>222</PartAdminId>
     <PartId>98</PartId>
     <Name>Make-Up Sessions</Name>
-    <FileName>~/Content/Parts/Integration/MakeUp/MemberSessions.ascx</FileName>
+    <FileName>~/Content/Parts/Integration/LessonReviewer/MemberSessions.ascx</FileName>
     <ParentId>-1</ParentId>
     <Active>1</Active>
     <Visible>1</Visible>

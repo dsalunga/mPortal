@@ -6315,11 +6315,11 @@
   </WebPage>
   <WebPage>
     <PageId>322</PageId>
-    <Name>BroAngeloDashboardConcept</Name>
+    <Name>Dashboard Concept</Name>
     <SiteId>15</SiteId>
     <Rank>1130</Rank>
     <Active>1</Active>
-    <Identity>BroAngeloDashboardConcept</Identity>
+    <Identity>DashboardConcept</Identity>
     <ParentId>314</ParentId>
     <Title />
     <MasterPageId>-1</MasterPageId>
@@ -10731,11 +10731,11 @@
   </WebPage>
   <WebPage>
     <PageId>546</PageId>
-    <Name>Web Apps</Name>
+    <Name>Discover</Name>
     <SiteId>25</SiteId>
     <Rank>2240</Rank>
     <Active>1</Active>
-    <Identity>WebApps</Identity>
+    <Identity>Explore</Identity>
     <ParentId>-1</ParentId>
     <Title />
     <MasterPageId>-1</MasterPageId>

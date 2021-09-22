@@ -1686,7 +1686,7 @@
     <Name>Playback</Name>
     <FileName>Playback.ascx</FileName>
     <Identity>Playback</Identity>
-    <Path>~/Content/Parts/Integration/Profile/MakeUp/Playback.ascx</Path>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/Playback.ascx</Path>
     <Standalone>0</Standalone>
     <TemplateEngineId>1</TemplateEngineId>
   </WebPartControlTemplate>
@@ -1696,7 +1696,7 @@
     <Name>Make-Up News</Name>
     <FileName>NewsDashboard.ascx</FileName>
     <Identity>Profile</Identity>
-    <Path>~/Content/Parts/Integration/Profile/MakeUp/NewsDashboard.ascx</Path>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/NewsDashboard.ascx</Path>
     <Standalone>0</Standalone>
     <TemplateEngineId>1</TemplateEngineId>
   </WebPartControlTemplate>
@@ -1706,17 +1706,17 @@
     <Name>Make-Up Attendance</Name>
     <FileName>LogAttendance.ascx</FileName>
     <Identity>Profile</Identity>
-    <Path>~/Content/Parts/Integration/Profile/MakeUp/LogAttendance.ascx</Path>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/LogAttendance.ascx</Path>
     <Standalone>0</Standalone>
     <TemplateEngineId>1</TemplateEngineId>
   </WebPartControlTemplate>
   <WebPartControlTemplate>
     <PartControlTemplateId>546</PartControlTemplateId>
     <PartControlId>314</PartControlId>
-    <Name>Make-Up Start</Name>
-    <FileName>MakeUpStart.ascx</FileName>
+    <Name>Session Start</Name>
+    <FileName>SessionStart.ascx</FileName>
     <Identity>Profile</Identity>
-    <Path>~/Content/Parts/Integration/Profile/MakeUp/MakeUpStart.ascx</Path>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/SessionStart.ascx</Path>
     <Standalone>0</Standalone>
     <TemplateEngineId>1</TemplateEngineId>
   </WebPartControlTemplate>
@@ -1726,7 +1726,7 @@
     <Name>Make-Up Attendance Requests</Name>
     <FileName>ConfigAttendanceRequests.ascx</FileName>
     <Identity>Profile</Identity>
-    <Path>~/Content/Parts/Integration/Profile/MakeUp/ConfigAttendanceRequests.ascx</Path>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/ConfigAttendanceRequests.ascx</Path>
     <Standalone>0</Standalone>
     <TemplateEngineId>1</TemplateEngineId>
   </WebPartControlTemplate>
@@ -1736,7 +1736,7 @@
     <Name>Make-Up Attendance Request</Name>
     <FileName>ConfigAttendanceRequest.ascx</FileName>
     <Identity>Profile</Identity>
-    <Path>~/Content/Parts/Integration/Profile/MakeUp/ConfigAttendanceRequest.ascx</Path>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/ConfigAttendanceRequest.ascx</Path>
     <Standalone>0</Standalone>
     <TemplateEngineId>1</TemplateEngineId>
   </WebPartControlTemplate>
@@ -1776,7 +1776,7 @@
     <Name>Service Video Duration Input</Name>
     <FileName>ServiceVideoDurationInput.ascx</FileName>
     <Identity>Profile</Identity>
-    <Path>~/Content/Parts/Integration/Profile/MakeUp/ServiceVideoDurationInput.ascx</Path>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/ServiceVideoDurationInput.ascx</Path>
     <Standalone>0</Standalone>
     <TemplateEngineId>1</TemplateEngineId>
   </WebPartControlTemplate>
