@@ -4,7 +4,8 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseName>BibleReader</TargetDatabaseName>
     <DeployScriptFileName>BibleReader.Database.sql</DeployScriptFileName>
-    <TargetConnectionString>Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Pooling=False</TargetConnectionString>
+    <TargetConnectionString>Data Source=(local);Integrated Security=True;Pooling=False</TargetConnectionString>
+    <!--<TargetConnectionString>Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Pooling=False</TargetConnectionString>-->
     <ProfileVersionNumber>1</ProfileVersionNumber>
   </PropertyGroup>
 </Project>
