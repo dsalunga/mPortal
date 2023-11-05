@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WCMS.WebSystem</RootNamespace>
     <AssemblyName>WCMS.WebSystem.WebApp</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <FileUpgradeFlags>
@@ -1941,6 +1941,10 @@
     <Content Include="Content\MVC\Views\Web.config" />
     <Content Include="Default.cshtml" />
     <Content Include="Content\Executor.cshtml" />
+    <Content Include="Properties\DataSources\WCMS.Framework.Core.WebSiteIdentity1.datasource" />
+    <Content Include="Properties\DataSources\WCMS.Framework.Net.FileSyncInfo1.datasource" />
+    <Content Include="Properties\DataSources\WCMS.Framework.WebUser1.datasource" />
+    <Content Include="Properties\DataSources\WCMS.Framework.WebUserContainer1.datasource" />
     <None Include="Service References\WebServices\DataSync1.disco" />
     <Content Include="Static.aspx" />
     <Content Include="_App_Offline.htm" />

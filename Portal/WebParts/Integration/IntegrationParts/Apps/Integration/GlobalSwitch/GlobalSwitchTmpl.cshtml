@@ -154,6 +154,11 @@
     <div class="navbar-right">
         @*<h3 class="popover-title">Portal Websites</h3>*@
         <ul class="bs-glyphicons">
+            <li><a href="https://wikitruth.net/" target="_blank"><img class="img-icon" src="https://wikitruth.net/img/logo-64x64.png" />Wikitruth</a></li>
+            <li><a href="https://fixthephilippines.org/" target="_blank"><img class="img-icon" src="https://fixthephilippines.org/img/fixtheph/logo-64x64.png" />fixtheph</a></li>
+            <li><a href="https://naswi.myasustor.com:44310/" target="_blank"><img class="img-icon" src="https://naswi.myasustor.com:44310/images/logo.jpg" style="padding-top: 14px; padding-bottom: 15px" />VisualVid</a></li>
+            <li><a href="https://naswi.myasustor.com:44320/" target="_blank"><img class="img-icon" src="https://naswi.myasustor.com:44320/assets/img/bbscoreboard.png" style="padding-top: 17px; padding-bottom: 18px" />BBScoreboard</a></li>
+            <li><a href="@portalRootUrl/BibleReader"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/timthumb2.png" style="padding-top: 8px; padding-bottom: 7px" />Bible Reader</a></li>
             @if (isMember)
             {
                 <li><a href="@portalRootUrl/chapters/@portalSessionId"><span class="glyphicon glyphicon-map-marker nav-icon"></span>Chapters</a></li>
@@ -166,9 +171,9 @@
                     <li><a href="@portalRootUrl/settings/@portalSessionId"><span class="glyphicon glyphicon-cog nav-icon"></span>Settings</a></li>
                 }
                 @*else
-                {
-                    <li><a href="https://mail.someorg.org.sg/" target="_blank"><img style="margin-top: 26px; margin-bottom" class="img-icon" src="/Content/Parts/Integration/Assets/images/zimbra-logo.png" />SG Mail</a></li>
-                }*@
+            {
+                <li><a href="https://mail.someorg.org.sg/" target="_blank"><img style="margin-top: 26px; margin-bottom" class="img-icon" src="/Content/Parts/Integration/Assets/images/zimbra-logo.png" />SG Mail</a></li>
+            }*@
                 @*<li><a href="http://link.someorg.org" target="_blank"><img style="margin-top: 26px; margin-bottom: 10px" class="img-icon" src="/Content/Parts/Integration/Assets/images/link_logo.jpg" />Integration Link</a></li>*@
             }
             else
