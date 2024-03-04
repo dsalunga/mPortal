@@ -102,7 +102,7 @@
                     <td>Primary Identity:
                     </td>
                     <td>
-                        <asp:DropDownList ID="cboPrimaryIdentity" CssClass="input" runat="server" DataTextField="HostName" DataValueField="Id" AppendDataBoundItems="true">
+                        <asp:DropDownList ID="cboPrimaryIdentity" CssClass="input" runat="server" DataTextField="Url" DataValueField="Id" AppendDataBoundItems="true">
                             <asp:ListItem Value="-1"># None #</asp:ListItem>
                         </asp:DropDownList>
                     </td>

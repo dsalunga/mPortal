@@ -43,7 +43,7 @@
   <WebPart>
     <PartId>6</PartId>
     <Name>Menu</Name>
-    <Identity>Menu</Identity>
+    <Identity>AppBundle/Menu</Identity>
     <Active>1</Active>
   </WebPart>
   <WebPart>

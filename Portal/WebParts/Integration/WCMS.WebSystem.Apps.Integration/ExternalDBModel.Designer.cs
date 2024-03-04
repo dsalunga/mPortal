@@ -19,7 +19,7 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("Model", "FK_States_Countries", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(WCMS.WebSystem.Apps.Integration.ExternalCountry), "State", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WCMS.WebSystem.Apps.Integration.State), true)]
+[assembly: EdmRelationshipAttribute("Model", "FK_States_Countries", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(WCMS.WebSystem.Apps.Integration.AMSCountry), "State", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WCMS.WebSystem.Apps.Integration.State), true)]
 
 #endregion
 
@@ -74,18 +74,18 @@ namespace WCMS.WebSystem.Apps.Integration
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<ExternalCountry> ExtCountries
+        public ObjectSet<AMSCountry> AMSCountries
         {
             get
             {
-                if ((_ExtCountries == null))
+                if ((_AMSCountries == null))
                 {
-                    _ExtCountries = base.CreateObjectSet<ExternalCountry>("ExtCountries");
+                    _AMSCountries = base.CreateObjectSet<AMSCountry>("AMSCountries");
                 }
-                return _ExtCountries;
+                return _AMSCountries;
             }
         }
-        private ObjectSet<ExternalCountry> _ExtCountries;
+        private ObjectSet<AMSCountry> _AMSCountries;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -110,9 +110,9 @@ namespace WCMS.WebSystem.Apps.Integration
         /// <summary>
         /// Deprecated Method for adding a new object to the AMSCountries EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToAMSCountries(ExternalCountry aMSCountry)
+        public void AddToAMSCountries(AMSCountry aMSCountry)
         {
-            base.AddObject("ExtCountries", aMSCountry);
+            base.AddObject("AMSCountries", aMSCountry);
         }
     
         /// <summary>
@@ -134,30 +134,30 @@ namespace WCMS.WebSystem.Apps.Integration
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="ExternalCountry")]
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="AMSCountry")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ExternalCountry : EntityObject
+    public partial class AMSCountry : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new ExternalCountry object.
+        /// Create a new AMSCountry object.
         /// </summary>
         /// <param name="countryID">Initial value of the CountryID property.</param>
         /// <param name="dateCreated">Initial value of the DateCreated property.</param>
         /// <param name="createdBy">Initial value of the CreatedBy property.</param>
         /// <param name="dateUpdated">Initial value of the DateUpdated property.</param>
         /// <param name="updatedBy">Initial value of the UpdatedBy property.</param>
-        public static ExternalCountry CreateExtCountry(global::System.Int16 countryID, global::System.DateTime dateCreated, global::System.Int32 createdBy, global::System.DateTime dateUpdated, global::System.Int32 updatedBy)
+        public static AMSCountry CreateAMSCountry(global::System.Int16 countryID, global::System.DateTime dateCreated, global::System.Int32 createdBy, global::System.DateTime dateUpdated, global::System.Int32 updatedBy)
         {
-            ExternalCountry extCountry = new ExternalCountry();
-            extCountry.CountryID = countryID;
-            extCountry.DateCreated = dateCreated;
-            extCountry.CreatedBy = createdBy;
-            extCountry.DateUpdated = dateUpdated;
-            extCountry.UpdatedBy = updatedBy;
-            return extCountry;
+            AMSCountry aMSCountry = new AMSCountry();
+            aMSCountry.CountryID = countryID;
+            aMSCountry.DateCreated = dateCreated;
+            aMSCountry.CreatedBy = createdBy;
+            aMSCountry.DateUpdated = dateUpdated;
+            aMSCountry.UpdatedBy = updatedBy;
+            return aMSCountry;
         }
 
         #endregion
@@ -760,15 +760,15 @@ namespace WCMS.WebSystem.Apps.Integration
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Model", "FK_States_Countries", "Country")]
-        public ExternalCountry Country
+        public AMSCountry Country
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ExternalCountry>("Model.FK_States_Countries", "Country").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AMSCountry>("Model.FK_States_Countries", "Country").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ExternalCountry>("Model.FK_States_Countries", "Country").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AMSCountry>("Model.FK_States_Countries", "Country").Value = value;
             }
         }
         /// <summary>
@@ -776,17 +776,17 @@ namespace WCMS.WebSystem.Apps.Integration
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<ExternalCountry> CountryReference
+        public EntityReference<AMSCountry> CountryReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ExternalCountry>("Model.FK_States_Countries", "Country");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AMSCountry>("Model.FK_States_Countries", "Country");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ExternalCountry>("Model.FK_States_Countries", "Country", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AMSCountry>("Model.FK_States_Countries", "Country", value);
                 }
             }
         }

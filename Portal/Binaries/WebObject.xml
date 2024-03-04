@@ -391,7 +391,7 @@
     <DataProviderName>WCMS.Framework.Core.SqlProvider.WebSiteIdentityProvider, WCMS.Framework.Core.SqlProvider</DataProviderName>
     <TypeName>WCMS.Framework.Core.WebSiteIdentity, WCMS.Framework</TypeName>
     <CacheInterval>0</CacheInterval>
-    <DateModified>2010-09-30T16:29:17.733+08:00</DateModified>
+    <DateModified>2024-03-04T19:40:57.677+08:00</DateModified>
     <ManagerName>WCMS.Framework.Core.Manager.WebSiteIdentityManager, WCMS.Framework</ManagerName>
     <NameColumn />
     <FriendlyName />

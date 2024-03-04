@@ -90,11 +90,21 @@ namespace WCMS.WebSystem.WebParts.Central.WebSites
                     if (cboHomePage.Items.Count > 0)
                         cboHomePage.SelectedValue = site.HomePageId.ToString();
 
+
                     // Identity
-                    cboPrimaryIdentity.DataSource = WebSiteIdentity.Provider.GetList(siteId);
+                    cboPrimaryIdentity.DataSource = WebSiteIdentity.Provider.GetList(siteId).Select(w => new
+                    {
+                        w.Id,
+                        w.HostName,
+                        w.Port,
+                        w.ProtocolId,
+                        Url = w.Build() // $"{w.ProtocolId}://{w.HostName}:{w.Port}"
+                    });
+
                     cboPrimaryIdentity.DataBind();
                     WebUtil.SetCboValue(cboPrimaryIdentity, site.PrimaryIdentityId);
                     panelPrimaryIdentity.Visible = true;
+
 
                     ManagementSecurityOption1.Value = site.ManagementAccess;
                     WebUtil.SetCboValue(cboTheme, site.ThemeId);

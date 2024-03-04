@@ -307,7 +307,7 @@ namespace WCMS.WebSystem.Apps.Integration
                 {
                     try
                     {
-                        var extCountries = ExternalCountry.CACHE;
+                        var extCountries = AMSCountry.CACHE;
                         if (extAddress.CountryID > 0 && extCountries.Count() > 0)
                         {
                             var extCountry = extCountries.FirstOrDefault(i => i.CountryID == extAddress.CountryID);

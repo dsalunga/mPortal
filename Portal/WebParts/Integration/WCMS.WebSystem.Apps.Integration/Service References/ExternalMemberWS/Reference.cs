@@ -177,7 +177,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -333,7 +333,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(MemberStatus))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Member))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(MemberAddress))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -407,7 +407,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -418,7 +418,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
         
         private int memberIDField;
         
-        private string externalIdNoField;
+        private string externalIDNoField;
         
         private string fullNameField;
         
@@ -462,10 +462,10 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
         public string ExternalIDNo {
             get {
-                return this.externalIdNoField;
+                return this.externalIDNoField;
             }
             set {
-                this.externalIdNoField = value;
+                this.externalIDNoField = value;
                 this.RaisePropertyChanged("ExternalIDNo");
             }
         }
@@ -565,7 +565,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -576,7 +576,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
         
         private string flagField;
         
-        private string externalIdNoField;
+        private string externalIDNoField;
         
         private string temporaryIDNoField;
         
@@ -658,10 +658,10 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
         public string ExternalIDNo {
             get {
-                return this.externalIdNoField;
+                return this.externalIDNoField;
             }
             set {
-                this.externalIdNoField = value;
+                this.externalIDNoField = value;
                 this.RaisePropertyChanged("ExternalIDNo");
             }
         }
@@ -989,7 +989,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1147,7 +1147,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1254,7 +1254,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1319,7 +1319,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1398,7 +1398,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1477,7 +1477,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1682,7 +1682,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1693,7 +1693,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
         
         private string flagField;
         
-        private string externalIdNoField;
+        private string externalIDNoField;
         
         private string temporaryIDNoField;
         
@@ -1757,10 +1757,10 @@ namespace WCMS.WebSystem.Apps.Integration.ExternalMemberWS {
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
         public string ExternalIDNo {
             get {
-                return this.externalIdNoField;
+                return this.externalIDNoField;
             }
             set {
-                this.externalIdNoField = value;
+                this.externalIDNoField = value;
                 this.RaisePropertyChanged("ExternalIDNo");
             }
         }

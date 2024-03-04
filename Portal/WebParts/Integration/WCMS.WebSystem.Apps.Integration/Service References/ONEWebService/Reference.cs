@@ -8,13 +8,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WCMS.WebSystem.Apps.Integration.ExtWebService {
+namespace WCMS.WebSystem.Apps.Integration.ONEWebService {
     using System.Data;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Name="webservice01.someorg.orgSoap", Namespace="http://webservice01.someorg.org/", ConfigurationName="ExtWebService.webservice01someorgSoap")]
-    public interface webservice01someorgSoap {
+    [System.ServiceModel.ServiceContractAttribute(Name="webservice01.someorg.orgSoap", Namespace="http://webservice01.someorg.org/", ConfigurationName="ONEWebService.webservice01someorgorgSoap")]
+    public interface webservice01someorgorgSoap {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://webservice01.someorg.org/CheckUserAppPermission1", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -46,29 +46,29 @@ namespace WCMS.WebSystem.Apps.Integration.ExtWebService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface webservice01someorgSoapChannel : WCMS.WebSystem.Apps.Integration.ExtWebService.webservice01someorgSoap, System.ServiceModel.IClientChannel {
+    public interface webservice01someorgorgSoapChannel : WCMS.WebSystem.Apps.Integration.ONEWebService.webservice01someorgorgSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class webservice01someorgSoapClient : System.ServiceModel.ClientBase<WCMS.WebSystem.Apps.Integration.ExtWebService.webservice01someorgSoap>, WCMS.WebSystem.Apps.Integration.ExtWebService.webservice01someorgSoap {
+    public partial class webservice01someorgorgSoapClient : System.ServiceModel.ClientBase<WCMS.WebSystem.Apps.Integration.ONEWebService.webservice01someorgorgSoap>, WCMS.WebSystem.Apps.Integration.ONEWebService.webservice01someorgorgSoap {
         
-        public webservice01someorgSoapClient() {
+        public webservice01someorgorgSoapClient() {
         }
         
-        public webservice01someorgSoapClient(string endpointConfigurationName) : 
+        public webservice01someorgorgSoapClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public webservice01someorgSoapClient(string endpointConfigurationName, string remoteAddress) : 
+        public webservice01someorgorgSoapClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public webservice01someorgSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public webservice01someorgorgSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public webservice01someorgSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public webservice01someorgorgSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

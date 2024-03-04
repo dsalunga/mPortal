@@ -131,60 +131,10 @@
     <ProtocolId>0</ProtocolId>
   </WebSiteIdentity>
   <WebSiteIdentity>
-    <Id>11</Id>
-    <SiteId>25</SiteId>
-    <HostName>www.someorg.org</HostName>
-    <UrlPath>/</UrlPath>
-    <Port>80</Port>
-    <IPAddress>*</IPAddress>
-    <RedirectUrl />
-    <ProtocolId>0</ProtocolId>
-  </WebSiteIdentity>
-  <WebSiteIdentity>
-    <Id>12</Id>
-    <SiteId>25</SiteId>
-    <HostName>asia.someorg.org</HostName>
-    <UrlPath>/</UrlPath>
-    <Port>80</Port>
-    <IPAddress>*</IPAddress>
-    <RedirectUrl />
-    <ProtocolId>0</ProtocolId>
-  </WebSiteIdentity>
-  <WebSiteIdentity>
     <Id>13</Id>
     <SiteId>25</SiteId>
     <HostName>asia.stage.someorg.org.sg</HostName>
     <UrlPath>/</UrlPath>
-    <Port>80</Port>
-    <IPAddress>*</IPAddress>
-    <RedirectUrl />
-    <ProtocolId>0</ProtocolId>
-  </WebSiteIdentity>
-  <WebSiteIdentity>
-    <Id>14</Id>
-    <SiteId>25</SiteId>
-    <HostName>demo.asuscomm.com</HostName>
-    <UrlPath>/</UrlPath>
-    <Port>9000</Port>
-    <IPAddress>*</IPAddress>
-    <RedirectUrl />
-    <ProtocolId>0</ProtocolId>
-  </WebSiteIdentity>
-  <WebSiteIdentity>
-    <Id>15</Id>
-    <SiteId>25</SiteId>
-    <HostName>daniel-acer</HostName>
-    <UrlPath>/</UrlPath>
-    <Port>9000</Port>
-    <IPAddress>*</IPAddress>
-    <RedirectUrl />
-    <ProtocolId>0</ProtocolId>
-  </WebSiteIdentity>
-  <WebSiteIdentity>
-    <Id>16</Id>
-    <SiteId>25</SiteId>
-    <HostName>local.someorg.org</HostName>
-    <UrlPath />
     <Port>80</Port>
     <IPAddress>*</IPAddress>
     <RedirectUrl />
@@ -213,7 +163,7 @@
   <WebSiteIdentity>
     <Id>19</Id>
     <SiteId>25</SiteId>
-    <HostName>naswi.myasustor.com</HostName>
+    <HostName>dev.bengswi.com</HostName>
     <UrlPath />
     <Port>9000</Port>
     <IPAddress>*</IPAddress>
@@ -223,9 +173,9 @@
   <WebSiteIdentity>
     <Id>20</Id>
     <SiteId>25</SiteId>
-    <HostName>naswi.myasustor.com</HostName>
+    <HostName>dev.bengswi.com</HostName>
     <UrlPath />
-    <Port>44300</Port>
+    <Port>443</Port>
     <IPAddress>*</IPAddress>
     <RedirectUrl />
     <ProtocolId>1</ProtocolId>
@@ -233,9 +183,9 @@
   <WebSiteIdentity>
     <Id>21</Id>
     <SiteId>16</SiteId>
-    <HostName>naswi.myasustor.com</HostName>
+    <HostName>dev.bengswi.com</HostName>
     <UrlPath>/musicportal</UrlPath>
-    <Port>44300</Port>
+    <Port>443</Port>
     <IPAddress>*</IPAddress>
     <RedirectUrl />
     <ProtocolId>1</ProtocolId>

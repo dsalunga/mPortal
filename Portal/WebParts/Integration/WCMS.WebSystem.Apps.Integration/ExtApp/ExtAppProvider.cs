@@ -8,7 +8,7 @@ using WCMS.Framework;
 using WCMS.Framework.Core;
 using WCMS.Framework.Security;
 using WCMS.WebSystem.Apps.Integration;
-using WCMS.WebSystem.Apps.Integration.ExtWebService;
+using WCMS.WebSystem.Apps.Integration.ONEWebService;
 
 namespace WCMS.WebSystem.Apps.Integration.ExtApp
 {
@@ -34,7 +34,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExtApp
                     };
                 }
 
-                var client = new webservice01someorgSoapClient();
+                var client = new webservice01someorgorgSoapClient();
                 //var response1 = client.CheckUserAppPermission1("M4348DFFF32DF342ERKLK", "MAG00049", "pwd");
                 //var response2 = client.GetUserInfo1("M4348DFFF32DF342ERKLK", "MAG00049");
 
@@ -93,7 +93,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExtApp
                 };
             }
 
-            var client = new webservice01someorgSoapClient();
+            var client = new webservice01someorgorgSoapClient();
             //var response1 = client.CheckUserAppPermission1("appKey", "username", "pwd");
 
             WSite site = context == null ? null : context.Site;

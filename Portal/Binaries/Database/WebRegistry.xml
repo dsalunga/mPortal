@@ -343,7 +343,7 @@
   <WebRegistry>
     <RegistryId>50</RegistryId>
     <Key>LocalPath</Key>
-    <Value>D:\Daniel\Projects\mportal\svn\trunk\WebSystem</Value>
+    <Value>C:\Workspace\github.com\dsalunga\mPortal\Portal\WebSystem</Value>
     <ParentId>22</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -753,7 +753,7 @@
   <WebRegistry>
     <RegistryId>126</RegistryId>
     <Key>BaseAddress</Key>
-    <Value>http://localhost:9000/</Value>
+    <Value>https://dev.bengswi.com/</Value>
     <ParentId>22</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
