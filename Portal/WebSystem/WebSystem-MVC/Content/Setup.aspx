@@ -108,7 +108,7 @@
                                 <EditRowStyle BackColor="#2461BF" />
                                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
                                 <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Left" />
-                                <HeaderStyle BackColor="#507CD1" CssClass="HeaderStyleLeft" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#507CD1" CssClass="HeaderStyleLeft" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
                                 <AlternatingRowStyle BackColor="White" />
                                 <Columns>
                                     <asp:TemplateField>

@@ -183,6 +183,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Assets\Images\logos\bbscoreboard.png" />
+    <Content Include="Content\Assets\Images\logos\visualvid.jpg" />
     <Content Include="Content\Parts\Integration\Assets\Html\Account\MCGI-ResetPassword.html" />
     <Content Include="Content\Parts\Integration\Assets\Html\Account\MCGI-StreamingRequestApprovedEmailToUser.html" />
     <Content Include="Content\Parts\Integration\Assets\Html\Account\MCGI-StreamingRequestEmailToAdmin.html" />
