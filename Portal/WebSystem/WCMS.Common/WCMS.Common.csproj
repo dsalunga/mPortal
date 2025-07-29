@@ -115,7 +115,7 @@
     <Compile Include="Data\SqlDataProviderBase.cs" />
     <Compile Include="FileLogger.cs" />
     <Compile Include="ILogger.cs" />
-    <Compile Include="INamedValueProvider .cs" />
+    <Compile Include="INamedValueProvider.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="Media\AsxMedia.cs" />
     <Compile Include="NamedValueProvider.cs" />
