@@ -26,8 +26,18 @@ namespace WCMS.WebSystem.Utilities
 
         public DbManager()
         {
+            //if (SqlScriptGenerator.CheckCreateDatabase())
+            //    IsNewDb = true;
+        }
+
+        public bool CheckCreateDatabase()
+        {
             if (SqlScriptGenerator.CheckCreateDatabase())
+            {
                 IsNewDb = true;
+                return true;
+            }
+            return false;
         }
 
         public string RestoreObjectSchema(WebObject item)
