@@ -139,7 +139,7 @@ namespace WCMS.WebSystem.Utilities
             ds.Tables[0].TableName = item.Name;
             ds.WriteXml(targetXmlFile, XmlWriteMode.WriteSchema);
 
-            if (item.Name == "WebObject")
+            if (item.Name == WebObject.OBJECT_NAME)
             {
                 string dbXml = string.Format(@"{0}\{1}", XML_PATH, DbConstants.XML_FILE);
                 File.Copy(targetXmlFile, dbXml, true);

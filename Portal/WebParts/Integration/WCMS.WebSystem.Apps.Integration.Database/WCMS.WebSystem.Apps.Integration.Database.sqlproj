@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{ff309410-1146-4198-acbd-ab7af2dea1c0}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -63,37 +63,6 @@
     <Folder Include="dbo\Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Stored Procedures\BibleReaderAccess_Del.sql" />
-    <Build Include="dbo\Stored Procedures\BibleReaderAccess_Get.sql" />
-    <Build Include="dbo\Stored Procedures\BibleReaderAccess_Set.sql" />
-    <Build Include="dbo\Stored Procedures\BibleReaderVersionAccess_Del.sql" />
-    <Build Include="dbo\Stored Procedures\BibleReaderVersionAccess_Get.sql" />
-    <Build Include="dbo\Stored Procedures\BibleReaderVersionAccess_Set.sql" />
-    <Build Include="dbo\Stored Procedures\ExternalDB_Attendance_Del.sql" />
-    <Build Include="dbo\Stored Procedures\ExternalMember_Del.sql" />
-    <Build Include="dbo\Stored Procedures\ExternalMember_Get.sql" />
-    <Build Include="dbo\Stored Procedures\ExternalMember_Set.sql" />
-    <Build Include="dbo\Stored Procedures\MCCandidate_Del.sql" />
-    <Build Include="dbo\Stored Procedures\MCCandidate_Get.sql" />
-    <Build Include="dbo\Stored Procedures\MCCandidate_Set.sql" />
-    <Build Include="dbo\Stored Procedures\MusicCompetition_Del.sql" />
-    <Build Include="dbo\Stored Procedures\MusicCompetition_Get.sql" />
-    <Build Include="dbo\Stored Procedures\MusicCompetition_Set.sql" />
-    <Build Include="dbo\Stored Procedures\MCComposer_Del.sql" />
-    <Build Include="dbo\Stored Procedures\MCComposer_Get.sql" />
-    <Build Include="dbo\Stored Procedures\MCComposer_Set.sql" />
-    <Build Include="dbo\Stored Procedures\MCInterpreterScore_Del.sql" />
-    <Build Include="dbo\Stored Procedures\MCInterpreterScore_Get.sql" />
-    <Build Include="dbo\Stored Procedures\MCInterpreterScore_Set.sql" />
-    <Build Include="dbo\Stored Procedures\MCSongScore_Del.sql" />
-    <Build Include="dbo\Stored Procedures\MCSongScore_Get.sql" />
-    <Build Include="dbo\Stored Procedures\MCSongScore_Set.sql" />
-    <Build Include="dbo\Stored Procedures\MCVote_Del.sql" />
-    <Build Include="dbo\Stored Procedures\MCVote_Get.sql" />
-    <Build Include="dbo\Stored Procedures\MCVote_Set.sql" />
-    <Build Include="dbo\Stored Procedures\LessonReviewerVideo_Del.sql" />
-    <Build Include="dbo\Stored Procedures\LessonReviewerVideo_Get.sql" />
-    <Build Include="dbo\Stored Procedures\LessonReviewerVideo_Set.sql" />
     <Build Include="dbo\Stored Procedures\Member_Del.sql" />
     <Build Include="dbo\Stored Procedures\Member_Get.sql" />
     <Build Include="dbo\Stored Procedures\Member_Set.sql" />
@@ -107,27 +76,56 @@
     <Build Include="dbo\Stored Procedures\Registration_Del.sql" />
     <Build Include="dbo\Stored Procedures\Registration_Get.sql" />
     <Build Include="dbo\Stored Procedures\Registration_Set.sql" />
-    <Build Include="dbo\Stored Procedures\LessonReviewerSession_Del.sql" />
-    <Build Include="dbo\Stored Procedures\LessonReviewerSession_Get.sql" />
-    <Build Include="dbo\Stored Procedures\LessonReviewerSession_Set.sql" />
     <Build Include="dbo\Stored Procedures\Sportsfest_Del.sql" />
     <Build Include="dbo\Stored Procedures\Sportsfest_Get.sql" />
     <Build Include="dbo\Stored Procedures\Sportsfest_Set.sql" />
-    <Build Include="dbo\Tables\BibleReaderAccess.sql" />
-    <Build Include="dbo\Tables\BibleReaderVersionAccess.sql" />
-    <Build Include="dbo\Tables\MCCandidate.sql" />
-    <Build Include="dbo\Tables\MusicCompetition.sql" />
-    <Build Include="dbo\Tables\MCComposer.sql" />
-    <Build Include="dbo\Tables\MCInterpreterScore.sql" />
-    <Build Include="dbo\Tables\MCSongScore.sql" />
-    <Build Include="dbo\Tables\MCVote.sql" />
-    <Build Include="dbo\Tables\LessonReviewerVideo.sql" />
     <Build Include="dbo\Tables\Member.sql" />
     <Build Include="dbo\Tables\MemberLink.sql" />
     <Build Include="dbo\Tables\Membership.sql" />
     <Build Include="dbo\Tables\MemberStatuses.sql" />
     <Build Include="dbo\Tables\ODKVisit.sql" />
     <Build Include="dbo\Tables\Registration.sql" />
-    <Build Include="dbo\Tables\LessonReviewerSession.sql" />
+    <Build Include="dbo\Stored Procedures\ADDBibleAccess_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ADDBibleAccess_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ADDBibleAccess_Set.sql" />
+    <Build Include="dbo\Stored Procedures\ADDBibleVersionAccess_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ADDBibleVersionAccess_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ADDBibleVersionAccess_Set.sql" />
+    <Build Include="dbo\Stored Procedures\AMSDB_Attendance_Del.sql" />
+    <Build Include="dbo\Stored Procedures\AMSMember_Del.sql" />
+    <Build Include="dbo\Stored Procedures\AMSMember_Get.sql" />
+    <Build Include="dbo\Stored Procedures\AMSMember_Set.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPCandidate_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPCandidate_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPCandidate_Set.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPCompetition_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPCompetition_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPCompetition_Set.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPComposer_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPComposer_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPComposer_Set.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPInterpreterScore_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPInterpreterScore_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPInterpreterScore_Set.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPSongScore_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPSongScore_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPSongScore_Set.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPVote_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPVote_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ASOPVote_Set.sql" />
+    <Build Include="dbo\Tables\ADDBibleAccess.sql" />
+    <Build Include="dbo\Tables\ADDBibleVersionAccess.sql" />
+    <Build Include="dbo\Tables\ASOPCandidate.sql" />
+    <Build Include="dbo\Tables\ASOPCompetition.sql" />
+    <Build Include="dbo\Tables\ASOPComposer.sql" />
+    <Build Include="dbo\Tables\ASOPInterpreterScore.sql" />
+    <Build Include="dbo\Tables\ASOPSongScore.sql" />
+    <Build Include="dbo\Tables\ASOPVote.sql" />
+    <Build Include="dbo\Stored Procedures\ServiceMakeUp_Del.sql" />
+    <Build Include="dbo\Stored Procedures\ServiceMakeUp_Get.sql" />
+    <Build Include="dbo\Stored Procedures\ServiceMakeUp_Set.sql" />
+    <Build Include="dbo\Stored Procedures\MCGIServiceVideo_Del.sql" />
+    <Build Include="dbo\Stored Procedures\MCGIServiceVideo_Get.sql" />
+    <Build Include="dbo\Stored Procedures\MCGIServiceVideo_Set.sql" />
   </ItemGroup>
 </Project>

@@ -58,10 +58,10 @@ namespace WCMS.Framework.Core
                 {
                     _cache.Add(item.Id, item);
                 }
-
                 _cache.CacheStatus = CacheStatus.Full;
 
                 PerformanceLog.EndLogNoCheck(string.Format("Cache Init: {0} - {1}", _object.Name, _object.Id), sw, -1);
+                Console.WriteLine($"Cache loaded for {_object.Name} with {_cache.Count} items.");
             }
         }
 
@@ -76,7 +76,6 @@ namespace WCMS.Framework.Core
             if (args.Item != null && args.Item.Id == _object.Id && args.Item.CacheTypeId != args.OldCacheFlag)
             {
                 _cache = new MemoryCache<T>();
-
                 if (args.Item.IsFullCache)
                     LoadCache();
             }

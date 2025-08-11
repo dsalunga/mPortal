@@ -124,25 +124,25 @@
 
                     @if (isMember)
                     {
-                    <text>
-                    $('.account-trigger').popover({
-                        placement: 'auto',
-                        title: '@user.FirstAndLastName<div>@user.Email</div>',
-                        html: true,
-                        content: $('#profilePopover').html(),
-                        container: 'body',
-                        template: '<div class="portal-popover popover popover-account"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
-                    });
+                        <text>
+                        $('.account-trigger').popover({
+                            placement: 'auto',
+                            title: '@user.FirstAndLastName<div>@user.Email</div>',
+                            html: true,
+                            content: $('#profilePopover').html(),
+                            container: 'body',
+                            template: '<div class="portal-popover popover popover-account"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+                        });
 
-                    $('.switcher-trigger').on('show.bs.popover', function () {
-                        $('.account-trigger').popover('hide');
-                    });
+                        $('.switcher-trigger').on('show.bs.popover', function () {
+                            $('.account-trigger').popover('hide');
+                        });
 
-                    $('.account-trigger').on('show.bs.popover', function () {
-                        $('.switcher-trigger').popover('hide');
-                    });
+                        $('.account-trigger').on('show.bs.popover', function () {
+                            $('.switcher-trigger').popover('hide');
+                        });
 
-                    </text>
+                        </text>
                     }
                 });
             </script>

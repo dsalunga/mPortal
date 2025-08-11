@@ -479,6 +479,13 @@
     <Compile Include="Content\Parts\Common\UserPhotoUpload.ascx.designer.cs">
       <DependentUpon>UserPhotoUpload.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Content\Setup.aspx.cs">
+      <DependentUpon>Setup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Setup.aspx.designer.cs">
+      <DependentUpon>Setup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Content\Themes\test\StandAloneTemplate.ascx.cs">
       <DependentUpon>StandAloneTemplate.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -503,13 +510,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Content\Setup.aspx.cs">
-      <DependentUpon>Setup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Content\Setup.aspx.designer.cs">
-      <DependentUpon>Setup.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Content\Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1769,6 +1769,7 @@
     <Content Include="Content\Plugins\WebExtractor\WCMS.Common.pdb" />
     <Content Include="Content\Plugins\WebExtractor\WebExtractor.exe" />
     <Content Include="Content\Plugins\WebExtractor\WebExtractor.pdb" />
+    <Content Include="Content\Setup.aspx" />
     <Content Include="Content\Test02.aspx" />
     <Content Include="Content\Themes\bootstrap3\carousel\carousel.css" />
     <Content Include="Content\Themes\bootstrap3\carousel\index.html" />
@@ -1924,7 +1925,6 @@
     <Content Include="Content\Assets\Scripts\pngfix.js" />
     <Content Include="Content\Assets\Scripts\shadow.js" />
     <Content Include="Content\Assets\Scripts\WebSystem.Admin.js" />
-    <Content Include="Content\Setup.aspx" />
     <Content Include="Properties\DataSources\WCMS.Framework.Net.FileSyncInfo.datasource" />
     <Content Include="Properties\DataSources\WCMS.Framework.WebUser.datasource" />
     <Content Include="Properties\DataSources\WCMS.Framework.WebUserContainer.datasource" />

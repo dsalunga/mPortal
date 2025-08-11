@@ -743,9 +743,9 @@ namespace WCMS.Framework
         static CacheTypes()
         {
             _values = new Dictionary<int, string> {
-                {-1, "None"},
-                {2, "Partial"},
-                {1, "Full"}
+                {None, "None"},
+                {Partial, "Partial"},
+                {Full, "Full"}
             };
         }
 

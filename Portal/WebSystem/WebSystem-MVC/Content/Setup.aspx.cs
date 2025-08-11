@@ -146,6 +146,84 @@ namespace WCMS.WebSystem
             var sbErrors = new StringBuilder();
             string dbPath = _db.XML_PATH;
 
+            // Test SQL Server and Database existence
+            string connString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string dbName = ConfigurationManager.AppSettings["WebObject.SqlDbName"];
+            try
+            {
+                var builder = new SqlConnectionStringBuilder(connString);
+                string server = builder.DataSource;
+                string user = builder.UserID;
+                string password = builder.Password;
+                string initialDatabase = builder.InitialCatalog;
+
+                sbErrors.Append("* SQL Server: " + server + WConstants.WBREAK);
+                sbErrors.Append("* InitialDB: " + initialDatabase + WConstants.WBREAK);
+                sbErrors.Append("* SqlDbName: " + dbName + WConstants.WBREAK + WConstants.WBREAK);
+
+                // Test server connection
+                builder.InitialCatalog = "master";
+                using (var conn = new SqlConnection(builder.ConnectionString))
+                {
+                    try
+                    {
+                        conn.Open();
+                        sbErrors.Append("* SQL Server connection: OK" + WConstants.WBREAK);
+                    }
+                    catch (Exception ex)
+                    {
+                        sbErrors.Append("* SQL Server connection FAILED: " + ex.Message + WConstants.WBREAK);
+                        divErrors.InnerHtml = sbErrors.ToString();
+                        return;
+                    }
+
+                    // Test database existence
+                    using (var cmd = new SqlCommand("SELECT db_id(@initialDatabase)", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@initialDatabase", initialDatabase);
+                        var dbId = cmd.ExecuteScalar();
+                        if (dbId == DBNull.Value || dbId == null)
+                        {
+                            sbErrors.Append("* Database InitialDB '" + initialDatabase + "' does not exist." + WConstants.WBREAK);
+                            divErrors.InnerHtml = sbErrors.ToString();
+                        }
+                        else
+                        {
+                            sbErrors.Append("* Database InitialDB '" + initialDatabase + "' OK." + WConstants.WBREAK);
+                        }
+                    }
+
+                    // Test database existence
+                    using (var cmd = new SqlCommand("SELECT db_id(@dbName)", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dbName", dbName);
+                        var dbId = cmd.ExecuteScalar();
+                        if (dbId == DBNull.Value || dbId == null)
+                        {
+                            sbErrors.Append("* Database SqlDbName '" + dbName + "' does not exist." + WConstants.WBREAK);
+                            divErrors.InnerHtml = sbErrors.ToString();
+                        }
+                        else
+                        {
+                            sbErrors.Append("* Database SqlDbName '" + dbName + "' OK." + WConstants.WBREAK);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                sbErrors.Append("* SQL Server/database test error: " + ex.Message + WConstants.WBREAK);
+                divErrors.InnerHtml = sbErrors.ToString();
+                return;
+            }
+
+            if (sbErrors.Length == 0)
+            {
+                sbErrors.Append("* SQL Server and Database connectivity: OK" + WConstants.WBREAK);
+            }
+
+            sbErrors.Append(WConstants.WBREAK);
+
             // Map to exact path
             string databasePath = string.Format(@"{0}{1}{2}", dbPath, Path.DirectorySeparatorChar, DbConstants.XML_FILE);
             if (File.Exists(databasePath))
@@ -167,22 +245,22 @@ namespace WCMS.WebSystem
                         catch (SqlException ex)
                         {
                             LogHelper.WriteLog(ex);
-                            sbErrors.Append(string.Format("- Table {0} is not accessible or doesn't exist.{1}", item.Name, WConstants.WBREAK));
+                            sbErrors.Append(string.Format("* Table {0} is not accessible or doesn't exist.{1}", item.Name, WConstants.WBREAK));
                         }
                     }
                 }
                 catch (Exception ex)
                 {
                     LogHelper.WriteLog(ex);
-                    sbErrors.AppendFormat("- Database connectivity error: {0}{1}", ex, WConstants.WBREAK);
+                    sbErrors.AppendFormat("* Database connectivity error:{1}{0}{1}", ex, WConstants.WBREAK);
                 }
             }
             else
             {
-                sbErrors.AppendFormat("- Database definition XML is missing.{0}", WConstants.WBREAK);
+                sbErrors.AppendFormat("* Database definition XML is missing.{0}", WConstants.WBREAK);
             }
 
-            divErrors.InnerHtml = sbErrors.Length > 0 ? sbErrors.ToString() : "- None";
+            divErrors.InnerHtml = sbErrors.Length > 0 ? sbErrors.ToString() : "* None";
         }
 
 

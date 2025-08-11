@@ -1,8 +1,11 @@
 # mPortal
 A custom ASP.NET web content management system (WCMS).
 
-**Dev Login**
-Username: admin, Password: dev123
+**Dev Login**  
+Dev URL: https://localhost:44300/Central/  
+Username: admin  
+Password: dev123  
+Setup URL: https://localhost:44300/Content/Setup.aspx
 
 **Debugging**
 Logs

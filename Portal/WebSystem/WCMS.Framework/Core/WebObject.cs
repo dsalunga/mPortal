@@ -32,12 +32,19 @@ namespace WCMS.Framework.Core
 
     public class WebObject : NamedWebObject
     {
+        public const string OBJECT_NAME = "WebObject";
+
         public static EventHandler<WebObjectCacheFlagUpdateEventArgs> CacheFlagUpdated;
         //public static EventHandler<WebObjectRecordEventArgs> RecordCreated;
 
         private static object _lock = new object();
         private static Type _type;
         private static IWebObjectProvider _manager;
+
+        public static bool IsInitialized
+        {
+            get { return _manager != null; }
+        }
 
         public static void Initialize()
         {
@@ -590,5 +597,7 @@ namespace WCMS.Framework.Core
         }
 
         #endregion
+
+        //public override string Name { get => OBJECT_NAME;}
     }
 }

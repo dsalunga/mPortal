@@ -31,7 +31,11 @@ namespace WCMS.Framework.Core
             {
                 var items = _provider.GetList();
                 foreach (var item in items)
+                {
                     _cache.Add(item.Id, item);
+                }
+
+                Console.WriteLine($"Cache loaded for {_object.Name} with {_cache.Count} items.");
             }
         }
 

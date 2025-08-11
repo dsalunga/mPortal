@@ -23,6 +23,7 @@ namespace WCMS.Common.Utilities
         public const string ICO_NEW_POST = "~/content/assets/images/common/ico_postnew.gif";
         public const string ICO_SCRIPT = "~/content/assets/images/common/ico_script.gif";
         public const string TEMP_DATA_PATH = "~/content/assets/tmp/";
+        public const string ADMIN_DATA_PATH = "~/content/admin/data";
         public const string SCRIPT_TAG_TEMPLATE = "<script type=\"text/javascript\" src=\"{0}\"></script>";
         public const string SCRIPT_URL_TEMPLATE = "window.location.href='{0}';";
         public const string AMPERSAND = "&";

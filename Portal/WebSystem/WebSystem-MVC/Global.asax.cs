@@ -243,6 +243,14 @@ namespace WCMS.WebSystem
             string ext = VirtualPathUtility.GetExtension(urlPath);
             if (ext.Equals(WConfig.PageExt) || !WConfig.HasPageExt && !ext.Contains("."))
             {
+                if (!WebObject.IsInitialized)
+                {
+                    // If WebObject is not initialized, we cannot resolve the page
+                    LogHelper.WriteLog(true, "WebObject is not initialized, cannot resolve page for URL: {0}", urlPath);
+                    WebUtil.Redirect(CentralPages.Setup, Context);
+                    return;
+                }
+
                 WPage page = null;
                 Tuple<WPage, string> result = null;
 

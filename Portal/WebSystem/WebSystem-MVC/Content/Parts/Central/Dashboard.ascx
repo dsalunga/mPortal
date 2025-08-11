@@ -316,11 +316,11 @@
                 </div>
             </div>
             <div class="media">
-                <a class="pull-left" href="<%= CentralPages.FileManager %>?Path=<%=WebHelper.TEMP_DATA_PATH %>Logs/">
+                <a class="pull-left" href="<%= CentralPages.FileManager %>?Path=<%=WebHelper.ADMIN_DATA_PATH %>/logs/">
                     <img class="media-object" width="64" src="/Content/Assets/Images/bug.png" />
                 </a>
                 <div class="media-body">
-                    <h4 class="media-heading"><a href="<%= CentralPages.FileManager %>?Path=<%=WebHelper.TEMP_DATA_PATH %>Logs/">Error Logs Viewer</a></h4>
+                    <h4 class="media-heading"><a href="<%= CentralPages.FileManager %>?Path=<%=WebHelper.ADMIN_DATA_PATH %>/logs/">Error Logs Viewer</a></h4>
                     Place description here
                 </div>
             </div>

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-using WCMS.Framework;
-using WCMS.WebSystem.WebParts.Menu;
-
-namespace WCMS.WebSystem.Content.Parts.Integration.GlobalSwitch
+﻿namespace WCMS.WebSystem.Content.Parts.Integration.GlobalSwitch
 {
     public class GlobalSwitchHelper
     {
