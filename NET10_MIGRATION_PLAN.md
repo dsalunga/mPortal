@@ -122,10 +122,10 @@ Legend:
 |---|---|---|---|
 | 1 | `Core/WCMS.Common/WCMS.Common.csproj` | Port | Already SDK-style; move `net8.0 -> net10.0`, clean legacy bootstrapper metadata. |
 | 1 | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj` | Port | Convert to SDK test project (MSTest/NUnit/xUnit modernization). |
-| 2 | `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` | Port | Root shared lib; high leverage, System.Web adapters likely needed. |
-| 2 | `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` | Port | Depends on WCMS.Common; EF6 presence to isolate. |
-| 2 | `Portal/WebSystem/WCMS.Framework.Core.SqlProvider/WCMS.Framework.Core.SqlProvider.csproj` | Port | Shared data layer dependency. |
-| 2 | `Portal/WebSystem/WCMS.Framework.Core.XmlProvider/WCMS.Framework.Core.XmlProvider.csproj` | Port | Shared provider layer. |
+| 2 | [x] `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` | Port | Root shared lib; high leverage, System.Web adapters likely needed. |
+| 2 | [x] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` | Port | Depends on WCMS.Common; EF6 presence to isolate. |
+| 2 | [x] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider/WCMS.Framework.Core.SqlProvider.csproj` | Port | Shared data layer dependency. |
+| 2 | [x] `Portal/WebSystem/WCMS.Framework.Core.XmlProvider/WCMS.Framework.Core.XmlProvider.csproj` | Port | Shared provider layer. |
 | 2 | `Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj` | Port | SQL SMO package modernization required. |
 | 2 | `Portal/WebSystem/WCMS.WebSystem.Utilities/WCMS.WebSystem.Utilities.csproj` | Port | Depends on framework/provider chain. |
 | 2 | `Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj` | Port | Heavily coupled to ASP.NET MVC APIs; adapter/abstraction pass needed. |
