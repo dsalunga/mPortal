@@ -153,7 +153,7 @@ Legend:
 | 4 | [x] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj` | Rebuild | Replaced legacy host with ASP.NET Core `net10.0` scaffold wired to BranchLocator module for incremental endpoint/page migration. |
 | 4 | [x] `BibleReader/BibleReader/BibleReader.WebApp.csproj` | Rebuild | Replaced legacy WebForms host with ASP.NET Core `net10.0` scaffold to stage incremental BibleReader feature migration. |
 | 4 | [x] `LessonReviewer/LessonReviewer/LessonReviewer.csproj` | Rebuild | Replaced legacy WebForms host with ASP.NET Core `net10.0` scaffold for phased LessonReviewer feature migration. |
-| 4 | `Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj` | Rebuild | Mixed WebForms + MVC + services; staged cutover. |
+| 4 | [x] `Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj` | Rebuild | Replaced legacy mixed host with ASP.NET Core `net10.0` scaffold to stage service and page endpoint cutover incrementally. |
 | 4 | `Portal/WebParts/SystemPartsG2/SystemPartsG2/WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj` | Rebuild | Web module host; migrate after module libs. |
 | 4 | `Portal/WebParts/SystemPartsG3/SystemPartsG3/WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj` | Rebuild | Web module host; migrate after module libs. |
 | 4 | `Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj` | Rebuild | Largest module host after core deps stabilized. |
