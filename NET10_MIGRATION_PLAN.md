@@ -155,7 +155,7 @@ Legend:
 | 4 | [x] `LessonReviewer/LessonReviewer/LessonReviewer.csproj` | Rebuild | Replaced legacy WebForms host with ASP.NET Core `net10.0` scaffold for phased LessonReviewer feature migration. |
 | 4 | [x] `Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj` | Rebuild | Replaced legacy mixed host with ASP.NET Core `net10.0` scaffold to stage service and page endpoint cutover incrementally. |
 | 4 | [x] `Portal/WebParts/SystemPartsG2/SystemPartsG2/WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj` | Rebuild | Replaced legacy SystemPartsG2 host with ASP.NET Core `net10.0` scaffold for phased module endpoint migration. |
-| 4 | `Portal/WebParts/SystemPartsG3/SystemPartsG3/WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj` | Rebuild | Web module host; migrate after module libs. |
+| 4 | [x] `Portal/WebParts/SystemPartsG3/SystemPartsG3/WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj` | Rebuild | Replaced legacy SystemPartsG3 host with ASP.NET Core `net10.0` scaffold and staged module-link migration. |
 | 4 | `Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj` | Rebuild | Largest module host after core deps stabilized. |
 | 4 | `Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj` | Retire | Replace with modern automated tests in CI. |
 | 5 | `Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj` | Rebuild | Primary portal host; final app-level cutover. |
