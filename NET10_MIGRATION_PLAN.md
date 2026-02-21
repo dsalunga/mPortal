@@ -167,7 +167,7 @@ Legend:
 | 6 | [x] `Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` | Port | Converted to SDK-style (`net48`) as interim step; target `net10.0` after `WCMS.Common` dependencies are modernized. |
 | 6 | [x] `Portal/Utilities/WebSystemDeployer/WebSystemDeployer/WebSystemDeployer.csproj` | Port | Converted to SDK-style (`net48`) in Windows lane; final `net10.0-windows`/CLI replacement remains after dependency cleanup. |
 | 6 | [x] `Portal/Utilities/MySQL TableEditor/TableEditor.csproj` | Port | Converted to SDK-style (`net48`) as interim Windows utility; move to `net10.0-windows` after legacy dependency cleanup. |
-| 6 | `Portal/Utilities/DbManagerWPF/DbManager/DbManager.csproj` | Port | WPF app; target `net10.0-windows` only. |
+| 6 | [x] `Portal/Utilities/DbManagerWPF/DbManager/DbManager.csproj` | Port | Converted to SDK-style `net10.0-windows` with WPF + Windows targeting enabled for cross-OS restore/build workflows. |
 
 ### SQL projects (Windows lane, parallel to Waves 2-6)
 
