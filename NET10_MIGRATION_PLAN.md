@@ -214,8 +214,9 @@ Why Windows VM is still needed:
    - `Portal/WebSystem/mPortal-Web.sln`
 3. [x] Create migration branch and add shared build settings (`Directory.Build.props`).
    - Completed 2026-02-21: branch `codex/net10-modernization`, added repo-level `Directory.Build.props`.
-4. [ ] Execute Wave 1 pilot:
+4. [x] Execute Wave 1 pilot:
    - [x] `Core/WCMS.Common/WCMS.Common.csproj` -> `net10.0`
      - Completed 2026-02-21: upgraded to `net10.0` and removed legacy bootstrapper/ClickOnce metadata.
-   - [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj` -> SDK-style tests.
+   - [x] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj` -> SDK-style tests.
+     - Completed 2026-02-21: converted to SDK-style MSTest project and validated with `dotnet test` on `net10.0`.
 5. [ ] Start Wave 2 with `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` and `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj`.
