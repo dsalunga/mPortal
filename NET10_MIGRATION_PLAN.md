@@ -165,7 +165,7 @@ Legend:
 | 6 | [x] `Portal/Utilities/DbManager/DbManager/DbManager.csproj` | Port | Converted to SDK-style (`net48`) as interim CLI; move to `net10.0` after core runtime deps are off `System.Web`. |
 | 6 | [x] `Portal/Utilities/PostBuildManager/PostBuildManager/PostBuildManager.csproj` | Port | Converted to SDK-style (`net48`) as interim step; cross-platform `net10.0` move requires removing `System.Web` dependency. |
 | 6 | [x] `Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` | Port | Converted to SDK-style (`net48`) as interim step; target `net10.0` after `WCMS.Common` dependencies are modernized. |
-| 6 | `Portal/Utilities/WebSystemDeployer/WebSystemDeployer/WebSystemDeployer.csproj` | Port | Windows Forms currently; target `net10.0-windows` or replace with CLI. |
+| 6 | [x] `Portal/Utilities/WebSystemDeployer/WebSystemDeployer/WebSystemDeployer.csproj` | Port | Converted to SDK-style (`net48`) in Windows lane; final `net10.0-windows`/CLI replacement remains after dependency cleanup. |
 | 6 | `Portal/Utilities/MySQL TableEditor/TableEditor.csproj` | Port | WinForms UI; likely `net10.0-windows` only. |
 | 6 | `Portal/Utilities/DbManagerWPF/DbManager/DbManager.csproj` | Port | WPF app; target `net10.0-windows` only. |
 
