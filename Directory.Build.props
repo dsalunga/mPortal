@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup Condition="'$(UsingMicrosoftNETSdk)' == 'true'">
+    <LangVersion>latestMajor</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(CI)' != ''">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+</Project>
