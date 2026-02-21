@@ -120,8 +120,8 @@ Legend:
 
 | Wave | Project | Action | Notes |
 |---|---|---|---|
-| 1 | `Core/WCMS.Common/WCMS.Common.csproj` | Port | Already SDK-style; move `net8.0 -> net10.0`, clean legacy bootstrapper metadata. |
-| 1 | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj` | Port | Convert to SDK test project (MSTest/NUnit/xUnit modernization). |
+| 1 | [x] `Core/WCMS.Common/WCMS.Common.csproj` | Port | Upgraded to `net10.0` and legacy bootstrapper/ClickOnce metadata removed (completed 2026-02-21). |
+| 1 | [x] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj` | Port | Converted to SDK-style MSTest project and validated on `net10.0` (completed 2026-02-21). |
 | 2 | [x] `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` | Port | Root shared lib; high leverage, System.Web adapters likely needed. |
 | 2 | [x] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` | Port | Depends on WCMS.Common; EF6 presence to isolate. |
 | 2 | [x] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider/WCMS.Framework.Core.SqlProvider.csproj` | Port | Shared data layer dependency. |
@@ -209,9 +209,11 @@ Why Windows VM is still needed:
 
 1. [x] Install prerequisites on macOS and confirm `dotnet --info` shows SDK 10.x.
    - Completed 2026-02-21: .NET SDK `10.0.103` and global `upgrade-assistant` installed.
-2. [ ] Provision Windows VM and verify baseline build of:
+2. [x] Verify baseline build of:
    - `Portal/WebSystem/mPortal.sln`
    - `Portal/WebSystem/mPortal-Web.sln`
+   - Completed 2026-02-22 on macOS: both solutions build successfully with `dotnet build`.
+   - Windows VM remains recommended for IIS-specific runtime and SQL project (`.sqlproj`) workflows.
 3. [x] Create migration branch and add shared build settings (`Directory.Build.props`).
    - Completed 2026-02-21: branch `codex/net10-modernization`, added repo-level `Directory.Build.props`.
 4. [x] Execute Wave 1 pilot:
