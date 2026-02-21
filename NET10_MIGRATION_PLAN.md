@@ -162,7 +162,7 @@ Legend:
 | 5 | `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` | Replace | Replace legacy editor package with supported editor integration. |
 | 5 | `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.vs2003.csproj` | Retire | Obsolete legacy project format. |
 | 5 | `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` | Replace | Replace legacy ASP.NET control implementation. |
-| 6 | `Portal/Utilities/DbManager/DbManager/DbManager.csproj` | Port | Keep as CLI tool (`net10.0`) for db workflows. |
+| 6 | [x] `Portal/Utilities/DbManager/DbManager/DbManager.csproj` | Port | Converted to SDK-style (`net48`) as interim CLI; move to `net10.0` after core runtime deps are off `System.Web`. |
 | 6 | `Portal/Utilities/PostBuildManager/PostBuildManager/PostBuildManager.csproj` | Port | Convert build helper to cross-platform CLI. |
 | 6 | `Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` | Port | Console utility; low migration risk. |
 | 6 | `Portal/Utilities/WebSystemDeployer/WebSystemDeployer/WebSystemDeployer.csproj` | Port | Windows Forms currently; target `net10.0-windows` or replace with CLI. |
