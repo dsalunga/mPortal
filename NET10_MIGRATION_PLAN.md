@@ -149,7 +149,7 @@ Legend:
 | 3 | [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/WCMS.WebSystem.Apps.Forum.csproj` | Port | Low-risk module library candidate. |
 | 3 | [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/WCMS.WebSystem.Apps.csproj` | Port | Module aggregation library migration. |
 | 3 | [x] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Incident/WCMS.WebSystem.Apps.Incident.csproj` | Port | Module library migration. |
-| 3 | `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/WCMS.WebSystem.Apps.Jobs.csproj` | Port | Module library migration. |
+| 3 | [x] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/WCMS.WebSystem.Apps.Jobs.csproj` | Port | Module library migration. |
 | 4 | `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj` | Rebuild | Move MVC5/Web API pieces to ASP.NET Core first (small web surface). |
 | 4 | `BibleReader/BibleReader/BibleReader.WebApp.csproj` | Rebuild | WebForms app; migrate pages/features incrementally. |
 | 4 | `LessonReviewer/LessonReviewer/LessonReviewer.csproj` | Rebuild | WebForms app; small surface, good early migration target. |
