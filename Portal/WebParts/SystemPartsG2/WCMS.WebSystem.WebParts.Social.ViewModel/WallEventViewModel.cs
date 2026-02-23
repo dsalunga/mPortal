@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web.UI;
-
 using WCMS.Framework;
 using WCMS.Framework.Social;
 
 namespace WCMS.WebSystem.WebParts.Social.ViewModel
 {
-    public abstract class WallEventViewModel : UserControl
+    public abstract class WallEventViewModel
     {
         protected WallUpdate _update;
 
