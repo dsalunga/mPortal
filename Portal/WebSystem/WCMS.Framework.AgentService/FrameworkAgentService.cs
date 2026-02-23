@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.ServiceProcess;
-
-using System.Text;
 using System.Threading;
-using System.IO;
+using System.Threading.Tasks;
+
+using Microsoft.Extensions.Hosting;
 
 using WCMS.Common;
 using WCMS.Common.Utilities;
@@ -18,34 +12,13 @@ using WCMS.Framework.Agent;
 
 namespace WCMS.Framework.AgentService
 {
-    public partial class FrameworkAgentService : ServiceBase
+    public class FrameworkAgentService : BackgroundService
     {
-        public FrameworkAgentService()
-        {
-            InitializeComponent();
-        }
-
-        protected override void OnStart(string[] args)
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             FrameworkAgent agent = new FrameworkAgent();
-            agent.InternalStart(args);
+            agent.InternalStart(Array.Empty<string>());
+            return Task.CompletedTask;
         }
-
-        protected override void OnStop()
-        {
-            
-        }
-
-        protected override bool OnPowerEvent(PowerBroadcastStatus powerStatus)
-        {
-            return base.OnPowerEvent(powerStatus);
-        }
-
-        protected override void OnShutdown()
-        {
-            base.OnShutdown();
-        }
-
-        
     }
 }

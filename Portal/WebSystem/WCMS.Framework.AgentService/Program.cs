@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace WCMS.Framework.AgentService
 {
@@ -11,14 +8,15 @@ namespace WCMS.Framework.AgentService
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main()
+        static void Main(string[] args)
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[] 
-			{ 
-				new FrameworkAgentService() 
-			};
-            ServiceBase.Run(ServicesToRun);
+            var builder = Host.CreateDefaultBuilder(args)
+                .ConfigureServices(services =>
+                {
+                    services.AddHostedService<FrameworkAgentService>();
+                });
+
+            builder.Build().Run();
         }
     }
 }

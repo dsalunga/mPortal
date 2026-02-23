@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
@@ -11,28 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="WCMS.WebSystem.WebParts.EventCalendar">
-      <HintPath>..\WebSystem-MVC\bin\WCMS.WebSystem.WebParts.EventCalendar.dll</HintPath>
-    </Reference>
-    <Reference Include="WCMS.WebSystem.WebParts.Integration">
-      <HintPath>..\WebSystem-MVC\bin\WCMS.WebSystem.WebParts.WCMS.dll</HintPath>
-    </Reference>
-    <Reference Include="WCMS.WebSystem.WebParts.RemoteIndexer">
-      <HintPath>..\WebSystem-MVC\bin\WCMS.WebSystem.WebParts.RemoteIndexer.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\WCMS.Common\WCMS.Common.csproj" />
     <ProjectReference Include="..\WCMS.Framework.Core.SqlProvider\WCMS.Framework.Core.SqlProvider.csproj" />
     <ProjectReference Include="..\WCMS.Framework.Core.XmlProvider\WCMS.Framework.Core.XmlProvider.csproj" />
     <ProjectReference Include="..\WCMS.Framework\WCMS.Framework.csproj" />
     <ProjectReference Include="..\WCMS.WebSystem.Utilities\WCMS.WebSystem.Utilities.csproj" />
+    <ProjectReference Include="..\..\WebParts\SystemParts\WCMS.Framework.WebParts.LocalCalendar\WCMS.WebSystem.Apps.EventCalendar.csproj" />
+    <ProjectReference Include="..\..\WebParts\SystemParts\WCMS.WebSystem.WebParts.RemoteIndexer\WCMS.WebSystem.Apps.RemoteIndexer.csproj" />
   </ItemGroup>
 </Project>

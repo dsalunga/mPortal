@@ -1,31 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net48</TargetFramework>
-    <PlatformTarget>x86</PlatformTarget>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <DocumentationFile>bin\Debug\WCMS.Framework.AgentService.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="WCMS.WebSystem.WebParts.EventCalendar">
-      <HintPath>..\WebSystem-MVC\bin\WCMS.WebSystem.WebParts.EventCalendar.dll</HintPath>
-    </Reference>
-    <Reference Include="WCMS.WebSystem.WebParts.someorg">
-      <HintPath>..\WebSystem-MVC\bin\WCMS.WebSystem.WebParts.someorg.dll</HintPath>
-    </Reference>
-    <Reference Include="WCMS.WebSystem.WebParts.RemoteIndexer">
-      <HintPath>..\WebSystem-MVC\bin\WCMS.WebSystem.WebParts.RemoteIndexer.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,5 +19,7 @@
     <ProjectReference Include="..\WCMS.Framework.Core.SqlProvider\WCMS.Framework.Core.SqlProvider.csproj" />
     <ProjectReference Include="..\WCMS.Framework.Core.XmlProvider\WCMS.Framework.Core.XmlProvider.csproj" />
     <ProjectReference Include="..\WCMS.Framework\WCMS.Framework.csproj" />
+    <ProjectReference Include="..\..\WebParts\SystemParts\WCMS.Framework.WebParts.LocalCalendar\WCMS.WebSystem.Apps.EventCalendar.csproj" />
+    <ProjectReference Include="..\..\WebParts\SystemParts\WCMS.WebSystem.WebParts.RemoteIndexer\WCMS.WebSystem.Apps.RemoteIndexer.csproj" />
   </ItemGroup>
 </Project>
