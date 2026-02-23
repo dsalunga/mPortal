@@ -1,0 +1,41 @@
+@model WCMS.WebSystem.ViewComponents.WebSitesControlViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-diagram-3"></i> Web Sites</h5>
+        <div>
+            <button type="button" class="btn btn-sm btn-success" id="btnAddSite"><i class="bi bi-plus-lg"></i> New Site</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshSites"><i class="bi bi-arrow-clockwise"></i></button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="site-tree p-3" id="siteTreeContainer">
+            @if (Model.Sites.Count == 0)
+            {
+                <p class="text-muted">No sites configured. Click <strong>New Site</strong> to create one.</p>
+            }
+            else
+            {
+                <ul class="list-unstyled" id="siteTree">
+                    @foreach (var site in Model.Sites)
+                    {
+                        <li class="site-node @(site.Id == Model.SelectedSiteId ? "selected" : "")">
+                            <a href="javascript:void(0)" data-site-id="@site.Id" class="site-link">
+                                <i class="bi @(site.IsActive ? "bi-globe" : "bi-globe2 text-muted")"></i>
+                                @site.Name
+                            </a>
+                            @if (!string.IsNullOrEmpty(site.Url))
+                            {
+                                <small class="text-muted ms-2">(@site.Url)</small>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>

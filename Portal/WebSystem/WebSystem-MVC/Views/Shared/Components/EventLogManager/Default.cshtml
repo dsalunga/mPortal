@@ -1,0 +1,87 @@
+@model WCMS.WebSystem.ViewComponents.EventLogManagerViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-journal-text"></i> Event Log</h5>
+        <div>
+            <button type="button" class="btn btn-sm btn-outline-danger" id="btnClearLog"><i class="bi bi-trash"></i> Clear</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshLog"><i class="bi bi-arrow-clockwise"></i></button>
+        </div>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search logs..." id="logSearch" value="@Model.SearchTerm" />
+                    <button class="btn btn-outline-secondary" type="button" id="btnSearchLogs"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="logLevelFilter">
+                    @foreach (var level in Model.AvailableLevels)
+                    {
+                        <option value="@level" selected="@(level == Model.FilterLevel)">@level</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-5 text-end text-muted">
+                @Model.TotalCount entries
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th>Time</th>
+                        <th>Level</th>
+                        <th>Source</th>
+                        <th>Message</th>
+                        <th>User</th>
+                        <th>IP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Entries.Count == 0)
+                    {
+                        <tr><td colspan="6" class="text-center text-muted">No log entries found.</td></tr>
+                    }
+                    @foreach (var entry in Model.Entries)
+                    {
+                        var levelClass = entry.Level switch
+                        {
+                            "Error" => "text-danger",
+                            "Critical" => "text-danger fw-bold",
+                            "Warning" => "text-warning",
+                            _ => ""
+                        };
+                        <tr>
+                            <td><small>@entry.Timestamp.ToString("g")</small></td>
+                            <td><span class="@levelClass">@entry.Level</span></td>
+                            <td><small>@entry.Source</small></td>
+                            <td class="text-truncate" style="max-width:300px;" title="@entry.Details">@entry.Message</td>
+                            <td><small>@entry.UserName</small></td>
+                            <td><small>@entry.IpAddress</small></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @if (Model.TotalPages > 1)
+        {
+            <nav>
+                <ul class="pagination pagination-sm justify-content-center">
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="javascript:void(0)" data-page="@i">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+</div>

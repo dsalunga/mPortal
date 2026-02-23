@@ -1,0 +1,37 @@
+@model WCMS.WebSystem.ViewComponents.WebSecurityTreeViewModel
+
+<div class="card admin-panel">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="bi bi-shield-shaded"></i> Security</h5>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="security-tree p-3" id="securityTreeContainer">
+            @if (Model.Nodes.Count == 0)
+            {
+                <ul class="list-unstyled">
+                    <li class="mb-1"><a href="javascript:void(0)" class="sec-link" data-section="users"><i class="bi bi-people"></i> Users</a></li>
+                    <li class="mb-1"><a href="javascript:void(0)" class="sec-link" data-section="groups"><i class="bi bi-collection"></i> Groups</a></li>
+                    <li class="mb-1"><a href="javascript:void(0)" class="sec-link" data-section="roles"><i class="bi bi-shield-lock"></i> Roles</a></li>
+                    <li class="mb-1"><a href="javascript:void(0)" class="sec-link" data-section="permissions"><i class="bi bi-key"></i> Permissions</a></li>
+                </ul>
+            }
+            else
+            {
+                <ul class="list-unstyled" id="securityTree">
+                    @foreach (var node in Model.Nodes)
+                    {
+                        <li class="mb-1">
+                            <a href="@(node.Url ?? "javascript:void(0)")" class="sec-node @(node.Id == Model.SelectedNodeId ? "fw-bold" : "")" data-node-id="@node.Id">
+                                <i class="bi @(node.Icon ?? "bi-folder")"></i> @node.Text
+                            </a>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>

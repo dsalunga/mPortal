@@ -1,0 +1,86 @@
+@model WCMS.WebSystem.ViewComponents.PerformanceLogManagerViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-speedometer2"></i> Performance Log</h5>
+        <div>
+            <button type="button" class="btn btn-sm btn-outline-danger" id="btnClearPerfLog"><i class="bi bi-trash"></i> Clear</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshPerfLog"><i class="bi bi-arrow-clockwise"></i></button>
+        </div>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search URLs..." id="perfSearch" value="@Model.SearchTerm" />
+                    <button class="btn btn-outline-secondary" type="button" id="btnSearchPerf"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+            <div class="col-md-8 text-end">
+                <span class="badge bg-info me-2">Avg: @Model.AverageResponseTime.ToString("F1") ms</span>
+                <span class="badge bg-warning text-dark me-2">Max: @Model.MaxResponseTime.ToString("F1") ms</span>
+                <span class="text-muted">@Model.TotalCount entries</span>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th>Time</th>
+                        <th>URL</th>
+                        <th>Method</th>
+                        <th>Status</th>
+                        <th>Response (ms)</th>
+                        <th>User</th>
+                        <th>IP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Entries.Count == 0)
+                    {
+                        <tr><td colspan="7" class="text-center text-muted">No performance entries found.</td></tr>
+                    }
+                    @foreach (var entry in Model.Entries)
+                    {
+                        var statusClass = entry.StatusCode >= 500 ? "text-danger" : entry.StatusCode >= 400 ? "text-warning" : "";
+                        <tr>
+                            <td><small>@entry.Timestamp.ToString("g")</small></td>
+                            <td class="text-truncate" style="max-width:250px;">@entry.Url</td>
+                            <td><span class="badge bg-secondary">@entry.Method</span></td>
+                            <td><span class="@statusClass">@entry.StatusCode</span></td>
+                            <td>
+                                @if (entry.ResponseTimeMs > 1000)
+                                {
+                                    <span class="text-danger fw-bold">@entry.ResponseTimeMs.ToString("F0")</span>
+                                }
+                                else
+                                {
+                                    @entry.ResponseTimeMs.ToString("F0")
+                                }
+                            </td>
+                            <td><small>@entry.UserName</small></td>
+                            <td><small>@entry.IpAddress</small></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @if (Model.TotalPages > 1)
+        {
+            <nav>
+                <ul class="pagination pagination-sm justify-content-center">
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="javascript:void(0)" data-page="@i">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+</div>

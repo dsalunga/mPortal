@@ -1,0 +1,83 @@
+@model WCMS.WebSystem.ViewComponents.ShortUrlManagerViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-link-45deg"></i> Short URLs</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddShortUrl"><i class="bi bi-plus-lg"></i> New Short URL</button>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search URLs..." id="shortUrlSearch" value="@Model.SearchTerm" />
+                    <button class="btn btn-outline-secondary" type="button" id="btnSearchUrls"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+            <div class="col-md-6 text-end text-muted">
+                @Model.TotalCount URL(s) found
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th>Short Code</th>
+                        <th>Target URL</th>
+                        <th>Hits</th>
+                        <th>Active</th>
+                        <th>Created</th>
+                        <th>Expires</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Urls.Count == 0)
+                    {
+                        <tr><td colspan="7" class="text-center text-muted">No short URLs found.</td></tr>
+                    }
+                    @foreach (var url in Model.Urls)
+                    {
+                        <tr>
+                            <td><code>@url.ShortCode</code></td>
+                            <td class="text-truncate" style="max-width:300px;">@url.TargetUrl</td>
+                            <td><span class="badge bg-info">@url.HitCount</span></td>
+                            <td>
+                                @if (url.IsActive)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Inactive</span>
+                                }
+                            </td>
+                            <td>@url.CreatedDate.ToString("d")</td>
+                            <td>@url.ExpirationDate?.ToString("d")</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-url" data-url-id="@url.Id"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-url" data-url-id="@url.Id"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @if (Model.TotalPages > 1)
+        {
+            <nav>
+                <ul class="pagination pagination-sm justify-content-center">
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="javascript:void(0)" data-page="@i">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+</div>

@@ -1,0 +1,50 @@
+@model WCMS.WebSystem.ViewComponents.WebTemplateEditorViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-code-slash"></i> Template Editor</h5>
+        <button type="button" class="btn btn-sm btn-primary" id="btnSaveTemplate"><i class="bi bi-save"></i> Save</button>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="alert alert-success">@Model.SuccessMessage</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+        <input type="hidden" id="templateId" value="@Model.TemplateId" />
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Template Name</label>
+                <input type="text" class="form-control" id="templateName" value="@Model.TemplateName" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Panel Zones</label>
+                <div>
+                    @foreach (var zone in Model.AvailablePanelZones)
+                    {
+                        <span class="badge bg-info me-1">@zone</span>
+                    }
+                </div>
+            </div>
+        </div>
+        <ul class="nav nav-tabs mb-3" id="templateEditorTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="html-tab" data-bs-toggle="tab" data-bs-target="#htmlPanel" type="button" role="tab">HTML</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="css-tab" data-bs-toggle="tab" data-bs-target="#cssPanel" type="button" role="tab">CSS</button>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="htmlPanel" role="tabpanel">
+                <textarea class="form-control font-monospace" id="htmlEditor" rows="16">@Model.HtmlContent</textarea>
+            </div>
+            <div class="tab-pane fade" id="cssPanel" role="tabpanel">
+                <textarea class="form-control font-monospace" id="cssEditor" rows="16">@Model.CssContent</textarea>
+            </div>
+        </div>
+    </div>
+</div>

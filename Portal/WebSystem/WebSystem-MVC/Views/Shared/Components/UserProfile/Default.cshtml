@@ -1,0 +1,100 @@
+@model WCMS.WebSystem.ViewComponents.UserProfileViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-person-circle"></i> User Profile</h5>
+        <button type="button" class="btn btn-sm btn-primary" id="btnSaveProfile"><i class="bi bi-save"></i> Save</button>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="alert alert-success">@Model.SuccessMessage</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+        <form method="post" id="userProfileForm">
+            <input type="hidden" name="userId" value="@Model.UserId" />
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" value="@Model.UserName" readonly />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" value="@Model.Email" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-control" name="firstName" value="@Model.FirstName" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" value="@Model.LastName" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Phone</label>
+                    <input type="tel" class="form-control" name="phone" value="@Model.Phone" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Status</label>
+                    <div>
+                        @if (Model.IsLockedOut)
+                        {
+                            <span class="badge bg-danger">Locked Out</span>
+                        }
+                        else if (Model.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Inactive</span>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Last Login</label>
+                    <div class="text-muted">@(Model.LastLoginDate?.ToString("g") ?? "Never")</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Groups</label>
+                    <div>
+                        @if (Model.Groups.Count == 0)
+                        {
+                            <span class="text-muted">None</span>
+                        }
+                        @foreach (var g in Model.Groups)
+                        {
+                            <span class="badge bg-info me-1">@g</span>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Roles</label>
+                    <div>
+                        @if (Model.Roles.Count == 0)
+                        {
+                            <span class="text-muted">None</span>
+                        }
+                        @foreach (var r in Model.Roles)
+                        {
+                            <span class="badge bg-primary me-1">@r</span>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="userActive" name="isActive" checked="@Model.IsActive" />
+                <label class="form-check-label" for="userActive">Active</label>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+@model WCMS.WebSystem.ViewComponents.WebGroupsViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-collection"></i> Groups</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddGroup"><i class="bi bi-plus-lg"></i> New Group</button>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="group-tree p-3" id="groupTreeContainer">
+            @if (Model.Groups.Count == 0)
+            {
+                <p class="text-muted">No groups defined.</p>
+            }
+            else
+            {
+                @await Html.PartialAsync("_GroupTreeLevel", Model.Groups)
+            }
+        </div>
+    </div>
+</div>
+
+@functions {
+    static string RenderGroupNodes(System.Collections.Generic.List<WCMS.WebSystem.ViewComponents.WebGroupNode> nodes, int selectedId)
+    {
+        if (nodes == null || nodes.Count == 0) return string.Empty;
+        var sb = new System.Text.StringBuilder();
+        sb.Append("<ul class=\"list-unstyled ms-3\">");
+        foreach (var g in nodes)
+        {
+            var active = g.Id == selectedId ? "fw-bold" : "";
+            sb.Append($"<li class=\"mb-1\"><a href=\"javascript:void(0)\" class=\"group-link {active}\" data-group-id=\"{g.Id}\">");
+            sb.Append($"<i class=\"bi bi-folder\"></i> {g.Name} <span class=\"badge bg-secondary\">{g.UserCount}</span></a>");
+            sb.Append(RenderGroupNodes(g.Children, selectedId));
+            sb.Append("</li>");
+        }
+        sb.Append("</ul>");
+        return sb.ToString();
+    }
+}
+
+<div id="groupTreeMarkup">
+    @Html.Raw(RenderGroupNodes(Model.Groups, Model.SelectedGroupId))
+</div>
