@@ -2,15 +2,17 @@
 using System.Data;
 using System.Configuration;
 using System.Web;
+using System.IO;
+using System.Net;
+using System.Text;
+#if NETFRAMEWORK
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
-using System.IO;
-using System.Net;
-using System.Text;
 using System.Web.Hosting;
 using System.Web.Caching;
+#endif
 
 namespace WCMS.Common.Utilities
 {
@@ -128,6 +130,7 @@ namespace WCMS.Common.Utilities
                 return ICO_SCRIPT;
         }
 
+#if NETFRAMEWORK
         public static bool FindTreeNode(TreeNodeCollection nodes, string value)
         {
             foreach (TreeNode node in nodes)
@@ -150,6 +153,7 @@ namespace WCMS.Common.Utilities
 
             return false;
         }
+#endif
 
         public static string FormatJsString(string s)
         {
@@ -256,6 +260,7 @@ namespace WCMS.Common.Utilities
             return CombineAddress(baseUrl, remainingUrl);
         }
 
+#if NETFRAMEWORK
         public static HtmlLink CreateCssLink(string cssUrl)
         {
             var link = new HtmlLink();
@@ -264,12 +269,14 @@ namespace WCMS.Common.Utilities
             link.Href = link.ResolveUrl(cssUrl);
             return link;
         }
+#endif
 
         public static string CreateCssLinkText(string url)
         {
             return string.Format(@"<link rel=""stylesheet"" type=""text/css"" href=""{0}"" />", url);
         }
 
+#if NETFRAMEWORK
         public static void RemoveDropDownListItemByValue(DropDownList cbo, object value)
         {
             if (value != null && cbo != null)
@@ -279,7 +286,9 @@ namespace WCMS.Common.Utilities
                     cbo.Items.Remove(item);
             }
         }
+#endif
 
+#if NETFRAMEWORK
         public static HtmlGenericControl CreateJavaScriptLink(string scriptUrl)
         {
             var script = new HtmlGenericControl("script");
@@ -288,12 +297,14 @@ namespace WCMS.Common.Utilities
 
             return script;
         }
+#endif
 
         public static string CreateJavaScriptLinkText(string url)
         {
             return string.Format(@"<script src=""{0}"" type=""text/javascript""></script>", url);
         }
 
+#if NETFRAMEWORK
         public static string CreateButtonLink(HtmlInputButton button, string url)
         {
             return button.Attributes["onclick"] = string.Format(SCRIPT_URL_TEMPLATE, url);
@@ -314,6 +325,7 @@ namespace WCMS.Common.Utilities
 
             listItem.Selected = true;
         }
+#endif
 
         public static void DownloadAsXml(DataSet ds)
         {
@@ -437,6 +449,7 @@ namespace WCMS.Common.Utilities
             Compression.Download(absPath, baseFilename, password);
         }
 
+#if NETFRAMEWORK
         public static bool SetCboValue(DropDownList cbo, int value)
         {
             return SetCboValue(cbo, value.ToString());
@@ -457,12 +470,14 @@ namespace WCMS.Common.Utilities
 
             return false;
         }
+#endif
 
         public static bool IsAbsUrl(string loginUrl)
         {
             return !string.IsNullOrEmpty(loginUrl) && loginUrl.Contains("://");
         }
 
+#if NETFRAMEWORK
         public static string Version(string rootRelativePath)
         {
             if (HttpRuntime.Cache[rootRelativePath] == null)
@@ -478,5 +493,6 @@ namespace WCMS.Common.Utilities
             }
             return HttpRuntime.Cache[rootRelativePath] as string;
         }
+#endif
     }
 }

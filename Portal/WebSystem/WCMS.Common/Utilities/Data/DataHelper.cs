@@ -6,11 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.SessionState;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Reflection;
 using System.Text;
 using System.Xml;
@@ -62,20 +57,24 @@ namespace WCMS.Common.Utilities
             return GetId(r[key], nativeValue: nativeValue);
         }
 
-        public static int GetId(HttpSessionState r, string key)
+#if NETFRAMEWORK
+        public static int GetId(System.Web.SessionState.HttpSessionState r, string key)
         {
             return GetId(r[key]);
         }
+#endif
 
         public static int GetId(HttpRequest r, string key)
         {
             return GetId(r[key]);
         }
 
+#if NETFRAMEWORK
         public static int GetId(HttpRequestBase r, string key)
         {
             return GetId(r[key]);
         }
+#endif
 
         #endregion
 
@@ -91,7 +90,8 @@ namespace WCMS.Common.Utilities
             return r[key].ToString();
         }
 
-        public static string Get(HttpSessionState r, string key)
+#if NETFRAMEWORK
+        public static string Get(System.Web.SessionState.HttpSessionState r, string key)
         {
             var value = r[key];
             if (value != null)
@@ -99,16 +99,19 @@ namespace WCMS.Common.Utilities
 
             return null;
         }
+#endif
 
         public static string Get(HttpRequest r, string key)
         {
             return r[key];
         }
 
+#if NETFRAMEWORK
         public static string Get(HttpRequestBase r, string key)
         {
             return r[key];
         }
+#endif
 
         #endregion
 
@@ -146,10 +149,12 @@ namespace WCMS.Common.Utilities
             return GetInt32(r[key], defaultValue);
         }
 
+#if NETFRAMEWORK
         public static int GetInt32(HttpRequestBase r, string key, int defaultValue = 0)
         {
             return GetInt32(r[key], defaultValue);
         }
+#endif
 
         public static int GetInt32(string o, int defaultValue)
         {

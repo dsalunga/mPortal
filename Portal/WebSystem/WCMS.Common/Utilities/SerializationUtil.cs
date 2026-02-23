@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
 
 namespace WCMS.Common.Utilities
 {
@@ -12,20 +11,15 @@ namespace WCMS.Common.Utilities
     {
         public static void Serialize<T>(string filename, T o)
         {
-            using (Stream stream = File.Open(filename, FileMode.Create, FileAccess.ReadWrite))
-            {
-                BinaryFormatter b = new BinaryFormatter();
-                b.Serialize(stream, o);
-            }
+            var json = JsonConvert.SerializeObject(o);
+            File.WriteAllText(filename, json);
         }
 
         public static T Deserialize<T>(string filename)
         {
-            using (Stream stream = File.Open(filename, FileMode.Open, FileAccess.Read))
-            {
-                BinaryFormatter b = new BinaryFormatter();
-                return (T)b.Deserialize(stream);
-            }
+            var json = File.ReadAllText(filename);
+            return JsonConvert.DeserializeObject<T>(json)
+                ?? throw new InvalidOperationException($"Deserialization of '{filename}' returned null.");
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Specialized;
 using System.Web;
-using System.Web.UI;
 using System.IO;
 
 namespace WCMS.Common.Utilities
@@ -63,6 +62,12 @@ namespace WCMS.Common.Utilities
             }
         }
 
+        public QueryParser(HttpRequest request)
+        {
+            Init(request);
+        }
+
+#if NETFRAMEWORK
         public void Init(HttpRequestBase request)
         {
             string pageId = request[PageIdInternal];
@@ -84,11 +89,6 @@ namespace WCMS.Common.Utilities
             }
         }
 
-        public QueryParser(HttpRequest request)
-        {
-            Init(request);
-        }
-
         public QueryParser(HttpRequestBase request)
         {
             Init(request);
@@ -96,14 +96,15 @@ namespace WCMS.Common.Utilities
 
         public QueryParser(System.Web.WebPages.WebPage page) : this(page.Request) { }
 
-        public QueryParser(Page p)
+        public QueryParser(System.Web.UI.Page p)
             : this(p.Request) { }
 
-        public QueryParser(UserControl c)
+        public QueryParser(System.Web.UI.UserControl c)
             : this(c.Request) { }
 
-        public QueryParser(Control c)
+        public QueryParser(System.Web.UI.Control c)
             : this(c.Page.Request) { }
+#endif
 
         public QueryParser(HttpApplication a)
             : this(a.Request) { }
@@ -392,11 +393,13 @@ namespace WCMS.Common.Utilities
 
         #region Static Methods
 
-        public static string BuildQuery(Control instance)
+#if NETFRAMEWORK
+        public static string BuildQuery(System.Web.UI.Control instance)
         {
             var query = new QueryParser(instance);
             return query.BuildQuery();
         }
+#endif
 
         public static string BuildQuery(string url, string name, object value)
         {
