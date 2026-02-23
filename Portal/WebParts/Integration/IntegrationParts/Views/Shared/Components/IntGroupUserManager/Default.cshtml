@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntGroupUserManagerModel
+
+<div class="card" id="int-group-user-manager-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Group User Manager</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Group user management placeholder content.</p>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntAttendanceRequestModel
+
+<div class="card" id="int-attendance-request-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Attendance Request</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Attendance request placeholder content.</p>
+    </div>
+</div>

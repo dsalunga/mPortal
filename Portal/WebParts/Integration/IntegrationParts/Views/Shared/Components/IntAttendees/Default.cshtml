@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntAttendeesModel
+
+<div class="card" id="int-attendees-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Attendees</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Attendee list placeholder content.</p>
+    </div>
+</div>
