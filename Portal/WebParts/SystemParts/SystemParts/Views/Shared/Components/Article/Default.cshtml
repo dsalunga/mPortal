@@ -42,7 +42,7 @@ else if (Model.Articles != null)
             </div>
         }
 
-        @if (Model.TotalItems > Model.PageSize)
+        @if (Model.TotalItems > Model.PageSize && Model.PageSize > 0)
         {
             var pageCount = (int)Math.Ceiling((double)Model.TotalItems / Model.PageSize);
             <nav class="table-pager" aria-label="Article pagination">

@@ -1,7 +1,7 @@
 @model WCMS.WebSystem.ViewComponents.NavigationViewModel
 @if (Model.Items.Count > 0)
 {
-    <nav class="wcms-navigation" style="@(!string.IsNullOrEmpty(Model.Width) ? $"width:{Model.Width};" : "")@(!string.IsNullOrEmpty(Model.Height) ? $"height:{Model.Height};" : "")">
+    <nav class="wcms-navigation">
         @{
             var ulClass = Model.IsHorizontal ? "nav navbar-nav" : "nav flex-column";
         }

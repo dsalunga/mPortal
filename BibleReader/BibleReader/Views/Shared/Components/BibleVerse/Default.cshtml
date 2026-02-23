@@ -5,9 +5,18 @@
             <select name="versionId" class="form-select" onchange="this.form.submit()">
                 @foreach (var v in Model.Versions)
                 {
-                    <option value="@v.Id" selected="@(v.Id == Model.SelectedVersionId)">
-                        @v.Name (@v.Abbreviation)
-                    </option>
+                    if (v.Id == Model.SelectedVersionId)
+                    {
+                        <option value="@v.Id" selected="selected">
+                            @v.Name (@v.Abbreviation)
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@v.Id">
+                            @v.Name (@v.Abbreviation)
+                        </option>
+                    }
                 }
             </select>
         </div>
