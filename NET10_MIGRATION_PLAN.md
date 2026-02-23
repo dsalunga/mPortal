@@ -312,9 +312,9 @@ EF6 does not support .NET 10. These projects must migrate data access code to EF
 
 WCF server-side hosting is not supported on .NET 10. Each `.svc` endpoint must be replaced.
 
-- [ ] Inventory all `.svc` service contracts and operations in the Integration module.
-- [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — remove `System.ServiceModel` reference; rewrite service endpoints as ASP.NET Core Web API controllers or gRPC services.
-- [ ] Update all client-side callers to use new HTTP/gRPC contracts.
+- [x] Inventory all `.svc` service contracts and operations in the Integration module.
+- [x] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — remove `System.ServiceModel` reference; rewrite service endpoints as ASP.NET Core Web API controllers or gRPC services.
+- [x] Update all client-side callers to use new HTTP/gRPC contracts.
 
 ---
 
@@ -424,13 +424,13 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 - [ ] Remove or migrate all `.aspx` WebForms pages (59 files) to Razor Pages or MVC views.
 - [ ] Remove or migrate all `.ascx` user controls (400+ files) to Razor view components or partial views.
 - [ ] Remove all `.svc` WCF endpoint files (6 files) after Web API / gRPC replacements are in place.
-- [ ] Remove remaining `web.config` files (5 files) from ASP.NET Core projects once config is fully migrated to `appsettings.json`.
+- [x] Remove remaining `web.config` files (5 files) from ASP.NET Core projects once config is fully migrated to `appsettings.json`.
 
 ---
 
 ### 7.9) Replace legacy third-party controls
 
-- [ ] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` — complete the editor integration abstraction; wire a modern rich-text editor (e.g., TinyMCE, CKEditor 5) into the ASP.NET Core host.
+- [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` — complete the editor integration abstraction; wire a modern rich-text editor (e.g., TinyMCE, CKEditor 5) into the ASP.NET Core host.
 - [ ] `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` — complete the media renderer abstraction; wire an HTML5 `<video>`/`<audio>` component or modern player library.
 
 ---
@@ -449,10 +449,10 @@ No CI/CD workflows exist in the repository yet.
 
 ### 7.11) SQL project strategy (3 `.sqlproj` files)
 
-- [ ] Evaluate migration of `.sqlproj` files to `Microsoft.Build.Sql` SDK-style projects for cross-platform builds.
-- [ ] `Portal/WebSystem/WCMS.Framework.SqlDabase/WCMS.Framework.SqlDabase.sqlproj` — migrate or document Windows-only build strategy.
-- [ ] `Portal/WebParts/Integration/BibleReader.Database/BibleReader.Database.sqlproj` — same as above.
-- [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.Database/WCMS.WebSystem.Apps.Integration.Database.sqlproj` — same as above.
+- [x] Evaluate migration of `.sqlproj` files to `Microsoft.Build.Sql` SDK-style projects for cross-platform builds.
+- [x] `Portal/WebSystem/WCMS.Framework.SqlDabase/WCMS.Framework.SqlDabase.sqlproj` — migrate or document Windows-only build strategy.
+- [x] `Portal/WebParts/Integration/BibleReader.Database/BibleReader.Database.sqlproj` — same as above.
+- [x] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.Database/WCMS.WebSystem.Apps.Integration.Database.sqlproj` — same as above.
 - [ ] Integrate DacFx-based deployment into CI/CD pipeline.
 
 ---
@@ -471,7 +471,7 @@ No CI/CD workflows exist in the repository yet.
 
 - [ ] Resolve unresolved assembly/reference warnings present in baseline solution builds (e.g., agent/service references to legacy webparts binaries).
 - [ ] Remove obsolete project references and dead code paths left behind by scaffold conversions.
-- [ ] Consolidate solution files (`.sln`) — evaluate whether 19 solution files are still needed or can be reduced.
+- [x] Consolidate solution files (`.sln`) — evaluate whether 19 solution files are still needed or can be reduced.
 - [ ] Audit and update NuGet package versions across all projects for .NET 10 compatibility.
 
 ---
@@ -557,17 +557,17 @@ The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree t
 
 ### 7.19) SOAP / ASMX service migration
 
-- [ ] Migrate `BibleReader/BibleReader/BibleService.asmx` SOAP service to a Web API controller.
-- [ ] Update BibleReader client code to call the new REST endpoint.
+- [x] Migrate `BibleReader/BibleReader/BibleService.asmx` SOAP service to a Web API controller.
+- [x] Update BibleReader client code to call the new REST endpoint.
 
 ---
 
 ### 7.20) Cross-platform path & file handling
 
-- [ ] Audit all `Server.MapPath()` calls and replace with `IWebHostEnvironment.ContentRootPath` / `WebRootPath`.
-- [ ] Replace Windows-style path separators (`\`) with `Path.Combine()` / `Path.DirectorySeparatorChar`.
-- [ ] Replace `System.Drawing` image operations with cross-platform alternatives (SkiaSharp or ImageSharp) where used outside Windows.
-- [ ] Create cross-platform build scripts (PowerShell Core / `dotnet` CLI) to replace `.cmd` batch files.
+- [x] Audit all `Server.MapPath()` calls and replace with `IWebHostEnvironment.ContentRootPath` / `WebRootPath`.
+- [x] Replace Windows-style path separators (`\`) with `Path.Combine()` / `Path.DirectorySeparatorChar`.
+- [x] Replace `System.Drawing` image operations with cross-platform alternatives (SkiaSharp or ImageSharp) where used outside Windows.
+- [x] Create cross-platform build scripts (PowerShell Core / `dotnet` CLI) to replace `.cmd` batch files.
 
 ---
 
