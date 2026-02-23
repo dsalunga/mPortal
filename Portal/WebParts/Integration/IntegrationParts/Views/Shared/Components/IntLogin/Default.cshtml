@@ -1,0 +1,31 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntLoginModel
+
+<div class="card" id="int-login-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Login</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <form method="post" novalidate>
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+            <div class="mb-3">
+                <label for="loginUsername" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="loginUsername" name="UserName" required />
+            </div>
+            <div class="mb-3">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginPassword" name="Password" required />
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe" name="RememberMe" value="true" />
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+    </div>
+</div>

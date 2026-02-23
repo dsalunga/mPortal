@@ -1,0 +1,35 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntAdminUtilitiesModel
+
+<div class="card" id="int-admin-utilities-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Admin Utilities</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <form method="post" novalidate>
+            <div class="mb-3">
+                <label for="adminAction" class="form-label">Action</label>
+                <select class="form-select" id="adminAction" name="Action">
+                    <option value="">-- Select Action --</option>
+                    @if (Model.AvailableActions != null)
+                    {
+                        @foreach (var action in Model.AvailableActions)
+                        {
+                            <option value="@action">@action</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="adminParam" class="form-label">Parameter</label>
+                <input type="text" class="form-control" id="adminParam" name="Parameter" />
+            </div>
+            <button type="submit" class="btn btn-warning">Execute</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntMemberVisitViewModel
+
+<div class="card" id="int-member-visit-view-@Model.ObjectId">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Member Visits</h5>
+        @if (!string.IsNullOrEmpty(Model.MemberName))
+        {
+            <span class="text-muted">@Model.MemberName</span>
+        }
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Visit ID</th>
+                        <th>Date</th>
+                        <th>Notes</th>
+                        <th>Recorded By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Visits != null)
+                    {
+                        @foreach (var visit in Model.Visits)
+                        {
+                            <tr>
+                                <td>@visit.VisitId</td>
+                                <td>@visit.VisitDate</td>
+                                <td>@visit.Notes</td>
+                                <td>@visit.RecordedBy</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

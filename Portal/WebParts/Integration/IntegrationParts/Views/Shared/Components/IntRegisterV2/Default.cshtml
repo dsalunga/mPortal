@@ -1,0 +1,51 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntRegisterV2Model
+
+<div class="card" id="int-register-v2-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Create Account</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <form method="post" novalidate>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="regV2FirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="regV2FirstName" name="FirstName" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="regV2LastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="regV2LastName" name="LastName" required />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="regV2Email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="regV2Email" name="Email" required />
+            </div>
+            <div class="mb-3">
+                <label for="regV2Phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="regV2Phone" name="Phone" @(Model.RequirePhone ? "required" : "") />
+            </div>
+            @if (Model.ShowOrganization)
+            {
+                <div class="mb-3">
+                    <label for="regV2Org" class="form-label">Organization</label>
+                    <input type="text" class="form-control" id="regV2Org" name="Organization" />
+                </div>
+            }
+            <div class="mb-3">
+                <label for="regV2Password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="regV2Password" name="Password" required />
+            </div>
+            <div class="mb-3">
+                <label for="regV2ConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="regV2ConfirmPassword" name="ConfirmPassword" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Create Account</button>
+        </form>
+    </div>
+</div>

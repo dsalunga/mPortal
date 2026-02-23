@@ -1,0 +1,50 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntConfigMembersModel
+
+<div class="card" id="int-config-members-@Model.ObjectId">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Members Configuration</h5>
+        <span class="badge bg-secondary">@Model.TotalCount total</span>
+    </div>
+    <div class="card-body">
+        <form method="get" class="row g-2 mb-3">
+            <div class="col-auto">
+                <input type="text" class="form-control" name="search" placeholder="Search members..." value="@Model.SearchTerm" />
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-outline-secondary">Search</button>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Member ID</th>
+                        <th>User Name</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Members != null)
+                    {
+                        @foreach (var m in Model.Members)
+                        {
+                            <tr>
+                                <td>@m.MemberId</td>
+                                <td>@m.UserName</td>
+                                <td>@m.FullName</td>
+                                <td>@m.Email</td>
+                                <td>@m.Status</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntConfigExternalMembersModel
+
+<div class="card" id="int-config-external-members-@Model.ObjectId">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">External Members</h5>
+    </div>
+    <div class="card-body">
+        <form method="get" class="row g-2 mb-3">
+            <div class="col-auto">
+                <input type="text" class="form-control" name="search" placeholder="Search members..." value="@Model.SearchTerm" />
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-outline-secondary">Search</button>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Member ID</th>
+                        <th>Display Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Members != null)
+                    {
+                        @foreach (var member in Model.Members)
+                        {
+                            <tr>
+                                <td>@member.MemberId</td>
+                                <td>@member.DisplayName</td>
+                                <td>@member.Email</td>
+                                <td>@member.Status</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

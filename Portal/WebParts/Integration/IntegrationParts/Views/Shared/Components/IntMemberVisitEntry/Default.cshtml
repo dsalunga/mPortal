@@ -1,0 +1,30 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntMemberVisitEntryModel
+
+<div class="card" id="int-member-visit-entry-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Record Visit</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <form method="post" novalidate>
+            <div class="mb-3">
+                <label for="visitMemberId" class="form-label">Member ID</label>
+                <input type="text" class="form-control" id="visitMemberId" name="MemberId" value="@Model.MemberId" />
+            </div>
+            <div class="mb-3">
+                <label for="visitDate" class="form-label">Visit Date</label>
+                <input type="date" class="form-control" id="visitDate" name="VisitDate" value="@Model.VisitDate" />
+            </div>
+            <div class="mb-3">
+                <label for="visitNotes" class="form-label">Notes</label>
+                <textarea class="form-control" id="visitNotes" name="Notes" rows="3">@Model.Notes</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Visit</button>
+        </form>
+    </div>
+</div>

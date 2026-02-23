@@ -1,0 +1,22 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntActivateAccountModel
+
+<div class="card" id="int-activate-account-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Activate Account</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <form method="post" novalidate>
+            <div class="mb-3">
+                <label for="activationCode" class="form-label">Activation Code</label>
+                <input type="text" class="form-control" id="activationCode" name="ActivationCode" value="@Model.ActivationCode" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Activate</button>
+        </form>
+    </div>
+</div>

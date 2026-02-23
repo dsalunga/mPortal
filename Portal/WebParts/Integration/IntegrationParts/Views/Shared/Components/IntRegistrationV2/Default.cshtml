@@ -1,0 +1,55 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntRegistrationV2Model
+
+<div class="card" id="int-registration-v2-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Registration</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.EventName))
+        {
+            <h6 class="mb-3">@Model.EventName</h6>
+        }
+        <form method="post" novalidate>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="regv2FirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="regv2FirstName" name="FirstName" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="regv2LastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="regv2LastName" name="LastName" required />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="regv2Email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="regv2Email" name="Email" required />
+            </div>
+            <div class="mb-3">
+                <label for="regv2Phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="regv2Phone" name="Phone" @(Model.RequirePhone ? "required" : "") />
+            </div>
+            @if (Model.ShowOrganization)
+            {
+                <div class="mb-3">
+                    <label for="regv2Org" class="form-label">Organization</label>
+                    <input type="text" class="form-control" id="regv2Org" name="Organization" />
+                </div>
+            }
+            <div class="mb-3">
+                <label for="regv2Password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="regv2Password" name="Password" required />
+            </div>
+            <div class="mb-3">
+                <label for="regv2ConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="regv2ConfirmPassword" name="ConfirmPassword" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</div>

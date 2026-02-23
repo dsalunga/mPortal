@@ -1,0 +1,40 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntConfigMemberLinkEditModel
+
+<div class="card" id="int-config-member-link-edit-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Edit Member Link</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <form method="post" novalidate>
+            <input type="hidden" name="LinkId" value="@Model.LinkId" />
+            <div class="mb-3">
+                <label for="mleditMemberId" class="form-label">Member ID</label>
+                <input type="text" class="form-control" id="mleditMemberId" name="MemberId" value="@Model.MemberId" readonly />
+            </div>
+            <div class="mb-3">
+                <label for="mleditLinkType" class="form-label">Link Type</label>
+                <input type="text" class="form-control" id="mleditLinkType" name="LinkType" value="@Model.LinkType" />
+            </div>
+            <div class="mb-3">
+                <label for="mleditLinkedMemberId" class="form-label">Linked Member ID</label>
+                <input type="text" class="form-control" id="mleditLinkedMemberId" name="LinkedMemberId" value="@Model.LinkedMemberId" />
+            </div>
+            <div class="mb-3">
+                <label for="mleditStatus" class="form-label">Status</label>
+                <input type="text" class="form-control" id="mleditStatus" name="Status" value="@Model.Status" />
+            </div>
+            <div class="mb-3">
+                <label for="mleditNotes" class="form-label">Notes</label>
+                <textarea class="form-control" id="mleditNotes" name="Notes" rows="3">@Model.Notes</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="#" class="btn btn-outline-secondary ms-2">Cancel</a>
+        </form>
+    </div>
+</div>

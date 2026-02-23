@@ -1,0 +1,60 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntRegistrationManagerModel
+
+<div class="card" id="int-registration-manager-@Model.ObjectId">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Registration Manager</h5>
+        <span class="badge bg-secondary">@Model.TotalCount total</span>
+    </div>
+    <div class="card-body">
+        <form method="get" class="row g-2 mb-3">
+            <div class="col-auto">
+                <input type="text" class="form-control" name="search" placeholder="Search..." value="@Model.SearchTerm" />
+            </div>
+            <div class="col-auto">
+                <select class="form-select" name="status">
+                    <option value="">All Statuses</option>
+                    <option value="Active" selected="@(Model.FilterStatus == "Active")">Active</option>
+                    <option value="Pending" selected="@(Model.FilterStatus == "Pending")">Pending</option>
+                    <option value="Inactive" selected="@(Model.FilterStatus == "Inactive")">Inactive</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-outline-secondary">Filter</button>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User Name</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Registrations != null)
+                    {
+                        @foreach (var reg in Model.Registrations)
+                        {
+                            <tr>
+                                <td>@reg.RegistrationId</td>
+                                <td>@reg.UserName</td>
+                                <td>@reg.FullName</td>
+                                <td>@reg.Email</td>
+                                <td>@reg.Status</td>
+                                <td>@reg.RegisteredDate</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

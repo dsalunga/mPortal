@@ -1,0 +1,33 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntChangePasswordModel
+
+<div class="card" id="int-change-password-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Change Password</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <form method="post" novalidate>
+            @if (Model.RequireCurrentPassword)
+            {
+                <div class="mb-3">
+                    <label for="currentPassword" class="form-label">Current Password</label>
+                    <input type="password" class="form-control" id="currentPassword" name="CurrentPassword" required />
+                </div>
+            }
+            <div class="mb-3">
+                <label for="newPassword" class="form-label">New Password</label>
+                <input type="password" class="form-control" id="newPassword" name="NewPassword" required />
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Change Password</button>
+        </form>
+    </div>
+</div>

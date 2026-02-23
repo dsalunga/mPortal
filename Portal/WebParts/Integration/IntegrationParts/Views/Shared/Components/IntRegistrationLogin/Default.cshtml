@@ -1,0 +1,31 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntRegistrationLoginModel
+
+<div class="card" id="int-registration-login-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Login</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <form method="post" novalidate>
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+            <div class="mb-3">
+                <label for="regLoginUser" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="regLoginUser" name="UserName" required />
+            </div>
+            <div class="mb-3">
+                <label for="regLoginPass" class="form-label">Password</label>
+                <input type="password" class="form-control" id="regLoginPass" name="Password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+            @if (Model.ShowRegistrationLink)
+            {
+                <a href="#" class="btn btn-link">Create an account</a>
+            }
+        </form>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntProfileUpdateModel
+
+<div class="card" id="int-profile-update-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Update Profile</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <form method="post" novalidate>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="profileFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="profileFirstName" name="FirstName" value="@Model.FirstName" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="profileLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="profileLastName" name="LastName" value="@Model.LastName" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="profileEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="profileEmail" name="Email" value="@Model.Email" />
+            </div>
+            <div class="mb-3">
+                <label for="profilePhone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="profilePhone" name="Phone" value="@Model.Phone" />
+            </div>
+            <div class="mb-3">
+                <label for="profileOrg" class="form-label">Organization</label>
+                <input type="text" class="form-control" id="profileOrg" name="Organization" value="@Model.Organization" />
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+</div>

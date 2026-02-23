@@ -1,0 +1,50 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntConfigMemberLinksModel
+
+<div class="card" id="int-config-member-links-@Model.ObjectId">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Member Links</h5>
+        <a href="#" class="btn btn-sm btn-primary">Add Link</a>
+    </div>
+    <div class="card-body">
+        <form method="get" class="row g-2 mb-3">
+            <div class="col-auto">
+                <input type="text" class="form-control" name="search" placeholder="Search links..." value="@Model.SearchTerm" />
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-outline-secondary">Search</button>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Link ID</th>
+                        <th>Member ID</th>
+                        <th>Link Type</th>
+                        <th>Linked Member</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Links != null)
+                    {
+                        @foreach (var link in Model.Links)
+                        {
+                            <tr>
+                                <td>@link.LinkId</td>
+                                <td>@link.MemberId</td>
+                                <td>@link.LinkType</td>
+                                <td>@link.LinkedMemberId</td>
+                                <td>@link.Status</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

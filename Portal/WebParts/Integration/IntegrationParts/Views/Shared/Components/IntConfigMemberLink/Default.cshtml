@@ -1,0 +1,34 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntConfigMemberLinkModel
+
+<div class="card" id="int-config-member-link-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Configure Member Link</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <form method="post" novalidate>
+            <div class="mb-3">
+                <label for="mlMemberId" class="form-label">Member ID</label>
+                <input type="text" class="form-control" id="mlMemberId" name="MemberId" value="@Model.MemberId" />
+            </div>
+            <div class="mb-3">
+                <label for="mlLinkType" class="form-label">Link Type</label>
+                <input type="text" class="form-control" id="mlLinkType" name="LinkType" value="@Model.LinkType" />
+            </div>
+            <div class="mb-3">
+                <label for="mlLinkedMemberId" class="form-label">Linked Member ID</label>
+                <input type="text" class="form-control" id="mlLinkedMemberId" name="LinkedMemberId" value="@Model.LinkedMemberId" />
+            </div>
+            <div class="mb-3">
+                <label for="mlStatus" class="form-label">Status</label>
+                <input type="text" class="form-control" id="mlStatus" name="Status" value="@Model.Status" />
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>

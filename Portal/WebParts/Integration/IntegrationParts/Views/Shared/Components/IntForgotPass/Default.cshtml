@@ -1,0 +1,23 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntForgotPassModel
+
+<div class="card" id="int-forgot-pass-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Forgot Password</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Enter your email address and we will send you instructions to reset your password.</p>
+        <form method="post" novalidate>
+            <div class="mb-3">
+                <label for="forgotEmail" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="forgotEmail" name="Email" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Send Reset Link</button>
+        </form>
+    </div>
+</div>
