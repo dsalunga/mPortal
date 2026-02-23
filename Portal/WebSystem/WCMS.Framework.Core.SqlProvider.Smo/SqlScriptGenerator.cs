@@ -6,7 +6,7 @@ using System.Text;
 using System.Data;
 using System.IO;
 using System.Configuration;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
