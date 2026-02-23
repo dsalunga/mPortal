@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntProfileUpdateProfileModel
+
+<div class="card" id="int-profile-update-profile-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Update Profile</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Profile update form placeholder content.</p>
+    </div>
+</div>

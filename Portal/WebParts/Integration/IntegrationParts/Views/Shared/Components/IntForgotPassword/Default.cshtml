@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntForgotPasswordModel
+
+<div class="card" id="int-forgot-password-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Forgot Password</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Forgot password flow placeholder content.</p>
+    </div>
+</div>

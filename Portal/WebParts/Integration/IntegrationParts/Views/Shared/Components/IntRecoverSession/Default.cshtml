@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntRecoverSessionModel
+
+<div class="card" id="int-recover-session-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Recover Session</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Recover session placeholder content.</p>
+    </div>
+</div>

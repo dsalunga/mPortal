@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntServicePickerModel
+
+<div class="card" id="int-service-picker-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Service Picker</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Service picker placeholder content.</p>
+    </div>
+</div>

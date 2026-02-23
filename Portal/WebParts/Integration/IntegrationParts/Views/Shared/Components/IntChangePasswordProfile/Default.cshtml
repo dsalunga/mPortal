@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntChangePasswordProfileModel
+
+<div class="card" id="int-change-password-profile-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Change Password</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Profile change password placeholder content.</p>
+    </div>
+</div>

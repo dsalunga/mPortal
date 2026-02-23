@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntRequestManagerModel
+
+<div class="card" id="int-request-manager-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Request Manager</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Request management placeholder content.</p>
+    </div>
+</div>

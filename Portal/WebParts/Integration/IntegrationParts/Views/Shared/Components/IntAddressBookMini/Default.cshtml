@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntAddressBookMiniModel
+
+<div class="card" id="int-address-book-mini-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Address Book</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Mini address book widget placeholder content.</p>
+    </div>
+</div>

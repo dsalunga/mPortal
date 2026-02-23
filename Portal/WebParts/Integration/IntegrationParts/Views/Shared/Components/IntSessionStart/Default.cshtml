@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntSessionStartModel
+
+<div class="card" id="int-session-start-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Session Start</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Session start placeholder content.</p>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntWebGroupUsersModel
+
+<div class="card" id="int-web-group-users-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Web Group Users</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Web group user list placeholder content.</p>
+    </div>
+</div>

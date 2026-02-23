@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntAMSAuthModel
+
+<div class="card" id="int-ams-auth-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">AMS Authentication</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>Ams authentication placeholder content.</p>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntNewsDashboardModel
+
+<div class="card" id="int-news-dashboard-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">News Dashboard</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>News dashboard placeholder content.</p>
+    </div>
+</div>

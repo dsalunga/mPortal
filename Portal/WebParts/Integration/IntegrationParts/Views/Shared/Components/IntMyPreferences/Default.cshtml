@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntMyPreferencesModel
+
+<div class="card" id="int-my-preferences-@Model.ObjectId">
+    <div class="card-header">
+        <h5 class="card-title mb-0">My Preferences</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+                @Model.Message
+            </div>
+        }
+        <p>User preferences placeholder content.</p>
+    </div>
+</div>
