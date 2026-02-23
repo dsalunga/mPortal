@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+#if NETFRAMEWORK
 using System.Web.UI.WebControls;
+#endif
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
@@ -92,6 +94,7 @@ namespace WCMS.Framework.Core
             }
         }
 
+#if NETFRAMEWORK
         public static WebAttachment Upload(FileUpload fileUpload, int objectId, int recordId, string batchGuid)
         {
             if (fileUpload != null && fileUpload.HasFile)
@@ -129,6 +132,7 @@ namespace WCMS.Framework.Core
 
             return null;
         }
+#endif
 
     }
 }

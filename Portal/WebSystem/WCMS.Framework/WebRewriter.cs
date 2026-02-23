@@ -4,12 +4,9 @@ using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using System.Text;
+using System.IO;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
@@ -247,7 +244,7 @@ namespace WCMS.Framework
                 return new Tuple<WPage, string>(null, null);
             }
 
-            string ext = VirtualPathUtility.GetExtension(loweredPath);
+            string ext = Path.GetExtension(loweredPath);
             string[] urls = (ext.StartsWith(".") ? loweredPath.Replace(ext, "/") : loweredPath).Trim('/').Split('/');
             if (urls.Count() == 1)
             {

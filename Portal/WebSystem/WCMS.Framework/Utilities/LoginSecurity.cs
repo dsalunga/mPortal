@@ -152,6 +152,7 @@ namespace WCMS.Framework.Utilities
         }
     }
 
+#if NETFRAMEWORK
     public static class ActionValidator
     {
         private const int DURATION = 10; // 10 min period
@@ -203,6 +204,7 @@ namespace WCMS.Framework.Utilities
             return true;
         }
     }
+#endif
 
 
     /*

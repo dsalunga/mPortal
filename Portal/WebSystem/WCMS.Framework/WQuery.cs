@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+#if NETFRAMEWORK
 using System.Web.UI;
+#endif
 
 using WCMS.Common.Utilities;
 
@@ -19,20 +21,24 @@ namespace WCMS.Framework
         public WQuery(WQuery toCopy) : base(toCopy) { }
         public WQuery(bool useHttpContext) : base(useHttpContext) { }
         public WQuery(HttpRequest request) : base(request) { }
+#if NETFRAMEWORK
         public WQuery(Page p)
             : this(p.Request) { }
         public WQuery(UserControl c)
             : this(c.Request) { }
         public WQuery(Control c)
             : this(c.Page.Request) { }
+#endif
         public WQuery(HttpApplication a)
             : this(a.Request) { }
         public WQuery(HttpContext c)
             : this(c.Request) { }
         public WQuery(string queryStringOrPath) : base(queryStringOrPath) { }
 
+#if NETFRAMEWORK
         public WQuery(HttpRequestBase request) : base(request) { }
         public WQuery(System.Web.WebPages.WebPage page) : base(page) { }
+#endif
 
         /// <summary>
         /// Sets which webpart to load (in relation to the configured part for current element). This is used only in front-end. 

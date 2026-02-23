@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>1591</NoWarn>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -13,11 +13,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.1.3" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.3" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.3" />
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,36 +23,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Web" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Core/ObjectCapsule.cs" />
     <Compile Remove="ObjectRecordPair.cs" />
     <Compile Remove="SiteModel/WebObjectItem.cs" />
     <Compile Remove="Utilities/WebSubstituter.cs" />
+    <!-- EF6 generated files excluded; kept as documentation -->
+    <Compile Remove="WFrameworkModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="notes.txt" />
     <None Include="App.Config" />
-    <EntityDeploy Include="WFrameworkModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WFrameworkModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="WFrameworkModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WFrameworkModel.edmx</DependentUpon>
-      <LastGenOutput>WFrameworkModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="WFrameworkModel.edmx.diagram">
-      <DependentUpon>WFrameworkModel.edmx</DependentUpon>
-    </None>
-    <None Include="WFrameworkModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WFrameworkModel.edmx</DependentUpon>
-      <LastGenOutput>WFrameworkModel.cs</LastGenOutput>
-    </None>
+    <None Include="WFrameworkModel.edmx" />
+    <None Include="WFrameworkModel.Context.tt" />
+    <None Include="WFrameworkModel.edmx.diagram" />
+    <None Include="WFrameworkModel.tt" />
+    <None Include="WFrameworkModel.Designer.cs" />
   </ItemGroup>
 </Project>

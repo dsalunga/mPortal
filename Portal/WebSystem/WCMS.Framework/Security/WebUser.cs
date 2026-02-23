@@ -107,7 +107,7 @@ namespace WCMS.Framework
                 if (!string.IsNullOrEmpty(_photoThumbPath))
                 {
                     var thumbPath = WebUtil.CombineAddress(WConfig.UserPhotoPath, "thumb");
-                    _photoThumbPath = WebUtil.CombineAddress(thumbPath, VirtualPathUtility.GetFileName(PhotoPath));
+                    _photoThumbPath = WebUtil.CombineAddress(thumbPath, System.IO.Path.GetFileName(PhotoPath));
                 }
 
                 return _photoPath;
@@ -123,7 +123,7 @@ namespace WCMS.Framework
                 {
                     var path = WebUtil.CombineAddress(WConfig.UserPhotoPath, "original");
                     var absFolder = WebUtil.MapPath(path);
-                    var fileName = VirtualPathUtility.GetFileName(PhotoPath);
+                    var fileName = System.IO.Path.GetFileName(PhotoPath);
                     var name = System.IO.Path.GetFileNameWithoutExtension(fileName);
 
                     var files = System.IO.Directory.EnumerateFiles(absFolder, name + ".*");

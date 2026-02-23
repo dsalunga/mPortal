@@ -8,7 +8,9 @@ using WCMS.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 using System.IO;
+#if NETFRAMEWORK
 using System.Web.UI.WebControls;
+#endif
 
 namespace WCMS.Framework.Utilities
 {
@@ -1200,6 +1202,7 @@ namespace WCMS.Framework.Utilities
             user.Update();
         }
 
+#if NETFRAMEWORK
         public static string UploadPhotoForPreview(int userId, FileUpload photoUpload, int photoSize = 600)
         {
             var photoPathUrl = WConfig.UserPhotoPath;
@@ -1239,5 +1242,6 @@ namespace WCMS.Framework.Utilities
 
             return WebUtil.CombineAddress(photoPathUrl, "temp", newPreviewName);
         }
+#endif
     }
 }

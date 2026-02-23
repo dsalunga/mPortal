@@ -7,8 +7,6 @@ using System.Web;
 using System.Xml.Linq;
 using System.Text;
 using System.Xml;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;

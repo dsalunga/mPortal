@@ -5,8 +5,10 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
+#if NETFRAMEWORK
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
+#endif
 
 using WCMS.Common;
 using WCMS.Common.Utilities;
@@ -18,7 +20,9 @@ namespace WCMS.Framework
     {
         private const string KEY = "WContext";
 
+#if NETFRAMEWORK
         private Control _control;
+#endif
         private int _internalPageId = -1;
         private int _contextType = -1;
 
@@ -31,15 +35,10 @@ namespace WCMS.Framework
 
         public static WContext GetInstance(dynamic args = null)
         {
-            //var context = HttpContext.Current;
-            //if (context.Items.Contains(KEY))
-            //    return context.Items[KEY] as WContext;
-
             if (args == null)
                 args = HttpContext.Current;
 
             var item = new WContext(args);
-            //context.Items[KEY] = item;
             return item;
         }
 
@@ -54,6 +53,7 @@ namespace WCMS.Framework
             PartControlId = -1;
         }
 
+#if NETFRAMEWORK
         public WContext(Control userControl)
             : this()
         {
@@ -75,6 +75,7 @@ namespace WCMS.Framework
             else
                 this.Initialize();
         }
+#endif
 
         public WContext(HttpRequest request)
             : this()
@@ -113,7 +114,9 @@ namespace WCMS.Framework
         public int PartAdminId { get; set; }
 
         public WQuery Query { get; set; }
+#if NETFRAMEWORK
         public Control Control { get { return _control; } }
+#endif
 
         public PageElementBase Element
         {
@@ -193,12 +196,14 @@ namespace WCMS.Framework
                 if (_internalPageId == -1)
                 {
                     _internalPageId = DataUtil.GetId(Context.Request, WebColumns.PageIdInternal);
+#if NETFRAMEWORK
                     if (_internalPageId == -1 && !_razor)
                     {
                         var hidden = _control.Page.Form.FindControl(WConstants.HIDDEN_PAGE_ID) as HtmlInputHidden;
                         if (hidden != null)
                             _internalPageId = DataUtil.GetId(hidden.Value);
                     }
+#endif
                 }
 
                 return _internalPageId;
@@ -276,6 +281,7 @@ namespace WCMS.Framework
             QueryParser.StaticRedirect(addressOrBasePath, retainParameters);
         }
 
+#if NETFRAMEWORK
         public static Control GetParent(Control control)
         {
             Control parent = control;
@@ -288,6 +294,7 @@ namespace WCMS.Framework
 
             return parent;
         }
+#endif
 
         #endregion
 
