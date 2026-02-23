@@ -1,0 +1,57 @@
+@model WCMS.WebSystem.ViewComponents.WebPartControlTemplatesViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-file-earmark-code"></i> Control Templates</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddTemplate"><i class="bi bi-plus-lg"></i> New Template</button>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Modified</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Templates.Count == 0)
+                    {
+                        <tr><td colspan="5" class="text-center text-muted">No control templates defined.</td></tr>
+                    }
+                    @foreach (var tmpl in Model.Templates)
+                    {
+                        <tr class="@(tmpl.Id == Model.SelectedTemplateId ? "table-primary" : "")">
+                            <td>
+                                <i class="bi bi-file-earmark-code"></i> @tmpl.Name
+                                @if (!string.IsNullOrEmpty(tmpl.Description))
+                                {
+                                    <br /><small class="text-muted">@tmpl.Description</small>
+                                }
+                            </td>
+                            <td><span class="badge bg-secondary">@tmpl.ControlType</span></td>
+                            <td>
+                                @if (tmpl.IsDefault)
+                                {
+                                    <i class="bi bi-check-circle text-success"></i>
+                                }
+                            </td>
+                            <td>@(tmpl.ModifiedDate?.ToString("yyyy-MM-dd") ?? "-")</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-template" data-template-id="@tmpl.Id"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-template" data-template-id="@tmpl.Id"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

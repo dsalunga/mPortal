@@ -1,0 +1,51 @@
+@model WCMS.WebSystem.ViewComponents.WebPartsViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-puzzle"></i> Web Parts</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddWebPart"><i class="bi bi-plus-lg"></i> New Web Part</button>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="webpart-tree p-3" id="webPartTreeContainer">
+            @if (Model.Parts.Count == 0)
+            {
+                <p class="text-muted">No web parts defined.</p>
+            }
+            else
+            {
+                @Html.Raw(RenderPartNodes(Model.Parts, Model.SelectedPartId))
+            }
+        </div>
+    </div>
+</div>
+
+@functions {
+    static string RenderPartNodes(System.Collections.Generic.List<WCMS.WebSystem.ViewComponents.WebPartItem> nodes, int selectedId)
+    {
+        if (nodes == null || nodes.Count == 0) return string.Empty;
+        var sb = new System.Text.StringBuilder();
+        sb.Append("<ul class=\"list-unstyled ms-3\">");
+        foreach (var part in nodes)
+        {
+            var active = part.Id == selectedId ? "fw-bold text-primary" : "";
+            var activeIcon = part.IsActive ? "text-success" : "text-muted";
+            sb.Append($"<li class=\"mb-1\">");
+            sb.Append($"<a href=\"javascript:void(0)\" class=\"webpart-link {active}\" data-part-id=\"{part.Id}\">");
+            sb.Append($"<i class=\"bi bi-puzzle {activeIcon}\"></i> {System.Net.WebUtility.HtmlEncode(part.Name)} ");
+            sb.Append($"<span class=\"badge bg-secondary\">{part.ControlCount}</span>");
+            sb.Append("</a>");
+            if (!string.IsNullOrEmpty(part.Category))
+            {
+                sb.Append($" <span class=\"badge bg-info\">{System.Net.WebUtility.HtmlEncode(part.Category)}</span>");
+            }
+            sb.Append(RenderPartNodes(part.Children, selectedId));
+            sb.Append("</li>");
+        }
+        sb.Append("</ul>");
+        return sb.ToString();
+    }
+}

@@ -1,0 +1,63 @@
+@model WCMS.WebSystem.ViewComponents.WebPartControlsViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-sliders"></i> Controls</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddControl" data-webpart-id="@Model.WebPartId"><i class="bi bi-plus-lg"></i> New Control</button>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.WebPartName))
+        {
+            <div class="px-3 pt-3">
+                <small class="text-muted">Web Part:</small> <strong>@Model.WebPartName</strong>
+            </div>
+        }
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Order</th>
+                        <th>Active</th>
+                        <th>Modified</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Controls.Count == 0)
+                    {
+                        <tr><td colspan="6" class="text-center text-muted">No controls defined.</td></tr>
+                    }
+                    @foreach (var ctrl in Model.Controls)
+                    {
+                        <tr>
+                            <td><i class="bi bi-gear"></i> @ctrl.Name</td>
+                            <td><span class="badge bg-secondary">@ctrl.ControlType</span></td>
+                            <td>@ctrl.SortOrder</td>
+                            <td>
+                                @if (ctrl.IsActive)
+                                {
+                                    <i class="bi bi-check-circle text-success"></i>
+                                }
+                                else
+                                {
+                                    <i class="bi bi-x-circle text-muted"></i>
+                                }
+                            </td>
+                            <td>@(ctrl.ModifiedDate?.ToString("yyyy-MM-dd") ?? "-")</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-control" data-control-id="@ctrl.Id"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-control" data-control-id="@ctrl.Id"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

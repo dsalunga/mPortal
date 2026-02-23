@@ -1,0 +1,68 @@
+@model WCMS.WebSystem.ViewComponents.WebPartTreeViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-diagram-3"></i> Web Part Tree</h5>
+        <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshTree"><i class="bi bi-arrow-clockwise"></i></button>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="webpart-tree p-3" id="webPartHierarchyContainer">
+            @if (Model.RootNodes.Count == 0)
+            {
+                <p class="text-muted">No web part nodes defined.</p>
+            }
+            else
+            {
+                @Html.Raw(RenderTreeNodes(Model.RootNodes, Model.SelectedNodeId))
+            }
+        </div>
+    </div>
+</div>
+
+@functions {
+    static string RenderTreeNodes(System.Collections.Generic.List<WCMS.WebSystem.ViewComponents.WebPartTreeNode> nodes, int selectedId)
+    {
+        if (nodes == null || nodes.Count == 0) return string.Empty;
+        var sb = new System.Text.StringBuilder();
+        sb.Append("<ul class=\"list-unstyled ms-3\">");
+        foreach (var node in nodes)
+        {
+            var isSelected = node.Id == selectedId;
+            var activeClass = isSelected ? "fw-bold text-primary" : "";
+            var activeStyle = node.IsActive ? "" : " text-muted";
+            var icon = node.NodeType == "folder" ? "bi-folder" : "bi-file-earmark";
+            if (isSelected)
+            {
+                icon = node.NodeType == "folder" ? "bi-folder-fill" : "bi-file-earmark-fill";
+            }
+            sb.Append($"<li class=\"mb-1\">");
+            if (node.Children != null && node.Children.Count > 0)
+            {
+                var expandIcon = node.IsExpanded ? "bi-chevron-down" : "bi-chevron-right";
+                sb.Append($"<i class=\"bi {expandIcon} tree-toggle\" data-node-id=\"{node.Id}\" style=\"cursor:pointer\"></i> ");
+            }
+            else
+            {
+                sb.Append("<span style=\"display:inline-block;width:16px\"></span> ");
+            }
+            sb.Append($"<a href=\"javascript:void(0)\" class=\"tree-node-link {activeClass}{activeStyle}\" data-node-id=\"{node.Id}\">");
+            sb.Append($"<i class=\"bi {icon}\"></i> {System.Net.WebUtility.HtmlEncode(node.Name)}");
+            sb.Append("</a>");
+            if (!node.IsActive)
+            {
+                sb.Append(" <span class=\"badge bg-warning text-dark\">Inactive</span>");
+            }
+            if (node.IsExpanded && node.Children != null && node.Children.Count > 0)
+            {
+                sb.Append(RenderTreeNodes(node.Children, selectedId));
+            }
+            sb.Append("</li>");
+        }
+        sb.Append("</ul>");
+        return sb.ToString();
+    }
+}
