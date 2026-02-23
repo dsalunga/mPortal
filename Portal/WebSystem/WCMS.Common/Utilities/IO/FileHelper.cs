@@ -156,7 +156,7 @@ namespace WCMS.Common.Utilities
         public static string EvalPath(string path, bool createDirectory = true)
         {
             if (string.IsNullOrEmpty(path) || path == "~")
-                path = @".\";
+                path = "." + Path.DirectorySeparatorChar;
 
             //if (path.StartsWith("."))
             //    fullPath = Environment.CurrentDirectory + path.Substring(1);
@@ -182,20 +182,23 @@ namespace WCMS.Common.Utilities
             return (attr & FileAttributes.Directory) == FileAttributes.Directory;
         }
 
-        public static string GetFolder(string folder, char separator = '\\')
+        public static string GetFolder(string folder, char separator = default)
         {
+            if (separator == default) separator = Path.DirectorySeparatorChar;
             var index = folder.LastIndexOf(separator);
             return index > -1 ? folder.Substring(0, index) : folder;
         }
 
-        public static string Combine(string currentFolder, string newName, char separator = '\\')
+        public static string Combine(string currentFolder, string newName, char separator = default)
         {
+            if (separator == default) separator = Path.DirectorySeparatorChar;
             var otherSep = separator == '/' ? '\\' : '/';
             return (string.IsNullOrEmpty(newName) ? currentFolder : Path.Combine(currentFolder, newName)).Replace(otherSep, separator);
         }
 
-        public static string Combine(string currentFolder, char separator = '\\', params string[] paths)
+        public static string Combine(string currentFolder, char separator = default, params string[] paths)
         {
+            if (separator == default) separator = Path.DirectorySeparatorChar;
             var otherSep = separator == '/' ? '\\' : '/';
             return (paths.Length == 0 ? currentFolder : Path.Combine(currentFolder, Path.Combine(paths))).Replace(otherSep, separator);
         }
