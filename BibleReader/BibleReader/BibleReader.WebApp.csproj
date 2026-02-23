@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>BibleReader.WebApp</AssemblyName>
     <RootNamespace>BibleReader.WebApp</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
     <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,10 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BibleReader.Core\BibleReader.Core.csproj" />
+    <ProjectReference Include="..\..\Portal\WebSystem\WCMS.Common\WCMS.Common.csproj" />
+    <ProjectReference Include="..\..\Portal\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
   </ItemGroup>
 </Project>

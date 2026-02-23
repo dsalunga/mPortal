@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>WCMS.WebSystem.WebParts.SystemPartsG3.WebApp</AssemblyName>
     <RootNamespace>WCMS.WebSystem</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
     <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,11 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\WCMS.WebSystem.WebParts.Incident\WCMS.WebSystem.Apps.Incident.csproj" />
     <ProjectReference Include="..\WCMS.WebSystem.WebParts.Jobs\WCMS.WebSystem.Apps.Jobs.csproj" />
+    <ProjectReference Include="..\..\..\WebSystem\WCMS.Common\WCMS.Common.csproj" />
+    <ProjectReference Include="..\..\..\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
   </ItemGroup>
 </Project>
