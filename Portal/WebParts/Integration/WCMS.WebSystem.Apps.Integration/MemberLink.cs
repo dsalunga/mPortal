@@ -8,7 +8,9 @@ using WCMS.Framework.Core;
 using WCMS.Framework.Core.Shared;
 
 using WCMS.WebSystem.Apps.Integration.Providers;
+#if NETFRAMEWORK
 using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
+#endif
 using WCMS.Common.Utilities;
 using WCMS.WebSystem.Apps.Integration;
 
@@ -210,10 +212,12 @@ namespace WCMS.WebSystem.Apps.Integration
             }
         }
 
+#if NETFRAMEWORK
         public Member Member
         {
             get { return Member.Provider.Get(MemberId); }
         }
+#endif
 
         public string SingleLineHomeAddress
         {
@@ -273,6 +277,7 @@ namespace WCMS.WebSystem.Apps.Integration
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
+#if NETFRAMEWORK
         public bool TryPopulateHomeAddressFromExt(MemberSoapClient client)
         {
             if (client == null)
@@ -499,6 +504,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
             return true;
         }
+#endif
 
         private string _photoPath;
         /// <summary>
@@ -519,6 +525,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
             if (string.IsNullOrEmpty(_photoPath) && MemberId > 0)
             {
+#if NETFRAMEWORK
                 try
                 {
                     var client = MemberSoapClient.GetNewClientInstance();
@@ -529,6 +536,7 @@ namespace WCMS.WebSystem.Apps.Integration
                 {
                     LogHelper.WriteLog(ex);
                 }
+#endif
             }
 
             if (string.IsNullOrEmpty(_photoPath))
@@ -587,6 +595,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
         #endregion
 
+#if NETFRAMEWORK
         public static string GetPhotoPath(int memberId)
         {
             var client = new MemberSoapClient(false);
@@ -594,6 +603,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
             return photo.Length > 0 ? photo.First().PhotoPath : WConstants.NoPhotoThumb; //MemberPhoto.GetNoPhotoPath();
         }
+#endif
 
         public static WebAddress WebAddressFromMemberLink(MemberLink link, string tag = "", WebAddress eAddress = null)
         {

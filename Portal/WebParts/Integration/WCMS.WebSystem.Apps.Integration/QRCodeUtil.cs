@@ -32,8 +32,15 @@ namespace WCMS.WebSystem.Apps.Integration
         public static System.Drawing.Image CreateQRCode(string s, int width, int height)
         {
             var qrGenerator = new QRCodeGenerator();
-            var qrCode = qrGenerator.CreateQrCode(s, QRCodeGenerator.ECCLevel.Q);
-            var qr = qrCode.GetGraphic(20);
+            var qrCodeData = qrGenerator.CreateQrCode(s, QRCodeGenerator.ECCLevel.Q);
+            var qrCode = new PngByteQRCode(qrCodeData);
+            byte[] qrCodeBytes = qrCode.GetGraphic(20);
+
+            Bitmap qr;
+            using (var ms = new System.IO.MemoryStream(qrCodeBytes))
+            {
+                qr = new Bitmap(ms);
+            }
 
             var qrCropPx = 50;
             var newSize = new Point(qr.Width - qrCropPx * 2, qr.Height - qrCropPx * 2);

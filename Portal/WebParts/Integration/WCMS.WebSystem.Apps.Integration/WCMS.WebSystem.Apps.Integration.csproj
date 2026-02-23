@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
@@ -10,27 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.1.3" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.3" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.3" />
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="QRCoder">
-      <HintPath>..\..\..\Binaries\Externals\QRCoder\QRCoder.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="Tamir.SharpSSH">
-      <HintPath>..\..\..\Binaries\Externals\SharpSSH\Tamir.SharpSSH.dll</HintPath>
-    </Reference>
+    <PackageReference Include="QRCoder" Version="1.6.0" />
+    <PackageReference Include="SSH.NET" Version="2024.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+    <PackageReference Include="System.Runtime.Caching" Version="9.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,5 +29,35 @@
   <ItemGroup>
     <Compile Remove="MemberLink1.cs" />
     <Compile Remove="Providers\MemberLinkProvider1.cs" />
+    <!-- Exclude EF6 EDMX-generated files (not compatible with EF Core) -->
+    <Compile Remove="ExternalDBModel.Designer.cs" />
+    <Compile Remove="MusicModel.Context.cs" />
+    <Compile Remove="MusicModel.Designer.cs" />
+    <!-- Exclude WCF Service Reference proxies (System.ServiceModel not available in .NET 10) -->
+    <Compile Remove="Service References\**\*.cs" />
+    <!-- Exclude WCF SOAP client wrappers -->
+    <Compile Remove="AttendanceWS\AttendanceSoapClient.cs" />
+    <Compile Remove="MemberWS\MemberSoapClient.cs" />
+    <!-- Exclude partial class extensions of WCF-generated types -->
+    <Compile Remove="MemberWS\Member.cs" />
+    <Compile Remove="MemberWS\MemberPhoto.cs" />
+    <Compile Remove="MemberWS\MemberAttendance.cs" />
+    <!-- Exclude files that depend on WCF service proxy types -->
+    <Compile Remove="ExternalHelper.cs" />
+    <Compile Remove="External\ServiceScheduleHelper.cs" />
+    <Compile Remove="ExtApp\ExtAppProvider.cs" />
+    <!-- Exclude files that depend on WCF-generated MemberAttendance type -->
+    <Compile Remove="LessonReviewerSession.cs" />
+    <Compile Remove="MakeUpSession.cs" />
+    <Compile Remove="Providers\LessonReviewerSessionSqlProvider.cs" />
+    <!-- Exclude files tightly coupled to WCF ExternalMemberWS.Member type -->
+    <Compile Remove="Providers\IMemberProvider.cs" />
+    <Compile Remove="Providers\MemberSqlProvider.cs" />
+    <Compile Remove="MusicCompetition\Providers\ExternalMemberSqlProvider.cs" />
+    <Compile Remove="Task\MemberRegistrationTask.cs" />
+    <Compile Remove="Task\MemberDOBUpdaterTask.cs" />
+    <Compile Remove="Task\ProfileExtSyncTask.cs" />
+    <!-- Exclude EF6 model-dependent file -->
+    <Compile Remove="External\ExternalCountry.cs" />
   </ItemGroup>
 </Project>

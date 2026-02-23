@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Caching;
-using Tamir.SharpSsh;
+using Renci.SshNet;
 using WCMS.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
 using WCMS.Framework.Security;
 using WCMS.Framework.Utilities;
 using WCMS.WebSystem.Apps.Integration;
+#if NETFRAMEWORK
 using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
 using WCMS.WebSystem.Apps.Integration.CommonWS;
+#endif
 using WCMS.WebSystem.Apps.Integration.ExtApp;
 using WCMS.Framework.Net;
 using WCMS.WebSystem.Agent;
@@ -22,6 +24,7 @@ namespace WCMS.WebSystem.Apps.Integration
 {
     public abstract class MemberHelper
     {
+#if NETFRAMEWORK
         public static WebUser CreateDraftUser(Member member)
         {
             var user = new WebUser();
@@ -30,6 +33,7 @@ namespace WCMS.WebSystem.Apps.Integration
             user.Gender = char.Parse(member.Gender.Substring(0, 1).ToUpper());
             return user;
         }
+#endif
 
         public static bool ActivateAccount(int userId, int groupId, ParameterizedWebObject paramSet, HttpContext context)
         {
@@ -61,7 +65,9 @@ namespace WCMS.WebSystem.Apps.Integration
                     item.Update();
                 }
 
+#if NETFRAMEWORK
                 link.TryLinkToExt();
+#endif
 
                 if (user != null && group != null)
                 {
@@ -129,6 +135,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
                         if (searchONEUsersAndCreate && user == null) // && !item.Contains('@'))
                         {
+#if NETFRAMEWORK
                             var oneUser = ExtAppProvider.GetUserInfo(item);
                             if (oneUser != null)
                             {
@@ -147,6 +154,7 @@ namespace WCMS.WebSystem.Apps.Integration
                                 link.ExternalIdNo = oneUser.ExternalId;
                                 link.Update();
                             }
+#endif
                         }
                     }
 
@@ -232,6 +240,7 @@ namespace WCMS.WebSystem.Apps.Integration
             return service;
         }
 
+#if NETFRAMEWORK
         public static Service GetService(int serviceId)
         {
             var services = GetServices();
@@ -384,6 +393,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
             return null;
         }
+#endif
 
         public static string GetLocaleGroup(int userId, string defaultValue = "")
         {
@@ -419,31 +429,25 @@ namespace WCMS.WebSystem.Apps.Integration
                 string stdOut = "";
                 string stdErr = "";
 
-                SshExec exec = new SshExec(cmd.Server, cmd.Username);
-                //if (input.Pass != null) exec.Password = input.Pass;
-                //if (input.IdentityFile != null) 
-                exec.AddIdentityFile(cmd.PrivateKeyPath);
-
-                //Console.Write("Connecting...");
-                exec.Connect();
-                //Console.WriteLine("OK");
-                //Console.Write("Enter a command to execute ['Enter' to cancel]: ");
-
-                int output = exec.RunCommand(command, ref stdOut, ref stdErr);
-                //Console.WriteLine(output);
-
-                //Console.Write("Disconnecting...");
-                exec.Close();
-                //Console.WriteLine("OK");
-
-                if (output > 0)
+                using (var keyFile = new PrivateKeyFile(cmd.PrivateKeyPath))
+                using (var client = new SshClient(cmd.Server, cmd.Username, keyFile))
                 {
-                    LogHelper.WriteLog("Zimbra Cmd: {0}, UNIX Output: {1}", command, stdErr);
-                    int idx = stdErr.IndexOf("ERROR");
-                    if (idx >= 0)
-                        return stdErr.Substring(idx);
-                    else
-                        return stdErr;
+                    client.Connect();
+                    var result = client.RunCommand(command);
+                    stdOut = result.Result;
+                    stdErr = result.Error;
+                    int output = result.ExitStatus ?? -1;
+                    client.Disconnect();
+
+                    if (output > 0)
+                    {
+                        LogHelper.WriteLog("Zimbra Cmd: {0}, UNIX Output: {1}", command, stdErr);
+                        int idx = stdErr.IndexOf("ERROR");
+                        if (idx >= 0)
+                            return stdErr.Substring(idx);
+                        else
+                            return stdErr;
+                    }
                 }
             }
             catch (Exception e)
