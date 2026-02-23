@@ -1,0 +1,68 @@
+@model WCMS.WebSystem.ViewComponents.HeaderNavbarViewModel
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">
+            @if (Model.IsAdminMode)
+            {
+                <i class="bi bi-gear me-1"></i>
+            }
+            Admin
+        </span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#headerNavbarCollapse" aria-controls="headerNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="headerNavbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @foreach (var item in Model.MenuItems)
+                {
+                    var hasChildren = item.Children != null && item.Children.Count > 0;
+                    if (hasChildren)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle @(item.IsActive ? "active" : "")" href="#" id="navbarDropdown_@item.Id" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @if (!string.IsNullOrEmpty(item.IconClass))
+                                {
+                                    <i class="bi @item.IconClass me-1"></i>
+                                }
+                                @item.Label
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown_@item.Id">
+                                @foreach (var child in item.Children)
+                                {
+                                    <li>
+                                        <a class="dropdown-item @(child.IsActive ? "active" : "")" href="@child.Url">
+                                            @if (!string.IsNullOrEmpty(child.IconClass))
+                                            {
+                                                <i class="bi @child.IconClass me-1"></i>
+                                            }
+                                            @child.Label
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link @(item.IsActive ? "active" : "")" href="@item.Url">
+                                @if (!string.IsNullOrEmpty(item.IconClass))
+                                {
+                                    <i class="bi @item.IconClass me-1"></i>
+                                }
+                                @item.Label
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
+            @if (!string.IsNullOrEmpty(Model.UserName))
+            {
+                <span class="navbar-text">
+                    <i class="bi bi-person-circle me-1"></i> @Model.UserName
+                </span>
+            }
+        </div>
+    </div>
+</nav>

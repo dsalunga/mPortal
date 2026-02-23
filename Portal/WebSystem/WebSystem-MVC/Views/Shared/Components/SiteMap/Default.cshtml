@@ -1,0 +1,77 @@
+@model WCMS.WebSystem.ViewComponents.SiteMapViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-diagram-3"></i> Site Map</h5>
+        <div>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnExpandCollapseAll">
+                <i class="bi @(Model.ExpandAll ? "bi-dash-square" : "bi-plus-square")"></i>
+                @(Model.ExpandAll ? "Collapse All" : "Expand All")
+            </button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="sitemap-tree p-3" id="siteMapContainer">
+            @if (Model.RootNodes.Count == 0)
+            {
+                <p class="text-muted">No site map nodes defined.</p>
+            }
+            else
+            {
+                @Html.Raw(RenderSiteMapNodes(Model.RootNodes, Model.ExpandAll))
+            }
+        </div>
+    </div>
+</div>
+
+@functions {
+    static string RenderSiteMapNodes(System.Collections.Generic.List<WCMS.WebSystem.ViewComponents.SiteMapNode> nodes, bool expandAll)
+    {
+        if (nodes == null || nodes.Count == 0) return string.Empty;
+        var sb = new System.Text.StringBuilder();
+        sb.Append("<ul class=\"list-unstyled ms-3\">");
+        foreach (var node in nodes)
+        {
+            var activeClass = node.IsActive ? "" : " text-muted";
+            var icon = "bi-file-earmark";
+            if (node.NodeType == "site") icon = "bi-globe";
+            else if (node.NodeType == "element") icon = "bi-puzzle";
+
+            sb.Append("<li class=\"mb-1\">");
+            if (node.Children != null && node.Children.Count > 0)
+            {
+                var expandIcon = expandAll ? "bi-chevron-down" : "bi-chevron-right";
+                sb.Append($"<i class=\"bi {expandIcon} sitemap-toggle\" data-node-id=\"{node.Id}\" style=\"cursor:pointer\"></i> ");
+            }
+            else
+            {
+                sb.Append("<span style=\"display:inline-block;width:16px\"></span> ");
+            }
+
+            sb.Append($"<a href=\"{System.Net.WebUtility.HtmlEncode(node.Url ?? "javascript:void(0)")}\" class=\"sitemap-node-link{activeClass}\" data-node-id=\"{node.Id}\">");
+            sb.Append($"<i class=\"bi {icon}\"></i> {System.Net.WebUtility.HtmlEncode(node.Name)}");
+            sb.Append("</a>");
+
+            if (node.IsActive)
+            {
+                sb.Append(" <i class=\"bi bi-check-circle text-success\" title=\"Active\"></i>");
+            }
+            else
+            {
+                sb.Append(" <span class=\"badge bg-warning text-dark\">Inactive</span>");
+            }
+
+            if (expandAll && node.Children != null && node.Children.Count > 0)
+            {
+                sb.Append(RenderSiteMapNodes(node.Children, expandAll));
+            }
+            sb.Append("</li>");
+        }
+        sb.Append("</ul>");
+        return sb.ToString();
+    }
+}
