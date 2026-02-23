@@ -1,0 +1,28 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.BibleVerseViewModel
+<div class="bible-verse-reader">
+    <form method="get" class="row mb-3">
+        <div class="col-auto">
+            <select name="versionId" class="form-select" onchange="this.form.submit()">
+                @foreach (var v in Model.Versions)
+                {
+                    <option value="@v.Id" selected="@(v.Id == Model.SelectedVersionId)">
+                        @v.Name (@v.Abbreviation)
+                    </option>
+                }
+            </select>
+        </div>
+    </form>
+
+    @if (Model.Verses != null && Model.Verses.Count > 0)
+    {
+        <div class="verses">
+            @foreach (var verse in Model.Verses)
+            {
+                <p class="verse">
+                    <sup class="verse-number">@verse.VerseNumber</sup>
+                    @verse.Text
+                </p>
+            }
+        </div>
+    }
+</div>

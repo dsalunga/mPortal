@@ -1,0 +1,34 @@
+@model WCMS.WebSystem.ViewComponents.NavigationViewModel
+@if (Model.Items.Count > 0)
+{
+    <nav class="wcms-navigation" style="@(!string.IsNullOrEmpty(Model.Width) ? $"width:{Model.Width};" : "")@(!string.IsNullOrEmpty(Model.Height) ? $"height:{Model.Height};" : "")">
+        @{
+            var ulClass = Model.IsHorizontal ? "nav navbar-nav" : "nav flex-column";
+        }
+        <ul class="@ulClass">
+            @foreach (var item in Model.Items)
+            {
+                var hasChildren = item.Children != null && item.Children.Count > 0;
+                <li class="nav-item @(hasChildren ? "dropdown" : "")">
+                    @if (hasChildren)
+                    {
+                        <a class="nav-link dropdown-toggle" href="@item.NavigateUrl" target="@item.Target"
+                           data-bs-toggle="dropdown">@item.Text</a>
+                        <ul class="dropdown-menu">
+                            @foreach (var child in item.Children)
+                            {
+                                <li>
+                                    <a class="dropdown-item" href="@child.NavigateUrl" target="@child.Target">@child.Text</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <a class="nav-link" href="@item.NavigateUrl" target="@item.Target">@item.Text</a>
+                    }
+                </li>
+            }
+        </ul>
+    </nav>
+}

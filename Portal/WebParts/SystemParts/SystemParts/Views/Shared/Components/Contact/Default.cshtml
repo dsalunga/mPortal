@@ -1,0 +1,33 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.ContactFormModel
+<div class="contact-form">
+    @if (Model.Submitted)
+    {
+        <div class="alert alert-success">Your message has been sent successfully.</div>
+    }
+    else
+    {
+        <form method="post" asp-action="Submit" asp-controller="ContentApi">
+            <input type="hidden" name="objectId" value="@Model.ObjectId" />
+            <input type="hidden" name="recordId" value="@Model.RecordId" />
+            <div class="form-group">
+                <label for="contactName">Name</label>
+                <input type="text" id="contactName" name="name" class="form-control"
+                       value="@Model.Name" required />
+            </div>
+            <div class="form-group">
+                <label for="contactEmail">E-mail</label>
+                <input type="email" id="contactEmail" name="email" class="form-control"
+                       value="@Model.Email" required />
+            </div>
+            <div class="form-group">
+                <label for="contactSubject">Subject</label>
+                <input type="text" id="contactSubject" name="subject" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage" name="message" class="form-control" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Send Message</button>
+        </form>
+    }
+</div>

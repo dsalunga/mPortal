@@ -1,0 +1,60 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.ArticleComponentModel
+@if (Model.IsDetailView && Model.DetailArticle != null)
+{
+    <article class="article-detail">
+        <h1>@Model.DetailArticle.Title</h1>
+        <div class="article-meta">
+            <span class="date">@Model.DetailArticle.Date</span>
+            @if (!string.IsNullOrEmpty(Model.DetailArticle.Author))
+            {
+                <span class="author"> by @Model.DetailArticle.Author</span>
+            }
+        </div>
+        @if (!string.IsNullOrEmpty(Model.DetailArticle.Image))
+        {
+            <img src="@Model.DetailArticle.Image" alt="@Model.DetailArticle.Title" class="article-image" />
+        }
+        <div class="article-content">@Html.Raw(Model.DetailArticle.Content)</div>
+    </article>
+}
+else if (Model.Articles != null)
+{
+    <div class="article-list">
+        @foreach (var article in Model.Articles)
+        {
+            <div class="article-item">
+                @if (!string.IsNullOrEmpty(article.Image))
+                {
+                    <img src="@article.Image" alt="@article.Title" class="article-thumbnail" />
+                }
+                <h3><a href="?ArticleId=@article.Id">@article.Title</a></h3>
+                <div class="article-meta">
+                    <span class="date">@article.Date</span>
+                    @if (!string.IsNullOrEmpty(article.Author))
+                    {
+                        <span class="author"> by @article.Author</span>
+                    }
+                </div>
+                @if (!string.IsNullOrEmpty(article.Description))
+                {
+                    <p class="article-description">@Html.Raw(article.Description)</p>
+                }
+            </div>
+        }
+
+        @if (Model.TotalItems > Model.PageSize)
+        {
+            var pageCount = (int)Math.Ceiling((double)Model.TotalItems / Model.PageSize);
+            <nav class="table-pager" aria-label="Article pagination">
+                <ul class="pagination">
+                    @for (int i = 1; i <= pageCount; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="?ShowP=@i">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+}

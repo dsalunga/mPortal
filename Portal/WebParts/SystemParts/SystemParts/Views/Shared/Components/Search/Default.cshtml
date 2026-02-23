@@ -1,0 +1,34 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.SearchViewModel
+<div class="site-search">
+    <form method="get" action="@Model.BasePath">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search..."
+                   value="@Model.Query" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    @if (Model.Results != null)
+    {
+        <div class="search-results mt-3">
+            @if (Model.Results.Count == 0)
+            {
+                <p>No results found for &quot;@Model.Query&quot;.</p>
+            }
+            else
+            {
+                <p>@Model.Results.Count result(s) for &quot;@Model.Query&quot;</p>
+                @foreach (var item in Model.Results)
+                {
+                    <div class="search-result-item mb-3">
+                        <h4><a href="@item.Url">@item.Title</a></h4>
+                        @if (!string.IsNullOrEmpty(item.Description))
+                        {
+                            <p>@item.Description</p>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>
