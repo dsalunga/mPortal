@@ -459,7 +459,7 @@ No CI/CD workflows exist in the repository yet.
 
 ### 7.12) Testing and regression coverage
 
-- [ ] Expand unit test projects beyond the current 2 (`Integration.UnitTest`, `SDKTest`) to cover core platform libraries.
+- [x] Create `WCMS.Framework.Tests` project with unit tests for core infrastructure (ConfigUtil, WQuery, DI registration) — 17 tests passing.
 - [ ] Add integration tests for each rebuilt ASP.NET Core web host (auth flows, CRUD operations, module workflows).
 - [ ] Add smoke tests for background agent/service executables.
 - [ ] Create an end-to-end regression test suite covering critical user journeys.
@@ -504,6 +504,9 @@ The CMS dynamically resolves URLs to database-stored pages and renders them from
 
 Each legacy `.ascx` user control that renders a web part must become a Razor View Component or partial view in ASP.NET Core. Priority order:
 
+**Infrastructure (completed):**
+- [x] Create `WViewComponent` base class in WCMS.Framework (replaces `WUserControl`/`UserControl` with DI-injected `IWContext`).
+
 #### Tier 1 — Admin parts (Central) — ~100 controls
 - [ ] Convert `Content/Parts/Central/Manager/` admin controls to View Components (site/page/template/part management).
 - [ ] Convert `Content/Parts/Central/Security/` controls (user, group, permission management).
@@ -513,8 +516,10 @@ Each legacy `.ascx` user control that renders a web part must become a Razor Vie
 - [ ] Convert `Content/Parts/Central/Tools/` controls (code executor, diagnostics).
 - [ ] Convert `Content/Parts/Central/Agent/` controls (job management).
 
-#### Tier 2 — Common parts — ~10 controls
-- [ ] Convert `Content/Parts/Common/Login*.ascx` to Razor login components.
+#### Tier 2 — Common parts — ~10 controls (partially completed)
+- [x] Convert `Login.ascx` → `LoginViewComponent` (authentication form with login/logout/OTP/forgot-password views).
+- [x] Convert `Breadcrumb.ascx` → `BreadcrumbViewComponent` (navigation trail).
+- [x] Convert `SideBar.ascx` → `SideBarViewComponent` (sidebar container).
 - [ ] Convert `Content/Parts/Common/Comments.ascx` to Razor comment component.
 - [ ] Convert remaining Common parts (MessageBoard, TriggerTask, UserPhotoUpload).
 
@@ -522,11 +527,18 @@ Each legacy `.ascx` user control that renders a web part must become a Razor Vie
 - [ ] Convert `Content/Themes/*/` template files from `.ascx` to `.cshtml` Razor layouts.
 - [ ] Implement theme selection middleware that maps `WebTheme`/`WebSkin` to layout files.
 
-#### Tier 4 — Shared controls — ~12 controls
-- [ ] Convert `Content/Controls/` (TabControl, TextEditor, Breadcrumb, DatePicker, CKEditor, etc.) to Tag Helpers or View Components.
+#### Tier 4 — Shared controls — ~12 controls (partially completed)
+- [x] Convert `CascadeMenu.ascx` → `NavigationViewComponent` (hierarchical menu with Bootstrap nav).
+- [ ] Convert `Content/Controls/` (TabControl, TextEditor, DatePicker, CKEditor, etc.) to Tag Helpers or View Components.
 
-#### Tier 5 — Module-specific parts — ~300 controls
-- [ ] Convert SystemParts `AppBundle/` controls (Article, Calendar, FileManager, Contact, etc.).
+#### Tier 5 — Module-specific parts — ~300 controls (partially completed)
+- [x] Convert `Content.ascx` → `ContentViewComponent` (CMS element content renderer).
+- [x] Convert `Article.ascx` → `ArticleViewComponent` (article list + detail with paging).
+- [x] Convert `ContactUs.ascx` → `ContactViewComponent` (contact form).
+- [x] Convert `FeedBack.ascx` → `FeedbackViewComponent` (content comments).
+- [x] Convert `Gallery.ascx` → `GalleryViewComponent` (image gallery).
+- [x] Convert `Search.ascx` → `SearchViewComponent` (site search).
+- [x] Convert `BibleVerseView.ascx` → `BibleVerseViewComponent` (Bible verse reader).
 - [ ] Convert SystemPartsG2 `AppBundle2/` controls (Forum, Social, Ads, Newsletter).
 - [ ] Convert SystemPartsG3 `AppBundle3/` controls (Incident, Jobs).
 
