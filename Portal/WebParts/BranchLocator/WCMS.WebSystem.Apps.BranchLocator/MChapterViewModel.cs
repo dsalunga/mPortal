@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web.UI.WebControls;
 
 using WCMS.Framework;
 using WCMS.Framework.Core;
@@ -11,30 +10,30 @@ namespace WCMS.WebSystem.Apps.BranchLocator
 {
     public class MChapterViewModel
     {
-        public static List<ListItem> GenerateListItem(int parentId)
+        public static List<KeyValuePair<string, string>> GenerateListItem(int parentId)
         {
             return GenerateListItem(parentId, "");
         }
 
-        public static List<ListItem> GenerateListItem(int parentId, string rootTitle)
+        public static List<KeyValuePair<string, string>> GenerateListItem(int parentId, string rootTitle)
         {
             string baseTab = WConstants.TAB;
             var items = MChapter.Provider.GetList();
-            var listItems = new List<ListItem>();
+            var listItems = new List<KeyValuePair<string, string>>();
 
             if (!string.IsNullOrEmpty(rootTitle))
             {
-                listItems.Add(new ListItem(FormatTab(baseTab) + rootTitle, "-1"));
+                listItems.Add(new KeyValuePair<string, string>("-1", FormatTab(baseTab) + rootTitle));
                 baseTab += WConstants.TAB;
             }
 
-            Action<IEnumerable<MChapter>, List<ListItem>, int, string> BuildListItemRecursive = null;
+            Action<IEnumerable<MChapter>, List<KeyValuePair<string, string>>, int, string> BuildListItemRecursive = null;
             BuildListItemRecursive = (webItems, list, id, tab) =>
             {
                 var subItems = webItems.Where(s => s.ParentId == id);
                 foreach (var webItem in subItems)
                 {
-                    listItems.Add(new ListItem(FormatTab(tab) + webItem.Name, webItem.Id.ToString()));
+                    listItems.Add(new KeyValuePair<string, string>(webItem.Id.ToString(), FormatTab(tab) + webItem.Name));
                     if (webItem.HasChildren)
                         BuildListItemRecursive(webItems, list, webItem.Id, tab + WConstants.TAB);
                 }

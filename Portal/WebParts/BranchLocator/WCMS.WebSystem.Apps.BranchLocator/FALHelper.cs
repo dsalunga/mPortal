@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Device.Location;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -111,11 +110,14 @@ namespace WCMS.WebSystem.Apps.BranchLocator
 
         public static double GetCoordinatesDistance(double latitude1, double longitude1, double latitude2, double longitude2)
         {
-            var firstCordinate = new GeoCoordinate(latitude1, longitude1);
-            var secondCordinate = new GeoCoordinate(latitude2, longitude2);
-
-            double distance = firstCordinate.GetDistanceTo(secondCordinate);
-            return distance;
+            const double EarthRadiusMeters = 6371000;
+            double dLat = (latitude2 - latitude1) * Math.PI / 180.0;
+            double dLon = (longitude2 - longitude1) * Math.PI / 180.0;
+            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                       Math.Cos(latitude1 * Math.PI / 180.0) * Math.Cos(latitude2 * Math.PI / 180.0) *
+                       Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            return EarthRadiusMeters * c;
         }
     }
 }
