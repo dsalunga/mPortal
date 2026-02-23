@@ -1,0 +1,161 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IncidentTicketViewModel
+
+<div class="incident-ticket-view">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>Ticket #@Model.TicketId</h4>
+        <span class="badge @(Model.Status == 0 ? "bg-primary" : Model.Status == 1 ? "bg-warning text-dark" : Model.Status == 2 ? "bg-success" : "bg-secondary") fs-6">
+            @Model.StatusText
+        </span>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post" class="needs-validation" novalidate>
+                <input type="hidden" name="TicketId" value="@Model.TicketId" />
+                <input type="hidden" name="ObjectId" value="@Model.ObjectId" />
+                <input type="hidden" name="TicketGuid" value="@Model.TicketGuid" />
+
+                <div class="mb-3">
+                    <label for="ticketDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="ticketDescription" name="Description"
+                              rows="4" @(Model.CanEdit ? "" : "readonly")>@Model.Description</textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="ticketCategory" class="form-label">Category</label>
+                        @if (Model.CanEdit)
+                        {
+                            <select class="form-select" id="ticketCategory" name="CategoryId">
+                                <option value="@Model.CategoryId">@Model.CategoryName</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" value="@Model.CategoryName" readonly />
+                        }
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="ticketType" class="form-label">Type</label>
+                        @if (Model.CanEdit)
+                        {
+                            <select class="form-select" id="ticketType" name="TypeId">
+                                <option value="@Model.TypeId">@Model.TypeName</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" value="@Model.TypeName" readonly />
+                        }
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="ticketUrgency" class="form-label">Urgency</label>
+                        @if (Model.CanEdit)
+                        {
+                            <select class="form-select" id="ticketUrgency" name="Urgency">
+                                <option value="1" selected="@(Model.Urgency == 1)">Low</option>
+                                <option value="2" selected="@(Model.Urgency == 2)">Normal</option>
+                                <option value="3" selected="@(Model.Urgency == 3)">High</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" value="@Model.UrgencyText" readonly />
+                        }
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="ticketStatus" class="form-label">Status</label>
+                        @if (Model.CanEdit)
+                        {
+                            <select class="form-select" id="ticketStatus" name="Status">
+                                <option value="0" selected="@(Model.Status == 0)">Open</option>
+                                <option value="1" selected="@(Model.Status == 1)">In Progress</option>
+                                <option value="2" selected="@(Model.Status == 2)">Resolved</option>
+                                <option value="3" selected="@(Model.Status == 3)">Closed</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" value="@Model.StatusText" readonly />
+                        }
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="ticketAssigned" class="form-label">Assigned To</label>
+                        <input type="text" class="form-control" id="ticketAssigned"
+                               value="@Model.AssignedUserName" @(Model.CanEdit ? "" : "readonly") />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Date Created</label>
+                        <input type="text" class="form-control" value="@Model.DateCreated.ToString("yyyy-MM-dd HH:mm")" readonly />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">ETA</label>
+                        <input type="datetime-local" class="form-control" name="ETA"
+                               value="@(Model.ETA?.ToString("yyyy-MM-ddTHH:mm"))" @(Model.CanEdit ? "" : "readonly") />
+                    </div>
+
+                    <div class="col-md-8 mb-3">
+                        <label for="ticketNotifyAlso" class="form-label">Also Notify</label>
+                        <input type="text" class="form-control" id="ticketNotifyAlso" name="NotifyAlso"
+                               value="@Model.NotifyAlso" @(Model.CanEdit ? "" : "readonly") />
+                    </div>
+                </div>
+
+                @if (Model.CanEdit)
+                {
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a href="#" class="btn btn-secondary" data-action="back">Back to List</a>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Comments</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.Comments.Count == 0)
+            {
+                <p class="text-muted">No comments yet.</p>
+            }
+            @foreach (var comment in Model.Comments)
+            {
+                <div class="border-bottom pb-3 mb-3">
+                    <div class="d-flex justify-content-between">
+                        <strong>@comment.Author</strong>
+                        <small class="text-muted">@comment.DatePosted.ToString("yyyy-MM-dd HH:mm")</small>
+                    </div>
+                    <p class="mt-1 mb-0">@comment.Content</p>
+                </div>
+            }
+
+            @if (Model.CanEdit)
+            {
+                <form method="post" class="mt-3">
+                    <input type="hidden" name="TicketId" value="@Model.TicketId" />
+                    <div class="mb-3">
+                        <label for="newComment" class="form-label">Add Comment</label>
+                        <textarea class="form-control" id="newComment" name="CommentContent" rows="3"
+                                  required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm" name="action" value="add-comment">
+                        Add Comment
+                    </button>
+                </form>
+            }
+        </div>
+    </div>
+</div>

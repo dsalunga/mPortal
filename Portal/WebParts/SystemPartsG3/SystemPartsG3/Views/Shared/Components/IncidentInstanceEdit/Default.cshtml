@@ -1,0 +1,75 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IncidentInstanceEditViewModel
+
+<div class="incident-instance-edit">
+    <h4 class="mb-3">@(Model.InstanceId > 0 ? "Edit" : "Add") Incident Instance</h4>
+
+    <form method="post" class="needs-validation" novalidate>
+        <input type="hidden" name="InstanceId" value="@Model.InstanceId" />
+        <input type="hidden" name="ObjectId" value="@Model.ObjectId" />
+
+        <div class="mb-3">
+            <label for="instanceName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="instanceName" name="Name"
+                   value="@Model.Name" required maxlength="255" />
+            <div class="invalid-feedback">Please enter an instance name.</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="instancePrefix" class="form-label">Incident Prefix</label>
+                <input type="text" class="form-control" id="instancePrefix" name="IncidentPrefix"
+                       value="@Model.IncidentPrefix" maxlength="50" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="instanceBaseGroup" class="form-label">Base Group</label>
+                <input type="text" class="form-control" id="instanceBaseGroup" name="BaseGroup"
+                       value="@Model.BaseGroup" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="instanceSupportGroupPath" class="form-label">Support Group Path</label>
+            <input type="text" class="form-control" id="instanceSupportGroupPath" name="SupportGroupPath"
+                   value="@Model.SupportGroupPath" />
+        </div>
+
+        <fieldset class="border rounded p-3 mb-3">
+            <legend class="float-none w-auto px-2 fs-6">SLA Settings</legend>
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="instanceSLAHigh" class="form-label">High Duration (minutes)</label>
+                    <input type="number" class="form-control" id="instanceSLAHigh" name="SLAHighDuration"
+                           value="@Model.SLAHighDuration" min="0" />
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="instanceSLANormal" class="form-label">Normal Duration (minutes)</label>
+                    <input type="number" class="form-control" id="instanceSLANormal" name="SLANormalDuration"
+                           value="@Model.SLANormalDuration" min="0" />
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="instanceSLALow" class="form-label">Low Duration (minutes)</label>
+                    <input type="number" class="form-control" id="instanceSLALow" name="SLALowDuration"
+                           value="@Model.SLALowDuration" min="0" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="instanceSLAWarning" class="form-label">Warning Percentage</label>
+                <div class="input-group" style="max-width: 200px;">
+                    <input type="number" class="form-control" id="instanceSLAWarning" name="SLAWarningPercentage"
+                           value="@Model.SLAWarningPercentage" min="0" max="100" step="0.1" />
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="#" class="btn btn-secondary" data-action="cancel">Cancel</a>
+        </div>
+    </form>
+</div>

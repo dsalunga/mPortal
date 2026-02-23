@@ -1,0 +1,49 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IncidentCategoryEditViewModel
+
+<div class="incident-category-edit">
+    <h4 class="mb-3">@(Model.CategoryId > 0 ? "Edit" : "Add") Incident Category</h4>
+
+    <form method="post" class="needs-validation" novalidate>
+        <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+        <input type="hidden" name="ObjectId" value="@Model.ObjectId" />
+
+        <div class="mb-3">
+            <label for="categoryName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="categoryName" name="Name"
+                   value="@Model.Name" required maxlength="255" />
+            <div class="invalid-feedback">Please enter a category name.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="categoryDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="categoryDescription" name="Description"
+                      rows="3">@Model.Description</textarea>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="categoryGroupId" class="form-label">Group ID</label>
+                <input type="number" class="form-control" id="categoryGroupId" name="GroupId"
+                       value="@Model.GroupId" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="categoryRank" class="form-label">Rank</label>
+                <input type="number" class="form-control" id="categoryRank" name="Rank"
+                       value="@Model.Rank" min="0" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="categoryInstanceId" class="form-label">Instance</label>
+            <select class="form-select" id="categoryInstanceId" name="InstanceId">
+                <option value="0">-- Select Instance --</option>
+            </select>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="#" class="btn btn-secondary" data-action="cancel">Cancel</a>
+        </div>
+    </form>
+</div>
