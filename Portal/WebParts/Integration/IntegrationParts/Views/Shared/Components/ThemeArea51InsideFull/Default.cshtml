@@ -1,0 +1,34 @@
+@* Originally: area51/InsideFull.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeArea51InsideFullModel
+
+<div id="theme-area51-inside-full-@Model.ObjectId">
+    <!-- Header -->
+    <header class="bg-white border-bottom py-3">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Header" })
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Navigation" })
+        </div>
+    </nav>
+
+    <!-- Full-Width Content (No Sidebar) -->
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-12">
+                @await Component.InvokeAsync("WZone", new { zone = "Content" })
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+        </div>
+    </footer>
+</div>

@@ -1,0 +1,44 @@
+@* Originally: mcgi_website/template_home2.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeMcgiWebsiteHome2Model
+
+<div id="theme-mcgi-website-home2-@Model.ObjectId">
+    <!-- Header -->
+    <header class="bg-primary text-white py-3">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Header" })
+        </div>
+    </header>
+
+    <!-- Video Hero -->
+    <section class="video-hero bg-dark text-white py-5">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "VideoHero" })
+        </div>
+    </section>
+
+    <!-- Two-Column Features -->
+    <section class="container py-5">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                @await Component.InvokeAsync("WZone", new { zone = "FeatureLeft" })
+            </div>
+            <div class="col-md-6 mb-4">
+                @await Component.InvokeAsync("WZone", new { zone = "FeatureRight" })
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="bg-light py-5">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Testimonials" })
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+        </div>
+    </footer>
+</div>

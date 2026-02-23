@@ -1,0 +1,27 @@
+@* Originally: ASOP/v2/old/asopv2-content.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeAsopV2ContentModel
+
+<div id="theme-asopv2-content-@Model.ObjectId">
+    <!-- Simple Header -->
+    <header class="bg-light border-bottom py-3">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Header" })
+        </div>
+    </header>
+
+    <!-- Single-Column Content -->
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-12">
+                @await Component.InvokeAsync("WZone", new { zone = "Content" })
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light border-top py-3 mt-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+        </div>
+    </footer>
+</div>

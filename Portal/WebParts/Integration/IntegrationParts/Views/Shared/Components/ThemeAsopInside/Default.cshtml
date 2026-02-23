@@ -1,0 +1,39 @@
+@* Originally: ASOP/Inside.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeAsopInsideModel
+
+<div id="theme-asop-inside-@Model.ObjectId">
+    <!-- Header -->
+    <header class="bg-primary text-white py-3">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Header" })
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Navigation" })
+        </div>
+    </nav>
+
+    <!-- Two-Column Layout -->
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-md-3">
+                <aside>
+                    @await Component.InvokeAsync("WZone", new { zone = "Sidebar" })
+                </aside>
+            </div>
+            <div class="col-md-9">
+                @await Component.InvokeAsync("WZone", new { zone = "Content" })
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+        </div>
+    </footer>
+</div>

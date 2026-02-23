@@ -1,0 +1,36 @@
+@* Originally: area51/Parts/EventCalendar/Event/EventViewBasic.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeArea51EventViewBasicModel
+
+<div id="theme-area51-event-view-@Model.ObjectId">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <!-- Event Title -->
+                    <div class="card-header">
+                        @await Component.InvokeAsync("WZone", new { zone = "EventTitle" })
+                    </div>
+                    <div class="card-body">
+                        <!-- Date/Time -->
+                        <div class="mb-3">
+                            <h6 class="text-muted">Date &amp; Time</h6>
+                            @await Component.InvokeAsync("WZone", new { zone = "EventDateTime" })
+                        </div>
+
+                        <!-- Location -->
+                        <div class="mb-3">
+                            <h6 class="text-muted">Location</h6>
+                            @await Component.InvokeAsync("WZone", new { zone = "EventLocation" })
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <h6 class="text-muted">Description</h6>
+                            @await Component.InvokeAsync("WZone", new { zone = "EventDescription" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

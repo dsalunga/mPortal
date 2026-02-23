@@ -1,0 +1,40 @@
+@* Originally: ASOP/asopv2-division-home.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeAsopV2DivisionHomeModel
+
+<div id="theme-asopv2-division-home-@Model.ObjectId">
+    <!-- Division Hero/Banner -->
+    <section class="bg-primary text-white py-5">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "DivisionBanner" })
+        </div>
+    </section>
+
+    <!-- Featured Content Grid -->
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-md-4">
+                @await Component.InvokeAsync("WZone", new { zone = "Feature1" })
+            </div>
+            <div class="col-md-4">
+                @await Component.InvokeAsync("WZone", new { zone = "Feature2" })
+            </div>
+            <div class="col-md-4">
+                @await Component.InvokeAsync("WZone", new { zone = "Feature3" })
+            </div>
+        </div>
+
+        <!-- Division Info -->
+        <div class="row mt-4">
+            <div class="col-12">
+                @await Component.InvokeAsync("WZone", new { zone = "DivisionInfo" })
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+        </div>
+    </footer>
+</div>

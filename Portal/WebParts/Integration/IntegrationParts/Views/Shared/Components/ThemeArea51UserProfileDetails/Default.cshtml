@@ -1,0 +1,20 @@
+@* Originally: area51/Parts/Profile/Profile/UserProfileDetails.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeArea51UserProfileDetailsModel
+
+<div id="theme-area51-profile-details-@Model.ObjectId">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Profile Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Profile Info Sections -->
+                        @await Component.InvokeAsync("WZone", new { zone = "ProfileInfo" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+@* Originally: ASOP/asopv2-division-content.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeAsopV2DivisionContentModel
+
+<div id="theme-asopv2-division-content-@Model.ObjectId">
+    <!-- Division Header -->
+    <header class="bg-secondary text-white py-3">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "DivisionHeader" })
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            @await Component.InvokeAsync("WZone", new { zone = "Breadcrumb" })
+        </nav>
+    </div>
+
+    <!-- Division Content -->
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="division-content">
+                    @await Component.InvokeAsync("WZone", new { zone = "Content" })
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+        </div>
+    </footer>
+</div>

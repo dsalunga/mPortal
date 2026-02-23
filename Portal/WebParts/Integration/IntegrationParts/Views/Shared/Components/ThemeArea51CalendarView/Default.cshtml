@@ -1,0 +1,31 @@
+@* Originally: area51/Parts/EventCalendar/EventCalendar/CalendarView.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeArea51CalendarViewModel
+
+<div id="theme-area51-calendar-@Model.ObjectId">
+    <div class="container py-4">
+        <!-- Calendar Header with Month Navigation -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    @await Component.InvokeAsync("WZone", new { zone = "CalendarNavigation" })
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Grid -->
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    @await Component.InvokeAsync("WZone", new { zone = "CalendarGrid" })
+                </div>
+            </div>
+        </div>
+
+        <!-- Event List -->
+        <div class="row mt-4">
+            <div class="col-12">
+                @await Component.InvokeAsync("WZone", new { zone = "EventList" })
+            </div>
+        </div>
+    </div>
+</div>

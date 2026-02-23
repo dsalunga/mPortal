@@ -1,0 +1,39 @@
+@* Originally: mcgi_website/template_inside.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeMcgiWebsiteInsideModel
+
+<div id="theme-mcgi-website-inside-@Model.ObjectId">
+    <!-- Header -->
+    <header class="bg-primary text-white py-3">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Header" })
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            @await Component.InvokeAsync("WZone", new { zone = "Breadcrumb" })
+        </nav>
+    </div>
+
+    <!-- Two-Column Layout -->
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-md-8">
+                @await Component.InvokeAsync("WZone", new { zone = "Content" })
+            </div>
+            <div class="col-md-4">
+                <aside>
+                    @await Component.InvokeAsync("WZone", new { zone = "Sidebar" })
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+        </div>
+    </footer>
+</div>

@@ -1,0 +1,30 @@
+@* Originally: ASOP/v2/old/asopv2-home.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeAsopV2HomeModel
+
+<div id="theme-asopv2-home-@Model.ObjectId">
+    <!-- Hero Banner -->
+    <section class="bg-primary text-white py-5">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "HeroBanner" })
+        </div>
+    </section>
+
+    <!-- Two-Column Feature Area -->
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-md-6">
+                @await Component.InvokeAsync("WZone", new { zone = "FeatureLeft" })
+            </div>
+            <div class="col-md-6">
+                @await Component.InvokeAsync("WZone", new { zone = "FeatureRight" })
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+        </div>
+    </footer>
+</div>

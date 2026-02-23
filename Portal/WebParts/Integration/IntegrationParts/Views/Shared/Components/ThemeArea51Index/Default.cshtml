@@ -1,0 +1,40 @@
+@* Originally: area51/index.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeArea51IndexModel
+
+<div id="theme-area51-index-@Model.ObjectId">
+    <!-- Hero Section -->
+    <section class="bg-primary text-white py-5">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Hero" })
+        </div>
+    </section>
+
+    <!-- Content Grid -->
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-md-4">
+                @await Component.InvokeAsync("WZone", new { zone = "Column1" })
+            </div>
+            <div class="col-md-4">
+                @await Component.InvokeAsync("WZone", new { zone = "Column2" })
+            </div>
+            <div class="col-md-4">
+                @await Component.InvokeAsync("WZone", new { zone = "Column3" })
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                @await Component.InvokeAsync("WZone", new { zone = "CallToAction" })
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+        </div>
+    </footer>
+</div>

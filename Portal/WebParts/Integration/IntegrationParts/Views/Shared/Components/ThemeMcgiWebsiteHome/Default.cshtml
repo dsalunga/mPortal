@@ -1,0 +1,57 @@
+@* Originally: mcgi_website/template_home.ascx *@
+@model WCMS.WebSystem.WebParts.ViewComponents.ThemeMcgiWebsiteHomeModel
+
+<div id="theme-mcgi-website-home-@Model.ObjectId">
+    <!-- Header -->
+    <header class="bg-primary text-white py-3">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Header" })
+        </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <section class="hero-slider">
+        @await Component.InvokeAsync("WZone", new { zone = "HeroSlider" })
+    </section>
+
+    <!-- Three-Column Feature Cards -->
+    <section class="container py-5">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        @await Component.InvokeAsync("WZone", new { zone = "FeatureCard1" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        @await Component.InvokeAsync("WZone", new { zone = "FeatureCard2" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        @await Component.InvokeAsync("WZone", new { zone = "FeatureCard3" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="bg-light py-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "NewsSection" })
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-4">
+        <div class="container">
+            @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+        </div>
+    </footer>
+</div>
