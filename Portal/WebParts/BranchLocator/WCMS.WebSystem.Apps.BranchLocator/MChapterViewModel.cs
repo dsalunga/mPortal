@@ -23,7 +23,7 @@ namespace WCMS.WebSystem.Apps.BranchLocator
 
             if (!string.IsNullOrEmpty(rootTitle))
             {
-                listItems.Add(new KeyValuePair<string, string>("-1", FormatTab(baseTab) + rootTitle));
+                listItems.Add(new KeyValuePair<string, string>(FormatTab(baseTab) + rootTitle, "-1"));
                 baseTab += WConstants.TAB;
             }
 
@@ -33,7 +33,7 @@ namespace WCMS.WebSystem.Apps.BranchLocator
                 var subItems = webItems.Where(s => s.ParentId == id);
                 foreach (var webItem in subItems)
                 {
-                    listItems.Add(new KeyValuePair<string, string>(webItem.Id.ToString(), FormatTab(tab) + webItem.Name));
+                    listItems.Add(new KeyValuePair<string, string>(FormatTab(tab) + webItem.Name, webItem.Id.ToString()));
                     if (webItem.HasChildren)
                         BuildListItemRecursive(webItems, list, webItem.Id, tab + WConstants.TAB);
                 }

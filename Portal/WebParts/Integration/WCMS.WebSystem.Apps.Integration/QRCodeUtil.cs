@@ -36,11 +36,8 @@ namespace WCMS.WebSystem.Apps.Integration
             var qrCode = new PngByteQRCode(qrCodeData);
             byte[] qrCodeBytes = qrCode.GetGraphic(20);
 
-            Bitmap qr;
-            using (var ms = new System.IO.MemoryStream(qrCodeBytes))
-            {
-                qr = new Bitmap(ms);
-            }
+            var ms = new System.IO.MemoryStream(qrCodeBytes);
+            var qr = new Bitmap(ms);
 
             var qrCropPx = 50;
             var newSize = new Point(qr.Width - qrCropPx * 2, qr.Height - qrCropPx * 2);
