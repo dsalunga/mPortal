@@ -1,0 +1,33 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.UploadFilesViewModel
+<div class="wcms-upload-files">
+    @if (!Model.IsLoggedIn)
+    {
+        <div class="alert alert-warning">Please sign in to upload files.</div>
+    }
+    else
+    {
+        @if (Model.IsUploaded)
+        {
+            <div class="alert alert-success">@(Model.Message ?? "Files uploaded successfully.")</div>
+        }
+        <h4>Upload Files</h4>
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="objectId" value="@Model.ObjectId" />
+            <input type="hidden" name="recordId" value="@Model.RecordId" />
+            <div class="mb-3">
+                <label for="fileUpload" class="form-label">Choose files</label>
+                <input type="file" id="fileUpload" name="files" class="form-control" multiple required />
+                <div class="form-text">
+                    Max file size: @Model.MaxFileSizeMb MB.
+                    @if (!string.IsNullOrEmpty(Model.AllowedExtensions))
+                    {
+                        <span>Allowed: @Model.AllowedExtensions</span>
+                    }
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-upload"></i> Upload
+            </button>
+        </form>
+    }
+</div>

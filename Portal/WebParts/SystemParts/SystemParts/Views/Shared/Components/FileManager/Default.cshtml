@@ -1,0 +1,74 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.FileManagerViewModel
+<div class="wcms-file-manager">
+    @if (!string.IsNullOrEmpty(Model.CurrentPath))
+    {
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@Model.BasePath">Root</a></li>
+                <li class="breadcrumb-item active">@Model.CurrentPath</li>
+            </ol>
+        </nav>
+    }
+    @if (Model.IsLoggedIn)
+    {
+        <div class="mb-3">
+            <button type="button" class="btn btn-primary btn-sm">
+                <i class="bi bi-upload"></i> Upload
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-folder-plus"></i> New Folder
+            </button>
+        </div>
+    }
+    @if (Model.Files.Count == 0)
+    {
+        <p class="text-muted">This folder is empty.</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Modified</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var file in Model.Files)
+                    {
+                        <tr>
+                            <td>
+                                @if (file.IsDirectory)
+                                {
+                                    <i class="bi bi-folder-fill text-warning"></i>
+                                    <a href="@Model.BasePath?path=@file.FilePath">@file.FileName</a>
+                                }
+                                else
+                                {
+                                    <i class="bi bi-file-earmark"></i>
+                                    <a href="@file.FilePath" target="_blank">@file.FileName</a>
+                                }
+                            </td>
+                            <td>
+                                @if (!file.IsDirectory)
+                                {
+                                    @(file.FileSize < 1024 ? file.FileSize + " B" : (file.FileSize / 1024) + " KB")
+                                }
+                            </td>
+                            <td><small>@file.LastModified</small></td>
+                            <td>
+                                @if (!file.IsDirectory)
+                                {
+                                    <a href="@file.FilePath" class="btn btn-sm btn-outline-primary" download>Download</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

@@ -1,0 +1,26 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.SiteSectionViewModel
+<div class="wcms-site-section @Model.CssClass">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        @switch (Model.HeaderTag)
+        {
+            case "h1":
+                <h1>@Model.Title</h1>
+                break;
+            case "h3":
+                <h3>@Model.Title</h3>
+                break;
+            default:
+                <h2>@Model.Title</h2>
+                break;
+        }
+    }
+    @if (!string.IsNullOrEmpty(Model.Subtitle))
+    {
+        <p class="lead">@Model.Subtitle</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.Description))
+    {
+        <p>@Model.Description</p>
+    }
+</div>

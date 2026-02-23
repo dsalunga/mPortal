@@ -1,0 +1,52 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.WeeklySchedulerViewModel
+@{
+    var days = new[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+}
+<div class="wcms-weekly-scheduler">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h4>@Model.Title</h4>
+    }
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    @foreach (var day in days)
+                    {
+                        <th>@day</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (var h = Model.StartHour; h <= Model.EndHour; h++)
+                {
+                    var hour = h;
+                    <tr>
+                        <td class="text-nowrap fw-bold">@(hour.ToString("00")):00</td>
+                        @for (var d = 0; d < 7; d++)
+                        {
+                            var dayIndex = d;
+                            var hourStr = hour.ToString("00") + ":00";
+                            var entries = Model.Entries.FindAll(e => e.DayOfWeek == dayIndex &&
+                                string.Compare(e.StartTime, hourStr, System.StringComparison.Ordinal) <= 0 &&
+                                string.Compare(e.EndTime, hourStr, System.StringComparison.Ordinal) > 0);
+                            <td class="@(entries.Count > 0 ? "table-info" : "")">
+                                @foreach (var entry in entries)
+                                {
+                                    <div class="small @entry.CssClass">
+                                        <strong>@entry.Title</strong>
+                                        @if (!string.IsNullOrEmpty(entry.Location))
+                                        {
+                                            <br /><small>@entry.Location</small>
+                                        }
+                                    </div>
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

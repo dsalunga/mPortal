@@ -1,0 +1,32 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.ContainerDesignerViewModel
+<div class="wcms-container-designer">
+    @if (!Model.IsLoggedIn)
+    {
+        <div class="alert alert-warning">Please sign in to design layouts.</div>
+    }
+    else
+    {
+        <div class="mb-3">
+            <h4>Container Layout Designer</h4>
+            <div class="btn-group mb-3" role="group">
+                <button type="button" class="btn btn-outline-secondary @(Model.LayoutType == "two-column" ? "active" : "")">Two Columns</button>
+                <button type="button" class="btn btn-outline-secondary @(Model.LayoutType == "three-column" ? "active" : "")">Three Columns</button>
+            </div>
+        </div>
+        <div class="row border rounded p-3">
+            @foreach (var col in Model.Columns)
+            {
+                <div class="col-md-@col.Width @col.CssClass border p-2 min-vh-25">
+                    <div class="text-muted text-center small">Column @(col.Index + 1) (width: @col.Width)</div>
+                    @Html.Raw(col.Content)
+                </div>
+            }
+            @if (Model.Columns.Count == 0)
+            {
+                <div class="col text-center text-muted p-4">
+                    Select a layout type to begin designing.
+                </div>
+            }
+        </div>
+    }
+</div>

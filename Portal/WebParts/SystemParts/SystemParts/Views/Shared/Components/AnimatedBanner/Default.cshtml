@@ -1,0 +1,67 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.AnimatedBannerViewModel
+@{
+    var carouselId = "banner-" + Model.ObjectId;
+}
+<div class="wcms-animated-banner">
+    @if (Model.Slides.Count == 0)
+    {
+        <div class="text-muted p-4 text-center">No banner slides configured.</div>
+    }
+    else
+    {
+        <div id="@carouselId" class="carousel slide" data-bs-ride="carousel" data-bs-interval="@Model.IntervalMs">
+            @if (Model.ShowIndicators)
+            {
+                <div class="carousel-indicators">
+                    @for (var i = 0; i < Model.Slides.Count; i++)
+                    {
+                        <button type="button" data-bs-target="#@carouselId" data-bs-slide-to="@i"
+                                class="@(i == 0 ? "active" : "")" aria-label="Slide @(i + 1)"></button>
+                    }
+                </div>
+            }
+            <div class="carousel-inner">
+                @for (var i = 0; i < Model.Slides.Count; i++)
+                {
+                    var slide = Model.Slides[i];
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                        @if (!string.IsNullOrEmpty(slide.LinkUrl))
+                        {
+                            <a href="@slide.LinkUrl">
+                                <img src="@slide.ImageUrl" class="d-block w-100" alt="@slide.Title" loading="lazy" />
+                            </a>
+                        }
+                        else
+                        {
+                            <img src="@slide.ImageUrl" class="d-block w-100" alt="@slide.Title" loading="lazy" />
+                        }
+                        @if (!string.IsNullOrEmpty(slide.Title) || !string.IsNullOrEmpty(slide.Caption))
+                        {
+                            <div class="carousel-caption d-none d-md-block">
+                                @if (!string.IsNullOrEmpty(slide.Title))
+                                {
+                                    <h5>@slide.Title</h5>
+                                }
+                                @if (!string.IsNullOrEmpty(slide.Caption))
+                                {
+                                    <p>@slide.Caption</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+            @if (Model.ShowControls)
+            {
+                <button class="carousel-control-prev" type="button" data-bs-target="#@carouselId" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#@carouselId" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            }
+        </div>
+    }
+</div>

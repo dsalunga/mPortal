@@ -1,0 +1,49 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.CalendarEditViewModel
+<div class="wcms-calendar-edit">
+    @if (!Model.IsLoggedIn)
+    {
+        <div class="alert alert-warning">Please sign in to create or edit events.</div>
+    }
+    else
+    {
+        <h4>@(Model.EventId > 0 ? "Edit Event" : "New Event")</h4>
+        <form method="post">
+            <input type="hidden" name="objectId" value="@Model.ObjectId" />
+            <input type="hidden" name="recordId" value="@Model.RecordId" />
+            <input type="hidden" name="eventId" value="@Model.EventId" />
+            <div class="mb-3">
+                <label for="eventTitle" class="form-label">Title</label>
+                <input type="text" id="eventTitle" name="title" class="form-control"
+                       value="@Model.Title" required />
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="datetime-local" id="startDate" name="startDate" class="form-control"
+                           value="@Model.StartDate.ToString("yyyy-MM-ddTHH:mm")" required />
+                </div>
+                <div class="col-md-6">
+                    <label for="endDate" class="form-label">End Date</label>
+                    <input type="datetime-local" id="endDate" name="endDate" class="form-control"
+                           value="@Model.EndDate.ToString("yyyy-MM-ddTHH:mm")" required />
+                </div>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" id="allDay" name="allDay" class="form-check-input"
+                       @(Model.AllDay ? "checked" : "") />
+                <label for="allDay" class="form-check-label">All Day Event</label>
+            </div>
+            <div class="mb-3">
+                <label for="eventLocation" class="form-label">Location</label>
+                <input type="text" id="eventLocation" name="location" class="form-control"
+                       value="@Model.Location" />
+            </div>
+            <div class="mb-3">
+                <label for="eventDescription" class="form-label">Description</label>
+                <textarea id="eventDescription" name="description" class="form-control" rows="4">@Model.Description</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Event</button>
+            <a href="javascript:history.back()" class="btn btn-outline-secondary">Cancel</a>
+        </form>
+    }
+</div>

@@ -1,0 +1,71 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.SurveyViewModel
+<div class="wcms-survey">
+    @if (Model.IsSubmitted)
+    {
+        <div class="alert alert-success">Thank you for completing the survey!</div>
+    }
+    else
+    {
+        @if (!string.IsNullOrEmpty(Model.Title))
+        {
+            <h4>@Model.Title</h4>
+        }
+        @if (!string.IsNullOrEmpty(Model.Description))
+        {
+            <p class="text-muted">@Model.Description</p>
+        }
+        <form method="post">
+            <input type="hidden" name="objectId" value="@Model.ObjectId" />
+            <input type="hidden" name="recordId" value="@Model.RecordId" />
+            <input type="hidden" name="surveyId" value="@Model.SurveyId" />
+            @foreach (var question in Model.Questions)
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <label class="form-label fw-bold">
+                            @question.Text
+                            @if (question.IsRequired)
+                            {
+                                <span class="text-danger">*</span>
+                            }
+                        </label>
+                        @if (question.QuestionType == "text")
+                        {
+                            <input type="text" name="q_@question.Id" class="form-control"
+                                   @(question.IsRequired ? "required" : "") />
+                        }
+                        else if (question.QuestionType == "textarea")
+                        {
+                            <textarea name="q_@question.Id" class="form-control" rows="3"
+                                      @(question.IsRequired ? "required" : "")></textarea>
+                        }
+                        else if (question.QuestionType == "radio" && question.Options != null)
+                        {
+                            @foreach (var opt in question.Options)
+                            {
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"
+                                           name="q_@question.Id" value="@opt.Id" id="opt_@opt.Id"
+                                           @(question.IsRequired ? "required" : "") />
+                                    <label class="form-check-label" for="opt_@opt.Id">@opt.Text</label>
+                                </div>
+                            }
+                        }
+                        else if (question.QuestionType == "checkbox" && question.Options != null)
+                        {
+                            @foreach (var opt in question.Options)
+                            {
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                           name="q_@question.Id" value="@opt.Id" id="opt_@opt.Id" />
+                                    <label class="form-check-label" for="opt_@opt.Id">@opt.Text</label>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+            <button type="submit" class="btn btn-primary">Submit Survey</button>
+        </form>
+    }
+</div>

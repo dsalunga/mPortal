@@ -1,0 +1,18 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.GenericMenuViewModel
+<nav class="wcms-generic-menu @Model.CssClass">
+    <ul class="nav @(Model.Orientation == "vertical" ? "flex-column" : "")">
+        @foreach (var item in Model.Items)
+        {
+            <li class="nav-item">
+                <a class="nav-link @(item.IsActive ? "active" : "")"
+                   href="@item.Url" target="@item.Target">
+                    @if (!string.IsNullOrEmpty(item.IconCss))
+                    {
+                        <i class="@item.IconCss"></i>
+                    }
+                    @item.Title
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

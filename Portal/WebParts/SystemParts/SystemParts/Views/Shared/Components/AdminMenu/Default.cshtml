@@ -1,0 +1,49 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.AdminMenuViewModel
+<div class="wcms-admin-menu">
+    @if (!Model.IsLoggedIn)
+    {
+        <div class="alert alert-warning">Please sign in to manage menu items.</div>
+    }
+    else
+    {
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4>Menu Administration</h4>
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#addMenuItem-@Model.ObjectId">
+                <i class="bi bi-plus"></i> Add Item
+            </button>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>URL</th>
+                    <th>Parent</th>
+                    <th>Order</th>
+                    <th>Visible</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td><small>@item.Url</small></td>
+                        <td>@item.ParentId</td>
+                        <td>@item.SortOrder</td>
+                        <td>
+                            <span class="badge @(item.IsVisible ? "bg-success" : "bg-secondary")">
+                                @(item.IsVisible ? "Yes" : "No")
+                            </span>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

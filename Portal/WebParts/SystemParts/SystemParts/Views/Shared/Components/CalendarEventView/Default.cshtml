@@ -1,0 +1,36 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.CalendarEventViewModel
+<div class="wcms-calendar-event">
+    @if (string.IsNullOrEmpty(Model.Title))
+    {
+        <div class="alert alert-info">No event selected.</div>
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">@Model.Title</h3>
+                <dl class="row">
+                    <dt class="col-sm-3">Start</dt>
+                    <dd class="col-sm-9">@Model.StartDate.ToString("f")</dd>
+                    <dt class="col-sm-3">End</dt>
+                    <dd class="col-sm-9">@Model.EndDate.ToString("f")</dd>
+                    @if (!string.IsNullOrEmpty(Model.Location))
+                    {
+                        <dt class="col-sm-3">Location</dt>
+                        <dd class="col-sm-9">@Model.Location</dd>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.OrganizerName))
+                    {
+                        <dt class="col-sm-3">Organizer</dt>
+                        <dd class="col-sm-9">@Model.OrganizerName</dd>
+                    }
+                </dl>
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <p>@Html.Raw(Model.Description)</p>
+                }
+                <a href="@Model.BasePath" class="btn btn-outline-secondary btn-sm">&laquo; Back to Calendar</a>
+            </div>
+        </div>
+    }
+</div>

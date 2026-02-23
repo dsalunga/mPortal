@@ -1,0 +1,53 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.CalendarViewViewModel
+@{
+    var firstDay = new System.DateTime(Model.CurrentMonth.Year, Model.CurrentMonth.Month, 1);
+    var daysInMonth = System.DateTime.DaysInMonth(Model.CurrentMonth.Year, Model.CurrentMonth.Month);
+    var startOffset = (int)firstDay.DayOfWeek;
+}
+<div class="wcms-calendar-view">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <a href="@Model.BasePath?month=@firstDay.AddMonths(-1).ToString("yyyy-MM")" class="btn btn-outline-secondary btn-sm">&laquo; Prev</a>
+        <h4 class="mb-0">@Model.CurrentMonth.ToString("MMMM yyyy")</h4>
+        <a href="@Model.BasePath?month=@firstDay.AddMonths(1).ToString("yyyy-MM")" class="btn btn-outline-secondary btn-sm">Next &raquo;</a>
+    </div>
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var day = 1;
+                var totalCells = startOffset + daysInMonth;
+                var rows = (int)System.Math.Ceiling(totalCells / 7.0);
+            }
+            @for (var r = 0; r < rows; r++)
+            {
+                <tr>
+                    @for (var c = 0; c < 7; c++)
+                    {
+                        var cellIndex = r * 7 + c;
+                        if (cellIndex < startOffset || day > daysInMonth)
+                        {
+                            <td class="text-muted">&nbsp;</td>
+                        }
+                        else
+                        {
+                            var cellDate = new System.DateTime(Model.CurrentMonth.Year, Model.CurrentMonth.Month, day);
+                            var dayEvents = Model.Events.FindAll(e => e.StartDate.Date <= cellDate.Date && e.EndDate.Date >= cellDate.Date);
+                            <td class="@(dayEvents.Count > 0 ? "table-info" : "")">
+                                <strong>@day</strong>
+                                @foreach (var ev in dayEvents)
+                                {
+                                    <div class="small text-truncate"><a href="@Model.BasePath?eventId=@ev.Id">@ev.Title</a></div>
+                                }
+                            </td>
+                            day++;
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

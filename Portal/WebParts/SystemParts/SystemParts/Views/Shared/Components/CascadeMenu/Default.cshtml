@@ -1,0 +1,32 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.CascadeMenuViewModel
+<nav class="wcms-cascade-menu navbar navbar-expand-lg">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#cascadeMenu-@Model.ObjectId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="cascadeMenu-@Model.ObjectId">
+        <ul class="navbar-nav">
+            @foreach (var item in Model.Items)
+            {
+                var hasChildren = item.Children != null && item.Children.Count > 0;
+                <li class="nav-item @(hasChildren ? "dropdown" : "") @item.CssClass">
+                    @if (hasChildren)
+                    {
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">@item.Title</a>
+                        <ul class="dropdown-menu">
+                            @foreach (var child in item.Children)
+                            {
+                                <li><a class="dropdown-item" href="@child.Url">@child.Title</a></li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <a class="nav-link" href="@item.Url">@item.Title</a>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</nav>

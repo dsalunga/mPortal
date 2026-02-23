@@ -1,0 +1,38 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.PictureGalleryViewModel
+<div class="wcms-picture-gallery">
+    @if (Model.Albums.Count == 0)
+    {
+        <p class="text-muted">No albums available.</p>
+    }
+    else
+    {
+        @foreach (var album in Model.Albums)
+        {
+            <div class="mb-4">
+                <h5>@album.Title <span class="badge bg-secondary">@album.PhotoCount</span></h5>
+                <div class="row">
+                    @if (album.Photos != null)
+                    {
+                        @foreach (var photo in album.Photos)
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <div class="card gallery-item">
+                                    <a href="@photo.ImageUrl" data-lightbox="album-@album.Id" data-title="@photo.Title">
+                                        <img src="@(photo.ThumbnailUrl ?? photo.ImageUrl)" alt="@photo.Title"
+                                             class="card-img-top" loading="lazy" />
+                                    </a>
+                                    @if (!string.IsNullOrEmpty(photo.Title))
+                                    {
+                                        <div class="card-body p-2">
+                                            <small class="card-title">@photo.Title</small>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>

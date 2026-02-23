@@ -1,0 +1,40 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.SurveyResultsViewModel
+<div class="wcms-survey-results">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h4>@Model.Title</h4>
+    }
+    <p class="text-muted">Total responses: @Model.TotalResponses</p>
+    @if (Model.Questions.Count == 0)
+    {
+        <p class="text-muted">No results available.</p>
+    }
+    else
+    {
+        @foreach (var question in Model.Questions)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h6>@question.Text</h6>
+                    @if (question.Options != null)
+                    {
+                        @foreach (var opt in question.Options)
+                        {
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between">
+                                    <span>@opt.Text</span>
+                                    <span class="text-muted">@opt.Count (@opt.Percentage.ToString("F1")%)</span>
+                                </div>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar" role="progressbar"
+                                         style="width: @opt.Percentage%" aria-valuenow="@opt.Percentage"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>

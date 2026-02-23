@@ -1,0 +1,28 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.InstagramGalleryViewModel
+<div class="wcms-instagram-gallery">
+    @if (!string.IsNullOrEmpty(Model.Username))
+    {
+        <h5 class="mb-3">
+            <i class="bi bi-instagram"></i> @@@Model.Username
+        </h5>
+    }
+    @if (Model.Posts.Count == 0)
+    {
+        <p class="text-muted">No Instagram posts to display.</p>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var post in Model.Posts)
+            {
+                var colClass = "col-" + (12 / Model.ColumnsPerRow);
+                <div class="@colClass mb-3">
+                    <a href="@post.Permalink" target="_blank" rel="noopener noreferrer">
+                        <img src="@(post.ThumbnailUrl ?? post.ImageUrl)" alt="@post.Caption"
+                             class="img-fluid rounded" loading="lazy" />
+                    </a>
+                </div>
+            }
+        </div>
+    }
+</div>

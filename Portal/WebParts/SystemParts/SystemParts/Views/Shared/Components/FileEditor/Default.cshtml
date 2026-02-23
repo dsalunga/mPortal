@@ -1,0 +1,25 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.FileEditorViewModel
+<div class="wcms-file-editor">
+    @if (!Model.IsLoggedIn)
+    {
+        <div class="alert alert-warning">Please sign in to edit files.</div>
+    }
+    else
+    {
+        <h4>@(string.IsNullOrEmpty(Model.FileName) ? "File Editor" : Model.FileName)</h4>
+        @if (!string.IsNullOrEmpty(Model.FilePath))
+        {
+            <p class="text-muted small">@Model.FilePath</p>
+        }
+        <form method="post">
+            <input type="hidden" name="objectId" value="@Model.ObjectId" />
+            <input type="hidden" name="recordId" value="@Model.RecordId" />
+            <input type="hidden" name="fileId" value="@Model.FileId" />
+            <div class="mb-3">
+                <textarea name="content" class="form-control font-monospace" rows="20">@Model.Content</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="javascript:history.back()" class="btn btn-outline-secondary">Cancel</a>
+        </form>
+    }
+</div>
