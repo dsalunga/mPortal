@@ -2,7 +2,7 @@ namespace WCMS.WebSystem.WebParts.Media
 {
 	using System;
 	using System.Data;
-	using System.Data.SqlClient;
+	using Microsoft.Data.SqlClient;
 	using System.Drawing;
 	using System.Web;
 	using System.Web.UI.WebControls;

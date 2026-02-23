@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 using WCMS.Framework;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace WCMS.WebSystem.WebParts.Newsletter.Providers
 {
