@@ -116,7 +116,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                             fileLength = item.Size;
 
                         response.Clear();
-                        response.Buffer = false;
+                        response.BufferOutput = false;
                         //httpResponse.AddHeader("Content-MD5", GetMd5Hash(myFile));
                         response.AppendHeader("Accept-Ranges", "bytes");
                         response.AppendHeader("ETag", "\"" + eTag + "\"");

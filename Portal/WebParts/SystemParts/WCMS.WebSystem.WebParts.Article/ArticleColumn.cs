@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 using WCMS.Framework.Core;
 using WCMS.WebSystem.WebParts.Article.Providers;

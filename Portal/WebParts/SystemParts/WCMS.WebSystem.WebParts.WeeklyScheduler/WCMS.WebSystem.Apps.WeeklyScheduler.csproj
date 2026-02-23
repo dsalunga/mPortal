@@ -1,24 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Common\WCMS.Common.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.WebSystem.ViewModels\WCMS.WebSystem.csproj" />
+  </ItemGroup>
+
+  <!-- EF6-generated files excluded; kept as documentation -->
+  <ItemGroup>
+    <Compile Remove="WeeklySchedulerModel.Designer.cs" />
+    <Compile Remove="WeeklySchedulerTask.cs" />
   </ItemGroup>
 </Project>
