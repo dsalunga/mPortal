@@ -228,16 +228,16 @@ Why Windows VM is still needed:
 
 ## 7) Outstanding Work (Not Yet Fully Implemented)
 
-Current status snapshot (2026-02-23):
-- 48 C# projects (`.csproj`) in repo; all converted to SDK-style format.
-- 14 projects target `.NET 10` / `.NET 10-windows`.
-- ~33 projects still target `.NET Framework 4.8` (`net48`).
-- 23 projects still carry `packages.config` alongside SDK-style csproj.
-- 29 projects still reference `System.Web*` assemblies or packages.
-- 3 projects depend on Entity Framework 6.x.
+Current status snapshot (2026-02-23, updated):
+- 47 C# projects (`.csproj`) in repo; all converted to SDK-style format.
+- 34 projects target `.NET 10` / `.NET 10-windows` (up from 14).
+- 12 projects still target `.NET Framework 4.8` (`net48`).
+- ~10 projects still carry `packages.config` alongside SDK-style csproj (down from 23).
+- 2 projects depend on Entity Framework 6.x (down from 3; WCMS.Framework migrated to EF Core).
 - 1 project references WCF (`System.ServiceModel`).
 - 8 web app hosts rebuilt as ASP.NET Core scaffolds (feature parity not yet complete).
 - No CI/CD pipeline configured yet.
+- Full system documentation created: see `SYSTEM_DOCUMENTATION.md`.
 
 Important:
 - `[x]` rows in the wave map indicate the planned migration task was executed (including scaffold/interim conversions).
@@ -249,10 +249,10 @@ Important:
 
 All projects are SDK-style but 23 still carry legacy `packages.config` files. These must be converted to `<PackageReference>` entries inside the csproj.
 
-- [ ] `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` — migrate packages.config to PackageReference.
-- [ ] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` — migrate packages.config to PackageReference.
-- [ ] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj` — migrate packages.config to PackageReference.
-- [ ] `Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj` — migrate packages.config to PackageReference.
+- [x] `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` — migrate packages.config to PackageReference.
+- [x] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` — migrate packages.config to PackageReference.
+- [x] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj` — migrate packages.config to PackageReference.
+- [x] `Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj` — migrate packages.config to PackageReference.
 - [ ] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` — migrate packages.config to PackageReference.
 - [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — migrate packages.config to PackageReference.
 - [ ] `Portal/Utilities/MySQL TableEditor/TableEditor.csproj` — migrate packages.config to PackageReference.
@@ -267,23 +267,23 @@ All projects are SDK-style but 23 still carry legacy `packages.config` files. Th
 
 #### Core platform libraries (high leverage — unblocks everything else)
 
-- [ ] `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` — replace `System.Web`, `System.Web.Extensions`, `System.Data.OracleClient`, and ASP.NET Razor/WebPages 3.2.3 references; introduce abstractions for `HttpContext`-dependent helpers.
-- [ ] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` — remove `System.Web` reference; isolate EF6 usage behind a data-access abstraction; remove ASP.NET Razor/WebPages references.
-- [ ] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider/WCMS.Framework.Core.SqlProvider.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebSystem/WCMS.WebSystem.Utilities/WCMS.WebSystem.Utilities.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj` — remove `System.Web`, `System.Web.Extensions`, `System.Web.Services` references; replace ASP.NET MVC 5 (`Microsoft.AspNet.Mvc 5.2.3`) with ASP.NET Core MVC equivalents.
-- [ ] `Portal/WebSystem/WCMS.Framewok.Agent/WCMS.Framework.Agent.csproj` — remove `System.Web.Extensions` reference.
+- [x] `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` — replace `System.Web`, `System.Web.Extensions`, `System.Data.OracleClient`, and ASP.NET Razor/WebPages 3.2.3 references; introduce abstractions for `HttpContext`-dependent helpers.
+- [x] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` — remove `System.Web` reference; isolate EF6 usage behind a data-access abstraction; remove ASP.NET Razor/WebPages references.
+- [x] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider/WCMS.Framework.Core.SqlProvider.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebSystem/WCMS.WebSystem.Utilities/WCMS.WebSystem.Utilities.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj` — remove `System.Web`, `System.Web.Extensions`, `System.Web.Services` references; replace ASP.NET MVC 5 (`Microsoft.AspNet.Mvc 5.2.3`) with ASP.NET Core MVC equivalents.
+- [x] `Portal/WebSystem/WCMS.Framewok.Agent/WCMS.Framework.Agent.csproj` — remove `System.Web.Extensions` reference.
 
 #### Module libraries
 
-- [ ] `Portal/WebParts/SystemParts/WCMS.Framework.FileManager/WCMS.WebSystem.Apps.FileManager.csproj` — remove `System.Web` and ASP.NET Razor/WebPages 3.2.3 references.
-- [ ] `Portal/WebParts/SystemParts/WCMS.Framework.WebParts/WCMS.WebSystem.Apps.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebParts/SystemParts/WCMS.Framework.WebParts.LocalCalendar/WCMS.WebSystem.Apps.EventCalendar.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/WCMS.WebSystem.Apps.RemoteIndexer.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/WCMS.WebSystem.Apps.Article.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/WCMS.WebSystem.Apps.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WCMS.Framework.Social.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WCMS.WebSystem.Apps.Social.ViewModel.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/SystemParts/WCMS.Framework.FileManager/WCMS.WebSystem.Apps.FileManager.csproj` — remove `System.Web` and ASP.NET Razor/WebPages 3.2.3 references.
+- [x] `Portal/WebParts/SystemParts/WCMS.Framework.WebParts/WCMS.WebSystem.Apps.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/SystemParts/WCMS.Framework.WebParts.LocalCalendar/WCMS.WebSystem.Apps.EventCalendar.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/WCMS.WebSystem.Apps.RemoteIndexer.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/WCMS.WebSystem.Apps.Article.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/WCMS.WebSystem.Apps.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WCMS.Framework.Social.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WCMS.WebSystem.Apps.Social.ViewModel.csproj` — remove `System.Web` reference.
 - [ ] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Incident/WCMS.WebSystem.Apps.Incident.csproj` — remove `System.Web` reference.
 - [ ] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/WCMS.WebSystem.Apps.Jobs.csproj` — remove `System.Web` reference.
 - [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — remove `System.Web`, `System.Web.Services`, and `System.ServiceModel` (WCF) references; replace with ASP.NET Core equivalents (see also §7.4 WCF).
@@ -303,7 +303,7 @@ All projects are SDK-style but 23 still carry legacy `packages.config` files. Th
 
 EF6 does not support .NET 10. These projects must migrate data access code to EF Core (or an alternative).
 
-- [ ] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` — replace `EntityFramework 6.1.3` with `Microsoft.EntityFrameworkCore` and update `DbContext`/mapping/query code.
+- [x] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` — replace `EntityFramework 6.1.3` with `Microsoft.EntityFrameworkCore` and update `DbContext`/mapping/query code.
 - [ ] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` — replace `EntityFramework 6.1.3` with EF Core; update `DbContext` and migration files.
 - [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — replace `EntityFramework 6.1.3` with EF Core; update `DbContext`, mappings, and query patterns.
 
@@ -321,7 +321,7 @@ WCF server-side hosting is not supported on .NET 10. Each `.svc` endpoint must b
 
 ### 7.5) Replace ASP.NET MVC 5 references (1 project)
 
-- [ ] `Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj` — remove `Microsoft.AspNet.Mvc 5.2.3`, `Microsoft.AspNet.Razor`, and `Microsoft.AspNet.WebPages` packages; replace view-model helpers and HTML-helper references with ASP.NET Core MVC equivalents.
+- [x] `Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj` — remove `Microsoft.AspNet.Mvc 5.2.3`, `Microsoft.AspNet.Razor`, and `Microsoft.AspNet.WebPages` packages; replace view-model helpers and HTML-helper references with ASP.NET Core MVC equivalents.
 
 ---
 
@@ -331,36 +331,36 @@ After System.Web, EF6, WCF, and MVC 5 blockers are resolved, retarget each libra
 
 #### Core platform libraries
 
-- [ ] `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider/WCMS.Framework.Core.SqlProvider.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebSystem/WCMS.Framework.Core.XmlProvider/WCMS.Framework.Core.XmlProvider.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj` — retarget `net48` → `net10.0`; verify SQL SMO NuGet packages are available for .NET 10.
-- [ ] `Portal/WebSystem/WCMS.WebSystem.Utilities/WCMS.WebSystem.Utilities.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider/WCMS.Framework.Core.SqlProvider.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebSystem/WCMS.Framework.Core.XmlProvider/WCMS.Framework.Core.XmlProvider.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj` — retarget `net48` → `net10.0`; verify SQL SMO NuGet packages are available for .NET 10.
+- [x] `Portal/WebSystem/WCMS.WebSystem.Utilities/WCMS.WebSystem.Utilities.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj` — retarget `net48` → `net10.0`.
 
 #### Agent / service executables
 
-- [ ] `Portal/WebSystem/WCMS.Framewok.Agent/WCMS.Framework.Agent.csproj` — retarget `net48` → `net10.0`; convert to console app or worker service.
-- [ ] `Portal/WebSystem/WCMS.Framework.AgentService/WCMS.Framework.AgentService.csproj` — retarget `net48` → `net10.0`; rehost as a .NET `BackgroundService` / worker service.
+- [x] `Portal/WebSystem/WCMS.Framewok.Agent/WCMS.Framework.Agent.csproj` — retarget `net48` → `net10.0`; convert to console app or worker service.
+- [x] `Portal/WebSystem/WCMS.Framework.AgentService/WCMS.Framework.AgentService.csproj` — retarget `net48` → `net10.0`; rehost as a .NET `BackgroundService` / worker service.
 
 #### Module libraries — SystemParts
 
-- [ ] `Portal/WebParts/SystemParts/WCMS.Framework.WebParts/WCMS.WebSystem.Apps.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemParts/WCMS.Framework.FileManager/WCMS.WebSystem.Apps.FileManager.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemParts/WCMS.Framework.WebParts.LocalCalendar/WCMS.WebSystem.Apps.EventCalendar.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/WCMS.WebSystem.Apps.Article.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Contact/WCMS.WebSystem.Apps.Contact.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/WCMS.WebSystem.Apps.GenericList.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/WCMS.WebSystem.Apps.RemoteIndexer.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/WCMS.WebSystem.Apps.WeeklyScheduler.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemParts/WCMS.Framework.WebParts/WCMS.WebSystem.Apps.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemParts/WCMS.Framework.FileManager/WCMS.WebSystem.Apps.FileManager.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemParts/WCMS.Framework.WebParts.LocalCalendar/WCMS.WebSystem.Apps.EventCalendar.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/WCMS.WebSystem.Apps.Article.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Contact/WCMS.WebSystem.Apps.Contact.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/WCMS.WebSystem.Apps.GenericList.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/WCMS.WebSystem.Apps.RemoteIndexer.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/WCMS.WebSystem.Apps.WeeklyScheduler.csproj` — retarget `net48` → `net10.0`.
 
 #### Module libraries — SystemPartsG2
 
-- [ ] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/WCMS.WebSystem.Apps.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WCMS.Framework.Social.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WCMS.WebSystem.Apps.Social.ViewModel.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/WCMS.WebSystem.Apps.Forum.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/WCMS.WebSystem.Apps.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WCMS.Framework.Social.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WCMS.WebSystem.Apps.Social.ViewModel.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/WCMS.WebSystem.Apps.Forum.csproj` — retarget `net48` → `net10.0`.
 
 #### Module libraries — SystemPartsG3
 
@@ -484,3 +484,96 @@ No CI/CD workflows exist in the repository yet.
 - [ ] Update deployment scripts (currently `.cmd` / Windows-based) for cross-platform or containerized deployment.
 - [ ] Create Docker support (`Dockerfile` / `docker-compose`) for ASP.NET Core hosts.
 - [ ] Document production deployment runbook for the .NET 10 stack.
+
+---
+
+### 7.15) Dynamic page rendering pipeline (CMS-critical)
+
+The CMS dynamically resolves URLs to database-stored pages and renders them from templates + web parts. This is the most critical migration item for feature parity.
+
+- [ ] Create ASP.NET Core middleware to replace `WebRewriter.ResolvePage()` — resolve URL path segments to `WSite` → `WPage` hierarchy via database lookup.
+- [ ] Implement custom `IRouter` or endpoint routing that integrates with the `WPage` resolution pipeline.
+- [ ] Create a `PageRenderingMiddleware` that loads `WebTemplate`, iterates `WebTemplatePanel` zones, and renders `WebPageElement` instances via Razor.
+- [ ] Implement dynamic Razor layout selection based on `WPage.ThemeId` → `WebTheme` → layout file mapping (custom `IViewLocationExpander`).
+- [ ] Port `WContext` from static `HttpContext.Current` to a scoped DI service (`IWContext`) injected via `IHttpContextAccessor`.
+- [ ] Port `WSession` to ASP.NET Core claims-based identity + cookie authentication (replace `FormsAuthentication` and `LoginCookieManager`).
+- [ ] Port `WQuery` query parameter handling to work with ASP.NET Core `HttpRequest.Query`.
+
+---
+
+### 7.16) Web part View Component conversion (518 `.ascx` files)
+
+Each legacy `.ascx` user control that renders a web part must become a Razor View Component or partial view in ASP.NET Core. Priority order:
+
+#### Tier 1 — Admin parts (Central) — ~100 controls
+- [ ] Convert `Content/Parts/Central/Manager/` admin controls to View Components (site/page/template/part management).
+- [ ] Convert `Content/Parts/Central/Security/` controls (user, group, permission management).
+- [ ] Convert `Content/Parts/Central/WebPart/` controls (part admin, part control templates).
+- [ ] Convert `Content/Parts/Central/Template/` controls (template editor, panel management).
+- [ ] Convert `Content/Parts/Central/WebSites/` controls (site configuration).
+- [ ] Convert `Content/Parts/Central/Tools/` controls (code executor, diagnostics).
+- [ ] Convert `Content/Parts/Central/Agent/` controls (job management).
+
+#### Tier 2 — Common parts — ~10 controls
+- [ ] Convert `Content/Parts/Common/Login*.ascx` to Razor login components.
+- [ ] Convert `Content/Parts/Common/Comments.ascx` to Razor comment component.
+- [ ] Convert remaining Common parts (MessageBoard, TriggerTask, UserPhotoUpload).
+
+#### Tier 3 — Theme templates — ~50 controls
+- [ ] Convert `Content/Themes/*/` template files from `.ascx` to `.cshtml` Razor layouts.
+- [ ] Implement theme selection middleware that maps `WebTheme`/`WebSkin` to layout files.
+
+#### Tier 4 — Shared controls — ~12 controls
+- [ ] Convert `Content/Controls/` (TabControl, TextEditor, Breadcrumb, DatePicker, CKEditor, etc.) to Tag Helpers or View Components.
+
+#### Tier 5 — Module-specific parts — ~300 controls
+- [ ] Convert SystemParts `AppBundle/` controls (Article, Calendar, FileManager, Contact, etc.).
+- [ ] Convert SystemPartsG2 `AppBundle2/` controls (Forum, Social, Ads, Newsletter).
+- [ ] Convert SystemPartsG3 `AppBundle3/` controls (Incident, Jobs).
+
+---
+
+### 7.17) WContext & WSession as DI services
+
+`WContext` (request context) and `WSession` (user session) currently rely on `HttpContext.Current` (static accessor not available in ASP.NET Core). These must become proper DI services.
+
+- [ ] Create `IWContext` interface and scoped implementation registered in DI container.
+- [ ] Create `IWSession` interface wrapping ASP.NET Core `ClaimsPrincipal` + distributed session.
+- [ ] Refactor all `WContext` static property access across 30+ manager classes to use constructor injection.
+- [ ] Refactor `WSession` consumers to use `IHttpContextAccessor` + `IWSession`.
+- [ ] Replace `UserSessionManager` browser tracking with ASP.NET Core distributed session.
+
+---
+
+### 7.18) Registry & configuration service
+
+The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree that users modify at runtime. It must be preserved as a CMS feature while integrating with ASP.NET Core configuration.
+
+- [ ] Wrap `WebRegistry` in an `IConfigurationProvider` to participate in the ASP.NET Core configuration system.
+- [ ] Convert `WConfig` properties to `IOptions<WConfigOptions>` with change-token-based reloading.
+- [ ] Preserve the `WebRegistry.Updated` event mechanism for live configuration changes.
+- [ ] Register registry-dependent services as scoped/transient to pick up configuration changes.
+
+---
+
+### 7.19) SOAP / ASMX service migration
+
+- [ ] Migrate `BibleReader/BibleReader/BibleService.asmx` SOAP service to a Web API controller.
+- [ ] Update BibleReader client code to call the new REST endpoint.
+
+---
+
+### 7.20) Cross-platform path & file handling
+
+- [ ] Audit all `Server.MapPath()` calls and replace with `IWebHostEnvironment.ContentRootPath` / `WebRootPath`.
+- [ ] Replace Windows-style path separators (`\`) with `Path.Combine()` / `Path.DirectorySeparatorChar`.
+- [ ] Replace `System.Drawing` image operations with cross-platform alternatives (SkiaSharp or ImageSharp) where used outside Windows.
+- [ ] Create cross-platform build scripts (PowerShell Core / `dotnet` CLI) to replace `.cmd` batch files.
+
+---
+
+### 7.21) Database provider modernization
+
+- [ ] Migrate `System.Data.SqlClient` usage to `Microsoft.Data.SqlClient` in all SQL provider classes.
+- [ ] Evaluate stored-procedure-based data access (`SqlDataProviderBase`) for potential EF Core migration or keep as ADO.NET with modern client.
+- [ ] Update connection string configuration to use ASP.NET Core connection string patterns.
