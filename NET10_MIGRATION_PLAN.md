@@ -223,3 +223,34 @@ Why Windows VM is still needed:
      - Completed 2026-02-21: converted to SDK-style MSTest project and validated with `dotnet test` on `net10.0`.
 5. [x] Start Wave 2 with `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` and `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj`.
    - Completed 2026-02-21: both projects converted to SDK-style (`net48`) and validated with `dotnet build`.
+
+---
+
+## 7) Outstanding Work (Not Yet Fully Implemented)
+
+Current status snapshot (2026-02-23):
+- 47 C# projects (`.csproj`) in repo.
+- 14 projects target `.NET 10` / `.NET 10-windows`.
+- 33 projects still target `.NET Framework 4.8` (`net48`).
+
+Important:
+- `[x]` rows in the wave map indicate the planned migration task was executed (including scaffold/interim conversions).
+- They do **not** imply full feature parity, production readiness, or complete .NET 10 retargeting for every dependency chain.
+
+Remaining unchecked items:
+
+1. [ ] Retarget remaining `net48` projects to `net10.0` / `net10.0-windows` where feasible (or explicitly archive/hold with rationale).
+2. [ ] Complete feature-parity migration for rebuilt web hosts currently on scaffolds:
+   - `Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj`
+   - `Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj`
+   - `Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj`
+   - `Portal/WebParts/SystemPartsG2/SystemPartsG2/WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj`
+   - `Portal/WebParts/SystemPartsG3/SystemPartsG3/WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj`
+   - `BibleReader/BibleReader/BibleReader.WebApp.csproj`
+   - `LessonReviewer/LessonReviewer/LessonReviewer.csproj`
+   - `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj`
+3. [ ] Replace/remove all remaining `System.Web`-bound runtime paths and adapt auth/routing/config to ASP.NET Core equivalents.
+4. [ ] Resolve unresolved assembly/reference warnings still present in baseline solution builds (e.g., agent/service references to legacy webparts binaries).
+5. [ ] Implement and run end-to-end regression coverage for migrated hosts (auth, routing, module workflows, background jobs, integration endpoints).
+6. [ ] Validate production-like runtime behavior on Windows/IIS for retained Windows-only workloads and deployment scripts.
+7. [ ] Finalize SQL project strategy (`.sqlproj`) in Windows lane and wire into CI/CD.
