@@ -1,0 +1,59 @@
+@model WCMS.WebSystem.ViewComponents.WebPageElementsViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-puzzle"></i> Page Elements</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddElement" data-page-id="@Model.PageId"><i class="bi bi-plus-lg"></i> Add Element</button>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Panel</th>
+                        <th>Order</th>
+                        <th>Active</th>
+                        <th>Modified</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Elements.Count == 0)
+                    {
+                        <tr><td colspan="7" class="text-center text-muted">No elements defined.</td></tr>
+                    }
+                    @foreach (var e in Model.Elements)
+                    {
+                        <tr>
+                            <td><i class="bi bi-puzzle"></i> @e.Name</td>
+                            <td>@e.ElementType</td>
+                            <td>@e.PanelName</td>
+                            <td>@e.SortOrder</td>
+                            <td>
+                                @if (e.IsActive)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Inactive</span>
+                                }
+                            </td>
+                            <td>@e.ModifiedDate?.ToString("g")</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-element" data-element-id="@e.Id"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-element" data-element-id="@e.Id"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

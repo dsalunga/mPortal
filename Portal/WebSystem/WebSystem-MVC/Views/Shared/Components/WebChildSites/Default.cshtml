@@ -1,0 +1,43 @@
+@model WCMS.WebSystem.ViewComponents.WebChildSitesViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-diagram-3"></i> Child Sites</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddChildSite" data-parent-site-id="@Model.ParentSiteId"><i class="bi bi-plus-lg"></i> Add Child Site</button>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="child-site-tree p-3" id="childSiteTreeContainer">
+            @if (Model.ChildSites.Count == 0)
+            {
+                <p class="text-muted">No child sites defined.</p>
+            }
+        </div>
+    </div>
+</div>
+
+@functions {
+    static string RenderChildSiteNodes(System.Collections.Generic.List<WCMS.WebSystem.ViewComponents.ChildSiteNode> nodes)
+    {
+        if (nodes == null || nodes.Count == 0) return string.Empty;
+        var sb = new System.Text.StringBuilder();
+        sb.Append("<ul class=\"list-unstyled ms-3\">");
+        foreach (var s in nodes)
+        {
+            var statusClass = s.IsActive ? "text-success" : "text-muted";
+            sb.Append($"<li class=\"mb-1\"><a href=\"javascript:void(0)\" class=\"child-site-link\" data-site-id=\"{s.Id}\">");
+            sb.Append($"<i class=\"bi bi-globe {statusClass}\"></i> {System.Net.WebUtility.HtmlEncode(s.Name)} <span class=\"badge bg-secondary\">{s.PageCount}</span></a>");
+            sb.Append(RenderChildSiteNodes(s.Children));
+            sb.Append("</li>");
+        }
+        sb.Append("</ul>");
+        return sb.ToString();
+    }
+}
+
+<div id="childSiteTreeMarkup">
+    @Html.Raw(RenderChildSiteNodes(Model.ChildSites))
+</div>

@@ -1,0 +1,56 @@
+@model WCMS.WebSystem.ViewComponents.WebPagePanelsViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-layout-three-columns"></i> Page Panels</h5>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Order</th>
+                        <th>Elements</th>
+                        <th>Active</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Panels.Count == 0)
+                    {
+                        <tr><td colspan="6" class="text-center text-muted">No panels defined.</td></tr>
+                    }
+                    @foreach (var p in Model.Panels)
+                    {
+                        <tr>
+                            <td><i class="bi bi-layout-three-columns"></i> @p.Name</td>
+                            <td>@p.PanelType</td>
+                            <td>@p.SortOrder</td>
+                            <td><span class="badge bg-info">@p.ElementCount</span></td>
+                            <td>
+                                @if (p.IsActive)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Inactive</span>
+                                }
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-panel" data-panel-id="@p.Id"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-panel" data-panel-id="@p.Id"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
