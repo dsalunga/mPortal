@@ -20,8 +20,10 @@ namespace WCMS.WebSystem
         public const string NO_LOAD = "No configuration available for this element.";
         public const string ERROR_LOAD = "Error loading module: ";
 
+#if NETFRAMEWORK
         public static string PageDesignerCss = WebUtil.Version("~/content/assets/styles/pagedesigner.css");
         public static string DragDropCss = WebUtil.Version("~/content/assets/styles/dragdrop.css");
         public static string DragDropJs = WebUtil.Version("~/content/assets/scripts/dragdrop.js");
+#endif
     }
 }
