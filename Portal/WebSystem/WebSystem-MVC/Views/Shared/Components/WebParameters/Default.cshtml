@@ -1,0 +1,81 @@
+@model WCMS.WebSystem.ViewComponents.WebParametersViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-sliders"></i> Parameters</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddParameter"><i class="bi bi-plus-lg"></i> Add Parameter</button>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="row g-0">
+            <div class="col-md-3 border-end">
+                <div class="p-3">
+                    <h6>Categories</h6>
+                    <div class="list-group list-group-flush" id="parameterCategories">
+                        @if (Model.Categories.Count == 0)
+                        {
+                            <p class="text-muted">No categories.</p>
+                        }
+                        @foreach (var cat in Model.Categories)
+                        {
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center param-category @(cat.Id == Model.SelectedCategoryId ? "active" : "")" data-category-id="@cat.Id">
+                                @cat.Name
+                                <span class="badge bg-primary rounded-pill">@cat.ParameterCount</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="p-3">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Key</th>
+                                    <th>Value</th>
+                                    <th>Type</th>
+                                    <th>System</th>
+                                    <th>Modified</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Parameters.Count == 0)
+                                {
+                                    <tr><td colspan="6" class="text-center text-muted">No parameters found.</td></tr>
+                                }
+                                @foreach (var param in Model.Parameters)
+                                {
+                                    <tr>
+                                        <td><code>@param.Key</code></td>
+                                        <td>@param.Value</td>
+                                        <td><span class="badge bg-secondary">@param.DataType</span></td>
+                                        <td>
+                                            @if (param.IsSystem)
+                                            {
+                                                <span class="badge bg-warning text-dark">Yes</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-light text-dark">No</span>
+                                            }
+                                        </td>
+                                        <td>@param.ModifiedDate?.ToString("d")</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-param" data-param-id="@param.Id"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-param" data-param-id="@param.Id"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

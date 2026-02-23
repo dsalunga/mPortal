@@ -1,0 +1,81 @@
+@model WCMS.WebSystem.ViewComponents.WebResourcesViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-folder2-open"></i> Resources</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnUploadResource"><i class="bi bi-upload"></i> Upload</button>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="row g-0">
+            <div class="col-md-3 border-end">
+                <div class="p-3">
+                    <h6>Folders</h6>
+                    <div class="list-group list-group-flush" id="resourceFolders">
+                        @if (Model.Folders.Count == 0)
+                        {
+                            <p class="text-muted">No folders.</p>
+                        }
+                        @foreach (var folder in Model.Folders)
+                        {
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center resource-folder @(folder.Path == Model.SelectedFolder ? "active" : "")" data-folder-path="@folder.Path">
+                                <span><i class="bi bi-folder"></i> @folder.Name</span>
+                                <span class="badge bg-primary rounded-pill">@folder.FileCount</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="p-3">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Path</th>
+                                    <th>Size</th>
+                                    <th>Type</th>
+                                    <th>Modified</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Files.Count == 0)
+                                {
+                                    <tr><td colspan="6" class="text-center text-muted">No files in this folder.</td></tr>
+                                }
+                                @foreach (var file in Model.Files)
+                                {
+                                    <tr>
+                                        <td><i class="bi bi-file-earmark"></i> @file.Name</td>
+                                        <td><code>@file.FilePath</code></td>
+                                        <td>@FormatFileSize(file.FileSize)</td>
+                                        <td><span class="badge bg-secondary">@file.FileType</span></td>
+                                        <td>@file.ModifiedDate?.ToString("d")</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-resource" data-resource-id="@file.Id"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-resource" data-resource-id="@file.Id"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    string FormatFileSize(long bytes)
+    {
+        if (bytes < 1024) return $"{bytes} B";
+        if (bytes < 1048576) return $"{bytes / 1024.0:F1} KB";
+        return $"{bytes / 1048576.0:F1} MB";
+    }
+}

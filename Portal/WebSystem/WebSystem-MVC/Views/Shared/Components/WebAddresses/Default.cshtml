@@ -1,0 +1,85 @@
+@model WCMS.WebSystem.ViewComponents.WebAddressesViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-person-lines-fill"></i> Address Book</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddAddress"><i class="bi bi-plus-lg"></i> Add Address</button>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="row g-0">
+            <div class="col-md-3 border-end">
+                <div class="p-3">
+                    <h6>Groups</h6>
+                    <div class="list-group list-group-flush" id="addressGroups">
+                        @if (Model.Groups.Count == 0)
+                        {
+                            <p class="text-muted">No groups.</p>
+                        }
+                        @foreach (var group in Model.Groups)
+                        {
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center address-group @(group.Id == Model.SelectedGroupId ? "active" : "")" data-group-id="@group.Id">
+                                @group.Name
+                                <span class="badge bg-primary rounded-pill">@group.AddressCount</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="p-3">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Group</th>
+                                    <th>Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Addresses.Count == 0)
+                                {
+                                    <tr><td colspan="8" class="text-center text-muted">No addresses found.</td></tr>
+                                }
+                                @foreach (var addr in Model.Addresses)
+                                {
+                                    <tr>
+                                        <td>@addr.Name</td>
+                                        <td>@addr.Email</td>
+                                        <td>@addr.Phone</td>
+                                        <td>@addr.City</td>
+                                        <td>@addr.State</td>
+                                        <td><span class="badge bg-info">@addr.GroupName</span></td>
+                                        <td>
+                                            @if (addr.IsActive)
+                                            {
+                                                <span class="badge bg-success">Active</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-secondary">Inactive</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-address" data-address-id="@addr.Id"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-address" data-address-id="@addr.Id"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

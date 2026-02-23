@@ -1,0 +1,66 @@
+@model WCMS.WebSystem.ViewComponents.WebOfficesViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-building"></i> Offices</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddOffice"><i class="bi bi-plus-lg"></i> Add Office</button>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Phone</th>
+                        <th>HQ</th>
+                        <th>Active</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Offices.Count == 0)
+                    {
+                        <tr><td colspan="8" class="text-center text-muted">No offices found.</td></tr>
+                    }
+                    @foreach (var office in Model.Offices)
+                    {
+                        <tr>
+                            <td>@office.Name</td>
+                            <td>@office.Address</td>
+                            <td>@office.City</td>
+                            <td>@office.State</td>
+                            <td>@office.Phone</td>
+                            <td>
+                                @if (office.IsHeadquarters)
+                                {
+                                    <span class="badge bg-primary">HQ</span>
+                                }
+                            </td>
+                            <td>
+                                @if (office.IsActive)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Inactive</span>
+                                }
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-office" data-office-id="@office.Id"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-office" data-office-id="@office.Id"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

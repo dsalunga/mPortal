@@ -1,0 +1,92 @@
+@model WCMS.WebSystem.ViewComponents.SubscriptionManagerViewModel
+
+<div class="card admin-panel">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-envelope"></i> Subscription Manager</h5>
+        <div>
+            <button type="button" class="btn btn-sm btn-success" id="btnNewList"><i class="bi bi-plus-lg"></i> New List</button>
+            <button type="button" class="btn btn-sm btn-outline-success" id="btnAddSubscriber"><i class="bi bi-person-plus"></i> Add Subscriber</button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+        }
+        <div class="row g-0">
+            <div class="col-md-4 border-end">
+                <div class="p-3">
+                    <h6>Subscription Lists</h6>
+                    <div class="list-group list-group-flush" id="subscriptionLists">
+                        @if (Model.Lists.Count == 0)
+                        {
+                            <p class="text-muted">No subscription lists.</p>
+                        }
+                        @foreach (var list in Model.Lists)
+                        {
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action sub-list @(list.Id == Model.SelectedListId ? "active" : "")" data-list-id="@list.Id">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>@list.Name</span>
+                                    <span class="badge bg-primary rounded-pill">@list.SubscriberCount</span>
+                                </div>
+                                @if (!string.IsNullOrEmpty(list.Description))
+                                {
+                                    <small class="text-muted">@list.Description</small>
+                                }
+                                @if (!list.IsActive)
+                                {
+                                    <span class="badge bg-secondary ms-1">Inactive</span>
+                                }
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="p-3">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Name</th>
+                                    <th>Subscribed Date</th>
+                                    <th>Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Subscribers.Count == 0)
+                                {
+                                    <tr><td colspan="5" class="text-center text-muted">No subscribers found.</td></tr>
+                                }
+                                @foreach (var sub in Model.Subscribers)
+                                {
+                                    <tr>
+                                        <td>@sub.Email</td>
+                                        <td>@sub.Name</td>
+                                        <td>@sub.SubscribedDate?.ToString("d")</td>
+                                        <td>
+                                            @if (sub.IsActive)
+                                            {
+                                                <span class="badge bg-success">Active</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-secondary">Inactive</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-subscriber" data-subscriber-id="@sub.Id"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-subscriber" data-subscriber-id="@sub.Id"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
