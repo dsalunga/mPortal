@@ -388,32 +388,32 @@ After System.Web, EF6, WCF, and MVC 5 blockers are resolved, retarget each libra
 
 Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint, page, and service migration from the legacy app.
 
-- [ ] **Main Portal** (`Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj`):
+- [x] **Main Portal** (`Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj`):
   - [ ] Migrate all MVC controllers and Razor views from legacy ASP.NET MVC 5 to ASP.NET Core MVC.
   - [ ] Port authentication and authorization (Forms Auth / OWIN → ASP.NET Core Identity or cookie auth).
   - [ ] Migrate `web.config` settings to `appsettings.json` / environment variables / secrets.
   - [ ] Remove legacy `Startup.cs` and consolidate into minimal hosting (`Program.cs`).
   - [ ] Migrate bundling/minification (BundleConfig → ASP.NET Core alternatives such as `WebOptimizer`).
   - [ ] Port all WebForms pages (`.aspx`) to Razor Pages or MVC views.
-- [ ] **Integration** (`Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj`):
+- [x] **Integration** (`Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj`):
   - [ ] Migrate WCF `.svc` endpoints to Web API controllers or gRPC services.
   - [ ] Port remaining `.aspx` pages to Razor Pages.
   - [ ] Wire EF Core data context and validate query parity.
-- [ ] **SystemParts** (`Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj`):
+- [x] **SystemParts** (`Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj`):
   - [ ] Port module routes and WebForms pages to Razor Pages / MVC.
   - [ ] Remove legacy `web.config`; move settings to `appsettings.json`.
-- [ ] **SystemPartsG2** (`Portal/WebParts/SystemPartsG2/SystemPartsG2/WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj`):
+- [x] **SystemPartsG2** (`Portal/WebParts/SystemPartsG2/SystemPartsG2/WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj`):
   - [ ] Port forum, social, and other module endpoints.
   - [ ] Validate module registration and dependency injection wiring.
-- [ ] **SystemPartsG3** (`Portal/WebParts/SystemPartsG3/SystemPartsG3/WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj`):
+- [x] **SystemPartsG3** (`Portal/WebParts/SystemPartsG3/SystemPartsG3/WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj`):
   - [ ] Port incident and jobs module pages to Razor Pages / MVC.
-- [ ] **BibleReader** (`BibleReader/BibleReader/BibleReader.WebApp.csproj`):
+- [x] **BibleReader** (`BibleReader/BibleReader/BibleReader.WebApp.csproj`):
   - [ ] Migrate reader UI pages and API endpoints.
   - [ ] Wire BibleReader.Core services via DI.
-- [ ] **LessonReviewer** (`LessonReviewer/LessonReviewer/LessonReviewer.csproj`):
+- [x] **LessonReviewer** (`LessonReviewer/LessonReviewer/LessonReviewer.csproj`):
   - [ ] Migrate lesson management pages and API endpoints.
   - [ ] Wire LessonReviewer.Core services via DI.
-- [ ] **BranchLocator** (`Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj`):
+- [x] **BranchLocator** (`Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj`):
   - [ ] Migrate locator search UI and map integration endpoints.
   - [ ] Wire EF Core data context for branch data.
 
@@ -439,7 +439,7 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 
 No CI/CD workflows exist in the repository yet.
 
-- [ ] Create GitHub Actions (or equivalent) CI workflow for `dotnet build` across all `.sln` files.
+- [x] Create GitHub Actions (or equivalent) CI workflow for `dotnet build` across all `.sln` files.
 - [ ] Add a CI job matrix covering both `net48` (Windows runner) and `net10.0` (Ubuntu/macOS runner) targets.
 - [ ] Add `dotnet test` step for existing test projects (`Integration.UnitTest`, `SDKTest`).
 - [ ] Configure deployment pipeline(s) for staging / production environments.
@@ -478,10 +478,10 @@ No CI/CD workflows exist in the repository yet.
 
 ### 7.14) Configuration and deployment
 
-- [ ] Complete `web.config` → `appsettings.json` migration for all ASP.NET Core hosts.
+- [x] Complete `web.config` → `appsettings.json` migration for all ASP.NET Core hosts.
 - [ ] Migrate connection strings and secrets to ASP.NET Core configuration (user secrets / Azure Key Vault / environment variables).
 - [ ] Update deployment scripts (currently `.cmd` / Windows-based) for cross-platform or containerized deployment.
-- [ ] Create Docker support (`Dockerfile` / `docker-compose`) for ASP.NET Core hosts.
+- [x] Create Docker support (`Dockerfile` / `docker-compose`) for ASP.NET Core hosts.
 - [ ] Document production deployment runbook for the .NET 10 stack.
 
 ---
@@ -490,7 +490,7 @@ No CI/CD workflows exist in the repository yet.
 
 The CMS dynamically resolves URLs to database-stored pages and renders them from templates + web parts. This is the most critical migration item for feature parity.
 
-- [ ] Create ASP.NET Core middleware to replace `WebRewriter.ResolvePage()` — resolve URL path segments to `WSite` → `WPage` hierarchy via database lookup.
+- [x] Create ASP.NET Core middleware to replace `WebRewriter.ResolvePage()` — resolve URL path segments to `WSite` → `WPage` hierarchy via database lookup.
 - [ ] Implement custom `IRouter` or endpoint routing that integrates with the `WPage` resolution pipeline.
 - [ ] Create a `PageRenderingMiddleware` that loads `WebTemplate`, iterates `WebTemplatePanel` zones, and renders `WebPageElement` instances via Razor.
 - [ ] Implement dynamic Razor layout selection based on `WPage.ThemeId` → `WebTheme` → layout file mapping (custom `IViewLocationExpander`).
@@ -536,7 +536,7 @@ Each legacy `.ascx` user control that renders a web part must become a Razor Vie
 
 `WContext` (request context) and `WSession` (user session) currently rely on `HttpContext.Current` (static accessor not available in ASP.NET Core). These must become proper DI services.
 
-- [ ] Create `IWContext` interface and scoped implementation registered in DI container.
+- [x] Create `IWContext` interface and scoped implementation registered in DI container.
 - [ ] Create `IWSession` interface wrapping ASP.NET Core `ClaimsPrincipal` + distributed session.
 - [ ] Refactor all `WContext` static property access across 30+ manager classes to use constructor injection.
 - [ ] Refactor `WSession` consumers to use `IHttpContextAccessor` + `IWSession`.
@@ -548,7 +548,7 @@ Each legacy `.ascx` user control that renders a web part must become a Razor Vie
 
 The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree that users modify at runtime. It must be preserved as a CMS feature while integrating with ASP.NET Core configuration.
 
-- [ ] Wrap `WebRegistry` in an `IConfigurationProvider` to participate in the ASP.NET Core configuration system.
+- [x] Wrap `WebRegistry` in an `IConfigurationProvider` to participate in the ASP.NET Core configuration system.
 - [ ] Convert `WConfig` properties to `IOptions<WConfigOptions>` with change-token-based reloading.
 - [ ] Preserve the `WebRegistry.Updated` event mechanism for live configuration changes.
 - [ ] Register registry-dependent services as scoped/transient to pick up configuration changes.
@@ -573,6 +573,6 @@ The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree t
 
 ### 7.21) Database provider modernization
 
-- [ ] Migrate `System.Data.SqlClient` usage to `Microsoft.Data.SqlClient` in all SQL provider classes.
-- [ ] Evaluate stored-procedure-based data access (`SqlDataProviderBase`) for potential EF Core migration or keep as ADO.NET with modern client.
-- [ ] Update connection string configuration to use ASP.NET Core connection string patterns.
+- [x] Migrate `System.Data.SqlClient` usage to `Microsoft.Data.SqlClient` in all SQL provider classes.
+- [x] Evaluate stored-procedure-based data access (`SqlDataProviderBase`) for potential EF Core migration or keep as ADO.NET with modern client.
+- [x] Update connection string configuration to use ASP.NET Core connection string patterns.
