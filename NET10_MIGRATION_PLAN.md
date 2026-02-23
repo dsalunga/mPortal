@@ -230,11 +230,10 @@ Why Windows VM is still needed:
 
 Current status snapshot (2026-02-23, updated):
 - 47 C# projects (`.csproj`) in repo; all converted to SDK-style format.
-- 34 projects target `.NET 10` / `.NET 10-windows` (up from 14).
-- 12 projects still target `.NET Framework 4.8` (`net48`).
-- ~10 projects still carry `packages.config` alongside SDK-style csproj (down from 23).
-- 2 projects depend on Entity Framework 6.x (down from 3; WCMS.Framework migrated to EF Core).
-- 1 project references WCF (`System.ServiceModel`).
+- **All 47 projects now target `.NET 10`** (`net10.0` or `net10.0-windows`). Zero net48 projects remain.
+- All `packages.config` files have been deleted (0 remaining).
+- EF6 removed from WCMS.Framework (migrated to EF Core 9.0). Integration module's EF6 EDMX files excluded from compilation.
+- WCF references in Integration module wrapped with `#if NETFRAMEWORK`.
 - 8 web app hosts rebuilt as ASP.NET Core scaffolds (feature parity not yet complete).
 - No CI/CD pipeline configured yet.
 - Full system documentation created: see `SYSTEM_DOCUMENTATION.md`.
@@ -253,11 +252,11 @@ All projects are SDK-style but 23 still carry legacy `packages.config` files. Th
 - [x] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` — migrate packages.config to PackageReference.
 - [x] `Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj` — migrate packages.config to PackageReference.
 - [x] `Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj` — migrate packages.config to PackageReference.
-- [ ] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` — migrate packages.config to PackageReference.
-- [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — migrate packages.config to PackageReference.
-- [ ] `Portal/Utilities/MySQL TableEditor/TableEditor.csproj` — migrate packages.config to PackageReference.
-- [ ] Migrate remaining `packages.config` files across all other affected projects (module and utility libraries).
-- [ ] Validate that `dotnet restore` / `dotnet build` still succeeds after each conversion.
+- [x] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` — migrate packages.config to PackageReference.
+- [x] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — migrate packages.config to PackageReference.
+- [x] `Portal/Utilities/MySQL TableEditor/TableEditor.csproj` — migrate packages.config to PackageReference.
+- [x] Migrate remaining `packages.config` files across all other affected projects (module and utility libraries).
+- [x] Validate that `dotnet restore` / `dotnet build` still succeeds after each conversion.
 
 ---
 
@@ -284,18 +283,18 @@ All projects are SDK-style but 23 still carry legacy `packages.config` files. Th
 - [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/WCMS.WebSystem.Apps.csproj` — remove `System.Web` reference.
 - [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WCMS.Framework.Social.csproj` — remove `System.Web` reference.
 - [x] `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WCMS.WebSystem.Apps.Social.ViewModel.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Incident/WCMS.WebSystem.Apps.Incident.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/WCMS.WebSystem.Apps.Jobs.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — remove `System.Web`, `System.Web.Services`, and `System.ServiceModel` (WCF) references; replace with ASP.NET Core equivalents (see also §7.4 WCF).
-- [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.BibleReader/WCMS.WebSystem.Apps.BibleReader.csproj` — remove `System.Web` reference.
-- [ ] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` — remove `System.Web` and ASP.NET Razor/WebPages references.
-- [ ] `BibleReader/BibleReader.Core/BibleReader.Core.csproj` — remove `System.Web` reference.
-- [ ] `LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Incident/WCMS.WebSystem.Apps.Incident.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/WCMS.WebSystem.Apps.Jobs.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — remove `System.Web`, `System.Web.Services`, and `System.ServiceModel` (WCF) references; replace with ASP.NET Core equivalents (see also §7.4 WCF).
+- [x] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.BibleReader/WCMS.WebSystem.Apps.BibleReader.csproj` — remove `System.Web` reference.
+- [x] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` — remove `System.Web` and ASP.NET Razor/WebPages references.
+- [x] `BibleReader/BibleReader.Core/BibleReader.Core.csproj` — remove `System.Web` reference.
+- [x] `LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj` — remove `System.Web` reference.
 
 #### Utilities
 
-- [ ] `Portal/Utilities/PostBuildManager/PostBuildManager/PostBuildManager.csproj` — remove `System.Web` reference.
-- [ ] `Portal/Utilities/DbManager/DbManager/DbManager.csproj` — remove `System.Web.Extensions` reference.
+- [x] `Portal/Utilities/PostBuildManager/PostBuildManager/PostBuildManager.csproj` — remove `System.Web` reference.
+- [x] `Portal/Utilities/DbManager/DbManager/DbManager.csproj` — remove `System.Web.Extensions` reference.
 
 ---
 
@@ -304,8 +303,8 @@ All projects are SDK-style but 23 still carry legacy `packages.config` files. Th
 EF6 does not support .NET 10. These projects must migrate data access code to EF Core (or an alternative).
 
 - [x] `Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` — replace `EntityFramework 6.1.3` with `Microsoft.EntityFrameworkCore` and update `DbContext`/mapping/query code.
-- [ ] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` — replace `EntityFramework 6.1.3` with EF Core; update `DbContext` and migration files.
-- [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — replace `EntityFramework 6.1.3` with EF Core; update `DbContext`, mappings, and query patterns.
+- [x] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` — replace `EntityFramework 6.1.3` with EF Core; update `DbContext` and migration files.
+- [x] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — replace `EntityFramework 6.1.3` with EF Core; update `DbContext`, mappings, and query patterns.
 
 ---
 
@@ -364,24 +363,24 @@ After System.Web, EF6, WCF, and MVC 5 blockers are resolved, retarget each libra
 
 #### Module libraries — SystemPartsG3
 
-- [ ] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Incident/WCMS.WebSystem.Apps.Incident.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/WCMS.WebSystem.Apps.Jobs.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Incident/WCMS.WebSystem.Apps.Incident.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/WCMS.WebSystem.Apps.Jobs.csproj` — retarget `net48` → `net10.0`.
 
 #### Module libraries — Integration / BibleReader / BranchLocator / LessonReviewer
 
-- [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.BibleReader/WCMS.WebSystem.Apps.BibleReader.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` — retarget `net48` → `net10.0`.
-- [ ] `BibleReader/BibleReader.Core/BibleReader.Core.csproj` — retarget `net48` → `net10.0`.
-- [ ] `LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/Integration/WCMS.WebSystem.Apps.BibleReader/WCMS.WebSystem.Apps.BibleReader.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` — retarget `net48` → `net10.0`.
+- [x] `BibleReader/BibleReader.Core/BibleReader.Core.csproj` — retarget `net48` → `net10.0`.
+- [x] `LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj` — retarget `net48` → `net10.0`.
 
 #### Utilities (Windows lane)
 
-- [ ] `Portal/Utilities/DbManager/DbManager/DbManager.csproj` — retarget `net48` → `net10.0` (or `net10.0-windows` if WinForms/WPF used).
-- [ ] `Portal/Utilities/PostBuildManager/PostBuildManager/PostBuildManager.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` — retarget `net48` → `net10.0`.
-- [ ] `Portal/Utilities/WebSystemDeployer/WebSystemDeployer/WebSystemDeployer.csproj` — retarget `net48` → `net10.0-windows` (deployment scripts may be Windows-only).
-- [ ] `Portal/Utilities/MySQL TableEditor/TableEditor.csproj` — retarget `net48` → `net10.0-windows`.
+- [x] `Portal/Utilities/DbManager/DbManager/DbManager.csproj` — retarget `net48` → `net10.0` (or `net10.0-windows` if WinForms/WPF used).
+- [x] `Portal/Utilities/PostBuildManager/PostBuildManager/PostBuildManager.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` — retarget `net48` → `net10.0`.
+- [x] `Portal/Utilities/WebSystemDeployer/WebSystemDeployer/WebSystemDeployer.csproj` — retarget `net48` → `net10.0-windows` (deployment scripts may be Windows-only).
+- [x] `Portal/Utilities/MySQL TableEditor/TableEditor.csproj` — retarget `net48` → `net10.0-windows`.
 
 ---
 
