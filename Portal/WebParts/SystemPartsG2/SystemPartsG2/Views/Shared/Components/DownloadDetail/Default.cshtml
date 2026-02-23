@@ -1,0 +1,31 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.DownloadDetailViewModel
+<div class="wcms-download-detail" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h4>@Model.Title</h4>
+    }
+    @if (!string.IsNullOrEmpty(Model.Description))
+    {
+        <p>@Model.Description</p>
+    }
+    <div class="card">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3">File</dt>
+                <dd class="col-sm-9">@Model.FileName</dd>
+                <dt class="col-sm-3">Size</dt>
+                <dd class="col-sm-9">@Model.FileSize bytes</dd>
+                <dt class="col-sm-3">Downloads</dt>
+                <dd class="col-sm-9">@Model.DownloadCount</dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            @if (!string.IsNullOrEmpty(Model.FileUrl))
+            {
+                <a href="@Model.FileUrl" class="btn btn-primary">
+                    <i class="bi bi-download"></i> Download
+                </a>
+            }
+        </div>
+    </div>
+</div>

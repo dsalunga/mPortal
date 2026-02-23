@@ -1,0 +1,54 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.BasicListViewModel
+<div class="wcms-basic-list" data-object-id="@Model.ObjectId">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h4>@Model.Title</h4>
+    }
+    @if (Model.Items.Count == 0)
+    {
+        <p class="text-muted">No items to display.</p>
+    }
+    else
+    {
+        if (Model.ShowBullets)
+        {
+            <ul class="list-group">
+                @foreach (var item in Model.Items)
+                {
+                    <li class="list-group-item">
+                        @if (!string.IsNullOrEmpty(item.Url))
+                        {
+                            <a href="@item.Url">@item.Title</a>
+                        }
+                        else
+                        {
+                            @item.Title
+                        }
+                        @if (!string.IsNullOrEmpty(item.Description))
+                        {
+                            <p class="mb-0 text-muted small">@item.Description</p>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <div class="list-unstyled">
+                @foreach (var item in Model.Items)
+                {
+                    <div class="mb-2">
+                        @if (!string.IsNullOrEmpty(item.Url))
+                        {
+                            <a href="@item.Url">@item.Title</a>
+                        }
+                        else
+                        {
+                            <span>@item.Title</span>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    }
+</div>

@@ -1,0 +1,26 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.NewsletterViewModel
+<div class="wcms-newsletter" data-object-id="@Model.ObjectId">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h4>@Model.Title</h4>
+    }
+    @if (!string.IsNullOrEmpty(Model.Description))
+    {
+        <p>@Model.Description</p>
+    }
+    <form action="@Model.SubscribeUrl" method="post" class="needs-validation" novalidate>
+        @if (Model.ShowNameField)
+        {
+            <div class="mb-3">
+                <label for="newsletter-name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="newsletter-name" name="name" placeholder="Your name" />
+            </div>
+        }
+        <div class="mb-3">
+            <label for="newsletter-email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="newsletter-email" name="email" placeholder="you@example.com" required />
+            <div class="invalid-feedback">Please provide a valid email address.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+</div>

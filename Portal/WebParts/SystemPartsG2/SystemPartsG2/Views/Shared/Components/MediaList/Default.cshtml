@@ -1,0 +1,30 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.MediaListViewModel
+<div class="wcms-media-list" data-object-id="@Model.ObjectId">
+    @if (Model.Items.Count == 0)
+    {
+        <p class="text-muted">No media items available.</p>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var item in Model.Items)
+            {
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="card h-100">
+                        @if (!string.IsNullOrEmpty(item.ThumbnailUrl))
+                        {
+                            <img src="@item.ThumbnailUrl" alt="@item.Title" class="card-img-top" loading="lazy" />
+                        }
+                        <div class="card-body">
+                            <h6 class="card-title">@item.Title</h6>
+                            @if (!string.IsNullOrEmpty(item.Duration))
+                            {
+                                <small class="text-muted">@item.Duration</small>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

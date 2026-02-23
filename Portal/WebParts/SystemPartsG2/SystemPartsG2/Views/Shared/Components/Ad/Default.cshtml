@@ -1,0 +1,16 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.AdViewModel
+<div class="wcms-ad" data-object-id="@Model.ObjectId">
+    @if (!string.IsNullOrEmpty(Model.ImageUrl) && Model.IsActive)
+    {
+        if (!string.IsNullOrEmpty(Model.TargetUrl))
+        {
+            <a href="@Model.TargetUrl" target="_blank" rel="noopener noreferrer">
+                <img src="@Model.ImageUrl" alt="@Model.AltText" class="img-fluid" loading="lazy" />
+            </a>
+        }
+        else
+        {
+            <img src="@Model.ImageUrl" alt="@Model.AltText" class="img-fluid" loading="lazy" />
+        }
+    }
+</div>

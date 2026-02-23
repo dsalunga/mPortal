@@ -1,0 +1,39 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.WallViewModel
+<div class="wcms-wall" data-object-id="@Model.ObjectId">
+    @if (Model.AllowNewPosts)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-2">
+                        <textarea class="form-control" name="content" rows="3" placeholder="What's on your mind?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Post</button>
+                </form>
+            </div>
+        </div>
+    }
+    @if (Model.Posts.Count == 0)
+    {
+        <p class="text-muted">No posts yet.</p>
+    }
+    else
+    {
+        @foreach (var post in Model.Posts)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <strong>@post.Author</strong>
+                        <small class="text-muted">@post.DatePosted</small>
+                    </div>
+                    <p>@post.Content</p>
+                    <div class="d-flex gap-3">
+                        <small class="text-muted"><i class="bi bi-hand-thumbs-up"></i> @post.LikeCount</small>
+                        <small class="text-muted"><i class="bi bi-chat"></i> @post.CommentCount</small>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

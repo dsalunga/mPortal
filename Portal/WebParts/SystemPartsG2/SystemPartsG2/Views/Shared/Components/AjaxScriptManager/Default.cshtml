@@ -1,0 +1,12 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.AjaxScriptManagerViewModel
+<div class="wcms-script-manager" data-object-id="@Model.ObjectId">
+    @foreach (var script in Model.Scripts)
+    {
+        if (!string.IsNullOrEmpty(script.Src))
+        {
+            <script src="@script.Src"
+                    @(script.IsAsync ? "async" : "")
+                    @(script.IsDefer ? "defer" : "")></script>
+        }
+    }
+</div>

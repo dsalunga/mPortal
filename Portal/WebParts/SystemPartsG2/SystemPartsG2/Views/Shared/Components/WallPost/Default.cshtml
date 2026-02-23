@@ -1,0 +1,35 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.WallPostViewModel
+<div class="wcms-wall-post" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+                <strong>@Model.Author</strong>
+                <small class="text-muted">@Model.DatePosted</small>
+            </div>
+            <p>@Model.Content</p>
+            <div class="d-flex gap-3 mb-3">
+                <button class="btn btn-outline-primary btn-sm">
+                    <i class="bi bi-hand-thumbs-up"></i> Like (@Model.LikeCount)
+                </button>
+                <button class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-chat"></i> Comment
+                </button>
+            </div>
+            @if (Model.Comments.Count > 0)
+            {
+                <div class="border-top pt-2">
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="d-flex mb-2">
+                            <div>
+                                <strong class="small">@comment.Author</strong>
+                                <small class="text-muted ms-2">@comment.DatePosted</small>
+                                <p class="mb-0 small">@comment.Text</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

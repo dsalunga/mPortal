@@ -1,0 +1,49 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.NewsletterAdminViewModel
+<div class="wcms-newsletter-admin" data-object-id="@Model.ObjectId">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>Newsletter Management</h4>
+        <div>
+            <span class="badge bg-info me-2">@Model.TotalSubscribers subscribers</span>
+            <button type="button" class="btn btn-primary btn-sm">
+                <i class="bi bi-envelope-plus"></i> New Newsletter
+            </button>
+        </div>
+    </div>
+    @if (Model.Newsletters.Count == 0)
+    {
+        <div class="alert alert-info">No newsletters sent yet.</div>
+    }
+    else
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Status</th>
+                    <th>Sent</th>
+                    <th>Recipients</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Newsletters)
+                {
+                    <tr>
+                        <td>@item.Subject</td>
+                        <td>
+                            <span class="badge @(item.Status == "Sent" ? "bg-success" : "bg-warning")">
+                                @item.Status
+                            </span>
+                        </td>
+                        <td>@item.SentDate</td>
+                        <td>@item.RecipientCount</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary">View</button>
+                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

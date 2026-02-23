@@ -1,0 +1,32 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.SplashNavigatorViewModel
+<div class="wcms-splash-navigator" data-object-id="@Model.ObjectId">
+    @if (Model.Items.Count == 0)
+    {
+        <p class="text-muted">No navigation items configured.</p>
+    }
+    else
+    {
+        <div class="row g-3">
+            @foreach (var item in Model.Items)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <a href="@item.Url" class="text-decoration-none">
+                        <div class="card text-center h-100 shadow-sm">
+                            @if (!string.IsNullOrEmpty(item.ImageUrl))
+                            {
+                                <img src="@item.ImageUrl" alt="@item.Title" class="card-img-top" loading="lazy" />
+                            }
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Title</h5>
+                                @if (!string.IsNullOrEmpty(item.Description))
+                                {
+                                    <p class="card-text text-muted">@item.Description</p>
+                                }
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    }
+</div>

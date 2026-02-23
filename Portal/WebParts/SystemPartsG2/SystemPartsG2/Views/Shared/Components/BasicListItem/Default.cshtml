@@ -1,0 +1,25 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.BasicListItemViewModel
+<div class="wcms-basic-list-item" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+    <div class="d-flex">
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <div class="flex-shrink-0 me-3">
+                <img src="@Model.ImageUrl" alt="@Model.Title" class="rounded" style="max-width: 80px;" loading="lazy" />
+            </div>
+        }
+        <div class="flex-grow-1">
+            @if (!string.IsNullOrEmpty(Model.Url))
+            {
+                <h5><a href="@Model.Url">@Model.Title</a></h5>
+            }
+            else
+            {
+                <h5>@Model.Title</h5>
+            }
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <p class="text-muted mb-0">@Model.Description</p>
+            }
+        </div>
+    </div>
+</div>
