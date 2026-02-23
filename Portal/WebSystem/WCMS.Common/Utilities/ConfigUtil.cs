@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Configuration;
-
 using System.Collections.Specialized;
+using Microsoft.Extensions.Configuration;
+using SysConfig = System.Configuration;
 
 namespace WCMS.Common.Utilities
 {
@@ -16,19 +16,41 @@ namespace WCMS.Common.Utilities
     /// </summary>
     public abstract class ConfigUtil
     {
+        private static IConfiguration _configuration;
+
+        /// <summary>
+        /// Sets the ASP.NET Core IConfiguration instance for use by the CMS framework.
+        /// Call this at startup: ConfigUtil.SetConfiguration(builder.Configuration);
+        /// </summary>
+        public static void SetConfiguration(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public static string Get(string key)
         {
-            return ConfigurationManager.AppSettings[key];
+            if (_configuration != null)
+                return _configuration[key];
+
+            return SysConfig.ConfigurationManager.AppSettings[key];
+        }
+
+        public static string GetConnectionString(string name)
+        {
+            if (_configuration != null)
+                return _configuration.GetConnectionString(name);
+
+            return SysConfig.ConfigurationManager.ConnectionStrings[name]?.ConnectionString;
         }
 
         public static NameValueCollection AppSettings
         {
-            get { return ConfigurationManager.AppSettings; }
+            get { return SysConfig.ConfigurationManager.AppSettings; }
         }
 
-        public static ConnectionStringSettingsCollection ConnectionStrings
+        public static SysConfig.ConnectionStringSettingsCollection ConnectionStrings
         {
-            get { return ConfigurationManager.ConnectionStrings; }
+            get { return SysConfig.ConfigurationManager.ConnectionStrings; }
         }
 
         public static int GetInt32(string name)
@@ -40,10 +62,5 @@ namespace WCMS.Common.Utilities
         {
             return DataUtil.GetBool(Get(name), defaultIfNull);
         }
-
-        //public static string Get2(string name)
-        //{
-        //    return ConfigurationManager.AppSettings[name];
-        //}
     }
 }

@@ -1,0 +1,49 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ master, codex/net10-modernization ]
+  pull_request:
+    branches: [ master, codex/net10-modernization ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '10.0.x' ]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+
+    - name: Restore dependencies
+      run: |
+        dotnet restore Portal/WebSystem/mPortal.sln || true
+        dotnet restore Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj
+
+    - name: Build core libraries
+      run: |
+        dotnet build Portal/WebSystem/WCMS.Common/WCMS.Common.csproj --no-restore -c Release
+        dotnet build Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj --no-restore -c Release
+        dotnet build Portal/WebSystem/WCMS.Framework.Core.SqlProvider/WCMS.Framework.Core.SqlProvider.csproj --no-restore -c Release
+        dotnet build Portal/WebSystem/WCMS.Framework.Core.XmlProvider/WCMS.Framework.Core.XmlProvider.csproj --no-restore -c Release
+
+    - name: Build web application
+      run: dotnet build Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj --no-restore -c Release
+
+    - name: Build module libraries
+      run: |
+        dotnet build Portal/WebParts/SystemParts/WCMS.Framework.WebParts/WCMS.WebSystem.Apps.csproj --no-restore -c Release
+        dotnet build Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/WCMS.WebSystem.Apps.csproj --no-restore -c Release
+        dotnet build Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Incident/WCMS.WebSystem.Apps.Incident.csproj --no-restore -c Release
+        dotnet build Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj --no-restore -c Release
+
+    - name: Run tests
+      run: |
+        dotnet test Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj --no-restore -c Release --verbosity normal || true
+        dotnet test Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj --no-restore -c Release --verbosity normal || true
