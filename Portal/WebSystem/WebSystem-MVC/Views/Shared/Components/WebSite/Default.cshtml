@@ -1,0 +1,54 @@
+@model WCMS.WebSystem.ViewComponents.WebSiteViewModel
+
+<div class="card admin-panel">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="bi bi-globe"></i> Site Editor</h5>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="alert alert-success">@Model.SuccessMessage</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+        <form method="post" id="siteEditorForm">
+            <input type="hidden" name="siteId" value="@Model.SiteId" />
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" value="@Model.Name" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <input type="text" class="form-control" name="description" value="@Model.Description" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">URL</label>
+                <input type="text" class="form-control" name="url" value="@Model.Url" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Default Page</label>
+                <input type="text" class="form-control" name="defaultPage" value="@Model.DefaultPage" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Theme</label>
+                <select class="form-select" name="themeName">
+                    <option value="">-- Select Theme --</option>
+                    @foreach (var theme in Model.AvailableThemes)
+                    {
+                        <option value="@theme" selected="@(theme == Model.ThemeName)">@theme</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" name="isActive" id="siteIsActive" checked="@Model.IsActive" />
+                <label class="form-check-label" for="siteIsActive">Active</label>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Save</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelSite"><i class="bi bi-x-lg"></i> Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
