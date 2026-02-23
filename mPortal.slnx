@@ -1,0 +1,130 @@
+<Solution>
+  <Folder Name="/BibleReader/">
+    <Project Path="BibleReader/BibleReader.Core/BibleReader.Core.csproj" />
+  </Folder>
+  <Folder Name="/BibleReader/BibleReader/">
+    <Project Path="BibleReader/BibleReader/BibleReader.WebApp.csproj" />
+  </Folder>
+  <Folder Name="/Core/">
+    <Project Path="Core/WCMS.Common/WCMS.Common.csproj" />
+  </Folder>
+  <Folder Name="/LessonReviewer/">
+    <Project Path="LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj" />
+    <Project Path="LessonReviewer/LessonReviewer/LessonReviewer.csproj" />
+  </Folder>
+  <Folder Name="/Libraries/" />
+  <Folder Name="/Libraries/Media-Player-ASP.NET-Control/">
+    <Project Path="Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj" />
+  </Folder>
+  <Folder Name="/Portal/" />
+  <Folder Name="/Portal/Utilities/" />
+  <Folder Name="/Portal/Utilities/DbManager/">
+    <Project Path="Portal/Utilities/DbManager/DbManager/DbManager.csproj" />
+  </Folder>
+  <Folder Name="/Portal/Utilities/DbManagerWPF/">
+    <Project Path="Portal/Utilities/DbManagerWPF/DbManager/DbManager.csproj" />
+  </Folder>
+  <Folder Name="/Portal/Utilities/MySQL TableEditor/">
+    <Project Path="Portal/Utilities/MySQL TableEditor/TableEditor.csproj" />
+  </Folder>
+  <Folder Name="/Portal/Utilities/PostBuildManager/">
+    <Project Path="Portal/Utilities/PostBuildManager/PostBuildManager/PostBuildManager.csproj" />
+  </Folder>
+  <Folder Name="/Portal/Utilities/WebExtractor/">
+    <Project Path="Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj" />
+  </Folder>
+  <Folder Name="/Portal/Utilities/WebSystemDeployer/">
+    <Project Path="Portal/Utilities/WebSystemDeployer/WebSystemDeployer/WebSystemDeployer.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/" />
+  <Folder Name="/Portal/WebParts/BranchLocator/">
+    <Project Path="Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj" />
+    <Project Path="Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/Integration/">
+    <Project Path="Portal/WebParts/Integration/WCMS.WebSystem.Apps.BibleReader/WCMS.WebSystem.Apps.BibleReader.csproj" />
+    <Project Path="Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj" />
+    <Project Path="Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/Integration/IntegrationParts/">
+    <Project Path="Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SDKTest/">
+    <Project Path="Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemParts/" />
+  <Folder Name="/Portal/WebParts/SystemParts/SystemParts/">
+    <Project Path="Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/">
+    <Project Path="Portal/WebParts/SystemParts/WCMS.Framework.FileManager/WCMS.WebSystem.Apps.FileManager.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemParts/WCMS.Framework.WebParts.LocalCalendar/">
+    <Project Path="Portal/WebParts/SystemParts/WCMS.Framework.WebParts.LocalCalendar/WCMS.WebSystem.Apps.EventCalendar.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemParts/WCMS.Framework.WebParts/">
+    <Project Path="Portal/WebParts/SystemParts/WCMS.Framework.WebParts/WCMS.WebSystem.Apps.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/">
+    <Project Path="Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/WCMS.WebSystem.Apps.Article.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Contact/">
+    <Project Path="Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Contact/WCMS.WebSystem.Apps.Contact.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/">
+    <Project Path="Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/WCMS.WebSystem.Apps.GenericList.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/">
+    <Project Path="Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/WCMS.WebSystem.Apps.RemoteIndexer.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/">
+    <Project Path="Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/WCMS.WebSystem.Apps.WeeklyScheduler.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemPartsG2/" />
+  <Folder Name="/Portal/WebParts/SystemPartsG2/SystemPartsG2/">
+    <Project Path="Portal/WebParts/SystemPartsG2/SystemPartsG2/WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/">
+    <Project Path="Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/WCMS.WebSystem.Apps.Forum.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/">
+    <Project Path="Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WCMS.WebSystem.Apps.Social.ViewModel.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/">
+    <Project Path="Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WCMS.Framework.Social.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/">
+    <Project Path="Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/WCMS.WebSystem.Apps.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemPartsG3/" />
+  <Folder Name="/Portal/WebParts/SystemPartsG3/SystemPartsG3/">
+    <Project Path="Portal/WebParts/SystemPartsG3/SystemPartsG3/WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Incident/">
+    <Project Path="Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Incident/WCMS.WebSystem.Apps.Incident.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/">
+    <Project Path="Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/WCMS.WebSystem.Apps.Jobs.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebSystem/">
+    <Project Path="Portal/WebSystem/WCMS.Common/WCMS.Common.csproj" />
+    <Project Path="Portal/WebSystem/WCMS.Framework.AgentService/WCMS.Framework.AgentService.csproj" />
+    <Project Path="Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj" />
+    <Project Path="Portal/WebSystem/WCMS.Framework.Core.SqlProvider/WCMS.Framework.Core.SqlProvider.csproj" />
+    <Project Path="Portal/WebSystem/WCMS.Framework.Core.XmlProvider/WCMS.Framework.Core.XmlProvider.csproj" />
+    <Project Path="Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj" />
+    <Project Path="Portal/WebSystem/WCMS.WebSystem.Utilities/WCMS.WebSystem.Utilities.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebSystem/FCKeditor.Net_2.6.3/">
+    <Project Path="Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebSystem/WCMS.Framewok.Agent/">
+    <Project Path="Portal/WebSystem/WCMS.Framewok.Agent/WCMS.Framework.Agent.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebSystem/WCMS.WebSystem.ViewModels/">
+    <Project Path="Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj" />
+  </Folder>
+  <Folder Name="/Portal/WebSystem/WebSystem-MVC/">
+    <Project Path="Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj" />
+  </Folder>
+</Solution>
