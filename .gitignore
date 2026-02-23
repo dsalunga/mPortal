@@ -50,4 +50,4 @@ bin
 /Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/Content
 /Portal/WebSystem/WebSystem-MVC/Content/Parts/BranchLocator
 
-/LessonReviewer/LessonReviewer/Admin/Data/Logs
+/LessonReviewer/LessonReviewer/Admin/Data/Logs.nuget/
