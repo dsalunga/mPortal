@@ -12,7 +12,7 @@ using WCMS.Framework.Security;
 namespace WCMS.Framework
 {
     [Serializable]
-    public class WSession
+    public class WSession : IWSession
     {
         public const string DefaultName = "WSession";
 
@@ -280,6 +280,22 @@ namespace WCMS.Framework
 
             return browser;
         }
+
+        #region IWSession
+
+        void IWSession.Login(int userId, bool rememberLogin)
+        {
+            Login(userId, logSession: true);
+            // TODO: rememberLogin support requires password context;
+            // wire up RememberLogin() when auth flow is refactored for DI.
+        }
+
+        void IWSession.Logout()
+        {
+            LogOff();
+        }
+
+        #endregion
 
         public static string MapPath(string relPath)
         {

@@ -16,7 +16,7 @@ using WCMS.Framework.Core;
 
 namespace WCMS.Framework
 {
-    public class WContext : WebContextBase
+    public class WContext : WebContextBase, IWContext
     {
         private const string KEY = "WContext";
 
@@ -98,6 +98,11 @@ namespace WCMS.Framework
         public WSession Session
         {
             get { return WSession.Current; }
+        }
+
+        IWSession IWContext.Session
+        {
+            get { return Session; }
         }
 
         public int ContextType
