@@ -588,3 +588,108 @@ The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree t
 - [x] Migrate `System.Data.SqlClient` usage to `Microsoft.Data.SqlClient` in all SQL provider classes.
 - [x] Evaluate stored-procedure-based data access (`SqlDataProviderBase`) for potential EF Core migration or keep as ADO.NET with modern client.
 - [x] Update connection string configuration to use ASP.NET Core connection string patterns.
+
+---
+
+## 8) Phase 2 — Integration Testing & Production Readiness
+
+The following items require additional work beyond the initial migration (§7). These ensure the migrated application is fully functional end-to-end.
+
+---
+
+### 8.1) Integration module — EF6 EDMX & WCF data layer replacement
+
+The Integration module's EF6 EDMX models and WCF service methods are wrapped with `#if NETFRAMEWORK` (inactive on .NET 10). The new API controllers (MemberApiController, etc.) need to be wired to the actual data layer.
+
+**EDMX → EF Core code-first migration (Integration database):**
+- [ ] Reverse-engineer the Integration EDMX model (`IntegrationModel.edmx`) into EF Core `DbContext` + entity classes using `dotnet ef dbcontext scaffold`
+- [ ] Create `IntegrationDbContext` with `OnModelCreating` configuration matching the EDMX mappings
+- [ ] Map all entity classes: `Member`, `MemberAttendance`, `MemberVisit`, `Registration`, `MusicCompetitionCandidate`, `MCInterpreterScore`, `MCSongScore`, `MCVote`, `MCComposer`, `ExternalMember`, `LessonReviewerSession`, `LessonReviewerVideo`, `Sportsfest`
+- [ ] Register `IntegrationDbContext` in DI via `AddDbContext<IntegrationDbContext>()` in Integration web host
+- [ ] Update all Integration SQL providers (`MemberSqlProvider`, `RegistrationSqlProvider`, `MemberAttendanceSqlProvider`, `MemberVisitSqlProvider`, `MemberLinkSqlProvider`, `LessonReviewerSessionSqlProvider`, `LessonReviewerVideoProvider`, `SportsfestSqlProvider`, `MCCandidateSqlProvider`, `MCSongScoreSqlProvider`, `MCInterpreterScoreSqlProvider`, `MCVoteSqlProvider`, `MCComposerProvider`, `ExternalMemberSqlProvider`) to use EF Core or `Microsoft.Data.SqlClient` ADO.NET instead of EF6
+
+**EDMX → EF Core code-first migration (BranchLocator database):**
+- [ ] Reverse-engineer the BranchLocator EDMX model into EF Core `DbContext` + entity classes
+- [ ] Create `BranchLocatorDbContext` with entity mappings
+- [ ] Register in DI and update `MChapterSqlProvider`
+
+**WCF service method replacement:**
+- [ ] Wire `MemberApiController` endpoints to actual `MemberSqlProvider` / `MemberManager` data calls (currently placeholder logic)
+- [ ] Wire `DataSyncApiController` to actual `WebObjectManager` / `WebSiteManager` export/import logic
+- [ ] Wire `UserApiController` to actual `WebUserManager` / `WebUserGroupManager` / `WebUserRoleManager`
+- [ ] Wire `ContentApiController` to actual `WebPageManager` / `WebPartManager` / `WebPageElementManager`
+- [ ] Wire `AccountApiController` to actual `WebUser.Login()` / `Registration` logic
+- [ ] Wire `FrameworkApiController` to actual `WebSiteManager` / `WebRegistryManager` / `WebTemplateManager`
+- [ ] Remove `#if NETFRAMEWORK` guards from Integration WCF methods once EF Core replacement is verified
+- [ ] Delete legacy `.svc` files once API controllers are verified
+
+---
+
+### 8.2) ViewComponent Razor view refinement
+
+The 253 ViewComponents have functional C# classes wired to the CMS framework, but their Razor views (`.cshtml`) use Bootstrap 5 placeholder markup. Each needs to be refined to match the original `.ascx` UI.
+
+**Approach:** For each ViewComponent, compare the original `.ascx` markup with the placeholder `.cshtml` and port the exact HTML/CSS/JS structure.
+
+**Portal core components (15 — highest priority):**
+- [ ] `LoginViewComponent` — match original `Login.ascx` form fields, validation, OTP UI
+- [ ] `BreadcrumbViewComponent` — match original breadcrumb separator and link styling
+- [ ] `NavigationViewComponent` — match original `CascadeMenu.ascx` multi-level menu HTML
+- [ ] `SideBarViewComponent` — match original sidebar panel layout
+- [ ] Theme components (11) — match each theme's header/footer/layout controls
+
+**SystemParts components (34 — high priority):**
+- [ ] `ContentViewComponent` — match original `Content.ascx` rich content rendering with registry-driven config
+- [ ] `ArticleViewComponent` — match original `Article.ascx` list/detail views, paging, template substitution
+- [ ] `ContactViewComponent` — match original `ContactUs.ascx` form with validation and email sending
+- [ ] `SearchViewComponent` — match original `Search.ascx` results layout and highlighting
+- [ ] `GalleryViewComponent` — match original `PhotoGallery.ascx` grid/lightbox layout
+- [ ] `FeedbackViewComponent` — match original `FeedBack.ascx` comment thread rendering
+- [ ] `MenuViewComponent` — match original `Menu.ascx` navigation rendering
+- [ ] `EventCalendarViewComponent` — match original calendar grid/list views
+- [ ] Remaining 26 SystemParts components — port original markup
+
+**SystemPartsG2 components (20):**
+- [ ] All 20 components — port original `.ascx` markup to `.cshtml`
+
+**SystemPartsG3 components (10):**
+- [ ] All 10 Incident/Jobs components — port original `.ascx` markup
+
+**Admin components (49):**
+- [ ] All 49 admin components — port original `.ascx` markup (lower priority since admin UI can be iteratively improved)
+
+**Integration components (101):**
+- [ ] Account/Registration (23) — port original markup
+- [ ] Profile/LessonReviewer (28) — port original markup
+- [ ] MasterList/EventRegister (14) — port original markup
+- [ ] MusicCompetition (27) — port original markup
+- [ ] Streaming/BibleReader/Reminder (9) — port original markup
+
+**Integration Theme components (24):**
+- [ ] All 24 theme components — port original markup
+
+---
+
+### 8.3) End-to-end testing with database
+
+- [ ] Set up a test SQL Server database with the WCMS schema
+- [ ] Run the main web host (`WebSystem-MVC`) and verify page rendering pipeline works end-to-end
+- [ ] Verify all 7 API controllers return correct data
+- [ ] Verify cookie authentication login/logout flow
+- [ ] Verify background agent service starts and executes scheduled tasks
+- [ ] Verify ViewComponents render correctly when invoked from pages
+- [ ] Test multi-site hosting (multiple WSite entries resolving different domains)
+- [ ] Test admin controls (site/page/template/user management)
+- [ ] Performance baseline comparison with legacy .NET Framework version
+
+---
+
+### 8.4) Legacy file cleanup
+
+- [ ] Delete all legacy `.aspx` files (57 files) after ViewComponents are verified
+- [ ] Delete all legacy `.ascx` files (518 files) after ViewComponents are verified
+- [ ] Delete all legacy `.svc` files (6 files) after API controllers are verified
+- [ ] Delete all legacy `.asmx` files after API controllers are verified
+- [ ] Delete legacy `Global.asax` files (replaced by middleware)
+- [ ] Remove `<Compile Remove>` entries from `.csproj` files once legacy files are deleted
+- [ ] Remove `EnableDefaultContentItems` / `EnableDefaultCompileItems` overrides once legacy files are gone
