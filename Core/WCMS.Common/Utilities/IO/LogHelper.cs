@@ -126,9 +126,9 @@ namespace WCMS.Common.Utilities
             WriteLog(false, ex);
         }
 
-        public static void WriteLog(HttpContext sender, Exception err)
+        public static void WriteLog(HttpContext context, Exception err)
         {
-            string requestUrl = sender.Request.Path + sender.Request.QueryString;
+            string requestUrl = context.Request.Path + context.Request.QueryString.ToString();
             string msg = string.Format(
                 "Error in: {0}Error Message: {1}Stack Trace: {2}",
                 requestUrl + Environment.NewLine,

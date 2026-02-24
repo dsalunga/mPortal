@@ -37,10 +37,10 @@
                             <td>
                                 @switch (job.ExecutionStatus)
                                 {
-                                    case WCMS.Framework.ExecutionStatus.Pending: <span class="badge bg-secondary">Pending</span> break;
-                                    case WCMS.Framework.ExecutionStatus.Running: <span class="badge bg-primary">Running</span> break;
-                                    case WCMS.Framework.ExecutionStatus.Completed: <span class="badge bg-success">Completed</span> break;
-                                    case WCMS.Framework.ExecutionStatus.Failed: <span class="badge bg-danger">Failed</span> break;
+                                    case WCMS.Framework.ExecutionStatus.Pending: { <span class="badge bg-secondary">Pending</span> } break;
+                                    case WCMS.Framework.ExecutionStatus.Running: { <span class="badge bg-primary">Running</span> } break;
+                                    case WCMS.Framework.ExecutionStatus.Completed: { <span class="badge bg-success">Completed</span> } break;
+                                    case WCMS.Framework.ExecutionStatus.Failed: { <span class="badge bg-danger">Failed</span> } break;
                                 }
                             </td>
                             <td>@(job.IsEnabled ? "Yes" : "No")</td>

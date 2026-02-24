@@ -237,7 +237,7 @@ Current status snapshot (2026-02-24, updated):
 - 8 web app hosts rebuilt as ASP.NET Core scaffolds (feature parity not yet complete).
 - All legacy `.aspx`, `.ascx`, `.svc`, `.asmx`, `.ashx`, `Global.asax`, and `Startup.cs` files deleted. Zero legacy web assets remain.
 - All 19 legacy `.sln` files deleted; `mPortal.slnx` is the single solution file.
-- 260 ViewComponents created (replacing legacy `.ascx` user controls).
+- 269 ViewComponents created (replacing legacy `.ascx` user controls).
 - `IWContext` and `IWSession` DI interfaces created and registered via `AddWcmsFramework()`.
 - `PageResolutionMiddleware` replaces legacy URL rewriting.
 - CI build workflow configured (`.github/workflows/build.yml`); deployment pipeline not yet configured.
@@ -448,7 +448,7 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 ### 7.9) Replace legacy third-party controls
 
 - [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` — complete the editor integration abstraction; wire a modern rich-text editor (e.g., TinyMCE, CKEditor 5) into the ASP.NET Core host.
-- [ ] `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` — complete the media renderer abstraction; wire an HTML5 `<video>`/`<audio>` component or modern player library.
+- [x] `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` — HTML5 `<video>` renderer created (`MediaPlayerRenderer.RenderVideoTag`) replacing legacy ASP.NET media control.
 
 ---
 
