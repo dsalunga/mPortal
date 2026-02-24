@@ -1,20 +1,35 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.FeedbackViewModel
-<div class="feedback-form">
-    <h4>Leave a Comment</h4>
-    @if (Model.IsLoggedIn)
-    {
-        <form method="post" asp-action="Comment" asp-controller="ContentApi">
-            <input type="hidden" name="objectId" value="@Model.ObjectId" />
-            <input type="hidden" name="recordId" value="@Model.RecordId" />
-            <div class="form-group">
-                <label>Comment as @Model.UserName</label>
-                <textarea name="comment" class="form-control" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-sm mt-2">Submit</button>
-        </form>
-    }
-    else
-    {
-        <p class="text-muted">Please <a href="?mode=login">sign in</a> to leave a comment.</p>
-    }
+<div id="pnlContent" style="width: 100%">
+    <form method="post" asp-action="Feedback" asp-controller="ContentApi"
+          id="feedbackForm" data-success-target="#pnlThank">
+        <input type="hidden" name="objectId" value="@Model.ObjectId" />
+        <input type="hidden" name="recordId" value="@Model.RecordId" />
+        <table border="0" width="100%">
+            <tr>
+                <td style="font-weight: bold;" align="center">
+                    Feedback
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <textarea id="txtFeed" name="feedback" cols="50" rows="8"
+                              style="height: 200px; width: 400px" required></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <button type="submit">Send Feedback</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="pnlThank" style="width: 100%; display: none">
+    <table border="0" width="100%">
+        <tr>
+            <td align="center" style="font-weight: bolder;">
+                Thank you for your feedback!
+            </td>
+        </tr>
+    </table>
 </div>

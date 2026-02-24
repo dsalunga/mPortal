@@ -1,39 +1,85 @@
 @model WCMS.WebSystem.ViewComponents.LoginViewModel
+<div class="system-login">
 @if (Model.View == "LoggedOut")
 {
     <script>window.location.href = '@Model.RedirectUrl';</script>
 }
 else if (Model.View == "ForgotPassword")
 {
-    <div class="login-container forgot-password">
-        <h3>Forgot Password</h3>
-        <form method="post" asp-action="ForgotPassword" asp-controller="Account">
-            <div class="form-group">
-                <label>Username or E-mail</label>
-                <input type="text" name="userNameOrEmail" class="form-control" required />
-            </div>
-            <button type="submit" class="btn btn-primary">Retrieve Password</button>
-        </form>
-        @if (!string.IsNullOrEmpty(Model.LoginUrl))
-        {
-            <p><a href="@Model.LoginUrl">Back to Login</a></p>
-        }
-    </div>
+    <form method="post" asp-action="ForgotPassword" asp-controller="Account">
+        <table border="0" cellpadding="1">
+            <tr>
+                <td colspan="2" class="Header">Forgot Your Password?<br /><br /></td>
+            </tr>
+            <tr>
+                <td colspan="2">Enter your Username or Email to receive your password.<br /></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="txtRetrieveUserName">Username or Email:&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" id="txtRetrieveUserName" name="userNameOrEmail" class="form-control input-sm" required />
+                </td>
+            </tr>
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <tr>
+                    <td colspan="2" style="color: red">@Model.ErrorMessage</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="2">
+                    <br />
+                    <button type="submit" class="btn btn-primary">Submit</button>&nbsp;
+                    @if (!string.IsNullOrEmpty(Model.LoginUrl))
+                    {
+                        <a href="@Model.LoginUrl" title="Click here to login">Click here to login</a>
+                    }
+                </td>
+            </tr>
+        </table>
+    </form>
 }
 else if (Model.View == "OtpVerification")
 {
-    <div class="login-container otp-verification">
-        <h3>OTP Verification</h3>
-        <form method="post" asp-action="VerifyOtp" asp-controller="Account">
-            <div class="form-group">
-                <label>Enter OTP Code</label>
-                <input type="text" name="otpCode" class="form-control" required />
-            </div>
-            <button type="submit" class="btn btn-primary">Verify</button>
-            <button type="submit" name="action" value="resend" class="btn btn-link">Request New PIN</button>
-            <button type="submit" name="action" value="cancel" class="btn btn-link">Cancel</button>
-        </form>
-    </div>
+    <form method="post" asp-action="VerifyOtp" asp-controller="Account">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width: 160px; text-align: right">
+                    <label for="txtOtpCode">One-time PIN:&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" id="txtOtpCode" name="otpCode" required />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" name="action" value="resend" class="btn btn-link" style="padding:0">Request New PIN</button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div style="margin-top: 10px">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="action" value="cancel" class="btn btn-default">Cancel</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <br />
+                    <div style="margin-right: 20px">
+                        NOTE: Your OTP PIN has been sent to your registered contact.
+                        It will expire shortly.
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
 }
 else if (Model.IsLoggedIn)
 {
@@ -44,55 +90,98 @@ else if (Model.IsLoggedIn)
 }
 else
 {
-    <div class="login-container">
-        @if (!string.IsNullOrEmpty(Model.PreLoginNote))
-        {
-            <div class="alert alert-info">@Model.PreLoginNote</div>
-        }
-        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-        {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
-        }
-        <form method="post" asp-action="Login" asp-controller="Account">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="userName" class="form-control" required />
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" required />
-            </div>
-            @if (Model.EnableRememberMe)
-            {
-                <div class="form-check">
-                    <input type="checkbox" name="rememberMe" class="form-check-input" id="chkRememberMe" />
-                    <label class="form-check-label" for="chkRememberMe">
-                        @(Model.RememberMeText ?? "Remember me")
-                    </label>
-                </div>
+    @* GeoIP location tracking - populated by ResolveGeoIp() from the original Login.ascx *@
+    <input type="hidden" id="hLocation" value="" />
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div id="lblError" class="alert alert-danger">@Model.ErrorMessage</div>
+    }
+    @if (!string.IsNullOrEmpty(Model.PreLoginNote))
+    {
+        @Html.Raw(Model.PreLoginNote)
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var txtUserName = $("#txtUserName");
+            if (txtUserName.length > 0) {
+                txtUserName.focus();
             }
+        });
+    </script>
+    <form method="post" asp-action="Login" asp-controller="Account">
+        <table border="0">
+            <tr>
+                <td style="text-align: right">Username:&nbsp;</td>
+                <td>
+                    <input type="text" id="txtUserName" name="userName" class="input" required />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; padding-top: 10px">Password:&nbsp;</td>
+                <td style="padding-top: 10px">
+                    <input type="password" id="txtPassword" name="password" class="input" required />
+                </td>
+            </tr>
             @if (Model.EnableOtp)
             {
-                <div class="form-group mt-2">
-                    <label>OTP Delivery</label>
-                    <select name="otpType" class="form-control">
-                        <option value="0">E-mail</option>
+                <tr>
+                    <td style="text-align: right">Send OTP Via</td>
+                    <td>
+                        <label><input type="radio" name="otpType" value="0" checked /> E-mail</label>
                         @if (Model.EnableSms)
                         {
-                            <option value="1">SMS</option>
+                            <label><input type="radio" name="otpType" value="1" /> SMS</label>
                         }
-                    </select>
-                </div>
+                    </td>
+                </tr>
             }
-            <button type="submit" class="btn btn-primary mt-2">Sign In</button>
-        </form>
-        @if (!string.IsNullOrEmpty(Model.ForgotPasswordUrl))
-        {
-            <p class="mt-2"><a href="@Model.ForgotPasswordUrl">Forgot your password?</a></p>
-        }
-        @if (!string.IsNullOrEmpty(Model.SignUpUrl))
-        {
-            <p><a href="@Model.SignUpUrl">Create an Account</a></p>
-        }
-    </div>
+            @if (Model.EnableRememberMe)
+            {
+                <tr>
+                    <td></td>
+                    <td>
+                        <label class="aspnet-checkbox">
+                            <input type="checkbox" id="chkRememberMe" name="rememberMe" />
+                            @(Model.RememberMeText ?? "Keep me logged in")
+                        </label>
+                        <br /><br />
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-primary" style="width: 80px"
+                            data-loading-text="Logging in...">Login</button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <br />
+                    @if (!string.IsNullOrEmpty(Model.ForgotPasswordUrl))
+                    {
+                        <div>
+                            Forgot your password? <a href="@Model.ForgotPasswordUrl" class="BlueLink"
+                                title="Click here to recover your password">Click here</a>
+                        </div>
+                    }
+                    <hr style="height: 1px;" />
+                </td>
+            </tr>
+            @if (!string.IsNullOrEmpty(Model.SignUpUrl))
+            {
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="font-weight: bold">
+                            Don't have a login ID? <a href="@Model.SignUpUrl" class="BlueLink"
+                                title="Click here to Register">Register Now</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </form>
 }
+</div>
