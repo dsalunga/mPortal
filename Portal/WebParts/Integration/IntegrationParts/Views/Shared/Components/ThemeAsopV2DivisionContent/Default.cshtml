@@ -1,36 +1,31 @@
 @* Originally: ASOP/asopv2-division-content.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeAsopV2DivisionContentModel
+@model dynamic
 
 <div id="theme-asopv2-division-content-@Model.ObjectId">
-    <!-- Division Header -->
-    <header class="bg-secondary text-white py-3">
+    <header class="bg-secondary text-white py-3" role="banner">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "DivisionHeader" })
         </div>
     </header>
 
-    <!-- Breadcrumb -->
     <div class="container mt-3">
-        <nav aria-label="breadcrumb">
+        <nav aria-label="Breadcrumb">
             @await Component.InvokeAsync("WZone", new { zone = "Breadcrumb" })
         </nav>
     </div>
 
-    <!-- Division Content -->
-    <main class="container py-4">
+    <main class="container py-4" role="main">
         <div class="row">
             <div class="col-12">
-                <div class="division-content">
-                    @await Component.InvokeAsync("WZone", new { zone = "Content" })
-                </div>
+                @await Component.InvokeAsync("WZone", new { zone = "Content" })
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-3 mt-4">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+            <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year ASOP. All rights reserved.</small></p>
         </div>
     </footer>
 </div>

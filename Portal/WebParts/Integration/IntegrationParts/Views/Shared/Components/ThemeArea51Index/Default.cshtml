@@ -1,16 +1,14 @@
 @* Originally: area51/index.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeArea51IndexModel
+@model dynamic
 
 <div id="theme-area51-index-@Model.ObjectId">
-    <!-- Hero Section -->
-    <section class="bg-primary text-white py-5">
+    <section class="bg-primary text-white py-5" aria-label="Hero">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Hero" })
         </div>
     </section>
 
-    <!-- Content Grid -->
-    <main class="container py-4">
+    <main class="container py-4" role="main">
         <div class="row">
             <div class="col-md-4">
                 @await Component.InvokeAsync("WZone", new { zone = "Column1" })
@@ -23,7 +21,6 @@
             </div>
         </div>
 
-        <!-- Call to Action -->
         <div class="row mt-4">
             <div class="col-12 text-center">
                 @await Component.InvokeAsync("WZone", new { zone = "CallToAction" })
@@ -31,10 +28,10 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-3 mt-4">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+            <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year All rights reserved.</small></p>
         </div>
     </footer>
 </div>

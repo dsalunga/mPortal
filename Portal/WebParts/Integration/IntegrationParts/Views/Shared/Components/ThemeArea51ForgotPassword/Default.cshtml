@@ -1,18 +1,18 @@
 @* Originally: area51/Parts/Profile/Profile/ForgotPassword.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeArea51ForgotPasswordModel
+@model dynamic
 
-<div id="theme-area51-forgot-password-@Model.ObjectId">
+<section id="theme-area51-forgot-password-@Model.ObjectId" aria-label="Forgot password">
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="card shadow-sm">
                     <div class="card-body p-4">
-                        <h4 class="card-title text-center mb-4">Forgot Password</h4>
+                        <h4 class="card-title text-center mb-4" id="forgot-pw-heading">Forgot Password</h4>
 
-                        <!-- Forgot Password Form -->
-                        @await Component.InvokeAsync("WZone", new { zone = "ForgotPasswordForm" })
+                        <div role="form" aria-labelledby="forgot-pw-heading">
+                            @await Component.InvokeAsync("WZone", new { zone = "ForgotPasswordForm" })
+                        </div>
 
-                        <!-- Back to Login -->
                         <div class="text-center mt-3">
                             @await Component.InvokeAsync("WZone", new { zone = "BackToLogin" })
                         </div>
@@ -21,4 +21,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

@@ -1,16 +1,14 @@
 @* Originally: ASOP/v2/old/asopv2-content.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeAsopV2ContentModel
+@model dynamic
 
 <div id="theme-asopv2-content-@Model.ObjectId">
-    <!-- Simple Header -->
-    <header class="bg-light border-bottom py-3">
+    <header class="bg-light border-bottom py-3" role="banner">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Header" })
         </div>
     </header>
 
-    <!-- Single-Column Content -->
-    <main class="container py-4">
+    <main class="container py-4" role="main">
         <div class="row">
             <div class="col-12">
                 @await Component.InvokeAsync("WZone", new { zone = "Content" })
@@ -18,10 +16,10 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-light border-top py-3 mt-4">
+    <footer class="bg-light border-top py-3 mt-4" role="contentinfo">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+            <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year ASOP. All rights reserved.</small></p>
         </div>
     </footer>
 </div>

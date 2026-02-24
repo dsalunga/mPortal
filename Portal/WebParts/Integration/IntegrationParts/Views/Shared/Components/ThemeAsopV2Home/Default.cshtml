@@ -1,16 +1,14 @@
 @* Originally: ASOP/v2/old/asopv2-home.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeAsopV2HomeModel
+@model dynamic
 
 <div id="theme-asopv2-home-@Model.ObjectId">
-    <!-- Hero Banner -->
-    <section class="bg-primary text-white py-5">
+    <section class="bg-primary text-white py-5" aria-label="Hero banner">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "HeroBanner" })
         </div>
     </section>
 
-    <!-- Two-Column Feature Area -->
-    <main class="container py-4">
+    <main class="container py-4" role="main">
         <div class="row">
             <div class="col-md-6">
                 @await Component.InvokeAsync("WZone", new { zone = "FeatureLeft" })
@@ -21,10 +19,10 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-3 mt-4">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+            <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year ASOP. All rights reserved.</small></p>
         </div>
     </footer>
 </div>

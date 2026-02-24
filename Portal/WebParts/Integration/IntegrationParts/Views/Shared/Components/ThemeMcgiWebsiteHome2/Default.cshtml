@@ -1,23 +1,20 @@
 @* Originally: mcgi_website/template_home2.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeMcgiWebsiteHome2Model
+@model dynamic
 
 <div id="theme-mcgi-website-home2-@Model.ObjectId">
-    <!-- Header -->
-    <header class="bg-primary text-white py-3">
+    <header class="bg-primary text-white py-3" role="banner">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Header" })
         </div>
     </header>
 
-    <!-- Video Hero -->
-    <section class="video-hero bg-dark text-white py-5">
+    <section class="video-hero bg-dark text-white py-5" aria-label="Video hero">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "VideoHero" })
         </div>
     </section>
 
-    <!-- Two-Column Features -->
-    <section class="container py-5">
+    <section class="container py-5" aria-label="Features">
         <div class="row">
             <div class="col-md-6 mb-4">
                 @await Component.InvokeAsync("WZone", new { zone = "FeatureLeft" })
@@ -28,17 +25,16 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="bg-light py-5">
+    <section class="bg-light py-5" aria-label="Testimonials">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Testimonials" })
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-3 mt-4">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+            <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year MCGI. All rights reserved.</small></p>
         </div>
     </footer>
 </div>

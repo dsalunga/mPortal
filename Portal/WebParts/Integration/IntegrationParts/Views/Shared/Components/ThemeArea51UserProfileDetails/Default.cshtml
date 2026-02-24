@@ -1,20 +1,19 @@
 @* Originally: area51/Parts/Profile/Profile/UserProfileDetails.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeArea51UserProfileDetailsModel
+@model dynamic
 
-<div id="theme-area51-profile-details-@Model.ObjectId">
+<section id="theme-area51-profile-details-@Model.ObjectId" aria-label="User profile details">
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0">Profile Details</h5>
+                        <h5 class="card-title mb-0" id="profile-details-heading">Profile Details</h5>
                     </div>
-                    <div class="card-body">
-                        <!-- Profile Info Sections -->
+                    <div class="card-body" role="region" aria-labelledby="profile-details-heading">
                         @await Component.InvokeAsync("WZone", new { zone = "ProfileInfo" })
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

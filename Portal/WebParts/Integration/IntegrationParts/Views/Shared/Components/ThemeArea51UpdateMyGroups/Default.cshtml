@@ -1,21 +1,20 @@
 @* Originally: area51/Parts/Profile/Profile/UpdateMyGroups.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeArea51UpdateMyGroupsModel
+@model dynamic
 
-<div id="theme-area51-update-groups-@Model.ObjectId">
+<section id="theme-area51-update-groups-@Model.ObjectId" aria-label="Manage groups">
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="card-title mb-0">My Groups</h5>
+                        <h5 class="card-title mb-0" id="groups-heading">My Groups</h5>
                         @await Component.InvokeAsync("WZone", new { zone = "GroupActions" })
                     </div>
-                    <div class="card-body">
-                        <!-- Group List -->
+                    <div class="card-body" role="region" aria-labelledby="groups-heading">
                         @await Component.InvokeAsync("WZone", new { zone = "GroupList" })
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

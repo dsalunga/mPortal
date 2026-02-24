@@ -1,9 +1,8 @@
 @* Originally: mcgisg/mcgisg_home.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeMcgisgHomeModel
+@model dynamic
 
 <div id="theme-mcgisg-home-@Model.ObjectId">
-    <!-- SG Branded Header -->
-    <header class="bg-success text-white py-3">
+    <header class="bg-success text-white py-3" role="banner">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
@@ -13,15 +12,13 @@
         </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="bg-dark text-white py-5">
+    <section class="bg-dark text-white py-5" aria-label="Hero banner">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "HeroBanner" })
         </div>
     </section>
 
-    <!-- Three-Column Content Grid -->
-    <main class="container py-4">
+    <main class="container py-4" role="main">
         <div class="row">
             <div class="col-md-4 mb-4">
                 @await Component.InvokeAsync("WZone", new { zone = "Column1" })
@@ -35,10 +32,10 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-3 mt-4">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+            <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year MCGI Small Groups. All rights reserved.</small></p>
         </div>
     </footer>
 </div>

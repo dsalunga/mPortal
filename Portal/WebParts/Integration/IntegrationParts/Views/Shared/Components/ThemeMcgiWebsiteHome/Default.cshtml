@@ -1,21 +1,18 @@
 @* Originally: mcgi_website/template_home.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeMcgiWebsiteHomeModel
+@model dynamic
 
 <div id="theme-mcgi-website-home-@Model.ObjectId">
-    <!-- Header -->
-    <header class="bg-primary text-white py-3">
+    <header class="bg-primary text-white py-3" role="banner">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Header" })
         </div>
     </header>
 
-    <!-- Hero Slider -->
-    <section class="hero-slider">
+    <section class="hero-slider" aria-label="Featured content">
         @await Component.InvokeAsync("WZone", new { zone = "HeroSlider" })
     </section>
 
-    <!-- Three-Column Feature Cards -->
-    <section class="container py-5">
+    <section class="container py-5" aria-label="Features">
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
@@ -41,17 +38,16 @@
         </div>
     </section>
 
-    <!-- News Section -->
-    <section class="bg-light py-4">
+    <section class="bg-light py-4" aria-label="News">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "NewsSection" })
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-3 mt-4">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+            <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year MCGI. All rights reserved.</small></p>
         </div>
     </footer>
 </div>

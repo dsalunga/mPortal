@@ -1,39 +1,36 @@
 @* Originally: area51/InsideWithSidebar.ascx *@
-@model WCMS.WebSystem.WebParts.ViewComponents.ThemeArea51InsideWithSidebarModel
+@model dynamic
 
 <div id="theme-area51-inside-sidebar-@Model.ObjectId">
-    <!-- Header -->
-    <header class="bg-white border-bottom py-3">
+    <header class="bg-white border-bottom py-3" role="banner">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Header" })
         </div>
     </header>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Main navigation">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Navigation" })
         </div>
     </nav>
 
-    <!-- Two-Column Layout -->
-    <main class="container py-4">
+    <main class="container py-4" role="main">
         <div class="row">
             <div class="col-md-8">
                 @await Component.InvokeAsync("WZone", new { zone = "Content" })
             </div>
             <div class="col-md-4">
-                <aside>
+                <aside aria-label="Sidebar">
                     @await Component.InvokeAsync("WZone", new { zone = "Sidebar" })
                 </aside>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-3 mt-4">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
+            <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year All rights reserved.</small></p>
         </div>
     </footer>
 </div>
