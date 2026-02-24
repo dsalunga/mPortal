@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.IO;
-using System.Web;
 
 using WCMS.Common.Utilities;
 
@@ -25,7 +24,7 @@ namespace WCMS.Framework.Core
             // Map to exact path
             if (dbPath.StartsWith("~"))
             {
-                dbPath = HttpContext.Current.Server.MapPath(dbPath);
+                dbPath = PathMapper.MapPath(dbPath);
             }
 
             string databasePath = string.Format(@"{0}\{1}", dbPath, XML_FILE);

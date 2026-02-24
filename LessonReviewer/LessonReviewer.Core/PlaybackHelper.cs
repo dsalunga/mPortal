@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Xml;
-using System.Web;
 
 using WCMS.Common.Utilities;
 using WCMS.WebSystem.Apps.Integration.Net;

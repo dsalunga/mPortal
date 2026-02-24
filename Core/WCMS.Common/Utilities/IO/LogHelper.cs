@@ -5,8 +5,7 @@ using System.Text;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
-
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace WCMS.Common.Utilities
 {
@@ -25,9 +24,9 @@ namespace WCMS.Common.Utilities
             {
                 CreateLogDirectory();
             }
-            else if (!_logPath.Contains(":") && !_logPath.Contains(@"\\") && HttpContext.Current != null)
+            else if (!_logPath.Contains(":") && !_logPath.Contains(@"\\"))
             {
-                _logPath = HttpContext.Current.Server.MapPath(_logPath);
+                _logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _logPath.TrimStart('~').TrimStart('/').TrimStart('\\'));
                 if (!Directory.Exists(_logPath))
                     Directory.CreateDirectory(_logPath);
             }
@@ -51,17 +50,9 @@ namespace WCMS.Common.Utilities
 
         private static void CreateLogDirectory()
         {
-            var context = HttpContext.Current;
-            if (context != null)
-            {
-                _logPath = context.Server.MapPath("~/App_Data/Logs/");
-                if (!Directory.Exists(_logPath))
-                    Directory.CreateDirectory(_logPath);
-            }
-            else
-            {
-                _logPath = Directory.GetCurrentDirectory();
-            }
+            _logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data", "Logs");
+            if (!Directory.Exists(_logPath))
+                Directory.CreateDirectory(_logPath);
         }
 
         public static string CurrentLogFile
@@ -137,9 +128,10 @@ namespace WCMS.Common.Utilities
 
         public static void WriteLog(HttpContext sender, Exception err)
         {
+            string requestUrl = sender.Request.Path + sender.Request.QueryString;
             string msg = string.Format(
                 "Error in: {0}Error Message: {1}Stack Trace: {2}",
-                sender.Request.Url + Environment.NewLine,
+                requestUrl + Environment.NewLine,
                 err.Message + Environment.NewLine,
                 err.StackTrace + Environment.NewLine + Environment.NewLine
             );

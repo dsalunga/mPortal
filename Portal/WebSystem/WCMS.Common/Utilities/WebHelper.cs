@@ -175,17 +175,16 @@ namespace WCMS.Common.Utilities
         {
             if (!string.IsNullOrWhiteSpace(path))
             {
-                var context = HttpContext.Current;
-                if (context == null || path.Contains(":") || path.StartsWith(@"\\"))
+                if (path.Contains(":") || path.StartsWith(@"\\"))
                     return FileHelper.EvalPath(path);
 
                 if (extensive && path.Contains("~"))
                 {
-                    var newPath = path.Replace("~", context.Server.MapPath("~"));
+                    var newPath = path.Replace("~", PathMapper.ContentRootPath);
                     return FileHelper.EvalPath(newPath);
                 }
 
-                return context.Server.MapPath(path);
+                return PathMapper.MapPath(path);
             }
 
             return path;

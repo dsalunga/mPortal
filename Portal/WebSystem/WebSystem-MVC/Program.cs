@@ -46,6 +46,7 @@ var app = builder.Build();
 
 var config = app.Configuration;
 ConfigUtil.SetConfiguration(config);
+PathMapper.Configure(app.Environment.ContentRootPath, app.Environment.WebRootPath);
 
 if (WConfig.AllowCache)
 {

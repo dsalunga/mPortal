@@ -584,7 +584,7 @@ The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree t
 
 ### 7.20) Cross-platform path & file handling
 
-- [ ] Audit all `Server.MapPath()` calls and replace with `IWebHostEnvironment.ContentRootPath` / `WebRootPath` — `Server.MapPath()` is still used in 16+ files (WebHelper.cs, ConfigManager.cs, PlaybackHelper.cs, LogHelper.cs, and .ashx handlers).
+- [x] Audit all `Server.MapPath()` calls and replace with cross-platform `PathMapper.MapPath()` — created `PathMapper` utility in WCMS.Common; configured via `PathMapper.Configure()` in all Program.cs files; all Server.MapPath calls replaced across 16+ files.
 - [x] Replace Windows-style path separators (`\`) with `Path.Combine()` / `Path.DirectorySeparatorChar`.
 - [ ] Replace `System.Drawing` image operations with cross-platform alternatives (SkiaSharp or ImageSharp) where used outside Windows — `System.Drawing` is still used in 10+ files (ImageUtil, ImageSecurity, QRCodeUtil, FileManager); no SkiaSharp/ImageSharp references added.
 - [x] Create cross-platform build scripts (PowerShell Core / `dotnet` CLI) to replace `.cmd` batch files — `dotnet build`/`dotnet test` via CI; 43 legacy `.cmd` scripts remain on disk but are not required for the .NET 10 build.
@@ -718,7 +718,7 @@ The following items were identified during review and are not fully covered by o
 - [x] All 13 `.ashx` handler files and 10 code-behind files deleted (business logic to be re-implemented in API controllers/middleware as needed).
 
 **Server.MapPath migration:**
-- [ ] Replace `Server.MapPath()` calls in `WebHelper.cs`, `ConfigManager.cs`, `PlaybackHelper.cs`, `LogHelper.cs`, and other files with `IWebHostEnvironment.ContentRootPath` / `WebRootPath` (see §7.20).
+- [x] Replace `Server.MapPath()` calls — completed via `PathMapper` utility (see §7.20).
 
 **System.Drawing migration:**
 - [ ] Replace `System.Drawing` usage in `ImageUtil`, `ImageSecurity`, `QRCodeUtil`, `FileManager`, and other files with cross-platform library (SkiaSharp or ImageSharp) (see §7.20).

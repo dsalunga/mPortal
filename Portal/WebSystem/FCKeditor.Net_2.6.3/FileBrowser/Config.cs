@@ -142,7 +142,7 @@ namespace FredCK.FCKeditorV2.FileBrowser
 					else
 					{
 						// Get the local (server) directory path translation.
-						sUserFilesDirectory = Server.MapPath( this.UserFilesPath );
+						sUserFilesDirectory = WCMS.Common.Utilities.PathMapper.MapPath( this.UserFilesPath );
 					}
 				}
 				return sUserFilesDirectory;

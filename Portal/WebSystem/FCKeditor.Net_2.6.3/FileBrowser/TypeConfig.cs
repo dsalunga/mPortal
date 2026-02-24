@@ -70,7 +70,7 @@ namespace FredCK.FCKeditorV2.FileBrowser
 			if ( _UserFilesDirectory == null )
 			{
 				if ( this.FilesAbsolutePath.Length == 0 )
-					_UserFilesDirectory = System.Web.HttpContext.Current.Server.MapPath( this.GetFilesPath() );
+					_UserFilesDirectory = WCMS.Common.Utilities.PathMapper.MapPath( this.GetFilesPath() );
 				else
 					_UserFilesDirectory = FilesAbsolutePath.Replace( "%UserFilesAbsolutePath%", this.FileWorker.Config.UserFilesDirectory );
 			}
@@ -91,7 +91,7 @@ namespace FredCK.FCKeditorV2.FileBrowser
 			if ( _QuickUploadDirectory == null )
 			{
 				if ( this.QuickUploadAbsolutePath.Length == 0 )
-					_QuickUploadDirectory = System.Web.HttpContext.Current.Server.MapPath( this.GetQuickUploadPath() );
+					_QuickUploadDirectory = WCMS.Common.Utilities.PathMapper.MapPath( this.GetQuickUploadPath() );
 				else
 					_QuickUploadDirectory = QuickUploadAbsolutePath.Replace( "%UserFilesAbsolutePath%", this.FileWorker.Config.UserFilesDirectory );
 			}

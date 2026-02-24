@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web;
 
 using WCMS.Common;
 using WCMS.Common.Utilities;
@@ -16,13 +15,12 @@ namespace WCMS.WebSystem
     {
         public static string PrepareCommentsUI(WebObjectBase update, bool userIsContentManager)
         {
-            var context = HttpContext.Current;
             NamedValueProvider values = null;
             var currentUserId = WSession.Current.UserId;
 
             var sb = new StringBuilder();
-            var commentsTemplate = FileHelper.ReadFile(context.Server.MapPath("~/Content/Parts/Social/Comments.template.htm"));
-            var itemTemplate = FileHelper.ReadFile(context.Server.MapPath("~/Content/Parts/Common/Templates/CommentItem.template.htm"));
+            var commentsTemplate = FileHelper.ReadFile(PathMapper.MapPath("~/Content/Parts/Social/Comments.template.htm"));
+            var itemTemplate = FileHelper.ReadFile(PathMapper.MapPath("~/Content/Parts/Common/Templates/CommentItem.template.htm"));
 
             WebUser poster = null;
 

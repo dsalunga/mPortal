@@ -299,7 +299,7 @@ namespace WCMS.Framework
 
         public static string MapPath(string relPath)
         {
-            return Context.Server.MapPath(relPath);
+            return PathMapper.MapPath(relPath);
         }
 
 

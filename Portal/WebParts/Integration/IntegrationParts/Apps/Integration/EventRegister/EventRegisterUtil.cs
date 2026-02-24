@@ -33,7 +33,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
             var context = HttpContext.Current;
             var link = MemberLink.Provider.GetByUserId(user.Id);
 
-            var assetPath = context.Server.MapPath("~/Content/Parts/Integration/EventRegister/assets");
+            var assetPath = PathMapper.MapPath("~/Content/Parts/Integration/EventRegister/assets");
             var id = Image.FromFile(assetPath + @"\blank-final.jpg");
             var qrGenerator = new QRCodeGenerator();
             var qrCode = qrGenerator.CreateQrCode(link.ExternalIdNo, QRCodeGenerator.ECCLevel.Q);
@@ -191,7 +191,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
                         countryContainerRightXY.Y + (countryNameContainerSize.Y - countryNameSize.Height) / 2); // Center Y: top 0 + country name container rem margin
 
                     // Draw Flag
-                    using (var flag = Image.FromFile(context.Server.MapPath("~/Content/Assets/Images/flags/large/" + countryCode + ".png")))
+                    using (var flag = Image.FromFile(PathMapper.MapPath("~/Content/Assets/Images/flags/large/" + countryCode + ".png")))
                     {
                         if (flag != null)
                             graphics.DrawImage(flag,
