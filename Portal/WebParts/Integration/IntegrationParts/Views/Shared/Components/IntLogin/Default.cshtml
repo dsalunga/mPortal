@@ -1,10 +1,11 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntLoginModel
+@model dynamic
 
 <div class="system-login" id="int-login-@Model.ObjectId">
-    @if (!string.IsNullOrEmpty(Model.Message))
+    @if (!string.IsNullOrEmpty((string)Model.Message))
     {
-        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
             @Model.Message
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
 
@@ -27,172 +28,105 @@
             });
         </script>
 
-        <form method="post" novalidate>
-            <table border="0">
-                <tr>
-                    <td style="text-align: right">Group&nbsp;ID<span class="text-danger" title="Email or Group ID is required.">*</span>&nbsp;
-                    </td>
-                    <td>
-                        <input type="text" id="txtUserName" name="UserName" class="form-control" placeholder="Your Group ID or Email" required />
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: right; padding-top: 10px">Password<span class="text-danger" title="Password is required.">*</span>&nbsp;
-                    </td>
-                    <td style="padding-top: 10px">
-                        <input type="password" id="txtPassword" name="Password" class="form-control" required />
-                    </td>
-                </tr>
-                <tr id="panelOtp" style="display: none">
-                    <td style="text-align: right">Send OTP Via
-                    </td>
-                    <td>
-                        <label class="radio-inline"><input type="radio" name="OtpMethod" value="0" checked /> E-mail</label>
-                        <label class="radio-inline"><input type="radio" name="OtpMethod" value="1" /> SMS</label>
-                    </td>
-                </tr>
-                <tr id="panelRememberMe">
-                    <td></td>
-                    <td>
-                        <div class="checkbox" style="margin-top: 0; padding-left: 0">
-                            <label class="aspnet-checkbox">
-                                <input type="checkbox" id="chkRememberMe" name="RememberMe" value="true" /> Keep me logged in
-                            </label>
-                        </div>
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button type="submit" id="cmdLogin" style="width: 80px" class="btn btn-primary" data-loading-text="Logging in..." onclick="prepareAndSubmit();">Login</button>
-                    </td>
-                </tr>
-                <tr id="panelSignUpLink" style="display: none">
-                    <td></td>
-                    <td><br />
-                        <hr style="height: 1px; margin-top: 5px; margin-bottom: 5px" />
-                        <div>
-                            No account or cannot login? <a id="linkSignup" href="#" class="BlueLink" title="Click here to Register">Get Access</a>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+        <form method="post" novalidate aria-label="Login form">
+            <div class="mb-3">
+                <label for="txtUserName" class="form-label">Group ID or Email <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="text" id="txtUserName" name="UserName" class="form-control" placeholder="Your Group ID or Email" required aria-required="true" autocomplete="username" />
+            </div>
+            <div class="mb-3">
+                <label for="txtPassword" class="form-label">Password <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="password" id="txtPassword" name="Password" class="form-control" required aria-required="true" autocomplete="current-password" />
+            </div>
+            <div id="panelOtp" class="mb-3" style="display: none" role="group" aria-label="OTP delivery method">
+                <span class="form-label d-block">Send OTP Via</span>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="OtpMethod" id="otpEmail" value="0" checked />
+                    <label class="form-check-label" for="otpEmail">E-mail</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="OtpMethod" id="otpSms" value="1" />
+                    <label class="form-check-label" for="otpSms">SMS</label>
+                </div>
+            </div>
+            <div id="panelRememberMe" class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="chkRememberMe" name="RememberMe" value="true" />
+                    <label class="form-check-label" for="chkRememberMe">Keep me logged in</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <button type="submit" id="cmdLogin" class="btn btn-primary" data-loading-text="Logging in..." onclick="prepareAndSubmit();">Login</button>
+            </div>
+            <div id="panelSignUpLink" style="display: none">
+                <hr />
+                <p>No account or cannot login? <a id="linkSignup" href="#" title="Click here to Register">Get Access</a></p>
+            </div>
         </form>
     </div>
 
     <!-- OTP Verification View -->
-    <div id="viewOtpVerification" style="display: none">
-        <form method="post" novalidate>
-            <table border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td style="width: 160px; text-align: right">
-                        <label for="txtOtpCode">One-time PIN:&nbsp;&nbsp;</label>
-                    </td>
-                    <td>
-                        <input type="text" id="txtOtpCode" name="OtpCode" size="30" required />
-                        <span class="text-danger" title="OTP PIN required.">*</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <a href="#" id="cmdNewOtpPin">Request New PIN</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <div style="margin-top: 10px">
-                            <button type="submit" id="cmdOtpSubmit" class="btn btn-primary">Submit</button>
-                            <button type="button" id="cmdOtpCancel" class="btn btn-default">Cancel</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <br />
-                        <div style="margin-right: 20px">
-                            NOTE: Your OTP PIN has been sent to your <span id="lblOtpType"></span>.
-                            It will expire after <span id="lblOtpExpiry"></span>.
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td style="color: red">
-                        <br />
-                        <span id="lblOtpMsg"></span>
-                    </td>
-                </tr>
-            </table>
+    <div id="viewOtpVerification" style="display: none" role="region" aria-label="OTP Verification">
+        <form method="post" novalidate aria-label="OTP verification form">
+            <div class="mb-3">
+                <label for="txtOtpCode" class="form-label">One-time PIN <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="text" id="txtOtpCode" name="OtpCode" class="form-control" required aria-required="true" aria-describedby="otpHelp" />
+                <div id="otpHelp" class="form-text">
+                    Your OTP PIN has been sent to your <span id="lblOtpType"></span>.
+                    It will expire after <span id="lblOtpExpiry"></span>.
+                </div>
+            </div>
+            <div class="mb-3">
+                <a href="#" id="cmdNewOtpPin">Request New PIN</a>
+            </div>
+            <div class="mb-3">
+                <button type="submit" id="cmdOtpSubmit" class="btn btn-primary">Submit</button>
+                <button type="button" id="cmdOtpCancel" class="btn btn-secondary ms-2">Cancel</button>
+            </div>
+            <div class="text-danger" role="alert">
+                <span id="lblOtpMsg"></span>
+            </div>
         </form>
     </div>
 
     <!-- Forgot Password View -->
-    <div id="viewForgot" style="display: none">
+    <div id="viewForgot" style="display: none" role="region" aria-label="Forgot Password">
         <div id="viewRetrieveSuccess" style="display: none">
-            <table border="0" cellpadding="0">
-                <tr>
-                    <td>Thank you! Your password has been sent to your email,&nbsp;<strong><span id="lblEmail"></span></strong>
-                        <br />
-                        <br />
-                        <a href="Login/" title="Click here to login">Click here to login</a>
-                    </td>
-                </tr>
-            </table>
+            <div class="alert alert-success" role="status">
+                Thank you! Your password has been sent to your email, <strong><span id="lblEmail"></span></strong>
+            </div>
+            <a href="Login/" title="Click here to login">Click here to login</a>
         </div>
         <div id="viewRetrieve">
-            <form method="post" novalidate>
-                <table border="0" cellpadding="1">
-                    <tr>
-                        <td colspan="2" class="Header">Forgot Your Password?<br /><br /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Enter your Username or Email to receive your password.<br /></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="txtRetrieveUserName">Username or Email:&nbsp;</label>
-                        </td>
-                        <td>
-                            <input type="text" id="txtRetrieveUserName" name="RetrieveUserName" class="form-control input-sm" size="30" required />
-                            <span class="text-danger" title="Username or Email is required.">*</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="color: red">
-                            <span id="lblRetrieveFailed"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <br />
-                            <button type="submit" id="cmdRetrieve" class="btn btn-primary">Submit</button>&nbsp;
-                            <a href="Login/" title="Click here to login">Click here to login</a>
-                        </td>
-                    </tr>
-                </table>
+            <form method="post" novalidate aria-label="Forgot password form">
+                <h5 class="mb-3">Forgot Your Password?</h5>
+                <p>Enter your Username or Email to receive your password.</p>
+                <div class="mb-3">
+                    <label for="txtRetrieveUserName" class="form-label">Username or Email <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtRetrieveUserName" name="RetrieveUserName" class="form-control" required aria-required="true" />
+                </div>
+                <div class="text-danger mb-3" role="alert">
+                    <span id="lblRetrieveFailed"></span>
+                </div>
+                <div>
+                    <button type="submit" id="cmdRetrieve" class="btn btn-primary">Submit</button>
+                    <a href="Login/" class="btn btn-link" title="Click here to login">Back to Login</a>
+                </div>
             </form>
         </div>
     </div>
 
     <!-- Activation View -->
-    <div id="viewActivation" style="display: none">
+    <div id="viewActivation" style="display: none" role="region" aria-label="Account Activation">
         <div id="viewSuccess" style="display: none">
-            Thank you! Your account has been successfully activated.
-            <br />
+            <div class="alert alert-success" role="status">Thank you! Your account has been successfully activated.</div>
             <a href="Login/" title="Click here to login">Click here to login</a>
         </div>
         <div id="viewNoNeed" style="display: none">
-            Your account has been activated already.
-            <br /><br />
+            <div class="alert alert-info" role="status">Your account has been activated already.</div>
             <a href="Login/" title="Click here to login">Click here to login</a>
         </div>
         <div id="viewFailed" style="display: none">
-            Sorry!
-            <br /><br />
+            <div class="alert alert-danger" role="alert">Sorry! Activation failed.</div>
             <a href="Login/" title="Click here to login">Click here to login</a>
         </div>
     </div>
