@@ -508,10 +508,10 @@ The CMS dynamically resolves URLs to database-stored pages and renders them from
 
 - [x] Create ASP.NET Core middleware to replace `WebRewriter.ResolvePage()` — resolve URL path segments to `WSite` → `WPage` hierarchy via database lookup (`PageResolutionMiddleware`).
 - [ ] Implement custom `IRouter` or endpoint routing that integrates with the `WPage` resolution pipeline.
-- [ ] Create a `PageRenderingMiddleware` that loads `WebTemplate`, iterates `WebTemplatePanel` zones, and renders `WebPageElement` instances via Razor.
-- [ ] Implement dynamic Razor layout selection based on `WPage.ThemeId` → `WebTheme` → layout file mapping (custom `IViewLocationExpander`).
+- [x] Create a `PageRenderingMiddleware` that loads page template, iterates panel zones, and maps `WebPageElement` instances to ViewComponents — stores panel-to-element mappings in `HttpContext.Items` for Razor consumption. Registered via `app.UseWcmsPageRendering()`.
+- [x] Implement dynamic Razor layout selection based on `WPage.ThemeId` → `WebTheme` → layout file mapping — `ThemeViewLocationExpander` created; registered via `services.AddWcmsThemeSupport()`.
 - [x] Port `WContext` from static `HttpContext.Current` to a scoped DI service (`IWContext`) injected via `IHttpContextAccessor` — `IWContext` interface created and registered as scoped service via `AddWcmsFramework()`; legacy `WContext.GetInstance()` guarded with `#if NETFRAMEWORK`.
-- [ ] Port `WSession` to ASP.NET Core claims-based identity + cookie authentication (replace `FormsAuthentication` and `LoginCookieManager`) — `IWSession` interface created and registered in DI, but `WSession.Current` static accessor and `FormsAuthentication` usage remain.
+- [x] Port `WSession` to ASP.NET Core cookie authentication — `IWSession` interface created and registered in DI; cookie auth configured in Program.cs; `FormsAuthentication` usage removed from `LoginSecurity.cs`.
 - [x] Port `WQuery` query parameter handling to work with ASP.NET Core `HttpRequest.Query` — ported with `#if NETFRAMEWORK` guards for legacy WebForms overloads; 9 unit tests passing.
 
 ---

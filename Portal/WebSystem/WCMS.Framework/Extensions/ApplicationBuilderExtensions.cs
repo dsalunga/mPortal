@@ -9,5 +9,10 @@ namespace WCMS.Framework.Extensions
         {
             return app.UseMiddleware<PageResolutionMiddleware>();
         }
+
+        public static IApplicationBuilder UseWcmsPageRendering(this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<PageRenderingMiddleware>();
+        }
     }
 }
