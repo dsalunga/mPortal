@@ -1,0 +1,43 @@
+@model WCMS.WebSystem.ViewComponents.LessonPlayerViewModel
+@*
+    LessonPlayer ViewComponent - Media player UI for lesson playback.
+*@
+<div class="lesson-player">
+    @if (!string.IsNullOrEmpty(Model.ServiceType))
+    {
+        <h4>@Model.ServiceType — @Model.ServiceDate</h4>
+    }
+
+    <div class="player-container mb-3">
+        <video id="lessonVideo" controls style="width: 100%; max-width: 800px;"
+               @(Model.Service.AllowSeek ? "" : "controlsList=\"noplaybackrate\"")>
+            @if (Model.Files.Count > 0)
+            {
+                <source src="@Model.Files[0].Url" />
+            }
+            Your browser does not support the video element.
+        </video>
+    </div>
+
+    @if (Model.Files.Count > 1)
+    {
+        <div class="playlist mb-3">
+            <h5>Segments</h5>
+            <ul class="list-group">
+                @foreach (var file in Model.Files)
+                {
+                    var label = !string.IsNullOrEmpty(file.Caption) ? file.Caption : file.Filename;
+                    <li class="list-group-item list-group-item-action"
+                        style="cursor: pointer;"
+                        onclick="document.getElementById('lessonVideo').src='@file.Url'; document.getElementById('lessonVideo').play();">
+                        @label
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+
+    <div class="player-controls">
+        <a href="@Model.BasePath" class="btn btn-outline-secondary btn-sm">&laquo; Back to Lessons</a>
+    </div>
+</div>

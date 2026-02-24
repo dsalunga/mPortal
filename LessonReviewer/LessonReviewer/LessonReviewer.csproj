@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="ViewComponents/**/*.cs" />
+    <Content Include="Views/**/*.cshtml" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
