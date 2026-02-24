@@ -1,16 +1,24 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntMemberRemindersModel
+@model dynamic
 
-<div class="card" id="int-member-reminders-@Model.ObjectId">
-    <div class="card-header">
+<div class="card" id="int-member-reminders-@Model.ObjectId" role="region" aria-label="Member Reminders">
+    <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="card-title mb-0">Member Reminders</h5>
+        <button type="button" id="cmdAddReminder" class="btn btn-sm btn-primary" aria-label="Add new reminder">
+            <span aria-hidden="true">+</span> Add Reminder
+        </button>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Member reminders placeholder content.</p>
+        <div class="list-group" id="reminderList" role="list" aria-label="Reminders">
+        </div>
+        <div id="noReminders" class="text-muted text-center py-4">
+            <p>No reminders found.</p>
+        </div>
     </div>
 </div>

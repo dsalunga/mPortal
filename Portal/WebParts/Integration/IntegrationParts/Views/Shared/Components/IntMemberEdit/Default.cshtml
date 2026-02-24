@@ -1,16 +1,47 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntMemberEditModel
+@model dynamic
 
-<div class="card" id="int-member-edit-@Model.ObjectId">
+<div class="card" id="int-member-edit-@Model.ObjectId" role="region" aria-label="Edit Member">
     <div class="card-header">
         <h5 class="card-title mb-0">Edit Member</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Edit member placeholder content.</p>
+        <form method="post" novalidate aria-label="Edit member form">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="txtFirstName" class="form-label">First Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtFirstName" name="FirstName" class="form-control" required aria-required="true" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="txtLastName" class="form-label">Last Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtLastName" name="LastName" class="form-control" required aria-required="true" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="txtEmail" class="form-label">Email <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="email" id="txtEmail" name="Email" class="form-control" required aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label for="txtPhone" class="form-label">Phone</label>
+                <input type="tel" id="txtPhone" name="Phone" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="ddlStatus" class="form-label">Status</label>
+                <select id="ddlStatus" name="Status" class="form-select" aria-label="Member status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" id="cmdSave" class="btn btn-primary">Save Changes</button>
+                <button type="button" id="cmdCancel" class="btn btn-outline-secondary">Cancel</button>
+            </div>
+        </form>
     </div>
 </div>

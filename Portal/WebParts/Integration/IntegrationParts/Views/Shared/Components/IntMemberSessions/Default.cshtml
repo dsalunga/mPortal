@@ -1,16 +1,30 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntMemberSessionsModel
+@model dynamic
 
-<div class="card" id="int-member-sessions-@Model.ObjectId">
+<div class="card" id="int-member-sessions-@Model.ObjectId" role="region" aria-label="Member Sessions">
     <div class="card-header">
-        <h5 class="card-title mb-0">Member Sessions</h5>
+        <h5 class="card-title mb-0">Active Sessions</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Member sessions placeholder content.</p>
+        <div class="table-responsive">
+            <table class="table table-striped" id="tblSessions" aria-label="Active sessions list">
+                <thead>
+                    <tr>
+                        <th scope="col">Device</th>
+                        <th scope="col">IP Address</th>
+                        <th scope="col">Last Active</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="sessionList">
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
