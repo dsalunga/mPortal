@@ -1,5 +1,5 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.SiteSectionViewModel
-<div class="wcms-site-section @Model.CssClass">
+<section class="wcms-site-section @Model.CssClass" aria-label="@(Model.Title ?? "Site section")">
     @if (!string.IsNullOrEmpty(Model.Title))
     {
         @switch (Model.HeaderTag)
@@ -17,10 +17,10 @@
     }
     @if (!string.IsNullOrEmpty(Model.Subtitle))
     {
-        <p class="lead">@Model.Subtitle</p>
+        <p class="lead" role="doc-subtitle">@Model.Subtitle</p>
     }
     @if (!string.IsNullOrEmpty(Model.Description))
     {
         <p>@Model.Description</p>
     }
-</div>
+</section>

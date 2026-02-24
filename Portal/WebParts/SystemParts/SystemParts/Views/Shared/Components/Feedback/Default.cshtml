@@ -1,35 +1,36 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.FeedbackViewModel
-<div id="pnlContent" style="width: 100%">
-    <form method="post" asp-action="Feedback" asp-controller="ContentApi"
-          id="feedbackForm" data-success-target="#pnlThank">
-        <input type="hidden" name="objectId" value="@Model.ObjectId" />
-        <input type="hidden" name="recordId" value="@Model.RecordId" />
-        <table border="0" width="100%">
-            <tr>
-                <td style="font-weight: bold;" align="center">
-                    Feedback
-                </td>
-            </tr>
-            <tr>
-                <td align="center">
-                    <textarea id="txtFeed" name="feedback" cols="50" rows="8"
-                              style="height: 200px; width: 400px" required></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td align="center">
-                    <button type="submit">Send Feedback</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
-<div id="pnlThank" style="width: 100%; display: none">
-    <table border="0" width="100%">
-        <tr>
-            <td align="center" style="font-weight: bolder;">
-                Thank you for your feedback!
-            </td>
-        </tr>
-    </table>
-</div>
+<section class="wcms-feedback" aria-label="Feedback">
+    <div id="pnlContent-@Model.ObjectId" class="card">
+        <div class="card-body">
+            <form method="post" asp-action="Feedback" asp-controller="ContentApi"
+                  id="feedbackForm-@Model.ObjectId" data-success-target="#pnlThank-@Model.ObjectId"
+                  aria-label="Submit feedback">
+                <input type="hidden" name="objectId" value="@Model.ObjectId" />
+                <input type="hidden" name="recordId" value="@Model.RecordId" />
+                <h5 class="card-title text-center mb-3">Feedback</h5>
+                @if (Model.IsLoggedIn && !string.IsNullOrEmpty(Model.UserName))
+                {
+                    <p class="text-muted small">Submitting as: <strong>@Model.UserName</strong></p>
+                }
+                <div class="mb-3">
+                    <label for="txtFeed-@Model.ObjectId" class="form-label visually-hidden">Your feedback</label>
+                    <textarea id="txtFeed-@Model.ObjectId" name="feedback" class="form-control" rows="6"
+                              placeholder="Share your feedback…" required
+                              aria-required="true"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-send"></i> Send Feedback
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="pnlThank-@Model.ObjectId" class="card text-center d-none" role="status" aria-live="polite">
+        <div class="card-body">
+            <p class="fw-bold text-success mb-0">
+                <i class="bi bi-check-circle"></i> Thank you for your feedback!
+            </p>
+        </div>
+    </div>
+</section>

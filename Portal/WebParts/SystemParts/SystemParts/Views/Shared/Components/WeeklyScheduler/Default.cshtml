@@ -2,19 +2,20 @@
 @{
     var days = new[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 }
-<div class="wcms-weekly-scheduler">
+<section class="wcms-weekly-scheduler" aria-label="Weekly schedule">
     @if (!string.IsNullOrEmpty(Model.Title))
     {
-        <h4>@Model.Title</h4>
+        <h4 id="scheduleTitle-@Model.ObjectId">@Model.Title</h4>
     }
     <div class="table-responsive">
-        <table class="table table-bordered text-center">
+        <table class="table table-bordered text-center" role="grid"
+               aria-label="@(!string.IsNullOrEmpty(Model.Title) ? Model.Title : "Weekly schedule")">
             <thead>
                 <tr>
-                    <th>Time</th>
+                    <th scope="col">Time</th>
                     @foreach (var day in days)
                     {
-                        <th>@day</th>
+                        <th scope="col" abbr="@day.Substring(0, 3)">@day</th>
                     }
                 </tr>
             </thead>
@@ -23,7 +24,9 @@
                 {
                     var hour = h;
                     <tr>
-                        <td class="text-nowrap fw-bold">@(hour.ToString("00")):00</td>
+                        <th scope="row" class="text-nowrap fw-bold">
+                            <time>@(hour.ToString("00")):00</time>
+                        </th>
                         @for (var d = 0; d < 7; d++)
                         {
                             var dayIndex = d;
@@ -31,14 +34,15 @@
                             var entries = Model.Entries.FindAll(e => e.DayOfWeek == dayIndex &&
                                 string.Compare(e.StartTime, hourStr, System.StringComparison.Ordinal) <= 0 &&
                                 string.Compare(e.EndTime, hourStr, System.StringComparison.Ordinal) > 0);
-                            <td class="@(entries.Count > 0 ? "table-info" : "")">
+                            <td class="@(entries.Count > 0 ? "table-info" : "")"
+                                aria-label="@days[dayIndex] @hourStr@(entries.Count > 0 ? ", " + entries.Count + " scheduled" : "")">
                                 @foreach (var entry in entries)
                                 {
                                     <div class="small @entry.CssClass">
                                         <strong>@entry.Title</strong>
                                         @if (!string.IsNullOrEmpty(entry.Location))
                                         {
-                                            <br /><small>@entry.Location</small>
+                                            <br /><small><i class="bi bi-geo-alt" aria-hidden="true"></i> @entry.Location</small>
                                         }
                                     </div>
                                 }
@@ -49,4 +53,4 @@
             </tbody>
         </table>
     </div>
-</div>
+</section>

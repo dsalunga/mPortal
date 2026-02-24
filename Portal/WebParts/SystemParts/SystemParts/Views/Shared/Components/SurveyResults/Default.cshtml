@@ -1,13 +1,15 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.SurveyResultsViewModel
-<div class="wcms-survey-results">
+<section class="wcms-survey-results" aria-label="Survey results">
     @if (!string.IsNullOrEmpty(Model.Title))
     {
-        <h4>@Model.Title</h4>
+        <h4 id="surveyResultsTitle-@Model.ObjectId">@Model.Title</h4>
     }
-    <p class="text-muted">Total responses: @Model.TotalResponses</p>
+    <p class="text-muted">
+        Total responses: <strong>@Model.TotalResponses</strong>
+    </p>
     @if (Model.Questions.Count == 0)
     {
-        <p class="text-muted">No results available.</p>
+        <p class="text-muted" role="status">No results available.</p>
     }
     else
     {
@@ -15,26 +17,28 @@
         {
             <div class="card mb-3">
                 <div class="card-body">
-                    <h6>@question.Text</h6>
+                    <h6 id="resultQ-@question.Id">@question.Text</h6>
                     @if (question.Options != null)
                     {
-                        @foreach (var opt in question.Options)
-                        {
-                            <div class="mb-2">
-                                <div class="d-flex justify-content-between">
-                                    <span>@opt.Text</span>
-                                    <span class="text-muted">@opt.Count (@opt.Percentage.ToString("F1")%)</span>
+                        <div role="list" aria-labelledby="resultQ-@question.Id">
+                            @foreach (var opt in question.Options)
+                            {
+                                <div class="mb-2" role="listitem">
+                                    <div class="d-flex justify-content-between">
+                                        <span>@opt.Text</span>
+                                        <span class="text-muted">@opt.Count (@opt.Percentage.ToString("F1")%)</span>
+                                    </div>
+                                    <div class="progress" style="height: 20px;" role="progressbar"
+                                         aria-label="@opt.Text: @opt.Percentage.ToString("F1")%"
+                                         aria-valuenow="@opt.Percentage" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: @opt.Percentage%"></div>
+                                    </div>
                                 </div>
-                                <div class="progress" style="height: 20px;">
-                                    <div class="progress-bar" role="progressbar"
-                                         style="width: @opt.Percentage%" aria-valuenow="@opt.Percentage"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     }
                 </div>
             </div>
         }
     }
-</div>
+</section>

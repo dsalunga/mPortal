@@ -1,42 +1,44 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.AdminPhotosViewModel
-<div class="wcms-admin-photos">
+<section class="wcms-admin-photos" aria-label="Photo management">
     @if (!Model.IsLoggedIn)
     {
-        <div class="alert alert-warning">Please sign in to manage photos.</div>
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Please sign in to manage photos.
+        </div>
     }
     else
     {
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4>Photo Management</h4>
-            <button type="button" class="btn btn-primary btn-sm">
-                <i class="bi bi-upload"></i> Upload Photos
+            <h4 id="adminPhotosHeading-@Model.ObjectId">Photo Management</h4>
+            <button type="button" class="btn btn-primary btn-sm" aria-label="Upload new photos">
+                <i class="bi bi-upload" aria-hidden="true"></i> Upload Photos
             </button>
         </div>
         @if (Model.Photos.Count == 0)
         {
-            <p class="text-muted">No photos uploaded yet.</p>
+            <p class="text-muted" role="status">No photos uploaded yet.</p>
         }
         else
         {
-            <div class="row">
+            <div class="row" role="list" aria-labelledby="adminPhotosHeading-@Model.ObjectId">
                 @foreach (var photo in Model.Photos)
                 {
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                        <div class="card">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3" role="listitem">
+                        <figure class="card h-100">
                             <img src="@(photo.ThumbnailUrl ?? photo.ImageUrl)" alt="@photo.Title"
                                  class="card-img-top" loading="lazy" />
-                            <div class="card-body p-2">
-                                <small class="card-title d-block">@photo.Title</small>
+                            <figcaption class="card-body p-2">
+                                <small class="card-title d-block fw-semibold">@photo.Title</small>
                                 <small class="text-muted">@photo.AlbumName</small>
-                                <div class="mt-1">
-                                    <button class="btn btn-sm btn-outline-primary">Edit</button>
-                                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                <div class="mt-2 btn-group btn-group-sm" role="group" aria-label="Actions for @photo.Title">
+                                    <button class="btn btn-outline-primary" aria-label="Edit @photo.Title">Edit</button>
+                                    <button class="btn btn-outline-danger" aria-label="Delete @photo.Title">Delete</button>
                                 </div>
-                            </div>
-                        </div>
+                            </figcaption>
+                        </figure>
                     </div>
                 }
             </div>
         }
     }
-</div>
+</section>

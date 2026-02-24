@@ -1,37 +1,54 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.SendEmailViewModel
-<div class="wcms-send-email">
+<section class="wcms-send-email" aria-label="Send email">
     @if (Model.IsSent)
     {
-        <div class="alert alert-success">Your email has been sent successfully.</div>
+        <div class="alert alert-success" role="status" aria-live="polite">
+            <i class="bi bi-check-circle" aria-hidden="true"></i> Your email has been sent successfully.
+        </div>
     }
     else if (!Model.IsLoggedIn)
     {
-        <div class="alert alert-warning">Please sign in to send emails.</div>
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Please sign in to send emails.
+        </div>
     }
     else
     {
-        <h4>Send Email</h4>
-        <form method="post">
-            <input type="hidden" name="objectId" value="@Model.ObjectId" />
-            <input type="hidden" name="recordId" value="@Model.RecordId" />
-            <div class="mb-3">
-                <label for="emailRecipient" class="form-label">To</label>
-                <input type="email" id="emailRecipient" name="recipient" class="form-control"
-                       value="@Model.Recipient" required />
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Send Email</h4>
+                <form method="post" aria-label="Email composition form">
+                    <input type="hidden" name="objectId" value="@Model.ObjectId" />
+                    <input type="hidden" name="recordId" value="@Model.RecordId" />
+                    <div class="mb-3">
+                        <label for="emailRecipient-@Model.ObjectId" class="form-label">
+                            To <span class="text-danger" aria-hidden="true">*</span>
+                        </label>
+                        <input type="email" id="emailRecipient-@Model.ObjectId" name="recipient" class="form-control"
+                               value="@Model.Recipient" required aria-required="true" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailSubject-@Model.ObjectId" class="form-label">
+                            Subject <span class="text-danger" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="emailSubject-@Model.ObjectId" name="subject" class="form-control"
+                               value="@Model.Subject" required aria-required="true" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailBody-@Model.ObjectId" class="form-label">
+                            Message <span class="text-danger" aria-hidden="true">*</span>
+                        </label>
+                        <textarea id="emailBody-@Model.ObjectId" name="body" class="form-control" rows="6"
+                                  required aria-required="true">@Model.Body</textarea>
+                    </div>
+                    <p class="text-muted small">
+                        <i class="bi bi-person" aria-hidden="true"></i> Sending as: <strong>@Model.SenderName</strong>
+                    </p>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-envelope" aria-hidden="true"></i> Send
+                    </button>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="emailSubject" class="form-label">Subject</label>
-                <input type="text" id="emailSubject" name="subject" class="form-control"
-                       value="@Model.Subject" required />
-            </div>
-            <div class="mb-3">
-                <label for="emailBody" class="form-label">Message</label>
-                <textarea id="emailBody" name="body" class="form-control" rows="6" required>@Model.Body</textarea>
-            </div>
-            <p class="text-muted small">Sending as: @Model.SenderName</p>
-            <button type="submit" class="btn btn-primary">
-                <i class="bi bi-envelope"></i> Send
-            </button>
-        </form>
+        </div>
     }
-</div>
+</section>

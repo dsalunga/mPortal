@@ -1,11 +1,11 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.TwoColumnViewModel
-<div class="wcms-two-column @Model.CssClass">
+<section class="wcms-two-column @Model.CssClass" aria-label="Two-column layout">
     <div class="row">
-        <div class="col-md-@Model.LeftColumnWidth">
+        <div class="col-md-@Model.LeftColumnWidth" role="region" aria-label="Left column">
             @Html.Raw(Model.LeftContent)
         </div>
-        <div class="col-md-@Model.RightColumnWidth">
+        <div class="col-md-@Model.RightColumnWidth" role="region" aria-label="Right column">
             @Html.Raw(Model.RightContent)
         </div>
     </div>
-</div>
+</section>
