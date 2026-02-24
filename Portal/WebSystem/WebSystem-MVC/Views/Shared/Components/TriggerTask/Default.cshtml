@@ -1,0 +1,61 @@
+@model WCMS.WebSystem.ViewComponents.TriggerTaskViewModel
+<section class="system-trigger-task" aria-label="Trigger Task">
+    <h5>Background Tasks</h5>
+
+    @if (!Model.IsAdministrator)
+    {
+        <div class="alert alert-warning" role="alert">You do not have permission to manage tasks.</div>
+    }
+    else if (!Model.Jobs.Any())
+    {
+        <p class="text-muted">No background tasks are configured.</p>
+    }
+    else
+    {
+        @if (!string.IsNullOrEmpty(Model.StatusMessage))
+        {
+            <div class="alert alert-info" role="status">@Model.StatusMessage</div>
+        }
+
+        <div class="table-responsive">
+            <table class="table table-striped" aria-label="Background tasks list">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Enabled</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var job in Model.Jobs)
+                    {
+                        <tr>
+                            <td>@job.Name</td>
+                            <td>@job.Description</td>
+                            <td>
+                                @switch (job.ExecutionStatus)
+                                {
+                                    case WCMS.Framework.ExecutionStatus.Pending: <span class="badge bg-secondary">Pending</span> break;
+                                    case WCMS.Framework.ExecutionStatus.Running: <span class="badge bg-primary">Running</span> break;
+                                    case WCMS.Framework.ExecutionStatus.Completed: <span class="badge bg-success">Completed</span> break;
+                                    case WCMS.Framework.ExecutionStatus.Failed: <span class="badge bg-danger">Failed</span> break;
+                                }
+                            </td>
+                            <td>@(job.IsEnabled ? "Yes" : "No")</td>
+                            <td>
+                                <form method="post" asp-action="Trigger" asp-controller="Task" style="display:inline">
+                                    <input type="hidden" name="jobId" value="@job.Id" />
+                                    <button type="submit" class="btn btn-sm btn-outline-primary" aria-label="Trigger @job.Name">
+                                        Trigger
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>
