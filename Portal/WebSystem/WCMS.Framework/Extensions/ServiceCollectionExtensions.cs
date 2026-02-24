@@ -8,6 +8,7 @@ namespace WCMS.Framework.Extensions
     {
         public static IServiceCollection AddWcmsFramework(this IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
             services.AddScoped<IWSession, WSession>();
             services.AddScoped<IWContext, WContext>();
             return services;
