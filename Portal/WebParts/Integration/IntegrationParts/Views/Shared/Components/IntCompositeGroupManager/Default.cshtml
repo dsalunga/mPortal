@@ -1,16 +1,32 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntCompositeGroupManagerModel
+@model dynamic
 
-<div class="card" id="int-composite-group-manager-@Model.ObjectId">
+<div class="card" id="int-composite-group-manager-@Model.ObjectId" role="region" aria-label="Composite Group Manager">
     <div class="card-header">
         <h5 class="card-title mb-0">Composite Group Manager</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Composite group management placeholder content.</p>
+        <form method="post" novalidate aria-label="Composite group form">
+            <div class="mb-3">
+                <label for="txtCompositeGroupName" class="form-label">Composite Group Name <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="text" id="txtCompositeGroupName" name="CompositeGroupName" class="form-control" required aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label for="ddlChildGroups" class="form-label">Child Groups</label>
+                <select id="ddlChildGroups" name="ChildGroups" class="form-select" multiple aria-label="Select child groups" aria-multiselectable="true" style="min-height: 120px;">
+                </select>
+                <div class="form-text">Hold Ctrl/Cmd to select multiple groups.</div>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" id="cmdSave" class="btn btn-primary">Save</button>
+                <button type="button" id="cmdCancel" class="btn btn-outline-secondary">Cancel</button>
+            </div>
+        </form>
     </div>
 </div>

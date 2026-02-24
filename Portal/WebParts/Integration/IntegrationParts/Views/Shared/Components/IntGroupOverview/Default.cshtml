@@ -1,16 +1,42 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntGroupOverviewModel
+@model dynamic
 
-<div class="card" id="int-group-overview-@Model.ObjectId">
+<div class="card" id="int-group-overview-@Model.ObjectId" role="region" aria-label="Group Overview">
     <div class="card-header">
         <h5 class="card-title mb-0">Group Overview</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Group overview placeholder content.</p>
+        <dl class="row mb-3" id="groupDetails">
+            <dt class="col-sm-4">Group Name</dt>
+            <dd class="col-sm-8" id="lblGroupName">—</dd>
+            <dt class="col-sm-4">Description</dt>
+            <dd class="col-sm-8" id="lblDescription">—</dd>
+            <dt class="col-sm-4">Type</dt>
+            <dd class="col-sm-8" id="lblGroupType">—</dd>
+            <dt class="col-sm-4">Members</dt>
+            <dd class="col-sm-8"><span class="badge bg-info" id="lblMemberCount">0</span></dd>
+            <dt class="col-sm-4">Status</dt>
+            <dd class="col-sm-8"><span class="badge bg-success" id="lblStatus">Active</span></dd>
+        </dl>
+        <h6>Members</h6>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped" id="tblGroupMembers" aria-label="Group members list">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Joined</th>
+                    </tr>
+                </thead>
+                <tbody id="groupMemberList">
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

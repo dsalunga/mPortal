@@ -1,16 +1,38 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntGroupManagerModel
+@model dynamic
 
-<div class="card" id="int-group-manager-@Model.ObjectId">
-    <div class="card-header">
+<div class="card" id="int-group-manager-@Model.ObjectId" role="region" aria-label="Group Manager">
+    <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="card-title mb-0">Group Manager</h5>
+        <button type="button" id="cmdAddGroup" class="btn btn-sm btn-primary" aria-label="Add new group">
+            <span aria-hidden="true">+</span> Add Group
+        </button>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Group management placeholder content.</p>
+        <div class="mb-3">
+            <label for="txtSearchGroups" class="form-label visually-hidden">Search groups</label>
+            <input type="text" id="txtSearchGroups" name="Search" class="form-control" placeholder="Search groups..." aria-label="Search groups" />
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover" id="tblGroups" aria-label="Groups list">
+                <thead>
+                    <tr>
+                        <th scope="col">Group Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Members</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="groupList">
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

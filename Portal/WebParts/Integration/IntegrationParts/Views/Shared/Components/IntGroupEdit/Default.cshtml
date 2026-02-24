@@ -1,16 +1,40 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntGroupEditModel
+@model dynamic
 
-<div class="card" id="int-group-edit-@Model.ObjectId">
+<div class="card" id="int-group-edit-@Model.ObjectId" role="region" aria-label="Edit Group">
     <div class="card-header">
         <h5 class="card-title mb-0">Edit Group</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Edit group placeholder content.</p>
+        <form method="post" novalidate aria-label="Edit group form">
+            <div class="mb-3">
+                <label for="txtGroupName" class="form-label">Group Name <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="text" id="txtGroupName" name="GroupName" class="form-control" required aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label for="txtDescription" class="form-label">Description</label>
+                <textarea id="txtDescription" name="Description" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="ddlGroupType" class="form-label">Group Type</label>
+                <select id="ddlGroupType" name="GroupType" class="form-select" aria-label="Select group type">
+                    <option value="">-- Select Type --</option>
+                </select>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="chkActive" name="IsActive" value="true" checked />
+                <label class="form-check-label" for="chkActive">Active</label>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" id="cmdSave" class="btn btn-primary">Save</button>
+                <button type="button" id="cmdCancel" class="btn btn-outline-secondary">Cancel</button>
+            </div>
+        </form>
     </div>
 </div>
