@@ -1,9 +1,17 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ArticleComponentModel
+@*
+    Ported from Article.ascx / Article.ascx.cs
+    Original uses template substitution (ListTemplate, ItemTemplate, DetailsTemplate).
+    CSS classes preserved from Templates/Multiple/Basic.ascx and Templates/Single/Basic.ascx.
+*@
 @if (Model.IsDetailView && Model.DetailArticle != null)
 {
-    <article class="article-detail">
-        <h1>@Model.DetailArticle.Title</h1>
-        <div class="article-meta">
+    @* Single/Basic.ascx detail view pattern *@
+    <div class="article-detail">
+        <div class="link" style="font-weight: bold">
+            <h1>@Model.DetailArticle.Title</h1>
+        </div>
+        <div class="text12blk article-meta">
             <span class="date">@Model.DetailArticle.Date</span>
             @if (!string.IsNullOrEmpty(Model.DetailArticle.Author))
             {
@@ -12,23 +20,26 @@
         </div>
         @if (!string.IsNullOrEmpty(Model.DetailArticle.Image))
         {
-            <img src="@Model.DetailArticle.Image" alt="@Model.DetailArticle.Title" class="article-image" />
+            <img src="@Model.DetailArticle.Image" alt="@Model.DetailArticle.Title" class="article-image img-fluid" />
         }
-        <div class="article-content">@Html.Raw(Model.DetailArticle.Content)</div>
-    </article>
+        <div class="text12blk article-content">@Html.Raw(Model.DetailArticle.Content)</div>
+    </div>
 }
 else if (Model.Articles != null)
 {
+    @* Multiple/Basic.ascx list view pattern *@
     <div class="article-list">
         @foreach (var article in Model.Articles)
         {
             <div class="article-item">
                 @if (!string.IsNullOrEmpty(article.Image))
                 {
-                    <img src="@article.Image" alt="@article.Title" class="article-thumbnail" />
+                    <img src="@article.Image" alt="@article.Title" class="article-thumbnail img-fluid" />
                 }
-                <h3><a href="?ArticleId=@article.Id">@article.Title</a></h3>
-                <div class="article-meta">
+                <div class="link" style="font-weight: bold">
+                    <h3><a href="?ArticleId=@article.Id">@article.Title</a></h3>
+                </div>
+                <div class="text12blk">
                     <span class="date">@article.Date</span>
                     @if (!string.IsNullOrEmpty(article.Author))
                     {
@@ -37,7 +48,7 @@ else if (Model.Articles != null)
                 </div>
                 @if (!string.IsNullOrEmpty(article.Description))
                 {
-                    <p class="article-description">@Html.Raw(article.Description)</p>
+                    <div class="article-description">@Html.Raw(article.Description)</div>
                 }
             </div>
         }
@@ -45,16 +56,20 @@ else if (Model.Articles != null)
         @if (Model.TotalItems > Model.PageSize && Model.PageSize > 0)
         {
             var pageCount = (int)Math.Ceiling((double)Model.TotalItems / Model.PageSize);
-            <nav class="table-pager" aria-label="Article pagination">
-                <ul class="pagination">
-                    @for (int i = 1; i <= pageCount; i++)
+            <div class="table-pager">
+                @for (int i = 1; i <= pageCount; i++)
+                {
+                    if (i == Model.CurrentPage)
                     {
-                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-                            <a class="page-link" href="?ShowP=@i">@i</a>
-                        </li>
+                        <span>@i</span>
                     }
-                </ul>
-            </nav>
+                    else
+                    {
+                        <a href="?ShowP=@i">@i</a>
+                    }
+                    @:&nbsp;
+                }
+            </div>
         }
     </div>
 }

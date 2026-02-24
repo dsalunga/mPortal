@@ -1,5 +1,11 @@
 @model string
+@*
+    Ported from Content.ascx / Content.ascx.cs
+    Original renders element content as a Literal control (raw HTML output).
+*@
 @if (!string.IsNullOrEmpty(Model))
 {
-    @Html.Raw(Model)
+    <div class="wcms-content">
+        @Html.Raw(Model)
+    </div>
 }

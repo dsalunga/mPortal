@@ -1,74 +1,83 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.FileManagerViewModel
-<div class="wcms-file-manager">
-    @if (!string.IsNullOrEmpty(Model.CurrentPath))
-    {
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="@Model.BasePath">Root</a></li>
-                <li class="breadcrumb-item active">@Model.CurrentPath</li>
-            </ol>
-        </nav>
-    }
+@*
+    Ported from FileManager/FileManager.ascx
+    Original uses asp:GridView for file listing, asp:Button for controls,
+    uc1:Breadcrumb for navigation, asp:HyperLink/asp:LinkButton for file/folder links.
+    CSS classes preserved: _wp_FileManager, wp-FileManager, control-box, Header,
+    _FileManager_Button, plus original GridView styling.
+*@
+<div class="_wp_FileManager wp-FileManager">
+    @* Breadcrumb (ported from FileManager/Controls/Breadcrumb.ascx) *@
+    <div id="location" style="font-size: larger">
+        <a href="@Model.BasePath">Root</a>
+        @if (!string.IsNullOrEmpty(Model.CurrentPath))
+        {
+            @: &raquo; @Model.CurrentPath
+        }
+    </div>
+    <br />
     @if (Model.IsLoggedIn)
     {
-        <div class="mb-3">
-            <button type="button" class="btn btn-primary btn-sm">
-                <i class="bi bi-upload"></i> Upload
-            </button>
-            <button type="button" class="btn btn-outline-secondary btn-sm">
-                <i class="bi bi-folder-plus"></i> New Folder
-            </button>
+        <div class="control-box">
+            <div>
+                <button type="button" class="btn btn-default btn-sm">Add files</button>&nbsp;
+                <button type="button" class="btn btn-default btn-sm">Create folder</button>
+            </div>
         </div>
     }
     @if (Model.Files.Count == 0)
     {
-        <p class="text-muted">This folder is empty.</p>
+        <span>No files found.</span>
     }
     else
     {
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Size</th>
-                        <th>Modified</th>
-                        <th>Actions</th>
+        <table class="table table-borderless" style="width: 100%; color: #333333;" cellpadding="2">
+            <thead>
+                <tr style="background-color: #5C5247; color: White; font-weight: bold;">
+                    <th style="text-align: left;">Name</th>
+                    <th style="text-align: left;">Size</th>
+                    <th style="text-align: left;">Type</th>
+                    <th style="text-align: left;">Date Modified</th>
+                    <th style="text-align: center; width: 18px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ var rowIndex = 0; }
+                @foreach (var file in Model.Files)
+                {
+                    var rowBg = rowIndex % 2 == 0 ? "#F5F5E6" : "White";
+                    <tr style="background-color: @rowBg;">
+                        <td>
+                            @if (file.IsDirectory)
+                            {
+                                <img class="_FileManager_Button" src="~/Content/Assets/Images/Common/folder2.gif"
+                                     alt="View details" title="View details" />
+                                <a href="@Model.BasePath?path=@file.FilePath">@file.FileName</a>
+                            }
+                            else
+                            {
+                                <img class="_FileManager_Button" src="~/Content/Assets/Images/Common/txt.gif"
+                                     alt="View details" title="View details" />
+                                <a href="@file.FilePath" target="_blank">@file.FileName</a>
+                            }
+                        </td>
+                        <td style="text-align: left;">
+                            @if (!file.IsDirectory)
+                            {
+                                @(file.FileSize < 1024 ? file.FileSize + " B" : (file.FileSize / 1024) + " KB")
+                            }
+                        </td>
+                        <td style="text-align: left;">@file.ContentType</td>
+                        <td style="text-align: left;">@file.LastModified</td>
+                        <td style="text-align: center;"></td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var file in Model.Files)
-                    {
-                        <tr>
-                            <td>
-                                @if (file.IsDirectory)
-                                {
-                                    <i class="bi bi-folder-fill text-warning"></i>
-                                    <a href="@Model.BasePath?path=@file.FilePath">@file.FileName</a>
-                                }
-                                else
-                                {
-                                    <i class="bi bi-file-earmark"></i>
-                                    <a href="@file.FilePath" target="_blank">@file.FileName</a>
-                                }
-                            </td>
-                            <td>
-                                @if (!file.IsDirectory)
-                                {
-                                    @(file.FileSize < 1024 ? file.FileSize + " B" : (file.FileSize / 1024) + " KB")
-                                }
-                            </td>
-                            <td><small>@file.LastModified</small></td>
-                            <td>
-                                @if (!file.IsDirectory)
-                                {
-                                    <a href="@file.FilePath" class="btn btn-sm btn-outline-primary" download>Download</a>
-                                }
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                    rowIndex++;
+                }
+            </tbody>
+        </table>
     }
+    @* Message placeholder matching original asp:Label ID="lblMessage" CssClass="Header" *@
+    <div>
+        <span class="Header" style="color: Red"></span>
+    </div>
 </div>

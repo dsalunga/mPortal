@@ -1,24 +1,30 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.GalleryViewModel
-<div class="wcms-gallery">
+@*
+    Ported from Photo/Controls/FancyBoxThumbnails.ascx and Album.ascx
+    Original uses asp:DataList (gallery-album) and asp:Literal templates (gallery-thumb-fancybox).
+    CSS classes preserved: gallery-thumb-fancybox, gallery-album, fancybox-img
+*@
+<div class="wcms-gallery gallery-thumb-fancybox">
     @if (Model.Items.Count == 0)
     {
         <p class="text-muted">No images in this gallery.</p>
     }
     else
     {
-        <div class="row">
+        <div class="row gallery-album">
             @foreach (var item in Model.Items)
             {
                 <div class="col-md-3 col-sm-4 col-6 mb-3">
-                    <div class="card gallery-item">
-                        <a href="@item.ImageUrl" data-lightbox="gallery" data-title="@item.Title">
+                    <div class="card gallery-item" style="padding: 10px 15px 10px 0;">
+                        <a href="@item.ImageUrl" rel="photo_album" title="@item.Title"
+                           data-lightbox="gallery" data-title="@item.Title">
                             <img src="@(item.ThumbnailUrl ?? item.ImageUrl)" alt="@item.Title"
-                                 class="card-img-top" loading="lazy" />
+                                 class="fancybox-img card-img-top" loading="lazy" />
                         </a>
                         @if (!string.IsNullOrEmpty(item.Title))
                         {
-                            <div class="card-body p-2">
-                                <small class="card-title">@item.Title</small>
+                            <div class="card-body p-2 text-center">
+                                <strong class="card-title">@item.Title</strong>
                             </div>
                         }
                     </div>
