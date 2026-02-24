@@ -454,10 +454,9 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 
 ### 7.10) CI/CD pipeline setup
 
-- [x] Create GitHub Actions CI workflow for `dotnet build` (`.github/workflows/build.yml` — runs on push/PR to `master` and `codex/net10-modernization`; builds core libraries and web apps on .NET 10).
-- [x] Add `dotnet test` step for existing test projects (`Integration.UnitTest`, `SDKTest`, `WCMS.Framework.Tests`) — tests run in CI (failures currently non-blocking via `|| true`).
+- [x] Create GitHub Actions CI workflow for `dotnet build` (`.github/workflows/build.yml` — runs on push/PR to `master`, `codex/net10-modernization`, and `feat/update-net10-migration-tasks`; builds core libraries, web apps, and all 7 web hosts on .NET 10).
+- [x] Add `dotnet test` step for existing test projects (`WCMS.Framework.Tests`, `SDKTest`) — tests run in CI with blocking failures (removed `|| true` fallback).
 - [ ] Add a CI job matrix covering both `net48` (Windows runner) and `net10.0` (Ubuntu/macOS runner) targets.
-- [ ] Make test step blocking (remove `|| true` fallback) once all tests are stable.
 - [ ] Configure deployment pipeline(s) for staging / production environments.
 - [ ] Wire SQL project (`.sqlproj`) build into the Windows CI lane using SSDT or `Microsoft.Build.Sql`.
 
@@ -495,7 +494,7 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 ### 7.14) Configuration and deployment
 
 - [x] Complete `web.config` → `appsettings.json` migration for all ASP.NET Core hosts.
-- [ ] Migrate connection strings and secrets to ASP.NET Core configuration (user secrets / Azure Key Vault / environment variables).
+- [x] Migrate connection strings to ASP.NET Core configuration — connection strings defined in `appsettings.json` for WebSystem-MVC, Integration (IntegrationDb, MusicDb, ExternalDb), and BranchLocator (BranchLocatorDb). Production secrets should use user secrets / Azure Key Vault / environment variables.
 - [ ] Update deployment scripts (currently `.cmd` / Windows-based) for cross-platform or containerized deployment.
 - [x] Create Docker support (`Dockerfile` / `docker-compose`) for ASP.NET Core hosts.
 - [ ] Document production deployment runbook for the .NET 10 stack.

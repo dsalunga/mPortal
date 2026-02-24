@@ -2,9 +2,9 @@ name: Build and Test
 
 on:
   push:
-    branches: [ master, codex/net10-modernization ]
+    branches: [ master, codex/net10-modernization, feat/update-net10-migration-tasks ]
   pull_request:
-    branches: [ master, codex/net10-modernization ]
+    branches: [ master, codex/net10-modernization, feat/update-net10-migration-tasks ]
 
 jobs:
   build:
@@ -22,9 +22,7 @@ jobs:
         dotnet-version: ${{ matrix.dotnet-version }}
 
     - name: Restore dependencies
-      run: |
-        dotnet restore Portal/WebSystem/mPortal.sln || true
-        dotnet restore Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj
+      run: dotnet restore Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj
 
     - name: Build core libraries
       run: |
@@ -43,7 +41,17 @@ jobs:
         dotnet build Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Incident/WCMS.WebSystem.Apps.Incident.csproj --no-restore -c Release
         dotnet build Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj --no-restore -c Release
 
+    - name: Build web hosts
+      run: |
+        dotnet build Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj --no-restore -c Release
+        dotnet build Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj --no-restore -c Release
+        dotnet build Portal/WebParts/SystemPartsG2/SystemPartsG2/WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj --no-restore -c Release
+        dotnet build Portal/WebParts/SystemPartsG3/SystemPartsG3/WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj --no-restore -c Release
+        dotnet build Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj --no-restore -c Release
+        dotnet build BibleReader/BibleReader/BibleReader.WebApp.csproj --no-restore -c Release
+        dotnet build LessonReviewer/LessonReviewer/LessonReviewer.csproj --no-restore -c Release
+
     - name: Run tests
       run: |
-        dotnet test Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj --no-restore -c Release --verbosity normal || true
-        dotnet test Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj --no-restore -c Release --verbosity normal || true
+        dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj --no-restore -c Release --verbosity normal
+        dotnet test Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj --no-restore -c Release --verbosity normal
