@@ -1,0 +1,96 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntEditProfileModel
+
+<div id="int-edit-profile-@Model.ObjectId">
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            @Model.Message
+        </div>
+    }
+
+    <input type="hidden" id="hFirstLogin" name="FirstLogin" value="0" />
+
+    <div id="panelLastUpdate" hidden>
+        You have updated your profile last <strong id="lblLastUpdate">&lt;UNKNOWN&gt;</strong>
+    </div>
+    <div id="panelNotice" style="background-color: Yellow; padding: 5px" hidden>
+        <h4>
+            <strong>NOTE</strong>:&nbsp;Please update your profile before proceeding with any
+            activities in the Portal. Thank you!</h4>
+    </div>
+
+    <div id="panelBasicInfo" style="float: left;" hidden>
+        <br />
+        <img src="/Content/Assets/Images/user_green.png" width="300" id="memberPhoto" style="border: solid 2px #aaa; float: left; margin: 2px" alt="Member Photo" />
+        <div style="padding-bottom: 4px">
+            Name: <strong id="lblFullName"></strong>
+        </div>
+        <div style="padding-bottom: 4px">
+            Group ID #: <strong id="lblUserName"></strong>
+        </div>
+        <div style="padding-bottom: 4px">
+            Email Address: <strong id="lblEmailAddress"></strong>
+        </div>
+    </div>
+
+    <div style="float: left; clear: both">
+        <!-- Personal Information -->
+        <br />
+        <div id="viewProfile">
+            <span id="lblStatus" class="text-danger"></span>
+            <h3>PERSONAL Information</h3>
+            <form method="post" novalidate>
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="txtFirstName">First Name</label>
+                    <input type="text" id="txtFirstName" name="FirstName" size="50" />
+                </div>
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="txtMiddleName">Middle Name</label>
+                    <input type="text" id="txtMiddleName" name="MiddleName" size="50" />
+                </div>
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="txtLastName">Last Name</label>
+                    <input type="text" id="txtLastName" name="LastName" size="50" />
+                </div>
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="txtNickname">Nickname</label>
+                    <input type="text" id="txtNickname" name="Nickname" class="input" size="40" />
+                </div>
+                <br />
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="txtEmail">Email</label>
+                    <input type="email" id="txtEmail" name="Email" size="40" readonly disabled />
+                </div>
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="txtMobileNumber">Mobile Number</label>
+                    <input type="text" id="txtMobileNumber" name="MobileNumber" placeholder="Country Code + Mobile Number" />
+                </div>
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="txtHomePhone">Home Phone</label>
+                    <input type="text" id="txtHomePhone" name="HomePhone" placeholder="Country Code + Area Code + Phone Number" />
+                </div>
+                <br />
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="txtHomeAddress1">Address Line 1</label>
+                    <input type="text" id="txtHomeAddress1" name="HomeAddress1" size="60" />
+                </div>
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="txtHomeAddress2">Address Line 2</label>
+                    <input type="text" id="txtHomeAddress2" name="HomeAddress2" size="60" />
+                </div>
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="txtHomeAddressZipCode">Zip Code</label>
+                    <input type="text" id="txtHomeAddressZipCode" name="HomeAddressZipCode" size="10" />
+                </div>
+                <div class="FieldLine">
+                    <label class="FieldLabel" for="cboHomeAddressCountry">Country</label>
+                    <select id="cboHomeAddressCountry" name="HomeAddressCountry">
+                        <option value="-1">- Select -</option>
+                    </select>
+                </div>
+                <br />
+                <button type="submit" id="cmdSave" name="Action" value="Save" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

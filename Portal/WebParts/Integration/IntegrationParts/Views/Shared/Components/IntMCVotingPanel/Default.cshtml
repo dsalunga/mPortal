@@ -1,0 +1,58 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntMCVotingPanelModel
+
+<div id="int-mc-voting-panel-@Model.ObjectId">
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            @Model.Message
+        </div>
+    }
+
+    <!-- Login -->
+    <div id="loginboard" class="gradient loginpad roundcorner1 border1 shadow1">
+        <h1 class="shadow2 roundcorner2"><span class="textshadow1">Please login</span></h1>
+        <p>
+            For Singapore users, please log in with your existing Integration SG Portal account.<br />
+            <br />
+            For users from other countries, you may use this public access:<br />
+            Username: MCVoter<br />
+            Password: asop123
+        </p>
+        <div>
+            <label for="textUsername">Username:</label>
+            <input name="textUsername" id="textUsername" placeholder="Username" value="" />
+        </div>
+        <div>
+            <label for="textPassword">Password:</label>
+            <input type="password" name="textPassword" id="textPassword" placeholder="Password" value="" />
+        </div>
+        <div id="logbuttons" style="margin-left: 55px">
+            <div id="b1_login" class="gbutton loginpad roundcorner1 border1 shadow2">
+                <img src="/Content/Parts/MusicCompetition/v3-res/img-vote/note.png" alt="" height="25" /><span>Login</span>
+            </div>
+            <div id="b2_results" class="gbutton loginpad roundcorner1 border1 shadow2">
+                <img src="/Content/Parts/MusicCompetition/v3-res/img-vote/note.png" alt="" height="25" /><span>View Results</span>
+            </div>
+        </div>
+        <br /><br /><br />
+        <div id="eventInfoContent"></div>
+    </div>
+
+    <!-- Voting Board -->
+    <div id="votingboard" style="display: none">
+        <div id="songlist">
+            <!-- Song entries populated dynamically -->
+        </div>
+        <div id="voteActions" style="margin-top: 10px">
+            <button type="button" id="cmdSubmitVote" class="btn btn-primary">Submit Vote</button>
+            <button type="button" id="cmdLogout" class="btn btn-default">Logout</button>
+        </div>
+    </div>
+
+    <!-- Results Board -->
+    <div id="resultsboard" style="display: none">
+        <div id="resultsList">
+            <!-- Results populated dynamically -->
+        </div>
+    </div>
+</div>

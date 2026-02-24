@@ -1,0 +1,48 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntMCSongScoreSheetModel
+
+<div id="int-mc-song-score-sheet-@Model.ObjectId">
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            @Model.Message
+        </div>
+    }
+
+    <div class="control-box no-bottom-margin">
+        <div>
+            <select id="cboCompetition" name="CompetitionId" class="input">
+                <option value="-1">-- Select Competition --</option>
+            </select>
+            <button type="submit" id="cmdDelete" name="Action" value="Delete" class="btn btn-default btn-sm" onclick="return confirm('Are you sure you want to delete the selected items?');">Delete</button>
+            <div class="pull-right">
+                <input type="text" id="txtSearch" name="SearchKeyword" class="input" size="25" />
+                <button type="button" id="cmdSearch" class="btn btn-default btn-sm">Search</button>&nbsp;
+                <button type="button" id="cmdReset" class="btn btn-default btn-sm">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-borderless" id="scoreGrid" style="width: 100%">
+        <thead>
+            <tr style="background-color: #507CD1; color: white; font-weight: bold; text-align: left">
+                <th style="width: 15px; text-align: center">
+                    <input type="checkbox" name="chkCheckedMain" onclick="CheckAll(this, 'chkChecked');" />
+                </th>
+                <th style="width: 20px; text-align: center"></th>
+                <th style="text-align: left">ID</th>
+                <th style="text-align: left">Song</th>
+                <th style="text-align: left">Judge</th>
+                <th style="text-align: left">Musicality</th>
+                <th style="text-align: left">Lyrics/Message</th>
+                <th style="text-align: left">Over-all Impact</th>
+                <th style="text-align: left">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Score rows populated dynamically -->
+        </tbody>
+    </table>
+
+    <br /><br />
+    <span id="lblStatus" style="color: Red"></span>
+</div>

@@ -1,53 +1,151 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntRegisterSGModel
 
-<div class="card" id="int-register-sg-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Registration</h5>
-    </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
-                @Model.Message
-            </div>
-        }
-        <form method="post" novalidate>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="sgFirstName" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="sgFirstName" name="FirstName" required />
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="sgLastName" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="sgLastName" name="LastName" required />
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="sgEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" id="sgEmail" name="Email" required />
-            </div>
-            <div class="mb-3">
-                <label for="sgGroup" class="form-label">Group</label>
-                <select class="form-select" id="sgGroup" name="GroupName">
-                    <option value="">-- Select Group --</option>
-                    @if (Model.Groups != null)
-                    {
-                        @foreach (var group in Model.Groups)
-                        {
-                            <option value="@group">@group</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="sgPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="sgPassword" name="Password" required />
-            </div>
-            <div class="mb-3">
-                <label for="sgConfirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="sgConfirmPassword" name="ConfirmPassword" required />
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-    </div>
+<div class="system-reg" id="int-register-sg-@Model.ObjectId" style="text-align: left">
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            @Model.Message
+        </div>
+    }
+
+    <form method="post" novalidate>
+        <input type="hidden" id="hLocaleFilter" name="LocaleFilter" value="" />
+
+        <!-- Group information -->
+        <table cellpadding="1" cellspacing="1" style="float: left">
+            <tr>
+                <td align="left" colspan="2">
+                    <h4 class="heading colr" id="lblTitle">Member Registration</h4>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 110px; text-align: left">
+                    Group ID
+                </td>
+                <td style="text-align: left">
+                    <input type="text" id="txtExternalIDNo" name="ExternalIDNo" class="input" size="20" tabindex="1" required />
+                    &nbsp;<a href="#" style="color: Gray; text-decoration: underline" id="linkNoExternal"
+                        title="Click here to register if you don't have an External account." tabindex="2">No External account?</a>
+                    <a href="#" style="color: Gray; text-decoration: underline" id="linkWithExternal"
+                        title="Click here to register if you have an existing External account." tabindex="3">Already registered to External?</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    Date of Membership
+                </td>
+                <td style="text-align: left">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding-right: 1px;">
+                                <input type="text" id="txtMembershipDate" name="MembershipDate" class="span2 input" placeholder="YYYY-MM-DD" maxlength="10" tabindex="4" required />
+                            </td>
+                            <td>
+                                &nbsp;<button type="submit" id="btnRetrieve" name="Action" value="Retrieve" class="btn btn-default btn-inline btn-sm" tabindex="6">Retrieve</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr id="rowLocale" style="display: none">
+                <td style="text-align: left">
+                    Group Locale
+                </td>
+                <td>
+                    <input type="text" id="txtLocale" name="Locale" class="span5 input" size="52" tabindex="7" />
+                </td>
+            </tr>
+            <tr id="panelMemberInfoHr">
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+        </table>
+
+        <!-- Name and picture -->
+        <div id="panelMemberInfo" style="float: left">
+            <table cellpadding="1" cellspacing="1">
+                <tr>
+                    <td style="width: 110px; text-align: left">
+                        First Name
+                    </td>
+                    <td>
+                        <input type="text" id="txtFirstName" name="FirstName" class="input" size="31" readonly disabled tabindex="8" required />
+                    </td>
+                </tr>
+                <tr id="rowMiddleName" style="display: none">
+                    <td style="text-align: left">
+                        Middle Name
+                    </td>
+                    <td>
+                        <input type="text" id="txtMiddleName" name="MiddleName" class="input" size="31" tabindex="9" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left">
+                        Last Name
+                    </td>
+                    <td>
+                        <input type="text" id="txtLastName" name="LastName" class="input" size="31" readonly disabled tabindex="10" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left">
+                        E-mail
+                    </td>
+                    <td>
+                        <input type="email" id="txtEmail" name="Email" class="input" size="31" readonly disabled tabindex="11" required />
+                    </td>
+                </tr>
+                <tr id="rowContact">
+                    <td style="text-align: left">
+                        Mobile Number
+                    </td>
+                    <td>
+                        <input type="text" id="txtMobileNumber" name="MobileNumber" class="span2 input" readonly size="25" tabindex="12" />
+                    </td>
+                </tr>
+                <tr id="rowAddress" style="display: none">
+                    <td style="text-align: left">
+                        Home Address
+                    </td>
+                    <td>
+                        <input type="text" id="txtAddress" name="Address" class="span5 input" size="52" tabindex="13" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <hr />
+                    </td>
+                </tr>
+            </table>
+
+            <img id="imgPhoto" src="" alt="" class="PhotoFrame" style="border-width: 1px; float: left; margin-left: 10px;" />
+
+            <!-- Account information -->
+            <table cellpadding="1" cellspacing="1">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <button type="submit" id="btnRegister" name="Action" value="Register" class="btn btn-primary" style="width: 85px" disabled tabindex="17">Register</button>
+                        <br /><br />
+                        NOTE: Your Temporary Password will be sent to your e-mail address and SMS number,
+                        please make sure your contact information is correct.
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <table cellpadding="1" cellspacing="1" style="width: 100%">
+            <tr>
+                <td style="width: 110px; text-align: left"></td>
+                <td>
+                    <br />
+                    <div style="font-weight: bold">
+                        Already have an account? <a id="linkLogin" href="/Singapore/Public/Login/">Click here to Login</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>

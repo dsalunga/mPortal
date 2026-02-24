@@ -1,0 +1,96 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.IntMemberProfileModel
+
+<div class="member-details" id="int-member-profile-@Model.ObjectId">
+    <h2 id="lblHeader">Member Profile</h2>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            @Model.Message
+        </div>
+    }
+
+    <!-- Profile View -->
+    <div id="viewProfile">
+        <a id="linkUpdatePhoto" href="#" title="Update Profile Photo">
+            <img src="/Content/Assets/Images/nophoto.png" width="300" id="memberPhoto" style="border: solid 2px #aaa; margin: 2px 0 2px 0" alt="Member Photo" /></a>
+        <br />
+        <div class="col-one" style="margin-top: 5px;" id="panelSendMessage" hidden>
+            <h3>
+                <a id="linkSendMessage" href="#">Send <span id="lblFirstName"></span>&nbsp;a Message</a>
+            </h3>
+            <br />
+        </div>
+        <div>
+            Last updated on <strong id="lblLastUpdate">&lt;UNKNOWN&gt;</strong>
+        </div>
+        <div id="panelStatusText" hidden>
+            <br />
+            <div style="padding: 3px; background-color: Yellow; display: inline; font-size: larger">
+                <span id="lblStatusText"></span>
+            </div>
+        </div>
+        <br />
+        <div class="FieldLine">
+            <span class="FieldLabel">Name</span> <strong id="lblFullName"></strong>
+        </div>
+        <div class="FieldLine" id="panelNickname" hidden>
+            <span class="FieldLabel">Nickname</span> <strong id="lblNickname"></strong>
+        </div>
+        <div class="FieldLine" id="panelEmail" hidden>
+            <span class="FieldLabel">Email</span> <strong id="lblEmail"></strong>
+        </div>
+        <div class="FieldLine" id="panelEmail2" hidden>
+            <span class="FieldLabel">Email (Secondary)</span> <strong id="lblEmail2"></strong>
+        </div>
+        <div class="FieldLine" id="panelUserName" hidden>
+            <span class="FieldLabel">User Name</span> <strong id="lblUserName"></strong>
+        </div>
+        <div class="FieldLine">
+            <span class="FieldLabel">Group ID #</span> <strong id="lblExternalIdNo"></strong>
+        </div>
+        <div class="FieldLine">
+            <span class="FieldLabel">Date of Membership</span> <strong id="lblMembershipDate"></strong>
+        </div>
+        <div class="FieldLine" id="panelLocale" hidden>
+            <span class="FieldLabel">Locale</span> <strong id="lblLocale"></strong>
+        </div>
+
+        <div style="float: left; clear: both">
+            <div id="panelPersonalAndWorkInfo" hidden>
+                <!-- Personal Information -->
+                <br /><br />
+                <h3>PERSONAL Information</h3>
+                <div class="FieldLine" id="panelHomeAddressLine1" hidden>
+                    <label class="FieldLabel">Address Line 1</label>
+                    <span id="txtHomeAddress1" style="font-weight: bold"></span>
+                </div>
+                <div class="FieldLine" id="panelHomeAddressLine2" hidden>
+                    <label class="FieldLabel">Address Line 2</label>
+                    <span id="txtHomeAddress2" style="font-weight: bold"></span>
+                </div>
+                <div class="FieldLine" id="divHomeState" hidden>
+                    <label class="FieldLabel">State (US Only)</label>
+                    <span id="txtHomeAddressState" style="font-weight: bold"></span>
+                </div>
+                <div class="FieldLine" id="panelHomeZipCode" hidden>
+                    <label class="FieldLabel">Zip Code</label>
+                    <span id="txtHomeAddressZipCode" style="font-weight: bold"></span>
+                </div>
+                <div class="FieldLine" id="panelHomeCountry" hidden>
+                    <label class="FieldLabel">Country</label>
+                    <span id="txtHomeAddressCountry" style="font-weight: bold"></span>
+                </div>
+                <br />
+                <div class="FieldLine" id="panelMobile" hidden>
+                    <label class="FieldLabel">Mobile Number</label>
+                    <span id="txtMobile" style="font-weight: bold"></span>
+                </div>
+                <div class="FieldLine" id="panelHomePhone" hidden>
+                    <label class="FieldLabel">Home Phone</label>
+                    <span id="txtHomePhone" style="font-weight: bold"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
