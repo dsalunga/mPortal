@@ -1,10 +1,11 @@
 @model WCMS.WebSystem.ViewComponents.ElementDesignerViewModel
 
-<div class="card admin-panel">
+<div class="card admin-panel" id="pnlElementDesigner">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0"><i class="bi bi-puzzle"></i> Element Designer</h5>
         <div>
             <button type="button" class="btn btn-sm btn-primary" id="btnSaveElement"><i class="bi bi-save"></i> Save</button>
+            <button type="button" class="btn btn-sm btn-outline-danger" id="btnDeleteElement"><i class="bi bi-trash"></i> Delete</button>
         </div>
     </div>
     <div class="card-body">
@@ -15,11 +16,11 @@
         <input type="hidden" id="elementId" value="@Model.ElementId" />
         <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label">Element Name</label>
+                <label class="form-label" for="elementName">Element Name</label>
                 <input type="text" class="form-control" id="elementName" value="@Model.ElementName" />
             </div>
-            <div class="col-md-4">
-                <label class="form-label">Element Type</label>
+            <div class="col-md-6">
+                <label class="form-label" for="elementType">Element Type</label>
                 <select class="form-select" id="elementType">
                     <option value="">-- Select Type --</option>
                     @foreach (var t in Model.AvailableElementTypes)
@@ -28,31 +29,48 @@
                     }
                 </select>
             </div>
-            <div class="col-md-2">
-                <label class="form-label">Sort Order</label>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label" for="elementPanelId">Panel ID</label>
+                <input type="number" class="form-control" id="elementPanelId" value="@Model.PanelId" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="elementSort">Sort Order</label>
                 <input type="number" class="form-control" id="elementSort" value="@Model.SortOrder" />
             </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="elementVisible" checked="@Model.IsVisible" />
+                    <label class="form-check-label" for="elementVisible">Visible</label>
+                </div>
+            </div>
         </div>
-        <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" id="elementVisible" checked="@Model.IsVisible" />
-            <label class="form-check-label" for="elementVisible">Visible</label>
-        </div>
-        <h6>Parameters</h6>
+        <h6><i class="bi bi-list-ul"></i> Parameters</h6>
         <div id="parameterContainer">
             @if (Model.Parameters.Count == 0)
             {
                 <p class="text-muted">No parameters configured for this element.</p>
             }
-            @foreach (var param in Model.Parameters)
+            else
             {
-                <div class="row mb-2">
-                    <div class="col-md-4">
-                        <label class="form-label">@param.Label</label>
-                    </div>
-                    <div class="col-md-8">
-                        <input type="@param.InputType" class="form-control" name="param_@param.Key" value="@param.Value" />
-                    </div>
-                </div>
+                <table class="table table-sm table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var param in Model.Parameters)
+                        {
+                            <tr>
+                                <td><label for="param_@param.Key">@param.Label</label></td>
+                                <td><input type="@param.InputType" class="form-control form-control-sm" id="param_@param.Key" name="param_@param.Key" value="@param.Value" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             }
         </div>
     </div>

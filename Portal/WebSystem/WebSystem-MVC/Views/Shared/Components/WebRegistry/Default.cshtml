@@ -1,6 +1,28 @@
 @model WCMS.WebSystem.ViewComponents.WebRegistryViewModel
 
-<div class="card admin-panel">
+@{
+    void RenderRegistryTree(List<WCMS.WebSystem.ViewComponents.RegistryNode> nodes, string selectedPath)
+    {
+        if (nodes == null || nodes.Count == 0) return;
+        <ul class="list-unstyled ms-3">
+            @foreach (var node in nodes)
+            {
+                var isSelected = node.Path == selectedPath;
+                <li class="mb-1">
+                    <a href="javascript:void(0)" class="reg-node text-decoration-none @(isSelected ? "fw-bold text-primary" : "")" data-node-id="@node.Id" data-path="@node.Path">
+                        <i class="bi @(isSelected ? "bi-folder-fill" : "bi-folder")"></i> @node.Name
+                    </a>
+                    @if (node.Children != null && node.Children.Count > 0)
+                    {
+                        RenderRegistryTree(node.Children, selectedPath);
+                    }
+                </li>
+            }
+        </ul>
+    }
+}
+
+<div class="card admin-panel" id="pnlRegistryEditor">
     <div class="card-header">
         <h5 class="mb-0"><i class="bi bi-journal-code"></i> Registry</h5>
     </div>
@@ -20,20 +42,12 @@
                         }
                         else
                         {
-                            <ul class="list-unstyled" id="registryTree">
-                                @foreach (var node in Model.Nodes)
-                                {
-                                    <li class="mb-1">
-                                        <a href="javascript:void(0)" class="reg-node" data-node-id="@node.Id" data-path="@node.Path">
-                                            <i class="bi bi-folder"></i> @node.Name
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
+                            RenderRegistryTree(Model.Nodes, Model.SelectedPath);
                         }
                     </div>
                     <div class="mt-2">
                         <button type="button" class="btn btn-sm btn-outline-success" id="btnAddKey"><i class="bi bi-plus-lg"></i> New Key</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" id="btnDeleteKey"><i class="bi bi-trash"></i> Delete Key</button>
                     </div>
                 </div>
             </div>
@@ -50,7 +64,7 @@
                         <button type="button" class="btn btn-sm btn-outline-success" id="btnAddValue"><i class="bi bi-plus-lg"></i> New Value</button>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-sm">
+                        <table class="table table-bordered table-sm" id="registryValueGrid">
                             <thead class="table-light">
                                 <tr>
                                     <th>Key</th>
@@ -67,11 +81,11 @@
                                 @foreach (var entry in Model.Entries)
                                 {
                                     <tr>
-                                        <td>@entry.Key</td>
-                                        <td><code>@entry.Value</code></td>
+                                        <td><code>@entry.Key</code></td>
+                                        <td><input type="text" class="form-control form-control-sm" value="@entry.Value" data-entry-id="@entry.Id" /></td>
                                         <td><span class="badge bg-secondary">@entry.DataType</span></td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-value" data-entry-id="@entry.Id"><i class="bi bi-pencil"></i></button>
+                                            <button type="button" class="btn btn-sm btn-outline-primary btn-save-value" data-entry-id="@entry.Id"><i class="bi bi-save"></i></button>
                                             <button type="button" class="btn btn-sm btn-outline-danger btn-delete-value" data-entry-id="@entry.Id"><i class="bi bi-trash"></i></button>
                                         </td>
                                     </tr>

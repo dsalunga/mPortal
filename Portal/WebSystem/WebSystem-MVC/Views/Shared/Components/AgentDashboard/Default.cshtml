@@ -1,12 +1,20 @@
 @model WCMS.WebSystem.ViewComponents.AgentDashboardViewModel
 
-<div class="card admin-panel">
+<div class="card admin-panel" id="pnlAgentManager">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-robot"></i> Agent Dashboard</h5>
+        <h5 class="mb-0"><i class="bi bi-robot"></i> Agent Manager</h5>
         <div>
-            <span class="badge @(Model.IsAgentRunning ? "bg-success" : "bg-secondary") me-2">
+            <span class="badge @(Model.IsAgentRunning ? "bg-success" : "bg-secondary") me-2" id="lblAgentStatus">
                 @(Model.IsAgentRunning ? "Running" : "Stopped")
             </span>
+            @if (Model.IsAgentRunning)
+            {
+                <button type="button" class="btn btn-sm btn-outline-danger" id="btnStopAgent"><i class="bi bi-stop-circle"></i> Stop</button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-sm btn-outline-success" id="btnStartAgent"><i class="bi bi-play-circle"></i> Start</button>
+            }
             <button type="button" class="btn btn-sm btn-success" id="btnNewTask"><i class="bi bi-plus-lg"></i> New Task</button>
             <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshAgent"><i class="bi bi-arrow-clockwise"></i></button>
         </div>
@@ -19,31 +27,34 @@
         @if (Model.LastRunTime.HasValue)
         {
             <div class="px-3 pt-2">
-                <small class="text-muted">Last agent run: @Model.LastRunTime.Value.ToString("g")</small>
+                <small class="text-muted"><i class="bi bi-clock"></i> Last agent run: <span id="lblLastRun">@Model.LastRunTime.Value.ToString("g")</span></small>
             </div>
         }
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm mb-0">
+            <table class="table table-striped table-hover table-sm mb-0" id="gvAgentTasks">
                 <thead class="table-light">
                     <tr>
                         <th>Task</th>
+                        <th>Description</th>
                         <th>Schedule</th>
                         <th>Status</th>
                         <th>Enabled</th>
                         <th>Last Run</th>
                         <th>Next Run</th>
+                        <th>Last Result</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model.Tasks.Count == 0)
                     {
-                        <tr><td colspan="7" class="text-center text-muted">No scheduled tasks.</td></tr>
+                        <tr><td colspan="9" class="text-center text-muted">No scheduled tasks.</td></tr>
                     }
                     @foreach (var task in Model.Tasks)
                     {
-                        <tr>
-                            <td>@task.Name</td>
+                        <tr data-task-id="@task.Id">
+                            <td><i class="bi bi-gear"></i> @task.Name</td>
+                            <td><small>@task.Description</small></td>
                             <td><code>@task.Schedule</code></td>
                             <td>
                                 @if (task.Status == "Running")
@@ -54,27 +65,25 @@
                                 {
                                     <span class="badge bg-danger">Failed</span>
                                 }
+                                else if (task.Status == "Completed")
+                                {
+                                    <span class="badge bg-success">Completed</span>
+                                }
                                 else
                                 {
                                     <span class="badge bg-secondary">@task.Status</span>
                                 }
                             </td>
                             <td>
-                                @if (task.IsEnabled)
-                                {
-                                    <i class="bi bi-check-circle text-success"></i>
-                                }
-                                else
-                                {
-                                    <i class="bi bi-x-circle text-muted"></i>
-                                }
+                                <input type="checkbox" class="form-check-input chk-task-enabled" data-task-id="@task.Id" checked="@task.IsEnabled" />
                             </td>
                             <td>@task.LastRunTime?.ToString("g")</td>
                             <td>@task.NextRunTime?.ToString("g")</td>
+                            <td><small class="text-muted">@task.LastResult</small></td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-task" data-task-id="@task.Id"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-success btn-run-task" data-task-id="@task.Id"><i class="bi bi-play"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-task" data-task-id="@task.Id"><i class="bi bi-trash"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-task" data-task-id="@task.Id" title="Edit"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-success btn-run-task" data-task-id="@task.Id" title="Run Now"><i class="bi bi-play"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-task" data-task-id="@task.Id" title="Delete"><i class="bi bi-trash"></i></button>
                             </td>
                         </tr>
                     }

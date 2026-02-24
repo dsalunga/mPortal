@@ -1,6 +1,36 @@
 @model WCMS.WebSystem.ViewComponents.WebSitesControlViewModel
 
-<div class="card admin-panel">
+@{
+    void RenderSiteNodes(List<WCMS.WebSystem.ViewComponents.SiteNode> nodes, int selectedId)
+    {
+        if (nodes == null || nodes.Count == 0) return;
+        <ul class="list-unstyled ms-3">
+            @foreach (var site in nodes)
+            {
+                <li class="site-node mb-1 @(site.Id == selectedId ? "selected" : "")">
+                    <a href="javascript:void(0)" data-site-id="@site.Id" class="site-link text-decoration-none">
+                        <i class="bi @(site.IsActive ? "bi-globe" : "bi-globe2 text-muted")"></i>
+                        @site.Name
+                    </a>
+                    @if (!string.IsNullOrEmpty(site.Url))
+                    {
+                        <small class="text-muted ms-2">(@site.Url)</small>
+                    }
+                    @if (!site.IsActive)
+                    {
+                        <span class="badge bg-secondary ms-1">Inactive</span>
+                    }
+                    @if (site.Children != null && site.Children.Count > 0)
+                    {
+                        RenderSiteNodes(site.Children, selectedId);
+                    }
+                </li>
+            }
+        </ul>
+    }
+}
+
+<div class="card admin-panel" id="pnlSiteManager">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0"><i class="bi bi-diagram-3"></i> Web Sites</h5>
         <div>
@@ -20,21 +50,7 @@
             }
             else
             {
-                <ul class="list-unstyled" id="siteTree">
-                    @foreach (var site in Model.Sites)
-                    {
-                        <li class="site-node @(site.Id == Model.SelectedSiteId ? "selected" : "")">
-                            <a href="javascript:void(0)" data-site-id="@site.Id" class="site-link">
-                                <i class="bi @(site.IsActive ? "bi-globe" : "bi-globe2 text-muted")"></i>
-                                @site.Name
-                            </a>
-                            @if (!string.IsNullOrEmpty(site.Url))
-                            {
-                                <small class="text-muted ms-2">(@site.Url)</small>
-                            }
-                        </li>
-                    }
-                </ul>
+                RenderSiteNodes(Model.Sites, Model.SelectedSiteId);
             }
         </div>
     </div>
