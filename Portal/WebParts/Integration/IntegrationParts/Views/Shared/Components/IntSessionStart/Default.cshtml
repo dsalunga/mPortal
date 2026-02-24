@@ -1,16 +1,33 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntSessionStartModel
+@model dynamic
 
-<div class="card" id="int-session-start-@Model.ObjectId">
+<div class="card" id="int-session-start-@Model.ObjectId" role="region" aria-label="Start Session">
     <div class="card-header">
-        <h5 class="card-title mb-0">Session Start</h5>
+        <h5 class="card-title mb-0">Start Session</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Session start placeholder content.</p>
+        <form method="post" novalidate aria-label="Start session form">
+            <div class="mb-3">
+                <label for="ddlSessionService" class="form-label">Service <span class="text-danger" aria-hidden="true">*</span></label>
+                <select id="ddlSessionService" name="ServiceId" class="form-select" required aria-required="true" aria-label="Select service for session">
+                    <option value="">-- Select Service --</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="txtSessionDate" class="form-label">Session Date <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="date" id="txtSessionDate" name="SessionDate" class="form-control" required aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label for="txtSessionRemarks" class="form-label">Remarks</label>
+                <textarea id="txtSessionRemarks" name="Remarks" class="form-control" rows="2"></textarea>
+            </div>
+            <button type="submit" id="cmdStartSession" class="btn btn-primary">Start Session</button>
+        </form>
     </div>
 </div>

@@ -1,16 +1,45 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntWebGroupTabModel
+@model dynamic
 
-<div class="card" id="int-web-group-tab-@Model.ObjectId">
+<div class="card" id="int-web-group-tab-@Model.ObjectId" role="region" aria-label="Web Group Details">
     <div class="card-header">
-        <h5 class="card-title mb-0">Group Tab</h5>
+        <ul class="nav nav-tabs card-header-tabs" id="webGroupTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tab-details" data-bs-toggle="tab" data-bs-target="#pane-details" type="button" role="tab" aria-controls="pane-details" aria-selected="true">Details</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-members" data-bs-toggle="tab" data-bs-target="#pane-members" type="button" role="tab" aria-controls="pane-members" aria-selected="false">Members</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-settings" data-bs-toggle="tab" data-bs-target="#pane-settings" type="button" role="tab" aria-controls="pane-settings" aria-selected="false">Settings</button>
+            </li>
+        </ul>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Group tab control placeholder content.</p>
+        <div class="tab-content" id="webGroupTabContent">
+            <div class="tab-pane fade show active" id="pane-details" role="tabpanel" aria-labelledby="tab-details">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Group Name</dt>
+                    <dd class="col-sm-8" id="lblWebGroupName">—</dd>
+                    <dt class="col-sm-4">Description</dt>
+                    <dd class="col-sm-8" id="lblWebGroupDesc">—</dd>
+                    <dt class="col-sm-4">Status</dt>
+                    <dd class="col-sm-8"><span class="badge bg-success" id="lblWebGroupStatus">Active</span></dd>
+                </dl>
+            </div>
+            <div class="tab-pane fade" id="pane-members" role="tabpanel" aria-labelledby="tab-members">
+                <div class="list-group" id="webGroupMemberList" role="list">
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pane-settings" role="tabpanel" aria-labelledby="tab-settings">
+                <p class="text-muted">Group settings will appear here.</p>
+            </div>
+        </div>
     </div>
 </div>

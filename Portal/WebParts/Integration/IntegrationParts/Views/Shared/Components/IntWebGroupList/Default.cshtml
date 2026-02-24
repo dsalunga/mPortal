@@ -1,16 +1,37 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntWebGroupListModel
+@model dynamic
 
-<div class="card" id="int-web-group-list-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Web Group List</h5>
+<div class="card" id="int-web-group-list-@Model.ObjectId" role="region" aria-label="Web Group List">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Web Groups</h5>
+        <button type="button" id="cmdAddWebGroup" class="btn btn-sm btn-primary" aria-label="Add new web group">
+            <span aria-hidden="true">+</span> Add Group
+        </button>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Web group listing placeholder content.</p>
+        <div class="mb-3">
+            <label for="txtSearchWebGroups" class="form-label visually-hidden">Search web groups</label>
+            <input type="text" id="txtSearchWebGroups" class="form-control" placeholder="Search web groups..." aria-label="Search web groups" />
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover" id="tblWebGroups" aria-label="Web groups list">
+                <thead>
+                    <tr>
+                        <th scope="col">Group Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Members</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="webGroupList">
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -1,16 +1,39 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntWebGroupUsersModel
+@model dynamic
 
-<div class="card" id="int-web-group-users-@Model.ObjectId">
-    <div class="card-header">
+<div class="card" id="int-web-group-users-@Model.ObjectId" role="region" aria-label="Web Group Users">
+    <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="card-title mb-0">Web Group Users</h5>
+        <button type="button" id="cmdAddUserToGroup" class="btn btn-sm btn-primary" aria-label="Add user to group">
+            <span aria-hidden="true">+</span> Add User
+        </button>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Web group user list placeholder content.</p>
+        <div class="mb-3">
+            <label for="ddlWebGroup" class="form-label">Select Group</label>
+            <select id="ddlWebGroup" name="GroupId" class="form-select" aria-label="Select a web group">
+                <option value="">-- Select Group --</option>
+            </select>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover" id="tblWebGroupUsers" aria-label="Web group users list">
+                <thead>
+                    <tr>
+                        <th scope="col">User</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="webGroupUserList">
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
