@@ -1,8 +1,8 @@
-@model dynamic
+@model WCMS.WebSystem.WebParts.ViewComponents.IncidentTicketViewModel
 
-<div class="incident-ticket-view" role="region" aria-label="Incident Ticket Detail">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 id="ticketHeading">Ticket #@Model.TicketId</h4>
+<article class="incident-ticket-view" aria-labelledby="ticketHeading-@Model.ObjectId">
+    <header class="d-flex justify-content-between align-items-center mb-3">
+        <h4 id="ticketHeading-@Model.ObjectId" class="mb-0">Ticket #@Model.TicketId</h4>
         @{
             string ticketStatusBadge = Model.Status == 0 ? "bg-primary"
                 : Model.Status == 1 ? "bg-warning text-dark"
@@ -10,17 +10,16 @@
                 : "bg-secondary";
         }
         <span class="badge @ticketStatusBadge fs-6" aria-label="Status: @Model.StatusText">@Model.StatusText</span>
-    </div>
+    </header>
 
-    <!-- Ticket Details -->
     <div class="card mb-4">
         <div class="card-header">
             <h5 class="mb-0">Ticket Details</h5>
         </div>
         <div class="card-body">
             <dl class="row mb-0">
-                <dt class="col-sm-3">Subject</dt>
-                <dd class="col-sm-9">@Model.Subject</dd>
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
 
                 <dt class="col-sm-3">Category</dt>
                 <dd class="col-sm-9">@Model.CategoryName</dd>
@@ -28,31 +27,51 @@
                 <dt class="col-sm-3">Type</dt>
                 <dd class="col-sm-9">@Model.TypeName</dd>
 
-                <dt class="col-sm-3">Priority</dt>
+                <dt class="col-sm-3">Urgency</dt>
                 <dd class="col-sm-9">
                     @{
-                        string priBadge = Model.Priority == "Critical" ? "bg-danger"
-                            : Model.Priority == "High" ? "bg-warning text-dark"
-                            : Model.Priority == "Medium" ? "bg-info text-dark"
+                        string urgBadge = Model.Urgency >= 3 ? "bg-danger"
+                            : Model.Urgency == 2 ? "bg-warning text-dark"
+                            : Model.Urgency == 1 ? "bg-info text-dark"
                             : "bg-secondary";
                     }
-                    <span class="badge @priBadge">@Model.Priority</span>
+                    <span class="badge @urgBadge">@Model.UrgencyText</span>
                 </dd>
 
                 <dt class="col-sm-3">Assigned To</dt>
                 <dd class="col-sm-9">@Model.AssignedUserName</dd>
 
                 <dt class="col-sm-3">Created</dt>
-                <dd class="col-sm-9">@Model.DateCreated.ToString("yyyy-MM-dd HH:mm")</dd>
+                <dd class="col-sm-9"><time datetime="@Model.DateCreated.ToString("yyyy-MM-ddTHH:mm")">@Model.DateCreated.ToString("yyyy-MM-dd HH:mm")</time></dd>
 
-                <dt class="col-sm-3">Description</dt>
-                <dd class="col-sm-9">@Model.Description</dd>
+                @if (Model.DateClosed.HasValue)
+                {
+                    <dt class="col-sm-3">Closed</dt>
+                    <dd class="col-sm-9"><time datetime="@Model.DateClosed.Value.ToString("yyyy-MM-ddTHH:mm")">@Model.DateClosed.Value.ToString("yyyy-MM-dd HH:mm")</time></dd>
+                }
+
+                @if (Model.ETA.HasValue)
+                {
+                    <dt class="col-sm-3">ETA</dt>
+                    <dd class="col-sm-9"><time datetime="@Model.ETA.Value.ToString("yyyy-MM-ddTHH:mm")">@Model.ETA.Value.ToString("yyyy-MM-dd HH:mm")</time></dd>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.TicketGuid))
+                {
+                    <dt class="col-sm-3">Reference</dt>
+                    <dd class="col-sm-9"><code>@Model.TicketGuid</code></dd>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.NotifyAlso))
+                {
+                    <dt class="col-sm-3">Also Notify</dt>
+                    <dd class="col-sm-9">@Model.NotifyAlso</dd>
+                }
             </dl>
         </div>
     </div>
 
-    <!-- Update Status -->
-    @if ((bool)(Model.CanEdit ?? false))
+    @if (Model.CanEdit)
     {
         <div class="card mb-4">
             <div class="card-header">
@@ -62,8 +81,8 @@
                 <form method="post" class="d-flex align-items-end gap-3" aria-label="Update ticket status">
                     <input type="hidden" name="TicketId" value="@Model.TicketId" />
                     <div>
-                        <label for="ticketStatusUpdate" class="form-label">New Status</label>
-                        <select class="form-select" id="ticketStatusUpdate" name="Status" aria-label="Select new status">
+                        <label for="ticketStatusUpdate-@Model.ObjectId" class="form-label">New Status</label>
+                        <select class="form-select" id="ticketStatusUpdate-@Model.ObjectId" name="Status" aria-label="Select new status">
                             <option value="0" selected="@(Model.Status == 0)">Open</option>
                             <option value="1" selected="@(Model.Status == 1)">In Progress</option>
                             <option value="2" selected="@(Model.Status == 2)">Resolved</option>
@@ -78,37 +97,38 @@
         </div>
     }
 
-    <!-- History / Comments -->
-    <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0" id="commentsHeading">History &amp; Comments</h5>
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5 class="mb-0" id="commentsHeading-@Model.ObjectId">History &amp; Comments</h5>
         </div>
-        <div class="card-body" role="list" aria-labelledby="commentsHeading">
+        <div class="card-body" aria-labelledby="commentsHeading-@Model.ObjectId">
             @if (Model.Comments == null || Model.Comments.Count == 0)
             {
-                <p class="text-muted">No comments yet.</p>
+                <p class="text-muted" role="status">No comments yet.</p>
             }
             else
             {
-                foreach (var comment in Model.Comments)
-                {
-                    <div class="border-bottom pb-3 mb-3" role="listitem">
-                        <div class="d-flex justify-content-between">
-                            <strong>@comment.Author</strong>
-                            <small class="text-muted"><time datetime="@comment.DatePosted.ToString("yyyy-MM-ddTHH:mm")">@comment.DatePosted.ToString("yyyy-MM-dd HH:mm")</time></small>
+                <div class="list-group list-group-flush">
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="list-group-item px-0" role="article" aria-label="Comment by @comment.Author">
+                            <div class="d-flex justify-content-between">
+                                <strong>@comment.Author</strong>
+                                <small class="text-muted"><time datetime="@comment.DatePosted.ToString("yyyy-MM-ddTHH:mm")">@comment.DatePosted.ToString("yyyy-MM-dd HH:mm")</time></small>
+                            </div>
+                            <p class="mt-1 mb-0">@comment.Content</p>
                         </div>
-                        <p class="mt-1 mb-0">@comment.Content</p>
-                    </div>
-                }
+                    }
+                </div>
             }
 
-            @if ((bool)(Model.CanEdit ?? false))
+            @if (Model.CanEdit)
             {
                 <form method="post" class="mt-3" aria-label="Add a comment">
                     <input type="hidden" name="TicketId" value="@Model.TicketId" />
                     <div class="mb-3">
-                        <label for="newComment" class="form-label">Add Comment</label>
-                        <textarea class="form-control" id="newComment" name="CommentContent" rows="3"
+                        <label for="newComment-@Model.ObjectId" class="form-label">Add Comment</label>
+                        <textarea class="form-control" id="newComment-@Model.ObjectId" name="CommentContent" rows="3"
                                   required aria-required="true"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm" name="action" value="add-comment">
@@ -119,9 +139,9 @@
         </div>
     </div>
 
-    <div class="mt-3">
+    <nav aria-label="Ticket navigation">
         <button type="button" class="btn btn-secondary" data-action="back" aria-label="Back to ticket list">
             <i class="bi bi-arrow-left" aria-hidden="true"></i> Back to List
         </button>
-    </div>
-</div>
+    </nav>
+</article>

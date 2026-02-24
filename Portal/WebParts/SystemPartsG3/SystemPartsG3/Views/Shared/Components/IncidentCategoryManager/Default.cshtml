@@ -1,51 +1,65 @@
-@model dynamic
+@model WCMS.WebSystem.WebParts.ViewComponents.IncidentCategoryManagerViewModel
 
-<div class="incident-category-manager" role="region" aria-label="Incident Category Management">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 id="categoryManagerHeading">Incident Categories</h4>
-        @if ((bool)(Model.CanEdit ?? false))
+<section class="incident-category-manager" aria-labelledby="categoryManagerHeading-@Model.ObjectId">
+    <header class="d-flex justify-content-between align-items-center mb-3">
+        <h4 id="categoryManagerHeading-@Model.ObjectId" class="mb-0">Incident Categories</h4>
+        @if (Model.CanEdit)
         {
             <button type="button" class="btn btn-primary btn-sm" data-action="add-category" aria-label="Add new incident category">
                 <i class="bi bi-plus-lg" aria-hidden="true"></i> Add Category
             </button>
         }
-    </div>
+    </header>
 
-    <div class="table-responsive">
-        <table class="table table-striped table-hover" aria-labelledby="categoryManagerHeading">
-            <thead class="table-light">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col" class="text-end">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Categories == null || Model.Categories.Count == 0)
-                {
-                    <tr>
-                        <td colspan="3" class="text-center text-muted py-4">No categories found.</td>
-                    </tr>
-                }
-                else
-                {
-                    foreach (var category in Model.Categories)
-                    {
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover mb-0" aria-labelledby="categoryManagerHeading-@Model.ObjectId">
+                    <thead class="table-light">
                         <tr>
-                            <td>@category.Name</td>
-                            <td>@category.Description</td>
-                            <td class="text-end">
-                                <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-action="edit-category" data-id="@category.Id" aria-label="Edit @category.Name">
-                                    <i class="bi bi-pencil" aria-hidden="true"></i> Edit
-                                </button>
-                                <button type="button" class="btn btn-outline-danger btn-sm" data-action="delete-category" data-id="@category.Id" aria-label="Delete @category.Name">
-                                    <i class="bi bi-trash" aria-hidden="true"></i> Delete
-                                </button>
-                            </td>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col" class="text-center">Rank</th>
+                            @if (Model.CanEdit)
+                            {
+                                <th scope="col" class="text-end">Actions</th>
+                            }
                         </tr>
-                    }
-                }
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                        @if (Model.Categories == null || Model.Categories.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="@(Model.CanEdit ? 4 : 3)" class="text-center text-muted py-4" role="status">No categories found.</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var category in Model.Categories)
+                            {
+                                <tr>
+                                    <td><strong>@category.Name</strong></td>
+                                    <td>@category.Description</td>
+                                    <td class="text-center"><span class="badge bg-secondary">@category.Rank</span></td>
+                                    @if (Model.CanEdit)
+                                    {
+                                        <td class="text-end">
+                                            <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @category.Name">
+                                                <button type="button" class="btn btn-outline-secondary" data-action="edit-category" data-id="@category.Id" aria-label="Edit @category.Name">
+                                                    <i class="bi bi-pencil" aria-hidden="true"></i> Edit
+                                                </button>
+                                                <button type="button" class="btn btn-outline-danger" data-action="delete-category" data-id="@category.Id" aria-label="Delete @category.Name">
+                                                    <i class="bi bi-trash" aria-hidden="true"></i> Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</div>
+</section>
