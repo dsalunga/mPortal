@@ -526,29 +526,29 @@ All legacy `.ascx` user controls have been deleted. 260 ViewComponents have been
 #### Tier 1 — Admin parts — 48 ViewComponents created
 - [x] Convert admin controls to ViewComponents (site/page/template/part/user/group/permission management, tools, agent) — 48 admin ViewComponents created in `WebSystem-MVC/ViewComponents/Admin/`.
 
-#### Tier 2 — Common parts — ~10 controls (partially completed)
+#### Tier 2 — Common parts — completed
 - [x] Convert `Login.ascx` → `LoginViewComponent` (authentication form with login/logout/OTP/forgot-password views).
 - [x] Convert `Breadcrumb.ascx` → `BreadcrumbViewComponent` (navigation trail).
 - [x] Convert `SideBar.ascx` → `SideBarViewComponent` (sidebar container).
-- [ ] Convert `Content/Parts/Common/Comments.ascx` to Razor comment component.
-- [ ] Convert remaining Common parts (MessageBoard, TriggerTask, UserPhotoUpload).
+- [x] Convert `Comments.ascx` → `CommentsViewComponent` (comment list + post form).
+- [x] Convert remaining Common parts: `MessageBoardViewComponent`, `TriggerTaskViewComponent`, `UserPhotoUploadViewComponent`.
 
 #### Tier 3 — Theme templates — 12 ViewComponents created
 - [x] Convert theme template controls to ViewComponents — 12 theme ViewComponents created (`ThemeBasic`, `ThemeDefault`, `ThemeCentralResponsive`, etc.).
-- [ ] Implement theme selection middleware that maps `WebTheme`/`WebSkin` to layout files.
+- [x] Implement theme selection middleware that maps `WebTheme`/`WebSkin` to layout files — `ThemeViewLocationExpander` created (see §7.15).
 
 #### Tier 4 — Shared controls — ~12 controls (partially completed)
 - [x] Convert `CascadeMenu.ascx` → `NavigationViewComponent` (hierarchical menu with Bootstrap nav).
 - [ ] Convert `Content/Controls/` (TabControl, TextEditor, DatePicker, CKEditor, etc.) to Tag Helpers or View Components.
 
-#### Tier 5 — Module-specific parts (largely completed)
+#### Tier 5 — Module-specific parts (completed)
 - [x] Convert SystemParts module controls — 33 ViewComponents created (Content, Article, Contact, Search, Gallery, Feedback, Calendar, FileManager, Survey, etc.).
 - [x] Convert SystemPartsG2 module controls — 33 ViewComponents created (Forum, Social, Ads, Newsletter, Downloads, Wall, etc.).
 - [x] Convert SystemPartsG3 module controls — 12 ViewComponents created (Incident, Jobs).
 - [x] Convert Integration module controls — 131 ViewComponents created (Member management, MusicCompetition, Registration, Profile, Streaming, etc.).
 - [x] Convert `BibleVerseView.ascx` → `BibleVerseViewComponent` (Bible verse reader) — 1 ViewComponent in BibleReader.
-- [ ] Create BranchLocator ViewComponents (locator search UI, map integration) — no ViewComponents created yet.
-- [ ] Create LessonReviewer ViewComponents (lesson management pages) — no ViewComponents created yet.
+- [x] Create BranchLocator ViewComponents — `BranchLocatorViewComponent` and `BranchMapViewComponent` created.
+- [x] Create LessonReviewer ViewComponents — `LessonListViewComponent`, `LessonPlayerViewComponent`, and `LessonScheduleViewComponent` created.
 
 ---
 
