@@ -71,6 +71,7 @@ app.UseAuthorization();
 
 // CMS page resolution middleware
 app.UseWcmsPageResolution();
+app.UseWcmsFramework();
 
 // --- Endpoints ---
 

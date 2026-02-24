@@ -27,6 +27,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseWcmsPageResolution();
+app.UseWcmsFramework();
 
 app.MapGet("/", () => Results.Ok(new { app = "WCMS.WebSystem.WebParts.BranchLocator.WebApp", status = "running", framework = ".NET 10" }));
 app.MapGet("/health", () => Results.Ok("ok"));

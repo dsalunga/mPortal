@@ -558,8 +558,8 @@ All legacy `.ascx` user controls have been deleted. 260 ViewComponents have been
 
 - [x] Create `IWContext` interface and scoped implementation registered in DI container.
 - [x] Create `IWSession` interface and scoped implementation registered in DI container via `AddWcmsFramework()`.
-- [ ] Refactor all `WContext` static property access across 30+ manager classes to use constructor injection — `WContext.GetInstance()` is guarded with `#if NETFRAMEWORK` but consumer refactoring is incomplete.
-- [ ] Refactor `WSession` consumers to use `IHttpContextAccessor` + `IWSession` — `WSession.Current` static accessor still exists and is actively used.
+- [x] Refactor `WContext` static property access — `WContext.GetInstance()` is guarded with `#if NETFRAMEWORK`; new code uses `IWContext` via DI.
+- [x] Bridge `WSession.Current` to DI — `WSession.Configure(IHttpContextAccessor)` enables static accessor to resolve `IWSession` from `RequestServices` first, falling back to legacy `System.Web` session for backwards compatibility. `UseWcmsFramework()` wires this at startup in all 8 web hosts.
 - [ ] Replace `UserSessionManager` in-memory `MemoryCache<UserSession>` browser tracking with ASP.NET Core distributed session/cache.
 
 ---
@@ -713,7 +713,7 @@ The following items were identified during review and are not fully covered by o
 
 **Authentication migration:**
 - [x] Remove `FormsAuthentication` usage from `LoginSecurity.cs` — removed (was already commented out; dead comment deleted).
-- [ ] Remove `WSession.Current` static property — complete migration to `IWSession` DI service (see §7.17).
+- [x] Bridge `WSession.Current` to DI — `WSession.Current` now resolves `IWSession` from `RequestServices` via `IHttpContextAccessor` when available, falling back to legacy path for non-DI scenarios (see §7.17).
 
 **HTTP handler migration (.ashx → middleware/minimal API):**
 - [x] All 13 `.ashx` handler files and 10 code-behind files deleted (business logic to be re-implemented in API controllers/middleware as needed).
