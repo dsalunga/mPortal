@@ -26,7 +26,12 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 ObjectId = objectId > 0 ? objectId : WcmsContext.ObjectId,
                 RecordId = recordId > 0 ? recordId : WcmsContext.RecordId,
                 Questions = new List<SurveyQuestionModel>(),
-                BasePath = WcmsContext.BasePath
+                BasePath = WcmsContext.BasePath,
+                CurrentPage = 1,
+                TotalPages = 1,
+                ShowBackButton = false,
+                ShowRestartButton = false,
+                SubmitButtonText = "Submit"
             };
 
             return View(model);
@@ -42,6 +47,13 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         public string Description { get; set; }
         public string BasePath { get; set; }
         public bool IsSubmitted { get; set; }
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
+        public string PageLabel { get; set; }
+        public bool ShowBackButton { get; set; }
+        public bool ShowRestartButton { get; set; }
+        public string ErrorMessage { get; set; }
+        public string SubmitButtonText { get; set; }
         public List<SurveyQuestionModel> Questions { get; set; }
     }
 

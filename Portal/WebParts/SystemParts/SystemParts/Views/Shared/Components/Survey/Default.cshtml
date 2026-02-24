@@ -1,4 +1,7 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.SurveyViewModel
+@{
+    var surveyAction = "__SURVEY_ACTION";
+}
 <div class="wcms-survey">
     @if (Model.IsSubmitted)
     {
@@ -6,66 +9,136 @@
     }
     else
     {
-        @if (!string.IsNullOrEmpty(Model.Title))
-        {
-            <h4>@Model.Title</h4>
-        }
-        @if (!string.IsNullOrEmpty(Model.Description))
-        {
-            <p class="text-muted">@Model.Description</p>
-        }
+        <script type="text/javascript">
+            function SurveyBack() {
+                document.getElementById("@surveyAction").value = "BACK";
+            }
+            function SurveyNext() {
+                document.getElementById("@surveyAction").value = "NEXT";
+            }
+            function SurveyRestart() {
+                document.getElementById("@surveyAction").value = "RESTART";
+            }
+        </script>
+
         <form method="post">
+            <input id="@surveyAction" type="hidden" name="@surveyAction" />
             <input type="hidden" name="objectId" value="@Model.ObjectId" />
             <input type="hidden" name="recordId" value="@Model.RecordId" />
             <input type="hidden" name="surveyId" value="@Model.SurveyId" />
-            @foreach (var question in Model.Questions)
-            {
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <label class="form-label fw-bold">
-                            @question.Text
-                            @if (question.IsRequired)
+
+            <table cellspacing="1" cellpadding="0" border="0" align="center" class="w-100">
+                <tr>
+                    <td align="center">
+                        @if (!string.IsNullOrEmpty(Model.Title))
+                        {
+                            <strong>@Model.Title</strong><br />
+                        }
+                        @if (!string.IsNullOrEmpty(Model.PageLabel))
+                        {
+                            @Model.PageLabel
+                        }
+                        else if (Model.TotalPages > 1)
+                        {
+                            <text>Page @Model.CurrentPage of @Model.TotalPages</text>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        <table class="w-100">
+                            @foreach (var question in Model.Questions)
                             {
-                                <span class="text-danger">*</span>
+                                <tr>
+                                    <td valign="top" colspan="3">
+                                        <label class="fw-bold">
+                                            @question.Text
+                                            @if (question.IsRequired)
+                                            {
+                                                <span class="text-danger">*</span>
+                                            }
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" colspan="3">
+                                        @if (question.QuestionType == "text")
+                                        {
+                                            <input type="text" name="q_@question.Id" class="form-control"
+                                                   @(question.IsRequired ? "required" : "") />
+                                        }
+                                        else if (question.QuestionType == "textarea")
+                                        {
+                                            <textarea name="q_@question.Id" class="form-control" rows="3"
+                                                      @(question.IsRequired ? "required" : "")></textarea>
+                                        }
+                                        else if (question.QuestionType == "radio" && question.Options != null)
+                                        {
+                                            @foreach (var opt in question.Options)
+                                            {
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="q_@question.Id" value="@opt.Id" id="opt_@opt.Id"
+                                                           @(question.IsRequired ? "required" : "") />
+                                                    <label class="form-check-label" for="opt_@opt.Id">@opt.Text</label>
+                                                </div>
+                                            }
+                                        }
+                                        else if (question.QuestionType == "checkbox" && question.Options != null)
+                                        {
+                                            @foreach (var opt in question.Options)
+                                            {
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                           name="q_@question.Id" value="@opt.Id" id="opt_@opt.Id" />
+                                                    <label class="form-check-label" for="opt_@opt.Id">@opt.Text</label>
+                                                </div>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="5"></td>
+                                </tr>
                             }
-                        </label>
-                        @if (question.QuestionType == "text")
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        @if (Model.ShowBackButton)
                         {
-                            <input type="text" name="q_@question.Id" class="form-control"
-                                   @(question.IsRequired ? "required" : "") />
+                            <button type="submit" class="btn btn-secondary BUTTON" style="width: 77px;"
+                                    onclick="SurveyBack()">Back</button>
+                            <text>&nbsp;</text>
                         }
-                        else if (question.QuestionType == "textarea")
+                        <button type="submit" class="btn btn-primary BUTTON" style="width: 77px;"
+                                onclick="SurveyNext()">@(Model.SubmitButtonText ?? "Submit")</button>
+                        @if (Model.ShowRestartButton)
                         {
-                            <textarea name="q_@question.Id" class="form-control" rows="3"
-                                      @(question.IsRequired ? "required" : "")></textarea>
+                            <text>&nbsp;</text>
+                            <button type="submit" class="btn btn-outline-secondary BUTTON" style="width: 76px;"
+                                    onclick="SurveyRestart()">Restart</button>
                         }
-                        else if (question.QuestionType == "radio" && question.Options != null)
-                        {
-                            @foreach (var opt in question.Options)
-                            {
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio"
-                                           name="q_@question.Id" value="@opt.Id" id="opt_@opt.Id"
-                                           @(question.IsRequired ? "required" : "") />
-                                    <label class="form-check-label" for="opt_@opt.Id">@opt.Text</label>
-                                </div>
-                            }
-                        }
-                        else if (question.QuestionType == "checkbox" && question.Options != null)
-                        {
-                            @foreach (var opt in question.Options)
-                            {
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox"
-                                           name="q_@question.Id" value="@opt.Id" id="opt_@opt.Id" />
-                                    <label class="form-check-label" for="opt_@opt.Id">@opt.Text</label>
-                                </div>
-                            }
-                        }
-                    </div>
-                </div>
-            }
-            <button type="submit" class="btn btn-primary">Submit Survey</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="text-danger">*</span> <em>- Required</em>
+                    </td>
+                </tr>
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <tr>
+                        <td>
+                            <span class="text-danger">@Model.ErrorMessage</span>
+                        </td>
+                    </tr>
+                }
+            </table>
         </form>
     }
 </div>

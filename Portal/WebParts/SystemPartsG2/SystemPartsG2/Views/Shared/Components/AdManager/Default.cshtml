@@ -1,46 +1,110 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.AdManagerViewModel
 <div class="wcms-ad-manager" data-object-id="@Model.ObjectId">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4>Ad Management</h4>
-        <button type="button" class="btn btn-primary btn-sm">
-            <i class="bi bi-plus-lg"></i> Add Ad
-        </button>
-    </div>
-    @if (Model.Ads.Count == 0)
-    {
-        <div class="alert alert-info">No ads configured.</div>
-    }
-    else
-    {
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>URL</th>
-                    <th>Order</th>
-                    <th>Active</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var ad in Model.Ads)
-                {
-                    <tr>
-                        <td>@ad.Title</td>
-                        <td><a href="@ad.TargetUrl" target="_blank">@ad.TargetUrl</a></td>
-                        <td>@ad.DisplayOrder</td>
-                        <td>
-                            <span class="badge @(ad.IsActive ? "bg-success" : "bg-secondary")">
-                                @(ad.IsActive ? "Active" : "Inactive")
-                            </span>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger">Delete</button>
-                        </td>
+    <!-- Selected Ad Section (from CMS_Ad.ascx) -->
+    <div class="mb-4">
+        <h5><strong>Selected Ad:</strong></h5>
+        @if (Model.SelectedAds != null && Model.SelectedAds.Count > 0)
+        {
+            <table class="table table-bordered" style="background-color: #fff;" cellpadding="3">
+                <thead>
+                    <tr class="grid_header">
+                        <th style="width: 20px;" class="text-center"></th>
+                        <th>Ad Name</th>
+                        <th style="width: 100px;" class="text-center">Hits</th>
+                        <th>User</th>
+                        <th>Category</th>
+                        <th>XML File</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ad in Model.SelectedAds)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <input type="radio" value="@ad.Id" name="chkChecked" />
+                            </td>
+                            <td>@ad.Name</td>
+                            <td class="text-center">@ad.Hits</td>
+                            <td>@ad.FirstName</td>
+                            <td>@ad.CategoryName</td>
+                            <td>@ad.AdvertisementFile</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-outline-danger btn-sm" style="width: 96px;">Remove</button>
+        }
+        else
+        {
+            <div class="alert alert-info">No ads selected.</div>
+        }
+    </div>
+
+    <div class="mb-3">&nbsp;</div>
+
+    <!-- All Ads Section -->
+    <div class="mb-4">
+        <h5><strong>All Ads:</strong></h5>
+        <div class="d-flex align-items-center gap-2 mb-3">
+            <label>By Category:&nbsp;</label>
+            <select class="form-select form-select-sm" style="width: auto;" name="cboTypes">
+                <option value="">-- All --</option>
+                @if (Model.Categories != null)
+                {
+                    @foreach (var cat in Model.Categories)
+                    {
+                        <option value="@cat.Id">@cat.Name</option>
+                    }
                 }
-            </tbody>
-        </table>
-    }
+            </select>
+            <label>&nbsp;By Author:&nbsp;</label>
+            <select class="form-select form-select-sm" style="width: auto;" name="cboWriters">
+                <option value="">-- All --</option>
+                @if (Model.Authors != null)
+                {
+                    @foreach (var author in Model.Authors)
+                    {
+                        <option value="@author.Id">@author.FirstName</option>
+                    }
+                }
+            </select>
+            <button type="button" class="btn btn-secondary btn-sm" style="width: 80px;">Show</button>
+        </div>
+
+        @if (Model.Ads != null && Model.Ads.Count > 0)
+        {
+            <table class="table table-bordered table-hover" style="background-color: #fff;" cellpadding="3">
+                <thead>
+                    <tr class="grid_header">
+                        <th style="width: 20px;" class="text-center"></th>
+                        <th>Ad Name</th>
+                        <th style="width: 100px;" class="text-center">Hits</th>
+                        <th>User</th>
+                        <th>Category</th>
+                        <th>XML File</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ad in Model.Ads)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <input type="radio" value="@ad.Id" name="chkChecked" />
+                            </td>
+                            <td>@ad.Name</td>
+                            <td class="text-center">@ad.Hits</td>
+                            <td>@ad.FirstName</td>
+                            <td>@ad.CategoryName</td>
+                            <td>@ad.AdvertisementFile</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">No ads configured.</div>
+        }
+        <button type="button" class="btn btn-primary btn-sm" style="width: 100px;">Insert</button>
+    </div>
 </div>

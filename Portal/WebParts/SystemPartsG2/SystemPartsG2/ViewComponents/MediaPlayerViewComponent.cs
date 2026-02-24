@@ -40,5 +40,11 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         public string MediaType { get; set; }
         public string PosterUrl { get; set; }
         public bool AutoPlay { get; set; }
+        public string Blurb { get; set; }
+        public string ThumbnailUrl { get; set; }
+        public string MediaVersion { get; set; }
+        public string MediaLength { get; set; }
+        public string Agency { get; set; }
+        public string BackUrl { get; set; }
     }
 }

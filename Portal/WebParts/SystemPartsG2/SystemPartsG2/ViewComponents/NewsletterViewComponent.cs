@@ -22,7 +22,11 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
                 Title = string.Empty,
                 Description = string.Empty,
                 SubscribeUrl = string.Empty,
-                ShowNameField = true
+                ShowNameField = true,
+                ShowGenderField = false,
+                ViewState = "subscribe",
+                SuccessMessage = "Thank you for subscribing. You will be receiving updates soon.",
+                AlreadySubscribedMessage = "You are already subscribed to this newsletter."
             };
 
             return View(model);
@@ -36,5 +40,9 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         public string Description { get; set; }
         public string SubscribeUrl { get; set; }
         public bool ShowNameField { get; set; }
+        public bool ShowGenderField { get; set; }
+        public string ViewState { get; set; }
+        public string SuccessMessage { get; set; }
+        public string AlreadySubscribedMessage { get; set; }
     }
 }

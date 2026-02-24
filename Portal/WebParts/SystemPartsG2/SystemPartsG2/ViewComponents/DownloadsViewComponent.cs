@@ -33,6 +33,9 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         public int ObjectId { get; set; }
         public List<DownloadCategory> Categories { get; set; }
         public List<DownloadItem> Items { get; set; }
+        public bool ForceDownload { get; set; }
+        public bool GroupByYear { get; set; }
+        public string DownloadHandlerUrl { get; set; }
     }
 
     public class DownloadCategory
@@ -50,5 +53,7 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         public long FileSize { get; set; }
         public int DownloadCount { get; set; }
         public string CategoryName { get; set; }
+        public int FileYear { get; set; }
+        public string FileInfo { get; set; }
     }
 }

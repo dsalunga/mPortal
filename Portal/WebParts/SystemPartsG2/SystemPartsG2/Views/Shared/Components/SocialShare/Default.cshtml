@@ -1,0 +1,44 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.SocialShareViewModel
+<div class="wcms-social-share" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+    @if (Model.Providers != null && Model.Providers.Count > 0)
+    {
+        <div class="d-inline-flex gap-2">
+            @foreach (var provider in Model.Providers)
+            {
+                <a href="@provider.ShareUrl" target="_blank" rel="noopener noreferrer"
+                   class="btn btn-outline-secondary btn-sm" title="Share on @provider.Name">
+                    @if (!string.IsNullOrEmpty(provider.IconCss))
+                    {
+                        <i class="@provider.IconCss"></i>
+                    }
+                    @provider.Name
+                </a>
+            }
+        </div>
+    }
+    else
+    {
+        <!-- Default share buttons when no providers configured -->
+        <div class="d-inline-flex gap-2">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=@Uri.EscapeDataString(Model.PageUrl ?? "")"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline-primary btn-sm" title="Share on Facebook">
+                <i class="bi bi-facebook"></i> Facebook
+            </a>
+            <a href="https://twitter.com/intent/tweet?url=@Uri.EscapeDataString(Model.PageUrl ?? "")&text=@Uri.EscapeDataString(Model.PageTitle ?? "")"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline-info btn-sm" title="Share on Twitter">
+                <i class="bi bi-twitter"></i> Twitter
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=@Uri.EscapeDataString(Model.PageUrl ?? "")"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline-primary btn-sm" title="Share on LinkedIn">
+                <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+            <a href="mailto:?subject=@Uri.EscapeDataString(Model.PageTitle ?? "")&body=@Uri.EscapeDataString(Model.PageUrl ?? "")"
+               class="btn btn-outline-secondary btn-sm" title="Share via Email">
+                <i class="bi bi-envelope"></i> Email
+            </a>
+        </div>
+    }
+</div>

@@ -1,28 +1,64 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.MediaPlayerViewModel
 <div class="wcms-media-player" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-    @if (!string.IsNullOrEmpty(Model.Title))
-    {
-        <h4>@Model.Title</h4>
-    }
     @if (!string.IsNullOrEmpty(Model.MediaUrl))
     {
-        @if (Model.MediaType != null && Model.MediaType.StartsWith("audio"))
-        {
-            <audio controls class="w-100" @(Model.AutoPlay ? "autoplay" : "")>
-                <source src="@Model.MediaUrl" type="@Model.MediaType" />
-                Your browser does not support the audio element.
-            </audio>
-        }
-        else
-        {
-            <div class="ratio ratio-16x9">
-                <video controls @(Model.AutoPlay ? "autoplay" : "")
-                       @if (!string.IsNullOrEmpty(Model.PosterUrl)) { <text>poster="@Model.PosterUrl"</text> }>
-                    <source src="@Model.MediaUrl" type="@Model.MediaType" />
-                    Your browser does not support the video element.
-                </video>
+        <!-- Player panel (from medialist.ascx) -->
+        <div class="content">
+            <div class="mb-2">
+                @if (Model.MediaType != null && Model.MediaType.StartsWith("audio"))
+                {
+                    <audio controls class="w-100" @(Model.AutoPlay ? "autoplay" : "")>
+                        <source src="@Model.MediaUrl" type="@Model.MediaType" />
+                        Your browser does not support the audio element.
+                    </audio>
+                }
+                else
+                {
+                    <div class="ratio ratio-16x9">
+                        <video controls @(Model.AutoPlay ? "autoplay" : "")
+                               @if (!string.IsNullOrEmpty(Model.PosterUrl)) { <text>poster="@Model.PosterUrl"</text> }>
+                            <source src="@Model.MediaUrl" type="@Model.MediaType" />
+                            Your browser does not support the video element.
+                        </video>
+                    </div>
+                }
             </div>
-        }
+            @if (!string.IsNullOrEmpty(Model.Title))
+            {
+                <div class="portalh text-center">
+                    <strong>@Model.Title</strong>
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(Model.Blurb))
+            {
+                <div class="contentb text-center">@Model.Blurb</div>
+            }
+            <!-- Media details (from mediahome.ascx) -->
+            @if (!string.IsNullOrEmpty(Model.MediaVersion) || !string.IsNullOrEmpty(Model.MediaLength) || !string.IsNullOrEmpty(Model.Agency))
+            {
+                <div class="content mt-2">
+                    @if (!string.IsNullOrEmpty(Model.MediaVersion))
+                    {
+                        <span class="contentb">Version:&nbsp;</span>@Model.MediaVersion<br />
+                    }
+                    @if (!string.IsNullOrEmpty(Model.MediaLength))
+                    {
+                        <span class="contentb">Length:&nbsp;</span>@Model.MediaLength<br />
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Agency))
+                    {
+                        <span class="contentb">Agency:&nbsp;</span>@Model.Agency<br />
+                    }
+                </div>
+            }
+            <hr />
+            @if (!string.IsNullOrEmpty(Model.BackUrl))
+            {
+                <div class="text-center contentbl">
+                    <a href="@Model.BackUrl" class="corpl" title="Back to Product Catalog Main Page">Back to Product Catalog Main Page</a>
+                </div>
+            }
+        </div>
     }
     else
     {

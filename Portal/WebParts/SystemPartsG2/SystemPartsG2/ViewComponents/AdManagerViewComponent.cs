@@ -20,7 +20,10 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
             var model = new AdManagerViewModel
             {
                 ObjectId = WcmsContext.ObjectId,
-                Ads = new List<AdManagerItem>()
+                Ads = new List<AdManagerItem>(),
+                SelectedAds = new List<AdManagerItem>(),
+                Categories = new List<AdCategory>(),
+                Authors = new List<AdAuthor>()
             };
 
             return View(model);
@@ -31,6 +34,11 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
     {
         public int ObjectId { get; set; }
         public List<AdManagerItem> Ads { get; set; }
+        public List<AdManagerItem> SelectedAds { get; set; }
+        public List<AdCategory> Categories { get; set; }
+        public List<AdAuthor> Authors { get; set; }
+        public string SelectedCategoryId { get; set; }
+        public string SelectedAuthorId { get; set; }
     }
 
     public class AdManagerItem
@@ -41,5 +49,22 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         public string TargetUrl { get; set; }
         public bool IsActive { get; set; }
         public int DisplayOrder { get; set; }
+        public string Name { get; set; }
+        public int Hits { get; set; }
+        public string FirstName { get; set; }
+        public string CategoryName { get; set; }
+        public string AdvertisementFile { get; set; }
+    }
+
+    public class AdCategory
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class AdAuthor
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
     }
 }
