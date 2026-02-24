@@ -4,32 +4,74 @@
     Original uses asp:DataList (gallery-album) and asp:Literal templates (gallery-thumb-fancybox).
     CSS classes preserved: gallery-thumb-fancybox, gallery-album, fancybox-img
 *@
-<div class="wcms-gallery gallery-thumb-fancybox">
+<section class="wcms-gallery gallery-thumb-fancybox" aria-label="Image gallery">
     @if (Model.Items.Count == 0)
     {
-        <p class="text-muted">No images in this gallery.</p>
+        <p class="text-muted fst-italic">No images in this gallery.</p>
     }
     else
     {
-        <div class="row gallery-album">
+        <div class="row g-3 gallery-album">
             @foreach (var item in Model.Items)
             {
-                <div class="col-md-3 col-sm-4 col-6 mb-3">
-                    <div class="card gallery-item" style="padding: 10px 15px 10px 0;">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                    <div class="card gallery-item h-100 shadow-sm" style="padding: 10px 15px 10px 0;">
                         <a href="@item.ImageUrl" rel="photo_album" title="@item.Title"
-                           data-lightbox="gallery" data-title="@item.Title">
-                            <img src="@(item.ThumbnailUrl ?? item.ImageUrl)" alt="@item.Title"
-                                 class="fancybox-img card-img-top" loading="lazy" />
+                           data-lightbox="gallery" data-title="@item.Title"
+                           class="gallery-link" role="button"
+                           aria-label="View full size: @item.Title">
+                            <img src="@(item.ThumbnailUrl ?? item.ImageUrl)" alt="@(item.Title ?? "Gallery image")"
+                                 class="fancybox-img card-img-top" loading="lazy" decoding="async" />
                         </a>
-                        @if (!string.IsNullOrEmpty(item.Title))
+                        @if (!string.IsNullOrEmpty(item.Title) || !string.IsNullOrEmpty(item.Description))
                         {
                             <div class="card-body p-2 text-center">
-                                <strong class="card-title">@item.Title</strong>
+                                @if (!string.IsNullOrEmpty(item.Title))
+                                {
+                                    <strong class="card-title d-block">@item.Title</strong>
+                                }
+                                @if (!string.IsNullOrEmpty(item.Description))
+                                {
+                                    <small class="text-muted">@item.Description</small>
+                                }
                             </div>
                         }
                     </div>
                 </div>
             }
         </div>
+
+        @* Lightbox modal for keyboard-accessible viewing *@
+        <div class="modal fade" id="galleryLightbox" tabindex="-1" aria-labelledby="galleryLightboxLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title text-white" id="galleryLightboxLabel"></h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center p-0">
+                        <img src="" alt="" class="img-fluid" id="galleryLightboxImg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var lightboxEl = document.getElementById('galleryLightbox');
+                if (!lightboxEl || typeof bootstrap === 'undefined') return;
+                var modal = new bootstrap.Modal(lightboxEl);
+                document.querySelectorAll('.gallery-thumb-fancybox .gallery-link').forEach(function (link) {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        var img = lightboxEl.querySelector('#galleryLightboxImg');
+                        var title = lightboxEl.querySelector('#galleryLightboxLabel');
+                        img.src = this.href;
+                        img.alt = this.getAttribute('aria-label') || '';
+                        title.textContent = this.getAttribute('data-title') || '';
+                        modal.show();
+                    });
+                });
+            });
+        </script>
     }
-</div>
+</section>

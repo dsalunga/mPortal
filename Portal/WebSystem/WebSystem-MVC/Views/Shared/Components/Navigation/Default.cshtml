@@ -1,30 +1,112 @@
 @model WCMS.WebSystem.ViewComponents.NavigationViewModel
+@{
+    var currentUrl = Context.Request.Path.ToString();
+    var itemIndex = 0;
+}
 @if (Model.Items.Count > 0)
 {
-    <nav class="Menu">
-        <ul class="Menu @(Model.IsHorizontal ? "Horizontal" : "Vertical")">
-            @foreach (var item in Model.Items)
-            {
-                var hasChildren = item.Children != null && item.Children.Count > 0;
-                <li class="StaticMenuItem @(hasChildren ? "has-submenu" : "")">
-                    @if (hasChildren)
+    if (Model.IsHorizontal)
+    {
+        <nav class="navbar navbar-expand-md" aria-label="Site navigation"
+             style="@(!string.IsNullOrEmpty(Model.Width) ? $"max-width:{Model.Width}" : "")">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navMenu-@Model.MenuId" aria-controls="navMenu-@Model.MenuId"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu-@Model.MenuId">
+                <ul class="navbar-nav Menu Horizontal" role="menubar">
+                    @foreach (var item in Model.Items)
                     {
-                        <a href="@item.NavigateUrl" target="@item.Target">@item.Text</a>
-                        <ul class="DynamicMenu">
-                            @foreach (var child in item.Children)
-                            {
-                                <li class="DynamicMenuItem">
-                                    <a href="@child.NavigateUrl" target="@child.Target">@child.Text</a>
-                                </li>
-                            }
-                        </ul>
+                        var hasChildren = item.Children != null && item.Children.Count > 0;
+                        var isActive = !string.IsNullOrEmpty(item.NavigateUrl) && currentUrl.Equals(item.NavigateUrl, StringComparison.OrdinalIgnoreCase);
+                        if (hasChildren)
+                        {
+                            <li class="nav-item dropdown StaticMenuItem has-submenu" role="none">
+                                <a class="nav-link dropdown-toggle @(isActive ? "active" : "")" href="@item.NavigateUrl"
+                                   role="menuitem" aria-haspopup="true" aria-expanded="false"
+                                   data-bs-toggle="dropdown" @(isActive ? "aria-current=page" : "")
+                                   @(!string.IsNullOrEmpty(item.Target) ? $"target={item.Target}" : "")>@item.Text</a>
+                                <ul class="dropdown-menu DynamicMenu" role="menu" aria-label="@item.Text submenu">
+                                    @foreach (var child in item.Children)
+                                    {
+                                        var childActive = !string.IsNullOrEmpty(child.NavigateUrl) && currentUrl.Equals(child.NavigateUrl, StringComparison.OrdinalIgnoreCase);
+                                        <li class="DynamicMenuItem" role="none">
+                                            <a class="dropdown-item @(childActive ? "active" : "")" href="@child.NavigateUrl"
+                                               role="menuitem" @(childActive ? "aria-current=page" : "")
+                                               @(!string.IsNullOrEmpty(child.Target) ? $"target={child.Target}" : "")>@child.Text</a>
+                                        </li>
+                                        @if (child.Children != null && child.Children.Count > 0)
+                                        {
+                                            @foreach (var grandChild in child.Children)
+                                            {
+                                                var grandChildActive = !string.IsNullOrEmpty(grandChild.NavigateUrl) && currentUrl.Equals(grandChild.NavigateUrl, StringComparison.OrdinalIgnoreCase);
+                                                <li class="DynamicMenuItem" role="none">
+                                                    <a class="dropdown-item ps-4 @(grandChildActive ? "active" : "")" href="@grandChild.NavigateUrl"
+                                                       role="menuitem" @(grandChildActive ? "aria-current=page" : "")
+                                                       @(!string.IsNullOrEmpty(grandChild.Target) ? $"target={grandChild.Target}" : "")>@grandChild.Text</a>
+                                                </li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item StaticMenuItem" role="none">
+                                <a class="nav-link @(isActive ? "active" : "")" href="@item.NavigateUrl"
+                                   role="menuitem" @(isActive ? "aria-current=page" : "")
+                                   @(!string.IsNullOrEmpty(item.Target) ? $"target={item.Target}" : "")>@item.Text</a>
+                            </li>
+                        }
                     }
-                    else
-                    {
-                        <a href="@item.NavigateUrl" target="@item.Target">@item.Text</a>
-                    }
-                </li>
-            }
-        </ul>
-    </nav>
+                </ul>
+            </div>
+        </nav>
+    }
+    else
+    {
+        <nav class="Menu Vertical" aria-label="Site navigation"
+             style="@(!string.IsNullOrEmpty(Model.Width) ? $"width:{Model.Width}" : "")">
+            <ul class="nav flex-column" role="menubar" aria-orientation="vertical">
+                @foreach (var item in Model.Items)
+                {
+                    var hasChildren = item.Children != null && item.Children.Count > 0;
+                    var isActive = !string.IsNullOrEmpty(item.NavigateUrl) && currentUrl.Equals(item.NavigateUrl, StringComparison.OrdinalIgnoreCase);
+                    <li class="nav-item StaticMenuItem @(hasChildren ? "has-submenu" : "")" role="none">
+                        @if (hasChildren)
+                        {
+                            <a class="nav-link @(isActive ? "active fw-bold" : "")" href="@item.NavigateUrl"
+                               role="menuitem" data-bs-toggle="collapse"
+                               data-bs-target="#submenu-@(Model.MenuId)-@(itemIndex)"
+                               aria-expanded="false" aria-haspopup="true" @(isActive ? "aria-current=page" : "")
+                               @(!string.IsNullOrEmpty(item.Target) ? $"target={item.Target}" : "")>
+                                @item.Text <i class="bi bi-chevron-down small" aria-hidden="true"></i>
+                            </a>
+                            <ul class="nav flex-column ms-3 collapse DynamicMenu" role="menu"
+                                id="submenu-@(Model.MenuId)-@(itemIndex)" aria-label="@item.Text submenu">
+                                @foreach (var child in item.Children)
+                                {
+                                    var childActive = !string.IsNullOrEmpty(child.NavigateUrl) && currentUrl.Equals(child.NavigateUrl, StringComparison.OrdinalIgnoreCase);
+                                    <li class="nav-item DynamicMenuItem" role="none">
+                                        <a class="nav-link @(childActive ? "active" : "")" href="@child.NavigateUrl"
+                                           role="menuitem" @(childActive ? "aria-current=page" : "")
+                                           @(!string.IsNullOrEmpty(child.Target) ? $"target={child.Target}" : "")>@child.Text</a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <a class="nav-link @(isActive ? "active fw-bold" : "")" href="@item.NavigateUrl"
+                               role="menuitem" @(isActive ? "aria-current=page" : "")
+                               @(!string.IsNullOrEmpty(item.Target) ? $"target={item.Target}" : "")>@item.Text</a>
+                        }
+                    </li>
+                    itemIndex++;
+                }
+            </ul>
+        </nav>
+    }
 }

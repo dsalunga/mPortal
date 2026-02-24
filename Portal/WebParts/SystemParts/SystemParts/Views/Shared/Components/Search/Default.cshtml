@@ -1,42 +1,64 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.SearchViewModel
-<form method="get" action="@Model.BasePath">
-    <table cellspacing="0" cellpadding="0" border="0">
-        <tr>
-            <td>
-                <input type="text" name="q" value="@Model.Query" style="width: 25em" /></td>
-            <td>
-                &nbsp;</td>
-            <td>
-                <button type="submit"> Search </button></td>
-        </tr>
-        <tr>
-            <td align="left" colspan="2">
-                <label><input type="radio" name="scope" value="site" checked /> This site only</label>
-                <label><input type="radio" name="scope" value="all" /> All sites</label></td>
-        </tr>
-    </table>
-</form>
+<section class="wcms-search" aria-label="Site search">
+    <form method="get" action="@Model.BasePath" role="search" aria-label="Search form" class="mb-4">
+        <div class="row g-2 align-items-end">
+            <div class="col-sm">
+                <label for="searchQuery" class="form-label visually-hidden">Search</label>
+                <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="bi bi-search"></i></span>
+                    <input type="search" id="searchQuery" name="q" value="@Model.Query"
+                           class="form-control" placeholder="Search..."
+                           aria-label="Search query" autocomplete="off" />
+                </div>
+            </div>
+            <div class="col-sm-auto">
+                <button type="submit" class="btn btn-primary w-100" aria-label="Submit search">
+                    <i class="bi bi-search" aria-hidden="true"></i> Search
+                </button>
+            </div>
+        </div>
+        <div class="mt-2" role="radiogroup" aria-label="Search scope">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="scope" id="scopeSite" value="site" checked />
+                <label class="form-check-label" for="scopeSite">This site only</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="scope" id="scopeAll" value="all" />
+                <label class="form-check-label" for="scopeAll">All sites</label>
+            </div>
+        </div>
+    </form>
 
-@if (Model.Results != null)
-{
-    <div class="search-results">
-        @if (Model.Results.Count == 0)
-        {
-            <p>No results found for &quot;@Model.Query&quot;.</p>
-        }
-        else
-        {
-            <p>@Model.Results.Count result(s) for &quot;@Model.Query&quot;</p>
-            @foreach (var item in Model.Results)
+    @if (Model.Results != null)
+    {
+        <div class="search-results" role="region" aria-label="Search results" aria-live="polite">
+            @if (Model.Results.Count == 0)
             {
-                <div class="search-result-item">
-                    <h4><a href="@item.Url">@item.Title</a></h4>
-                    @if (!string.IsNullOrEmpty(item.Description))
+                <div class="alert alert-info d-flex align-items-center" role="status">
+                    <i class="bi bi-info-circle-fill me-2" aria-hidden="true"></i>
+                    No results found for &ldquo;<strong>@Model.Query</strong>&rdquo;.
+                </div>
+            }
+            else
+            {
+                <p class="text-muted mb-3" role="status">
+                    <i class="bi bi-list-ul" aria-hidden="true"></i>
+                    <strong>@Model.Results.Count</strong> result(s) for &ldquo;<strong>@Model.Query</strong>&rdquo;
+                </p>
+                <div class="list-group list-group-flush">
+                    @foreach (var item in Model.Results)
                     {
-                        <p>@item.Description</p>
+                        <a href="@item.Url" class="list-group-item list-group-item-action search-result-item">
+                            <h5 class="mb-1">@item.Title</h5>
+                            @if (!string.IsNullOrEmpty(item.Description))
+                            {
+                                <p class="mb-1 text-muted small">@item.Description</p>
+                            }
+                            <small class="text-primary">@item.Url</small>
+                        </a>
                     }
                 </div>
             }
-        }
-    </div>
-}
+        </div>
+    }
+</section>

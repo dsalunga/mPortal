@@ -7,69 +7,114 @@
 @if (Model.IsDetailView && Model.DetailArticle != null)
 {
     @* Single/Basic.ascx detail view pattern *@
-    <div class="article-detail">
-        <div class="link" style="font-weight: bold">
-            <h1>@Model.DetailArticle.Title</h1>
-        </div>
-        <div class="text12blk article-meta">
-            <span class="date">@Model.DetailArticle.Date</span>
-            @if (!string.IsNullOrEmpty(Model.DetailArticle.Author))
-            {
-                <span class="author"> by @Model.DetailArticle.Author</span>
-            }
-        </div>
+    <article class="article-detail" aria-label="@Model.DetailArticle.Title">
+        <header class="mb-3">
+            <h1 class="article-title link fw-bold">@Model.DetailArticle.Title</h1>
+            <div class="text12blk article-meta text-muted">
+                <time class="date" aria-label="Published date">
+                    <i class="bi bi-calendar3" aria-hidden="true"></i> @Model.DetailArticle.Date
+                </time>
+                @if (!string.IsNullOrEmpty(Model.DetailArticle.Author))
+                {
+                    <span class="author ms-2">
+                        <i class="bi bi-person" aria-hidden="true"></i> by @Model.DetailArticle.Author
+                    </span>
+                }
+            </div>
+        </header>
         @if (!string.IsNullOrEmpty(Model.DetailArticle.Image))
         {
-            <img src="@Model.DetailArticle.Image" alt="@Model.DetailArticle.Title" class="article-image img-fluid" />
+            <figure class="mb-3">
+                <img src="@Model.DetailArticle.Image" alt="@Model.DetailArticle.Title"
+                     class="article-image img-fluid rounded" />
+            </figure>
         }
         <div class="text12blk article-content">@Html.Raw(Model.DetailArticle.Content)</div>
-    </div>
+    </article>
 }
 else if (Model.Articles != null)
 {
     @* Multiple/Basic.ascx list view pattern *@
-    <div class="article-list">
-        @foreach (var article in Model.Articles)
+    <div class="article-list" role="feed" aria-label="Articles">
+        @if (Model.Articles.Count == 0)
         {
-            <div class="article-item">
-                @if (!string.IsNullOrEmpty(article.Image))
-                {
-                    <img src="@article.Image" alt="@article.Title" class="article-thumbnail img-fluid" />
-                }
-                <div class="link" style="font-weight: bold">
-                    <h3><a href="?ArticleId=@article.Id">@article.Title</a></h3>
-                </div>
-                <div class="text12blk">
-                    <span class="date">@article.Date</span>
-                    @if (!string.IsNullOrEmpty(article.Author))
-                    {
-                        <span class="author"> by @article.Author</span>
-                    }
-                </div>
-                @if (!string.IsNullOrEmpty(article.Description))
-                {
-                    <div class="article-description">@Html.Raw(article.Description)</div>
-                }
-            </div>
+            <p class="text-muted fst-italic">No articles available.</p>
+        }
+        else
+        {
+            @foreach (var article in Model.Articles)
+            {
+                <article class="article-item card mb-3 shadow-sm" aria-labelledby="article-title-@article.Id">
+                    <div class="row g-0">
+                        @if (!string.IsNullOrEmpty(article.Image))
+                        {
+                            <div class="col-md-3">
+                                <img src="@article.Image" alt="@article.Title"
+                                     class="article-thumbnail img-fluid rounded-start h-100 object-fit-cover" loading="lazy" />
+                            </div>
+                        }
+                        <div class="@(!string.IsNullOrEmpty(article.Image) ? "col-md-9" : "col-12")">
+                            <div class="card-body">
+                                <h3 class="card-title link fw-bold" id="article-title-@article.Id">
+                                    <a href="?ArticleId=@article.Id" class="text-decoration-none stretched-link">@article.Title</a>
+                                </h3>
+                                <div class="text12blk text-muted small mb-2">
+                                    <time class="date" aria-label="Published date">
+                                        <i class="bi bi-calendar3" aria-hidden="true"></i> @article.Date
+                                    </time>
+                                    @if (!string.IsNullOrEmpty(article.Author))
+                                    {
+                                        <span class="author ms-2">
+                                            <i class="bi bi-person" aria-hidden="true"></i> by @article.Author
+                                        </span>
+                                    }
+                                </div>
+                                @if (!string.IsNullOrEmpty(article.Description))
+                                {
+                                    <div class="article-description card-text">@Html.Raw(article.Description)</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            }
         }
 
         @if (Model.TotalItems > Model.PageSize && Model.PageSize > 0)
         {
             var pageCount = (int)Math.Ceiling((double)Model.TotalItems / Model.PageSize);
-            <div class="table-pager">
-                @for (int i = 1; i <= pageCount; i++)
-                {
-                    if (i == Model.CurrentPage)
+            <nav class="table-pager" aria-label="Article pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                        <a class="page-link" href="?ShowP=@(Model.CurrentPage - 1)"
+                           aria-label="Previous page" @(Model.CurrentPage <= 1 ? "tabindex=-1 aria-disabled=true" : "")>
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= pageCount; i++)
                     {
-                        <span>@i</span>
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")"
+                            @(i == Model.CurrentPage ? "aria-current=page" : "")>
+                            @if (i == Model.CurrentPage)
+                            {
+                                <span class="page-link">@i</span>
+                            }
+                            else
+                            {
+                                <a class="page-link" href="?ShowP=@i" aria-label="Page @i">@i</a>
+                            }
+                        </li>
                     }
-                    else
-                    {
-                        <a href="?ShowP=@i">@i</a>
-                    }
-                    @:&nbsp;
-                }
-            </div>
+                    <li class="page-item @(Model.CurrentPage >= pageCount ? "disabled" : "")">
+                        <a class="page-link" href="?ShowP=@(Model.CurrentPage + 1)"
+                           aria-label="Next page" @(Model.CurrentPage >= pageCount ? "tabindex=-1 aria-disabled=true" : "")>
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="visually-hidden">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         }
     </div>
 }

@@ -5,7 +5,11 @@
 *@
 @if (!string.IsNullOrEmpty(Model))
 {
-    <div class="wcms-content">
+    <div class="wcms-content" role="region" aria-label="Page content">
         @Html.Raw(Model)
     </div>
+}
+else
+{
+    <div class="wcms-content wcms-content-empty" aria-hidden="true"></div>
 }
