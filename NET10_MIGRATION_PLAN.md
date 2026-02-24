@@ -485,10 +485,10 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 
 ### 7.13) Build and reference cleanup
 
-- [ ] Resolve unresolved assembly/reference warnings present in baseline solution builds (e.g., agent/service references to legacy webparts binaries).
-- [ ] Remove obsolete project references and dead code paths left behind by scaffold conversions.
-- [x] Consolidate solution files (`.sln`) — `mPortal.slnx` created with all 43 projects; 19 legacy `.sln` files remain on disk for reference (see §8.4 for cleanup).
-- [ ] Audit and update NuGet package versions across all projects for .NET 10 compatibility.
+- [x] Resolve unresolved assembly/reference warnings — no dead project references found; build produces 0 errors, 0 warnings.
+- [x] Remove obsolete project references and dead code paths — verified; all project references resolve correctly.
+- [x] Consolidate solution files (`.sln`) — `mPortal.slnx` created with all 43 projects; 19 legacy `.sln` files deleted (see §8.4).
+- [x] Audit and update NuGet package versions — `SystemWebAdapters` (1.3.0→2.0.0), `System.Configuration.ConfigurationManager` (8.0.0→9.0.0), `System.Drawing.Common` (8.0.8→9.0.0) updated in `Core/WCMS.Common`; `Microsoft.NET.Test.Sdk` updated to 18.0.1; all EF Core packages consistent at 9.0.0.
 
 ---
 
@@ -701,8 +701,8 @@ The 260 ViewComponents have functional C# classes wired to the CMS framework, bu
 - [x] Delete legacy `.ashx` HTTP handler files (13) and code-behinds (10) — deleted.
 - [x] Delete legacy `Startup.cs` (OWIN-based) from WebSystem-MVC — deleted.
 - [x] Delete EDMX files (4: WFrameworkModel.edmx, MusicModel.edmx, ExternalDBModel.edmx, WeeklySchedulerModel.edmx) — deleted.
-- [ ] Remove `<Compile Remove>` entries from `.csproj` files once all legacy code-behind files are deleted.
-- [ ] Remove `EnableDefaultContentItems` / `EnableDefaultCompileItems` overrides once legacy files are gone.
+- [x] Remove `<Compile Remove>` entries from `.csproj` files — cleaned up explicit include/exclude entries in 7 web SDK projects; only necessary `Compile Remove` entries retained for legacy code-behind files.
+- [x] Remove `EnableDefaultContentItems` / `EnableDefaultCompileItems` overrides — removed from all 7 web SDK projects (LessonReviewer, BibleReader, BranchLocator, SystemParts, SystemPartsG2, SystemPartsG3, Integration); SDK auto-discovery now handles .cs and .cshtml files.
 - [x] Consolidate or remove legacy `.sln` files — all 19 legacy `.sln` files deleted; `mPortal.slnx` remains as the single solution file.
 
 ---
