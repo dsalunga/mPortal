@@ -1,10 +1,29 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.MCJudgesMasterModel
+@model dynamic
 
-<div class="card" id="mc-judges-master-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Master Judges</h5>
+<div class="card" id="mc-judges-master-@Model.ObjectId" role="region" aria-label="Master Judges Management">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0"><i class="bi bi-person-badge-fill" aria-hidden="true"></i> Master Judges</h5>
+        <button type="button" class="btn btn-sm btn-primary" aria-label="Add new judge">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i> Add
+        </button>
     </div>
-    <div class="card-body">
-        <p>Loading master judges...</p>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped mb-0" aria-label="Judges list">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Specialty</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"><span class="visually-hidden">Actions</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="text-center text-muted py-4">No judges assigned.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

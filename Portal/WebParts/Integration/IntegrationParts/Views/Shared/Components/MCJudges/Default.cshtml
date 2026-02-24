@@ -1,10 +1,20 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.MCJudgesModel
+@model dynamic
 
-<div class="card" id="mc-judges-@Model.ObjectId">
+<section class="card" id="mc-judges-@Model.ObjectId" role="region" aria-label="Judges Panel">
     <div class="card-header">
-        <h5 class="card-title mb-0">Judges Panel</h5>
+        <h5 class="card-title mb-0"><i class="bi bi-person-badge-fill" aria-hidden="true"></i> Judges Panel</h5>
     </div>
     <div class="card-body">
-        <p>Loading judges panel...</p>
+        <div class="row g-3" role="list" aria-label="Judges list">
+            <div class="col-md-4 col-sm-6" role="listitem">
+                <div class="card h-100 text-center shadow-sm">
+                    <div class="card-body">
+                        <img src="/images/placeholder-judge.png" alt="Judge photo" class="rounded-circle mb-2" width="80" height="80" />
+                        <h6 class="card-title mb-1">Judge Name</h6>
+                        <p class="text-muted small mb-0">Specialty / Title</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>

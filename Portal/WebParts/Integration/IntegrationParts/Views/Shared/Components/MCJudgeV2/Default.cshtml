@@ -1,10 +1,49 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.MCJudgeV2Model
+@model dynamic
 
-<div class="card" id="mc-judge-v2-@Model.ObjectId">
+<div class="card" id="mc-judge-v2-@Model.ObjectId" role="region" aria-label="Judge Scoring Interface">
     <div class="card-header">
-        <h5 class="card-title mb-0">Judge V2</h5>
+        <h5 class="card-title mb-0"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Judge Scoring</h5>
     </div>
     <div class="card-body">
-        <p>Loading judge v2...</p>
+        <form method="post" novalidate aria-label="Judge scoring form">
+            <div class="mb-3">
+                <label for="selCandidate-@Model.ObjectId" class="form-label">Candidate <span class="text-danger" aria-hidden="true">*</span></label>
+                <select id="selCandidate-@Model.ObjectId" name="CandidateId" class="form-select" required aria-required="true">
+                    <option value="">Select candidate…</option>
+                </select>
+            </div>
+            <fieldset class="mb-3">
+                <legend class="fs-6 fw-semibold">Scoring Criteria</legend>
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0" aria-label="Scoring criteria">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Criterion</th>
+                                <th scope="col" class="text-center" style="width:120px;">Score (1–10)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><label for="scoreMelody-@Model.ObjectId" class="mb-0">Melody</label></td>
+                                <td><input type="number" id="scoreMelody-@Model.ObjectId" name="Melody" class="form-control form-control-sm text-center" min="1" max="10" aria-label="Melody score" /></td>
+                            </tr>
+                            <tr>
+                                <td><label for="scoreLyrics-@Model.ObjectId" class="mb-0">Lyrics</label></td>
+                                <td><input type="number" id="scoreLyrics-@Model.ObjectId" name="Lyrics" class="form-control form-control-sm text-center" min="1" max="10" aria-label="Lyrics score" /></td>
+                            </tr>
+                            <tr>
+                                <td><label for="scorePerformance-@Model.ObjectId" class="mb-0">Performance</label></td>
+                                <td><input type="number" id="scorePerformance-@Model.ObjectId" name="Performance" class="form-control form-control-sm text-center" min="1" max="10" aria-label="Performance score" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+            <div class="mb-3">
+                <label for="txtComments-@Model.ObjectId" class="form-label">Comments</label>
+                <textarea id="txtComments-@Model.ObjectId" name="Comments" class="form-control" rows="2"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-send" aria-hidden="true"></i> Submit Scores</button>
+        </form>
     </div>
 </div>

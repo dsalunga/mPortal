@@ -1,10 +1,37 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.MCVoteV3Model
+@model dynamic
 
-<div class="card" id="mc-vote-v3-@Model.ObjectId">
+<div class="card" id="mc-vote-v3-@Model.ObjectId" role="region" aria-label="Voting Panel">
     <div class="card-header">
-        <h5 class="card-title mb-0">Voting V3</h5>
+        <h5 class="card-title mb-0"><i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i> Cast Your Vote</h5>
     </div>
     <div class="card-body">
-        <p>Loading voting v3...</p>
+        <form method="post" novalidate aria-label="Voting form">
+            <div class="mb-3">
+                <label for="selCategory-@Model.ObjectId" class="form-label">Category</label>
+                <select id="selCategory-@Model.ObjectId" name="Category" class="form-select" aria-label="Vote category">
+                    <option value="">All categories</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="selCandidateV3-@Model.ObjectId" class="form-label">Select Candidate <span class="text-danger" aria-hidden="true">*</span></label>
+                <select id="selCandidateV3-@Model.ObjectId" name="CandidateId" class="form-select" required aria-required="true">
+                    <option value="">Choose a candidate…</option>
+                </select>
+            </div>
+            <fieldset class="mb-3">
+                <legend class="fs-6 fw-semibold">Score</legend>
+                <div class="row g-2">
+                    <div class="col">
+                        <label for="numScoreV3-@Model.ObjectId" class="form-label small">Overall (1–10)</label>
+                        <input type="number" id="numScoreV3-@Model.ObjectId" name="Score" class="form-control" min="1" max="10" aria-label="Overall score" />
+                    </div>
+                </div>
+            </fieldset>
+            <div class="mb-3">
+                <label for="txtReason-@Model.ObjectId" class="form-label">Reason <span class="text-muted small">(optional)</span></label>
+                <textarea id="txtReason-@Model.ObjectId" name="Reason" class="form-control" rows="2"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100"><i class="bi bi-send" aria-hidden="true"></i> Submit Vote</button>
+        </form>
     </div>
 </div>

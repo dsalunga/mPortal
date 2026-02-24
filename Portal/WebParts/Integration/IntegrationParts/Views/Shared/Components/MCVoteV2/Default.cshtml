@@ -1,10 +1,22 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.MCVoteV2Model
+@model dynamic
 
-<div class="card" id="mc-vote-v2-@Model.ObjectId">
+<div class="card" id="mc-vote-v2-@Model.ObjectId" role="region" aria-label="Voting Panel">
     <div class="card-header">
-        <h5 class="card-title mb-0">Voting V2</h5>
+        <h5 class="card-title mb-0"><i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i> Cast Your Vote</h5>
     </div>
     <div class="card-body">
-        <p>Loading voting v2...</p>
+        <form method="post" novalidate aria-label="Voting form">
+            <div class="mb-3">
+                <label for="selCandidateV2-@Model.ObjectId" class="form-label">Select Candidate <span class="text-danger" aria-hidden="true">*</span></label>
+                <select id="selCandidateV2-@Model.ObjectId" name="CandidateId" class="form-select" required aria-required="true">
+                    <option value="">Choose a candidate…</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="numScoreV2-@Model.ObjectId" class="form-label">Score (1–10)</label>
+                <input type="number" id="numScoreV2-@Model.ObjectId" name="Score" class="form-control" min="1" max="10" aria-label="Vote score" />
+            </div>
+            <button type="submit" class="btn btn-primary w-100"><i class="bi bi-send" aria-hidden="true"></i> Submit Vote</button>
+        </form>
     </div>
 </div>

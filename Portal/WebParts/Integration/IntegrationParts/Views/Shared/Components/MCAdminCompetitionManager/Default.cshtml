@@ -1,10 +1,30 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.MCAdminCompetitionManagerModel
+@model dynamic
 
-<div class="card" id="mc-admin-competition-manager-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Competition Manager</h5>
+<div class="card" id="mc-admin-competition-manager-@Model.ObjectId" role="region" aria-label="Competition Manager">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0"><i class="bi bi-gear-fill" aria-hidden="true"></i> Competition Manager</h5>
+        <button type="button" class="btn btn-sm btn-primary" aria-label="Add new competition">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i> Add
+        </button>
     </div>
-    <div class="card-body">
-        <p>Loading competition manager...</p>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped mb-0" aria-label="Competitions list">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"><span class="visually-hidden">Actions</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5" class="text-center text-muted py-4">No competitions found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

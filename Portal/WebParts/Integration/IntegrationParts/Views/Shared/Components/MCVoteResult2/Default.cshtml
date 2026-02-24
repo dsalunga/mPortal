@@ -1,10 +1,24 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.MCVoteResult2Model
+@model dynamic
 
-<div class="card" id="mc-vote-result-2-@Model.ObjectId">
+<section class="card" id="mc-vote-result-2-@Model.ObjectId" role="region" aria-label="Vote Results">
     <div class="card-header">
-        <h5 class="card-title mb-0">Vote Results V2</h5>
+        <h5 class="card-title mb-0"><i class="bi bi-bar-chart-fill" aria-hidden="true"></i> Vote Results</h5>
     </div>
     <div class="card-body">
-        <p>Loading vote results v2...</p>
+        <div class="mb-3" role="list" aria-label="Candidate rankings with scores">
+            <div class="d-flex align-items-center mb-2" role="listitem">
+                <span class="badge bg-warning text-dark me-2" aria-label="Rank 1">1</span>
+                <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between mb-1">
+                        <strong>Candidate Name</strong>
+                        <span>0 pts</span>
+                    </div>
+                    <div class="progress" role="progressbar" aria-label="Score progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="height:8px;">
+                        <div class="progress-bar bg-success" style="width:0%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-muted mb-0">No results available.</p>
     </div>
-</div>
+</section>

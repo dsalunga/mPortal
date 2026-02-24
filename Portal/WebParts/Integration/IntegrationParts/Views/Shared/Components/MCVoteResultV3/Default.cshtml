@@ -1,10 +1,27 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.MCVoteResultV3Model
+@model dynamic
 
-<div class="card" id="mc-vote-result-v3-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Vote Results V3</h5>
+<section class="card" id="mc-vote-result-v3-@Model.ObjectId" role="region" aria-label="Vote Results">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0"><i class="bi bi-bar-chart-fill" aria-hidden="true"></i> Vote Results</h5>
+        <span class="badge bg-info" aria-label="Total votes cast">0 votes</span>
     </div>
     <div class="card-body">
-        <p>Loading vote results v3...</p>
+        <div class="row g-3" role="list" aria-label="Result cards">
+            <div class="col-md-6" role="listitem">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body d-flex align-items-center gap-3">
+                        <span class="badge bg-primary rounded-pill fs-5" aria-label="Rank">1</span>
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">Candidate Name</h6>
+                            <div class="progress mb-1" role="progressbar" aria-label="Score" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="height:6px;">
+                                <div class="progress-bar" style="width:0%;"></div>
+                            </div>
+                            <small class="text-muted">0 votes &middot; 0 pts</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-muted mt-3 mb-0">No results available.</p>
     </div>
-</div>
+</section>

@@ -1,10 +1,39 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.MCCandidateEditModel
+@model dynamic
 
-<div class="card" id="mc-candidate-edit-@Model.ObjectId">
+<div class="card" id="mc-candidate-edit-@Model.ObjectId" role="region" aria-label="Edit Candidate">
     <div class="card-header">
-        <h5 class="card-title mb-0">Edit Candidate</h5>
+        <h5 class="card-title mb-0"><i class="bi bi-person-lines-fill" aria-hidden="true"></i> Edit Candidate</h5>
     </div>
     <div class="card-body">
-        <p>Loading edit candidate...</p>
+        <form method="post" novalidate aria-label="Candidate edit form">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="txtFirstName-@Model.ObjectId" class="form-label">First Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtFirstName-@Model.ObjectId" name="FirstName" class="form-control" required aria-required="true" />
+                </div>
+                <div class="col-md-6">
+                    <label for="txtLastName-@Model.ObjectId" class="form-label">Last Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtLastName-@Model.ObjectId" name="LastName" class="form-control" required aria-required="true" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="txtSongTitle-@Model.ObjectId" class="form-label">Song Title</label>
+                <input type="text" id="txtSongTitle-@Model.ObjectId" name="SongTitle" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="selCategory-@Model.ObjectId" class="form-label">Category</label>
+                <select id="selCategory-@Model.ObjectId" name="Category" class="form-select" aria-label="Candidate category">
+                    <option value="">Select category…</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="txtPhoto-@Model.ObjectId" class="form-label">Photo URL</label>
+                <input type="url" id="txtPhoto-@Model.ObjectId" name="PhotoUrl" class="form-control" />
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i> Save</button>
+                <button type="button" class="btn btn-outline-secondary">Cancel</button>
+            </div>
+        </form>
     </div>
 </div>

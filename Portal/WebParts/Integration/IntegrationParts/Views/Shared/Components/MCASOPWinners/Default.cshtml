@@ -1,10 +1,44 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.MCASOPWinnersModel
+@model dynamic
 
-<div class="card" id="mc-asop-winners-@Model.ObjectId">
+<section class="card" id="mc-asop-winners-@Model.ObjectId" role="region" aria-label="ASOP Winners">
     <div class="card-header">
-        <h5 class="card-title mb-0">ASOP Winners</h5>
+        <h5 class="card-title mb-0"><i class="bi bi-trophy-fill text-warning" aria-hidden="true"></i> ASOP Winners</h5>
     </div>
     <div class="card-body">
-        <p>Loading asop winners...</p>
+        <div class="row g-4" role="list" aria-label="Winner rankings">
+            <div class="col-md-4" role="listitem">
+                <div class="card text-center border-warning">
+                    <div class="card-body">
+                        <span class="badge bg-warning text-dark fs-5 mb-2" aria-label="First place">1st</span>
+                        <img src="/images/placeholder-winner.png" alt="First place winner photo" class="rounded-circle mb-2" width="96" height="96" />
+                        <h6 class="card-title">Winner Name</h6>
+                        <p class="text-muted mb-1">Song Title</p>
+                        <span class="badge bg-secondary">Category</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" role="listitem">
+                <div class="card text-center border-secondary">
+                    <div class="card-body">
+                        <span class="badge bg-secondary fs-5 mb-2" aria-label="Second place">2nd</span>
+                        <img src="/images/placeholder-winner.png" alt="Second place winner photo" class="rounded-circle mb-2" width="96" height="96" />
+                        <h6 class="card-title">Winner Name</h6>
+                        <p class="text-muted mb-1">Song Title</p>
+                        <span class="badge bg-secondary">Category</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" role="listitem">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <span class="badge bg-danger fs-5 mb-2" aria-label="Third place">3rd</span>
+                        <img src="/images/placeholder-winner.png" alt="Third place winner photo" class="rounded-circle mb-2" width="96" height="96" />
+                        <h6 class="card-title">Winner Name</h6>
+                        <p class="text-muted mb-1">Song Title</p>
+                        <span class="badge bg-secondary">Category</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
