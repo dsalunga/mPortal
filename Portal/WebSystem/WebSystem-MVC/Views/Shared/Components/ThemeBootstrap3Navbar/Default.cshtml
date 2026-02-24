@@ -1,0 +1,37 @@
+@* Originally: bootstrap3/navbar-fixed-top.ascx *@
+@model WCMS.WebSystem.ViewComponents.ThemeBootstrap3NavbarModel
+<div class="theme-bootstrap3-navbar" data-object-id="@Model.ObjectId">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <div id="BrandZone">
+                @* Brand zone *@
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bs3NavbarNav" aria-controls="bs3NavbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="bs3NavbarNav">
+                <div id="NavZone">
+                    @* Navigation zone *@
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="theme-bootstrap3-content" style="padding-top: 56px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" id="ContentZone">
+                    @* Content below fixed navbar *@
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="theme-bootstrap3-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" id="FooterZone">
+                    @* Footer zone *@
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

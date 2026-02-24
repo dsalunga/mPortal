@@ -1,0 +1,39 @@
+@* Originally: Central/Responsive.ascx *@
+@model WCMS.WebSystem.ViewComponents.ThemeCentralResponsiveModel
+<div class="theme-central-responsive" data-object-id="@Model.ObjectId">
+    <header class="theme-central-responsive-header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div id="BrandZone">
+                    @* Brand / logo zone *@
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#centralResponsiveNav" aria-controls="centralResponsiveNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="centralResponsiveNav">
+                    <div id="NavigationZone">
+                        @* Collapsible navigation zone *@
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="theme-central-responsive-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12" id="ContentZone">
+                    @* Fluid content container *@
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="theme-central-responsive-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12" id="FooterZone">
+                    @* Responsive footer *@
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

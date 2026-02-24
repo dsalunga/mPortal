@@ -1,0 +1,42 @@
+@* Originally: Central/ResponsiveWithSidebar.ascx *@
+@model WCMS.WebSystem.ViewComponents.ThemeCentralResponsiveWithSidebarModel
+<div class="theme-central-responsive-sidebar" data-object-id="@Model.ObjectId">
+    <header class="theme-central-responsive-header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div id="BrandZone">
+                    @* Brand / logo zone *@
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#centralSidebarNav" aria-controls="centralSidebarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="centralSidebarNav">
+                    <div id="NavigationZone">
+                        @* Collapsible navigation zone *@
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="theme-central-responsive-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8" id="ContentZone">
+                    @* Main content column *@
+                </div>
+                <aside class="col-md-4" id="SidebarZone" role="complementary">
+                    @* Sidebar column *@
+                </aside>
+            </div>
+        </div>
+    </main>
+    <footer class="theme-central-responsive-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12" id="FooterZone">
+                    @* Footer zone *@
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

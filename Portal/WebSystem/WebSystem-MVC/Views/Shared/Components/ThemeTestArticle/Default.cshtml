@@ -1,0 +1,36 @@
+@* Originally: test/Parts/Article/Default/Article.ascx *@
+@model WCMS.WebSystem.ViewComponents.ThemeTestArticleModel
+<article class="theme-test-article" data-object-id="@Model.ObjectId">
+    <header class="article-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" id="TitleZone">
+                    @* Article title zone *@
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" id="MetaZone">
+                    @* Meta info zone: date, author *@
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="article-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" id="ArticleBodyZone">
+                    @* Article body zone *@
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="article-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" id="TagsZone">
+                    @* Tags zone *@
+                </div>
+            </div>
+        </div>
+    </footer>
+</article>
