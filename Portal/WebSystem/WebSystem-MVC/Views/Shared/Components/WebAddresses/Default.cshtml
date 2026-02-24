@@ -1,48 +1,48 @@
 @model WCMS.WebSystem.ViewComponents.WebAddressesViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Address Book">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-person-lines-fill"></i> Address Book</h5>
-        <button type="button" class="btn btn-sm btn-success" id="btnAddAddress"><i class="bi bi-plus-lg"></i> Add Address</button>
+        <h5 class="mb-0"><i class="bi bi-person-lines-fill" aria-hidden="true"></i> Address Book</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddAddress" aria-label="Add new address"><i class="bi bi-plus-lg" aria-hidden="true"></i> Add Address</button>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         <div class="row g-0">
             <div class="col-md-3 border-end">
                 <div class="p-3">
-                    <h6>Groups</h6>
-                    <div class="list-group list-group-flush" id="addressGroups">
+                    <h6 id="addressGroupsHeading">Groups</h6>
+                    <nav class="list-group list-group-flush" id="addressGroups" aria-labelledby="addressGroupsHeading">
                         @if (Model.Groups.Count == 0)
                         {
                             <p class="text-muted">No groups.</p>
                         }
                         @foreach (var group in Model.Groups)
                         {
-                            <a href="javascript:void(0)" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center address-group @(group.Id == Model.SelectedGroupId ? "active" : "")" data-group-id="@group.Id">
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center address-group @(group.Id == Model.SelectedGroupId ? "active" : "")" data-group-id="@group.Id" aria-label="@group.Name group with @group.AddressCount addresses" @(group.Id == Model.SelectedGroupId ? "aria-current=\"true\"" : "")>
                                 @group.Name
                                 <span class="badge bg-primary rounded-pill">@group.AddressCount</span>
                             </a>
                         }
-                    </div>
+                    </nav>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="p-3">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover table-sm">
+                        <table class="table table-striped table-hover table-sm" aria-label="Addresses list">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>City</th>
-                                    <th>State</th>
-                                    <th>Group</th>
-                                    <th>Active</th>
-                                    <th>Actions</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">City</th>
+                                    <th scope="col">State</th>
+                                    <th scope="col">Group</th>
+                                    <th scope="col">Active</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,8 +70,8 @@
                                             }
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-address" data-address-id="@addr.Id"><i class="bi bi-pencil"></i></button>
-                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-address" data-address-id="@addr.Id"><i class="bi bi-trash"></i></button>
+                                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-address" data-address-id="@addr.Id" aria-label="Edit @addr.Name"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-address" data-address-id="@addr.Id" aria-label="Delete @addr.Name"><i class="bi bi-trash" aria-hidden="true"></i></button>
                                         </td>
                                     </tr>
                                 }
@@ -82,4 +82,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

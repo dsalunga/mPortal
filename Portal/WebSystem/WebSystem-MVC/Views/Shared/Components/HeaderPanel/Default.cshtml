@@ -1,29 +1,30 @@
 @model WCMS.WebSystem.ViewComponents.HeaderPanelViewModel
 
-<div class="bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+<header class="bg-primary text-white p-3 d-flex justify-content-between align-items-center" role="banner" aria-label="Site header">
     <div class="header-panel-left">
         <h5 class="mb-0">@Model.SiteName</h5>
     </div>
     <div class="header-panel-right d-flex align-items-center">
-        <span class="me-3">
-            <i class="bi bi-person-circle me-1"></i> @Model.UserName
+        <span class="me-3" aria-label="Current user">
+            <i class="bi bi-person-circle me-1" aria-hidden="true"></i> @Model.UserName
         </span>
         @if (!string.IsNullOrEmpty(Model.UserRole))
         {
-            <span class="badge bg-light text-dark me-3">@Model.UserRole</span>
+            <span class="badge bg-light text-dark me-3" aria-label="User role">@Model.UserRole</span>
         }
-        <span class="me-3 position-relative">
-            <i class="bi bi-bell fs-5"></i>
+        <span class="me-3 position-relative" role="status" aria-label="Notifications">
+            <i class="bi bi-bell fs-5" aria-hidden="true"></i>
             @if (Model.NotificationCount > 0)
             {
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     @Model.NotificationCount
+                    <span class="visually-hidden">unread notifications</span>
                 </span>
             }
         </span>
         @if (Model.LastLoginDate.HasValue)
         {
-            <small class="text-white-50">Last login: @Model.LastLoginDate.Value.ToString("g")</small>
+            <small class="text-white-50" aria-label="Last login date">Last login: @Model.LastLoginDate.Value.ToString("g")</small>
         }
     </div>
-</div>
+</header>

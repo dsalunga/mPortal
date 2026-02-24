@@ -4,12 +4,12 @@
     void RenderSecurityNodes(List<WCMS.WebSystem.ViewComponents.SecurityTreeNode> nodes, string selectedId)
     {
         if (nodes == null || nodes.Count == 0) return;
-        <ul class="list-unstyled ms-3">
+        <ul class="list-unstyled ms-3" role="group">
             @foreach (var node in nodes)
             {
-                <li class="mb-1">
-                    <a href="@(node.Url ?? "javascript:void(0)")" class="sec-node text-decoration-none @(node.Id == selectedId ? "fw-bold text-primary" : "")" data-node-id="@node.Id" data-node-type="@node.NodeType">
-                        <i class="bi @(node.Icon ?? "bi-folder")"></i> @node.Text
+                <li class="mb-1" role="treeitem">
+                    <a href="@(node.Url ?? "javascript:void(0)")" class="sec-node text-decoration-none @(node.Id == selectedId ? "fw-bold text-primary" : "")" data-node-id="@node.Id" data-node-type="@node.NodeType" aria-label="@node.Text" @(node.Id == selectedId ? "aria-current=\"true\"" : "")>
+                        <i class="bi @(node.Icon ?? "bi-folder")" aria-hidden="true"></i> @node.Text
                     </a>
                     @if (node.Children != null && node.Children.Count > 0)
                     {
@@ -21,23 +21,23 @@
     }
 }
 
-<div class="card admin-panel" id="pnlSecurityTree">
+<nav class="card admin-panel" id="pnlSecurityTree" aria-label="Security navigation">
     <div class="card-header">
-        <h5 class="mb-0"><i class="bi bi-shield-shaded"></i> Security</h5>
+        <h5 class="mb-0"><i class="bi bi-shield-shaded" aria-hidden="true"></i> Security</h5>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
-        <div class="security-tree p-3" id="securityTreeContainer">
+        <div class="security-tree p-3" id="securityTreeContainer" role="tree" aria-label="Security tree">
             @if (Model.Nodes.Count == 0)
             {
-                <ul class="list-unstyled">
-                    <li class="mb-1"><a href="javascript:void(0)" class="sec-link text-decoration-none" data-section="users"><i class="bi bi-people"></i> Users</a></li>
-                    <li class="mb-1"><a href="javascript:void(0)" class="sec-link text-decoration-none" data-section="groups"><i class="bi bi-collection"></i> Groups</a></li>
-                    <li class="mb-1"><a href="javascript:void(0)" class="sec-link text-decoration-none" data-section="roles"><i class="bi bi-shield-lock"></i> Roles</a></li>
-                    <li class="mb-1"><a href="javascript:void(0)" class="sec-link text-decoration-none" data-section="permissions"><i class="bi bi-key"></i> Permissions</a></li>
+                <ul class="list-unstyled" role="group">
+                    <li class="mb-1" role="treeitem"><a href="javascript:void(0)" class="sec-link text-decoration-none" data-section="users" aria-label="Users"><i class="bi bi-people" aria-hidden="true"></i> Users</a></li>
+                    <li class="mb-1" role="treeitem"><a href="javascript:void(0)" class="sec-link text-decoration-none" data-section="groups" aria-label="Groups"><i class="bi bi-collection" aria-hidden="true"></i> Groups</a></li>
+                    <li class="mb-1" role="treeitem"><a href="javascript:void(0)" class="sec-link text-decoration-none" data-section="roles" aria-label="Roles"><i class="bi bi-shield-lock" aria-hidden="true"></i> Roles</a></li>
+                    <li class="mb-1" role="treeitem"><a href="javascript:void(0)" class="sec-link text-decoration-none" data-section="permissions" aria-label="Permissions"><i class="bi bi-key" aria-hidden="true"></i> Permissions</a></li>
                 </ul>
             }
             else
@@ -46,4 +46,4 @@
             }
         </div>
     </div>
-</div>
+</nav>

@@ -1,11 +1,11 @@
 @model WCMS.WebSystem.ViewComponents.SiteMapViewModel
 
-<div class="card admin-panel">
+<nav class="card admin-panel" aria-label="Site map navigation">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-diagram-3"></i> Site Map</h5>
+        <h5 class="mb-0"><i class="bi bi-diagram-3" aria-hidden="true"></i> Site Map</h5>
         <div>
-            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnExpandCollapseAll">
-                <i class="bi @(Model.ExpandAll ? "bi-dash-square" : "bi-plus-square")"></i>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnExpandCollapseAll" aria-label="@(Model.ExpandAll ? "Collapse all nodes" : "Expand all nodes")">
+                <i class="bi @(Model.ExpandAll ? "bi-dash-square" : "bi-plus-square")" aria-hidden="true"></i>
                 @(Model.ExpandAll ? "Collapse All" : "Expand All")
             </button>
         </div>
@@ -13,9 +13,9 @@
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
-        <div class="sitemap-tree p-3" id="siteMapContainer">
+        <div class="sitemap-tree p-3" id="siteMapContainer" role="tree" aria-label="Site map tree">
             @if (Model.RootNodes.Count == 0)
             {
                 <p class="text-muted">No site map nodes defined.</p>
@@ -26,14 +26,14 @@
             }
         </div>
     </div>
-</div>
+</nav>
 
 @functions {
     static string RenderSiteMapNodes(System.Collections.Generic.List<WCMS.WebSystem.ViewComponents.SiteMapNode> nodes, bool expandAll)
     {
         if (nodes == null || nodes.Count == 0) return string.Empty;
         var sb = new System.Text.StringBuilder();
-        sb.Append("<ul class=\"list-unstyled ms-3\">");
+        sb.Append("<ul class=\"list-unstyled ms-3\" role=\"group\">");
         foreach (var node in nodes)
         {
             var activeClass = node.IsActive ? "" : " text-muted";
@@ -41,24 +41,25 @@
             if (node.NodeType == "site") icon = "bi-globe";
             else if (node.NodeType == "element") icon = "bi-puzzle";
 
-            sb.Append("<li class=\"mb-1\">");
+            sb.Append("<li class=\"mb-1\" role=\"treeitem\">");
             if (node.Children != null && node.Children.Count > 0)
             {
                 var expandIcon = expandAll ? "bi-chevron-down" : "bi-chevron-right";
-                sb.Append($"<i class=\"bi {expandIcon} sitemap-toggle\" data-node-id=\"{node.Id}\" style=\"cursor:pointer\"></i> ");
+                var expandedAttr = expandAll ? "true" : "false";
+                sb.Append($"<i class=\"bi {expandIcon} sitemap-toggle\" data-node-id=\"{node.Id}\" style=\"cursor:pointer\" role=\"button\" aria-expanded=\"{expandedAttr}\" aria-label=\"Toggle {System.Net.WebUtility.HtmlEncode(node.Name)}\"></i> ");
             }
             else
             {
-                sb.Append("<span style=\"display:inline-block;width:16px\"></span> ");
+                sb.Append("<span style=\"display:inline-block;width:16px\" aria-hidden=\"true\"></span> ");
             }
 
-            sb.Append($"<a href=\"{System.Net.WebUtility.HtmlEncode(node.Url ?? "javascript:void(0)")}\" class=\"sitemap-node-link{activeClass}\" data-node-id=\"{node.Id}\">");
-            sb.Append($"<i class=\"bi {icon}\"></i> {System.Net.WebUtility.HtmlEncode(node.Name)}");
+            sb.Append($"<a href=\"{System.Net.WebUtility.HtmlEncode(node.Url ?? "javascript:void(0)")}\" class=\"sitemap-node-link{activeClass}\" data-node-id=\"{node.Id}\" aria-label=\"{System.Net.WebUtility.HtmlEncode(node.Name)}\">");
+            sb.Append($"<i class=\"bi {icon}\" aria-hidden=\"true\"></i> {System.Net.WebUtility.HtmlEncode(node.Name)}");
             sb.Append("</a>");
 
             if (node.IsActive)
             {
-                sb.Append(" <i class=\"bi bi-check-circle text-success\" title=\"Active\"></i>");
+                sb.Append(" <i class=\"bi bi-check-circle text-success\" aria-hidden=\"true\" title=\"Active\"></i><span class=\"visually-hidden\">Active</span>");
             }
             else
             {

@@ -4,12 +4,12 @@
     void RenderSiteNodes(List<WCMS.WebSystem.ViewComponents.SiteNode> nodes, int selectedId)
     {
         if (nodes == null || nodes.Count == 0) return;
-        <ul class="list-unstyled ms-3">
+        <ul class="list-unstyled ms-3" role="group">
             @foreach (var site in nodes)
             {
-                <li class="site-node mb-1 @(site.Id == selectedId ? "selected" : "")">
-                    <a href="javascript:void(0)" data-site-id="@site.Id" class="site-link text-decoration-none">
-                        <i class="bi @(site.IsActive ? "bi-globe" : "bi-globe2 text-muted")"></i>
+                <li class="site-node mb-1 @(site.Id == selectedId ? "selected" : "")" role="treeitem" aria-selected="@(site.Id == selectedId ? "true" : "false")">
+                    <a href="javascript:void(0)" data-site-id="@site.Id" class="site-link text-decoration-none" aria-label="@site.Name">
+                        <i class="bi @(site.IsActive ? "bi-globe" : "bi-globe2 text-muted")" aria-hidden="true"></i>
                         @site.Name
                     </a>
                     @if (!string.IsNullOrEmpty(site.Url))
@@ -30,20 +30,20 @@
     }
 }
 
-<div class="card admin-panel" id="pnlSiteManager">
+<section class="card admin-panel" id="pnlSiteManager" aria-label="Web Sites Manager">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-diagram-3"></i> Web Sites</h5>
-        <div>
-            <button type="button" class="btn btn-sm btn-success" id="btnAddSite"><i class="bi bi-plus-lg"></i> New Site</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshSites"><i class="bi bi-arrow-clockwise"></i></button>
+        <h5 class="mb-0"><i class="bi bi-diagram-3" aria-hidden="true"></i> Web Sites</h5>
+        <div role="toolbar" aria-label="Site actions">
+            <button type="button" class="btn btn-sm btn-success" id="btnAddSite" aria-label="Add new site"><i class="bi bi-plus-lg" aria-hidden="true"></i> New Site</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshSites" aria-label="Refresh sites list"><i class="bi bi-arrow-clockwise" aria-hidden="true"></i></button>
         </div>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
-        <div class="site-tree p-3" id="siteTreeContainer">
+        <div class="site-tree p-3" id="siteTreeContainer" role="tree" aria-label="Site hierarchy">
             @if (Model.Sites.Count == 0)
             {
                 <p class="text-muted">No sites configured. Click <strong>New Site</strong> to create one.</p>
@@ -54,4 +54,4 @@
             }
         </div>
     </div>
-</div>
+</section>

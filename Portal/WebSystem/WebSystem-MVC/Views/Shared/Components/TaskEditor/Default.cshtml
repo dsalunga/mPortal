@@ -1,35 +1,35 @@
 @model WCMS.WebSystem.ViewComponents.TaskEditorViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Task Editor">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-gear"></i> Task Editor</h5>
-        <button type="button" class="btn btn-sm btn-primary" id="btnSaveTask"><i class="bi bi-save"></i> Save</button>
+        <h5 class="mb-0"><i class="bi bi-gear" aria-hidden="true"></i> Task Editor</h5>
+        <button type="button" class="btn btn-sm btn-primary" id="btnSaveTask" aria-label="Save task"><i class="bi bi-save" aria-hidden="true"></i> Save</button>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.SuccessMessage))
         {
-            <div class="alert alert-success">@Model.SuccessMessage</div>
+            <div class="alert alert-success" role="status">@Model.SuccessMessage</div>
         }
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
         }
-        <form id="taskEditorForm">
+        <form id="taskEditorForm" aria-label="Task configuration">
             <input type="hidden" id="taskId" value="@Model.TaskId" />
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label class="form-label">Task Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="taskName" value="@Model.TaskName" required />
+                    <label class="form-label" for="taskName">Task Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" class="form-control" id="taskName" value="@Model.TaskName" required aria-required="true" />
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Description</label>
+                    <label class="form-label" for="taskDescription">Description</label>
                     <input type="text" class="form-control" id="taskDescription" value="@Model.Description" />
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <label class="form-label">Type</label>
-                    <select class="form-select" id="taskType">
+                    <label class="form-label" for="taskType">Type</label>
+                    <select class="form-select" id="taskType" aria-label="Task type">
                         @foreach (var t in Model.AvailableTaskTypes)
                         {
                             <option value="@t" selected="@(t == Model.TaskType)">@t</option>
@@ -37,8 +37,8 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label">Schedule</label>
-                    <select class="form-select" id="taskSchedule">
+                    <label class="form-label" for="taskSchedule">Schedule</label>
+                    <select class="form-select" id="taskSchedule" aria-label="Task schedule">
                         @foreach (var s in Model.AvailableSchedules)
                         {
                             <option value="@s" selected="@(s == Model.Schedule)">@s</option>
@@ -48,15 +48,15 @@
                 <div class="col-md-4">
                     <label class="form-label">Enabled</label>
                     <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" id="taskEnabled" checked="@Model.IsEnabled" />
+                        <input class="form-check-input" type="checkbox" id="taskEnabled" checked="@Model.IsEnabled" aria-label="Task enabled" />
                         <label class="form-check-label" for="taskEnabled">Active</label>
                     </div>
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label">Command / Query</label>
-                <textarea class="form-control font-monospace" id="taskCommand" rows="8">@Model.CommandText</textarea>
+                <label class="form-label" for="taskCommand">Command / Query</label>
+                <textarea class="form-control font-monospace" id="taskCommand" rows="8" aria-label="Task command or query">@Model.CommandText</textarea>
             </div>
         </form>
     </div>
-</div>
+</section>

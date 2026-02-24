@@ -1,25 +1,25 @@
 @model WCMS.WebSystem.ViewComponents.WebSkinsViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Skins Manager">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-brush"></i> Skins</h5>
-        <button type="button" class="btn btn-sm btn-success" id="btnAddSkin"><i class="bi bi-plus-lg"></i> New Skin</button>
+        <h5 class="mb-0"><i class="bi bi-brush" aria-hidden="true"></i> Skins</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddSkin" aria-label="Add new skin"><i class="bi bi-plus-lg" aria-hidden="true"></i> New Skin</button>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm mb-0">
+            <table class="table table-striped table-hover table-sm mb-0" aria-label="Skins list">
                 <thead class="table-light">
                     <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>CSS File</th>
-                        <th>Active</th>
-                        <th>Modified</th>
-                        <th>Actions</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">CSS File</th>
+                        <th scope="col">Active</th>
+                        <th scope="col">Modified</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +30,7 @@
                     @foreach (var skin in Model.Skins)
                     {
                         <tr class="@(skin.Id == Model.SelectedSkinId ? "table-primary" : "")">
-                            <td><i class="bi bi-brush"></i> @skin.Name</td>
+                            <td><i class="bi bi-brush" aria-hidden="true"></i> @skin.Name</td>
                             <td>@skin.Description</td>
                             <td><code>@skin.CssFile</code></td>
                             <td>
@@ -45,8 +45,8 @@
                             </td>
                             <td>@skin.ModifiedDate?.ToString("g")</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-skin" data-skin-id="@skin.Id"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-skin" data-skin-id="@skin.Id"><i class="bi bi-trash"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-skin" data-skin-id="@skin.Id" aria-label="Edit @skin.Name"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-skin" data-skin-id="@skin.Id" aria-label="Delete @skin.Name"><i class="bi bi-trash" aria-hidden="true"></i></button>
                             </td>
                         </tr>
                     }
@@ -54,4 +54,4 @@
             </table>
         </div>
     </div>
-</div>
+</section>
