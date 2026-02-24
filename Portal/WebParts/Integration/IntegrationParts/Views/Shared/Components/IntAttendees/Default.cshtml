@@ -1,16 +1,35 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntAttendeesModel
+@model dynamic
 
-<div class="card" id="int-attendees-@Model.ObjectId">
-    <div class="card-header">
+<div class="card" id="int-attendees-@Model.ObjectId" role="region" aria-label="Attendees">
+    <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="card-title mb-0">Attendees</h5>
+        <span class="badge bg-secondary" id="lblAttendeeCount">0</span>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Attendee list placeholder content.</p>
+        <div class="mb-3">
+            <label for="txtSearchAttendees" class="form-label visually-hidden">Search attendees</label>
+            <input type="text" id="txtSearchAttendees" class="form-control" placeholder="Search attendees..." aria-label="Search attendees" />
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover" id="tblAttendees" aria-label="Attendees list">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Service</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="attendeeList">
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

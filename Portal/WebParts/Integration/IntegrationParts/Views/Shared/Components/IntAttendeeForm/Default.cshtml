@@ -1,16 +1,40 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntAttendeeFormModel
+@model dynamic
 
-<div class="card" id="int-attendee-form-@Model.ObjectId">
+<div class="card" id="int-attendee-form-@Model.ObjectId" role="region" aria-label="Attendee Form">
     <div class="card-header">
-        <h5 class="card-title mb-0">Attendee Registration</h5>
+        <h5 class="card-title mb-0">Attendee Form</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Attendee registration form placeholder content.</p>
+        <form method="post" novalidate aria-label="Attendee registration form">
+            <div class="mb-3">
+                <label for="txtAttendeeName" class="form-label">Full Name <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="text" id="txtAttendeeName" name="AttendeeName" class="form-control" required aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label for="ddlAttendeeService" class="form-label">Service <span class="text-danger" aria-hidden="true">*</span></label>
+                <select id="ddlAttendeeService" name="ServiceId" class="form-select" required aria-required="true" aria-label="Select service">
+                    <option value="">-- Select Service --</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="txtAttendeeDate" class="form-label">Date <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="date" id="txtAttendeeDate" name="Date" class="form-control" required aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label for="txtAttendeeRemarks" class="form-label">Remarks</label>
+                <textarea id="txtAttendeeRemarks" name="Remarks" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" id="cmdSaveAttendee" class="btn btn-primary">Save</button>
+                <button type="button" id="cmdCancelAttendee" class="btn btn-outline-secondary">Cancel</button>
+            </div>
+        </form>
     </div>
 </div>

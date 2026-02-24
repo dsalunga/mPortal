@@ -1,16 +1,45 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntMyAttendanceModel
+@model dynamic
 
-<div class="card" id="int-my-attendance-@Model.ObjectId">
+<div class="card" id="int-my-attendance-@Model.ObjectId" role="region" aria-label="My Attendance">
     <div class="card-header">
         <h5 class="card-title mb-0">My Attendance</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>My attendance records placeholder content.</p>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="ddlMyAttService" class="form-label">Service</label>
+                <select id="ddlMyAttService" name="ServiceId" class="form-select" aria-label="Filter by service">
+                    <option value="">All Services</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="txtMyAttFrom" class="form-label">From</label>
+                <input type="date" id="txtMyAttFrom" name="DateFrom" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label for="txtMyAttTo" class="form-label">To</label>
+                <input type="date" id="txtMyAttTo" name="DateTo" class="form-control" />
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped" id="tblMyAttendance" aria-label="My attendance records">
+                <thead>
+                    <tr>
+                        <th scope="col">Service</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="myAttendanceList">
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

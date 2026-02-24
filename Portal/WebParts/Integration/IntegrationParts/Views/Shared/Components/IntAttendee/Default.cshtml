@@ -1,16 +1,26 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntAttendeeModel
+@model dynamic
 
-<div class="card" id="int-attendee-@Model.ObjectId">
+<div class="card" id="int-attendee-@Model.ObjectId" role="region" aria-label="Attendee Details">
     <div class="card-header">
-        <h5 class="card-title mb-0">Attendee</h5>
+        <h5 class="card-title mb-0">Attendee Details</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Single attendee view placeholder content.</p>
+        <dl class="row mb-0" id="attendeeDetails">
+            <dt class="col-sm-4">Name</dt>
+            <dd class="col-sm-8" id="lblAttendeeName">—</dd>
+            <dt class="col-sm-4">Service</dt>
+            <dd class="col-sm-8" id="lblService">—</dd>
+            <dt class="col-sm-4">Date</dt>
+            <dd class="col-sm-8" id="lblDate">—</dd>
+            <dt class="col-sm-4">Status</dt>
+            <dd class="col-sm-8"><span class="badge bg-success" id="lblAttendeeStatus">Present</span></dd>
+        </dl>
     </div>
 </div>

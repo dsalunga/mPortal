@@ -1,16 +1,33 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntAttendanceRequestModel
+@model dynamic
 
-<div class="card" id="int-attendance-request-@Model.ObjectId">
+<div class="card" id="int-attendance-request-@Model.ObjectId" role="region" aria-label="Attendance Request">
     <div class="card-header">
         <h5 class="card-title mb-0">Attendance Request</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Attendance request placeholder content.</p>
+        <form method="post" novalidate aria-label="Attendance request form">
+            <div class="mb-3">
+                <label for="ddlService" class="form-label">Service <span class="text-danger" aria-hidden="true">*</span></label>
+                <select id="ddlService" name="ServiceId" class="form-select" required aria-required="true" aria-label="Select service">
+                    <option value="">-- Select Service --</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="txtDate" class="form-label">Date <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="date" id="txtDate" name="Date" class="form-control" required aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label for="txtRemarks" class="form-label">Remarks</label>
+                <textarea id="txtRemarks" name="Remarks" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" id="cmdSubmit" class="btn btn-primary">Submit Request</button>
+        </form>
     </div>
 </div>
