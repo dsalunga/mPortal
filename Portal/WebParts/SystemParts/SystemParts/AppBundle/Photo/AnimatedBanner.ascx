@@ -1,2 +1,0 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AnimatedBanner.ascx.cs" Inherits="WCMS.WebSystem.WebParts.Photo.AnimatedBanner" %>
-<asp:Literal ID="lContent" runat="server" EnableViewState="false"></asp:Literal>

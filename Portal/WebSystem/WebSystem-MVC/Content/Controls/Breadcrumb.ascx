@@ -1,2 +1,0 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Breadcrumb.ascx.cs" Inherits="WCMS.WebSystem.Controls.Controller.BreadcrumbController" %>
-<div id="breadcrumbContainer" runat="server" class="Breadcrumb"></div>
