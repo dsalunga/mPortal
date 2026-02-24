@@ -14,6 +14,7 @@ builder.Services.AddWcmsFramework();
 var app = builder.Build();
 
 ConfigUtil.SetConfiguration(app.Configuration);
+PathMapper.Configure(app.Environment.ContentRootPath, app.Environment.WebRootPath);
 
 app.UseStaticFiles();
 app.UseRouting();
