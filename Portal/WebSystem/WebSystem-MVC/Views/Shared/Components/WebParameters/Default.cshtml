@@ -1,20 +1,20 @@
 @model WCMS.WebSystem.ViewComponents.WebParametersViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Parameters Manager">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-sliders"></i> Parameters</h5>
-        <button type="button" class="btn btn-sm btn-success" id="btnAddParameter"><i class="bi bi-plus-lg"></i> Add Parameter</button>
+        <h5 class="mb-0"><i class="bi bi-sliders" aria-hidden="true"></i> Parameters</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddParameter" aria-label="Add parameter"><i class="bi bi-plus-lg" aria-hidden="true"></i> Add Parameter</button>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         <div class="row g-0">
             <div class="col-md-3 border-end">
                 <div class="p-3">
-                    <h6>Categories</h6>
-                    <div class="list-group list-group-flush" id="parameterCategories">
+                    <h6 id="paramCategoriesHeading">Categories</h6>
+                    <div class="list-group list-group-flush" id="parameterCategories" aria-labelledby="paramCategoriesHeading">
                         @if (Model.Categories.Count == 0)
                         {
                             <p class="text-muted">No categories.</p>
@@ -32,15 +32,15 @@
             <div class="col-md-9">
                 <div class="p-3">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover table-sm">
+                        <table class="table table-striped table-hover table-sm" aria-label="Parameters list">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Key</th>
-                                    <th>Value</th>
-                                    <th>Type</th>
-                                    <th>System</th>
-                                    <th>Modified</th>
-                                    <th>Actions</th>
+                                    <th scope="col">Key</th>
+                                    <th scope="col">Value</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">System</th>
+                                    <th scope="col">Modified</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,8 +66,8 @@
                                         </td>
                                         <td>@param.ModifiedDate?.ToString("d")</td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-param" data-param-id="@param.Id"><i class="bi bi-pencil"></i></button>
-                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-param" data-param-id="@param.Id"><i class="bi bi-trash"></i></button>
+                                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-param" data-param-id="@param.Id" aria-label="Edit @param.Key"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-param" data-param-id="@param.Id" aria-label="Delete @param.Key"><i class="bi bi-trash" aria-hidden="true"></i></button>
                                         </td>
                                     </tr>
                                 }
@@ -78,4 +78,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>
