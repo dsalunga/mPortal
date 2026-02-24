@@ -1,16 +1,31 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntAccessRequestModel
+@model dynamic
 
-<div class="card" id="int-access-request-@Model.ObjectId">
+<div class="card" id="int-access-request-@Model.ObjectId" role="region" aria-label="Access Request">
     <div class="card-header">
-        <h5 class="card-title mb-0">Access Request</h5>
+        <h5 class="card-title mb-0">Request Access</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Access request form placeholder content.</p>
+        <form method="post" novalidate aria-label="Access request form">
+            <div class="mb-3">
+                <label for="txtFullName" class="form-label">Full Name <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="text" id="txtFullName" name="FullName" class="form-control" required aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label for="txtEmail" class="form-label">Email Address <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="email" id="txtEmail" name="Email" class="form-control" required aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label for="txtReason" class="form-label">Reason for Access</label>
+                <textarea id="txtReason" name="Reason" class="form-control" rows="3" aria-label="Reason for requesting access"></textarea>
+            </div>
+            <button type="submit" id="cmdRequestAccess" class="btn btn-primary">Submit Request</button>
+        </form>
     </div>
 </div>

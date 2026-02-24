@@ -1,16 +1,27 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntForgotPasswordModel
+@model dynamic
 
-<div class="card" id="int-forgot-password-@Model.ObjectId">
+<div class="card" id="int-forgot-password-@Model.ObjectId" role="region" aria-label="Forgot Password">
     <div class="card-header">
         <h5 class="card-title mb-0">Forgot Password</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Forgot password flow placeholder content.</p>
+        <p>Enter your username or email address and we will send you instructions to reset your password.</p>
+        <form method="post" novalidate aria-label="Forgot password form">
+            <div class="mb-3">
+                <label for="txtEmail" class="form-label">Username or Email <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="text" id="txtEmail" name="Email" class="form-control" required aria-required="true" placeholder="Enter your username or email" />
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" id="cmdSubmit" class="btn btn-primary">Submit</button>
+                <a href="Login/" class="btn btn-outline-secondary">Back to Login</a>
+            </div>
+        </form>
     </div>
 </div>

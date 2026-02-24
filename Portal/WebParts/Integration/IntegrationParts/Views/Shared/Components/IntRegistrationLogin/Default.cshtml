@@ -1,31 +1,34 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntRegistrationLoginModel
+@model dynamic
 
-<div class="card" id="int-registration-login-@Model.ObjectId">
+<div class="card" id="int-registration-login-@Model.ObjectId" role="region" aria-label="Login">
     <div class="card-header">
         <h5 class="card-title mb-0">Login</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <form method="post" novalidate>
+        <form method="post" novalidate aria-label="Login form">
             <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
             <div class="mb-3">
-                <label for="regLoginUser" class="form-label">User Name</label>
-                <input type="text" class="form-control" id="regLoginUser" name="UserName" required />
+                <label for="regLoginUser" class="form-label">User Name <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="text" class="form-control" id="regLoginUser" name="UserName" required aria-required="true" autocomplete="username" />
             </div>
             <div class="mb-3">
-                <label for="regLoginPass" class="form-label">Password</label>
-                <input type="password" class="form-control" id="regLoginPass" name="Password" required />
+                <label for="regLoginPass" class="form-label">Password <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="password" class="form-control" id="regLoginPass" name="Password" required aria-required="true" autocomplete="current-password" />
             </div>
-            <button type="submit" class="btn btn-primary">Sign In</button>
-            @if (Model.ShowRegistrationLink)
-            {
-                <a href="#" class="btn btn-link">Create an account</a>
-            }
+            <div class="d-flex gap-2 align-items-center">
+                <button type="submit" class="btn btn-primary">Sign In</button>
+                @if (Model.ShowRegistrationLink)
+                {
+                    <a href="#" class="btn btn-link">Create an account</a>
+                }
+            </div>
         </form>
     </div>
 </div>
