@@ -2,23 +2,29 @@
 
 <div class="card admin-panel" id="pnlUserAdmin">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-people"></i> Users</h5>
-        <a href="javascript:void(0)" class="btn btn-sm btn-success" id="btnCreateUser"><i class="bi bi-person-plus"></i> New User</a>
+        <h5 class="mb-0"><i class="bi bi-people" aria-hidden="true"></i> Users</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnCreateUser" aria-label="Create new user">
+            <i class="bi bi-person-plus" aria-hidden="true"></i> New User
+        </button>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
         }
-        <div class="row mb-3">
+        <form class="row mb-3 g-2 align-items-end" role="search" aria-label="Filter users">
             <div class="col-md-5">
+                <label for="userSearch" class="form-label visually-hidden">Search users</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search users..." id="userSearch" value="@Model.SearchTerm" />
-                    <button class="btn btn-outline-secondary" type="button" id="btnSearchUsers"><i class="bi bi-search"></i></button>
+                    <input type="search" class="form-control" placeholder="Search users…" id="userSearch" value="@Model.SearchTerm" aria-label="Search users" />
+                    <button class="btn btn-outline-secondary" type="submit" id="btnSearchUsers" aria-label="Search">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
             <div class="col-md-4">
-                <select class="form-select" id="groupFilter">
+                <label for="groupFilter" class="form-label visually-hidden">Filter by group</label>
+                <select class="form-select" id="groupFilter" aria-label="Filter by group">
                     <option value="0">All Groups</option>
                     @foreach (var g in Model.Groups)
                     {
@@ -27,19 +33,19 @@
                 </select>
             </div>
             <div class="col-md-3 text-end text-muted">
-                <span id="lblUserCount">@Model.TotalCount</span> user(s) found
+                <span id="lblUserCount" aria-live="polite">@Model.TotalCount</span> user(s) found
             </div>
-        </div>
+        </form>
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm" id="gvUsers">
+            <table class="table table-striped table-hover table-sm" id="gvUsers" aria-label="Users list">
                 <thead class="table-light">
                     <tr>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Active</th>
-                        <th>Last Login</th>
-                        <th>Actions</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Last Login</th>
+                        <th scope="col"><span class="visually-hidden">Actions</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +56,7 @@
                     @foreach (var user in Model.Users)
                     {
                         <tr data-user-id="@user.Id">
-                            <td><i class="bi bi-person"></i> @user.UserName</td>
+                            <td><i class="bi bi-person" aria-hidden="true"></i> @user.UserName</td>
                             <td>@user.FirstName @user.LastName</td>
                             <td><a href="mailto:@user.Email">@user.Email</a></td>
                             <td>
@@ -67,14 +73,22 @@
                                     <span class="badge bg-secondary">Inactive</span>
                                 }
                             </td>
-                            <td>@user.LastLoginDate?.ToString("g")</td>
+                            <td class="text-nowrap">@user.LastLoginDate?.ToString("g")</td>
                             <td>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary btn-edit-user" data-user-id="@user.Id" title="Edit"><i class="bi bi-pencil"></i></a>
-                                @if (user.IsLockedOut)
-                                {
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-outline-warning btn-unlock-user" data-user-id="@user.Id" title="Unlock"><i class="bi bi-unlock"></i></a>
-                                }
-                                <a href="javascript:void(0)" class="btn btn-sm btn-outline-danger btn-delete-user" data-user-id="@user.Id" title="Delete"><i class="bi bi-trash"></i></a>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @user.UserName">
+                                    <button type="button" class="btn btn-outline-primary btn-edit-user" data-user-id="@user.Id" title="Edit" aria-label="Edit @user.UserName">
+                                        <i class="bi bi-pencil" aria-hidden="true"></i>
+                                    </button>
+                                    @if (user.IsLockedOut)
+                                    {
+                                        <button type="button" class="btn btn-outline-warning btn-unlock-user" data-user-id="@user.Id" title="Unlock" aria-label="Unlock @user.UserName">
+                                            <i class="bi bi-unlock" aria-hidden="true"></i>
+                                        </button>
+                                    }
+                                    <button type="button" class="btn btn-outline-danger btn-delete-user" data-user-id="@user.Id" title="Delete" aria-label="Delete @user.UserName">
+                                        <i class="bi bi-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     }
@@ -83,19 +97,19 @@
         </div>
         @if (Model.TotalPages > 1)
         {
-            <nav>
-                <ul class="pagination pagination-sm justify-content-center">
+            <nav aria-label="User list pagination">
+                <ul class="pagination pagination-sm justify-content-center mb-0">
                     <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
-                        <a class="page-link" href="javascript:void(0)" data-page="@(Model.CurrentPage - 1)">&laquo;</a>
+                        <a class="page-link" href="javascript:void(0)" data-page="@(Model.CurrentPage - 1)" aria-label="Previous page">&laquo;</a>
                     </li>
                     @for (int i = 1; i <= Model.TotalPages; i++)
                     {
-                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")" @(i == Model.CurrentPage ? "aria-current=\"page\"" : "")>
                             <a class="page-link" href="javascript:void(0)" data-page="@i">@i</a>
                         </li>
                     }
                     <li class="page-item @(Model.CurrentPage >= Model.TotalPages ? "disabled" : "")">
-                        <a class="page-link" href="javascript:void(0)" data-page="@(Model.CurrentPage + 1)">&raquo;</a>
+                        <a class="page-link" href="javascript:void(0)" data-page="@(Model.CurrentPage + 1)" aria-label="Next page">&raquo;</a>
                     </li>
                 </ul>
             </nav>

@@ -1,23 +1,24 @@
 @model WCMS.WebSystem.ViewComponents.WebGroupsViewModel
 
 @{
-    void RenderGroupTree(List<WCMS.WebSystem.ViewComponents.WebGroupNode> nodes, int selectedId)
+    void RenderGroupTree(List<WCMS.WebSystem.ViewComponents.WebGroupNode> nodes, int selectedId, bool isRoot = false)
     {
         if (nodes == null || nodes.Count == 0) return;
-        <ul class="list-unstyled ms-3">
+        <ul class="list-unstyled ms-3" role="@(isRoot ? "tree" : "group")" aria-label="@(isRoot ? "Group hierarchy" : "")">
             @foreach (var g in nodes)
             {
                 var active = g.Id == selectedId ? "fw-bold text-primary" : "";
-                <li class="mb-1">
-                    <a href="javascript:void(0)" class="group-link text-decoration-none @active" data-group-id="@g.Id">
-                        <i class="bi @(g.IsActive ? "bi-folder-fill" : "bi-folder text-muted")"></i> @g.Name
-                        <span class="badge bg-secondary">@g.UserCount</span>
+                var hasChildren = g.Children != null && g.Children.Count > 0;
+                <li class="mb-1" role="treeitem" aria-selected="@(g.Id == selectedId ? "true" : "false")" aria-expanded="@(hasChildren ? "true" : "")">
+                    <a href="javascript:void(0)" class="group-link text-decoration-none @active" data-group-id="@g.Id" aria-label="@g.Name — @g.UserCount member(s)">
+                        <i class="bi @(g.IsActive ? "bi-folder-fill" : "bi-folder text-muted")" aria-hidden="true"></i> @g.Name
+                        <span class="badge bg-secondary" title="@g.UserCount member(s)">@g.UserCount <span class="visually-hidden">members</span></span>
                     </a>
                     @if (!g.IsActive)
                     {
                         <span class="badge bg-warning text-dark ms-1">Inactive</span>
                     }
-                    @if (g.Children != null && g.Children.Count > 0)
+                    @if (hasChildren)
                     {
                         RenderGroupTree(g.Children, selectedId);
                     }
@@ -29,16 +30,20 @@
 
 <div class="card admin-panel" id="pnlGroupAdmin">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-collection"></i> Groups</h5>
-        <div>
-            <button type="button" class="btn btn-sm btn-success" id="btnAddGroup"><i class="bi bi-plus-lg"></i> New Group</button>
-            <button type="button" class="btn btn-sm btn-outline-danger" id="btnDeleteGroup"><i class="bi bi-trash"></i> Delete</button>
+        <h5 class="mb-0"><i class="bi bi-collection" aria-hidden="true"></i> Groups</h5>
+        <div class="btn-group btn-group-sm" role="group" aria-label="Group actions">
+            <button type="button" class="btn btn-success" id="btnAddGroup" aria-label="Add new group">
+                <i class="bi bi-plus-lg" aria-hidden="true"></i> New Group
+            </button>
+            <button type="button" class="btn btn-outline-danger" id="btnDeleteGroup" aria-label="Delete selected group">
+                <i class="bi bi-trash" aria-hidden="true"></i> Delete
+            </button>
         </div>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         <div class="group-tree p-3" id="groupTreeContainer">
             @if (Model.Groups.Count == 0)
@@ -47,7 +52,7 @@
             }
             else
             {
-                RenderGroupTree(Model.Groups, Model.SelectedGroupId);
+                RenderGroupTree(Model.Groups, Model.SelectedGroupId, isRoot: true);
             }
         </div>
     </div>

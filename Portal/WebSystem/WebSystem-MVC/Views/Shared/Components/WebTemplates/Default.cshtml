@@ -1,38 +1,48 @@
 @model WCMS.WebSystem.ViewComponents.WebTemplatesViewModel
 
-<div class="card admin-panel">
+<div class="card admin-panel" id="pnlTemplateAdmin">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-file-earmark-code"></i> Templates</h5>
-        <button type="button" class="btn btn-sm btn-success" id="btnAddTemplate"><i class="bi bi-plus-lg"></i> New Template</button>
+        <h5 class="mb-0"><i class="bi bi-file-earmark-code" aria-hidden="true"></i> Templates</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddTemplate" aria-label="Add new template">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i> New Template
+        </button>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm mb-0">
+            <table class="table table-striped table-hover table-sm mb-0" aria-label="Templates list">
                 <thead class="table-light">
                     <tr>
-                        <th>Name</th>
-                        <th>Theme</th>
-                        <th>Default</th>
-                        <th>Active</th>
-                        <th>Modified</th>
-                        <th>Actions</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Theme</th>
+                        <th scope="col">Default</th>
+                        <th scope="col">Active</th>
+                        <th scope="col">Modified</th>
+                        <th scope="col"><span class="visually-hidden">Actions</span></th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model.Templates.Count == 0)
                     {
-                        <tr><td colspan="6" class="text-center text-muted">No templates defined.</td></tr>
+                        <tr><td colspan="7" class="text-center text-muted">No templates defined.</td></tr>
                     }
                     @foreach (var t in Model.Templates)
                     {
-                        <tr class="@(t.Id == Model.SelectedTemplateId ? "table-primary" : "")">
-                            <td><i class="bi bi-file-code"></i> @t.Name</td>
-                            <td>@t.ThemeName</td>
-                            <td>@(t.IsDefault ? "✓" : "")</td>
+                        <tr class="@(t.Id == Model.SelectedTemplateId ? "table-primary" : "")" data-template-id="@t.Id">
+                            <td><i class="bi bi-file-code" aria-hidden="true"></i> @t.Name</td>
+                            <td class="text-muted small">@t.Description</td>
+                            <td><span class="badge bg-light text-dark">@t.ThemeName</span></td>
+                            <td>
+                                @if (t.IsDefault)
+                                {
+                                    <i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i>
+                                    <span class="visually-hidden">Default template</span>
+                                }
+                            </td>
                             <td>
                                 @if (t.IsActive)
                                 {
@@ -43,10 +53,16 @@
                                     <span class="badge bg-secondary">Inactive</span>
                                 }
                             </td>
-                            <td>@t.ModifiedDate?.ToString("g")</td>
+                            <td class="text-nowrap">@t.ModifiedDate?.ToString("g")</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-template" data-template-id="@t.Id"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-template" data-template-id="@t.Id"><i class="bi bi-trash"></i></button>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @t.Name">
+                                    <button type="button" class="btn btn-outline-primary btn-edit-template" data-template-id="@t.Id" title="Edit" aria-label="Edit @t.Name">
+                                        <i class="bi bi-pencil" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger btn-delete-template" data-template-id="@t.Id" title="Delete" aria-label="Delete @t.Name">
+                                        <i class="bi bi-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     }

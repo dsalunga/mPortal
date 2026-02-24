@@ -3,31 +3,33 @@
 <div class="card admin-panel" id="pnlPageList">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0">
-            <i class="bi bi-file-earmark"></i> Pages
+            <i class="bi bi-file-earmark" aria-hidden="true"></i> Pages
             @if (!string.IsNullOrEmpty(Model.SiteName))
             {
                 <small class="text-muted fw-normal">— @Model.SiteName</small>
             }
         </h5>
-        <button type="button" class="btn btn-sm btn-success" id="btnNewPage" data-site-id="@Model.SiteId"><i class="bi bi-plus-lg"></i> New Page</button>
+        <button type="button" class="btn btn-sm btn-success" id="btnNewPage" data-site-id="@Model.SiteId" aria-label="Add new page">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i> New Page
+        </button>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm mb-0">
+            <table class="table table-striped table-hover table-sm mb-0" aria-label="Pages list">
                 <thead class="table-light">
                     <tr>
-                        <th>Name</th>
-                        <th>Title</th>
-                        <th>URL</th>
-                        <th>Order</th>
-                        <th>Default</th>
-                        <th>Active</th>
-                        <th>Modified</th>
-                        <th>Actions</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">URL</th>
+                        <th scope="col">Order</th>
+                        <th scope="col">Default</th>
+                        <th scope="col">Active</th>
+                        <th scope="col">Modified</th>
+                        <th scope="col"><span class="visually-hidden">Actions</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,12 +39,28 @@
                     }
                     @foreach (var p in Model.Pages)
                     {
-                        <tr class="@(p.Id == Model.SelectedPageId ? "table-primary" : "")">
-                            <td><i class="bi bi-file-earmark"></i> @p.Name</td>
+                        <tr class="@(p.Id == Model.SelectedPageId ? "table-primary" : "")" data-page-id="@p.Id">
+                            <td><i class="bi bi-file-earmark" aria-hidden="true"></i> @p.Name</td>
                             <td>@p.Title</td>
-                            <td>@p.Url</td>
-                            <td>@p.SortOrder</td>
-                            <td>@(p.IsDefault ? "✓" : "")</td>
+                            <td><code>@p.Url</code></td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Reorder @p.Name">
+                                    <button type="button" class="btn btn-outline-secondary btn-move-up" data-page-id="@p.Id" title="Move up" aria-label="Move @p.Name up">
+                                        <i class="bi bi-arrow-up" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary btn-move-down" data-page-id="@p.Id" title="Move down" aria-label="Move @p.Name down">
+                                        <i class="bi bi-arrow-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <span class="ms-1 text-muted small">@p.SortOrder</span>
+                            </td>
+                            <td>
+                                @if (p.IsDefault)
+                                {
+                                    <i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i>
+                                    <span class="visually-hidden">Default page</span>
+                                }
+                            </td>
                             <td>
                                 @if (p.IsActive)
                                 {
@@ -55,8 +73,14 @@
                             </td>
                             <td>@p.ModifiedDate?.ToString("g")</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-page" data-page-id="@p.Id"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-page" data-page-id="@p.Id"><i class="bi bi-trash"></i></button>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @p.Name">
+                                    <button type="button" class="btn btn-outline-primary btn-edit-page" data-page-id="@p.Id" title="Edit" aria-label="Edit @p.Name">
+                                        <i class="bi bi-pencil" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger btn-delete-page" data-page-id="@p.Id" title="Delete" aria-label="Delete @p.Name">
+                                        <i class="bi bi-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     }

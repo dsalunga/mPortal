@@ -1,18 +1,19 @@
 @model WCMS.WebSystem.ViewComponents.WebRegistryViewModel
 
 @{
-    void RenderRegistryTree(List<WCMS.WebSystem.ViewComponents.RegistryNode> nodes, string selectedPath)
+    void RenderRegistryTree(List<WCMS.WebSystem.ViewComponents.RegistryNode> nodes, string selectedPath, bool isRoot = false)
     {
         if (nodes == null || nodes.Count == 0) return;
-        <ul class="list-unstyled ms-3">
+        <ul class="list-unstyled ms-3" role="@(isRoot ? "tree" : "group")" aria-label="@(isRoot ? "Registry keys" : "")">
             @foreach (var node in nodes)
             {
                 var isSelected = node.Path == selectedPath;
-                <li class="mb-1">
-                    <a href="javascript:void(0)" class="reg-node text-decoration-none @(isSelected ? "fw-bold text-primary" : "")" data-node-id="@node.Id" data-path="@node.Path">
-                        <i class="bi @(isSelected ? "bi-folder-fill" : "bi-folder")"></i> @node.Name
+                var hasChildren = node.Children != null && node.Children.Count > 0;
+                <li class="mb-1" role="treeitem" aria-selected="@(isSelected ? "true" : "false")" aria-expanded="@(hasChildren ? "true" : "")">
+                    <a href="javascript:void(0)" class="reg-node text-decoration-none @(isSelected ? "fw-bold text-primary" : "")" data-node-id="@node.Id" data-path="@node.Path" aria-label="@node.Name">
+                        <i class="bi @(isSelected ? "bi-folder-fill" : "bi-folder")" aria-hidden="true"></i> @node.Name
                     </a>
-                    @if (node.Children != null && node.Children.Count > 0)
+                    @if (hasChildren)
                     {
                         RenderRegistryTree(node.Children, selectedPath);
                     }
@@ -24,30 +25,34 @@
 
 <div class="card admin-panel" id="pnlRegistryEditor">
     <div class="card-header">
-        <h5 class="mb-0"><i class="bi bi-journal-code"></i> Registry</h5>
+        <h5 class="mb-0"><i class="bi bi-journal-code" aria-hidden="true"></i> Registry</h5>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         <div class="row g-0">
             <div class="col-md-4 border-end">
                 <div class="p-3">
-                    <h6>Registry Tree</h6>
-                    <div id="registryTreeContainer">
+                    <h6 id="registryTreeLabel"><i class="bi bi-diagram-3" aria-hidden="true"></i> Registry Tree</h6>
+                    <div id="registryTreeContainer" aria-labelledby="registryTreeLabel">
                         @if (Model.Nodes.Count == 0)
                         {
                             <p class="text-muted">No registry keys.</p>
                         }
                         else
                         {
-                            RenderRegistryTree(Model.Nodes, Model.SelectedPath);
+                            RenderRegistryTree(Model.Nodes, Model.SelectedPath, isRoot: true);
                         }
                     </div>
-                    <div class="mt-2">
-                        <button type="button" class="btn btn-sm btn-outline-success" id="btnAddKey"><i class="bi bi-plus-lg"></i> New Key</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger" id="btnDeleteKey"><i class="bi bi-trash"></i> Delete Key</button>
+                    <div class="mt-2 btn-group btn-group-sm" role="group" aria-label="Registry key actions">
+                        <button type="button" class="btn btn-outline-success" id="btnAddKey" aria-label="Add new registry key">
+                            <i class="bi bi-plus-lg" aria-hidden="true"></i> New Key
+                        </button>
+                        <button type="button" class="btn btn-outline-danger" id="btnDeleteKey" aria-label="Delete selected registry key">
+                            <i class="bi bi-trash" aria-hidden="true"></i> Delete Key
+                        </button>
                     </div>
                 </div>
             </div>
@@ -55,22 +60,24 @@
                 <div class="p-3">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h6 class="mb-0">
-                            Values
+                            <i class="bi bi-list-ul" aria-hidden="true"></i> Values
                             @if (!string.IsNullOrEmpty(Model.SelectedPath))
                             {
-                                <small class="text-muted">— @Model.SelectedPath</small>
+                                <small class="text-muted">— <code>@Model.SelectedPath</code></small>
                             }
                         </h6>
-                        <button type="button" class="btn btn-sm btn-outline-success" id="btnAddValue"><i class="bi bi-plus-lg"></i> New Value</button>
+                        <button type="button" class="btn btn-sm btn-outline-success" id="btnAddValue" aria-label="Add new registry value">
+                            <i class="bi bi-plus-lg" aria-hidden="true"></i> New Value
+                        </button>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-sm" id="registryValueGrid">
+                        <table class="table table-bordered table-sm" id="registryValueGrid" aria-label="Registry values">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Key</th>
-                                    <th>Value</th>
-                                    <th>Type</th>
-                                    <th>Actions</th>
+                                    <th scope="col">Key</th>
+                                    <th scope="col">Value</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col"><span class="visually-hidden">Actions</span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,13 +87,22 @@
                                 }
                                 @foreach (var entry in Model.Entries)
                                 {
-                                    <tr>
+                                    <tr data-entry-id="@entry.Id">
                                         <td><code>@entry.Key</code></td>
-                                        <td><input type="text" class="form-control form-control-sm" value="@entry.Value" data-entry-id="@entry.Id" /></td>
+                                        <td>
+                                            <label for="val_@entry.Id" class="visually-hidden">Value for @entry.Key</label>
+                                            <input type="text" class="form-control form-control-sm" id="val_@entry.Id" value="@entry.Value" data-entry-id="@entry.Id" aria-label="Value for @entry.Key" />
+                                        </td>
                                         <td><span class="badge bg-secondary">@entry.DataType</span></td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-outline-primary btn-save-value" data-entry-id="@entry.Id"><i class="bi bi-save"></i></button>
-                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-value" data-entry-id="@entry.Id"><i class="bi bi-trash"></i></button>
+                                            <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @entry.Key">
+                                                <button type="button" class="btn btn-outline-primary btn-save-value" data-entry-id="@entry.Id" title="Save" aria-label="Save @entry.Key">
+                                                    <i class="bi bi-save" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-outline-danger btn-delete-value" data-entry-id="@entry.Id" title="Delete" aria-label="Delete @entry.Key">
+                                                    <i class="bi bi-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 }
