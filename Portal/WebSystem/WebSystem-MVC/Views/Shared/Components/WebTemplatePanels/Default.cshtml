@@ -1,17 +1,17 @@
 @model WCMS.WebSystem.ViewComponents.WebTemplatePanelsViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Template Panels">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-layout-three-columns"></i> Template Panels</h5>
+        <h5 class="mb-0"><i class="bi bi-layout-three-columns" aria-hidden="true"></i> Template Panels</h5>
         <div>
-            <button type="button" class="btn btn-sm btn-primary" id="btnSaveTemplatePanels"><i class="bi bi-save"></i> Save</button>
-            <button type="button" class="btn btn-sm btn-success" id="btnAddTemplatePanel"><i class="bi bi-plus-lg"></i> Add Panel</button>
+            <button type="button" class="btn btn-sm btn-primary" id="btnSaveTemplatePanels" aria-label="Save panels"><i class="bi bi-save" aria-hidden="true"></i> Save</button>
+            <button type="button" class="btn btn-sm btn-success" id="btnAddTemplatePanel" aria-label="Add panel"><i class="bi bi-plus-lg" aria-hidden="true"></i> Add Panel</button>
         </div>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
         }
         <input type="hidden" id="templateId" value="@Model.TemplateId" />
         @if (!string.IsNullOrEmpty(Model.TemplateName))
@@ -19,15 +19,15 @@
             <p><strong>Template:</strong> @Model.TemplateName</p>
         }
         <div class="table-responsive">
-            <table class="table table-bordered table-sm">
+            <table class="table table-bordered table-sm" aria-label="Template panels list">
                 <thead class="table-light">
                     <tr>
-                        <th style="width: 30px;"></th>
-                        <th>Name</th>
-                        <th>Zone</th>
-                        <th>Order</th>
-                        <th>Required</th>
-                        <th>Actions</th>
+                        <th scope="col" style="width: 30px;"><span class="visually-hidden">Drag handle</span></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Zone</th>
+                        <th scope="col">Order</th>
+                        <th scope="col">Required</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody id="templatePanelList">
@@ -38,13 +38,13 @@
                     @foreach (var panel in Model.Panels)
                     {
                         <tr data-panel-id="@panel.Id">
-                            <td><i class="bi bi-grip-vertical" style="cursor:move;"></i></td>
-                            <td><input type="text" class="form-control form-control-sm" value="@panel.Name" /></td>
-                            <td><input type="text" class="form-control form-control-sm" value="@panel.Zone" /></td>
-                            <td><input type="number" class="form-control form-control-sm" value="@panel.SortOrder" style="width:70px;" /></td>
-                            <td class="text-center"><input type="checkbox" class="form-check-input" checked="@panel.IsRequired" /></td>
+                            <td><i class="bi bi-grip-vertical" aria-hidden="true" style="cursor:move;"></i></td>
+                            <td><input type="text" class="form-control form-control-sm" value="@panel.Name" aria-label="Panel name" /></td>
+                            <td><input type="text" class="form-control form-control-sm" value="@panel.Zone" aria-label="Panel zone" /></td>
+                            <td><input type="number" class="form-control form-control-sm" value="@panel.SortOrder" style="width:70px;" aria-label="Sort order" /></td>
+                            <td class="text-center"><input type="checkbox" class="form-check-input" checked="@panel.IsRequired" aria-label="Required" /></td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-remove-tpl-panel"><i class="bi bi-trash"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-remove-tpl-panel" aria-label="Remove panel"><i class="bi bi-trash" aria-hidden="true"></i></button>
                             </td>
                         </tr>
                     }
@@ -52,4 +52,4 @@
             </table>
         </div>
     </div>
-</div>
+</section>

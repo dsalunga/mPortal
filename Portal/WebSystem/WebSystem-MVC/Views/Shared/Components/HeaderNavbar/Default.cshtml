@@ -5,7 +5,7 @@
         <span class="navbar-brand mb-0 h1">
             @if (Model.IsAdminMode)
             {
-                <i class="bi bi-gear me-1"></i>
+                <i class="bi bi-gear me-1" aria-hidden="true"></i>
             }
             Admin
         </span>
@@ -20,10 +20,10 @@
                     if (hasChildren)
                     {
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle @(item.IsActive ? "active" : "")" href="#" id="navbarDropdown_@item.Id" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle @(item.IsActive ? "active" : "")" href="#" id="navbarDropdown_@item.Id" role="button" data-bs-toggle="dropdown" aria-expanded="false" @(item.IsActive ? "aria-current=page" : "")>
                                 @if (!string.IsNullOrEmpty(item.IconClass))
                                 {
-                                    <i class="bi @item.IconClass me-1"></i>
+                                    <i class="bi @item.IconClass me-1" aria-hidden="true"></i>
                                 }
                                 @item.Label
                             </a>
@@ -31,10 +31,10 @@
                                 @foreach (var child in item.Children)
                                 {
                                     <li>
-                                        <a class="dropdown-item @(child.IsActive ? "active" : "")" href="@child.Url">
+                                        <a class="dropdown-item @(child.IsActive ? "active" : "")" href="@child.Url" @(child.IsActive ? "aria-current=page" : "")>
                                             @if (!string.IsNullOrEmpty(child.IconClass))
                                             {
-                                                <i class="bi @child.IconClass me-1"></i>
+                                                <i class="bi @child.IconClass me-1" aria-hidden="true"></i>
                                             }
                                             @child.Label
                                         </a>
@@ -46,10 +46,10 @@
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link @(item.IsActive ? "active" : "")" href="@item.Url">
+                            <a class="nav-link @(item.IsActive ? "active" : "")" href="@item.Url" @(item.IsActive ? "aria-current=page" : "")>
                                 @if (!string.IsNullOrEmpty(item.IconClass))
                                 {
-                                    <i class="bi @item.IconClass me-1"></i>
+                                    <i class="bi @item.IconClass me-1" aria-hidden="true"></i>
                                 }
                                 @item.Label
                             </a>
@@ -60,7 +60,7 @@
             @if (!string.IsNullOrEmpty(Model.UserName))
             {
                 <span class="navbar-text">
-                    <i class="bi bi-person-circle me-1"></i> @Model.UserName
+                    <i class="bi bi-person-circle me-1" aria-hidden="true"></i> @Model.UserName
                 </span>
             }
         </div>

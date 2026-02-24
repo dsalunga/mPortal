@@ -1,17 +1,17 @@
 @model WCMS.WebSystem.ViewComponents.PanelDesignerViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Panel Designer">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-layout-wtf"></i> Panel Designer</h5>
+        <h5 class="mb-0"><i class="bi bi-layout-wtf" aria-hidden="true"></i> Panel Designer</h5>
         <div>
-            <button type="button" class="btn btn-sm btn-primary" id="btnSavePanels"><i class="bi bi-save"></i> Save</button>
-            <button type="button" class="btn btn-sm btn-success" id="btnAddPanel"><i class="bi bi-plus-lg"></i> Add Panel</button>
+            <button type="button" class="btn btn-sm btn-primary" id="btnSavePanels" aria-label="Save layout"><i class="bi bi-save" aria-hidden="true"></i> Save</button>
+            <button type="button" class="btn btn-sm btn-success" id="btnAddPanel" aria-label="Add panel"><i class="bi bi-plus-lg" aria-hidden="true"></i> Add Panel</button>
         </div>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
         }
         <div class="row mb-3">
             <div class="col-md-6">
@@ -20,7 +20,7 @@
                 <input type="hidden" id="pageId" value="@Model.PageId" />
             </div>
             <div class="col-md-6">
-                <label class="form-label">Layout</label>
+                <label class="form-label" for="layoutSelector">Layout</label>
                 <select class="form-select" id="layoutSelector">
                     @foreach (var layout in Model.AvailableLayouts)
                     {
@@ -29,7 +29,7 @@
                 </select>
             </div>
         </div>
-        <div class="panel-designer-canvas border rounded p-3 bg-light" id="panelCanvas">
+        <div class="panel-designer-canvas border rounded p-3 bg-light" id="panelCanvas" role="list" aria-label="Panel layout">
             @if (Model.Panels.Count == 0)
             {
                 <p class="text-muted text-center">No panels defined. Click <strong>Add Panel</strong> to create one.</p>
@@ -38,10 +38,10 @@
             {
                 <div class="card mb-2 panel-item" data-panel-id="@panel.Id" draggable="true">
                     <div class="card-header py-1 d-flex justify-content-between align-items-center">
-                        <span><i class="bi bi-grip-vertical"></i> @panel.Name <small class="text-muted">[@panel.Zone]</small></span>
+                        <span><i class="bi bi-grip-vertical" aria-hidden="true"></i> @panel.Name <small class="text-muted">[@panel.Zone]</small></span>
                         <div>
-                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-panel"><i class="bi bi-pencil"></i></button>
-                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-panel"><i class="bi bi-trash"></i></button>
+                            <button type="button" class="btn btn-sm btn-outline-primary btn-edit-panel" aria-label="Edit @panel.Name"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete-panel" aria-label="Delete @panel.Name"><i class="bi bi-trash" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="card-body py-2">
@@ -54,4 +54,4 @@
             }
         </div>
     </div>
-</div>
+</section>
