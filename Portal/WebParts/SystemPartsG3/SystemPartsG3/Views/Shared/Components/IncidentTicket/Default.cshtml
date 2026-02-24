@@ -1,161 +1,127 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IncidentTicketViewModel
+@model dynamic
 
-<div class="incident-ticket-view">
+<div class="incident-ticket-view" role="region" aria-label="Incident Ticket Detail">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4>Ticket #@Model.TicketId</h4>
-        <span class="badge @(Model.Status == 0 ? "bg-primary" : Model.Status == 1 ? "bg-warning text-dark" : Model.Status == 2 ? "bg-success" : "bg-secondary") fs-6">
-            @Model.StatusText
-        </span>
+        <h4 id="ticketHeading">Ticket #@Model.TicketId</h4>
+        @{
+            string ticketStatusBadge = Model.Status == 0 ? "bg-primary"
+                : Model.Status == 1 ? "bg-warning text-dark"
+                : Model.Status == 2 ? "bg-success"
+                : "bg-secondary";
+        }
+        <span class="badge @ticketStatusBadge fs-6" aria-label="Status: @Model.StatusText">@Model.StatusText</span>
     </div>
 
+    <!-- Ticket Details -->
     <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Ticket Details</h5>
+        </div>
         <div class="card-body">
-            <form method="post" class="needs-validation" novalidate>
-                <input type="hidden" name="TicketId" value="@Model.TicketId" />
-                <input type="hidden" name="ObjectId" value="@Model.ObjectId" />
-                <input type="hidden" name="TicketGuid" value="@Model.TicketGuid" />
+            <dl class="row mb-0">
+                <dt class="col-sm-3">Subject</dt>
+                <dd class="col-sm-9">@Model.Subject</dd>
 
-                <div class="mb-3">
-                    <label for="ticketDescription" class="form-label">Description</label>
-                    <textarea class="form-control" id="ticketDescription" name="Description"
-                              rows="4" @(Model.CanEdit ? "" : "readonly")>@Model.Description</textarea>
-                </div>
+                <dt class="col-sm-3">Category</dt>
+                <dd class="col-sm-9">@Model.CategoryName</dd>
 
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label for="ticketCategory" class="form-label">Category</label>
-                        @if (Model.CanEdit)
-                        {
-                            <select class="form-select" id="ticketCategory" name="CategoryId">
-                                <option value="@Model.CategoryId">@Model.CategoryName</option>
-                            </select>
-                        }
-                        else
-                        {
-                            <input type="text" class="form-control" value="@Model.CategoryName" readonly />
-                        }
-                    </div>
+                <dt class="col-sm-3">Type</dt>
+                <dd class="col-sm-9">@Model.TypeName</dd>
 
-                    <div class="col-md-4 mb-3">
-                        <label for="ticketType" class="form-label">Type</label>
-                        @if (Model.CanEdit)
-                        {
-                            <select class="form-select" id="ticketType" name="TypeId">
-                                <option value="@Model.TypeId">@Model.TypeName</option>
-                            </select>
-                        }
-                        else
-                        {
-                            <input type="text" class="form-control" value="@Model.TypeName" readonly />
-                        }
-                    </div>
+                <dt class="col-sm-3">Priority</dt>
+                <dd class="col-sm-9">
+                    @{
+                        string priBadge = Model.Priority == "Critical" ? "bg-danger"
+                            : Model.Priority == "High" ? "bg-warning text-dark"
+                            : Model.Priority == "Medium" ? "bg-info text-dark"
+                            : "bg-secondary";
+                    }
+                    <span class="badge @priBadge">@Model.Priority</span>
+                </dd>
 
-                    <div class="col-md-4 mb-3">
-                        <label for="ticketUrgency" class="form-label">Urgency</label>
-                        @if (Model.CanEdit)
-                        {
-                            <select class="form-select" id="ticketUrgency" name="Urgency">
-                                <option value="1" selected="@(Model.Urgency == 1)">Low</option>
-                                <option value="2" selected="@(Model.Urgency == 2)">Normal</option>
-                                <option value="3" selected="@(Model.Urgency == 3)">High</option>
-                            </select>
-                        }
-                        else
-                        {
-                            <input type="text" class="form-control" value="@Model.UrgencyText" readonly />
-                        }
-                    </div>
-                </div>
+                <dt class="col-sm-3">Assigned To</dt>
+                <dd class="col-sm-9">@Model.AssignedUserName</dd>
 
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label for="ticketStatus" class="form-label">Status</label>
-                        @if (Model.CanEdit)
-                        {
-                            <select class="form-select" id="ticketStatus" name="Status">
-                                <option value="0" selected="@(Model.Status == 0)">Open</option>
-                                <option value="1" selected="@(Model.Status == 1)">In Progress</option>
-                                <option value="2" selected="@(Model.Status == 2)">Resolved</option>
-                                <option value="3" selected="@(Model.Status == 3)">Closed</option>
-                            </select>
-                        }
-                        else
-                        {
-                            <input type="text" class="form-control" value="@Model.StatusText" readonly />
-                        }
-                    </div>
+                <dt class="col-sm-3">Created</dt>
+                <dd class="col-sm-9">@Model.DateCreated.ToString("yyyy-MM-dd HH:mm")</dd>
 
-                    <div class="col-md-4 mb-3">
-                        <label for="ticketAssigned" class="form-label">Assigned To</label>
-                        <input type="text" class="form-control" id="ticketAssigned"
-                               value="@Model.AssignedUserName" @(Model.CanEdit ? "" : "readonly") />
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Date Created</label>
-                        <input type="text" class="form-control" value="@Model.DateCreated.ToString("yyyy-MM-dd HH:mm")" readonly />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">ETA</label>
-                        <input type="datetime-local" class="form-control" name="ETA"
-                               value="@(Model.ETA?.ToString("yyyy-MM-ddTHH:mm"))" @(Model.CanEdit ? "" : "readonly") />
-                    </div>
-
-                    <div class="col-md-8 mb-3">
-                        <label for="ticketNotifyAlso" class="form-label">Also Notify</label>
-                        <input type="text" class="form-control" id="ticketNotifyAlso" name="NotifyAlso"
-                               value="@Model.NotifyAlso" @(Model.CanEdit ? "" : "readonly") />
-                    </div>
-                </div>
-
-                @if (Model.CanEdit)
-                {
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                        <a href="#" class="btn btn-secondary" data-action="back">Back to List</a>
-                    </div>
-                }
-            </form>
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+            </dl>
         </div>
     </div>
 
+    <!-- Update Status -->
+    @if ((bool)(Model.CanEdit ?? false))
+    {
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Update Status</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" class="d-flex align-items-end gap-3" aria-label="Update ticket status">
+                    <input type="hidden" name="TicketId" value="@Model.TicketId" />
+                    <div>
+                        <label for="ticketStatusUpdate" class="form-label">New Status</label>
+                        <select class="form-select" id="ticketStatusUpdate" name="Status" aria-label="Select new status">
+                            <option value="0" selected="@(Model.Status == 0)">Open</option>
+                            <option value="1" selected="@(Model.Status == 1)">In Progress</option>
+                            <option value="2" selected="@(Model.Status == 2)">Resolved</option>
+                            <option value="3" selected="@(Model.Status == 3)">Closed</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="action" value="update-status">
+                        <i class="bi bi-arrow-repeat" aria-hidden="true"></i> Update Status
+                    </button>
+                </form>
+            </div>
+        </div>
+    }
+
+    <!-- History / Comments -->
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Comments</h5>
+            <h5 class="mb-0" id="commentsHeading">History &amp; Comments</h5>
         </div>
-        <div class="card-body">
-            @if (Model.Comments.Count == 0)
+        <div class="card-body" role="list" aria-labelledby="commentsHeading">
+            @if (Model.Comments == null || Model.Comments.Count == 0)
             {
                 <p class="text-muted">No comments yet.</p>
             }
-            @foreach (var comment in Model.Comments)
+            else
             {
-                <div class="border-bottom pb-3 mb-3">
-                    <div class="d-flex justify-content-between">
-                        <strong>@comment.Author</strong>
-                        <small class="text-muted">@comment.DatePosted.ToString("yyyy-MM-dd HH:mm")</small>
+                foreach (var comment in Model.Comments)
+                {
+                    <div class="border-bottom pb-3 mb-3" role="listitem">
+                        <div class="d-flex justify-content-between">
+                            <strong>@comment.Author</strong>
+                            <small class="text-muted"><time datetime="@comment.DatePosted.ToString("yyyy-MM-ddTHH:mm")">@comment.DatePosted.ToString("yyyy-MM-dd HH:mm")</time></small>
+                        </div>
+                        <p class="mt-1 mb-0">@comment.Content</p>
                     </div>
-                    <p class="mt-1 mb-0">@comment.Content</p>
-                </div>
+                }
             }
 
-            @if (Model.CanEdit)
+            @if ((bool)(Model.CanEdit ?? false))
             {
-                <form method="post" class="mt-3">
+                <form method="post" class="mt-3" aria-label="Add a comment">
                     <input type="hidden" name="TicketId" value="@Model.TicketId" />
                     <div class="mb-3">
                         <label for="newComment" class="form-label">Add Comment</label>
                         <textarea class="form-control" id="newComment" name="CommentContent" rows="3"
-                                  required></textarea>
+                                  required aria-required="true"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm" name="action" value="add-comment">
-                        Add Comment
+                        <i class="bi bi-chat-dots" aria-hidden="true"></i> Add Comment
                     </button>
                 </form>
             }
         </div>
+    </div>
+
+    <div class="mt-3">
+        <button type="button" class="btn btn-secondary" data-action="back" aria-label="Back to ticket list">
+            <i class="bi bi-arrow-left" aria-hidden="true"></i> Back to List
+        </button>
     </div>
 </div>

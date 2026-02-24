@@ -1,75 +1,77 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IncidentInstanceEditViewModel
+@model dynamic
 
-<div class="incident-instance-edit">
-    <h4 class="mb-3">@(Model.InstanceId > 0 ? "Edit" : "Add") Incident Instance</h4>
+<div class="incident-instance-edit" role="region" aria-label="Incident Instance Form">
+    <h4 class="mb-3" id="instanceEditHeading">@(Model.InstanceId != null && (int)Model.InstanceId > 0 ? "Edit" : "Add") Incident Instance</h4>
 
-    <form method="post" class="needs-validation" novalidate>
+    <form method="post" class="needs-validation" novalidate aria-labelledby="instanceEditHeading">
         <input type="hidden" name="InstanceId" value="@Model.InstanceId" />
         <input type="hidden" name="ObjectId" value="@Model.ObjectId" />
 
         <div class="mb-3">
-            <label for="instanceName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="instanceName" name="Name"
-                   value="@Model.Name" required maxlength="255" />
-            <div class="invalid-feedback">Please enter an instance name.</div>
+            <label for="instanceTitle" class="form-label">Title <span class="text-danger" aria-hidden="true">*</span></label>
+            <input type="text" class="form-control" id="instanceTitle" name="Title"
+                   value="@Model.Title" required maxlength="255" aria-required="true" />
+            <div class="invalid-feedback">Please enter a title.</div>
         </div>
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="instancePrefix" class="form-label">Incident Prefix</label>
-                <input type="text" class="form-control" id="instancePrefix" name="IncidentPrefix"
-                       value="@Model.IncidentPrefix" maxlength="50" />
+                <label for="instanceType" class="form-label">Type <span class="text-danger" aria-hidden="true">*</span></label>
+                <select class="form-select" id="instanceType" name="TypeId" required aria-required="true">
+                    <option value="">-- Select Type --</option>
+                    @if (Model.Types != null)
+                    {
+                        foreach (var t in Model.Types)
+                        {
+                            <option value="@t.Id" selected="@(Model.TypeId != null && (int)Model.TypeId == (int)t.Id)">@t.Name</option>
+                        }
+                    }
+                </select>
+                <div class="invalid-feedback">Please select an incident type.</div>
             </div>
 
             <div class="col-md-6 mb-3">
-                <label for="instanceBaseGroup" class="form-label">Base Group</label>
-                <input type="text" class="form-control" id="instanceBaseGroup" name="BaseGroup"
-                       value="@Model.BaseGroup" />
+                <label for="instanceStatus" class="form-label">Status</label>
+                <select class="form-select" id="instanceStatus" name="Status" aria-label="Instance status">
+                    <option value="Open" selected="@(Model.Status == "Open")">Open</option>
+                    <option value="InProgress" selected="@(Model.Status == "InProgress")">In Progress</option>
+                    <option value="Resolved" selected="@(Model.Status == "Resolved")">Resolved</option>
+                    <option value="Closed" selected="@(Model.Status == "Closed")">Closed</option>
+                </select>
             </div>
         </div>
 
         <div class="mb-3">
-            <label for="instanceSupportGroupPath" class="form-label">Support Group Path</label>
-            <input type="text" class="form-control" id="instanceSupportGroupPath" name="SupportGroupPath"
-                   value="@Model.SupportGroupPath" />
+            <label for="instanceDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="instanceDescription" name="Description"
+                      rows="4">@Model.Description</textarea>
         </div>
 
-        <fieldset class="border rounded p-3 mb-3">
-            <legend class="float-none w-auto px-2 fs-6">SLA Settings</legend>
-
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label for="instanceSLAHigh" class="form-label">High Duration (minutes)</label>
-                    <input type="number" class="form-control" id="instanceSLAHigh" name="SLAHighDuration"
-                           value="@Model.SLAHighDuration" min="0" />
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label for="instanceSLANormal" class="form-label">Normal Duration (minutes)</label>
-                    <input type="number" class="form-control" id="instanceSLANormal" name="SLANormalDuration"
-                           value="@Model.SLANormalDuration" min="0" />
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label for="instanceSLALow" class="form-label">Low Duration (minutes)</label>
-                    <input type="number" class="form-control" id="instanceSLALow" name="SLALowDuration"
-                           value="@Model.SLALowDuration" min="0" />
-                </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="instancePriority" class="form-label">Priority</label>
+                <select class="form-select" id="instancePriority" name="Priority" aria-label="Instance priority">
+                    <option value="Low" selected="@(Model.Priority == "Low")">Low</option>
+                    <option value="Medium" selected="@(Model.Priority == "Medium")">Medium</option>
+                    <option value="High" selected="@(Model.Priority == "High")">High</option>
+                    <option value="Critical" selected="@(Model.Priority == "Critical")">Critical</option>
+                </select>
             </div>
 
-            <div class="mb-3">
-                <label for="instanceSLAWarning" class="form-label">Warning Percentage</label>
-                <div class="input-group" style="max-width: 200px;">
-                    <input type="number" class="form-control" id="instanceSLAWarning" name="SLAWarningPercentage"
-                           value="@Model.SLAWarningPercentage" min="0" max="100" step="0.1" />
-                    <span class="input-group-text">%</span>
-                </div>
+            <div class="col-md-6 mb-3">
+                <label for="instanceAssignedTo" class="form-label">Assigned To</label>
+                <input type="text" class="form-control" id="instanceAssignedTo" name="AssignedTo"
+                       value="@Model.AssignedTo" />
             </div>
-        </fieldset>
+        </div>
 
         <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <a href="#" class="btn btn-secondary" data-action="cancel">Cancel</a>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-lg" aria-hidden="true"></i> Save
+            </button>
+            <button type="button" class="btn btn-secondary" data-action="cancel">
+                <i class="bi bi-x-lg" aria-hidden="true"></i> Cancel
+            </button>
         </div>
     </form>
 </div>
