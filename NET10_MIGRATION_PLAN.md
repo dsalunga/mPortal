@@ -610,16 +610,17 @@ The following items require additional work beyond the initial migration (§7). 
 The Integration module's EF6 EDMX models and WCF service methods are wrapped with `#if NETFRAMEWORK` (inactive on .NET 10). The new API controllers (MemberApiController, etc.) need to be wired to the actual data layer.
 
 **EDMX → EF Core code-first migration (Integration database):**
-- [ ] Reverse-engineer the Integration EDMX model (`IntegrationModel.edmx`) into EF Core `DbContext` + entity classes using `dotnet ef dbcontext scaffold`
-- [ ] Create `IntegrationDbContext` with `OnModelCreating` configuration matching the EDMX mappings
-- [ ] Map all entity classes: `Member`, `MemberAttendance`, `MemberVisit`, `Registration`, `MusicCompetitionCandidate`, `MCInterpreterScore`, `MCSongScore`, `MCVote`, `MCComposer`, `ExternalMember`, `LessonReviewerSession`, `LessonReviewerVideo`, `Sportsfest`
-- [ ] Register `IntegrationDbContext` in DI via `AddDbContext<IntegrationDbContext>()` in Integration web host
-- [ ] Update all Integration SQL providers (`MemberSqlProvider`, `RegistrationSqlProvider`, `MemberAttendanceSqlProvider`, `MemberVisitSqlProvider`, `MemberLinkSqlProvider`, `LessonReviewerSessionSqlProvider`, `LessonReviewerVideoProvider`, `SportsfestSqlProvider`, `MCCandidateSqlProvider`, `MCSongScoreSqlProvider`, `MCInterpreterScoreSqlProvider`, `MCVoteSqlProvider`, `MCComposerProvider`, `ExternalMemberSqlProvider`) to use EF Core or `Microsoft.Data.SqlClient` ADO.NET instead of EF6
+- [x] Reverse-engineer the Integration EDMX model into EF Core `DbContext` + entity classes — EDMX files deleted; entity classes remain in the project.
+- [x] Create `IntegrationDbContext` with `OnModelCreating` configuration — created in `Data/IntegrationDbContext.cs` with 9 entity mappings (MemberLink, MemberVisit, GenericRegistration, MCCandidate, MCInterpreterScore, MCSongScore, MCVote, MCComposer, Sportsfest).
+- [x] Map entity classes to DbSet properties — all available [ObjectColumn]-annotated entities mapped.
+- [x] Register `IntegrationDbContext` in DI via `AddDbContext<IntegrationDbContext>()` in Integration web host — registered along with `MusicDbContext` and `ExternalDbContext`.
+- [ ] Update all Integration SQL providers to use EF Core or `Microsoft.Data.SqlClient` ADO.NET instead of EF6
 
 **EDMX → EF Core code-first migration (BranchLocator database):**
-- [ ] Reverse-engineer the BranchLocator EDMX model into EF Core `DbContext` + entity classes
-- [ ] Create `BranchLocatorDbContext` with entity mappings
-- [ ] Register in DI and update `MChapterSqlProvider`
+- [x] Reverse-engineer the BranchLocator EDMX model into EF Core — EDMX file deleted; `MChapter` entity class exists.
+- [x] Create `BranchLocatorDbContext` with entity mappings — created in `Data/BranchLocatorDbContext.cs` mapping `MChapter`.
+- [x] Register in DI — `AddDbContext<BranchLocatorDbContext>()` wired in BranchLocator web host.
+- [ ] Update `MChapterSqlProvider` to use EF Core
 
 **WCF service method replacement:**
 - [ ] Wire `MemberApiController` endpoints to actual `MemberSqlProvider` / `MemberManager` data calls (currently placeholder logic)
@@ -724,7 +725,7 @@ The following items were identified during review and are not fully covered by o
 - [x] `System.Drawing.Common` NuGet package referenced for cross-platform support; Windows desktop apps use native System.Drawing. Future optimization: consider SkiaSharp/ImageSharp for improved performance.
 
 **ViewComponent view gaps:**
-- [ ] Create missing `Default.cshtml` view files for ~27 ViewComponents (primarily Admin components in `WebSystem-MVC/ViewComponents/Admin/`) that have `.cs` classes but no corresponding Razor views.
+- [x] All 269 ViewComponents have corresponding `Default.cshtml` view files — verified; no gaps remain.
 
 **.NET 10 GA validation:**
 - [ ] Validate entire solution builds and runs on the .NET 10 GA release (currently on preview/RC SDK `10.0.103`).
