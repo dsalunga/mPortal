@@ -1,31 +1,36 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.DownloadDetailViewModel
-<div class="wcms-download-detail" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+<article id="download-detail-@Model.ObjectId-@Model.RecordId" class="wcms-download-detail"
+         data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId"
+         aria-labelledby="download-detail-title-@Model.ObjectId-@Model.RecordId">
     @if (!string.IsNullOrEmpty(Model.Title))
     {
-        <h4>@Model.Title</h4>
+        <h4 id="download-detail-title-@Model.ObjectId-@Model.RecordId">@Model.Title</h4>
     }
     @if (!string.IsNullOrEmpty(Model.Description))
     {
-        <p>@Model.Description</p>
+        <p class="lead">@Model.Description</p>
     }
     <div class="card">
         <div class="card-body">
             <dl class="row mb-0">
                 <dt class="col-sm-3">File</dt>
-                <dd class="col-sm-9">@Model.FileName</dd>
+                <dd class="col-sm-9"><code>@Model.FileName</code></dd>
                 <dt class="col-sm-3">Size</dt>
                 <dd class="col-sm-9">@Model.FileSize bytes</dd>
                 <dt class="col-sm-3">Downloads</dt>
-                <dd class="col-sm-9">@Model.DownloadCount</dd>
+                <dd class="col-sm-9">
+                    <span class="badge bg-info text-dark rounded-pill">@Model.DownloadCount</span>
+                </dd>
             </dl>
         </div>
-        <div class="card-footer">
+        <div class="card-footer text-end">
             @if (!string.IsNullOrEmpty(Model.FileUrl))
             {
-                <a href="@Model.FileUrl" class="btn btn-primary">
-                    <i class="bi bi-download"></i> Download
+                <a href="@Model.FileUrl" class="btn btn-primary" role="button"
+                   aria-label="Download @Model.Title">
+                    <i class="bi bi-download" aria-hidden="true"></i> Download
                 </a>
             }
         </div>
     </div>
-</div>
+</article>

@@ -1,5 +1,6 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.AjaxScriptManagerViewModel
-<div class="wcms-script-manager" data-object-id="@Model.ObjectId">
+<section id="script-manager-@Model.ObjectId" class="wcms-script-manager" data-object-id="@Model.ObjectId"
+         aria-hidden="true" role="presentation">
     @foreach (var script in Model.Scripts)
     {
         if (!string.IsNullOrEmpty(script.Src))
@@ -9,4 +10,4 @@
                     @(script.IsDefer ? "defer" : "")></script>
         }
     }
-</div>
+</section>

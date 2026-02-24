@@ -1,69 +1,72 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.NewsletterViewModel
-<div class="wcms-newsletter content_wrap" data-object-id="@Model.ObjectId">
+<section id="newsletter-@Model.ObjectId" class="wcms-newsletter" data-object-id="@Model.ObjectId"
+         aria-label="Newsletter subscription">
     @if (Model.ViewState == "success")
     {
-        <!-- Success view (from Newsletter.ascx viewSuccess) -->
-        <div class="splash_section textshadow1">
-            <p>
-                @(string.IsNullOrEmpty(Model.SuccessMessage) ? "Thank you for subscribing. You will be receiving updates soon." : Model.SuccessMessage)
-            </p>
+        <div class="alert alert-success" role="status" aria-live="polite">
+            <i class="bi bi-check-circle me-1" aria-hidden="true"></i>
+            @(string.IsNullOrEmpty(Model.SuccessMessage) ? "Thank you for subscribing. You will be receiving updates soon." : Model.SuccessMessage)
         </div>
     }
     else if (Model.ViewState == "already_subscribed")
     {
-        <!-- Already subscribed view (from Newsletter.ascx viewAlreadySubscribed) -->
-        <div class="splash_section textshadow1">
-            <p>
-                @(string.IsNullOrEmpty(Model.AlreadySubscribedMessage) ? "You are already subscribed to this newsletter." : Model.AlreadySubscribedMessage)
-            </p>
+        <div class="alert alert-warning" role="status" aria-live="polite">
+            <i class="bi bi-info-circle me-1" aria-hidden="true"></i>
+            @(string.IsNullOrEmpty(Model.AlreadySubscribedMessage) ? "You are already subscribed to this newsletter." : Model.AlreadySubscribedMessage)
         </div>
     }
     else
     {
-        <!-- Subscribe view (from Newsletter.ascx viewSubscribe + eNewsLetter.ascx) -->
         @if (!string.IsNullOrEmpty(Model.Title))
         {
-            <div id="splash_section" class="splash_section textshadow1">
-                <p>@Model.Title</p>
-            </div>
+            <h4 id="newsletter-heading-@Model.ObjectId">@Model.Title</h4>
         }
-        <div id="subscribe_section" class="subscribe">
-            <form class="form_class needs-validation" action="@Model.SubscribeUrl" method="post" novalidate>
-                @if (Model.ShowNameField)
-                {
-                    <div class="mb-3">
-                        <input type="text" class="form-control input_text rounded_corner" id="newsletter-name"
-                               name="name" placeholder="Enter your Name" required />
-                        <div class="invalid-feedback text-danger">Name is required.</div>
-                    </div>
-                }
-                <div class="mb-3">
-                    <input type="email" class="form-control input_text rounded_corner" id="newsletter-email"
-                           name="email" placeholder="Enter your Email" required
-                           pattern="\w+([-+.']\w+)*@@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
-                    <div class="invalid-feedback text-danger">Please provide a valid email address.</div>
-                </div>
-                @if (Model.ShowGenderField)
-                {
-                    <div class="mb-3">
-                        <label>Gender:&nbsp;</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="genderMale" value="1" required />
-                            <label class="form-check-label" for="genderMale">Male</label>
+        <div class="card">
+            <div class="card-body">
+                <form class="needs-validation" action="@Model.SubscribeUrl" method="post" novalidate
+                      aria-label="Newsletter subscription form">
+                    @if (Model.ShowNameField)
+                    {
+                        <div class="mb-3">
+                            <label for="newsletter-name-@Model.ObjectId" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="newsletter-name-@Model.ObjectId"
+                                   name="name" placeholder="Enter your Name" required aria-required="true" />
+                            <div class="invalid-feedback">Name is required.</div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="0" />
-                            <label class="form-check-label" for="genderFemale">Female</label>
-                        </div>
-                        <div class="invalid-feedback text-danger">Gender is required.</div>
+                    }
+                    <div class="mb-3">
+                        <label for="newsletter-email-@Model.ObjectId" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="newsletter-email-@Model.ObjectId"
+                               name="email" placeholder="Enter your Email" required aria-required="true"
+                               pattern="\w+([-+.']\w+)*@@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                        <div class="invalid-feedback">Please provide a valid email address.</div>
                     </div>
-                }
-                <button type="submit" class="btn btn-primary submit_class">Submit</button>
-            </form>
+                    @if (Model.ShowGenderField)
+                    {
+                        <fieldset class="mb-3">
+                            <legend class="form-label fs-6">Gender</legend>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender"
+                                       id="genderMale-@Model.ObjectId" value="1" required />
+                                <label class="form-check-label" for="genderMale-@Model.ObjectId">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender"
+                                       id="genderFemale-@Model.ObjectId" value="0" />
+                                <label class="form-check-label" for="genderFemale-@Model.ObjectId">Female</label>
+                            </div>
+                            <div class="invalid-feedback">Gender is required.</div>
+                        </fieldset>
+                    }
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-envelope me-1" aria-hidden="true"></i> Subscribe
+                    </button>
+                </form>
+            </div>
         </div>
         @if (!string.IsNullOrEmpty(Model.Description))
         {
-            <p class="mt-2">@Model.Description</p>
+            <p class="mt-2 text-muted">@Model.Description</p>
         }
     }
-</div>
+</section>

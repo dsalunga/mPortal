@@ -1,20 +1,25 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.FlashBannerViewModel
-<div class="wcms-flash-banner" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+<aside id="banner-@Model.ObjectId-@Model.RecordId" class="wcms-flash-banner"
+       data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId"
+       aria-label="@(string.IsNullOrEmpty(Model.AltText) ? "Banner" : Model.AltText)">
     @if (!string.IsNullOrEmpty(Model.BannerUrl))
     {
-        if (!string.IsNullOrEmpty(Model.TargetUrl))
-        {
-            <a href="@Model.TargetUrl" target="_blank" rel="noopener noreferrer">
+        <figure class="figure mb-0 text-center">
+            @if (!string.IsNullOrEmpty(Model.TargetUrl))
+            {
+                <a href="@Model.TargetUrl" target="_blank" rel="noopener noreferrer"
+                   aria-label="@(string.IsNullOrEmpty(Model.AltText) ? "View banner details" : Model.AltText)">
+                    <img src="@Model.BannerUrl" alt="@Model.AltText"
+                         width="@Model.Width" height="@Model.Height"
+                         class="img-fluid figure-img rounded" loading="lazy" />
+                </a>
+            }
+            else
+            {
                 <img src="@Model.BannerUrl" alt="@Model.AltText"
                      width="@Model.Width" height="@Model.Height"
-                     class="img-fluid" loading="lazy" />
-            </a>
-        }
-        else
-        {
-            <img src="@Model.BannerUrl" alt="@Model.AltText"
-                 width="@Model.Width" height="@Model.Height"
-                 class="img-fluid" loading="lazy" />
-        }
+                     class="img-fluid figure-img rounded" loading="lazy" />
+            }
+        </figure>
     }
-</div>
+</aside>

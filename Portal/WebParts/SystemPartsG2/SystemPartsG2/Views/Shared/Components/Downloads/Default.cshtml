@@ -1,10 +1,12 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.DownloadsViewModel
-<div class="wcms-downloads" data-object-id="@Model.ObjectId">
-    <h4>Downloads</h4>
+<section id="downloads-@Model.ObjectId" class="wcms-downloads" data-object-id="@Model.ObjectId"
+         aria-labelledby="downloads-heading-@Model.ObjectId">
+    <h4 id="downloads-heading-@Model.ObjectId">Downloads</h4>
     @if (Model.Categories != null && Model.Categories.Count > 0)
     {
         <div class="mb-3">
-            <select class="form-select" aria-label="Filter by category">
+            <label for="downloads-category-@Model.ObjectId" class="form-label visually-hidden">Filter by category</label>
+            <select class="form-select" id="downloads-category-@Model.ObjectId" aria-label="Filter by category">
                 <option value="">All Categories</option>
                 @foreach (var cat in Model.Categories)
                 {
@@ -15,63 +17,63 @@
     }
     @if (Model.Items == null || Model.Items.Count == 0)
     {
-        <p class="text-muted">No downloads available.</p>
+        <p class="text-muted" role="status">No downloads available.</p>
     }
     else if (Model.GroupByYear)
     {
-        <!-- GroupByYear layout (from GroupByYear.ascx / BasicList.ascx) -->
         var years = Model.Items.Select(i => i.FileYear).Distinct().OrderByDescending(y => y);
         @foreach (var year in years)
         {
-            <div class="mb-3">
-                <strong>@year</strong><br />
-                <ul class="list-unstyled ms-2">
+            <section class="mb-4" aria-label="Downloads from @year">
+                <h5 class="border-bottom pb-1">@year</h5>
+                <ul class="list-group list-group-flush">
                     @foreach (var item in Model.Items.Where(i => i.FileYear == year))
                     {
-                        <li>
-                            <img alt="" src="/Assets/Uploads/Image/arrow.gif" width="9" height="9" />
-                            <span class="txt11">
-                                <a href="@(string.IsNullOrEmpty(item.FileUrl) ? $"/_Sections/Download/Handler.ashx?ID={item.Id}&Force={(Model.ForceDownload ? "true" : "false")}" : item.FileUrl)">
-                                    @item.Title
-                                </a>
-                            </span>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="@(string.IsNullOrEmpty(item.FileUrl) ? $"/_Sections/Download/Handler.ashx?ID={item.Id}&Force={(Model.ForceDownload ? "true" : "false")}" : item.FileUrl)"
+                               aria-label="Download @item.Title">
+                                <i class="bi bi-file-earmark-arrow-down me-1" aria-hidden="true"></i>@item.Title
+                            </a>
+                            @if (item.DownloadCount > 0)
+                            {
+                                <span class="badge bg-primary rounded-pill">@item.DownloadCount</span>
+                            }
                         </li>
                     }
                 </ul>
-            </div>
+            </section>
         }
     }
     else
     {
-        <!-- DetailedList layout (from DetailedList.ascx / BasicList.ascx) -->
-        <ul class="list-unstyled">
+        <ul class="list-group list-group-flush">
             @foreach (var item in Model.Items)
             {
-                <li class="mb-2">
-                    <img alt="" src="/Assets/Uploads/Image/arrow.gif" width="9" height="9" />
-                    <span class="txt11">
-                        <a href="@(string.IsNullOrEmpty(item.FileUrl) ? $"/_Sections/Download/Handler.ashx?ID={item.Id}&Force={(Model.ForceDownload ? "true" : "false")}" : item.FileUrl)">
-                            @item.Title
-                        </a>
-                    </span>
-                    @if (!string.IsNullOrEmpty(item.FileInfo))
-                    {
-                        <br />
-                        <span class="ms-3 text-muted">@item.FileInfo</span>
-                    }
-                    else if (!string.IsNullOrEmpty(item.FileName))
-                    {
-                        <br />
-                        <span class="ms-3">
-                            <small class="text-muted">@item.FileName &middot; @item.CategoryName</small>
-                        </span>
-                    }
-                    @if (item.DownloadCount > 0)
-                    {
-                        <span class="badge bg-primary rounded-pill ms-1">@item.DownloadCount</span>
-                    }
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <a href="@(string.IsNullOrEmpty(item.FileUrl) ? $"/_Sections/Download/Handler.ashx?ID={item.Id}&Force={(Model.ForceDownload ? "true" : "false")}" : item.FileUrl)"
+                               aria-label="Download @item.Title">
+                                <i class="bi bi-file-earmark-arrow-down me-1" aria-hidden="true"></i>@item.Title
+                            </a>
+                            @if (!string.IsNullOrEmpty(item.FileInfo))
+                            {
+                                <p class="mb-0 text-muted small mt-1">@item.FileInfo</p>
+                            }
+                            else if (!string.IsNullOrEmpty(item.FileName))
+                            {
+                                <p class="mb-0 small mt-1">
+                                    <span class="text-muted"><code>@item.FileName</code> &middot; @item.CategoryName</span>
+                                </p>
+                            }
+                        </div>
+                        @if (item.DownloadCount > 0)
+                        {
+                            <span class="badge bg-primary rounded-pill">@item.DownloadCount</span>
+                        }
+                    </div>
                 </li>
             }
         </ul>
     }
-</div>
+</section>

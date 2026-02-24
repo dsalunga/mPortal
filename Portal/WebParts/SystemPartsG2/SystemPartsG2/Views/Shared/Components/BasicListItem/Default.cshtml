@@ -1,25 +1,31 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.BasicListItemViewModel
-<div class="wcms-basic-list-item" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-    <div class="d-flex">
-        @if (!string.IsNullOrEmpty(Model.ImageUrl))
-        {
-            <div class="flex-shrink-0 me-3">
-                <img src="@Model.ImageUrl" alt="@Model.Title" class="rounded" style="max-width: 80px;" loading="lazy" />
+<article id="list-item-@Model.ObjectId-@Model.RecordId" class="wcms-basic-list-item card mb-2"
+         data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId"
+         aria-labelledby="list-item-title-@Model.ObjectId-@Model.RecordId">
+    <div class="card-body">
+        <div class="d-flex align-items-start">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <figure class="flex-shrink-0 me-3 mb-0">
+                    <img src="@Model.ImageUrl" alt="@Model.Title" class="rounded img-thumbnail" style="max-width: 80px;" loading="lazy" />
+                </figure>
+            }
+            <div class="flex-grow-1">
+                <h5 id="list-item-title-@Model.ObjectId-@Model.RecordId" class="card-title mb-1">
+                    @if (!string.IsNullOrEmpty(Model.Url))
+                    {
+                        <a href="@Model.Url" class="text-decoration-none">@Model.Title</a>
+                    }
+                    else
+                    {
+                        @Model.Title
+                    }
+                </h5>
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <p class="card-text text-muted mb-0">@Model.Description</p>
+                }
             </div>
-        }
-        <div class="flex-grow-1">
-            @if (!string.IsNullOrEmpty(Model.Url))
-            {
-                <h5><a href="@Model.Url">@Model.Title</a></h5>
-            }
-            else
-            {
-                <h5>@Model.Title</h5>
-            }
-            @if (!string.IsNullOrEmpty(Model.Description))
-            {
-                <p class="text-muted mb-0">@Model.Description</p>
-            }
         </div>
     </div>
-</div>
+</article>

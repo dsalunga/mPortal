@@ -1,35 +1,40 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.WallPostViewModel
-<div class="wcms-wall-post" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+<article id="wall-post-@Model.ObjectId-@Model.RecordId" class="wcms-wall-post"
+         data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId"
+         aria-label="Post by @Model.Author">
     <div class="card">
         <div class="card-body">
-            <div class="d-flex justify-content-between mb-2">
+            <header class="d-flex justify-content-between align-items-center mb-2">
                 <strong>@Model.Author</strong>
-                <small class="text-muted">@Model.DatePosted</small>
-            </div>
-            <p>@Model.Content</p>
-            <div class="d-flex gap-3 mb-3">
-                <button class="btn btn-outline-primary btn-sm">
-                    <i class="bi bi-hand-thumbs-up"></i> Like (@Model.LikeCount)
+                <time class="text-muted small" datetime="@Model.DatePosted">@Model.DatePosted</time>
+            </header>
+            <p class="card-text">@Model.Content</p>
+            <div class="d-flex gap-2 mb-3" role="group" aria-label="Post actions">
+                <button class="btn btn-outline-primary btn-sm" aria-label="Like this post, @Model.LikeCount likes">
+                    <i class="bi bi-hand-thumbs-up" aria-hidden="true"></i> Like
+                    <span class="badge bg-primary rounded-pill ms-1">@Model.LikeCount</span>
                 </button>
-                <button class="btn btn-outline-secondary btn-sm">
-                    <i class="bi bi-chat"></i> Comment
+                <button class="btn btn-outline-secondary btn-sm" aria-label="Comment on this post">
+                    <i class="bi bi-chat" aria-hidden="true"></i> Comment
                 </button>
             </div>
             @if (Model.Comments.Count > 0)
             {
-                <div class="border-top pt-2">
+                <section class="border-top pt-3" aria-label="Comments on this post">
                     @foreach (var comment in Model.Comments)
                     {
-                        <div class="d-flex mb-2">
+                        <article class="d-flex mb-2 ps-3 border-start" aria-label="Comment by @comment.Author">
                             <div>
-                                <strong class="small">@comment.Author</strong>
-                                <small class="text-muted ms-2">@comment.DatePosted</small>
+                                <header>
+                                    <strong class="small">@comment.Author</strong>
+                                    <time class="text-muted small ms-2" datetime="@comment.DatePosted">@comment.DatePosted</time>
+                                </header>
                                 <p class="mb-0 small">@comment.Text</p>
                             </div>
-                        </div>
+                        </article>
                     }
-                </div>
+                </section>
             }
         </div>
     </div>
-</div>
+</article>
