@@ -1,16 +1,47 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntProfileUpdateProfileModel
+@model dynamic
 
-<div class="card" id="int-profile-update-profile-@Model.ObjectId">
+<div class="card" id="int-profile-update-profile-@Model.ObjectId" role="region" aria-label="Update Profile">
     <div class="card-header">
         <h5 class="card-title mb-0">Update Profile</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Profile update form placeholder content.</p>
+        <form method="post" novalidate aria-label="Update profile form">
+            <div class="text-center mb-3">
+                <img src="/Content/Assets/Images/nophoto.png" id="profilePhoto" class="rounded-circle" width="120" height="120" alt="Profile photo" />
+                <div class="mt-2">
+                    <button type="button" id="cmdChangePhoto" class="btn btn-sm btn-outline-secondary">Change Photo</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="txtFirstName" class="form-label">First Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtFirstName" name="FirstName" class="form-control" required aria-required="true" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="txtLastName" class="form-label">Last Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtLastName" name="LastName" class="form-control" required aria-required="true" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="txtEmail" class="form-label">Email <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="email" id="txtEmail" name="Email" class="form-control" required aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label for="txtPhone" class="form-label">Phone</label>
+                <input type="tel" id="txtPhone" name="Phone" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="txtAddress" class="form-label">Address</label>
+                <textarea id="txtAddress" name="Address" class="form-control" rows="2"></textarea>
+            </div>
+            <button type="submit" id="cmdUpdateProfile" class="btn btn-primary">Save Changes</button>
+        </form>
     </div>
 </div>

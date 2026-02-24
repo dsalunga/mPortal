@@ -1,16 +1,34 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntUserProfileDetailsModel
+@model dynamic
 
-<div class="card" id="int-user-profile-details-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">User Profile Details</h5>
+<div class="card" id="int-user-profile-details-@Model.ObjectId" role="region" aria-label="User Profile Details">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Profile Details</h5>
+        <a href="#" id="linkEditProfile" class="btn btn-sm btn-outline-primary" aria-label="Edit profile">Edit</a>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>User profile details placeholder content.</p>
+        <div class="text-center mb-3">
+            <img src="/Content/Assets/Images/nophoto.png" id="userPhoto" class="rounded-circle" width="100" height="100" alt="User profile photo" />
+        </div>
+        <dl class="row mb-0" id="profileDetails">
+            <dt class="col-sm-4">Full Name</dt>
+            <dd class="col-sm-8" id="lblFullName">—</dd>
+            <dt class="col-sm-4">Email</dt>
+            <dd class="col-sm-8" id="lblEmail">—</dd>
+            <dt class="col-sm-4">Phone</dt>
+            <dd class="col-sm-8" id="lblPhone">—</dd>
+            <dt class="col-sm-4">Address</dt>
+            <dd class="col-sm-8" id="lblAddress">—</dd>
+            <dt class="col-sm-4">Member Since</dt>
+            <dd class="col-sm-8" id="lblMemberSince">—</dd>
+            <dt class="col-sm-4">Status</dt>
+            <dd class="col-sm-8"><span class="badge bg-success" id="lblProfileStatus">Active</span></dd>
+        </dl>
     </div>
 </div>
