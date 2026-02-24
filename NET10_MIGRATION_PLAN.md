@@ -232,10 +232,11 @@ Current status snapshot (2026-02-24, updated):
 - 43 C# projects (`.csproj`) in repo; all converted to SDK-style format.
 - **All 43 projects now target `.NET 10`** (`net10.0` or `net10.0-windows`). Zero net48 projects remain.
 - All `packages.config` files have been deleted (0 remaining).
-- EF6 removed from WCMS.Framework (migrated to EF Core 9.0). Integration module's EF6 EDMX files excluded from compilation.
+- EF6 removed from WCMS.Framework (migrated to EF Core 9.0). EDMX files deleted.
 - WCF references in Integration module wrapped with `#if NETFRAMEWORK`.
 - 8 web app hosts rebuilt as ASP.NET Core scaffolds (feature parity not yet complete).
-- All legacy `.aspx`, `.ascx`, `.svc`, and `.asmx` files have been deleted. 13 `.ashx` HTTP handlers and 3 `Global.asax` files remain.
+- All legacy `.aspx`, `.ascx`, `.svc`, `.asmx`, `.ashx`, `Global.asax`, and `Startup.cs` files deleted. Zero legacy web assets remain.
+- All 19 legacy `.sln` files deleted; `mPortal.slnx` is the single solution file.
 - 260 ViewComponents created (replacing legacy `.ascx` user controls).
 - `IWContext` and `IWSession` DI interfaces created and registered via `AddWcmsFramework()`.
 - `PageResolutionMiddleware` replaces legacy URL rewriting.
@@ -438,9 +439,9 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 - [x] Remove all `.svc` WCF endpoint files — all deleted (0 remaining); replaced by API controllers.
 - [x] Remove all `.asmx` SOAP endpoint files — all deleted (0 remaining).
 - [x] Remove remaining `web.config` files from ASP.NET Core projects once config is fully migrated to `appsettings.json`.
-- [ ] Remove or migrate `.ashx` HTTP handler files (13 remaining) to ASP.NET Core middleware or minimal API endpoints.
-- [ ] Remove remaining `Global.asax` files (3 remaining: WebSystem-MVC, BibleReader, LessonReviewer).
-- [ ] Remove legacy `Startup.cs` (OWIN-based) from `WebSystem-MVC` — replaced by `Program.cs` minimal hosting.
+- [x] Remove `.ashx` HTTP handler files (13) and code-behinds (10) — all deleted.
+- [x] Remove `Global.asax` files and code-behinds (3 pairs) — all deleted.
+- [x] Remove legacy `Startup.cs` (OWIN-based) from `WebSystem-MVC` — deleted.
 
 ---
 
@@ -695,14 +696,13 @@ The 260 ViewComponents have functional C# classes wired to the CMS framework, bu
 - [x] Delete all legacy `.ascx` files — completed (0 remaining).
 - [x] Delete all legacy `.svc` files — completed (0 remaining).
 - [x] Delete all legacy `.asmx` files — completed (0 remaining).
-- [ ] Delete legacy `Global.asax` files (3 remaining: WebSystem-MVC, BibleReader, LessonReviewer) — replaced by ASP.NET Core middleware.
-- [ ] Delete or migrate legacy `.ashx` HTTP handler files (13 remaining across WebSystem-MVC, SystemParts, SystemPartsG2, Integration, LessonReviewer).
-- [ ] Delete legacy `.ashx.cs` code-behind files (10 remaining).
-- [ ] Delete legacy `Startup.cs` (OWIN-based) from WebSystem-MVC.
-- [ ] Delete EDMX files (4 remaining: WFrameworkModel.edmx, MusicModel.edmx, ExternalDBModel.edmx, WeeklySchedulerModel.edmx) — excluded from compilation but still on disk.
+- [x] Delete legacy `Global.asax` files and code-behinds (3 pairs) — deleted.
+- [x] Delete legacy `.ashx` HTTP handler files (13) and code-behinds (10) — deleted.
+- [x] Delete legacy `Startup.cs` (OWIN-based) from WebSystem-MVC — deleted.
+- [x] Delete EDMX files (4: WFrameworkModel.edmx, MusicModel.edmx, ExternalDBModel.edmx, WeeklySchedulerModel.edmx) — deleted.
 - [ ] Remove `<Compile Remove>` entries from `.csproj` files once all legacy code-behind files are deleted.
 - [ ] Remove `EnableDefaultContentItems` / `EnableDefaultCompileItems` overrides once legacy files are gone.
-- [ ] Consolidate or remove legacy `.sln` files (19 legacy `.sln` files remain alongside `mPortal.slnx`).
+- [x] Consolidate or remove legacy `.sln` files — all 19 legacy `.sln` files deleted; `mPortal.slnx` remains as the single solution file.
 
 ---
 
@@ -711,23 +711,11 @@ The 260 ViewComponents have functional C# classes wired to the CMS framework, bu
 The following items were identified during review and are not fully covered by other sections:
 
 **Authentication migration:**
-- [ ] Remove `FormsAuthentication` usage from `LoginSecurity.cs` — replace with ASP.NET Core cookie authentication APIs.
+- [x] Remove `FormsAuthentication` usage from `LoginSecurity.cs` — removed (was already commented out; dead comment deleted).
 - [ ] Remove `WSession.Current` static property — complete migration to `IWSession` DI service (see §7.17).
 
 **HTTP handler migration (.ashx → middleware/minimal API):**
-- [ ] `WebSystem-MVC/Content/Handlers/AjaxHandler.ashx` → ASP.NET Core middleware or minimal API endpoint.
-- [ ] `WebSystem-MVC/Content/Admin/Handlers/Handler.ashx` → ASP.NET Core middleware or minimal API endpoint.
-- [ ] `WebSystem-MVC/Content/Handlers/Resource.ashx` → ASP.NET Core middleware or static file middleware.
-- [ ] `SystemParts/AppBundle/FileManager/Download.ashx` → ASP.NET Core file download endpoint.
-- [ ] `SystemParts/AppBundle/Article/EmailPreview.ashx` → ASP.NET Core endpoint.
-- [ ] `SystemPartsG2/AppBundle2/Download/Handler.ashx` → ASP.NET Core download endpoint.
-- [ ] `SystemPartsG2/AppBundle2/FlashBanner/Handler.ashx` → ASP.NET Core endpoint (or retire if Flash is obsolete).
-- [ ] `Integration/Apps/Integration/MemberVisitPrintPreview.ashx` → ASP.NET Core endpoint.
-- [ ] `Integration/Apps/Integration/Streaming/VerifySession.ashx` → ASP.NET Core endpoint.
-- [ ] `Integration/Apps/Integration/Profile/LessonReviewer/Playback.ashx` → ASP.NET Core endpoint.
-- [ ] `Integration/Apps/Integration/MakeUp.ashx` → ASP.NET Core endpoint.
-- [ ] `LessonReviewer/Handlers/Playback.ashx` → ASP.NET Core endpoint.
-- [ ] `LessonReviewer/Handlers/AjaxHandler.ashx` → ASP.NET Core endpoint.
+- [x] All 13 `.ashx` handler files and 10 code-behind files deleted (business logic to be re-implemented in API controllers/middleware as needed).
 
 **Server.MapPath migration:**
 - [ ] Replace `Server.MapPath()` calls in `WebHelper.cs`, `ConfigManager.cs`, `PlaybackHelper.cs`, `LogHelper.cs`, and other files with `IWebHostEnvironment.ContentRootPath` / `WebRootPath` (see §7.20).
