@@ -1,27 +1,27 @@
 @model WCMS.WebSystem.ViewComponents.EventLogManagerViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Event Log Manager">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-journal-text"></i> Event Log</h5>
+        <h5 class="mb-0"><i class="bi bi-journal-text" aria-hidden="true"></i> Event Log</h5>
         <div>
-            <button type="button" class="btn btn-sm btn-outline-danger" id="btnClearLog"><i class="bi bi-trash"></i> Clear</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshLog"><i class="bi bi-arrow-clockwise"></i></button>
+            <button type="button" class="btn btn-sm btn-outline-danger" id="btnClearLog" aria-label="Clear event log"><i class="bi bi-trash" aria-hidden="true"></i> Clear</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshLog" aria-label="Refresh event log"><i class="bi bi-arrow-clockwise" aria-hidden="true"></i></button>
         </div>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
         }
         <div class="row mb-3">
             <div class="col-md-4">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search logs..." id="logSearch" value="@Model.SearchTerm" />
-                    <button class="btn btn-outline-secondary" type="button" id="btnSearchLogs"><i class="bi bi-search"></i></button>
+                    <input type="text" class="form-control" placeholder="Search logs..." id="logSearch" value="@Model.SearchTerm" aria-label="Search event logs" />
+                    <button class="btn btn-outline-secondary" type="button" id="btnSearchLogs" aria-label="Search"><i class="bi bi-search" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="col-md-3">
-                <select class="form-select" id="logLevelFilter">
+                <select class="form-select" id="logLevelFilter" aria-label="Filter by log level">
                     @foreach (var level in Model.AvailableLevels)
                     {
                         <option value="@level" selected="@(level == Model.FilterLevel)">@level</option>
@@ -29,19 +29,19 @@
                 </select>
             </div>
             <div class="col-md-5 text-end text-muted">
-                @Model.TotalCount entries
+                <span role="status" aria-live="polite">@Model.TotalCount entries</span>
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm" aria-label="Event log entries">
                 <thead class="table-light">
                     <tr>
-                        <th>Time</th>
-                        <th>Level</th>
-                        <th>Source</th>
-                        <th>Message</th>
-                        <th>User</th>
-                        <th>IP</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">Source</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">User</th>
+                        <th scope="col">IP</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,7 +72,7 @@
         </div>
         @if (Model.TotalPages > 1)
         {
-            <nav>
+            <nav aria-label="Event log pagination">
                 <ul class="pagination pagination-sm justify-content-center">
                     @for (int i = 1; i <= Model.TotalPages; i++)
                     {
@@ -84,4 +84,4 @@
             </nav>
         }
     </div>
-</div>
+</section>

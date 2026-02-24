@@ -1,48 +1,48 @@
 @model WCMS.WebSystem.ViewComponents.AgentDashboardViewModel
 
-<div class="card admin-panel" id="pnlAgentManager">
+<section class="card admin-panel" id="pnlAgentManager" aria-label="Agent Manager">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-robot"></i> Agent Manager</h5>
+        <h5 class="mb-0"><i class="bi bi-robot" aria-hidden="true"></i> Agent Manager</h5>
         <div>
             <span class="badge @(Model.IsAgentRunning ? "bg-success" : "bg-secondary") me-2" id="lblAgentStatus">
                 @(Model.IsAgentRunning ? "Running" : "Stopped")
             </span>
             @if (Model.IsAgentRunning)
             {
-                <button type="button" class="btn btn-sm btn-outline-danger" id="btnStopAgent"><i class="bi bi-stop-circle"></i> Stop</button>
+                <button type="button" class="btn btn-sm btn-outline-danger" id="btnStopAgent"><i class="bi bi-stop-circle" aria-hidden="true"></i> Stop</button>
             }
             else
             {
-                <button type="button" class="btn btn-sm btn-outline-success" id="btnStartAgent"><i class="bi bi-play-circle"></i> Start</button>
+                <button type="button" class="btn btn-sm btn-outline-success" id="btnStartAgent"><i class="bi bi-play-circle" aria-hidden="true"></i> Start</button>
             }
-            <button type="button" class="btn btn-sm btn-success" id="btnNewTask"><i class="bi bi-plus-lg"></i> New Task</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshAgent"><i class="bi bi-arrow-clockwise"></i></button>
+            <button type="button" class="btn btn-sm btn-success" id="btnNewTask"><i class="bi bi-plus-lg" aria-hidden="true"></i> New Task</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshAgent" aria-label="Refresh agent tasks"><i class="bi bi-arrow-clockwise" aria-hidden="true"></i></button>
         </div>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         @if (Model.LastRunTime.HasValue)
         {
             <div class="px-3 pt-2">
-                <small class="text-muted"><i class="bi bi-clock"></i> Last agent run: <span id="lblLastRun">@Model.LastRunTime.Value.ToString("g")</span></small>
+                <small class="text-muted"><i class="bi bi-clock" aria-hidden="true"></i> Last agent run: <span id="lblLastRun">@Model.LastRunTime.Value.ToString("g")</span></small>
             </div>
         }
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm mb-0" id="gvAgentTasks">
+            <table class="table table-striped table-hover table-sm mb-0" id="gvAgentTasks" aria-label="Agent tasks">
                 <thead class="table-light">
                     <tr>
-                        <th>Task</th>
-                        <th>Description</th>
-                        <th>Schedule</th>
-                        <th>Status</th>
-                        <th>Enabled</th>
-                        <th>Last Run</th>
-                        <th>Next Run</th>
-                        <th>Last Result</th>
-                        <th>Actions</th>
+                        <th scope="col">Task</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Schedule</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Enabled</th>
+                        <th scope="col">Last Run</th>
+                        <th scope="col">Next Run</th>
+                        <th scope="col">Last Result</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,7 +53,7 @@
                     @foreach (var task in Model.Tasks)
                     {
                         <tr data-task-id="@task.Id">
-                            <td><i class="bi bi-gear"></i> @task.Name</td>
+                            <td><i class="bi bi-gear" aria-hidden="true"></i> @task.Name</td>
                             <td><small>@task.Description</small></td>
                             <td><code>@task.Schedule</code></td>
                             <td>
@@ -81,9 +81,9 @@
                             <td>@task.NextRunTime?.ToString("g")</td>
                             <td><small class="text-muted">@task.LastResult</small></td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-task" data-task-id="@task.Id" title="Edit"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-success btn-run-task" data-task-id="@task.Id" title="Run Now"><i class="bi bi-play"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-task" data-task-id="@task.Id" title="Delete"><i class="bi bi-trash"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-task" data-task-id="@task.Id" title="Edit" aria-label="Edit @task.Name"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-success btn-run-task" data-task-id="@task.Id" title="Run Now" aria-label="Run @task.Name"><i class="bi bi-play" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-task" data-task-id="@task.Id" title="Delete" aria-label="Delete @task.Name"><i class="bi bi-trash" aria-hidden="true"></i></button>
                             </td>
                         </tr>
                     }
@@ -91,4 +91,4 @@
             </table>
         </div>
     </div>
-</div>
+</section>

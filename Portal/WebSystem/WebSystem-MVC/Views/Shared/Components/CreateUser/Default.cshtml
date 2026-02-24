@@ -1,47 +1,47 @@
 @model WCMS.WebSystem.ViewComponents.CreateUserViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Create User">
     <div class="card-header">
-        <h5 class="mb-0"><i class="bi bi-person-plus"></i> Create User</h5>
+        <h5 class="mb-0"><i class="bi bi-person-plus" aria-hidden="true"></i> Create User</h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.SuccessMessage))
         {
-            <div class="alert alert-success">@Model.SuccessMessage</div>
+            <div class="alert alert-success" role="status">@Model.SuccessMessage</div>
         }
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
         }
-        <form method="post" id="createUserForm">
+        <form method="post" id="createUserForm" aria-label="Create user form">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label class="form-label">Username <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="userName" value="@Model.UserName" required />
+                    <label class="form-label" for="createUserName">Username <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="userName" id="createUserName" value="@Model.UserName" required />
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Email <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" name="email" value="@Model.Email" required />
+                    <label class="form-label" for="createEmail">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" name="email" id="createEmail" value="@Model.Email" required />
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label class="form-label">First Name</label>
-                    <input type="text" class="form-control" name="firstName" value="@Model.FirstName" />
+                    <label class="form-label" for="createFirstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="createFirstName" value="@Model.FirstName" />
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Last Name</label>
-                    <input type="text" class="form-control" name="lastName" value="@Model.LastName" />
+                    <label class="form-label" for="createLastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="createLastName" value="@Model.LastName" />
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label class="form-label">Phone</label>
-                    <input type="tel" class="form-control" name="phone" value="@Model.Phone" />
+                    <label class="form-label" for="createPhone">Phone</label>
+                    <input type="tel" class="form-control" name="phone" id="createPhone" value="@Model.Phone" />
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Group</label>
-                    <select class="form-select" name="groupId">
+                    <label class="form-label" for="createGroupId">Group</label>
+                    <select class="form-select" name="groupId" id="createGroupId">
                         <option value="0">-- None --</option>
                         @foreach (var g in Model.AvailableGroups)
                         {
@@ -52,18 +52,18 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label class="form-label">Password <span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" name="password" required />
+                    <label class="form-label" for="createPassword">Password <span class="text-danger">*</span></label>
+                    <input type="password" class="form-control" name="password" id="createPassword" required />
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Confirm Password <span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" name="confirmPassword" required />
+                    <label class="form-label" for="createConfirmPassword">Confirm Password <span class="text-danger">*</span></label>
+                    <input type="password" class="form-control" name="confirmPassword" id="createConfirmPassword" required />
                 </div>
             </div>
             @if (Model.AvailableRoles.Count > 0)
             {
-                <div class="mb-3">
-                    <label class="form-label">Roles</label>
+                <fieldset class="mb-3">
+                    <legend class="form-label fs-6">Roles</legend>
                     @foreach (var role in Model.AvailableRoles)
                     {
                         <div class="form-check">
@@ -71,9 +71,9 @@
                             <label class="form-check-label" for="role_@role.Id">@role.Name</label>
                         </div>
                     }
-                </div>
+                </fieldset>
             }
-            <button type="submit" class="btn btn-success"><i class="bi bi-person-plus"></i> Create User</button>
+            <button type="submit" class="btn btn-success"><i class="bi bi-person-plus" aria-hidden="true"></i> Create User</button>
         </form>
     </div>
-</div>
+</section>

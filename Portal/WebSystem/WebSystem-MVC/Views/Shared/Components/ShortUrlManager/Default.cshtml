@@ -1,20 +1,20 @@
 @model WCMS.WebSystem.ViewComponents.ShortUrlManagerViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Short URL Manager">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-link-45deg"></i> Short URLs</h5>
-        <button type="button" class="btn btn-sm btn-success" id="btnAddShortUrl"><i class="bi bi-plus-lg"></i> New Short URL</button>
+        <h5 class="mb-0"><i class="bi bi-link-45deg" aria-hidden="true"></i> Short URLs</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddShortUrl" aria-label="Add new short URL"><i class="bi bi-plus-lg" aria-hidden="true"></i> New Short URL</button>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
         }
         <div class="row mb-3">
             <div class="col-md-6">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search URLs..." id="shortUrlSearch" value="@Model.SearchTerm" />
-                    <button class="btn btn-outline-secondary" type="button" id="btnSearchUrls"><i class="bi bi-search"></i></button>
+                    <input type="text" class="form-control" placeholder="Search URLs..." id="shortUrlSearch" value="@Model.SearchTerm" aria-label="Search short URLs" />
+                    <button class="btn btn-outline-secondary" type="button" id="btnSearchUrls" aria-label="Search"><i class="bi bi-search" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="col-md-6 text-end text-muted">
@@ -22,16 +22,16 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm">
+            <table class="table table-striped table-hover table-sm" aria-label="Short URLs list">
                 <thead class="table-light">
                     <tr>
-                        <th>Short Code</th>
-                        <th>Target URL</th>
-                        <th>Hits</th>
-                        <th>Active</th>
-                        <th>Created</th>
-                        <th>Expires</th>
-                        <th>Actions</th>
+                        <th scope="col">Short Code</th>
+                        <th scope="col">Target URL</th>
+                        <th scope="col">Hits</th>
+                        <th scope="col">Active</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Expires</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,8 +58,8 @@
                             <td>@url.CreatedDate.ToString("d")</td>
                             <td>@url.ExpirationDate?.ToString("d")</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-url" data-url-id="@url.Id"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-url" data-url-id="@url.Id"><i class="bi bi-trash"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-url" data-url-id="@url.Id" aria-label="Edit @url.ShortCode"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-url" data-url-id="@url.Id" aria-label="Delete @url.ShortCode"><i class="bi bi-trash" aria-hidden="true"></i></button>
                             </td>
                         </tr>
                     }
@@ -68,11 +68,11 @@
         </div>
         @if (Model.TotalPages > 1)
         {
-            <nav>
+            <nav aria-label="Short URL pagination">
                 <ul class="pagination pagination-sm justify-content-center">
                     @for (int i = 1; i <= Model.TotalPages; i++)
                     {
-                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")" @(i == Model.CurrentPage ? "aria-current=\"page\"" : "")>
                             <a class="page-link" href="javascript:void(0)" data-page="@i">@i</a>
                         </li>
                     }
@@ -80,4 +80,4 @@
             </nav>
         }
     </div>
-</div>
+</section>

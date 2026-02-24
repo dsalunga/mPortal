@@ -1,30 +1,30 @@
 @model WCMS.WebSystem.ViewComponents.DataSyncDashboardViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Data Sync Dashboard">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-arrow-repeat"></i> Data Sync</h5>
+        <h5 class="mb-0"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Data Sync</h5>
         <div>
-            <button type="button" class="btn btn-sm btn-success" id="btnNewSyncJob"><i class="bi bi-plus-lg"></i> New Job</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshSync"><i class="bi bi-arrow-clockwise"></i></button>
+            <button type="button" class="btn btn-sm btn-success" id="btnNewSyncJob" aria-label="New sync job"><i class="bi bi-plus-lg" aria-hidden="true"></i> New Job</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnRefreshSync" aria-label="Refresh sync jobs"><i class="bi bi-arrow-clockwise" aria-hidden="true"></i></button>
         </div>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm mb-0">
+            <table class="table table-striped table-hover table-sm mb-0" aria-label="Data sync jobs">
                 <thead class="table-light">
                     <tr>
-                        <th>Name</th>
-                        <th>Source</th>
-                        <th>Target</th>
-                        <th>Status</th>
-                        <th>Enabled</th>
-                        <th>Last Sync</th>
-                        <th>Records</th>
-                        <th>Actions</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Source</th>
+                        <th scope="col">Target</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Enabled</th>
+                        <th scope="col">Last Sync</th>
+                        <th scope="col">Records</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,19 +55,19 @@
                             <td>
                                 @if (job.IsEnabled)
                                 {
-                                    <i class="bi bi-check-circle text-success"></i>
+                                    <i class="bi bi-check-circle text-success" aria-hidden="true"></i>
                                 }
                                 else
                                 {
-                                    <i class="bi bi-x-circle text-muted"></i>
+                                    <i class="bi bi-x-circle text-muted" aria-hidden="true"></i>
                                 }
                             </td>
                             <td>@job.LastSyncTime?.ToString("g")</td>
                             <td>@job.RecordsSynced</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-sync" data-job-id="@job.Id"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-success btn-run-sync" data-job-id="@job.Id"><i class="bi bi-play"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-sync" data-job-id="@job.Id"><i class="bi bi-trash"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-sync" data-job-id="@job.Id" aria-label="Edit @job.Name"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-success btn-run-sync" data-job-id="@job.Id" aria-label="Run @job.Name"><i class="bi bi-play" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-sync" data-job-id="@job.Id" aria-label="Delete @job.Name"><i class="bi bi-trash" aria-hidden="true"></i></button>
                             </td>
                         </tr>
                     }
@@ -75,4 +75,4 @@
             </table>
         </div>
     </div>
-</div>
+</section>
