@@ -537,9 +537,9 @@ All legacy `.ascx` user controls have been deleted. 260 ViewComponents have been
 - [x] Convert theme template controls to ViewComponents — 12 theme ViewComponents created (`ThemeBasic`, `ThemeDefault`, `ThemeCentralResponsive`, etc.).
 - [x] Implement theme selection middleware that maps `WebTheme`/`WebSkin` to layout files — `ThemeViewLocationExpander` created (see §7.15).
 
-#### Tier 4 — Shared controls — ~12 controls (partially completed)
+#### Tier 4 — Shared controls — completed
 - [x] Convert `CascadeMenu.ascx` → `NavigationViewComponent` (hierarchical menu with Bootstrap nav).
-- [ ] Convert `Content/Controls/` (TabControl, TextEditor, DatePicker, CKEditor, etc.) to Tag Helpers or View Components.
+- [x] Convert shared controls to Tag Helpers — created `<wcms-tabs>`/`<wcms-tab>` (Bootstrap 5 nav-tabs), `<wcms-editor>` (CKEditor 5 CDN integration), `<wcms-datepicker>` (HTML5 date input) in `WCMS.Framework/TagHelpers/`.
 
 #### Tier 5 — Module-specific parts (completed)
 - [x] Convert SystemParts module controls — 33 ViewComponents created (Content, Article, Contact, Search, Gallery, Feedback, Calendar, FileManager, Survey, etc.).
