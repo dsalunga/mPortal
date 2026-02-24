@@ -1,16 +1,41 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntRequestManagerModel
+@model dynamic
 
-<div class="card" id="int-request-manager-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Request Manager</h5>
+<div class="card" id="int-request-manager-@Model.ObjectId" role="region" aria-label="Request Manager">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Registration Requests</h5>
+        <span class="badge bg-secondary" id="lblRequestCount">0</span>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Request management placeholder content.</p>
+        <div class="mb-3">
+            <label for="ddlStatus" class="form-label">Filter by Status</label>
+            <select id="ddlStatus" name="Status" class="form-select" aria-label="Filter requests by status">
+                <option value="">All</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover" id="tblRequests" aria-label="Registration requests list">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="requestList">
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

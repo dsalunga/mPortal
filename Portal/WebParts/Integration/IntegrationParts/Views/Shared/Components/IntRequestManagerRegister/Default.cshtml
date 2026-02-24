@@ -1,16 +1,47 @@
-@model WCMS.WebSystem.WebParts.ViewComponents.IntRequestManagerRegisterModel
+@model dynamic
 
-<div class="card" id="int-request-manager-register-@Model.ObjectId">
+<div class="card" id="int-request-manager-register-@Model.ObjectId" role="region" aria-label="Registration Request">
     <div class="card-header">
-        <h5 class="card-title mb-0">Registration Requests</h5>
+        <h5 class="card-title mb-0">Submit Registration Request</h5>
     </div>
     <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
+        @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <p>Registration requests placeholder content.</p>
+        <form method="post" novalidate aria-label="Registration request form">
+            <fieldset>
+                <legend class="fs-6 fw-bold mb-3">Personal Information</legend>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="txtFirstName" class="form-label">First Name <span class="text-danger" aria-hidden="true">*</span></label>
+                        <input type="text" id="txtFirstName" name="FirstName" class="form-control" required aria-required="true" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="txtLastName" class="form-label">Last Name <span class="text-danger" aria-hidden="true">*</span></label>
+                        <input type="text" id="txtLastName" name="LastName" class="form-control" required aria-required="true" />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="txtEmail" class="form-label">Email Address <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="email" id="txtEmail" name="Email" class="form-control" required aria-required="true" />
+                </div>
+                <div class="mb-3">
+                    <label for="txtPhone" class="form-label">Phone Number</label>
+                    <input type="tel" id="txtPhone" name="Phone" class="form-control" />
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend class="fs-6 fw-bold mb-3">Additional Details</legend>
+                <div class="mb-3">
+                    <label for="txtReason" class="form-label">Reason for Registration</label>
+                    <textarea id="txtReason" name="Reason" class="form-control" rows="3"></textarea>
+                </div>
+            </fieldset>
+            <button type="submit" id="cmdSubmit" class="btn btn-primary">Submit Request</button>
+        </form>
     </div>
 </div>
