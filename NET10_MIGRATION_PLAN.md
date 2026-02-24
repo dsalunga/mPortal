@@ -228,14 +228,18 @@ Why Windows VM is still needed:
 
 ## 7) Outstanding Work (Not Yet Fully Implemented)
 
-Current status snapshot (2026-02-23, updated):
-- 47 C# projects (`.csproj`) in repo; all converted to SDK-style format.
-- **All 47 projects now target `.NET 10`** (`net10.0` or `net10.0-windows`). Zero net48 projects remain.
+Current status snapshot (2026-02-24, updated):
+- 43 C# projects (`.csproj`) in repo; all converted to SDK-style format.
+- **All 43 projects now target `.NET 10`** (`net10.0` or `net10.0-windows`). Zero net48 projects remain.
 - All `packages.config` files have been deleted (0 remaining).
 - EF6 removed from WCMS.Framework (migrated to EF Core 9.0). Integration module's EF6 EDMX files excluded from compilation.
 - WCF references in Integration module wrapped with `#if NETFRAMEWORK`.
 - 8 web app hosts rebuilt as ASP.NET Core scaffolds (feature parity not yet complete).
-- No CI/CD pipeline configured yet.
+- All legacy `.aspx`, `.ascx`, `.svc`, and `.asmx` files have been deleted. 13 `.ashx` HTTP handlers and 3 `Global.asax` files remain.
+- 260 ViewComponents created (replacing legacy `.ascx` user controls).
+- `IWContext` and `IWSession` DI interfaces created and registered via `AddWcmsFramework()`.
+- `PageResolutionMiddleware` replaces legacy URL rewriting.
+- CI build workflow configured (`.github/workflows/build.yml`); deployment pipeline not yet configured.
 - Full system documentation created: see `SYSTEM_DOCUMENTATION.md`.
 
 Important:
@@ -386,45 +390,57 @@ After System.Web, EF6, WCF, and MVC 5 blockers are resolved, retarget each libra
 
 ### 7.7) Complete feature-parity for rebuilt ASP.NET Core web hosts (8 scaffold apps)
 
-Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint, page, and service migration from the legacy app.
+Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint, page, and service migration from the legacy app. All hosts use minimal hosting (`Program.cs`) with `appsettings.json` config.
 
 - [x] **Main Portal** (`Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj`):
+  - [x] Scaffold ASP.NET Core minimal hosting with `appsettings.json`, cookie auth, DI registration (`AddWcmsFramework()`), and `PageResolutionMiddleware`.
+  - [x] Create API controllers (FrameworkApi, AccountApi, DataSyncApi, UserApi) replacing legacy WCF/ASMX.
+  - [x] Create 60 ViewComponents (48 Admin + 12 Theme/Core).
   - [ ] Migrate all MVC controllers and Razor views from legacy ASP.NET MVC 5 to ASP.NET Core MVC.
-  - [ ] Port authentication and authorization (Forms Auth / OWIN → ASP.NET Core Identity or cookie auth).
-  - [ ] Migrate `web.config` settings to `appsettings.json` / environment variables / secrets.
-  - [ ] Remove legacy `Startup.cs` and consolidate into minimal hosting (`Program.cs`).
+  - [ ] Port authentication and authorization (Forms Auth / OWIN → ASP.NET Core Identity or cookie auth) — cookie auth configured but `FormsAuthentication` still used in `LoginSecurity.cs`.
   - [ ] Migrate bundling/minification (BundleConfig → ASP.NET Core alternatives such as `WebOptimizer`).
-  - [ ] Port all WebForms pages (`.aspx`) to Razor Pages or MVC views.
+  - [ ] Remove legacy `Startup.cs` (OWIN-based, not used by `Program.cs`).
 - [x] **Integration** (`Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj`):
-  - [ ] Migrate WCF `.svc` endpoints to Web API controllers or gRPC services.
-  - [ ] Port remaining `.aspx` pages to Razor Pages.
+  - [x] Create `MemberApiController` replacing WCF `.svc` endpoints.
+  - [x] Create 131 ViewComponents for Integration module.
+  - [ ] Wire API controller endpoints to actual data layer (currently placeholder logic for some endpoints).
   - [ ] Wire EF Core data context and validate query parity.
 - [x] **SystemParts** (`Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj`):
-  - [ ] Port module routes and WebForms pages to Razor Pages / MVC.
-  - [ ] Remove legacy `web.config`; move settings to `appsettings.json`.
+  - [x] Create `ContentApiController` and 33 ViewComponents.
+  - [ ] Port module routes and remaining pages to Razor Pages / MVC.
 - [x] **SystemPartsG2** (`Portal/WebParts/SystemPartsG2/SystemPartsG2/WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj`):
+  - [x] Create 33 ViewComponents for forum, social, and other modules.
   - [ ] Port forum, social, and other module endpoints.
   - [ ] Validate module registration and dependency injection wiring.
 - [x] **SystemPartsG3** (`Portal/WebParts/SystemPartsG3/SystemPartsG3/WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj`):
+  - [x] Create 12 ViewComponents for incident and jobs modules.
   - [ ] Port incident and jobs module pages to Razor Pages / MVC.
 - [x] **BibleReader** (`BibleReader/BibleReader/BibleReader.WebApp.csproj`):
-  - [ ] Migrate reader UI pages and API endpoints.
+  - [x] Create `BibleApiController` replacing ASMX SOAP service.
+  - [x] Create `BibleVerseViewComponent`.
+  - [ ] Migrate reader UI pages.
   - [ ] Wire BibleReader.Core services via DI.
 - [x] **LessonReviewer** (`LessonReviewer/LessonReviewer/LessonReviewer.csproj`):
   - [ ] Migrate lesson management pages and API endpoints.
   - [ ] Wire LessonReviewer.Core services via DI.
+  - [ ] Create ViewComponents for lesson management UI.
 - [x] **BranchLocator** (`Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj`):
   - [ ] Migrate locator search UI and map integration endpoints.
+  - [ ] Create ViewComponents for locator UI.
   - [ ] Wire EF Core data context for branch data.
 
 ---
 
 ### 7.8) Legacy web asset cleanup
 
-- [ ] Remove or migrate all `.aspx` WebForms pages (59 files) to Razor Pages or MVC views.
-- [ ] Remove or migrate all `.ascx` user controls (400+ files) to Razor view components or partial views.
-- [ ] Remove all `.svc` WCF endpoint files (6 files) after Web API / gRPC replacements are in place.
-- [x] Remove remaining `web.config` files (5 files) from ASP.NET Core projects once config is fully migrated to `appsettings.json`.
+- [x] Remove all `.aspx` WebForms pages — all deleted (0 remaining).
+- [x] Remove all `.ascx` user controls — all deleted (0 remaining); replaced by 260 ViewComponents.
+- [x] Remove all `.svc` WCF endpoint files — all deleted (0 remaining); replaced by API controllers.
+- [x] Remove all `.asmx` SOAP endpoint files — all deleted (0 remaining).
+- [x] Remove remaining `web.config` files from ASP.NET Core projects once config is fully migrated to `appsettings.json`.
+- [ ] Remove or migrate `.ashx` HTTP handler files (13 remaining) to ASP.NET Core middleware or minimal API endpoints.
+- [ ] Remove remaining `Global.asax` files (3 remaining: WebSystem-MVC, BibleReader, LessonReviewer).
+- [ ] Remove legacy `Startup.cs` (OWIN-based) from `WebSystem-MVC` — replaced by `Program.cs` minimal hosting.
 
 ---
 
@@ -437,11 +453,10 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 
 ### 7.10) CI/CD pipeline setup
 
-No CI/CD workflows exist in the repository yet.
-
-- [x] Create GitHub Actions (or equivalent) CI workflow for `dotnet build` across all `.sln` files.
+- [x] Create GitHub Actions CI workflow for `dotnet build` (`.github/workflows/build.yml` — runs on push/PR to `master` and `codex/net10-modernization`; builds core libraries and web apps on .NET 10).
+- [x] Add `dotnet test` step for existing test projects (`Integration.UnitTest`, `SDKTest`, `WCMS.Framework.Tests`) — tests run in CI (failures currently non-blocking via `|| true`).
 - [ ] Add a CI job matrix covering both `net48` (Windows runner) and `net10.0` (Ubuntu/macOS runner) targets.
-- [ ] Add `dotnet test` step for existing test projects (`Integration.UnitTest`, `SDKTest`).
+- [ ] Make test step blocking (remove `|| true` fallback) once all tests are stable.
 - [ ] Configure deployment pipeline(s) for staging / production environments.
 - [ ] Wire SQL project (`.sqlproj`) build into the Windows CI lane using SSDT or `Microsoft.Build.Sql`.
 
@@ -471,7 +486,7 @@ No CI/CD workflows exist in the repository yet.
 
 - [ ] Resolve unresolved assembly/reference warnings present in baseline solution builds (e.g., agent/service references to legacy webparts binaries).
 - [ ] Remove obsolete project references and dead code paths left behind by scaffold conversions.
-- [x] Consolidate solution files (`.sln`) — evaluate whether 19 solution files are still needed or can be reduced.
+- [x] Consolidate solution files (`.sln`) — `mPortal.slnx` created with all 43 projects; 19 legacy `.sln` files remain on disk for reference (see §8.4 for cleanup).
 - [ ] Audit and update NuGet package versions across all projects for .NET 10 compatibility.
 
 ---
@@ -490,31 +505,25 @@ No CI/CD workflows exist in the repository yet.
 
 The CMS dynamically resolves URLs to database-stored pages and renders them from templates + web parts. This is the most critical migration item for feature parity.
 
-- [x] Create ASP.NET Core middleware to replace `WebRewriter.ResolvePage()` — resolve URL path segments to `WSite` → `WPage` hierarchy via database lookup.
+- [x] Create ASP.NET Core middleware to replace `WebRewriter.ResolvePage()` — resolve URL path segments to `WSite` → `WPage` hierarchy via database lookup (`PageResolutionMiddleware`).
 - [ ] Implement custom `IRouter` or endpoint routing that integrates with the `WPage` resolution pipeline.
 - [ ] Create a `PageRenderingMiddleware` that loads `WebTemplate`, iterates `WebTemplatePanel` zones, and renders `WebPageElement` instances via Razor.
 - [ ] Implement dynamic Razor layout selection based on `WPage.ThemeId` → `WebTheme` → layout file mapping (custom `IViewLocationExpander`).
-- [ ] Port `WContext` from static `HttpContext.Current` to a scoped DI service (`IWContext`) injected via `IHttpContextAccessor`.
-- [ ] Port `WSession` to ASP.NET Core claims-based identity + cookie authentication (replace `FormsAuthentication` and `LoginCookieManager`).
-- [ ] Port `WQuery` query parameter handling to work with ASP.NET Core `HttpRequest.Query`.
+- [x] Port `WContext` from static `HttpContext.Current` to a scoped DI service (`IWContext`) injected via `IHttpContextAccessor` — `IWContext` interface created and registered as scoped service via `AddWcmsFramework()`; legacy `WContext.GetInstance()` guarded with `#if NETFRAMEWORK`.
+- [ ] Port `WSession` to ASP.NET Core claims-based identity + cookie authentication (replace `FormsAuthentication` and `LoginCookieManager`) — `IWSession` interface created and registered in DI, but `WSession.Current` static accessor and `FormsAuthentication` usage remain.
+- [x] Port `WQuery` query parameter handling to work with ASP.NET Core `HttpRequest.Query` — ported with `#if NETFRAMEWORK` guards for legacy WebForms overloads; 9 unit tests passing.
 
 ---
 
-### 7.16) Web part View Component conversion (518 `.ascx` files)
+### 7.16) Web part View Component conversion
 
-Each legacy `.ascx` user control that renders a web part must become a Razor View Component or partial view in ASP.NET Core. Priority order:
+All legacy `.ascx` user controls have been deleted. 260 ViewComponents have been created across all modules. Razor views (`.cshtml`) use Bootstrap 5 placeholder markup and need refinement to match original UI (see §8.2).
 
 **Infrastructure (completed):**
 - [x] Create `WViewComponent` base class in WCMS.Framework (replaces `WUserControl`/`UserControl` with DI-injected `IWContext`).
 
-#### Tier 1 — Admin parts (Central) — ~100 controls
-- [ ] Convert `Content/Parts/Central/Manager/` admin controls to View Components (site/page/template/part management).
-- [ ] Convert `Content/Parts/Central/Security/` controls (user, group, permission management).
-- [ ] Convert `Content/Parts/Central/WebPart/` controls (part admin, part control templates).
-- [ ] Convert `Content/Parts/Central/Template/` controls (template editor, panel management).
-- [ ] Convert `Content/Parts/Central/WebSites/` controls (site configuration).
-- [ ] Convert `Content/Parts/Central/Tools/` controls (code executor, diagnostics).
-- [ ] Convert `Content/Parts/Central/Agent/` controls (job management).
+#### Tier 1 — Admin parts — 48 ViewComponents created
+- [x] Convert admin controls to ViewComponents (site/page/template/part/user/group/permission management, tools, agent) — 48 admin ViewComponents created in `WebSystem-MVC/ViewComponents/Admin/`.
 
 #### Tier 2 — Common parts — ~10 controls (partially completed)
 - [x] Convert `Login.ascx` → `LoginViewComponent` (authentication form with login/logout/OTP/forgot-password views).
@@ -523,24 +532,22 @@ Each legacy `.ascx` user control that renders a web part must become a Razor Vie
 - [ ] Convert `Content/Parts/Common/Comments.ascx` to Razor comment component.
 - [ ] Convert remaining Common parts (MessageBoard, TriggerTask, UserPhotoUpload).
 
-#### Tier 3 — Theme templates — ~50 controls
-- [ ] Convert `Content/Themes/*/` template files from `.ascx` to `.cshtml` Razor layouts.
+#### Tier 3 — Theme templates — 12 ViewComponents created
+- [x] Convert theme template controls to ViewComponents — 12 theme ViewComponents created (`ThemeBasic`, `ThemeDefault`, `ThemeCentralResponsive`, etc.).
 - [ ] Implement theme selection middleware that maps `WebTheme`/`WebSkin` to layout files.
 
 #### Tier 4 — Shared controls — ~12 controls (partially completed)
 - [x] Convert `CascadeMenu.ascx` → `NavigationViewComponent` (hierarchical menu with Bootstrap nav).
 - [ ] Convert `Content/Controls/` (TabControl, TextEditor, DatePicker, CKEditor, etc.) to Tag Helpers or View Components.
 
-#### Tier 5 — Module-specific parts — ~300 controls (partially completed)
-- [x] Convert `Content.ascx` → `ContentViewComponent` (CMS element content renderer).
-- [x] Convert `Article.ascx` → `ArticleViewComponent` (article list + detail with paging).
-- [x] Convert `ContactUs.ascx` → `ContactViewComponent` (contact form).
-- [x] Convert `FeedBack.ascx` → `FeedbackViewComponent` (content comments).
-- [x] Convert `Gallery.ascx` → `GalleryViewComponent` (image gallery).
-- [x] Convert `Search.ascx` → `SearchViewComponent` (site search).
-- [x] Convert `BibleVerseView.ascx` → `BibleVerseViewComponent` (Bible verse reader).
-- [ ] Convert SystemPartsG2 `AppBundle2/` controls (Forum, Social, Ads, Newsletter).
-- [ ] Convert SystemPartsG3 `AppBundle3/` controls (Incident, Jobs).
+#### Tier 5 — Module-specific parts (largely completed)
+- [x] Convert SystemParts module controls — 33 ViewComponents created (Content, Article, Contact, Search, Gallery, Feedback, Calendar, FileManager, Survey, etc.).
+- [x] Convert SystemPartsG2 module controls — 33 ViewComponents created (Forum, Social, Ads, Newsletter, Downloads, Wall, etc.).
+- [x] Convert SystemPartsG3 module controls — 12 ViewComponents created (Incident, Jobs).
+- [x] Convert Integration module controls — 131 ViewComponents created (Member management, MusicCompetition, Registration, Profile, Streaming, etc.).
+- [x] Convert `BibleVerseView.ascx` → `BibleVerseViewComponent` (Bible verse reader) — 1 ViewComponent in BibleReader.
+- [ ] Create BranchLocator ViewComponents (locator search UI, map integration) — no ViewComponents created yet.
+- [ ] Create LessonReviewer ViewComponents (lesson management pages) — no ViewComponents created yet.
 
 ---
 
@@ -549,10 +556,10 @@ Each legacy `.ascx` user control that renders a web part must become a Razor Vie
 `WContext` (request context) and `WSession` (user session) currently rely on `HttpContext.Current` (static accessor not available in ASP.NET Core). These must become proper DI services.
 
 - [x] Create `IWContext` interface and scoped implementation registered in DI container.
-- [ ] Create `IWSession` interface wrapping ASP.NET Core `ClaimsPrincipal` + distributed session.
-- [ ] Refactor all `WContext` static property access across 30+ manager classes to use constructor injection.
-- [ ] Refactor `WSession` consumers to use `IHttpContextAccessor` + `IWSession`.
-- [ ] Replace `UserSessionManager` browser tracking with ASP.NET Core distributed session.
+- [x] Create `IWSession` interface and scoped implementation registered in DI container via `AddWcmsFramework()`.
+- [ ] Refactor all `WContext` static property access across 30+ manager classes to use constructor injection — `WContext.GetInstance()` is guarded with `#if NETFRAMEWORK` but consumer refactoring is incomplete.
+- [ ] Refactor `WSession` consumers to use `IHttpContextAccessor` + `IWSession` — `WSession.Current` static accessor still exists and is actively used.
+- [ ] Replace `UserSessionManager` in-memory `MemoryCache<UserSession>` browser tracking with ASP.NET Core distributed session/cache.
 
 ---
 
@@ -560,7 +567,7 @@ Each legacy `.ascx` user control that renders a web part must become a Razor Vie
 
 The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree that users modify at runtime. It must be preserved as a CMS feature while integrating with ASP.NET Core configuration.
 
-- [x] Wrap `WebRegistry` in an `IConfigurationProvider` to participate in the ASP.NET Core configuration system.
+- [ ] Wrap `WebRegistry` in an `IConfigurationProvider` to participate in the ASP.NET Core configuration system — not yet implemented; `WebRegistry` still uses standalone `IWebRegistryProvider` pattern.
 - [ ] Convert `WConfig` properties to `IOptions<WConfigOptions>` with change-token-based reloading.
 - [ ] Preserve the `WebRegistry.Updated` event mechanism for live configuration changes.
 - [ ] Register registry-dependent services as scoped/transient to pick up configuration changes.
@@ -576,10 +583,10 @@ The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree t
 
 ### 7.20) Cross-platform path & file handling
 
-- [x] Audit all `Server.MapPath()` calls and replace with `IWebHostEnvironment.ContentRootPath` / `WebRootPath`.
+- [ ] Audit all `Server.MapPath()` calls and replace with `IWebHostEnvironment.ContentRootPath` / `WebRootPath` — `Server.MapPath()` is still used in 16+ files (WebHelper.cs, ConfigManager.cs, PlaybackHelper.cs, LogHelper.cs, and .ashx handlers).
 - [x] Replace Windows-style path separators (`\`) with `Path.Combine()` / `Path.DirectorySeparatorChar`.
-- [x] Replace `System.Drawing` image operations with cross-platform alternatives (SkiaSharp or ImageSharp) where used outside Windows.
-- [x] Create cross-platform build scripts (PowerShell Core / `dotnet` CLI) to replace `.cmd` batch files.
+- [ ] Replace `System.Drawing` image operations with cross-platform alternatives (SkiaSharp or ImageSharp) where used outside Windows — `System.Drawing` is still used in 10+ files (ImageUtil, ImageSecurity, QRCodeUtil, FileManager); no SkiaSharp/ImageSharp references added.
+- [x] Create cross-platform build scripts (PowerShell Core / `dotnet` CLI) to replace `.cmd` batch files — `dotnet build`/`dotnet test` via CI; 43 legacy `.cmd` scripts remain on disk but are not required for the .NET 10 build.
 
 ---
 
@@ -627,9 +634,9 @@ The Integration module's EF6 EDMX models and WCF service methods are wrapped wit
 
 ### 8.2) ViewComponent Razor view refinement
 
-The 253 ViewComponents have functional C# classes wired to the CMS framework, but their Razor views (`.cshtml`) use Bootstrap 5 placeholder markup. Each needs to be refined to match the original `.ascx` UI.
+The 260 ViewComponents have functional C# classes wired to the CMS framework, but their Razor views (`.cshtml`) use Bootstrap 5 placeholder markup. Each needs to be refined to match the original UI. Note: the original `.ascx` files have been deleted; use version control history or SYSTEM_DOCUMENTATION.md as reference.
 
-**Approach:** For each ViewComponent, compare the original `.ascx` markup with the placeholder `.cshtml` and port the exact HTML/CSS/JS structure.
+**Approach:** For each ViewComponent, compare the original `.ascx` markup (from git history) with the placeholder `.cshtml` and port the exact HTML/CSS/JS structure.
 
 **Portal core components (15 — highest priority):**
 - [ ] `LoginViewComponent` — match original `Login.ascx` form fields, validation, OTP UI
@@ -638,7 +645,7 @@ The 253 ViewComponents have functional C# classes wired to the CMS framework, bu
 - [ ] `SideBarViewComponent` — match original sidebar panel layout
 - [ ] Theme components (11) — match each theme's header/footer/layout controls
 
-**SystemParts components (34 — high priority):**
+**SystemParts components (33):**
 - [ ] `ContentViewComponent` — match original `Content.ascx` rich content rendering with registry-driven config
 - [ ] `ArticleViewComponent` — match original `Article.ascx` list/detail views, paging, template substitution
 - [ ] `ContactViewComponent` — match original `ContactUs.ascx` form with validation and email sending
@@ -647,26 +654,24 @@ The 253 ViewComponents have functional C# classes wired to the CMS framework, bu
 - [ ] `FeedbackViewComponent` — match original `FeedBack.ascx` comment thread rendering
 - [ ] `MenuViewComponent` — match original `Menu.ascx` navigation rendering
 - [ ] `EventCalendarViewComponent` — match original calendar grid/list views
-- [ ] Remaining 26 SystemParts components — port original markup
+- [ ] Remaining 25 SystemParts components — port original markup
 
-**SystemPartsG2 components (20):**
-- [ ] All 20 components — port original `.ascx` markup to `.cshtml`
+**SystemPartsG2 components (33):**
+- [ ] All 33 components — port original `.ascx` markup to `.cshtml`
 
-**SystemPartsG3 components (10):**
-- [ ] All 10 Incident/Jobs components — port original `.ascx` markup
+**SystemPartsG3 components (12):**
+- [ ] All 12 Incident/Jobs components — port original `.ascx` markup
 
-**Admin components (49):**
-- [ ] All 49 admin components — port original `.ascx` markup (lower priority since admin UI can be iteratively improved)
+**Admin components (48):**
+- [ ] All 48 admin components — port original `.ascx` markup (lower priority since admin UI can be iteratively improved)
 
-**Integration components (101):**
-- [ ] Account/Registration (23) — port original markup
-- [ ] Profile/LessonReviewer (28) — port original markup
-- [ ] MasterList/EventRegister (14) — port original markup
-- [ ] MusicCompetition (27) — port original markup
-- [ ] Streaming/BibleReader/Reminder (9) — port original markup
-
-**Integration Theme components (24):**
-- [ ] All 24 theme components — port original markup
+**Integration components (131):**
+- [ ] Account/Registration components — port original markup
+- [ ] Profile/LessonReviewer components — port original markup
+- [ ] MasterList/EventRegister components — port original markup
+- [ ] MusicCompetition components — port original markup
+- [ ] Streaming/BibleReader/Reminder components — port original markup
+- [ ] Integration theme components — port original markup
 
 ---
 
@@ -686,10 +691,52 @@ The 253 ViewComponents have functional C# classes wired to the CMS framework, bu
 
 ### 8.4) Legacy file cleanup
 
-- [ ] Delete all legacy `.aspx` files (57 files) after ViewComponents are verified
-- [ ] Delete all legacy `.ascx` files (518 files) after ViewComponents are verified
-- [ ] Delete all legacy `.svc` files (6 files) after API controllers are verified
-- [ ] Delete all legacy `.asmx` files after API controllers are verified
-- [ ] Delete legacy `Global.asax` files (replaced by middleware)
-- [ ] Remove `<Compile Remove>` entries from `.csproj` files once legacy files are deleted
-- [ ] Remove `EnableDefaultContentItems` / `EnableDefaultCompileItems` overrides once legacy files are gone
+- [x] Delete all legacy `.aspx` files — completed (0 remaining).
+- [x] Delete all legacy `.ascx` files — completed (0 remaining).
+- [x] Delete all legacy `.svc` files — completed (0 remaining).
+- [x] Delete all legacy `.asmx` files — completed (0 remaining).
+- [ ] Delete legacy `Global.asax` files (3 remaining: WebSystem-MVC, BibleReader, LessonReviewer) — replaced by ASP.NET Core middleware.
+- [ ] Delete or migrate legacy `.ashx` HTTP handler files (13 remaining across WebSystem-MVC, SystemParts, SystemPartsG2, Integration, LessonReviewer).
+- [ ] Delete legacy `.ashx.cs` code-behind files (10 remaining).
+- [ ] Delete legacy `Startup.cs` (OWIN-based) from WebSystem-MVC.
+- [ ] Delete EDMX files (4 remaining: WFrameworkModel.edmx, MusicModel.edmx, ExternalDBModel.edmx, WeeklySchedulerModel.edmx) — excluded from compilation but still on disk.
+- [ ] Remove `<Compile Remove>` entries from `.csproj` files once all legacy code-behind files are deleted.
+- [ ] Remove `EnableDefaultContentItems` / `EnableDefaultCompileItems` overrides once legacy files are gone.
+- [ ] Consolidate or remove legacy `.sln` files (19 legacy `.sln` files remain alongside `mPortal.slnx`).
+
+---
+
+### 8.5) Additional migration items
+
+The following items were identified during review and are not fully covered by other sections:
+
+**Authentication migration:**
+- [ ] Remove `FormsAuthentication` usage from `LoginSecurity.cs` — replace with ASP.NET Core cookie authentication APIs.
+- [ ] Remove `WSession.Current` static property — complete migration to `IWSession` DI service (see §7.17).
+
+**HTTP handler migration (.ashx → middleware/minimal API):**
+- [ ] `WebSystem-MVC/Content/Handlers/AjaxHandler.ashx` → ASP.NET Core middleware or minimal API endpoint.
+- [ ] `WebSystem-MVC/Content/Admin/Handlers/Handler.ashx` → ASP.NET Core middleware or minimal API endpoint.
+- [ ] `WebSystem-MVC/Content/Handlers/Resource.ashx` → ASP.NET Core middleware or static file middleware.
+- [ ] `SystemParts/AppBundle/FileManager/Download.ashx` → ASP.NET Core file download endpoint.
+- [ ] `SystemParts/AppBundle/Article/EmailPreview.ashx` → ASP.NET Core endpoint.
+- [ ] `SystemPartsG2/AppBundle2/Download/Handler.ashx` → ASP.NET Core download endpoint.
+- [ ] `SystemPartsG2/AppBundle2/FlashBanner/Handler.ashx` → ASP.NET Core endpoint (or retire if Flash is obsolete).
+- [ ] `Integration/Apps/Integration/MemberVisitPrintPreview.ashx` → ASP.NET Core endpoint.
+- [ ] `Integration/Apps/Integration/Streaming/VerifySession.ashx` → ASP.NET Core endpoint.
+- [ ] `Integration/Apps/Integration/Profile/LessonReviewer/Playback.ashx` → ASP.NET Core endpoint.
+- [ ] `Integration/Apps/Integration/MakeUp.ashx` → ASP.NET Core endpoint.
+- [ ] `LessonReviewer/Handlers/Playback.ashx` → ASP.NET Core endpoint.
+- [ ] `LessonReviewer/Handlers/AjaxHandler.ashx` → ASP.NET Core endpoint.
+
+**Server.MapPath migration:**
+- [ ] Replace `Server.MapPath()` calls in `WebHelper.cs`, `ConfigManager.cs`, `PlaybackHelper.cs`, `LogHelper.cs`, and other files with `IWebHostEnvironment.ContentRootPath` / `WebRootPath` (see §7.20).
+
+**System.Drawing migration:**
+- [ ] Replace `System.Drawing` usage in `ImageUtil`, `ImageSecurity`, `QRCodeUtil`, `FileManager`, and other files with cross-platform library (SkiaSharp or ImageSharp) (see §7.20).
+
+**ViewComponent view gaps:**
+- [ ] Create missing `Default.cshtml` view files for ~27 ViewComponents (primarily Admin components in `WebSystem-MVC/ViewComponents/Admin/`) that have `.cs` classes but no corresponding Razor views.
+
+**.NET 10 GA validation:**
+- [ ] Validate entire solution builds and runs on the .NET 10 GA release (currently on preview/RC SDK `10.0.103`).
