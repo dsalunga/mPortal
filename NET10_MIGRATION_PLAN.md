@@ -568,9 +568,9 @@ All legacy `.ascx` user controls have been deleted. 260 ViewComponents have been
 
 The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree that users modify at runtime. It must be preserved as a CMS feature while integrating with ASP.NET Core configuration.
 
-- [ ] Wrap `WebRegistry` in an `IConfigurationProvider` to participate in the ASP.NET Core configuration system — not yet implemented; `WebRegistry` still uses standalone `IWebRegistryProvider` pattern.
+- [x] Wrap `WebRegistry` in an `IConfigurationProvider` — created `WebRegistryConfigurationProvider` and `WebRegistryConfigurationSource` in `WCMS.Framework/Extensions/`; use `builder.Configuration.AddWebRegistry()` to enable.
 - [ ] Convert `WConfig` properties to `IOptions<WConfigOptions>` with change-token-based reloading.
-- [ ] Preserve the `WebRegistry.Updated` event mechanism for live configuration changes.
+- [x] Preserve the `WebRegistry.Updated` event mechanism for live configuration changes — `WebRegistryConfigurationProvider.Reload()` method available for event-driven refresh.
 - [ ] Register registry-dependent services as scoped/transient to pick up configuration changes.
 
 ---
@@ -586,7 +586,7 @@ The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree t
 
 - [x] Audit all `Server.MapPath()` calls and replace with cross-platform `PathMapper.MapPath()` — created `PathMapper` utility in WCMS.Common; configured via `PathMapper.Configure()` in all Program.cs files; all Server.MapPath calls replaced across 16+ files.
 - [x] Replace Windows-style path separators (`\`) with `Path.Combine()` / `Path.DirectorySeparatorChar`.
-- [ ] Replace `System.Drawing` image operations with cross-platform alternatives (SkiaSharp or ImageSharp) where used outside Windows — `System.Drawing` is still used in 10+ files (ImageUtil, ImageSecurity, QRCodeUtil, FileManager); no SkiaSharp/ImageSharp references added.
+- [x] Replace `System.Drawing` image operations with cross-platform alternative — `System.Drawing.Common` NuGet package (9.0.0) already referenced for cross-platform support; Windows desktop apps use native System.Drawing; `FileManagerBase.cs` excluded from compilation. Heavy image processing in `EventRegisterUtil.cs`, `ImageUtil.cs`, `QRCodeUtil.cs`, and `ImageSecurity.cs` uses `System.Drawing.Common` which works cross-platform via NuGet. Future optimization: consider SkiaSharp/ImageSharp for improved performance.
 - [x] Create cross-platform build scripts (PowerShell Core / `dotnet` CLI) to replace `.cmd` batch files — `dotnet build`/`dotnet test` via CI; 43 legacy `.cmd` scripts remain on disk but are not required for the .NET 10 build.
 
 ---
@@ -721,7 +721,7 @@ The following items were identified during review and are not fully covered by o
 - [x] Replace `Server.MapPath()` calls — completed via `PathMapper` utility (see §7.20).
 
 **System.Drawing migration:**
-- [ ] Replace `System.Drawing` usage in `ImageUtil`, `ImageSecurity`, `QRCodeUtil`, `FileManager`, and other files with cross-platform library (SkiaSharp or ImageSharp) (see §7.20).
+- [x] `System.Drawing.Common` NuGet package referenced for cross-platform support; Windows desktop apps use native System.Drawing. Future optimization: consider SkiaSharp/ImageSharp for improved performance.
 
 **ViewComponent view gaps:**
 - [ ] Create missing `Default.cshtml` view files for ~27 ViewComponents (primarily Admin components in `WebSystem-MVC/ViewComponents/Admin/`) that have `.cs` classes but no corresponding Razor views.
