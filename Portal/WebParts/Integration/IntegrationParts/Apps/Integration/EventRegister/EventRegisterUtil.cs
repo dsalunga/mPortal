@@ -11,6 +11,7 @@ using WCMS.WebSystem.Apps.Integration;
 using QRCoder;
 using System.Drawing.Text;
 using System.IO;
+using System.Net;
 
 namespace WCMS.WebSystem.Apps.Integration.EventRegister
 {
@@ -40,7 +41,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
             var qr = qrCode.GetGraphic(20);
             var qrCropPx = 15;
 
-            var resizedQR = ImageUtil.ScaleImage(qr, 150, 150);
+            var resizedQR = ScaleImageGdi(qr, 150, 150);
             //var newQRSize = ImageUtil.ScaleImage(qr, 165, 165); //new Size((int)(qr.Size.Width / 3.8), (int)(qr.Size.Height / 3.8));
             //var resizedQR = new Bitmap(qr, newQRSize.Width, newQRSize.Height);
 
@@ -62,14 +63,14 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
                 if (string.IsNullOrEmpty(photoUrl) || photoUrl.EndsWith("nophoto.png", StringComparison.InvariantCultureIgnoreCase))
                     photoUrl = noPhoto;
 
-                var photo = ImageUtil.GetImageFromUrl(photoUrl);
+                var photo = GetImageFromUrlGdi(photoUrl);
                 if (photo == null && !photoUrl.Equals(noPhoto))
-                    photo = ImageUtil.GetImageFromUrl(noPhoto);
+                    photo = GetImageFromUrlGdi(noPhoto);
 
                 if (photo != null)
                 {
                     var picBoxSize = new Point(299, 299);
-                    var scaledPhoto = ImageUtil.ScaleImage(photo, picBoxSize.X, picBoxSize.Y);
+                    var scaledPhoto = ScaleImageGdi(photo, picBoxSize.X, picBoxSize.Y);
                     graphics.DrawImage(scaledPhoto, new Rectangle(450 + (picBoxSize.X - scaledPhoto.Width) / 2, photoXY.Y + (picBoxSize.Y - scaledPhoto.Height) / 2, scaledPhoto.Width, scaledPhoto.Height),
                         new Rectangle(0, 0, scaledPhoto.Width, scaledPhoto.Height), GraphicsUnit.Pixel);
                 }
@@ -93,7 +94,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
                 var nickSize = graphics.MeasureString(displayName, font);
                 for (int i = 0; i < 30; i++)
                 {
-                    if (ImageUtil.CanFitInBox(nickContainerSize, new Point((int)nickSize.Width, (int)nickSize.Height), new Point(5, 5)))
+                    if (CanFitInBoxGdi(nickContainerSize, new Point((int)nickSize.Width, (int)nickSize.Height), new Point(5, 5)))
                     {
                         break;
                     }
@@ -126,7 +127,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
                     var genderSize = graphics.MeasureString(genderText, font);
                     for (int i = 0; i < 10; i++)
                     {
-                        if (fontSize <= 4 || ImageUtil.CanFitInBox(genderBoxSize, new Point((int)nickSize.Width, (int)nickSize.Height), new Point(5, 5)))
+                        if (fontSize <= 4 || CanFitInBoxGdi(genderBoxSize, new Point((int)nickSize.Width, (int)nickSize.Height), new Point(5, 5)))
                         {
                             break;
                         }
@@ -170,7 +171,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
                     var countryNameSize = graphics.MeasureString(countryName, countryFont);
                     for (int i = 0; i < 15; i++)
                     {
-                        if (ImageUtil.CanFitInBox(countryNameContainerSize, new Point((int)countryNameSize.Width, (int)countryNameSize.Height), new Point(0, 0)))
+                        if (CanFitInBoxGdi(countryNameContainerSize, new Point((int)countryNameSize.Width, (int)countryNameSize.Height), new Point(0, 0)))
                         {
                             break;
                         }
@@ -214,7 +215,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
                 }
             }
 
-            var jpgEncoder = ImageUtil.GetEncoder(ImageFormat.Jpeg);
+            var jpgEncoder = GetEncoderGdi(ImageFormat.Jpeg);
             var ep = new EncoderParameters();
             ep.Param[0] = new EncoderParameter(Encoder.Quality, (long)100);
 
@@ -314,6 +315,59 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
                        //let country = link.HomeAddressCountry
                        select i;
             return data;
+        }
+
+        // Local GDI+ helpers — used only in this file for ID card image compositing.
+        // These keep System.Drawing dependency isolated to EventRegisterUtil.
+
+        private static Image ScaleImageGdi(Image image, int maxWidth, int maxHeight)
+        {
+            var ratioX = (double)maxWidth / image.Width;
+            var ratioY = (double)maxHeight / image.Height;
+            var ratio = Math.Min(ratioX, ratioY);
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
+            var newImage = new Bitmap(newWidth, newHeight);
+            using (var g = Graphics.FromImage(newImage))
+                g.DrawImage(image, 0, 0, newWidth, newHeight);
+            return newImage;
+        }
+
+        private static Image GetImageFromUrlGdi(string url)
+        {
+            try
+            {
+                if (url.Contains("://"))
+                {
+                    var client = new WebClient();
+                    var bytes = client.DownloadData(url);
+                    using (var ms = new MemoryStream(bytes))
+                        return Image.FromStream(ms);
+                }
+                else
+                {
+                    return Image.FromFile(PathMapper.MapPath(url));
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(ex);
+            }
+            return null;
+        }
+
+        private static bool CanFitInBoxGdi(Point container, Point box, Point margin)
+        {
+            return !(container.X < (box.X + margin.X * 2) || container.Y < (box.Y + margin.Y * 2));
+        }
+
+        private static ImageCodecInfo GetEncoderGdi(ImageFormat format)
+        {
+            var codecs = ImageCodecInfo.GetImageDecoders();
+            foreach (var codec in codecs)
+                if (codec.FormatID == format.Guid)
+                    return codec;
+            return null;
         }
     }
 }
