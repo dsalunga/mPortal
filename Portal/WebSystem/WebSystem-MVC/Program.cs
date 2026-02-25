@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // --- Services ---
 
+builder.Services.AddProblemDetails();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 

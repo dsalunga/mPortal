@@ -811,7 +811,7 @@ No API controllers currently have `[Authorize]` or `[AllowAnonymous]` attributes
 Only the main portal has `UseExceptionHandler("/error")`. 7 satellite web hosts have no error handling — unhandled exceptions return raw stack traces in production.
 
 - [x] Add `UseExceptionHandler()` and error pages to all 7 satellite web hosts — all hosts now have `UseExceptionHandler("/error")` + `UseHsts()` in non-development environments.
-- [ ] Add `ProblemDetails` middleware for API endpoints (`builder.Services.AddProblemDetails()`)
+- [x] Add `ProblemDetails` middleware for API endpoints (`builder.Services.AddProblemDetails()`) — added to main portal.
 
 **b) Add structured logging with `Microsoft.Extensions.Logging`**
 
@@ -861,7 +861,7 @@ The project has minimal test coverage: 17 unit tests + 2 integration tests. Core
 
 - [ ] Add unit tests for `AccountHelper` (login, session management)
 - [ ] Add unit tests for `WebCryptography` (encryption/decryption)
-- [ ] Add unit tests for `WConfigService` (options monitor)
+- [x] Add unit tests for `WConfigService` (options monitor) — 3 tests added.
 - [ ] Add unit tests for `PageResolutionMiddleware` (URL → page resolution)
 - [ ] Add unit tests for `PageRenderingMiddleware` (template/panel rendering)
 - [ ] Add integration tests for all 7 API controllers (mocked data layer)
@@ -871,7 +871,7 @@ The project has minimal test coverage: 17 unit tests + 2 integration tests. Core
 
 No code analyzers are configured. Adding analyzers catches bugs before they ship.
 
-- [ ] Add `Microsoft.CodeAnalysis.NetAnalyzers` to `Directory.Build.props`
+- [x] Add `Microsoft.CodeAnalysis.NetAnalyzers` to `Directory.Build.props` — `AnalysisLevel=latest-recommended` and `EnforceCodeStyleInBuild=true` enabled globally.
 - [ ] Consider adding `Roslynator` or `StyleCop.Analyzers` for code style enforcement
 
 ---
