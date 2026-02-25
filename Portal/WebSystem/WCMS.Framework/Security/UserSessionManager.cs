@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Web;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace WCMS.Framework
 {
@@ -10,8 +13,19 @@ namespace WCMS.Framework
     {
         private MemoryCache<UserSession> _sessionCache = new MemoryCache<UserSession>();
         private Dictionary<string, UserSessionBrowser> _browserCache = new Dictionary<string, UserSessionBrowser>();
+        private readonly IDistributedCache _distributedCache;
 
-        public UserSessionManager() { }
+        private static readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions
+        {
+            ReferenceHandler = ReferenceHandler.IgnoreCycles
+        };
+
+        public UserSessionManager() : this(null) { }
+
+        public UserSessionManager(IDistributedCache distributedCache)
+        {
+            _distributedCache = distributedCache;
+        }
 
         public MemoryCache<UserSession> SessionCache { get { return _sessionCache; } }
 
@@ -25,6 +39,71 @@ namespace WCMS.Framework
                        select i;
             }
         }
+
+        #region Distributed cache helpers
+
+        private static string DistributedKey(int userId) => $"wcms:usersession:{userId}";
+
+        private bool SessionContainsKey(int userId)
+        {
+            if (_sessionCache.ContainsKey(userId))
+                return true;
+
+            if (_distributedCache != null)
+            {
+                var bytes = _distributedCache.Get(DistributedKey(userId));
+                if (bytes != null)
+                {
+                    var session = JsonSerializer.Deserialize<UserSession>(bytes, _jsonOptions);
+                    _sessionCache.Add(userId, session);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private UserSession SessionGet(int userId)
+        {
+            if (_sessionCache.ContainsKey(userId))
+                return _sessionCache[userId];
+
+            if (_distributedCache != null)
+            {
+                var bytes = _distributedCache.Get(DistributedKey(userId));
+                if (bytes != null)
+                {
+                    var session = JsonSerializer.Deserialize<UserSession>(bytes, _jsonOptions);
+                    _sessionCache.Add(userId, session);
+                    return session;
+                }
+            }
+
+            return default;
+        }
+
+        private UserSession SessionAdd(int userId, UserSession session)
+        {
+            if (!_sessionCache.ContainsKey(userId))
+                _sessionCache.Add(userId, session);
+            else
+                _sessionCache[userId] = session;
+
+            if (_distributedCache != null)
+                _distributedCache.Set(DistributedKey(userId), JsonSerializer.SerializeToUtf8Bytes(session, _jsonOptions));
+
+            return session;
+        }
+
+        private void SessionRemove(int userId)
+        {
+            if (_sessionCache.ContainsKey(userId))
+                _sessionCache.Remove(userId);
+
+            _distributedCache?.Remove(DistributedKey(userId));
+        }
+
+        #endregion
 
         public void Update(UserSession session)
         {
@@ -53,7 +132,7 @@ namespace WCMS.Framework
             //if (WConfig.EnableLogging)
             {
                 //UserSession session = null;
-                if (_sessionCache.ContainsKey(userId))
+                if (SessionContainsKey(userId))
                 {
                     var aspNetSessionID = context.Session.SessionID;
                     UserSessionBrowser browser = null;
@@ -90,9 +169,9 @@ namespace WCMS.Framework
                 UserSession session = null;
                 UserSessionBrowser browser = null;
                 var aspNetSessionID = context.Session.SessionID;
-                if (_sessionCache.ContainsKey(userId))
+                if (SessionContainsKey(userId))
                 {
-                    session = _sessionCache[userId];
+                    session = SessionGet(userId);
                     if (_browserCache.ContainsKey(aspNetSessionID))
                     {
                         browser = _browserCache[aspNetSessionID];
@@ -108,13 +187,14 @@ namespace WCMS.Framework
                     browser.LastPageUrl = rawUrl == null ? (context.Request.IsSecureConnection ? "https://" : "http://") + context.Request.ServerVariables["HTTP_HOST"] + context.Request.RawUrl : rawUrl;
                     browser.LastActivityDate = DateTime.Now;
                     session.LastBrowserSession = browser;
+                    SessionAdd(userId, session);
                 }
                 else
                 {
                     browser = new UserSessionBrowser(aspNetSessionID, userId, pageId);
                     if (!_browserCache.ContainsKey(aspNetSessionID))
                         _browserCache.Add(aspNetSessionID, browser);
-                    session = _sessionCache.Add(userId, new UserSession(userId, browser));
+                    session = SessionAdd(userId, new UserSession(userId, browser));
                 }
 
                 browser.IPAddress = context.Request.UserHostAddress;
@@ -130,8 +210,8 @@ namespace WCMS.Framework
             {
                 if (string.IsNullOrEmpty(aspNetSessionId))
                 {
-                    if (_sessionCache.ContainsKey(userId))
-                        _sessionCache.Remove(userId);
+                    if (SessionContainsKey(userId))
+                        SessionRemove(userId);
 
                     var toRemove = new List<UserSessionBrowser>();
                     foreach (var cache in _browserCache.Values)
@@ -178,17 +258,20 @@ namespace WCMS.Framework
                         }
                     }
 
-                    if (_sessionCache.ContainsKey(userId))
+                    if (SessionContainsKey(userId))
                     {
                         if (!hasMatch)
                         {
-                            _sessionCache.Remove(userId);
+                            SessionRemove(userId);
                         }
                         else
                         {
-                            var cache = _sessionCache[userId];
+                            var cache = SessionGet(userId);
                             if (cache.LastBrowserSession.AspNetSessionID.Equals(aspNetSessionId))
+                            {
                                 cache.LastBrowserSession = bc;
+                                SessionAdd(userId, cache);
+                            }
                         }
                     }
                 }
@@ -197,7 +280,7 @@ namespace WCMS.Framework
 
         public bool Contains(int userId)
         {
-            return _sessionCache.ContainsKey(userId);
+            return SessionContainsKey(userId);
         }
 
         public bool Contains(string aspNetSessionId)
