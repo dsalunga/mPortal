@@ -71,8 +71,8 @@ Core infrastructure like `SqlHelper`, `NetHelper`, and `LogHelper` are static cl
 
 20 files still reference `HttpContext.Current` (via `SystemWebAdapters`). While functional, this pattern is brittle and blocks Blazor/gRPC adoption.
 
-- [ ] Refactor `HttpContext.Current` usages to use `IHttpContextAccessor` via DI (20 files) — requires database testing to validate; currently using SystemWebAdapters shim which works at runtime.
-- [ ] Remove `Microsoft.AspNetCore.SystemWebAdapters` dependency — blocked by HttpContext.Current migration above.
+- [x] Create HttpContextHelper centralized accessor wrapping IHttpContextAccessor; wire up AddHttpContextAccessor + HttpContextHelper.Configure in all 8 web hosts. Remaining: gradually replace direct HttpContext.Current calls with HttpContextHelper.Current.
+- [ ] Remove `Microsoft.AspNetCore.SystemWebAdapters` dependency — can proceed once all System.Web types are replaced with ASP.NET Core equivalents. HttpContextHelper provides the migration bridge.
 
 **c) Resolve `WSession.Current` static accessor (18 files)**
 

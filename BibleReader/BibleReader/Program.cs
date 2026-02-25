@@ -10,6 +10,7 @@ using WCMS.Framework.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddWcmsFramework();
@@ -25,6 +26,7 @@ var app = builder.Build();
 
 ConfigUtil.SetConfiguration(app.Configuration);
 PathMapper.Configure(app.Environment.ContentRootPath, app.Environment.WebRootPath);
+HttpContextHelper.Configure(app.Services.GetRequiredService<Microsoft.AspNetCore.Http.IHttpContextAccessor>());
 
 if (!app.Environment.IsDevelopment())
 {

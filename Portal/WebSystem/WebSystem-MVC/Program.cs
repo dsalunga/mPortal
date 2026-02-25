@@ -18,6 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // --- Services ---
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddProblemDetails();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
@@ -86,6 +87,12 @@ var app = builder.Build();
 var config = app.Configuration;
 ConfigUtil.SetConfiguration(config);
 PathMapper.Configure(app.Environment.ContentRootPath, app.Environment.WebRootPath);
+
+// Wire up IHttpContextAccessor for legacy static accessors
+var httpContextAccessor = app.Services.GetRequiredService<Microsoft.AspNetCore.Http.IHttpContextAccessor>();
+HttpContextHelper.Configure(httpContextAccessor);
+WebContextBase.ConfigureAccessor(httpContextAccessor);
+WSession.Configure(httpContextAccessor);
 
 if (WConfig.AllowCache)
 {
