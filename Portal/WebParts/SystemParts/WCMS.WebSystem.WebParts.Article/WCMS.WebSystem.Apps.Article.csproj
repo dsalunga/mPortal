@@ -8,11 +8,4 @@
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Common\WCMS.Common.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="ArticleColumn.cs" />
-    <Compile Remove="Providers\ArticleColumnProvider.cs" />
-    <!-- WebForms-specific file excluded from compilation -->
-    <Compile Remove="ArticleHelper.cs" />
-  </ItemGroup>
 </Project>
