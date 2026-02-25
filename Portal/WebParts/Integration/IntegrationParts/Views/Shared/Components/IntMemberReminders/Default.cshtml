@@ -1,16 +1,19 @@
 @model dynamic
 
+<section aria-labelledby="int-member-reminders-heading-@Model.ObjectId">
 <div class="card" id="int-member-reminders-@Model.ObjectId" role="region" aria-label="Member Reminders">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0">Member Reminders</h5>
+        <h5 id="int-member-reminders-heading-@Model.ObjectId" class="card-title mb-0">
+            <i class="bi bi-bell" aria-hidden="true"></i> Member Reminders
+        </h5>
         <button type="button" id="cmdAddReminder" class="btn btn-sm btn-primary" aria-label="Add new reminder">
-            <span aria-hidden="true">+</span> Add Reminder
+            <i class="bi bi-plus-circle" aria-hidden="true"></i> Add Reminder
         </button>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -18,7 +21,8 @@
         <div class="list-group" id="reminderList" role="list" aria-label="Reminders">
         </div>
         <div id="noReminders" class="text-muted text-center py-4">
-            <p>No reminders found.</p>
+            <i class="bi bi-info-circle" aria-hidden="true"></i> No reminders found.
         </div>
     </div>
 </div>
+</section>

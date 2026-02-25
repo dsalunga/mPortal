@@ -1,23 +1,28 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntMemberProfileModel
 
+<section aria-labelledby="int-member-profile-heading-@Model.ObjectId">
 <div class="member-details" id="int-member-profile-@Model.ObjectId">
-    <h2 id="lblHeader">Member Profile</h2>
+    <h2 id="int-member-profile-heading-@Model.ObjectId">
+        <i class="bi bi-person-badge" aria-hidden="true"></i> Member Profile
+    </h2>
 
     @if (!string.IsNullOrEmpty(Model.Message))
     {
-        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="status" aria-live="polite">
             @Model.Message
         </div>
     }
 
     <!-- Profile View -->
     <div id="viewProfile">
-        <a id="linkUpdatePhoto" href="#" title="Update Profile Photo">
+        <a id="linkUpdatePhoto" href="#" title="Update Profile Photo" aria-label="Update profile photo">
             <img src="/Content/Assets/Images/nophoto.png" width="300" id="memberPhoto" style="border: solid 2px #aaa; margin: 2px 0 2px 0" alt="Member Photo" /></a>
         <br />
         <div class="col-one" style="margin-top: 5px;" id="panelSendMessage" hidden>
             <h3>
-                <a id="linkSendMessage" href="#">Send <span id="lblFirstName"></span>&nbsp;a Message</a>
+                <a id="linkSendMessage" href="#">
+                    <i class="bi bi-envelope" aria-hidden="true"></i> Send <span id="lblFirstName"></span>&nbsp;a Message
+                </a>
             </h3>
             <br />
         </div>
@@ -26,7 +31,7 @@
         </div>
         <div id="panelStatusText" hidden>
             <br />
-            <div style="padding: 3px; background-color: Yellow; display: inline; font-size: larger">
+            <div class="badge bg-warning text-dark fs-6 p-2">
                 <span id="lblStatusText"></span>
             </div>
         </div>
@@ -56,11 +61,11 @@
             <span class="FieldLabel">Locale</span> <strong id="lblLocale"></strong>
         </div>
 
-        <div style="float: left; clear: both">
+        <div class="clearfix">
             <div id="panelPersonalAndWorkInfo" hidden>
                 <!-- Personal Information -->
                 <br /><br />
-                <h3>PERSONAL Information</h3>
+                <h3><i class="bi bi-house-door" aria-hidden="true"></i> PERSONAL Information</h3>
                 <div class="FieldLine" id="panelHomeAddressLine1" hidden>
                     <label class="FieldLabel">Address Line 1</label>
                     <span id="txtHomeAddress1" style="font-weight: bold"></span>
@@ -94,3 +99,4 @@
         </div>
     </div>
 </div>
+</section>

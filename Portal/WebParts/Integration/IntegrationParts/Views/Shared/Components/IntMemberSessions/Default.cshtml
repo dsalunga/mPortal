@@ -1,13 +1,16 @@
 @model dynamic
 
+<section aria-labelledby="int-member-sessions-heading-@Model.ObjectId">
 <div class="card" id="int-member-sessions-@Model.ObjectId" role="region" aria-label="Member Sessions">
     <div class="card-header">
-        <h5 class="card-title mb-0">Active Sessions</h5>
+        <h5 id="int-member-sessions-heading-@Model.ObjectId" class="card-title mb-0">
+            <i class="bi bi-display" aria-hidden="true"></i> Active Sessions
+        </h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -26,5 +29,9 @@
                 </tbody>
             </table>
         </div>
+        <div id="noSessionsMessage" class="text-muted text-center py-4" style="display: none;">
+            <i class="bi bi-info-circle" aria-hidden="true"></i> No active sessions found.
+        </div>
     </div>
 </div>
+</section>
