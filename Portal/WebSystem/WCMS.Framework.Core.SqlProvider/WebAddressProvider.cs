@@ -13,6 +13,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebAddressProvider : GenericSqlDataProviderBase<WebAddress>, IWebAddressProvider
     {
+        protected override string TableName { get { return "WebAddress"; } }
+        protected override string IdColumn { get { return "Id"; } }
+        protected override string SelectProcedure { get { return "WebAddress_Get"; } }
+        protected override string DeleteProcedure { get { return "WebAddress_Del"; } }
+
         #region IWebAddressProvider Members
 
         public WebAddress Get(int objectId, int recordId, string tag)
@@ -157,22 +162,5 @@ namespace WCMS.Framework.Core.SqlProvider
         }
 
         #endregion
-
-        protected override string TableName { get { return "WebAddress"; } }
-
-
-        protected override string IdColumn { get { return "Id"; } }
-
-
-
-        protected override string SelectProcedure
-        {
-            get { return "WebAddress_Get"; }
-        }
-
-        protected override string DeleteProcedure
-        {
-            get { return "WebAddress_Del"; }
-        }
     }
 }

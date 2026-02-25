@@ -177,14 +177,13 @@ namespace WCMS.Common.Utilities
             sb.Append(string.Join(", ", _columns.Select(c => "@" + c.Param)));
             sb.Append(")");
 
-            // Add RETURNING clause for PostgreSQL or OUTPUT for SQL Server
+            // Add identity return clause if idColumn specified
             if (!string.IsNullOrEmpty(idColumn))
             {
                 if (DbHelper.Provider == DatabaseProvider.PostgreSql)
                     sb.Append(" RETURNING ").Append(DbSyntax.QuoteIdentifier(idColumn));
                 else
-                    sb.Insert(sb.ToString().IndexOf(") VALUES"), 
-                        string.Empty); // SQL Server uses SCOPE_IDENTITY()
+                    sb.Append("; SELECT SCOPE_IDENTITY()");
             }
 
             foreach (var c in _columns)

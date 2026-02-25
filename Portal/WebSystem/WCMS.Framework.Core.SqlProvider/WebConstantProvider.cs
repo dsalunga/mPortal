@@ -12,6 +12,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebConstantProvider : GenericSqlDataProviderBase<WebConstant>, IWebConstantProvider
     {
+        protected override string TableName { get { return "WebConstant"; } }
+        protected override string IdColumn { get { return "ConstantId"; } }
+        protected override string SelectProcedure { get { return "WebConstant_Get"; } }
+        protected override string DeleteProcedure { get { return "WebConstant_Del"; } }
+
         public WebConstantProvider() { }
 
         protected override string IdParameter { get { return "ConstantId"; } }
@@ -219,15 +224,5 @@ namespace WCMS.Framework.Core.SqlProvider
 
             return items;
         }
-
-        protected override string TableName { get { return "WebConstant"; } }
-
-
-        protected override string IdColumn { get { return "ConstantId"; } }
-
-
-
-        protected override string SelectProcedure { get { return "WebConstant_Get"; } }
-        protected override string DeleteProcedure { get { return "WebConstant_Del"; } }
     }
 }
