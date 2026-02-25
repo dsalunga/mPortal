@@ -1,20 +1,27 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.GenericMenuViewModel
 <nav class="wcms-generic-menu @Model.CssClass" aria-label="Menu">
-    <ul class="nav @(Model.Orientation == "vertical" ? "flex-column" : "")" role="menubar"
-        aria-orientation="@(Model.Orientation == "vertical" ? "vertical" : "horizontal")">
-        @foreach (var item in Model.Items)
-        {
-            <li class="nav-item" role="none">
-                <a class="nav-link @(item.IsActive ? "active" : "")"
-                   href="@item.Url" target="@item.Target" role="menuitem"
-                   @(item.IsActive ? "aria-current=page" : "")>
-                    @if (!string.IsNullOrEmpty(item.IconCss))
-                    {
-                        <i class="@item.IconCss" aria-hidden="true"></i>
-                    }
-                    @item.Title
-                </a>
-            </li>
-        }
-    </ul>
+    @if (Model.Items == null || Model.Items.Count == 0)
+    {
+        <p class="text-muted fst-italic mb-0 p-2" role="status">No menu items available.</p>
+    }
+    else
+    {
+        <ul class="nav @(Model.Orientation == "vertical" ? "flex-column" : "")" role="menubar"
+            aria-orientation="@(Model.Orientation == "vertical" ? "vertical" : "horizontal")">
+            @foreach (var item in Model.Items)
+            {
+                <li class="nav-item" role="none">
+                    <a class="nav-link @(item.IsActive ? "active fw-semibold" : "")"
+                       href="@item.Url" target="@item.Target" role="menuitem"
+                       @(item.IsActive ? "aria-current=page" : "")>
+                        @if (!string.IsNullOrEmpty(item.IconCss))
+                        {
+                            <i class="@item.IconCss me-1" aria-hidden="true"></i>
+                        }
+                        @item.Title
+                    </a>
+                </li>
+            }
+        </ul>
+    }
 </nav>

@@ -9,10 +9,4 @@
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.WebSystem.ViewModels\WCMS.WebSystem.csproj" />
   </ItemGroup>
-
-  <!-- EF6-generated files excluded; kept as documentation -->
-  <ItemGroup>
-    <Compile Remove="WeeklySchedulerModel.Designer.cs" />
-    <Compile Remove="WeeklySchedulerTask.cs" />
-  </ItemGroup>
 </Project>

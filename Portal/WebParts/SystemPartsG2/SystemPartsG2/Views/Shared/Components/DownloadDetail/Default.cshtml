@@ -2,16 +2,20 @@
 <article id="download-detail-@Model.ObjectId-@Model.RecordId" class="wcms-download-detail"
          data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId"
          aria-labelledby="download-detail-title-@Model.ObjectId-@Model.RecordId">
-    @if (!string.IsNullOrEmpty(Model.Title))
-    {
-        <h4 id="download-detail-title-@Model.ObjectId-@Model.RecordId">@Model.Title</h4>
-    }
-    @if (!string.IsNullOrEmpty(Model.Description))
-    {
-        <p class="lead">@Model.Description</p>
-    }
-    <div class="card">
+    <div class="card shadow-sm">
+        @if (!string.IsNullOrEmpty(Model.Title))
+        {
+            <div class="card-header">
+                <h4 class="mb-0" id="download-detail-title-@Model.ObjectId-@Model.RecordId">
+                    <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i> @Model.Title
+                </h4>
+            </div>
+        }
         <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <p class="lead">@Model.Description</p>
+            }
             <dl class="row mb-0">
                 <dt class="col-sm-3">File</dt>
                 <dd class="col-sm-9"><code>@Model.FileName</code></dd>
@@ -30,6 +34,12 @@
                    aria-label="Download @Model.Title">
                     <i class="bi bi-download" aria-hidden="true"></i> Download
                 </a>
+            }
+            else
+            {
+                <span class="text-muted">
+                    <i class="bi bi-exclamation-circle" aria-hidden="true"></i> No file available for download.
+                </span>
             }
         </div>
     </div>

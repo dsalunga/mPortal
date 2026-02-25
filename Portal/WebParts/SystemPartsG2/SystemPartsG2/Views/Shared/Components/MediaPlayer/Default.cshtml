@@ -1,75 +1,79 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.MediaPlayerViewModel
-<article id="media-player-@Model.ObjectId-@Model.RecordId" class="wcms-media-player card"
+<article id="media-player-@Model.ObjectId-@Model.RecordId" class="wcms-media-player"
          data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId"
          aria-labelledby="media-player-title-@Model.ObjectId-@Model.RecordId">
-    @if (!string.IsNullOrEmpty(Model.MediaUrl))
-    {
-        <div class="card-body">
-            <figure class="figure w-100 mb-2">
-                @if (Model.MediaType != null && Model.MediaType.StartsWith("audio"))
-                {
-                    <audio controls class="w-100" @(Model.AutoPlay ? "autoplay" : "")
-                           aria-label="@(string.IsNullOrEmpty(Model.Title) ? "Audio player" : Model.Title)">
-                        <source src="@Model.MediaUrl" type="@Model.MediaType" />
-                        Your browser does not support the audio element.
-                    </audio>
-                }
-                else
-                {
-                    <div class="ratio ratio-16x9">
-                        <video controls @(Model.AutoPlay ? "autoplay" : "")
-                               aria-label="@(string.IsNullOrEmpty(Model.Title) ? "Video player" : Model.Title)"
-                               @if (!string.IsNullOrEmpty(Model.PosterUrl)) { <text>poster="@Model.PosterUrl"</text> }>
-                            <source src="@Model.MediaUrl" type="@Model.MediaType" />
-                            Your browser does not support the video element.
-                        </video>
-                    </div>
-                }
-                @if (!string.IsNullOrEmpty(Model.Title))
-                {
-                    <figcaption id="media-player-title-@Model.ObjectId-@Model.RecordId" class="figure-caption text-center mt-2">
-                        <strong>@Model.Title</strong>
-                    </figcaption>
-                }
-            </figure>
-            @if (!string.IsNullOrEmpty(Model.Blurb))
-            {
-                <p class="text-center text-muted">@Model.Blurb</p>
-            }
-            @if (!string.IsNullOrEmpty(Model.MediaVersion) || !string.IsNullOrEmpty(Model.MediaLength) || !string.IsNullOrEmpty(Model.Agency))
-            {
-                <dl class="row mb-0 border-top pt-2 mt-2">
-                    @if (!string.IsNullOrEmpty(Model.MediaVersion))
-                    {
-                        <dt class="col-sm-3">Version</dt>
-                        <dd class="col-sm-9">@Model.MediaVersion</dd>
-                    }
-                    @if (!string.IsNullOrEmpty(Model.MediaLength))
-                    {
-                        <dt class="col-sm-3">Length</dt>
-                        <dd class="col-sm-9">@Model.MediaLength</dd>
-                    }
-                    @if (!string.IsNullOrEmpty(Model.Agency))
-                    {
-                        <dt class="col-sm-3">Agency</dt>
-                        <dd class="col-sm-9">@Model.Agency</dd>
-                    }
-                </dl>
-            }
-        </div>
-        @if (!string.IsNullOrEmpty(Model.BackUrl))
+    <div class="card shadow-sm">
+        @if (!string.IsNullOrEmpty(Model.MediaUrl))
         {
-            <div class="card-footer text-center">
-                <a href="@Model.BackUrl" class="btn btn-outline-secondary btn-sm" aria-label="Back to Product Catalog Main Page">
-                    <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Back to Product Catalog Main Page
-                </a>
+            <div class="card-body">
+                <figure class="figure w-100 mb-2">
+                    @if (Model.MediaType != null && Model.MediaType.StartsWith("audio"))
+                    {
+                        <audio controls class="w-100" @(Model.AutoPlay ? "autoplay" : "")
+                               aria-label="@(string.IsNullOrEmpty(Model.Title) ? "Audio player" : Model.Title)">
+                            <source src="@Model.MediaUrl" type="@Model.MediaType" />
+                            Your browser does not support the audio element.
+                        </audio>
+                    }
+                    else
+                    {
+                        <div class="ratio ratio-16x9">
+                            <video controls @(Model.AutoPlay ? "autoplay" : "")
+                                   aria-label="@(string.IsNullOrEmpty(Model.Title) ? "Video player" : Model.Title)"
+                                   @if (!string.IsNullOrEmpty(Model.PosterUrl)) { <text>poster="@Model.PosterUrl"</text> }>
+                                <source src="@Model.MediaUrl" type="@Model.MediaType" />
+                                Your browser does not support the video element.
+                            </video>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Title))
+                    {
+                        <figcaption id="media-player-title-@Model.ObjectId-@Model.RecordId" class="figure-caption text-center mt-2">
+                            <strong>@Model.Title</strong>
+                        </figcaption>
+                    }
+                </figure>
+                @if (!string.IsNullOrEmpty(Model.Blurb))
+                {
+                    <p class="text-center text-muted">@Model.Blurb</p>
+                }
+                @if (!string.IsNullOrEmpty(Model.MediaVersion) || !string.IsNullOrEmpty(Model.MediaLength) || !string.IsNullOrEmpty(Model.Agency))
+                {
+                    <dl class="row mb-0 border-top pt-2 mt-2">
+                        @if (!string.IsNullOrEmpty(Model.MediaVersion))
+                        {
+                            <dt class="col-sm-3">Version</dt>
+                            <dd class="col-sm-9">@Model.MediaVersion</dd>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.MediaLength))
+                        {
+                            <dt class="col-sm-3">Length</dt>
+                            <dd class="col-sm-9">@Model.MediaLength</dd>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Agency))
+                        {
+                            <dt class="col-sm-3">Agency</dt>
+                            <dd class="col-sm-9">@Model.Agency</dd>
+                        }
+                    </dl>
+                }
+            </div>
+            @if (!string.IsNullOrEmpty(Model.BackUrl))
+            {
+                <div class="card-footer text-center">
+                    <a href="@Model.BackUrl" class="btn btn-outline-secondary btn-sm" aria-label="Back to Product Catalog Main Page">
+                        <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Back to Product Catalog Main Page
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="card-body">
+                <p class="text-muted text-center py-3 mb-0" role="status">
+                    <i class="bi bi-camera-video-off" aria-hidden="true"></i> No media source configured.
+                </p>
             </div>
         }
-    }
-    else
-    {
-        <div class="card-body">
-            <p class="text-muted mb-0" role="status">No media source configured.</p>
-        </div>
-    }
+    </div>
 </article>

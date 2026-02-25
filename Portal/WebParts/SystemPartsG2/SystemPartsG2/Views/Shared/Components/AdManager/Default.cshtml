@@ -1,130 +1,153 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.AdManagerViewModel
 <section id="ad-manager-@Model.ObjectId" class="wcms-ad-manager" data-object-id="@Model.ObjectId"
          aria-label="Advertisement management">
-    <!-- Selected Ad Section -->
-    <section class="mb-4" aria-labelledby="selected-ads-heading-@Model.ObjectId">
-        <h5 id="selected-ads-heading-@Model.ObjectId"><strong>Selected Ad:</strong></h5>
-        @if (Model.SelectedAds != null && Model.SelectedAds.Count > 0)
-        {
-            <div class="table-responsive">
-                <table class="table table-bordered align-middle" aria-describedby="selected-ads-heading-@Model.ObjectId">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col" class="text-center" style="width: 20px;">
-                                <span class="visually-hidden">Select</span>
-                            </th>
-                            <th scope="col">Ad Name</th>
-                            <th scope="col" class="text-center" style="width: 100px;">Hits</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">XML File</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var ad in Model.SelectedAds)
-                        {
-                            <tr>
-                                <td class="text-center">
-                                    <input type="radio" class="form-check-input" value="@ad.Id" name="chkChecked"
-                                           aria-label="Select ad @ad.Name" />
-                                </td>
-                                <td>@ad.Name</td>
-                                <td class="text-center">@ad.Hits</td>
-                                <td>@ad.FirstName</td>
-                                <td>@ad.CategoryName</td>
-                                <td>@ad.AdvertisementFile</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <button type="button" class="btn btn-outline-danger btn-sm" aria-label="Remove selected ad">
-                <i class="bi bi-trash"></i> Remove
-            </button>
-        }
-        else
-        {
-            <div class="alert alert-info" role="status">No ads selected.</div>
-        }
-    </section>
+    <div class="card shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="mb-0" id="ad-manager-heading-@Model.ObjectId">
+                <i class="bi bi-badge-ad" aria-hidden="true"></i> Advertisement Management
+            </h4>
+        </div>
+        <div class="card-body">
+            <!-- Selected Ads -->
+            <section class="mb-4" aria-labelledby="selected-ads-heading-@Model.ObjectId">
+                <h5 id="selected-ads-heading-@Model.ObjectId">
+                    <i class="bi bi-check-circle" aria-hidden="true"></i> Selected Ads
+                </h5>
+                @if (Model.SelectedAds != null && Model.SelectedAds.Count > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-middle" aria-describedby="selected-ads-heading-@Model.ObjectId">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col" class="text-center" style="width: 40px;">
+                                        <span class="visually-hidden">Select</span>
+                                    </th>
+                                    <th scope="col">Ad Name</th>
+                                    <th scope="col" class="text-center" style="width: 100px;">Hits</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">XML File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var ad in Model.SelectedAds)
+                                {
+                                    <tr>
+                                        <td class="text-center">
+                                            <input type="radio" class="form-check-input" value="@ad.Id" name="chkChecked"
+                                                   aria-label="Select ad @ad.Name" />
+                                        </td>
+                                        <td>@ad.Name</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-info text-dark rounded-pill">@ad.Hits</span>
+                                        </td>
+                                        <td>@ad.FirstName</td>
+                                        <td>@ad.CategoryName</td>
+                                        <td><code>@ad.AdvertisementFile</code></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn btn-outline-danger btn-sm" aria-label="Remove selected ad">
+                        <i class="bi bi-trash" aria-hidden="true"></i> Remove
+                    </button>
+                }
+                else
+                {
+                    <p class="text-muted text-center py-3" role="status">
+                        <i class="bi bi-inbox" aria-hidden="true"></i> No ads selected.
+                    </p>
+                }
+            </section>
 
-    <hr class="my-4" />
+            <hr class="my-4" />
 
-    <!-- All Ads Section -->
-    <section class="mb-4" aria-labelledby="all-ads-heading-@Model.ObjectId">
-        <h5 id="all-ads-heading-@Model.ObjectId"><strong>All Ads:</strong></h5>
-        <fieldset class="d-flex flex-wrap align-items-end gap-2 mb-3">
-            <legend class="visually-hidden">Filter advertisements</legend>
-            <div>
-                <label for="ad-category-@Model.ObjectId" class="form-label form-label-sm mb-1">By Category</label>
-                <select class="form-select form-select-sm" id="ad-category-@Model.ObjectId" name="cboTypes">
-                    <option value="">-- All --</option>
-                    @if (Model.Categories != null)
-                    {
-                        @foreach (var cat in Model.Categories)
-                        {
-                            <option value="@cat.Id">@cat.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div>
-                <label for="ad-author-@Model.ObjectId" class="form-label form-label-sm mb-1">By Author</label>
-                <select class="form-select form-select-sm" id="ad-author-@Model.ObjectId" name="cboWriters">
-                    <option value="">-- All --</option>
-                    @if (Model.Authors != null)
-                    {
-                        @foreach (var author in Model.Authors)
-                        {
-                            <option value="@author.Id">@author.FirstName</option>
-                        }
-                    }
-                </select>
-            </div>
-            <button type="button" class="btn btn-secondary btn-sm">Show</button>
-        </fieldset>
+            <!-- All Ads -->
+            <section aria-labelledby="all-ads-heading-@Model.ObjectId">
+                <h5 id="all-ads-heading-@Model.ObjectId">
+                    <i class="bi bi-collection" aria-hidden="true"></i> All Ads
+                </h5>
+                <fieldset class="d-flex flex-wrap align-items-end gap-2 mb-3">
+                    <legend class="visually-hidden">Filter advertisements</legend>
+                    <div>
+                        <label for="ad-category-@Model.ObjectId" class="form-label form-label-sm mb-1">By Category</label>
+                        <select class="form-select form-select-sm" id="ad-category-@Model.ObjectId" name="cboTypes" aria-label="Filter by category">
+                            <option value="">-- All --</option>
+                            @if (Model.Categories != null)
+                            {
+                                @foreach (var cat in Model.Categories)
+                                {
+                                    <option value="@cat.Id">@cat.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <label for="ad-author-@Model.ObjectId" class="form-label form-label-sm mb-1">By Author</label>
+                        <select class="form-select form-select-sm" id="ad-author-@Model.ObjectId" name="cboWriters" aria-label="Filter by author">
+                            <option value="">-- All --</option>
+                            @if (Model.Authors != null)
+                            {
+                                @foreach (var author in Model.Authors)
+                                {
+                                    <option value="@author.Id">@author.FirstName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-sm" aria-label="Apply filters">
+                        <i class="bi bi-funnel" aria-hidden="true"></i> Show
+                    </button>
+                </fieldset>
 
-        @if (Model.Ads != null && Model.Ads.Count > 0)
-        {
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover align-middle" aria-describedby="all-ads-heading-@Model.ObjectId">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col" class="text-center" style="width: 20px;">
-                                <span class="visually-hidden">Select</span>
-                            </th>
-                            <th scope="col">Ad Name</th>
-                            <th scope="col" class="text-center" style="width: 100px;">Hits</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">XML File</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var ad in Model.Ads)
-                        {
-                            <tr>
-                                <td class="text-center">
-                                    <input type="radio" class="form-check-input" value="@ad.Id" name="chkChecked"
-                                           aria-label="Select ad @ad.Name" />
-                                </td>
-                                <td>@ad.Name</td>
-                                <td class="text-center">@ad.Hits</td>
-                                <td>@ad.FirstName</td>
-                                <td>@ad.CategoryName</td>
-                                <td>@ad.AdvertisementFile</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        }
-        else
-        {
-            <div class="alert alert-info" role="status">No ads configured.</div>
-        }
-        <button type="button" class="btn btn-primary btn-sm" aria-label="Insert selected ad">
-            <i class="bi bi-plus-circle"></i> Insert
-        </button>
-    </section>
+                @if (Model.Ads != null && Model.Ads.Count > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-middle" aria-describedby="all-ads-heading-@Model.ObjectId">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col" class="text-center" style="width: 40px;">
+                                        <span class="visually-hidden">Select</span>
+                                    </th>
+                                    <th scope="col">Ad Name</th>
+                                    <th scope="col" class="text-center" style="width: 100px;">Hits</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">XML File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var ad in Model.Ads)
+                                {
+                                    <tr>
+                                        <td class="text-center">
+                                            <input type="radio" class="form-check-input" value="@ad.Id" name="chkChecked"
+                                                   aria-label="Select ad @ad.Name" />
+                                        </td>
+                                        <td>@ad.Name</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-info text-dark rounded-pill">@ad.Hits</span>
+                                        </td>
+                                        <td>@ad.FirstName</td>
+                                        <td>@ad.CategoryName</td>
+                                        <td><code>@ad.AdvertisementFile</code></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted text-center py-3" role="status">
+                        <i class="bi bi-inbox" aria-hidden="true"></i> No ads configured.
+                    </p>
+                }
+                <button type="button" class="btn btn-primary btn-sm" aria-label="Insert selected ad">
+                    <i class="bi bi-plus-circle" aria-hidden="true"></i> Insert
+                </button>
+            </section>
+        </div>
+    </div>
 </section>

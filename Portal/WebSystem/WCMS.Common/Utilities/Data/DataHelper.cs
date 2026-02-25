@@ -57,24 +57,12 @@ namespace WCMS.Common.Utilities
             return GetId(r[key], nativeValue: nativeValue);
         }
 
-#if NETFRAMEWORK
-        public static int GetId(System.Web.SessionState.HttpSessionState r, string key)
-        {
-            return GetId(r[key]);
-        }
-#endif
 
         public static int GetId(HttpRequest r, string key)
         {
             return GetId(r[key]);
         }
 
-#if NETFRAMEWORK
-        public static int GetId(HttpRequestBase r, string key)
-        {
-            return GetId(r[key]);
-        }
-#endif
 
         #endregion
 
@@ -90,28 +78,12 @@ namespace WCMS.Common.Utilities
             return r[key].ToString();
         }
 
-#if NETFRAMEWORK
-        public static string Get(System.Web.SessionState.HttpSessionState r, string key)
-        {
-            var value = r[key];
-            if (value != null)
-                return value.ToString();
-
-            return null;
-        }
-#endif
 
         public static string Get(HttpRequest r, string key)
         {
             return r[key];
         }
 
-#if NETFRAMEWORK
-        public static string Get(HttpRequestBase r, string key)
-        {
-            return r[key];
-        }
-#endif
 
         #endregion
 
@@ -149,12 +121,6 @@ namespace WCMS.Common.Utilities
             return GetInt32(r[key], defaultValue);
         }
 
-#if NETFRAMEWORK
-        public static int GetInt32(HttpRequestBase r, string key, int defaultValue = 0)
-        {
-            return GetInt32(r[key], defaultValue);
-        }
-#endif
 
         public static int GetInt32(string o, int defaultValue)
         {

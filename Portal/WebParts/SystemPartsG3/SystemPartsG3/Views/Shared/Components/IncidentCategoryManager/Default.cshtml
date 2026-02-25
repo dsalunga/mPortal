@@ -11,55 +11,63 @@
         }
     </header>
 
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover mb-0" aria-labelledby="categoryManagerHeading-@Model.ObjectId">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col" class="text-center">Rank</th>
-                            @if (Model.CanEdit)
-                            {
-                                <th scope="col" class="text-end">Actions</th>
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Categories == null || Model.Categories.Count == 0)
-                        {
+            @if (Model.Categories == null || Model.Categories.Count == 0)
+            {
+                <div class="text-center py-5" role="status">
+                    <i class="bi bi-folder2-open fs-1 text-muted d-block mb-2" aria-hidden="true"></i>
+                    <p class="text-muted mb-0">No categories found.</p>
+                    @if (Model.CanEdit)
+                    {
+                        <button type="button" class="btn btn-outline-primary btn-sm mt-3" data-action="add-category">
+                            <i class="bi bi-plus-lg" aria-hidden="true"></i> Create your first category
+                        </button>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle mb-0" aria-labelledby="categoryManagerHeading-@Model.ObjectId">
+                        <caption class="visually-hidden">List of incident categories</caption>
+                        <thead class="table-light">
                             <tr>
-                                <td colspan="@(Model.CanEdit ? 4 : 3)" class="text-center text-muted py-4" role="status">No categories found.</td>
+                                <th scope="col">Name</th>
+                                <th scope="col" class="d-none d-md-table-cell">Description</th>
+                                <th scope="col" class="text-center">Rank</th>
+                                @if (Model.CanEdit)
+                                {
+                                    <th scope="col" class="text-end">Actions</th>
+                                }
                             </tr>
-                        }
-                        else
-                        {
-                            foreach (var category in Model.Categories)
+                        </thead>
+                        <tbody>
+                            @foreach (var category in Model.Categories)
                             {
                                 <tr>
                                     <td><strong>@category.Name</strong></td>
-                                    <td>@category.Description</td>
-                                    <td class="text-center"><span class="badge bg-secondary">@category.Rank</span></td>
+                                    <td class="d-none d-md-table-cell text-truncate" style="max-width: 300px;">@category.Description</td>
+                                    <td class="text-center"><span class="badge bg-secondary rounded-pill">@category.Rank</span></td>
                                     @if (Model.CanEdit)
                                     {
-                                        <td class="text-end">
+                                        <td class="text-end text-nowrap">
                                             <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @category.Name">
                                                 <button type="button" class="btn btn-outline-secondary" data-action="edit-category" data-id="@category.Id" aria-label="Edit @category.Name">
-                                                    <i class="bi bi-pencil" aria-hidden="true"></i> Edit
+                                                    <i class="bi bi-pencil" aria-hidden="true"></i><span class="d-none d-lg-inline ms-1">Edit</span>
                                                 </button>
                                                 <button type="button" class="btn btn-outline-danger" data-action="delete-category" data-id="@category.Id" aria-label="Delete @category.Name">
-                                                    <i class="bi bi-trash" aria-hidden="true"></i> Delete
+                                                    <i class="bi bi-trash" aria-hidden="true"></i><span class="d-none d-lg-inline ms-1">Delete</span>
                                                 </button>
                                             </div>
                                         </td>
                                     }
                                 </tr>
                             }
-                        }
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
+            }
         </div>
     </div>
 </section>

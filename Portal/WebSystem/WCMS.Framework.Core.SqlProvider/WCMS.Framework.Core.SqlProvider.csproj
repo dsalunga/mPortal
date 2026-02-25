@@ -17,10 +17,4 @@
     <ProjectReference Include="..\WCMS.Common\WCMS.Common.csproj" />
     <ProjectReference Include="..\WCMS.Framework\WCMS.Framework.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Class1.cs" />
-    <Compile Remove="WebMasterPageItemProvider.cs" />
-    <Compile Remove="WebUserRoleProvider.cs" />
-  </ItemGroup>
 </Project>

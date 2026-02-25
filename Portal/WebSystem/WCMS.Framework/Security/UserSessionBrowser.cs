@@ -7,6 +7,9 @@ namespace WCMS.Framework
 {
     public class UserSessionBrowser
     {
+        /// <summary>Parameterless constructor for deserialization.</summary>
+        public UserSessionBrowser() { }
+
         public UserSessionBrowser(string aspNetSessionID, int userId, int pageId)
         {
             AspNetSessionID = aspNetSessionID;

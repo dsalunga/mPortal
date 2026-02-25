@@ -34,10 +34,4 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
     <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Dates.cs" />
-    <Compile Remove="Utilities\ControlHelper.cs" />
-    <Compile Remove="Utilities\ControlInfo.cs" />
-    <Compile Remove="Utilities\Data\OracleHelper.cs" />
-  </ItemGroup>
 </Project>

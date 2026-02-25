@@ -8,9 +8,4 @@
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Common\WCMS.Common.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
   </ItemGroup>
-
-  <!-- WebForms-specific files excluded from compilation -->
-  <ItemGroup>
-    <Compile Remove="FileManagerBase.cs" />
-  </ItemGroup>
 </Project>

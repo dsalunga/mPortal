@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using WCMS.Framework.Middleware;
 
@@ -11,6 +12,11 @@ namespace WCMS.Framework.Extensions
             services.AddHttpContextAccessor();
             services.AddScoped<IWSession, WSession>();
             services.AddScoped<IWContext, WContext>();
+            services.AddSingleton<UserSessionManager>(sp =>
+            {
+                var distributedCache = sp.GetService<IDistributedCache>();
+                return new UserSessionManager(distributedCache);
+            });
             return services;
         }
 

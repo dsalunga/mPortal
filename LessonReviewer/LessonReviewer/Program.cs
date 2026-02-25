@@ -4,12 +4,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Extensions;
+using WCMS.LessonReviewer.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddWcmsFramework();
+
+// LessonReviewer.Core services
+builder.Services.AddScoped<MakeUpServiceSession>();
 
 var app = builder.Build();
 

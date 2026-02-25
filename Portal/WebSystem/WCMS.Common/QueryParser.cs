@@ -67,44 +67,6 @@ namespace WCMS.Common.Utilities
             Init(request);
         }
 
-#if NETFRAMEWORK
-        public void Init(HttpRequestBase request)
-        {
-            string pageId = request[PageIdInternal];
-            string requestPath = request.AppRelativeCurrentExecutionFilePath;
-            if (pageId != null && (requestPath.Equals("~/Default.cshtml")))
-            {
-                int qIndex = request.RawUrl.IndexOf("?");
-                BasePath = qIndex > 0 ? request.RawUrl.Substring(0, qIndex) : request.RawUrl;
-                Add(request.QueryString);
-
-                // For further checking...
-                // When the page has been rewritten but still containing a pageId then...
-                Remove(PageIdInternal);
-            }
-            else
-            {
-                BasePath = request.CurrentExecutionFilePath;
-                Add(request.QueryString);
-            }
-        }
-
-        public QueryParser(HttpRequestBase request)
-        {
-            Init(request);
-        }
-
-        public QueryParser(System.Web.WebPages.WebPage page) : this(page.Request) { }
-
-        public QueryParser(System.Web.UI.Page p)
-            : this(p.Request) { }
-
-        public QueryParser(System.Web.UI.UserControl c)
-            : this(c.Request) { }
-
-        public QueryParser(System.Web.UI.Control c)
-            : this(c.Page.Request) { }
-#endif
 
         public QueryParser(HttpApplication a)
             : this(a.Request) { }
@@ -393,13 +355,6 @@ namespace WCMS.Common.Utilities
 
         #region Static Methods
 
-#if NETFRAMEWORK
-        public static string BuildQuery(System.Web.UI.Control instance)
-        {
-            var query = new QueryParser(instance);
-            return query.BuildQuery();
-        }
-#endif
 
         public static string BuildQuery(string url, string name, object value)
         {

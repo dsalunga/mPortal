@@ -10,10 +10,6 @@ using WCMS.Framework;
 using WCMS.Framework.Security;
 using WCMS.Framework.Utilities;
 using WCMS.WebSystem.Apps.Integration;
-#if NETFRAMEWORK
-using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
-using WCMS.WebSystem.Apps.Integration.CommonWS;
-#endif
 using WCMS.WebSystem.Apps.Integration.ExtApp;
 using WCMS.Framework.Net;
 using WCMS.WebSystem.Agent;
@@ -24,16 +20,6 @@ namespace WCMS.WebSystem.Apps.Integration
 {
     public abstract class MemberHelper
     {
-#if NETFRAMEWORK
-        public static WebUser CreateDraftUser(Member member)
-        {
-            var user = new WebUser();
-            user.FirstName = member.FirstName;
-            user.LastName = member.LastName;
-            user.Gender = char.Parse(member.Gender.Substring(0, 1).ToUpper());
-            return user;
-        }
-#endif
 
         public static bool ActivateAccount(int userId, int groupId, ParameterizedWebObject paramSet, HttpContext context)
         {
@@ -65,9 +51,6 @@ namespace WCMS.WebSystem.Apps.Integration
                     item.Update();
                 }
 
-#if NETFRAMEWORK
-                link.TryLinkToExt();
-#endif
 
                 if (user != null && group != null)
                 {
@@ -135,26 +118,6 @@ namespace WCMS.WebSystem.Apps.Integration
 
                         if (searchONEUsersAndCreate && user == null) // && !item.Contains('@'))
                         {
-#if NETFRAMEWORK
-                            var oneUser = ExtAppProvider.GetUserInfo(item);
-                            if (oneUser != null)
-                            {
-                                user = new WebUser();
-                                user.UserName = oneUser.UserName;
-                                user.Email = oneUser.Email;
-                                user.FirstName = oneUser.FirstName;
-                                user.LastName = oneUser.LastName;
-                                user.MiddleName = oneUser.MiddleName;
-                                user.Status = AccountStatus.DRAFT;
-                                user.ProviderId = AccountConstants.DefaultExternalProvider;
-                                user.Update();
-
-                                var link = new MemberLink();
-                                link.UserId = user.Id;
-                                link.ExternalIdNo = oneUser.ExternalId;
-                                link.Update();
-                            }
-#endif
                         }
                     }
 
@@ -240,160 +203,6 @@ namespace WCMS.WebSystem.Apps.Integration
             return service;
         }
 
-#if NETFRAMEWORK
-        public static Service GetService(int serviceId)
-        {
-            var services = GetServices();
-            foreach (var service in services)
-            {
-                if (service.ServiceID == serviceId)
-                    return service;
-            }
-
-            return null;
-        }
-
-        public static IEnumerable<Service> GetServices()
-        {
-            var cache = MemoryCache.Default;
-            IEnumerable<Service> services = cache[ExtConstants.ServicesCacheKey] as IEnumerable<Service>;
-            if (services == null)
-            {
-                var client = new CommonWSSoapClient();
-                services = client.GetServices();
-
-                var policy = new CacheItemPolicy();
-                policy.AbsoluteExpiration = DateTimeOffset.Now.AddHours(6.0);
-
-                // Fetch the file contents.
-                cache.Set(ExtConstants.ServicesCacheKey, services, policy);
-            }
-
-            return services;
-        }
-
-        public static string GetShortService(int serviceId)
-        {
-            var service = GetService(serviceId);
-            if (service != null)
-                return service.ServiceCode;
-
-            //switch (serviceId)
-            //{
-            //    case 1:
-            //        return "PM";
-
-            //    case 3:
-            //        return "WS";
-
-            //    case 2:
-            //        return "TG";
-
-            //    case 5:
-            //        return "ITG1";
-
-            //    case 6:
-            //        return "ITG2";
-
-            //    case 7:
-            //        return "ITG3";
-
-            //    case 4:
-            //        return "CP";
-
-            //    case 8:
-            //        return "LS";
-            //}
-
-            return "NA";
-        }
-
-        public static MemberAttendance GetAttendance(int memberId, DateTime date, string serviceType)
-        {
-            if (memberId > 0)
-            {
-                var link = MemberLink.Provider.GetByMemberId(memberId);
-                var client = new MemberSoapClient(false);
-
-                var attendances = client.GetAttendances(memberId, -1, -1, date, date);
-                var attendance = attendances.FirstOrDefault(i => GetShortService(i.ServiceType).Equals(serviceType, StringComparison.InvariantCultureIgnoreCase));
-                if (attendance != null)
-                {
-                    attendance.ExternalIdNo = link.ExternalIdNo;
-
-                    return attendance;
-                }
-            }
-
-            return null;
-        }
-
-        public static MakeUpSession TryRecreateSession(WContext context)
-        {
-            return TryRecreateSession(context.Query);
-        }
-
-        public static MakeUpSession TryRecreateSession(WQuery context)
-        {
-            var sessionIdString = context.Get("SessionId");
-            if (!string.IsNullOrEmpty(sessionIdString))
-            {
-                var sessionId = DataUtil.GetLong(sessionIdString);
-                if (sessionId > 0)
-                {
-                    try
-                    {
-                        var dateStarted = new DateTime(sessionId);
-                        if (dateStarted > DateTime.Now.AddDays(-2))
-                        {
-                            var attendance = GetAttendance(context);
-                            if (attendance != null)
-                                return new MakeUpSession(attendance, dateStarted);
-                        }
-                    }
-                    catch (Exception) { }
-                }
-            }
-
-            return null;
-        }
-
-        public static MemberAttendance GetAttendance(WContext context)
-        {
-            return GetAttendance(context.Query);
-        }
-
-        public static MemberAttendance GetAttendance(WQuery context)
-        {
-            int memberId = -1;
-            var dateString = context.Get("Date");
-            var serviceType = context.Get("ServiceType");
-
-            if (!string.IsNullOrEmpty(dateString))
-            {
-                var date = DataUtil.GetDateTime(dateString);
-                var user = WSession.Current.User;
-
-                var link = MemberLink.Provider.GetByUserId(user.Id);
-                if (link != null)
-                    memberId = link.MemberId;
-
-                if (memberId > 0)
-                {
-                    var client = new MemberSoapClient(false);
-                    var attendances = client.GetAttendances(memberId, -1, -1, date, date);
-                    var attendance = attendances.FirstOrDefault(i => GetShortService(i.ServiceType).Equals(serviceType, StringComparison.InvariantCultureIgnoreCase));
-                    if (attendance != null)
-                    {
-                        attendance.ExternalIdNo = link.ExternalIdNo;
-                        return attendance;
-                    }
-                }
-            }
-
-            return null;
-        }
-#endif
 
         public static string GetLocaleGroup(int userId, string defaultValue = "")
         {

@@ -1,55 +1,66 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.BasicListViewModel
 <section id="basic-list-@Model.ObjectId" class="wcms-basic-list" data-object-id="@Model.ObjectId"
          aria-labelledby="@(string.IsNullOrEmpty(Model.Title) ? "" : $"basic-list-heading-{Model.ObjectId}")">
-    @if (!string.IsNullOrEmpty(Model.Title))
-    {
-        <h4 id="basic-list-heading-@Model.ObjectId">@Model.Title</h4>
-    }
-    @if (Model.Items.Count == 0)
-    {
-        <p class="text-muted" role="status">No items to display.</p>
-    }
-    else
-    {
-        if (Model.ShowBullets)
+    <div class="card shadow-sm">
+        @if (!string.IsNullOrEmpty(Model.Title))
         {
-            <ul class="list-group list-group-flush" role="list">
-                @foreach (var item in Model.Items)
-                {
-                    <li class="list-group-item list-group-item-action">
-                        @if (!string.IsNullOrEmpty(item.Url))
-                        {
-                            <a href="@item.Url" class="text-decoration-none">@item.Title</a>
-                        }
-                        else
-                        {
-                            <span>@item.Title</span>
-                        }
-                        @if (!string.IsNullOrEmpty(item.Description))
-                        {
-                            <p class="mb-0 text-muted small">@item.Description</p>
-                        }
-                    </li>
-                }
-            </ul>
+            <div class="card-header">
+                <h4 class="mb-0" id="basic-list-heading-@Model.ObjectId">
+                    <i class="bi bi-list-ul" aria-hidden="true"></i> @Model.Title
+                </h4>
+            </div>
         }
-        else
-        {
-            <ul class="list-unstyled" role="list">
-                @foreach (var item in Model.Items)
-                {
-                    <li class="mb-2">
-                        @if (!string.IsNullOrEmpty(item.Url))
-                        {
-                            <a href="@item.Url" class="text-decoration-none">@item.Title</a>
-                        }
-                        else
-                        {
-                            <span>@item.Title</span>
-                        }
-                    </li>
-                }
-            </ul>
-        }
-    }
+        <div class="card-body">
+            @if (Model.Items == null || Model.Items.Count == 0)
+            {
+                <p class="text-muted text-center py-3" role="status">
+                    <i class="bi bi-inbox" aria-hidden="true"></i> No items to display.
+                </p>
+            }
+            else if (Model.ShowBullets)
+            {
+                <ul class="list-group list-group-flush" role="list">
+                    @foreach (var item in Model.Items)
+                    {
+                        <li class="list-group-item list-group-item-action">
+                            @if (!string.IsNullOrEmpty(item.Url))
+                            {
+                                <a href="@item.Url" class="text-decoration-none">@item.Title</a>
+                            }
+                            else
+                            {
+                                <span>@item.Title</span>
+                            }
+                            @if (!string.IsNullOrEmpty(item.Description))
+                            {
+                                <p class="mb-0 text-muted small mt-1">@item.Description</p>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <ul class="list-unstyled mb-0" role="list">
+                    @foreach (var item in Model.Items)
+                    {
+                        <li class="mb-2">
+                            @if (!string.IsNullOrEmpty(item.Url))
+                            {
+                                <a href="@item.Url" class="text-decoration-none">@item.Title</a>
+                            }
+                            else
+                            {
+                                <span>@item.Title</span>
+                            }
+                            @if (!string.IsNullOrEmpty(item.Description))
+                            {
+                                <p class="mb-0 text-muted small mt-1">@item.Description</p>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
 </section>

@@ -2,38 +2,48 @@
 @{
     var carouselId = "banner-" + Model.ObjectId;
 }
-<div class="wcms-animated-banner">
-    @if (Model.Slides.Count == 0)
+<section class="wcms-animated-banner" aria-label="Banner slideshow">
+    @if (Model.Slides == null || Model.Slides.Count == 0)
     {
-        <div class="text-muted p-4 text-center">No banner slides configured.</div>
+        <div class="text-muted text-center py-4" role="status">
+            <i class="bi bi-image" aria-hidden="true"></i> No banner slides configured.
+        </div>
     }
     else
     {
-        <div id="@carouselId" class="carousel slide" data-bs-ride="carousel" data-bs-interval="@Model.IntervalMs">
-            @if (Model.ShowIndicators)
+        <div id="@carouselId" class="carousel slide shadow-sm rounded overflow-hidden"
+             data-bs-ride="carousel" data-bs-interval="@Model.IntervalMs"
+             aria-roledescription="carousel" aria-label="Banner slideshow">
+            @if (Model.ShowIndicators && Model.Slides.Count > 1)
             {
                 <div class="carousel-indicators">
                     @for (var i = 0; i < Model.Slides.Count; i++)
                     {
                         <button type="button" data-bs-target="#@carouselId" data-bs-slide-to="@i"
-                                class="@(i == 0 ? "active" : "")" aria-label="Slide @(i + 1)"></button>
+                                class="@(i == 0 ? "active" : "")"
+                                aria-current="@(i == 0 ? "true" : "false")"
+                                aria-label="Slide @(i + 1) of @Model.Slides.Count"></button>
                     }
                 </div>
             }
-            <div class="carousel-inner">
+            <div class="carousel-inner" aria-live="off">
                 @for (var i = 0; i < Model.Slides.Count; i++)
                 {
                     var slide = Model.Slides[i];
-                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <div class="carousel-item @(i == 0 ? "active" : "")"
+                         role="group" aria-roledescription="slide"
+                         aria-label="Slide @(i + 1) of @Model.Slides.Count: @slide.Title">
                         @if (!string.IsNullOrEmpty(slide.LinkUrl))
                         {
-                            <a href="@slide.LinkUrl">
-                                <img src="@slide.ImageUrl" class="d-block w-100" alt="@slide.Title" loading="lazy" />
+                            <a href="@slide.LinkUrl" aria-label="@slide.Title">
+                                <img src="@slide.ImageUrl" class="d-block w-100"
+                                     alt="@(slide.Title ?? "Banner slide")" loading="lazy" decoding="async" />
                             </a>
                         }
                         else
                         {
-                            <img src="@slide.ImageUrl" class="d-block w-100" alt="@slide.Title" loading="lazy" />
+                            <img src="@slide.ImageUrl" class="d-block w-100"
+                                 alt="@(slide.Title ?? "Banner slide")" loading="lazy" decoding="async" />
                         }
                         @if (!string.IsNullOrEmpty(slide.Title) || !string.IsNullOrEmpty(slide.Caption))
                         {
@@ -44,24 +54,26 @@
                                 }
                                 @if (!string.IsNullOrEmpty(slide.Caption))
                                 {
-                                    <p>@slide.Caption</p>
+                                    <p class="mb-0">@slide.Caption</p>
                                 }
                             </div>
                         }
                     </div>
                 }
             </div>
-            @if (Model.ShowControls)
+            @if (Model.ShowControls && Model.Slides.Count > 1)
             {
-                <button class="carousel-control-prev" type="button" data-bs-target="#@carouselId" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button"
+                        data-bs-target="#@carouselId" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span class="visually-hidden">Previous slide</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#@carouselId" data-bs-slide="next">
+                <button class="carousel-control-next" type="button"
+                        data-bs-target="#@carouselId" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                    <span class="visually-hidden">Next slide</span>
                 </button>
             }
         </div>
     }
-</div>
+</section>

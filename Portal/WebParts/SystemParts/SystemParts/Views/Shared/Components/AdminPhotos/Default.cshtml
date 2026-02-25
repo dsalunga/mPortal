@@ -2,43 +2,57 @@
 <section class="wcms-admin-photos" aria-label="Photo management">
     @if (!Model.IsLoggedIn)
     {
-        <div class="alert alert-warning" role="alert">
-            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Please sign in to manage photos.
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2" aria-hidden="true"></i>
+            Please sign in to manage photos.
         </div>
     }
     else
     {
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 id="adminPhotosHeading-@Model.ObjectId">Photo Management</h4>
-            <button type="button" class="btn btn-primary btn-sm" aria-label="Upload new photos">
-                <i class="bi bi-upload" aria-hidden="true"></i> Upload Photos
-            </button>
-        </div>
-        @if (Model.Photos.Count == 0)
-        {
-            <p class="text-muted" role="status">No photos uploaded yet.</p>
-        }
-        else
-        {
-            <div class="row" role="list" aria-labelledby="adminPhotosHeading-@Model.ObjectId">
-                @foreach (var photo in Model.Photos)
+        <div class="card shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0" id="adminPhotosHeading-@Model.ObjectId">
+                    <i class="bi bi-images" aria-hidden="true"></i> Photo Management
+                </h4>
+                <button type="button" class="btn btn-primary btn-sm" aria-label="Upload new photos">
+                    <i class="bi bi-upload" aria-hidden="true"></i> Upload Photos
+                </button>
+            </div>
+            <div class="card-body">
+                @if (Model.Photos == null || Model.Photos.Count == 0)
                 {
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3" role="listitem">
-                        <figure class="card h-100">
-                            <img src="@(photo.ThumbnailUrl ?? photo.ImageUrl)" alt="@photo.Title"
-                                 class="card-img-top" loading="lazy" />
-                            <figcaption class="card-body p-2">
-                                <small class="card-title d-block fw-semibold">@photo.Title</small>
-                                <small class="text-muted">@photo.AlbumName</small>
-                                <div class="mt-2 btn-group btn-group-sm" role="group" aria-label="Actions for @photo.Title">
-                                    <button class="btn btn-outline-primary" aria-label="Edit @photo.Title">Edit</button>
-                                    <button class="btn btn-outline-danger" aria-label="Delete @photo.Title">Delete</button>
-                                </div>
-                            </figcaption>
-                        </figure>
+                    <p class="text-muted text-center py-3" role="status">
+                        <i class="bi bi-image" aria-hidden="true"></i> No photos uploaded yet.
+                    </p>
+                }
+                else
+                {
+                    <div class="row g-3" role="list" aria-labelledby="adminPhotosHeading-@Model.ObjectId">
+                        @foreach (var photo in Model.Photos)
+                        {
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6" role="listitem">
+                                <figure class="card h-100 shadow-sm">
+                                    <img src="@(photo.ThumbnailUrl ?? photo.ImageUrl)" alt="@photo.Title"
+                                         class="card-img-top" loading="lazy" decoding="async" />
+                                    <figcaption class="card-body p-2">
+                                        <strong class="card-title d-block text-truncate">@photo.Title</strong>
+                                        <small class="text-muted">@photo.AlbumName</small>
+                                        <div class="mt-2 btn-group btn-group-sm w-100" role="group"
+                                             aria-label="Actions for @photo.Title">
+                                            <button class="btn btn-outline-primary" aria-label="Edit @photo.Title">
+                                                <i class="bi bi-pencil" aria-hidden="true"></i> Edit
+                                            </button>
+                                            <button class="btn btn-outline-danger" aria-label="Delete @photo.Title">
+                                                <i class="bi bi-trash" aria-hidden="true"></i> Delete
+                                            </button>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        }
                     </div>
                 }
             </div>
-        }
+        </div>
     }
 </section>

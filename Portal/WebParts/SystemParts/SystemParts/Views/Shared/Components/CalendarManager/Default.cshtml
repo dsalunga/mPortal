@@ -2,54 +2,81 @@
 <section class="wcms-calendar-manager" aria-label="Calendar management">
     @if (!Model.IsLoggedIn)
     {
-        <div class="alert alert-warning" role="alert">
-            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Please sign in to manage events.
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2" aria-hidden="true"></i>
+            Please sign in to manage events.
         </div>
     }
     else
     {
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 id="calManagerHeading-@Model.ObjectId">Calendar Management</h4>
-            <button type="button" class="btn btn-primary btn-sm" aria-label="Create new event">
-                <i class="bi bi-plus" aria-hidden="true"></i> New Event
-            </button>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped table-hover" aria-labelledby="calManagerHeading-@Model.ObjectId">
-                <thead>
-                    <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Start</th>
-                        <th scope="col">End</th>
-                        <th scope="col">Location</th>
-                        <th scope="col">Status</th>
-                        <th scope="col"><span class="visually-hidden">Actions</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Events)
-                    {
-                        <tr>
-                            <td>@item.Title</td>
-                            <td><time>@item.StartDate</time></td>
-                            <td><time>@item.EndDate</time></td>
-                            <td>@item.Location</td>
-                            <td>
-                                <span class="badge @(item.IsActive ? "bg-success" : "bg-secondary")"
-                                      aria-label="@(item.IsActive ? "Active" : "Inactive")">
-                                    @(item.IsActive ? "Active" : "Inactive")
-                                </span>
-                            </td>
-                            <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @item.Title">
-                                    <button class="btn btn-outline-primary" aria-label="Edit @item.Title">Edit</button>
-                                    <button class="btn btn-outline-danger" aria-label="Delete @item.Title">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div class="card shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0" id="calManagerHeading-@Model.ObjectId">
+                    <i class="bi bi-calendar3" aria-hidden="true"></i> Calendar Management
+                </h4>
+                <button type="button" class="btn btn-primary btn-sm" aria-label="Create new event">
+                    <i class="bi bi-plus-lg" aria-hidden="true"></i> New Event
+                </button>
+            </div>
+            <div class="card-body">
+                @if (Model.Events == null || Model.Events.Count == 0)
+                {
+                    <p class="text-muted text-center py-3" role="status">
+                        <i class="bi bi-calendar-x" aria-hidden="true"></i> No events found.
+                    </p>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-middle mb-0"
+                               aria-labelledby="calManagerHeading-@Model.ObjectId">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Start</th>
+                                    <th scope="col">End</th>
+                                    <th scope="col">Location</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col"><span class="visually-hidden">Actions</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Events)
+                                {
+                                    <tr>
+                                        <td class="fw-semibold">@item.Title</td>
+                                        <td><time>@item.StartDate</time></td>
+                                        <td><time>@item.EndDate</time></td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(item.Location))
+                                            {
+                                                <i class="bi bi-geo-alt" aria-hidden="true"></i> @item.Location
+                                            }
+                                        </td>
+                                        <td>
+                                            <span class="badge @(item.IsActive ? "bg-success" : "bg-secondary")"
+                                                  aria-label="@(item.IsActive ? "Active" : "Inactive")">
+                                                @(item.IsActive ? "Active" : "Inactive")
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm" role="group"
+                                                 aria-label="Actions for @item.Title">
+                                                <button class="btn btn-outline-primary" aria-label="Edit @item.Title">
+                                                    <i class="bi bi-pencil" aria-hidden="true"></i><span class="visually-hidden"> Edit</span>
+                                                </button>
+                                                <button class="btn btn-outline-danger" aria-label="Delete @item.Title">
+                                                    <i class="bi bi-trash" aria-hidden="true"></i><span class="visually-hidden"> Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
         </div>
     }
 </section>

@@ -1,30 +1,33 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.BasicListItemViewModel
-<article id="list-item-@Model.ObjectId-@Model.RecordId" class="wcms-basic-list-item card mb-2"
+<article id="list-item-@Model.ObjectId-@Model.RecordId" class="wcms-basic-list-item"
          data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId"
          aria-labelledby="list-item-title-@Model.ObjectId-@Model.RecordId">
-    <div class="card-body">
-        <div class="d-flex align-items-start">
-            @if (!string.IsNullOrEmpty(Model.ImageUrl))
-            {
-                <figure class="flex-shrink-0 me-3 mb-0">
-                    <img src="@Model.ImageUrl" alt="@Model.Title" class="rounded img-thumbnail" style="max-width: 80px;" loading="lazy" />
-                </figure>
-            }
-            <div class="flex-grow-1">
-                <h5 id="list-item-title-@Model.ObjectId-@Model.RecordId" class="card-title mb-1">
-                    @if (!string.IsNullOrEmpty(Model.Url))
-                    {
-                        <a href="@Model.Url" class="text-decoration-none">@Model.Title</a>
-                    }
-                    else
-                    {
-                        @Model.Title
-                    }
-                </h5>
-                @if (!string.IsNullOrEmpty(Model.Description))
+    <div class="card shadow-sm mb-3">
+        <div class="card-body">
+            <div class="d-flex align-items-start">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
                 {
-                    <p class="card-text text-muted mb-0">@Model.Description</p>
+                    <figure class="flex-shrink-0 me-3 mb-0">
+                        <img src="@Model.ImageUrl" alt="@Model.Title" class="rounded img-thumbnail"
+                             style="max-width: 80px;" loading="lazy" decoding="async" />
+                    </figure>
                 }
+                <div class="flex-grow-1">
+                    <h5 id="list-item-title-@Model.ObjectId-@Model.RecordId" class="card-title mb-1">
+                        @if (!string.IsNullOrEmpty(Model.Url))
+                        {
+                            <a href="@Model.Url" class="text-decoration-none stretched-link">@Model.Title</a>
+                        }
+                        else
+                        {
+                            @Model.Title
+                        }
+                    </h5>
+                    @if (!string.IsNullOrEmpty(Model.Description))
+                    {
+                        <p class="card-text text-muted mb-0">@Model.Description</p>
+                    }
+                </div>
             </div>
         </div>
     </div>

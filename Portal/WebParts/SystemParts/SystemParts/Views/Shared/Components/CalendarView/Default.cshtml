@@ -11,94 +11,110 @@
     var today = System.DateTime.Today;
 }
 <section class="event-calendar" aria-label="Event calendar for @Model.CurrentMonth.ToString("MMMM yyyy")">
-    <nav class="d-flex align-items-center mb-3 flex-wrap gap-2" aria-label="Calendar navigation">
-        <button type="button" class="btn btn-outline-secondary btn-sm"
-                onclick="location.href='@(Model.BasePath)?month=@(firstDay.AddMonths(-1).ToString("yyyy-MM"))'"
-                aria-label="Previous month: @(firstDay.AddMonths(-1).ToString("MMMM yyyy"))">&laquo;</button>
-        <label for="calViewMonth-@Model.ObjectId" class="visually-hidden">Month</label>
-        <select id="calViewMonth-@Model.ObjectId" class="form-select form-select-sm d-inline-block" style="width: auto;"
-                aria-label="Select month"
-                onchange="location.href='@(Model.BasePath)?month=@(Model.CurrentMonth.Year)-' + this.value.padStart(2,'0')">
-            @for (int m = 1; m <= 12; m++)
-            {
-                var monthName = new System.DateTime(Model.CurrentMonth.Year, m, 1).ToString("MMMM");
-                <option value="@m" selected="@(m == Model.CurrentMonth.Month ? "selected" : null)">@monthName</option>
-            }
-        </select>
-        <label for="calViewYear-@Model.ObjectId" class="visually-hidden">Year</label>
-        <select id="calViewYear-@Model.ObjectId" class="form-select form-select-sm d-inline-block" style="width: auto;"
-                aria-label="Select year"
-                onchange="location.href='@(Model.BasePath)?month=' + this.value + '-@(Model.CurrentMonth.Month.ToString("00"))'">
-            @for (int y = Model.CurrentMonth.Year - 5; y <= Model.CurrentMonth.Year + 5; y++)
-            {
-                <option value="@y" selected="@(y == Model.CurrentMonth.Year ? "selected" : null)">@y</option>
-            }
-        </select>
-        <button type="button" class="btn btn-outline-secondary btn-sm"
-                onclick="location.href='@(Model.BasePath)?month=@(firstDay.AddMonths(1).ToString("yyyy-MM"))'"
-                aria-label="Next month: @(firstDay.AddMonths(1).ToString("MMMM yyyy"))">&raquo;</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm"
-                onclick="location.href='@(Model.BasePath)?month=@(today.ToString("yyyy-MM"))'">Today</button>
-    </nav>
-    <div class="table-responsive">
-        <table class="EventCalendar-Calendar table table-bordered" role="grid"
-               aria-label="Calendar for @Model.CurrentMonth.ToString("MMMM yyyy")">
-            <caption class="visually-hidden">@Model.CurrentMonth.ToString("MMMM yyyy") event calendar</caption>
-            <thead>
-                <tr class="EventCalendar-Calendar-Title">
-                    <th colspan="7" class="text-center fs-5 fw-bold" scope="colgroup">
-                        <time datetime="@Model.CurrentMonth.ToString("yyyy-MM")">@Model.CurrentMonth.ToString("MMMM yyyy")</time>
-                    </th>
-                </tr>
-                <tr class="Day-Header">
-                    <th scope="col" abbr="Sunday" class="fw-bold">Sun</th>
-                    <th scope="col" abbr="Monday" class="fw-bold">Mon</th>
-                    <th scope="col" abbr="Tuesday" class="fw-bold">Tue</th>
-                    <th scope="col" abbr="Wednesday" class="fw-bold">Wed</th>
-                    <th scope="col" abbr="Thursday" class="fw-bold">Thu</th>
-                    <th scope="col" abbr="Friday" class="fw-bold">Fri</th>
-                    <th scope="col" abbr="Saturday" class="fw-bold">Sat</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    var day = 1;
-                    var totalCells = startOffset + daysInMonth;
-                    var rows = (int)System.Math.Ceiling(totalCells / 7.0);
-                }
-                @for (var r = 0; r < rows; r++)
-                {
-                    <tr>
-                        @for (var c = 0; c < 7; c++)
-                        {
-                            var cellIndex = r * 7 + c;
-                            if (cellIndex < startOffset || day > daysInMonth)
-                            {
-                                <td class="Calendar-Day Other-Month-Day text-muted" aria-hidden="true">&nbsp;</td>
-                            }
-                            else
-                            {
-                                var cellDate = new System.DateTime(Model.CurrentMonth.Year, Model.CurrentMonth.Month, day);
-                                var isToday = cellDate.Date == today;
-                                var dayEvents = Model.Events.FindAll(e => e.StartDate.Date <= cellDate.Date && e.EndDate.Date >= cellDate.Date);
-                                var cellClass = "Calendar-Day" + (isToday ? " Today-Day table-primary" : "") + (dayEvents.Count > 0 ? " Selected-Calendar-Day" : "");
-                                <td class="@cellClass" style="min-width: 100px;"
-                                    aria-label="@cellDate.ToString("MMMM d")@(dayEvents.Count > 0 ? ", " + dayEvents.Count + " event(s)" : "")">
-                                    <strong>@day</strong>
-                                    @foreach (var ev in dayEvents)
-                                    {
-                                        <div class="small text-truncate">
-                                            <a href="@Model.BasePath?eventId=@ev.Id"
-                                               aria-label="@ev.Title on @cellDate.ToString("MMMM d")">@ev.Title</a>
-                                        </div>
-                                    }
-                                </td>
-                                day++;
-                            }
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <nav class="d-flex align-items-center flex-wrap gap-2" aria-label="Calendar navigation">
+                <button type="button" class="btn btn-outline-secondary btn-sm"
+                        onclick="location.href='@(Model.BasePath)?month=@(firstDay.AddMonths(-1).ToString("yyyy-MM"))'"
+                        aria-label="Previous month: @(firstDay.AddMonths(-1).ToString("MMMM yyyy"))">
+                    <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                </button>
+                <label for="calViewMonth-@Model.ObjectId" class="visually-hidden">Month</label>
+                <select id="calViewMonth-@Model.ObjectId" class="form-select form-select-sm d-inline-block"
+                        style="width: auto;" aria-label="Select month"
+                        onchange="location.href='@(Model.BasePath)?month=@(Model.CurrentMonth.Year)-' + this.value.padStart(2,'0')">
+                    @for (int m = 1; m <= 12; m++)
+                    {
+                        var monthName = new System.DateTime(Model.CurrentMonth.Year, m, 1).ToString("MMMM");
+                        <option value="@m" selected="@(m == Model.CurrentMonth.Month ? "selected" : null)">@monthName</option>
+                    }
+                </select>
+                <label for="calViewYear-@Model.ObjectId" class="visually-hidden">Year</label>
+                <select id="calViewYear-@Model.ObjectId" class="form-select form-select-sm d-inline-block"
+                        style="width: auto;" aria-label="Select year"
+                        onchange="location.href='@(Model.BasePath)?month=' + this.value + '-@(Model.CurrentMonth.Month.ToString("00"))'">
+                    @for (int y = Model.CurrentMonth.Year - 5; y <= Model.CurrentMonth.Year + 5; y++)
+                    {
+                        <option value="@y" selected="@(y == Model.CurrentMonth.Year ? "selected" : null)">@y</option>
+                    }
+                </select>
+                <button type="button" class="btn btn-outline-secondary btn-sm"
+                        onclick="location.href='@(Model.BasePath)?month=@(firstDay.AddMonths(1).ToString("yyyy-MM"))'"
+                        aria-label="Next month: @(firstDay.AddMonths(1).ToString("MMMM yyyy"))">
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-outline-primary btn-sm ms-auto"
+                        onclick="location.href='@(Model.BasePath)?month=@(today.ToString("yyyy-MM"))'">
+                    <i class="bi bi-calendar-date" aria-hidden="true"></i> Today
+                </button>
+            </nav>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="EventCalendar-Calendar table table-bordered mb-0" role="grid"
+                       aria-label="Calendar for @Model.CurrentMonth.ToString("MMMM yyyy")">
+                    <caption class="visually-hidden">@Model.CurrentMonth.ToString("MMMM yyyy") event calendar</caption>
+                    <thead>
+                        <tr class="EventCalendar-Calendar-Title">
+                            <th colspan="7" class="text-center fs-5 fw-bold bg-light" scope="colgroup">
+                                <time datetime="@Model.CurrentMonth.ToString("yyyy-MM")">
+                                    @Model.CurrentMonth.ToString("MMMM yyyy")
+                                </time>
+                            </th>
+                        </tr>
+                        <tr class="Day-Header table-light">
+                            <th scope="col" abbr="Sunday" class="fw-bold text-center">Sun</th>
+                            <th scope="col" abbr="Monday" class="fw-bold text-center">Mon</th>
+                            <th scope="col" abbr="Tuesday" class="fw-bold text-center">Tue</th>
+                            <th scope="col" abbr="Wednesday" class="fw-bold text-center">Wed</th>
+                            <th scope="col" abbr="Thursday" class="fw-bold text-center">Thu</th>
+                            <th scope="col" abbr="Friday" class="fw-bold text-center">Fri</th>
+                            <th scope="col" abbr="Saturday" class="fw-bold text-center">Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var day = 1;
+                            var totalCells = startOffset + daysInMonth;
+                            var rows = (int)System.Math.Ceiling(totalCells / 7.0);
                         }
-                    </tr>
-                }
-            </tbody>
-        </table>
+                        @for (var r = 0; r < rows; r++)
+                        {
+                            <tr>
+                                @for (var c = 0; c < 7; c++)
+                                {
+                                    var cellIndex = r * 7 + c;
+                                    if (cellIndex < startOffset || day > daysInMonth)
+                                    {
+                                        <td class="Calendar-Day Other-Month-Day text-muted bg-light" aria-hidden="true">&nbsp;</td>
+                                    }
+                                    else
+                                    {
+                                        var cellDate = new System.DateTime(Model.CurrentMonth.Year, Model.CurrentMonth.Month, day);
+                                        var isToday = cellDate.Date == today;
+                                        var dayEvents = Model.Events.FindAll(e => e.StartDate.Date <= cellDate.Date && e.EndDate.Date >= cellDate.Date);
+                                        var cellClass = "Calendar-Day" + (isToday ? " Today-Day table-primary" : "") + (dayEvents.Count > 0 ? " Selected-Calendar-Day" : "");
+                                        <td class="@cellClass" style="min-width: 100px; vertical-align: top;"
+                                            aria-label="@cellDate.ToString("MMMM d")@(dayEvents.Count > 0 ? ", " + dayEvents.Count + " event(s)" : "")">
+                                            <strong class="d-block mb-1">@day</strong>
+                                            @foreach (var ev in dayEvents)
+                                            {
+                                                <div class="small text-truncate">
+                                                    <a href="@Model.BasePath?eventId=@ev.Id" class="text-decoration-none"
+                                                       aria-label="@ev.Title on @cellDate.ToString("MMMM d")">
+                                                        <span class="badge bg-primary bg-opacity-75">@ev.Title</span>
+                                                    </a>
+                                                </div>
+                                            }
+                                        </td>
+                                        day++;
+                                    }
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </section>

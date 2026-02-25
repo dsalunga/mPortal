@@ -1,45 +1,61 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.OfficeBrowserViewModel
 <section class="wcms-office-browser" aria-label="Document browser">
-    @if (Model.Documents.Count == 0)
-    {
-        <p class="text-muted" role="status">No documents available.</p>
-    }
-    else
-    {
-        <div class="table-responsive">
-            <table class="table table-hover align-middle" aria-label="Office documents">
-                <thead>
-                    <tr>
-                        <th scope="col">Document</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Size</th>
-                        <th scope="col">Modified</th>
-                        <th scope="col"><span class="visually-hidden">Actions</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var doc in Model.Documents)
-                    {
-                        <tr>
-                            <td>
-                                <i class="bi bi-file-earmark-richtext" aria-hidden="true"></i>
-                                @doc.FileName
-                            </td>
-                            <td><span class="badge bg-info">@doc.FileType</span></td>
-                            <td>@(doc.FileSize < 1024 ? doc.FileSize + " B" : (doc.FileSize / 1024) + " KB")</td>
-                            <td><time><small>@doc.LastModified</small></time></td>
-                            <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @doc.FileName">
-                                    <a href="@doc.FileUrl" class="btn btn-outline-primary" target="_blank"
-                                       rel="noopener" aria-label="View @doc.FileName">View</a>
-                                    <a href="@doc.FileUrl" class="btn btn-outline-secondary" download
-                                       aria-label="Download @doc.FileName">Download</a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h4 class="mb-0">
+                <i class="bi bi-file-earmark-richtext" aria-hidden="true"></i> Documents
+            </h4>
         </div>
-    }
+        <div class="card-body">
+            @if (Model.Documents == null || Model.Documents.Count == 0)
+            {
+                <p class="text-muted text-center py-3" role="status">
+                    <i class="bi bi-folder2-open" aria-hidden="true"></i> No documents available.
+                </p>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle mb-0" aria-label="Office documents">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Document</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Modified</th>
+                                <th scope="col"><span class="visually-hidden">Actions</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var doc in Model.Documents)
+                            {
+                                <tr>
+                                    <td class="fw-semibold">
+                                        <i class="bi bi-file-earmark-richtext text-primary" aria-hidden="true"></i>
+                                        @doc.FileName
+                                    </td>
+                                    <td><span class="badge bg-info text-dark">@doc.FileType</span></td>
+                                    <td><small>@(doc.FileSize < 1024 ? doc.FileSize + " B" : (doc.FileSize / 1024) + " KB")</small></td>
+                                    <td><time><small class="text-muted">@doc.LastModified</small></time></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group"
+                                             aria-label="Actions for @doc.FileName">
+                                            <a href="@doc.FileUrl" class="btn btn-outline-primary" target="_blank"
+                                               rel="noopener" aria-label="View @doc.FileName">
+                                                <i class="bi bi-eye" aria-hidden="true"></i><span class="visually-hidden"> View</span>
+                                            </a>
+                                            <a href="@doc.FileUrl" class="btn btn-outline-secondary" download
+                                               aria-label="Download @doc.FileName">
+                                                <i class="bi bi-download" aria-hidden="true"></i><span class="visually-hidden"> Download</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
 </section>

@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WCMS.BibleReader.Core;
+using WCMS.BibleReader.Core.Providers;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Extensions;
 
@@ -10,6 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddWcmsFramework();
+
+// BibleReader.Core services
+builder.Services.AddSingleton<BibleManager>();
+builder.Services.AddSingleton<BibleVersionProvider>();
+builder.Services.AddSingleton<BibleBookNameProvider>();
+builder.Services.AddSingleton<BibleVersionLanguageProvider>();
+builder.Services.AddSingleton<GenericBibleVerseProvider>();
 
 var app = builder.Build();
 

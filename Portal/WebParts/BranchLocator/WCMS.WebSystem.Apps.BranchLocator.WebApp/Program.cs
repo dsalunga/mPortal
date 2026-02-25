@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Extensions;
+using WCMS.WebSystem.Apps.BranchLocator;
 using WCMS.WebSystem.Apps.BranchLocator.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,9 @@ builder.Services.AddWcmsFramework();
 // EF Core DbContext
 builder.Services.AddDbContext<BranchLocatorDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BranchLocatorDb")));
+
+// BranchLocator data provider
+builder.Services.AddScoped<IMChapterProvider, MChapterSqlProvider>();
 
 var app = builder.Build();
 

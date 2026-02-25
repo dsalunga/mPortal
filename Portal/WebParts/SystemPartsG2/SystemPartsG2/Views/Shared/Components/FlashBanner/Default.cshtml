@@ -4,22 +4,32 @@
        aria-label="@(string.IsNullOrEmpty(Model.AltText) ? "Banner" : Model.AltText)">
     @if (!string.IsNullOrEmpty(Model.BannerUrl))
     {
-        <figure class="figure mb-0 text-center">
-            @if (!string.IsNullOrEmpty(Model.TargetUrl))
-            {
-                <a href="@Model.TargetUrl" target="_blank" rel="noopener noreferrer"
-                   aria-label="@(string.IsNullOrEmpty(Model.AltText) ? "View banner details" : Model.AltText)">
-                    <img src="@Model.BannerUrl" alt="@Model.AltText"
-                         width="@Model.Width" height="@Model.Height"
-                         class="img-fluid figure-img rounded" loading="lazy" />
-                </a>
-            }
-            else
-            {
-                <img src="@Model.BannerUrl" alt="@Model.AltText"
-                     width="@Model.Width" height="@Model.Height"
-                     class="img-fluid figure-img rounded" loading="lazy" />
-            }
-        </figure>
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0 text-center">
+                <figure class="figure mb-0 w-100">
+                    @if (!string.IsNullOrEmpty(Model.TargetUrl))
+                    {
+                        <a href="@Model.TargetUrl" target="_blank" rel="noopener noreferrer"
+                           aria-label="@(string.IsNullOrEmpty(Model.AltText) ? "View banner details" : Model.AltText)">
+                            <img src="@Model.BannerUrl" alt="@Model.AltText"
+                                 width="@Model.Width" height="@Model.Height"
+                                 class="img-fluid rounded" loading="lazy" decoding="async" />
+                        </a>
+                    }
+                    else
+                    {
+                        <img src="@Model.BannerUrl" alt="@Model.AltText"
+                             width="@Model.Width" height="@Model.Height"
+                             class="img-fluid rounded" loading="lazy" decoding="async" />
+                    }
+                </figure>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p class="text-muted text-center py-3" role="status">
+            <i class="bi bi-image" aria-hidden="true"></i> No banner to display.
+        </p>
     }
 </aside>

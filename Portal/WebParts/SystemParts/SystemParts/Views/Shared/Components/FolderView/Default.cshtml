@@ -1,16 +1,27 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.FolderViewViewModel
 <nav class="wcms-folder-view" aria-label="Folder browser">
-    @if (Model.Folders.Count == 0)
-    {
-        <p class="text-muted" role="status">No folders available.</p>
-    }
-    else
-    {
-        <ul class="list-group" role="tree" aria-label="Folder tree">
-            @foreach (var folder in Model.Folders)
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-folder2" aria-hidden="true"></i> Folders
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (Model.Folders == null || Model.Folders.Count == 0)
             {
-                @await Html.PartialAsync("_FolderNode", folder)
+                <p class="text-muted text-center py-3" role="status">
+                    <i class="bi bi-folder-x" aria-hidden="true"></i> No folders available.
+                </p>
             }
-        </ul>
-    }
+            else
+            {
+                <ul class="list-group list-group-flush" role="tree" aria-label="Folder tree">
+                    @foreach (var folder in Model.Folders)
+                    {
+                        @await Html.PartialAsync("_FolderNode", folder)
+                    }
+                </ul>
+            }
+        </div>
+    </div>
 </nav>

@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Compile Remove="AppBundle\**" />
-    <Compile Remove="Properties\AssemblyInfo.cs" />
     <Content Remove="AppBundle\**" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

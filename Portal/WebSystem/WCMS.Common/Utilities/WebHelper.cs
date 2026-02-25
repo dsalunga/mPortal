@@ -5,14 +5,6 @@ using System.Web;
 using System.IO;
 using System.Net;
 using System.Text;
-#if NETFRAMEWORK
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Web.Hosting;
-using System.Web.Caching;
-#endif
 
 namespace WCMS.Common.Utilities
 {
@@ -130,30 +122,6 @@ namespace WCMS.Common.Utilities
                 return ICO_SCRIPT;
         }
 
-#if NETFRAMEWORK
-        public static bool FindTreeNode(TreeNodeCollection nodes, string value)
-        {
-            foreach (TreeNode node in nodes)
-            {
-                if (node.Value == value)
-                {
-                    node.Expand();
-                    node.Select();
-                    return true;
-                }
-                else
-                {
-                    if (FindTreeNode(node.ChildNodes, value))
-                    {
-                        node.Expand();
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-#endif
 
         public static string FormatJsString(string s)
         {
@@ -259,72 +227,19 @@ namespace WCMS.Common.Utilities
             return CombineAddress(baseUrl, remainingUrl);
         }
 
-#if NETFRAMEWORK
-        public static HtmlLink CreateCssLink(string cssUrl)
-        {
-            var link = new HtmlLink();
-            link.Attributes.Add("type", "text/css");
-            link.Attributes.Add("rel", "stylesheet");
-            link.Href = link.ResolveUrl(cssUrl);
-            return link;
-        }
-#endif
 
         public static string CreateCssLinkText(string url)
         {
             return string.Format(@"<link rel=""stylesheet"" type=""text/css"" href=""{0}"" />", url);
         }
 
-#if NETFRAMEWORK
-        public static void RemoveDropDownListItemByValue(DropDownList cbo, object value)
-        {
-            if (value != null && cbo != null)
-            {
-                var item = cbo.Items.FindByValue(value.ToString());
-                if (item != null)
-                    cbo.Items.Remove(item);
-            }
-        }
-#endif
 
-#if NETFRAMEWORK
-        public static HtmlGenericControl CreateJavaScriptLink(string scriptUrl)
-        {
-            var script = new HtmlGenericControl("script");
-            script.Attributes.Add("type", "text/javascript");
-            script.Attributes.Add("src", script.ResolveUrl(scriptUrl));
-
-            return script;
-        }
-#endif
 
         public static string CreateJavaScriptLinkText(string url)
         {
             return string.Format(@"<script src=""{0}"" type=""text/javascript""></script>", url);
         }
 
-#if NETFRAMEWORK
-        public static string CreateButtonLink(HtmlInputButton button, string url)
-        {
-            return button.Attributes["onclick"] = string.Format(SCRIPT_URL_TEMPLATE, url);
-        }
-
-        public static void AspNetAjaxComboBoxSelectText(ListControl comboBox, string text, string value = "")
-        {
-            var listItem = comboBox.Items.FindByText(text);
-            if (listItem == null)
-            {
-                if (string.IsNullOrEmpty(value))
-                    listItem = new ListItem(text);
-                else
-                    listItem = new ListItem(text, value);
-
-                comboBox.Items.Insert(0, listItem);
-            }
-
-            listItem.Selected = true;
-        }
-#endif
 
         public static void DownloadAsXml(DataSet ds)
         {
@@ -448,50 +363,11 @@ namespace WCMS.Common.Utilities
             Compression.Download(absPath, baseFilename, password);
         }
 
-#if NETFRAMEWORK
-        public static bool SetCboValue(DropDownList cbo, int value)
-        {
-            return SetCboValue(cbo, value.ToString());
-        }
-
-        public static bool SetCboValue(DropDownList cbo, char value)
-        {
-            return SetCboValue(cbo, value.ToString());
-        }
-
-        public static bool SetCboValue(DropDownList cbo, string value)
-        {
-            if (cbo.Items.FindByValue(value) != null)
-            {
-                cbo.SelectedValue = value;
-                return true;
-            }
-
-            return false;
-        }
-#endif
 
         public static bool IsAbsUrl(string loginUrl)
         {
             return !string.IsNullOrEmpty(loginUrl) && loginUrl.Contains("://");
         }
 
-#if NETFRAMEWORK
-        public static string Version(string rootRelativePath)
-        {
-            if (HttpRuntime.Cache[rootRelativePath] == null)
-            {
-                var absolutePath = HostingEnvironment.MapPath(rootRelativePath);
-                var lastChangedDateTime = File.GetLastWriteTime(absolutePath);
-
-                if (rootRelativePath.StartsWith("~"))
-                    rootRelativePath = rootRelativePath.Substring(1);
-
-                var versionedUrl = rootRelativePath + "?v=" + lastChangedDateTime.Ticks;
-                HttpRuntime.Cache.Insert(rootRelativePath, versionedUrl, new CacheDependency(absolutePath));
-            }
-            return HttpRuntime.Cache[rootRelativePath] as string;
-        }
-#endif
     }
 }

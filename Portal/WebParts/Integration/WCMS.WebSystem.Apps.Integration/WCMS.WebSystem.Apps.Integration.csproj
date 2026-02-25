@@ -25,39 +25,4 @@
     <ProjectReference Include="..\..\SystemPartsG2\WCMS.WebSystem.WebParts.Social\WCMS.Framework.Social.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.WebSystem.ViewModels\WCMS.WebSystem.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="MemberLink1.cs" />
-    <Compile Remove="Providers\MemberLinkProvider1.cs" />
-    <!-- Exclude EF6 EDMX-generated files (not compatible with EF Core) -->
-    <Compile Remove="ExternalDBModel.Designer.cs" />
-    <Compile Remove="MusicModel.Context.cs" />
-    <Compile Remove="MusicModel.Designer.cs" />
-    <!-- Exclude WCF Service Reference proxies (System.ServiceModel not available in .NET 10) -->
-    <Compile Remove="Service References\**\*.cs" />
-    <!-- Exclude WCF SOAP client wrappers -->
-    <Compile Remove="AttendanceWS\AttendanceSoapClient.cs" />
-    <Compile Remove="MemberWS\MemberSoapClient.cs" />
-    <!-- Exclude partial class extensions of WCF-generated types -->
-    <Compile Remove="MemberWS\Member.cs" />
-    <Compile Remove="MemberWS\MemberPhoto.cs" />
-    <Compile Remove="MemberWS\MemberAttendance.cs" />
-    <!-- Exclude files that depend on WCF service proxy types -->
-    <Compile Remove="ExternalHelper.cs" />
-    <Compile Remove="External\ServiceScheduleHelper.cs" />
-    <Compile Remove="ExtApp\ExtAppProvider.cs" />
-    <!-- Exclude files that depend on WCF-generated MemberAttendance type -->
-    <Compile Remove="LessonReviewerSession.cs" />
-    <Compile Remove="MakeUpSession.cs" />
-    <Compile Remove="Providers\LessonReviewerSessionSqlProvider.cs" />
-    <!-- Exclude files tightly coupled to WCF ExternalMemberWS.Member type -->
-    <Compile Remove="Providers\IMemberProvider.cs" />
-    <Compile Remove="Providers\MemberSqlProvider.cs" />
-    <Compile Remove="MusicCompetition\Providers\ExternalMemberSqlProvider.cs" />
-    <Compile Remove="Task\MemberRegistrationTask.cs" />
-    <Compile Remove="Task\MemberDOBUpdaterTask.cs" />
-    <Compile Remove="Task\ProfileExtSyncTask.cs" />
-    <!-- Exclude EF6 model-dependent file -->
-    <Compile Remove="External\ExternalCountry.cs" />
-  </ItemGroup>
 </Project>

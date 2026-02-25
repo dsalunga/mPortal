@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Compile Remove="BranchLocator\Controllers\**" />
-    <Compile Remove="Properties\AssemblyInfo.cs" />
     <Content Remove="BranchLocator\**" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

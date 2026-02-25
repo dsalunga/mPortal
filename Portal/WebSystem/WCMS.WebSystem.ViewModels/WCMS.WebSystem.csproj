@@ -15,21 +15,6 @@
     <PackageReference Include="System.Runtime.Caching" Version="9.0.0" />
   </ItemGroup>
 
-  <!-- Files that are entirely WebForms/MVC5-specific and cannot compile on .NET 10 -->
-  <ItemGroup>
-    <Compile Remove="WPage.cs" />
-    <Compile Remove="WUserControl.cs" />
-    <Compile Remove="RazorHelper.cs" />
-    <Compile Remove="WebCommentHelper.cs" />
-    <Compile Remove="ViewModel\WLoaderPageBase.cs" />
-    <Compile Remove="ViewModel\WebPartBase.cs" />
-    <Compile Remove="ViewModel\WebPartViewModel.cs" />
-    <Compile Remove="ViewModel\WebGroupViewModel.cs" />
-    <Compile Remove="ViewModel\WebOfficeViewModel.cs" />
-    <Compile Remove="ViewModel\WebPageViewModel.cs" />
-    <Compile Remove="ViewModel\WebSiteViewModel.cs" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\WCMS.Common\WCMS.Common.csproj" />
     <ProjectReference Include="..\WCMS.Framework\WCMS.Framework.csproj" />

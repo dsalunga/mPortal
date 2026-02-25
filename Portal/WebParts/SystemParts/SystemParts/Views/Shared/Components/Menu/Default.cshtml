@@ -5,34 +5,46 @@
     CSS classes preserved: Menu, StaticMenuItem, StaticHover, DynamicMenuItem, DynamicMenu, DynamicHover
 *@
 <nav class="Menu wcms-cascade-menu navbar navbar-expand-lg" aria-label="Main navigation">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#cascadeMenu-@Model.ObjectId" aria-expanded="false"
-            aria-controls="cascadeMenu-@Model.ObjectId" aria-label="Toggle navigation menu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="cascadeMenu-@Model.ObjectId">
-        <ul class="navbar-nav" role="menubar">
-            @foreach (var item in Model.Items)
-            {
-                var hasChildren = item.Children != null && item.Children.Count > 0;
-                <li class="nav-item StaticMenuItem @(hasChildren ? "dropdown" : "") @item.CssClass" role="none">
-                    @if (hasChildren)
-                    {
-                        <a class="nav-link dropdown-toggle StaticMenuItem" href="#" role="menuitem"
-                           data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">@item.Title</a>
-                        <ul class="dropdown-menu DynamicMenu" role="menu" aria-label="@item.Title submenu">
-                            @foreach (var child in item.Children)
-                            {
-                                <li role="none"><a class="dropdown-item DynamicMenuItem" href="@child.Url" role="menuitem">@child.Title</a></li>
-                            }
-                        </ul>
-                    }
-                    else
-                    {
-                        <a class="nav-link StaticMenuItem" href="@item.Url" role="menuitem">@item.Title</a>
-                    }
-                </li>
-            }
-        </ul>
-    </div>
+    @if (Model.Items == null || Model.Items.Count == 0)
+    {
+        <p class="text-muted fst-italic mb-0 p-2" role="status">No menu items available.</p>
+    }
+    else
+    {
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainMenu-@Model.ObjectId" aria-expanded="false"
+                aria-controls="mainMenu-@Model.ObjectId" aria-label="Toggle navigation menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainMenu-@Model.ObjectId">
+            <ul class="navbar-nav" role="menubar">
+                @foreach (var item in Model.Items)
+                {
+                    var hasChildren = item.Children != null && item.Children.Count > 0;
+                    <li class="nav-item StaticMenuItem @(hasChildren ? "dropdown" : "") @item.CssClass" role="none">
+                        @if (hasChildren)
+                        {
+                            <a class="nav-link dropdown-toggle StaticMenuItem" href="#" role="menuitem"
+                               id="mainMenuDropdown-@item.Id" data-bs-toggle="dropdown"
+                               aria-expanded="false" aria-haspopup="true">@item.Title</a>
+                            <ul class="dropdown-menu DynamicMenu shadow-sm" role="menu"
+                                aria-labelledby="mainMenuDropdown-@item.Id">
+                                @foreach (var child in item.Children)
+                                {
+                                    <li role="none">
+                                        <a class="dropdown-item DynamicMenuItem" href="@child.Url"
+                                           role="menuitem">@child.Title</a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <a class="nav-link StaticMenuItem" href="@item.Url" role="menuitem">@item.Title</a>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    }
 </nav>

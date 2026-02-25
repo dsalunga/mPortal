@@ -4,53 +4,43 @@
      aria-label="Share this page">
     @if (Model.Providers != null && Model.Providers.Count > 0)
     {
-        <ul class="list-unstyled d-inline-flex gap-2 mb-0" role="list">
+        <div class="d-flex flex-wrap gap-2" role="list">
             @foreach (var provider in Model.Providers)
             {
-                <li>
-                    <a href="@provider.ShareUrl" target="_blank" rel="noopener noreferrer"
-                       class="btn btn-outline-secondary btn-sm" role="button"
-                       aria-label="Share on @provider.Name">
-                        @if (!string.IsNullOrEmpty(provider.IconCss))
-                        {
-                            <i class="@provider.IconCss" aria-hidden="true"></i>
-                        }
-                        <span>@provider.Name</span>
-                    </a>
-                </li>
+                <a href="@provider.ShareUrl" target="_blank" rel="noopener noreferrer"
+                   class="btn btn-outline-secondary btn-sm" role="listitem"
+                   aria-label="Share on @provider.Name">
+                    @if (!string.IsNullOrEmpty(provider.IconCss))
+                    {
+                        <i class="@provider.IconCss" aria-hidden="true"></i>
+                    }
+                    <span>@provider.Name</span>
+                </a>
             }
-        </ul>
+        </div>
     }
     else
     {
-        <ul class="list-unstyled d-inline-flex gap-2 mb-0" role="list">
-            <li>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=@Uri.EscapeDataString(Model.PageUrl ?? "")"
-                   target="_blank" rel="noopener noreferrer"
-                   class="btn btn-outline-primary btn-sm" role="button" aria-label="Share on Facebook">
-                    <i class="bi bi-facebook" aria-hidden="true"></i> Facebook
-                </a>
-            </li>
-            <li>
-                <a href="https://twitter.com/intent/tweet?url=@Uri.EscapeDataString(Model.PageUrl ?? "")&text=@Uri.EscapeDataString(Model.PageTitle ?? "")"
-                   target="_blank" rel="noopener noreferrer"
-                   class="btn btn-outline-info btn-sm" role="button" aria-label="Share on Twitter">
-                    <i class="bi bi-twitter" aria-hidden="true"></i> Twitter
-                </a>
-            </li>
-            <li>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=@Uri.EscapeDataString(Model.PageUrl ?? "")"
-                   target="_blank" rel="noopener noreferrer"
-                   class="btn btn-outline-primary btn-sm" role="button" aria-label="Share on LinkedIn">
-                    <i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn
-                </a>
-            </li>
-            <li>
-                <a href="mailto:?subject=@Uri.EscapeDataString(Model.PageTitle ?? "")&body=@Uri.EscapeDataString(Model.PageUrl ?? "")"
-                   class="btn btn-outline-secondary btn-sm" role="button" aria-label="Share via Email">
-                    <i class="bi bi-envelope" aria-hidden="true"></i> Email
-                </a>
-            </li>
-        </ul>
+        <div class="d-flex flex-wrap gap-2" role="list">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=@Uri.EscapeDataString(Model.PageUrl ?? "")"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline-primary btn-sm" role="listitem" aria-label="Share on Facebook">
+                <i class="bi bi-facebook" aria-hidden="true"></i> Facebook
+            </a>
+            <a href="https://twitter.com/intent/tweet?url=@Uri.EscapeDataString(Model.PageUrl ?? "")&text=@Uri.EscapeDataString(Model.PageTitle ?? "")"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline-info btn-sm" role="listitem" aria-label="Share on Twitter">
+                <i class="bi bi-twitter" aria-hidden="true"></i> Twitter
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=@Uri.EscapeDataString(Model.PageUrl ?? "")"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline-primary btn-sm" role="listitem" aria-label="Share on LinkedIn">
+                <i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn
+            </a>
+            <a href="mailto:?subject=@Uri.EscapeDataString(Model.PageTitle ?? "")&body=@Uri.EscapeDataString(Model.PageUrl ?? "")"
+               class="btn btn-outline-secondary btn-sm" role="listitem" aria-label="Share via Email">
+                <i class="bi bi-envelope" aria-hidden="true"></i> Email
+            </a>
+        </div>
     }
 </nav>

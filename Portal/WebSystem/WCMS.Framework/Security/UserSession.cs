@@ -8,6 +8,9 @@ namespace WCMS.Framework
     [Serializable]
     public class UserSession
     {
+        /// <summary>Parameterless constructor for deserialization.</summary>
+        public UserSession() { }
+
         public UserSession(int userId, UserSessionBrowser browser)
         {
             UserId = userId;

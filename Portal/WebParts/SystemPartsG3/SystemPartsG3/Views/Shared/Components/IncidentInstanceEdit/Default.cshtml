@@ -3,38 +3,40 @@
 <section class="incident-instance-edit" aria-labelledby="instanceEditHeading-@Model.ObjectId">
     <h4 class="mb-3" id="instanceEditHeading-@Model.ObjectId">@(Model.InstanceId > 0 ? "Edit" : "Add") Incident Instance</h4>
 
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-body">
+            <p class="text-muted small mb-3"><span class="text-danger" aria-hidden="true">*</span> <span class="visually-hidden">Asterisk</span> indicates a required field.</p>
+
             <form method="post" class="needs-validation" novalidate aria-labelledby="instanceEditHeading-@Model.ObjectId">
                 <input type="hidden" name="InstanceId" value="@Model.InstanceId" />
                 <input type="hidden" name="ObjectId" value="@Model.ObjectId" />
 
                 <fieldset class="mb-4">
-                    <legend class="h6 border-bottom pb-2">General Information</legend>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
+                    <legend class="h6 border-bottom pb-2 mb-3">General Information</legend>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
                             <label for="instanceName-@Model.ObjectId" class="form-label">Name <span class="text-danger" aria-hidden="true">*</span></label>
                             <input type="text" class="form-control" id="instanceName-@Model.ObjectId" name="Name"
-                                   value="@Model.Name" required maxlength="255" aria-required="true" />
+                                   value="@Model.Name" required maxlength="255" aria-required="true"
+                                   placeholder="Enter instance name" />
                             <div class="invalid-feedback">Please enter an instance name.</div>
                         </div>
 
-                        <div class="col-md-6 mb-3">
+                        <div class="col-sm-6">
                             <label for="instancePrefix-@Model.ObjectId" class="form-label">Incident Prefix</label>
                             <input type="text" class="form-control" id="instancePrefix-@Model.ObjectId" name="IncidentPrefix"
-                                   value="@Model.IncidentPrefix" maxlength="50" aria-describedby="prefixHelp-@Model.ObjectId" />
-                            <div id="prefixHelp-@Model.ObjectId" class="form-text">Prefix used for ticket identifiers (e.g., INC).</div>
+                                   value="@Model.IncidentPrefix" maxlength="50" aria-describedby="prefixHelp-@Model.ObjectId"
+                                   placeholder="e.g., INC" />
+                            <div id="prefixHelp-@Model.ObjectId" class="form-text">Prefix used for ticket identifiers.</div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-sm-6">
                             <label for="instanceBaseGroup-@Model.ObjectId" class="form-label">Base Group</label>
                             <input type="text" class="form-control" id="instanceBaseGroup-@Model.ObjectId" name="BaseGroup"
                                    value="@Model.BaseGroup" />
                         </div>
 
-                        <div class="col-md-6 mb-3">
+                        <div class="col-sm-6">
                             <label for="instanceSupportGroupPath-@Model.ObjectId" class="form-label">Support Group Path</label>
                             <input type="text" class="form-control" id="instanceSupportGroupPath-@Model.ObjectId" name="SupportGroupPath"
                                    value="@Model.SupportGroupPath" />
@@ -43,38 +45,36 @@
                 </fieldset>
 
                 <fieldset class="mb-4">
-                    <legend class="h6 border-bottom pb-2">SLA Configuration</legend>
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
+                    <legend class="h6 border-bottom pb-2 mb-3">SLA Configuration</legend>
+                    <div class="row g-3">
+                        <div class="col-sm-6 col-lg-4">
                             <label for="instanceSLAHigh-@Model.ObjectId" class="form-label">High Duration</label>
                             <div class="input-group">
                                 <input type="number" class="form-control" id="instanceSLAHigh-@Model.ObjectId" name="SLAHighDuration"
                                        value="@Model.SLAHighDuration" min="0" aria-describedby="slaHighUnit-@Model.ObjectId" />
-                                <span class="input-group-text" id="slaHighUnit-@Model.ObjectId">minutes</span>
+                                <span class="input-group-text" id="slaHighUnit-@Model.ObjectId">min</span>
                             </div>
                         </div>
 
-                        <div class="col-md-4 mb-3">
+                        <div class="col-sm-6 col-lg-4">
                             <label for="instanceSLANormal-@Model.ObjectId" class="form-label">Normal Duration</label>
                             <div class="input-group">
                                 <input type="number" class="form-control" id="instanceSLANormal-@Model.ObjectId" name="SLANormalDuration"
                                        value="@Model.SLANormalDuration" min="0" aria-describedby="slaNormalUnit-@Model.ObjectId" />
-                                <span class="input-group-text" id="slaNormalUnit-@Model.ObjectId">minutes</span>
+                                <span class="input-group-text" id="slaNormalUnit-@Model.ObjectId">min</span>
                             </div>
                         </div>
 
-                        <div class="col-md-4 mb-3">
+                        <div class="col-sm-6 col-lg-4">
                             <label for="instanceSLALow-@Model.ObjectId" class="form-label">Low Duration</label>
                             <div class="input-group">
                                 <input type="number" class="form-control" id="instanceSLALow-@Model.ObjectId" name="SLALowDuration"
                                        value="@Model.SLALowDuration" min="0" aria-describedby="slaLowUnit-@Model.ObjectId" />
-                                <span class="input-group-text" id="slaLowUnit-@Model.ObjectId">minutes</span>
+                                <span class="input-group-text" id="slaLowUnit-@Model.ObjectId">min</span>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-sm-6 col-lg-4">
                             <label for="instanceSLAWarning-@Model.ObjectId" class="form-label">Warning Percentage</label>
                             <div class="input-group">
                                 <input type="number" class="form-control" id="instanceSLAWarning-@Model.ObjectId" name="SLAWarningPercentage"
@@ -85,11 +85,11 @@
                     </div>
                 </fieldset>
 
-                <div class="d-flex gap-2">
+                <div class="d-flex flex-wrap gap-2 pt-2 border-top">
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-check-lg" aria-hidden="true"></i> Save
                     </button>
-                    <button type="button" class="btn btn-secondary" data-action="cancel">
+                    <button type="button" class="btn btn-outline-secondary" data-action="cancel">
                         <i class="bi bi-x-lg" aria-hidden="true"></i> Cancel
                     </button>
                 </div>

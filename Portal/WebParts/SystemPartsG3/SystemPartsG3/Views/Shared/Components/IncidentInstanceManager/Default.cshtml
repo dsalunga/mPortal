@@ -11,57 +11,65 @@
         }
     </header>
 
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover mb-0" aria-labelledby="instanceManagerHeading-@Model.ObjectId">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Prefix</th>
-                            <th scope="col">Base Group</th>
-                            <th scope="col" class="text-center">SLA Warning</th>
-                            @if (Model.CanEdit)
-                            {
-                                <th scope="col" class="text-end">Actions</th>
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Instances == null || Model.Instances.Count == 0)
-                        {
+            @if (Model.Instances == null || Model.Instances.Count == 0)
+            {
+                <div class="text-center py-5" role="status">
+                    <i class="bi bi-hdd-stack fs-1 text-muted d-block mb-2" aria-hidden="true"></i>
+                    <p class="text-muted mb-0">No instances found.</p>
+                    @if (Model.CanEdit)
+                    {
+                        <button type="button" class="btn btn-outline-primary btn-sm mt-3" data-action="add-instance">
+                            <i class="bi bi-plus-lg" aria-hidden="true"></i> Create your first instance
+                        </button>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle mb-0" aria-labelledby="instanceManagerHeading-@Model.ObjectId">
+                        <caption class="visually-hidden">List of incident instances</caption>
+                        <thead class="table-light">
                             <tr>
-                                <td colspan="@(Model.CanEdit ? 5 : 4)" class="text-center text-muted py-4" role="status">No instances found.</td>
+                                <th scope="col">Name</th>
+                                <th scope="col">Prefix</th>
+                                <th scope="col" class="d-none d-md-table-cell">Base Group</th>
+                                <th scope="col" class="text-center d-none d-sm-table-cell">SLA Warning</th>
+                                @if (Model.CanEdit)
+                                {
+                                    <th scope="col" class="text-end">Actions</th>
+                                }
                             </tr>
-                        }
-                        else
-                        {
-                            foreach (var instance in Model.Instances)
+                        </thead>
+                        <tbody>
+                            @foreach (var instance in Model.Instances)
                             {
                                 <tr>
                                     <td><strong>@instance.Name</strong></td>
                                     <td><code>@instance.IncidentPrefix</code></td>
-                                    <td>@instance.BaseGroup</td>
-                                    <td class="text-center"><span class="badge bg-info text-dark">@instance.SLAWarningPercentage%</span></td>
+                                    <td class="d-none d-md-table-cell">@instance.BaseGroup</td>
+                                    <td class="text-center d-none d-sm-table-cell"><span class="badge bg-info text-dark rounded-pill">@instance.SLAWarningPercentage%</span></td>
                                     @if (Model.CanEdit)
                                     {
-                                        <td class="text-end">
+                                        <td class="text-end text-nowrap">
                                             <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @instance.Name">
                                                 <button type="button" class="btn btn-outline-primary" data-action="view-instance" data-id="@instance.Id" aria-label="View @instance.Name">
-                                                    <i class="bi bi-eye" aria-hidden="true"></i> View
+                                                    <i class="bi bi-eye" aria-hidden="true"></i><span class="d-none d-lg-inline ms-1">View</span>
                                                 </button>
                                                 <button type="button" class="btn btn-outline-danger" data-action="delete-instance" data-id="@instance.Id" aria-label="Delete @instance.Name">
-                                                    <i class="bi bi-trash" aria-hidden="true"></i> Delete
+                                                    <i class="bi bi-trash" aria-hidden="true"></i><span class="d-none d-lg-inline ms-1">Delete</span>
                                                 </button>
                                             </div>
                                         </td>
                                     }
                                 </tr>
                             }
-                        }
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
+            }
         </div>
     </div>
 </section>

@@ -1,54 +1,66 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.MediaAdminViewModel
 <section id="media-admin-@Model.ObjectId" class="wcms-media-admin" data-object-id="@Model.ObjectId"
          aria-labelledby="media-admin-heading-@Model.ObjectId">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 id="media-admin-heading-@Model.ObjectId">Media Management</h4>
-        <button type="button" class="btn btn-primary btn-sm" aria-label="Upload new media">
-            <i class="bi bi-upload" aria-hidden="true"></i> Upload Media
-        </button>
-    </div>
-    @if (Model.Items.Count == 0)
-    {
-        <div class="alert alert-info" role="status">No media items configured.</div>
-    }
-    else
-    {
-        <div class="table-responsive">
-            <table class="table table-striped table-hover align-middle"
-                   aria-describedby="media-admin-heading-@Model.ObjectId">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">File</th>
-                        <th scope="col">Size</th>
-                        <th scope="col">Active</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Items)
-                    {
-                        <tr>
-                            <td>@item.Title</td>
-                            <td><span class="badge bg-light text-dark">@item.MediaType</span></td>
-                            <td><code>@item.FileName</code></td>
-                            <td>@item.FileSize</td>
-                            <td>
-                                <span class="badge @(item.IsActive ? "bg-success" : "bg-secondary")">
-                                    @(item.IsActive ? "Active" : "Inactive")
-                                </span>
-                            </td>
-                            <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @item.Title">
-                                    <button class="btn btn-outline-primary" aria-label="Edit @item.Title">Edit</button>
-                                    <button class="btn btn-outline-danger" aria-label="Delete @item.Title">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+    <div class="card shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="mb-0" id="media-admin-heading-@Model.ObjectId">
+                <i class="bi bi-collection-play" aria-hidden="true"></i> Media Management
+            </h4>
+            <button type="button" class="btn btn-primary btn-sm" aria-label="Upload new media">
+                <i class="bi bi-upload" aria-hidden="true"></i> Upload Media
+            </button>
         </div>
-    }
+        <div class="card-body">
+            @if (Model.Items == null || Model.Items.Count == 0)
+            {
+                <p class="text-muted text-center py-3" role="status">
+                    <i class="bi bi-inbox" aria-hidden="true"></i> No media items configured.
+                </p>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle"
+                           aria-describedby="media-admin-heading-@Model.ObjectId">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">File</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Active</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Items)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td><span class="badge bg-light text-dark">@item.MediaType</span></td>
+                                    <td><code>@item.FileName</code></td>
+                                    <td>@item.FileSize</td>
+                                    <td>
+                                        <span class="badge @(item.IsActive ? "bg-success" : "bg-secondary")">
+                                            @(item.IsActive ? "Active" : "Inactive")
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @item.Title">
+                                            <button class="btn btn-outline-primary" aria-label="Edit @item.Title">
+                                                <i class="bi bi-pencil" aria-hidden="true"></i> Edit
+                                            </button>
+                                            <button class="btn btn-outline-danger" aria-label="Delete @item.Title">
+                                                <i class="bi bi-trash" aria-hidden="true"></i> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
 </section>
