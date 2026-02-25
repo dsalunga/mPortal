@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 using WCMS.Common.Net;
 using WCMS.Common.Utilities;
 
@@ -31,7 +31,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                         break;
                 }
             }
-            HttpContext.Current.Response.End();
+            WCMS.Common.Utilities.HttpContextHelper.Current?.Response.CompleteAsync().Wait();
         }
 
         public static void InvokeWindowsFileDownload(RemoteItem item, bool force)

@@ -14,7 +14,7 @@ using WCMS.WebSystem.Apps.Integration.ExtApp;
 using WCMS.Framework.Net;
 using WCMS.WebSystem.Agent;
 using WCMS.Framework.Core;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace WCMS.WebSystem.Apps.Integration
 {

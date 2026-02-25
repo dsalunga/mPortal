@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web;
-using System.Web.SessionState;
+using Microsoft.AspNetCore.Http;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework.Diagnostics;
@@ -17,13 +16,13 @@ namespace WCMS.Framework
         public const string DefaultName = "WSession";
 
         private static UserSessionManager _userSessions = new UserSessionManager();
-        private static Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContextAccessor;
+        private static IHttpContextAccessor _httpContextAccessor;
 
         /// <summary>
         /// Configures WSession to resolve IWSession from DI when available.
         /// Call from application startup after building the service provider.
         /// </summary>
-        public static void Configure(Microsoft.AspNetCore.Http.IHttpContextAccessor accessor)
+        public static void Configure(IHttpContextAccessor accessor)
         {
             _httpContextAccessor = accessor;
         }
@@ -133,20 +132,21 @@ namespace WCMS.Framework
                         return resolved;
                 }
 
-                // Fall back to legacy System.Web session behavior
-                WSession current = Context.Session == null ? null : Context.Session[DefaultName] as WSession;
-                if (current == null)
-                {
-                    current = new WSession();
-                    current.InDesignPanelExpanded = WConfig.PanelExpanded;
-                    Context.Session[DefaultName] = current;
-                }
+                // Fall back to HttpContext.Items for per-request caching
+                var ctx = Context;
+                if (ctx?.Items != null && ctx.Items.TryGetValue(DefaultName, out var cached) && cached is WSession existing)
+                    return existing;
+
+                var current = new WSession();
+                current.InDesignPanelExpanded = WConfig.PanelExpanded;
+                if (ctx?.Items != null)
+                    ctx.Items[DefaultName] = current;
 
                 return current;
             }
         }
 
-        public static HttpSessionState Session
+        public static ISession Session
         {
             get { return Context.Session; }
         }
@@ -202,14 +202,16 @@ namespace WCMS.Framework
 
         public static HttpContext Context
         {
-            get { return HttpContext.Current; }
+            get { return HttpContextHelper.Current; }
         }
 
         #endregion
 
         public void Update()
         {
-            Context.Session[Name] = this;
+            var ctx = Context;
+            if (ctx?.Items != null)
+                ctx.Items[Name] = this;
         }
 
 
@@ -239,13 +241,13 @@ namespace WCMS.Framework
             if (uid > 0)
             {
                 LogSessionEvent(uid, EventLogConstants.EndSession);
-                _userSessions.End(uid, force ? "" : Session.SessionID);
+                _userSessions.End(uid, force ? "" : Session.Id);
             }
 
             if (userId == -1)
             {
                 session.UserId = -1;
-                Context.Session.Abandon();
+                Context.Session.Clear();
                 ClearLoginCookie(Context);
             }
         }
@@ -279,7 +281,7 @@ namespace WCMS.Framework
             var session = _userSessions.Create(Context, userId, -1);
             var browser = session.LastBrowserSession;
             browser.IPAddress = WHelper.GetUserHostAddress();
-            browser.UserAgent = Context.Request.UserAgent;
+            browser.UserAgent = Context.Request.Headers.UserAgent.ToString();
             return browser;
         }
 
@@ -328,15 +330,15 @@ namespace WCMS.Framework
         public static WebUser CheckLoginCookie(HttpContext context, bool clearIfInvalid = true)
         {
             var ctx = (context ?? Context);
-            var cookie = ctx.Request.Cookies[APP_COOKIE_NAME];
-            if (cookie != null)
+            var cookieValue = ctx.Request.Cookies[APP_COOKIE_NAME];
+            if (cookieValue != null)
             {
                 var manager = new LoginCookieManager();
-                var user = manager.IsValidAuthCookieValue(cookie.Value);
+                var user = manager.IsValidAuthCookieValue(cookieValue);
                 if (user != null)
                     return user;
 
-                ClearLoginCookie(ctx, cookie);
+                ClearLoginCookie(ctx);
             }
 
             return null;
@@ -350,30 +352,21 @@ namespace WCMS.Framework
         public static void ClearLoginCookie(HttpContext context = null)
         {
             var ctx = (context ?? Context);
-            var cookie = ctx.Request.Cookies[APP_COOKIE_NAME];
-            if (cookie != null)
+            if (ctx.Request.Cookies[APP_COOKIE_NAME] != null)
             {
-                cookie.Expires = DateTime.Now.AddYears(-1);
-                ctx.Response.Cookies.Add(cookie);
+                ctx.Response.Cookies.Delete(APP_COOKIE_NAME);
             }
-        }
-
-        public static void ClearLoginCookie(HttpContext context, HttpCookie cookie)
-        {
-            cookie.Expires = DateTime.Now.AddYears(-1);
-            context.Response.Cookies.Add(cookie);
         }
 
         public static void RememberLogin(WebUser user, string password, HttpContext context = null)
         {
             var ctx = (context ?? Context);
             var manager = new LoginCookieManager();
-            var cookie = ctx.Request.Cookies[APP_COOKIE_NAME];
-            if (cookie == null) cookie = new HttpCookie(APP_COOKIE_NAME);
-
-            cookie.Expires = DateTime.Now.AddDays(60);
-            cookie.Value = manager.GetAuthCookieValue(user.Id, password);
-            ctx.Response.Cookies.Add(cookie);
+            var cookieOptions = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(60)
+            };
+            ctx.Response.Cookies.Append(APP_COOKIE_NAME, manager.GetAuthCookieValue(user.Id, password), cookieOptions);
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Specialized;
-using System.Web;
+using System.Net;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace WCMS.Common.Utilities
 {
@@ -38,18 +39,20 @@ namespace WCMS.Common.Utilities
         public QueryParser(bool useHttpContext)
         {
             if (useHttpContext)
-                Init(HttpContext.Current.Request);
+                Init(HttpContextHelper.Current.Request);
         }
 
         public void Init(HttpRequest request)
         {
-            string pageId = request[PageIdInternal];
-            string requestPath = request.AppRelativeCurrentExecutionFilePath;
+            string pageId = request.Query[PageIdInternal];
+            string requestPath = request.Path;
             if (pageId != null && (requestPath.Equals("~/Default.aspx") || requestPath.Equals("~/Static.aspx")))
             {
-                int qIndex = request.RawUrl.IndexOf("?");
-                BasePath = qIndex > 0 ? request.RawUrl.Substring(0, qIndex) : request.RawUrl;
-                Add(request.QueryString);
+                var rawUrl = request.Path + request.QueryString.ToString();
+                int qIndex = rawUrl.IndexOf("?");
+                BasePath = qIndex > 0 ? rawUrl.Substring(0, qIndex) : rawUrl;
+                foreach (var key in request.Query.Keys)
+                    if (key != null) Add(key, request.Query[key]);
 
                 // For further checking...
                 // When the page has been rewritten but still containing a pageId then...
@@ -57,8 +60,9 @@ namespace WCMS.Common.Utilities
             }
             else
             {
-                BasePath = request.CurrentExecutionFilePath;
-                Add(request.QueryString);
+                BasePath = request.Path;
+                foreach (var key in request.Query.Keys)
+                    if (key != null) Add(key, request.Query[key]);
             }
         }
 
@@ -67,9 +71,6 @@ namespace WCMS.Common.Utilities
             Init(request);
         }
 
-
-        public QueryParser(HttpApplication a)
-            : this(a.Request) { }
 
         public QueryParser(HttpContext c)
             : this(c.Request) { }
@@ -146,7 +147,7 @@ namespace WCMS.Common.Utilities
 
         public string EncodedBasePath
         {
-            get { return HttpUtility.UrlEncode(_basePath); }
+            get { return WebUtility.UrlEncode(_basePath); }
         }
 
         public string BaseFileName
@@ -156,7 +157,7 @@ namespace WCMS.Common.Utilities
 
         public static HttpContext Context
         {
-            get { return HttpContext.Current; }
+            get { return HttpContextHelper.Current; }
         }
 
         #endregion
@@ -170,7 +171,10 @@ namespace WCMS.Common.Utilities
 
         public void AddParams(string queryString)
         {
-            Add(HttpUtility.ParseQueryString(queryString));
+            var parsed = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(queryString);
+            foreach (var kvp in parsed)
+                foreach (var val in kvp.Value)
+                    Add(kvp.Key, val);
         }
 
         public string Get(string key, string nullEmptyDefaultValue)
@@ -204,8 +208,8 @@ namespace WCMS.Common.Utilities
         {
             if (string.IsNullOrEmpty(BaseAddress))
             {
-                var url = Context.Request.Url;
-                BaseAddress = url.Scheme + "://" + url.Authority;
+                var ctx = Context;
+                BaseAddress = ctx.Request.Scheme + "://" + ctx.Request.Host;
             }
         }
 
@@ -346,7 +350,7 @@ namespace WCMS.Common.Utilities
         {
             string value = this[key];
             if (!string.IsNullOrEmpty(value))
-                return HttpUtility.UrlDecode(value).Replace("|", "&");
+                return WebUtility.UrlDecode(value).Replace("|", "&");
 
             return string.Empty;
         }
@@ -371,7 +375,7 @@ namespace WCMS.Common.Utilities
 
         public static void StaticRedirect()
         {
-            var query = new QueryParser(HttpContext.Current);
+            var query = new QueryParser(HttpContextHelper.Current);
             query.Redirect();
         }
 
@@ -395,7 +399,7 @@ namespace WCMS.Common.Utilities
 
         public static string StaticGet(string key, HttpRequest request)
         {
-            return request[key];
+            return request.Query[key];
         }
 
         #endregion

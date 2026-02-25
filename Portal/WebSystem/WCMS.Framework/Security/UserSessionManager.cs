@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;
 
 namespace WCMS.Framework
@@ -134,7 +134,7 @@ namespace WCMS.Framework
                 //UserSession session = null;
                 if (SessionContainsKey(userId))
                 {
-                    var aspNetSessionID = context.Session.SessionID;
+                    var aspNetSessionID = context.Session.Id;
                     UserSessionBrowser browser = null;
                     if (_browserCache.ContainsKey(aspNetSessionID))
                     {
@@ -146,10 +146,10 @@ namespace WCMS.Framework
                         _browserCache.Add(aspNetSessionID, browser);
                     }
                     //session = _sessionCache[userId];
-                    browser.IPAddress = context.Request.UserHostAddress;
-                    browser.UserAgent = context.Request.UserAgent;
+                    browser.IPAddress = context.Connection.RemoteIpAddress?.ToString();
+                    browser.UserAgent = context.Request.Headers.UserAgent.ToString();
                     browser.LastPageId = pageId;
-                    browser.LastPageUrl = rawUrl == null ? (context.Request.IsSecureConnection ? "https://" : "http://") + context.Request.ServerVariables["HTTP_HOST"] + context.Request.RawUrl : rawUrl;
+                    browser.LastPageUrl = rawUrl == null ? (context.Request.IsHttps ? "https://" : "http://") + context.Request.Host + context.Request.Path + context.Request.QueryString : rawUrl;
                     browser.LastActivityDate = DateTime.Now;
                     //return session;
                 }
@@ -168,7 +168,7 @@ namespace WCMS.Framework
             {
                 UserSession session = null;
                 UserSessionBrowser browser = null;
-                var aspNetSessionID = context.Session.SessionID;
+                var aspNetSessionID = context.Session.Id;
                 if (SessionContainsKey(userId))
                 {
                     session = SessionGet(userId);
@@ -184,7 +184,7 @@ namespace WCMS.Framework
 
                     //session = _sessionCache[userId];
                     browser.LastPageId = pageId;
-                    browser.LastPageUrl = rawUrl == null ? (context.Request.IsSecureConnection ? "https://" : "http://") + context.Request.ServerVariables["HTTP_HOST"] + context.Request.RawUrl : rawUrl;
+                    browser.LastPageUrl = rawUrl == null ? (context.Request.IsHttps ? "https://" : "http://") + context.Request.Host + context.Request.Path + context.Request.QueryString : rawUrl;
                     browser.LastActivityDate = DateTime.Now;
                     session.LastBrowserSession = browser;
                     SessionAdd(userId, session);
@@ -197,8 +197,8 @@ namespace WCMS.Framework
                     session = SessionAdd(userId, new UserSession(userId, browser));
                 }
 
-                browser.IPAddress = context.Request.UserHostAddress;
-                browser.UserAgent = context.Request.UserAgent;
+                browser.IPAddress = context.Connection.RemoteIpAddress?.ToString();
+                browser.UserAgent = context.Request.Headers.UserAgent.ToString();
 
                 return session;
             }

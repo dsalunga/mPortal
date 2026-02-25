@@ -59,7 +59,7 @@ namespace WCMS.Framework
             if (WebPublicAccess.IsEnabled(PublicAccess, WebPublicAccess.Anonymous))
             {
                 int userId = session.UserId;
-                if (userId > 0 && (/*!WSession.UserSessions.Contains(userId) || */!WSession.UserSessions.BrowserCache.ContainsKey(WSession.Context.Session.SessionID)))
+                if (userId > 0 && (/*!WSession.UserSessions.Contains(userId) || */!WSession.UserSessions.BrowserCache.ContainsKey(WSession.Context.Session.Id)))
                     WSession.LogOff();
 
                 return PublicAccessCheckResult.Granted;
@@ -96,7 +96,7 @@ namespace WCMS.Framework
         {
             if (WebPublicAccess.IsEnabled(PublicAccess, WebPublicAccess.Anonymous))
             {
-                //if (userId > 0 && (/*!WSession.UserSessions.Contains(userId) || */!WSession.UserSessions.BrowserCache.ContainsKey(WSession.Context.Session.SessionID)))
+                //if (userId > 0 && (/*!WSession.UserSessions.Contains(userId) || */!WSession.UserSessions.BrowserCache.ContainsKey(WSession.Context.Session.Id)))
                 //WSession.LogOff();
 
                 return PublicAccessCheckResult.Granted;
@@ -224,7 +224,7 @@ namespace WCMS.Framework
 
             int userId = session.UserId;
             if (userId < 1) return PublicAccessCheckResult.NotLoggedIn;
-            if (/*!WSession.UserSessions.Contains(userId) || */!WSession.UserSessions.BrowserCache.ContainsKey(WSession.Context.Session.SessionID))
+            if (/*!WSession.UserSessions.Contains(userId) || */!WSession.UserSessions.BrowserCache.ContainsKey(WSession.Context.Session.Id))
             {
                 WSession.LogOff();
                 return PublicAccessCheckResult.NotLoggedIn;
@@ -236,7 +236,7 @@ namespace WCMS.Framework
         private int GetPublicAccessAccount(int userId)
         {
             //if (userId < 1) return PublicAccessCheckResult.NotLoggedIn;
-            //if (/*!WSession.UserSessions.Contains(userId) || */!WSession.UserSessions.BrowserCache.ContainsKey(WSession.Context.Session.SessionID))
+            //if (/*!WSession.UserSessions.Contains(userId) || */!WSession.UserSessions.BrowserCache.ContainsKey(WSession.Context.Session.Id))
             //{
             //    WSession.LogOff();
             //    return PublicAccessCheckResult.NotLoggedIn;

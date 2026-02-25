@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 using System.Drawing;
 using System.Drawing.Imaging;
 using WCMS.Common.Utilities;
@@ -31,7 +31,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
 
         public static string GenerateCard(WebUser user, string savePath)
         {
-            var context = HttpContext.Current;
+            var context = WCMS.Common.Utilities.HttpContextHelper.Current;
             var link = MemberLink.Provider.GetByUserId(user.Id);
 
             var assetPath = PathMapper.MapPath("~/Content/Parts/Integration/EventRegister/assets");

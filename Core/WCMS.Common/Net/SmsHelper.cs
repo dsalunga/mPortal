@@ -24,7 +24,7 @@ namespace WCMS.Common.Net
                 //else
                 mobileNumber = number.Replace("+", "%2B").Replace("-", "").Replace(" ", "");
 
-                string completedUrl = string.Format(httpAddress, mobileNumber, HttpUtility.UrlEncode(message));
+                string completedUrl = string.Format(httpAddress, mobileNumber, WebUtility.UrlEncode(message));
 
                 try
                 {

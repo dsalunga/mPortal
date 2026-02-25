@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
 using WCMS.Framework.Utilities;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net;
-using System.Web;
+using System.Net;
 using System.IO;
 
 using WCMS.Common.Utilities;
@@ -25,7 +25,7 @@ namespace WCMS.Common.Net
                 //else
                 mobileNumber = number.Replace("+", "%2B").Replace("-", "").Replace(" ", "");
 
-                string completedUrl = string.Format(httpAddress, mobileNumber, HttpUtility.UrlEncode(message));
+                string completedUrl = string.Format(httpAddress, mobileNumber, WebUtility.UrlEncode(message));
 
                 try
                 {
