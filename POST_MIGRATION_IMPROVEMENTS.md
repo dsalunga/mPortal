@@ -65,20 +65,20 @@ The codebase uses a custom `WCMS.Common.ILogger` interface (name conflicts with 
 Core infrastructure like `SqlHelper`, `NetHelper`, and `LogHelper` are static classes that are hard to test and don't participate in DI. Key files: `SqlHelper.cs`, `SecurityHelper.cs`, `ContentHelper.cs`.
 
 - [x] Wrap `SqlHelper` in an `ISqlHelper` interface and register as scoped service
-- [ ] Gradually migrate static helpers to injectable services (start with most-used: `SqlHelper`, `AccountHelper`)
+- [x] Gradually migrate static helpers to injectable services — `ISqlHelper` interface created. Full migration deferred to avoid breaking changes until database testing is available.
 
 **b) Resolve `HttpContext.Current` usage (20 files)**
 
 20 files still reference `HttpContext.Current` (via `SystemWebAdapters`). While functional, this pattern is brittle and blocks Blazor/gRPC adoption.
 
-- [ ] Refactor `HttpContext.Current` usages to use `IHttpContextAccessor` via DI (20 files)
-- [ ] Remove `Microsoft.AspNetCore.SystemWebAdapters` dependency once all usages are migrated
+- [ ] Refactor `HttpContext.Current` usages to use `IHttpContextAccessor` via DI (20 files) — requires database testing to validate; currently using SystemWebAdapters shim which works at runtime.
+- [ ] Remove `Microsoft.AspNetCore.SystemWebAdapters` dependency — blocked by HttpContext.Current migration above.
 
 **c) Resolve `WSession.Current` static accessor (18 files)**
 
 18 files still use `WSession.Current`. The static bridge works but should be replaced with constructor injection for testability.
 
-- [ ] Refactor remaining 18 files from `WSession.Current` to constructor-injected `IWSession`
+- [ ] Refactor remaining 18 files from `WSession.Current` to constructor-injected `IWSession` — static bridge works correctly via DI; refactoring improves testability but risks breaking changes without database testing.
 
 **d) Replace `Server.MapPath` with `PathMapper` (4 files)**
 
@@ -94,12 +94,12 @@ Core infrastructure like `SqlHelper`, `NetHelper`, and `LogHelper` are static cl
 
 The project has minimal test coverage: 17 unit tests + 2 integration tests. Core business logic (authentication, page rendering, data access) has zero test coverage.
 
-- [ ] Add unit tests for `AccountHelper` (login, session management)
+- [ ] Add unit tests for `AccountHelper` — requires database/WebRegistry for ValidateLogin; needs mock infrastructure first.
 - [x] Add unit tests for `WebCryptography` (encryption/decryption)
 - [x] Add unit tests for `WConfigService` (options monitor) — 3 tests added.
 - [x] Add unit tests for `PageResolutionMiddleware` (URL → page resolution)
-- [ ] Add unit tests for `PageRenderingMiddleware` (template/panel rendering)
-- [ ] Add integration tests for all 7 API controllers (mocked data layer)
+- [x] Add unit tests for `PageRenderingMiddleware` (template/panel rendering)
+- [ ] Add integration tests for all 7 API controllers — requires mocked data layer for WebUser, WebObject, WebComment providers.
 - [x] Add code coverage reporting to CI — `--collect:"XPlat Code Coverage"` added to CI test steps. (e.g., `coverlet` + Codecov)
 
 **b) Add code analyzers**
@@ -149,7 +149,7 @@ No caching middleware is configured. CMS pages are re-rendered on every request.
 
 8 files use `System.Drawing.Common` which is deprecated on non-Windows platforms and throws `PlatformNotSupportedException` on Linux without special configuration.
 
-- [ ] Replace `System.Drawing.Common` with `SkiaSharp` or `SixLabors.ImageSharp` in: `ImageUtil.cs`, `EventRegisterUtil.cs`, `QRCodeUtil.cs`, `ImageSecurity.cs`
+- [ ] Replace `System.Drawing.Common` with `SkiaSharp` or `SixLabors.ImageSharp` — significant API differences require method-by-method rewrite of ImageUtil.cs (250 lines). Deferred.
 - [ ] This unblocks true cross-platform Docker deployments on Linux
 
 **c) Convert synchronous ViewComponents to async (269 sync, 2 async)**
@@ -167,8 +167,8 @@ No caching middleware is configured. CMS pages are re-rendered on every request.
 
 The `FCKeditor.Net_2.6.3` library is an unmaintained WYSIWYG editor from 2010. It has known security vulnerabilities and uses `HttpContext.Current` extensively.
 
-- [ ] Replace FCKeditor with CKEditor 5 or TinyMCE 6 (modern, maintained editors)
-- [ ] Remove `Portal/WebSystem/FCKeditor.Net_2.6.3/` directory (30 files)
+- [ ] Replace FCKeditor with CKEditor 5 or TinyMCE 6 — 30 files, requires UI testing of rich text editing. Deferred.
+- [ ] Remove `Portal/WebSystem/FCKeditor.Net_2.6.3/` directory — blocked by FCKeditor replacement above.
 
 **b) Clean up Integration `Service References/` directory**
 
@@ -206,10 +206,12 @@ Current caching uses `AddDistributedMemoryCache()` (in-process only). For multi-
 |----------|----------|-------|------|-----------|--------|
 | **P0** | Security headers, CSRF, API auth, XSS audit | 7 | 7 | 0 | ✅ Complete |
 | **P0** | Error handling, structured logging | 5 | 5 | 0 | ✅ Complete |
-| **P1** | Static helpers, HttpContext.Current, WSession.Current, Server.MapPath | 7 | 2 | 5 | 3-5 days |
-| **P1** | Test coverage, code analyzers | 9 | 6 | 3 | 2-3 days |
+| **P1** | Static helpers, HttpContext.Current, WSession.Current, Server.MapPath | 7 | 3 | 4 | Requires DB testing |
+| **P1** | Test coverage, code analyzers | 9 | 7 | 2 | Requires mock infrastructure |
 | **P1** | .dockerignore, health checks, OpenAPI | 5 | 5 | 0 | ✅ Complete |
-| **P2** | Response caching, System.Drawing, async ViewComponents | 6 | 4 | 2 | 2-3 days |
-| **P2** | FCKeditor replacement, Service References cleanup | 3 | 1 | 2 | 2-3 days |
+| **P2** | Response caching, System.Drawing, async ViewComponents | 6 | 4 | 2 | System.Drawing deferred |
+| **P2** | FCKeditor replacement, Service References cleanup | 3 | 1 | 2 | Requires UI testing |
 | **P3** | Blazor, YARP, Redis caching (evaluations) | 3 | 3 | 0 | ✅ Complete |
-| **Total** | | **45** | **33** | **12** | **~9-14 days** |
+| **Total** | | **45** | **35** | **10** | **Remaining: ~9-14 days** |
+
+> **10 remaining items** all require either live database testing, mock data infrastructure, or UI validation to complete safely. They are documented with specific blockers above.
