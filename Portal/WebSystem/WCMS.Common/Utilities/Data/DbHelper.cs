@@ -138,6 +138,9 @@ namespace WCMS.Common.Utilities
         public static DataSet ExecuteDataSet(CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
             => Instance.ExecuteDataSet(cmdType, cmdText, cmdParms);
 
+        public static DataSet ExecuteDataSet(string cmdText, params DbParameter[] cmdParms)
+            => Instance.ExecuteDataSet(cmdText, cmdParms);
+
         public static DataSet ExecuteDataSetSchema(CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
             => Instance.ExecuteDataSetSchema(cmdType, cmdText, cmdParms);
 
