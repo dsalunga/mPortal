@@ -1,13 +1,13 @@
 @model dynamic
 
-<div class="card" id="int-group-overview-@Model.ObjectId" role="region" aria-label="Group Overview">
+<section class="card" id="int-group-overview-@Model.ObjectId" aria-labelledby="int-group-overview-heading">
     <div class="card-header">
-        <h5 class="card-title mb-0">Group Overview</h5>
+        <h5 id="int-group-overview-heading" class="card-title mb-0"><i class="bi bi-info-circle" aria-hidden="true"></i> Group Overview</h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -38,5 +38,9 @@
                 </tbody>
             </table>
         </div>
+        <div id="groupMemberListEmpty" class="text-center text-muted py-3 d-none" role="status">
+            <i class="bi bi-person-x" aria-hidden="true"></i>
+            <p class="mb-0">No members found.</p>
+        </div>
     </div>
-</div>
+</section>

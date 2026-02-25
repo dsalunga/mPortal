@@ -1,7 +1,8 @@
 @model dynamic
 
-<div class="card" id="int-web-group-tab-@Model.ObjectId" role="region" aria-label="Web Group Details">
+<section class="card" id="int-web-group-tab-@Model.ObjectId" aria-labelledby="int-web-group-tab-heading">
     <div class="card-header">
+        <h5 id="int-web-group-tab-heading" class="visually-hidden">Web Group Details</h5>
         <ul class="nav nav-tabs card-header-tabs" id="webGroupTabs" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="tab-details" data-bs-toggle="tab" data-bs-target="#pane-details" type="button" role="tab" aria-controls="pane-details" aria-selected="true">Details</button>
@@ -17,7 +18,7 @@
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -36,10 +37,11 @@
             <div class="tab-pane fade" id="pane-members" role="tabpanel" aria-labelledby="tab-members">
                 <div class="list-group" id="webGroupMemberList" role="list">
                 </div>
+                <p id="webGroupMemberListEmpty" class="text-center text-muted py-2 d-none" role="status"><i class="bi bi-person-x" aria-hidden="true"></i> No members in this group.</p>
             </div>
             <div class="tab-pane fade" id="pane-settings" role="tabpanel" aria-labelledby="tab-settings">
                 <p class="text-muted">Group settings will appear here.</p>
             </div>
         </div>
     </div>
-</div>
+</section>
