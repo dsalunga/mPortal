@@ -1,63 +1,98 @@
 @model WCMS.WebSystem.ViewComponents.UserPhotoUploadViewModel
-<section class="system-user-photo-upload" aria-label="User Photo Upload">
-    <h5>Profile Photo</h5>
 
-    @if (!Model.IsLoggedIn)
-    {
-        <p class="text-muted">Please log in to upload a profile photo.</p>
-    }
-    else
-    {
-        @if (!string.IsNullOrEmpty(Model.StatusMessage))
+<section class="card admin-panel system-user-photo-upload" aria-label="User Photo Upload">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="bi bi-camera" aria-hidden="true"></i> Profile Photo</h5>
+    </div>
+    <div class="card-body">
+        @if (!Model.IsLoggedIn)
         {
-            <div class="alert alert-info" role="status">@Model.StatusMessage</div>
+            <div class="alert alert-info mb-0" role="status">
+                <i class="bi bi-info-circle me-1" aria-hidden="true"></i>
+                Please log in to upload a profile photo.
+            </div>
         }
-
-        <div class="mb-3 text-center">
-            @if (!string.IsNullOrEmpty(Model.CurrentPhotoUrl))
+        else
+        {
+            @if (!string.IsNullOrEmpty(Model.StatusMessage))
             {
-                <img src="@Model.CurrentPhotoUrl" alt="Current profile photo for @Model.UserName"
-                     class="img-thumbnail" style="max-width: 200px; max-height: 200px;" />
-            }
-            else
-            {
-                <div class="border rounded d-inline-flex align-items-center justify-content-center"
-                     style="width: 200px; height: 200px;" aria-label="No photo uploaded">
-                    <span class="text-muted">No Photo</span>
+                <div class="alert alert-info alert-dismissible fade show" role="status">
+                    <i class="bi bi-info-circle me-1" aria-hidden="true"></i>
+                    @Model.StatusMessage
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Dismiss status message"></button>
                 </div>
             }
-        </div>
 
-        <div class="mb-3">
-            <img id="photoPreview" src="#" alt="Photo preview" class="img-thumbnail d-none"
-                 style="max-width: 200px; max-height: 200px;" />
-        </div>
+            <div class="row g-4">
+                <div class="col-sm-5 col-md-4 text-center" role="region" aria-label="Current profile photo">
+                    @if (!string.IsNullOrEmpty(Model.CurrentPhotoUrl))
+                    {
+                        <img src="@Model.CurrentPhotoUrl" alt="Current profile photo for @Model.UserName"
+                             class="img-thumbnail rounded-circle" style="width: 160px; height: 160px; object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <div class="border rounded-circle d-inline-flex align-items-center justify-content-center bg-light"
+                             style="width: 160px; height: 160px;" aria-label="No photo uploaded">
+                            <i class="bi bi-person-bounding-box fs-1 text-muted" aria-hidden="true"></i>
+                        </div>
+                    }
+                    <p class="text-muted small mt-2 mb-0">@Model.UserName</p>
+                </div>
 
-        <form method="post" asp-action="UploadPhoto" asp-controller="UserPhoto" enctype="multipart/form-data" aria-label="Upload profile photo">
-            <input type="hidden" name="userId" value="@Model.UserId" />
-            <div class="mb-3">
-                <label class="form-label" for="photoFile">Select a photo</label>
-                <input type="file" id="photoFile" name="photoFile" class="form-control"
-                       accept="image/*" required aria-required="true" />
+                <div class="col-sm-7 col-md-8">
+                    <div class="mb-3">
+                        <img id="photoPreview" src="#" alt="Photo preview" class="img-thumbnail d-none"
+                             style="max-width: 200px; max-height: 200px;" />
+                    </div>
+
+                    <form method="post" asp-action="UploadPhoto" asp-controller="UserPhoto"
+                          enctype="multipart/form-data" aria-label="Upload profile photo"
+                          class="needs-validation" novalidate>
+                        <input type="hidden" name="userId" value="@Model.UserId" />
+                        <div class="mb-3">
+                            <label class="form-label" for="photoFile">Select a photo</label>
+                            <input type="file" id="photoFile" name="photoFile" class="form-control"
+                                   accept="image/jpeg,image/png,image/gif,image/webp" required aria-required="true" />
+                            <div class="form-text">
+                                <i class="bi bi-info-circle" aria-hidden="true"></i>
+                                Accepted formats: JPEG, PNG, GIF, WebP. Max size: 5 MB.
+                            </div>
+                            <div class="invalid-feedback">Please select an image file.</div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary" aria-label="Upload photo">
+                                <i class="bi bi-upload" aria-hidden="true"></i> Upload Photo
+                            </button>
+                            @if (!string.IsNullOrEmpty(Model.CurrentPhotoUrl))
+                            {
+                                <button type="button" class="btn btn-outline-danger" id="btnRemovePhoto"
+                                        aria-label="Remove current photo">
+                                    <i class="bi bi-trash" aria-hidden="true"></i> Remove
+                                </button>
+                            }
+                        </div>
+                    </form>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary" aria-label="Upload photo">Upload Photo</button>
-        </form>
 
-        <script type="text/javascript">
-            document.getElementById('photoFile').addEventListener('change', function (e) {
-                var preview = document.getElementById('photoPreview');
-                var file = e.target.files[0];
-                if (file && file.type.startsWith('image/')) {
-                    var reader = new FileReader();
-                    reader.onload = function (ev) {
-                        preview.src = ev.target.result;
-                        preview.classList.remove('d-none');
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    preview.classList.add('d-none');
-                }
-            });
-        </script>
-    }
+            <script type="text/javascript">
+                document.getElementById('photoFile').addEventListener('change', function (e) {
+                    var preview = document.getElementById('photoPreview');
+                    var file = e.target.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                        var reader = new FileReader();
+                        reader.onload = function (ev) {
+                            preview.src = ev.target.result;
+                            preview.alt = 'Preview of selected photo';
+                            preview.classList.remove('d-none');
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        preview.classList.add('d-none');
+                    }
+                });
+            </script>
+        }
+    </div>
 </section>

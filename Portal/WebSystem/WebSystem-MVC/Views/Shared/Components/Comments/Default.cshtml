@@ -1,43 +1,70 @@
 @model WCMS.WebSystem.ViewComponents.CommentsViewModel
-<section class="system-comments" aria-label="Comments">
-    <h5>Comments</h5>
 
-    @if (Model.Comments.Any())
-    {
-        <div class="comments-list">
-            @foreach (var comment in Model.Comments)
-            {
-                <div class="card mb-2">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <strong>@(!string.IsNullOrEmpty(comment.UserName) ? comment.UserName : "Anonymous")</strong>
-                            <small class="text-muted">@comment.DateCreated.ToString("g")</small>
+<section class="card admin-panel system-comments" aria-label="Comments">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-chat-dots" aria-hidden="true"></i> Comments</h5>
+        <span class="badge bg-secondary" aria-live="polite">@Model.Comments.Count</span>
+    </div>
+    <div class="card-body">
+        @if (Model.Comments.Any())
+        {
+            <div class="comments-list" role="list" aria-label="Comment list">
+                @foreach (var comment in Model.Comments)
+                {
+                    <article class="card mb-2" role="listitem" aria-label="Comment by @(!string.IsNullOrEmpty(comment.UserName) ? comment.UserName : "Anonymous")">
+                        <div class="card-body py-2 px-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <strong>
+                                    <i class="bi bi-person-circle me-1" aria-hidden="true"></i>
+                                    @(!string.IsNullOrEmpty(comment.UserName) ? comment.UserName : "Anonymous")
+                                </strong>
+                                <time class="text-muted small" datetime="@comment.DateCreated.ToString("o")">
+                                    @comment.DateCreated.ToString("g")
+                                </time>
+                            </div>
+                            <p class="mb-0">@comment.Content</p>
                         </div>
-                        <p class="mb-0">@comment.Content</p>
-                    </div>
-                </div>
-            }
-        </div>
-    }
-    else
-    {
-        <p class="text-muted">No comments yet.</p>
-    }
-
-    @if (Model.IsLoggedIn)
-    {
-        <form method="post" asp-action="PostComment" asp-controller="Comments" aria-label="Post a comment">
-            <input type="hidden" name="objectId" value="@Model.ObjectId" />
-            <input type="hidden" name="recordId" value="@Model.RecordId" />
-            <div class="mb-3">
-                <label class="form-label" for="commentContent">Add a comment</label>
-                <textarea id="commentContent" name="content" class="form-control" rows="3" required aria-required="true"></textarea>
+                    </article>
+                }
             </div>
-            <button type="submit" class="btn btn-primary" aria-label="Post comment">Post Comment</button>
-        </form>
-    }
-    else
-    {
-        <p class="text-muted">Please log in to post a comment.</p>
-    }
+        }
+        else
+        {
+            <div class="text-center text-muted py-4" role="status">
+                <i class="bi bi-chat fs-1 d-block mb-2" aria-hidden="true"></i>
+                <p class="mb-0">No comments yet. Be the first to comment!</p>
+            </div>
+        }
+
+        <hr />
+
+        @if (Model.IsLoggedIn)
+        {
+            <form method="post" asp-action="PostComment" asp-controller="Comments" aria-label="Post a comment" class="needs-validation" novalidate>
+                <input type="hidden" name="objectId" value="@Model.ObjectId" />
+                <input type="hidden" name="recordId" value="@Model.RecordId" />
+                <div class="mb-3">
+                    <label class="form-label" for="commentContent">
+                        Add a comment as <strong>@Model.CurrentUserName</strong>
+                    </label>
+                    <textarea id="commentContent" name="content" class="form-control" rows="3"
+                              required aria-required="true" placeholder="Write your comment…"
+                              minlength="1" maxlength="2000"></textarea>
+                    <div class="invalid-feedback">Please enter a comment.</div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary" aria-label="Post comment">
+                        <i class="bi bi-send" aria-hidden="true"></i> Post Comment
+                    </button>
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-info mb-0" role="status">
+                <i class="bi bi-info-circle me-1" aria-hidden="true"></i>
+                Please log in to post a comment.
+            </div>
+        }
+    </div>
 </section>

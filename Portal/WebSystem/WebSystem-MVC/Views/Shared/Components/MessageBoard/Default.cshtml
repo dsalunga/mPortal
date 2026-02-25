@@ -1,43 +1,70 @@
 @model WCMS.WebSystem.ViewComponents.MessageBoardViewModel
-<section class="system-message-board" aria-label="Message Board">
-    <h5>Message Board</h5>
 
-    @if (Model.Posts.Any())
-    {
-        <div class="message-board-list">
-            @foreach (var post in Model.Posts)
-            {
-                <div class="card mb-2">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <strong>@post.AuthorName</strong>
-                            <small class="text-muted">@post.DatePosted.ToString("g")</small>
+<section class="card admin-panel system-message-board" aria-label="Message Board">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-megaphone" aria-hidden="true"></i> Message Board</h5>
+        <span class="badge bg-secondary" aria-live="polite">@Model.Posts.Count</span>
+    </div>
+    <div class="card-body">
+        @if (Model.Posts.Any())
+        {
+            <div class="message-board-list" role="list" aria-label="Message list">
+                @foreach (var post in Model.Posts)
+                {
+                    <article class="card mb-2" role="listitem" aria-label="Message by @post.AuthorName">
+                        <div class="card-body py-2 px-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <strong>
+                                    <i class="bi bi-person-circle me-1" aria-hidden="true"></i>
+                                    @post.AuthorName
+                                </strong>
+                                <time class="text-muted small" datetime="@post.DatePosted.ToString("o")">
+                                    @post.DatePosted.ToString("g")
+                                </time>
+                            </div>
+                            <p class="mb-0">@post.Content</p>
                         </div>
-                        <p class="mb-0">@post.Content</p>
-                    </div>
-                </div>
-            }
-        </div>
-    }
-    else
-    {
-        <p class="text-muted">No messages yet. Be the first to post!</p>
-    }
-
-    @if (Model.IsLoggedIn)
-    {
-        <form method="post" asp-action="PostMessage" asp-controller="MessageBoard" aria-label="Post a message">
-            <input type="hidden" name="objectId" value="@Model.ObjectId" />
-            <input type="hidden" name="recordId" value="@Model.RecordId" />
-            <div class="mb-3">
-                <label class="form-label" for="messageContent">Write a message</label>
-                <textarea id="messageContent" name="content" class="form-control" rows="3" required aria-required="true"></textarea>
+                    </article>
+                }
             </div>
-            <button type="submit" class="btn btn-primary" aria-label="Post message">Post Message</button>
-        </form>
-    }
-    else
-    {
-        <p class="text-muted">Please log in to post a message.</p>
-    }
+        }
+        else
+        {
+            <div class="text-center text-muted py-4" role="status">
+                <i class="bi bi-envelope-open fs-1 d-block mb-2" aria-hidden="true"></i>
+                <p class="mb-0">No messages yet. Be the first to post!</p>
+            </div>
+        }
+
+        <hr />
+
+        @if (Model.IsLoggedIn)
+        {
+            <form method="post" asp-action="PostMessage" asp-controller="MessageBoard" aria-label="Post a message" class="needs-validation" novalidate>
+                <input type="hidden" name="objectId" value="@Model.ObjectId" />
+                <input type="hidden" name="recordId" value="@Model.RecordId" />
+                <div class="mb-3">
+                    <label class="form-label" for="messageContent">
+                        Write a message as <strong>@Model.CurrentUserName</strong>
+                    </label>
+                    <textarea id="messageContent" name="content" class="form-control" rows="3"
+                              required aria-required="true" placeholder="Write your message…"
+                              minlength="1" maxlength="2000"></textarea>
+                    <div class="invalid-feedback">Please enter a message.</div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary" aria-label="Post message">
+                        <i class="bi bi-send" aria-hidden="true"></i> Post Message
+                    </button>
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-info mb-0" role="status">
+                <i class="bi bi-info-circle me-1" aria-hidden="true"></i>
+                Please log in to post a message.
+            </div>
+        }
+    </div>
 </section>
