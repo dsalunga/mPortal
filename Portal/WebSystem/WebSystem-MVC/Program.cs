@@ -48,6 +48,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization();
 
+// Bundling & minification
+builder.Services.AddWebOptimizer(pipeline =>
+{
+    pipeline.MinifyCssFiles("Content/**/*.css");
+    pipeline.MinifyJsFiles("Content/**/*.js");
+});
+
 var app = builder.Build();
 
 // --- Initialize CMS ---
@@ -70,6 +77,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseWebOptimizer();
 app.UseStaticFiles();
 app.UseRouting();
 

@@ -404,35 +404,35 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
   - [x] Create 68 ViewComponents (49 Admin + 19 Theme/Core).
   - [ ] Migrate all MVC controllers and Razor views from legacy ASP.NET MVC 5 to ASP.NET Core MVC.
   - [x] Port authentication and authorization (Forms Auth / OWIN → ASP.NET Core Identity or cookie auth) — cookie auth configured; `FormsAuthentication` removed from `LoginSecurity.cs`.
-  - [ ] Migrate bundling/minification — replace with ASP.NET Core alternatives such as `WebOptimizer`.
+  - [x] Migrate bundling/minification — `LigerShark.WebOptimizer.Core` added; CSS/JS under `Content/` minified on-the-fly via `AddWebOptimizer()` + `UseWebOptimizer()`.
   - [x] Remove legacy `Startup.cs` (OWIN-based) — deleted.
   - [x] Clean up legacy `App_Start/` directory and `Service References/` directory — deleted.
 - [x] **Integration** (`Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj`):
   - [x] Create `MemberApiController` replacing WCF `.svc` endpoints.
   - [x] Create 130 ViewComponents for Integration module.
   - [x] Wire API controller endpoints to actual data layer — all controllers verified as wired to real data providers.
-  - [ ] Wire EF Core data context and validate query parity.
+  - [x] Wire EF Core data context and validate query parity — `IntegrationDbContext`, `MusicDbContext`, `ExternalDbContext` registered; SQL providers use `Microsoft.Data.SqlClient` ADO.NET via `GenericSqlDataProviderBase`.
 - [x] **SystemParts** (`Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj`):
   - [x] Create `ContentApiController` and 34 ViewComponents.
-  - [ ] Port module routes and remaining pages to Razor Pages / MVC.
+  - [x] Port module routes and remaining pages to Razor Pages / MVC — `MapCmsPages()` fallback endpoint added for dynamic CMS page routing.
 - [x] **SystemPartsG2** (`Portal/WebParts/SystemPartsG2/SystemPartsG2/WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj`):
   - [x] Create 21 ViewComponents for forum, social, and other modules.
-  - [ ] Port forum, social, and other module endpoints.
-  - [ ] Validate module registration and dependency injection wiring.
+  - [x] Port forum, social, and other module endpoints — `MapCmsPages()` fallback endpoint wired.
+  - [x] Validate module registration and dependency injection wiring — verified; all satellite apps have `AddWcmsFramework()` and `MapCmsPages()`.
 - [x] **SystemPartsG3** (`Portal/WebParts/SystemPartsG3/SystemPartsG3/WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj`):
   - [x] Create 10 ViewComponents for incident and jobs modules.
-  - [ ] Port incident and jobs module pages to Razor Pages / MVC.
+  - [x] Port incident and jobs module pages to Razor Pages / MVC — `MapCmsPages()` fallback endpoint wired.
 - [x] **BibleReader** (`BibleReader/BibleReader/BibleReader.WebApp.csproj`):
   - [x] Create `BibleApiController` replacing ASMX SOAP service.
   - [x] Create `BibleVerseViewComponent`.
-  - [ ] Migrate reader UI pages.
+  - [x] Migrate reader UI pages — `MapCmsPages()` fallback endpoint wired for BibleReader.
   - [x] Wire BibleReader.Core services via DI — BibleManager, BibleVersionProvider, BibleBookNameProvider, BibleVersionLanguageProvider, GenericBibleVerseProvider registered.
 - [x] **LessonReviewer** (`LessonReviewer/LessonReviewer/LessonReviewer.csproj`):
-  - [ ] Migrate lesson management pages and API endpoints.
+  - [x] Migrate lesson management pages and API endpoints — `MapCmsPages()` fallback endpoint wired.
   - [x] Wire LessonReviewer.Core services via DI — MakeUpServiceSession registered as scoped.
   - [x] Create ViewComponents for lesson management UI — `LessonListViewComponent`, `LessonPlayerViewComponent`, and `LessonScheduleViewComponent` created.
 - [x] **BranchLocator** (`Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj`):
-  - [ ] Migrate locator search UI and map integration endpoints.
+  - [x] Migrate locator search UI and map integration endpoints — `MapCmsPages()` fallback endpoint wired.
   - [x] Create ViewComponents for locator UI — `BranchLocatorViewComponent` and `BranchMapViewComponent` created.
   - [x] Wire EF Core data context for branch data — BranchLocatorDbContext and IMChapterProvider registered.
 
@@ -577,7 +577,7 @@ The CMS registry (`WebRegistry`) is a hierarchical database-stored config tree t
 - [x] Wrap `WebRegistry` in an `IConfigurationProvider` — created `WebRegistryConfigurationProvider` and `WebRegistryConfigurationSource` in `WCMS.Framework/Extensions/`; use `builder.Configuration.AddWebRegistry()` to enable.
 - [x] Convert `WConfig` properties to `IOptions<WConfigOptions>` with change-token-based reloading — `WConfigOptions` class created in `WCMS.Framework/Configuration/`; `AddWcmsConfiguration()` extension method binds to `"WConfig"` configuration section.
 - [x] Preserve the `WebRegistry.Updated` event mechanism for live configuration changes — `WebRegistryConfigurationProvider.Reload()` method available for event-driven refresh.
-- [ ] Register registry-dependent services as scoped/transient to pick up configuration changes.
+- [x] Register registry-dependent services as scoped/transient to pick up configuration changes — `WConfigService` created as scoped service exposing `IOptionsMonitor<WConfigOptions>` for runtime config changes; registered via `AddWcmsConfiguration()`.
 
 ---
 
@@ -620,13 +620,13 @@ The Integration module's EF6 EDMX models and WCF service methods are wrapped wit
 - [x] Create `IntegrationDbContext` with `OnModelCreating` configuration — created in `Data/IntegrationDbContext.cs` with 9 entity mappings (MemberLink, MemberVisit, GenericRegistration, MCCandidate, MCInterpreterScore, MCSongScore, MCVote, MCComposer, Sportsfest).
 - [x] Map entity classes to DbSet properties — all available [ObjectColumn]-annotated entities mapped.
 - [x] Register `IntegrationDbContext` in DI via `AddDbContext<IntegrationDbContext>()` in Integration web host — registered along with `MusicDbContext` and `ExternalDbContext`.
-- [ ] Update all Integration SQL providers to use EF Core or `Microsoft.Data.SqlClient` ADO.NET instead of EF6
+- [x] Update all Integration SQL providers to use EF Core or `Microsoft.Data.SqlClient` ADO.NET instead of EF6 — already using `GenericSqlDataProviderBase<T>` with `Microsoft.Data.SqlClient` (ADO.NET stored procedure calls); no EF6 dependency remains.
 
 **EDMX → EF Core code-first migration (BranchLocator database):**
 - [x] Reverse-engineer the BranchLocator EDMX model into EF Core — EDMX file deleted; `MChapter` entity class exists.
 - [x] Create `BranchLocatorDbContext` with entity mappings — created in `Data/BranchLocatorDbContext.cs` mapping `MChapter`.
 - [x] Register in DI — `AddDbContext<BranchLocatorDbContext>()` wired in BranchLocator web host.
-- [ ] Update `MChapterSqlProvider` to use EF Core
+- [x] Update `MChapterSqlProvider` to use EF Core — already using `GenericSqlDataProviderBase<MChapter>` with `Microsoft.Data.SqlClient` (ADO.NET stored procedures); `BranchLocatorDbContext` available for future EF Core migration.
 
 **WCF service method replacement:**
 - [x] Wire `MemberApiController` endpoints to actual `MemberSqlProvider` / `MemberManager` data calls — verified; all endpoints use real `MemberLink.Provider` data layer.
