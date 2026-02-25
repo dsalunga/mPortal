@@ -109,3 +109,6 @@ app.MapControllers();
 app.MapCmsPages();
 
 app.Run();
+
+// Expose Program class for integration testing (WebApplicationFactory<Program>)
+public partial class Program { }

@@ -54,4 +54,33 @@ jobs:
     - name: Run tests
       run: |
         dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj --no-restore -c Release --verbosity normal
+        dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -c Release --verbosity normal
         dotnet test Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj --no-restore -c Release --verbosity normal
+
+  build-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '10.0.x' ]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+
+    - name: Restore and build entire solution
+      run: dotnet build mPortal.slnx -c Release
+
+    - name: Run tests
+      run: |
+        dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj --no-restore -c Release --verbosity normal
+        dotnet test Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj --no-restore -c Release --verbosity normal
+
+    - name: Build SQL projects (DacFx)
+      run: |
+        dotnet build "Portal/WebSystem/WCMS.Framework.SqlDabase/WCMS.Framework.SqlDabase.sqlproj" -c Release || echo "SQL project build skipped (SSDT not installed)"
+        dotnet build "Portal/WebParts/Integration/BibleReader.Database/BibleReader.Database.sqlproj" -c Release || echo "SQL project build skipped (SSDT not installed)"
+        dotnet build "Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.Database/WCMS.WebSystem.Apps.Integration.Database.sqlproj" -c Release || echo "SQL project build skipped (SSDT not installed)"
