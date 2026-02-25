@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 namespace WCMS.Framework.Core.SqlProvider
@@ -34,11 +33,11 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebShortUrl item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebShortUrl_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@PageId", item.PageId),
-                new SqlParameter("@PageUrl", item.PageUrl)
+            var obj = DbHelper.ExecuteScalar("WebShortUrl_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@PageId", item.PageId),
+                DbHelper.CreateParameter("@PageUrl", item.PageUrl)
             );
 
             return UpdatePostProcess(item, obj);
@@ -46,8 +45,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebShortUrl Get(string name)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@Name", name)))
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@Name", name)))
             {
                 if (r.Read())
                     return From(r);
@@ -58,8 +57,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebShortUrl GetByPageId(int pageId)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@PageId", pageId)))
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@PageId", pageId)))
             {
                 if (r.Read())
                     return From(r);

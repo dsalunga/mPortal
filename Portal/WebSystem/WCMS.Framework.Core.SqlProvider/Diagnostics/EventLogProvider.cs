@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
-
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
@@ -17,8 +15,8 @@ namespace WCMS.Framework.Core.SqlProvider.Diagnostics
     {
         public bool Delete(DateTime eventDate)
         {
-            SqlHelper.ExecuteNonQuery("EventLog_Del",
-                new SqlParameter("@EventDate", eventDate));
+            DbHelper.ExecuteNonQuery("EventLog_Del",
+                DbHelper.CreateParameter("@EventDate", eventDate));
 
             return true;
         }
@@ -39,9 +37,9 @@ namespace WCMS.Framework.Core.SqlProvider.Diagnostics
         public IEnumerable<EventLog> GetList(DateTime eventDate, int userId = -1)
         {
             var items = new List<EventLog>();
-            using (var r = SqlHelper.ExecuteReader("EventLog_Get",
-                new SqlParameter("@EventDate", eventDate),
-                new SqlParameter("@UserId", userId)))
+            using (var r = DbHelper.ExecuteReader("EventLog_Get",
+                DbHelper.CreateParameter("@EventDate", eventDate),
+                DbHelper.CreateParameter("@UserId", userId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -52,13 +50,13 @@ namespace WCMS.Framework.Core.SqlProvider.Diagnostics
 
         public override int Update(EventLog item)
         {
-            var obj = SqlHelper.ExecuteScalar("EventLog_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@EventDate", item.EventDate),
-                new SqlParameter("@Content", item.Content),
-                new SqlParameter("@UserId", item.UserId),
-                new SqlParameter("@EventName", item.EventName),
-                new SqlParameter("@IPAddress", item.IPAddress));
+            var obj = DbHelper.ExecuteScalar("EventLog_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@EventDate", item.EventDate),
+                DbHelper.CreateParameter("@Content", item.Content),
+                DbHelper.CreateParameter("@UserId", item.UserId),
+                DbHelper.CreateParameter("@EventName", item.EventName),
+                DbHelper.CreateParameter("@IPAddress", item.IPAddress));
 
             item.Id = DataUtil.GetId(obj);
             return item.Id;

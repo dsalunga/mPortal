@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -23,7 +22,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebRegistry> GetList()
         {
             List<WebRegistry> items = new List<WebRegistry>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebRegistry_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebRegistry_Get"))
             {
                 while (r.Read())
                 {
@@ -36,8 +35,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebRegistry Get(string key)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebRegistry_Get",
-                new SqlParameter("@Key", key)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebRegistry_Get",
+                DbHelper.CreateParameter("@Key", key)))
             {
                 if (r.HasRows && r.Read())
                 {
@@ -50,9 +49,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebRegistry Get(string key, int parentId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebRegistry_Get",
-                new SqlParameter("@Key", key),
-                new SqlParameter("@ParentId", parentId)
+            using (DbDataReader r = DbHelper.ExecuteReader("WebRegistry_Get",
+                DbHelper.CreateParameter("@Key", key),
+                DbHelper.CreateParameter("@ParentId", parentId)
                 ))
             {
                 if (r.HasRows && r.Read())
@@ -66,8 +65,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebRegistry Get(int registryId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebRegistry_Get",
-                new SqlParameter("@RegistryId", registryId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebRegistry_Get",
+                DbHelper.CreateParameter("@RegistryId", registryId)))
             {
                 if (r.HasRows && r.Read())
                 {
@@ -82,8 +81,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebRegistry> items = new List<WebRegistry>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebRegistry_Get",
-                new SqlParameter("@ParentId", parentId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebRegistry_Get",
+                DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 if (r.HasRows)
                 {
@@ -125,12 +124,12 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebRegistry item)
         {
-            object o = SqlHelper.ExecuteScalar("WebRegistry_Set",
-                new SqlParameter("@RegistryId", item.Id),
-                new SqlParameter("@Key", item.Key),
-                new SqlParameter("@Value", item.Value),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@StageId", item.StageId)
+            object o = DbHelper.ExecuteScalar("WebRegistry_Set",
+                DbHelper.CreateParameter("@RegistryId", item.Id),
+                DbHelper.CreateParameter("@Key", item.Key),
+                DbHelper.CreateParameter("@Value", item.Value),
+                DbHelper.CreateParameter("@ParentId", item.ParentId),
+                DbHelper.CreateParameter("@StageId", item.StageId)
             );
 
             item.Id = DataUtil.GetId(o);
@@ -139,16 +138,16 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(string key)
         {
-            SqlHelper.ExecuteNonQuery("WebRegistry_Del",
-                new SqlParameter("@Key", key));
+            DbHelper.ExecuteNonQuery("WebRegistry_Del",
+                DbHelper.CreateParameter("@Key", key));
 
             return true;
         }
 
         public bool Delete(int registryId)
         {
-            SqlHelper.ExecuteNonQuery("WebRegistry_Del",
-                new SqlParameter("@RegistryId", registryId));
+            DbHelper.ExecuteNonQuery("WebRegistry_Del",
+                DbHelper.CreateParameter("@RegistryId", registryId));
 
             return true;
         }

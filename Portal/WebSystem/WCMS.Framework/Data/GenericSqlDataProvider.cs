@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Reflection;
 
 using WCMS.Common.Utilities;
@@ -100,15 +99,15 @@ namespace WCMS.Framework.Core
             for (int i = 0; i < count - 1; i++)
             {
                 var prop = props.ElementAt(i);
-                query.AppendFormat("[{0}], ", prop == pk ? mappingName : prop.Name);
+                query.AppendFormat("{0}, ", DbSyntax.QuoteIdentifier(prop == pk ? mappingName : prop.Name));
             }
 
             // Finalize query
-            query.AppendFormat("[{0}] FROM {1} WHERE [{2}]=@{2}", propLast == pk ? mappingName : propLast.Name, itemType.Name, mappingName, id);
+            query.AppendFormat("{0} FROM {1} WHERE {2}=@{3}", DbSyntax.QuoteIdentifier(propLast == pk ? mappingName : propLast.Name), itemType.Name, DbSyntax.QuoteIdentifier(mappingName), mappingName);
 
             // Fetch the record
-            using (DbDataReader r = SqlHelper.ExecuteReader(CommandType.Text, query.ToString(),
-                new SqlParameter("@" + mappingName, id)
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString(),
+                DbHelper.CreateParameter("@" + mappingName, id)
             ))
             {
                 if (r.Read())
@@ -165,25 +164,25 @@ namespace WCMS.Framework.Core
             for (int i = 0; i < count - 1; i++)
             {
                 var prop = props.ElementAt(i);
-                query.AppendFormat("[{0}], ", prop == pk ? mappingName : prop.Name);
+                query.AppendFormat("{0}, ", DbSyntax.QuoteIdentifier(prop == pk ? mappingName : prop.Name));
             }
 
-            query.AppendFormat("[{0}]", pk == propLast ? mappingName : propLast.Name);
+            query.AppendFormat("{0}", DbSyntax.QuoteIdentifier(pk == propLast ? mappingName : propLast.Name));
             query.AppendFormat(" FROM {0} WHERE ", type.Name); //{1}=@{1}", t.Name, pk.Name, id);
 
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            List<DbParameter> sqlParams = new List<DbParameter>();
             for (int i = 0; i < filters.Length; i++)
             {
                 QueryFilterElement filter = filters[i];
 
-                sqlParams.Add(new SqlParameter("@" + filter.Name, filter.Value));
-                query.AppendFormat("[{0}]=@{0}", filter.Name);
+                sqlParams.Add(DbHelper.CreateParameter("@" + filter.Name, filter.Value));
+                query.AppendFormat("{0}=@{1}", DbSyntax.QuoteIdentifier(filter.Name), filter.Name);
 
                 if (i < filters.Length - 1)
                     query.Append(" AND ");
             }
 
-            using (DbDataReader r = SqlHelper.ExecuteReader(CommandType.Text, query.ToString(),
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString(),
                 sqlParams.ToArray()
             ))
             {
@@ -240,27 +239,27 @@ namespace WCMS.Framework.Core
             for (int i = 0; i < count - 1; i++)
             {
                 var prop = props.ElementAt(i);
-                query.AppendFormat("[{0}], ", prop == pk ? mappingName : prop.Name);
+                query.AppendFormat("{0}, ", DbSyntax.QuoteIdentifier(prop == pk ? mappingName : prop.Name));
             }
 
-            query.AppendFormat("[{0}] FROM {1} WHERE ", propLast == pk ? mappingName : propLast.Name, itemType.Name); //{1}=@{1}", t.Name, pk.Name, id);
+            query.AppendFormat("{0} FROM {1} WHERE ", DbSyntax.QuoteIdentifier(propLast == pk ? mappingName : propLast.Name), itemType.Name); //{1}=@{1}", t.Name, pk.Name, id);
 
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            List<DbParameter> sqlParams = new List<DbParameter>();
             for (int i = 0; i < filters.Length; i++)
             {
                 QueryFilterElement filter = filters[i];
 
                 if (!filter.IsValueNull())
                 {
-                    sqlParams.Add(new SqlParameter("@" + filter.Name, filter.Value));
-                    query.AppendFormat("[{0}]=@{0} AND ", filter.Name);
+                    sqlParams.Add(DbHelper.CreateParameter("@" + filter.Name, filter.Value));
+                    query.AppendFormat("{0}=@{1} AND ", DbSyntax.QuoteIdentifier(filter.Name), filter.Name);
                 }
             }
 
             query.Remove(query.Length - 5, 5);
 
             List<T> items = new List<T>();
-            using (DbDataReader r = SqlHelper.ExecuteReader(CommandType.Text, query.ToString(),
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString(),
                 sqlParams.ToArray()
             ))
             {
@@ -309,11 +308,11 @@ namespace WCMS.Framework.Core
             string mappingName = string.IsNullOrEmpty(pkAttr.MappingName) ? pk.Name : pkAttr.MappingName;
 
             // Generate delete SQL
-            query.AppendFormat("DELETE FROM {0} WHERE [{1}]=@{1}", itemType.Name, mappingName);
+            query.AppendFormat("DELETE FROM {0} WHERE {1}=@{2}", itemType.Name, DbSyntax.QuoteIdentifier(mappingName), mappingName);
 
             // Execute delete SQL
-            SqlHelper.ExecuteNonQuery(CommandType.Text, query.ToString(),
-                new SqlParameter("@" + mappingName, id));
+            DbHelper.ExecuteNonQuery(CommandType.Text, query.ToString(),
+                DbHelper.CreateParameter("@" + mappingName, id));
 
             return true;
         }
@@ -344,11 +343,11 @@ namespace WCMS.Framework.Core
                 foreach (var prop in props)
                 {
                     if (prop != pk)
-                        query.AppendFormat("[{0}]=@{0},", prop.Name);
+                        query.AppendFormat("{0}=@{1},", DbSyntax.QuoteIdentifier(prop.Name), prop.Name);
                 }
 
                 query.Remove(query.Length - 1, 1); // Remove last comma
-                query.AppendFormat(" WHERE [{0}]=@{0}", mappingName);
+                query.AppendFormat(" WHERE {0}=@{1}", DbSyntax.QuoteIdentifier(mappingName), mappingName);
             }
             else
             {
@@ -361,7 +360,7 @@ namespace WCMS.Framework.Core
                 foreach (var prop in props)
                 {
                     string propName = prop == pk ? mappingName : prop.Name;
-                    query.AppendFormat("[{0}],", propName);
+                    query.AppendFormat("{0},", DbSyntax.QuoteIdentifier(propName));
                     subQuery.AppendFormat("@{0},", propName);
                 }
 
@@ -379,14 +378,14 @@ namespace WCMS.Framework.Core
             }
 
             // Prepare the select parameters
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            List<DbParameter> sqlParams = new List<DbParameter>();
             foreach (var prop in props)
             {
                 string propName = prop == pk ? mappingName : prop.Name;
-                sqlParams.Add(new SqlParameter("@" + propName, prop.GetValue(item, null)));
+                sqlParams.Add(DbHelper.CreateParameter("@" + propName, prop.GetValue(item, null)));
             }
 
-            SqlHelper.ExecuteScalar(CommandType.Text,
+            DbHelper.ExecuteScalar(CommandType.Text,
                 query.ToString(), sqlParams.ToArray());
 
             return pkValue;
@@ -415,14 +414,14 @@ namespace WCMS.Framework.Core
             for (int i = 0; i < count - 1; i++)
             {
                 var prop = props.ElementAt(i);
-                query.AppendFormat("[{0}], ", prop == pk ? mappingName : prop.Name);
+                query.AppendFormat("{0}, ", DbSyntax.QuoteIdentifier(prop == pk ? mappingName : prop.Name));
             }
 
             // Complete the SQL query
-            query.AppendFormat("[{0}] FROM {1} ", propLast == pk ? mappingName : propLast.Name, itemType.Name);
+            query.AppendFormat("{0} FROM {1} ", DbSyntax.QuoteIdentifier(propLast == pk ? mappingName : propLast.Name), itemType.Name);
 
             List<T> items = new List<T>();
-            using (DbDataReader r = SqlHelper.ExecuteReader(CommandType.Text, query.ToString()))
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString()))
             {
                 while (r.Read())
                 {
@@ -459,7 +458,7 @@ namespace WCMS.Framework.Core
         public virtual int GetCount<T>() where T : IWebObject
         {
             Type itemType = typeof(T);
-            var o = SqlHelper.ExecuteScalar(CommandType.Text, String.Format("SELECT COUNT(1) FROM {0}", itemType.Name));
+            var o = DbHelper.ExecuteScalar(CommandType.Text, String.Format("SELECT COUNT(1) FROM {0}", itemType.Name));
             if (o != null)
                 return Convert.ToInt32(o.ToString());
             return -1;

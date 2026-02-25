@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -24,9 +23,9 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPageElement> GetList(int recordId, int objectId)
         {
             List<WebPageElement> items = new List<WebPageElement>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPageElement_Get",
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId)
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPageElement_Get",
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId)
                 ))
             {
                 if (r.HasRows)
@@ -47,10 +46,10 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPageElement> GetList(int recordId, int objectId, int templatePanelId)
         {
             List<WebPageElement> items = new List<WebPageElement>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPageElement_Get",
-                new SqlParameter("@TemplatePanelId", templatePanelId),
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId)
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPageElement_Get",
+                DbHelper.CreateParameter("@TemplatePanelId", templatePanelId),
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId)
                 ))
             {
                 if (r.HasRows)
@@ -63,8 +62,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPageElement Get(int id)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPageElement_Get",
-                new SqlParameter("@PageElementId", id)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPageElement_Get",
+                DbHelper.CreateParameter("@PageElementId", id)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -75,20 +74,20 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetCount(int recordId, int objectId, int templatePanelId)
         {
-            object o = SqlHelper.ExecuteScalar("WebPageElement_GetCount",
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@TemplatePanelId", templatePanelId));
+            object o = DbHelper.ExecuteScalar("WebPageElement_GetCount",
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@TemplatePanelId", templatePanelId));
 
             return DataUtil.GetId(o);
         }
 
         public int GetMaxRank(int recordId, int objectId, int templatePanelId)
         {
-            object o = SqlHelper.ExecuteScalar("WebPageElement_GetMaxRank",
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@TemplatePanelId", templatePanelId));
+            object o = DbHelper.ExecuteScalar("WebPageElement_GetMaxRank",
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@TemplatePanelId", templatePanelId));
 
             return DataUtil.GetId(o);
         }
@@ -97,18 +96,18 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             // Validation goes here
 
-            object o = SqlHelper.ExecuteScalar("WebPageElement_Set",
-                new SqlParameter("@PageElementId", item.Id),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@TemplatePanelId", item.TemplatePanelId),
-                new SqlParameter("@Rank", item.Rank),
-                new SqlParameter("@PartControlTemplateId", item.PartControlTemplateId),
-                new SqlParameter("@Active", item.Active),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@UsePartTemplatePath", item.UsePartTemplatePath),
-                new SqlParameter("@PublicAccess", item.PublicAccess),
-                new SqlParameter("@ManagementAccess", item.ManagementAccess)
+            object o = DbHelper.ExecuteScalar("WebPageElement_Set",
+                DbHelper.CreateParameter("@PageElementId", item.Id),
+                DbHelper.CreateParameter("@RecordId", item.RecordId),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@TemplatePanelId", item.TemplatePanelId),
+                DbHelper.CreateParameter("@Rank", item.Rank),
+                DbHelper.CreateParameter("@PartControlTemplateId", item.PartControlTemplateId),
+                DbHelper.CreateParameter("@Active", item.Active),
+                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                DbHelper.CreateParameter("@UsePartTemplatePath", item.UsePartTemplatePath),
+                DbHelper.CreateParameter("@PublicAccess", item.PublicAccess),
+                DbHelper.CreateParameter("@ManagementAccess", item.ManagementAccess)
             );
 
             if (o != null)
@@ -119,8 +118,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int PageElementId)
         {
-            SqlHelper.ExecuteNonQuery("WebPageElement_Del",
-                new SqlParameter("@PageElementId", PageElementId));
+            DbHelper.ExecuteNonQuery("WebPageElement_Del",
+                DbHelper.CreateParameter("@PageElementId", PageElementId));
 
             return true;
         }
@@ -154,7 +153,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPageElement> items = new List<WebPageElement>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPageElement_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPageElement_Get"))
             {
                 if (r.HasRows)
                 {
@@ -175,7 +174,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetCount()
         {
-            object o = SqlHelper.ExecuteScalar("WebPageElement_GetCount");
+            object o = DbHelper.ExecuteScalar("WebPageElement_GetCount");
             return DataUtil.GetId(o);
         }
 

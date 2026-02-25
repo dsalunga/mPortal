@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -17,8 +16,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPartControlTemplate Get(int partControlTemplateId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPartControlTemplate_Get",
-                new SqlParameter("@PartControlTemplateId", partControlTemplateId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPartControlTemplate_Get",
+                DbHelper.CreateParameter("@PartControlTemplateId", partControlTemplateId)))
             {
                 if (r.HasRows && r.Read())
                     return From(r);
@@ -29,9 +28,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPartControlTemplate Get(int partControlId, string identity)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPartControlTemplate_Get",
-                new SqlParameter("@PartControlId", partControlId),
-                new SqlParameter("@Identity", identity)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPartControlTemplate_Get",
+                DbHelper.CreateParameter("@PartControlId", partControlId),
+                DbHelper.CreateParameter("@Identity", identity)))
             {
                 if (r.HasRows && r.Read())
                     return From(r);
@@ -44,8 +43,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPartControlTemplate> items = new List<WebPartControlTemplate>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPartControlTemplate_Get",
-                new SqlParameter("@PartControlId", partControlId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPartControlTemplate_Get",
+                DbHelper.CreateParameter("@PartControlId", partControlId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -72,15 +71,15 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebPartControlTemplate item)
         {
-            object o = SqlHelper.ExecuteScalar("WebPartControlTemplate_Set",
-                new SqlParameter("@PartControlTemplateId", item.Id),
-                new SqlParameter("@PartControlId", item.PartControlId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@FileName", item.FileName),
-                new SqlParameter("@Identity", item.Identity),
-                new SqlParameter("@Path", item.Path),
-                new SqlParameter("@Standalone", item.Standalone),
-                new SqlParameter("@TemplateEngineId", item.TemplateEngineId)
+            object o = DbHelper.ExecuteScalar("WebPartControlTemplate_Set",
+                DbHelper.CreateParameter("@PartControlTemplateId", item.Id),
+                DbHelper.CreateParameter("@PartControlId", item.PartControlId),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@FileName", item.FileName),
+                DbHelper.CreateParameter("@Identity", item.Identity),
+                DbHelper.CreateParameter("@Path", item.Path),
+                DbHelper.CreateParameter("@Standalone", item.Standalone),
+                DbHelper.CreateParameter("@TemplateEngineId", item.TemplateEngineId)
             );
 
             item.Id = DataUtil.GetId(o);
@@ -89,8 +88,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int partControlTemplateId)
         {
-            SqlHelper.ExecuteNonQuery("WebPartControlTemplate_Del",
-                new SqlParameter("@PartControlTemplateId", partControlTemplateId)
+            DbHelper.ExecuteNonQuery("WebPartControlTemplate_Del",
+                DbHelper.CreateParameter("@PartControlTemplateId", partControlTemplateId)
             );
 
             return true;
@@ -105,7 +104,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPartControlTemplate> items = new List<WebPartControlTemplate>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPartControlTemplate_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPartControlTemplate_Get"))
             {
                 if (r.HasRows)
                 {

@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Security;
 
@@ -37,8 +36,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             UserProvider item = null;
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@Name", name)))
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@Name", name)))
                 if (r.Read())
                     item = From(r);
 

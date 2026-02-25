@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -26,8 +26,8 @@ namespace WCMS.Framework.Core
 
         public virtual T Refresh(T item)
         {
-            using (IDataReader r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter(IdParameter, item.Id)))
+            using (IDataReader r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter(IdParameter, item.Id)))
             {
                 if (r.Read())
                     return From(r, item);
@@ -40,16 +40,16 @@ namespace WCMS.Framework.Core
 
         public new virtual bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery(DeleteProcedure,
-                new SqlParameter(IdParameter, id));
+            DbHelper.ExecuteNonQuery(DeleteProcedure,
+                DbHelper.CreateParameter(IdParameter, id));
 
             return true;
         }
 
         public new virtual T Get(int id)
         {
-            using (IDataReader r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter(IdParameter, id)))
+            using (IDataReader r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter(IdParameter, id)))
             {
                 if (r.Read())
                     return From(r);
@@ -62,7 +62,7 @@ namespace WCMS.Framework.Core
         {
             List<T> items = new List<T>();
 
-            using (IDataReader r = SqlHelper.ExecuteReader(SelectProcedure))
+            using (IDataReader r = DbHelper.ExecuteReader(SelectProcedure))
             {
                 while (r.Read())
                     items.Add(From(r));

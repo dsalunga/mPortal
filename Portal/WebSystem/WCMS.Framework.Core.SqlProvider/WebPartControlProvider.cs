@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -17,8 +16,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPartControl Get(int partControlId)
         {
-            using (var r = SqlHelper.ExecuteReader("WebPartControl_Get",
-                new SqlParameter("@PartControlId", partControlId)))
+            using (var r = DbHelper.ExecuteReader("WebPartControl_Get",
+                DbHelper.CreateParameter("@PartControlId", partControlId)))
             {
                 if (r.HasRows && r.Read())
                     return (WebPartControl)r;
@@ -29,9 +28,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPartControl Get(int partId, string identity)
         {
-            using (var r = SqlHelper.ExecuteReader("WebPartControl_Get",
-                new SqlParameter("@PartId", partId),
-                new SqlParameter("@Identity", identity)))
+            using (var r = DbHelper.ExecuteReader("WebPartControl_Get",
+                DbHelper.CreateParameter("@PartId", partId),
+                DbHelper.CreateParameter("@Identity", identity)))
             {
                 if (r.HasRows && r.Read())
                     return (WebPartControl)r;
@@ -44,8 +43,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPartControl> items = new List<WebPartControl>();
 
-            using (var r = SqlHelper.ExecuteReader("WebPartControl_Get",
-                new SqlParameter("@PartId", partId)))
+            using (var r = DbHelper.ExecuteReader("WebPartControl_Get",
+                DbHelper.CreateParameter("@PartId", partId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -59,8 +58,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPartControl> items = new List<WebPartControl>();
 
-            using (var r = SqlHelper.ExecuteReader("WebPartControl_Get",
-                new SqlParameter("@ParentId", parentId)))
+            using (var r = DbHelper.ExecuteReader("WebPartControl_Get",
+                DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -74,15 +73,15 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebPartControl item)
         {
-            object o = SqlHelper.ExecuteScalar("WebPartControl_Set",
-                new SqlParameter("@PartControlId", item.Id),
-                new SqlParameter("@PartId", item.PartId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@Identity", item.Identity),
-                new SqlParameter("@ConfigFileName", item.ConfigFileName),
-                new SqlParameter("@PartAdminId", item.PartAdminId),
-                new SqlParameter("@EntryPoint", item.EntryPoint),
-                new SqlParameter("@ParentId", item.ParentId)
+            object o = DbHelper.ExecuteScalar("WebPartControl_Set",
+                DbHelper.CreateParameter("@PartControlId", item.Id),
+                DbHelper.CreateParameter("@PartId", item.PartId),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@Identity", item.Identity),
+                DbHelper.CreateParameter("@ConfigFileName", item.ConfigFileName),
+                DbHelper.CreateParameter("@PartAdminId", item.PartAdminId),
+                DbHelper.CreateParameter("@EntryPoint", item.EntryPoint),
+                DbHelper.CreateParameter("@ParentId", item.ParentId)
             );
 
             item.Id = DataUtil.GetId(o);
@@ -91,8 +90,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int partControlId)
         {
-            SqlHelper.ExecuteNonQuery("WebPartControl_Del",
-                new SqlParameter("@PartControlId", partControlId));
+            DbHelper.ExecuteNonQuery("WebPartControl_Del",
+                DbHelper.CreateParameter("@PartControlId", partControlId));
 
             return true;
         }
@@ -109,7 +108,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPartControl> GetList()
         {
             List<WebPartControl> items = new List<WebPartControl>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPartControl_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPartControl_Get"))
             {
                 if (r.HasRows)
                     while (r.Read())

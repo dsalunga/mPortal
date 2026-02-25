@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Text;
 
 using WCMS.Common.Utilities;
@@ -17,8 +16,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebTextResource Get(int textResourceId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTextResource_Get",
-                new SqlParameter("@TextResourceId", textResourceId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebTextResource_Get",
+                DbHelper.CreateParameter("@TextResourceId", textResourceId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -29,8 +28,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebTextResource Get(string title)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTextResource_Get",
-                new SqlParameter("@Title", title)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebTextResource_Get",
+                DbHelper.CreateParameter("@Title", title)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -43,7 +42,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTextResource> items = new List<WebTextResource>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTextResource_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebTextResource_Get"))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -57,8 +56,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTextResource> items = new List<WebTextResource>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTextResource_Get",
-                new SqlParameter("@ContentTypeId", contentTypeId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebTextResource_Get",
+                DbHelper.CreateParameter("@ContentTypeId", contentTypeId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -72,8 +71,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTextResource> items = new List<WebTextResource>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTextResource_Get",
-                new SqlParameter("@DirectoryId", directoryId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebTextResource_Get",
+                DbHelper.CreateParameter("@DirectoryId", directoryId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -85,15 +84,15 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebTextResource item)
         {
-            object o = SqlHelper.ExecuteScalar("WebTextResource_Set",
-                new SqlParameter("@TextResourceId", item.Id),
-                new SqlParameter("@ContentTypeId", item.ContentTypeId),
-                new SqlParameter("@Title", item.Title),
-                new SqlParameter("@Content", item.Content),
-                new SqlParameter("@DirectoryId", item.DirectoryId),
-                new SqlParameter("@Rank", item.Rank),
-                new SqlParameter("@DatePersisted", item.DatePersisted),
-                new SqlParameter("@PhysicalPath", item.PhysicalPath)
+            object o = DbHelper.ExecuteScalar("WebTextResource_Set",
+                DbHelper.CreateParameter("@TextResourceId", item.Id),
+                DbHelper.CreateParameter("@ContentTypeId", item.ContentTypeId),
+                DbHelper.CreateParameter("@Title", item.Title),
+                DbHelper.CreateParameter("@Content", item.Content),
+                DbHelper.CreateParameter("@DirectoryId", item.DirectoryId),
+                DbHelper.CreateParameter("@Rank", item.Rank),
+                DbHelper.CreateParameter("@DatePersisted", item.DatePersisted),
+                DbHelper.CreateParameter("@PhysicalPath", item.PhysicalPath)
             );
 
             item.Id = DataUtil.GetId(o);
@@ -103,8 +102,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int textResourceId)
         {
-            SqlHelper.ExecuteNonQuery("WebTextResource_Del",
-                new SqlParameter("@TextResourceId", textResourceId));
+            DbHelper.ExecuteNonQuery("WebTextResource_Del",
+                DbHelper.CreateParameter("@TextResourceId", textResourceId));
 
             return true;
         }

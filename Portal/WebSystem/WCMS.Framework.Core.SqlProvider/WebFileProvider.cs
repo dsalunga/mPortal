@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
 
@@ -17,8 +16,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public bool Delete(int id)
         {
             if (id > 0)
-                SqlHelper.ExecuteNonQuery("WebFile_Del",
-                    new SqlParameter("@FileId", id));
+                DbHelper.ExecuteNonQuery("WebFile_Del",
+                    DbHelper.CreateParameter("@FileId", id));
 
             return true;
         }
@@ -26,8 +25,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebFile Get(int id)
         {
             if (id > 0)
-                using (var r = SqlHelper.ExecuteReader("WebFile_Get",
-                    new SqlParameter("@FileId", id)))
+                using (var r = DbHelper.ExecuteReader("WebFile_Get",
+                    DbHelper.CreateParameter("@FileId", id)))
                 {
                     if (r.Read())
                         return From(r);
@@ -39,10 +38,10 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebFile Get(int folderId, int objectId, int recordId)
         {
             if (folderId > 0 && objectId > 0 && recordId > 0)
-                using (var r = SqlHelper.ExecuteReader("WebFile_Get",
-                    new SqlParameter("@FolderId", folderId),
-                    new SqlParameter("@ObjectId", objectId),
-                    new SqlParameter("@RecordId", recordId)))
+                using (var r = DbHelper.ExecuteReader("WebFile_Get",
+                    DbHelper.CreateParameter("@FolderId", folderId),
+                    DbHelper.CreateParameter("@ObjectId", objectId),
+                    DbHelper.CreateParameter("@RecordId", recordId)))
                 {
                     if (r.Read())
                         return From(r);
@@ -54,9 +53,9 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebFile Get(int objectId, int recordId)
         {
             if (objectId > 0 && recordId > 0)
-                using (var r = SqlHelper.ExecuteReader("WebFile_Get",
-                    new SqlParameter("@ObjectId", objectId),
-                    new SqlParameter("@RecordId", recordId)))
+                using (var r = DbHelper.ExecuteReader("WebFile_Get",
+                    DbHelper.CreateParameter("@ObjectId", objectId),
+                    DbHelper.CreateParameter("@RecordId", recordId)))
                 {
                     if (r.Read())
                         return From(r);
@@ -65,7 +64,7 @@ namespace WCMS.Framework.Core.SqlProvider
             return null;
         }
 
-        private WebFile From(SqlDataReader r)
+        private WebFile From(DbDataReader r)
         {
             WebFile item = new WebFile();
             item.Id = DataUtil.GetId(r, "FileId");
@@ -85,7 +84,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebFile> GetList()
         {
             List<WebFile> items = new List<WebFile>();
-            using (var r = SqlHelper.ExecuteReader("WebFile_Get"))
+            using (var r = DbHelper.ExecuteReader("WebFile_Get"))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -97,8 +96,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebFile> GetList(int folderId)
         {
             List<WebFile> items = new List<WebFile>();
-            using (var r = SqlHelper.ExecuteReader("WebFile_Get",
-                new SqlParameter("@FolderId", folderId)))
+            using (var r = DbHelper.ExecuteReader("WebFile_Get",
+                DbHelper.CreateParameter("@FolderId", folderId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -110,9 +109,9 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebFile> GetList(int objectId, int recordId)
         {
             List<WebFile> items = new List<WebFile>();
-            using (var r = SqlHelper.ExecuteReader("WebFile_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)))
+            using (var r = DbHelper.ExecuteReader("WebFile_Get",
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -133,12 +132,12 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebFile item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebFile_Set",
-                new SqlParameter("@FileId", item.Id),
-                new SqlParameter("@FolderId", item.FolderId),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@Name", item.Name));
+            var obj = DbHelper.ExecuteScalar("WebFile_Set",
+                DbHelper.CreateParameter("@FileId", item.Id),
+                DbHelper.CreateParameter("@FolderId", item.FolderId),
+                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                DbHelper.CreateParameter("@RecordId", item.RecordId),
+                DbHelper.CreateParameter("@Name", item.Name));
 
             item.Id = DataUtil.GetId(obj);
             return item.Id;

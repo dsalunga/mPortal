@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -18,7 +17,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPartAdmin> GetList()
         {
             var items = new List<WebPartAdmin>();
-            using (var r = SqlHelper.ExecuteReader("WebPartAdmin_Get"))
+            using (var r = DbHelper.ExecuteReader("WebPartAdmin_Get"))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -30,8 +29,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPartAdmin> GetList(int partId)
         {
             var items = new List<WebPartAdmin>();
-            using (var r = SqlHelper.ExecuteReader("WebPartAdmin_Get",
-                new SqlParameter("@PartId", partId)))
+            using (var r = DbHelper.ExecuteReader("WebPartAdmin_Get",
+                DbHelper.CreateParameter("@PartId", partId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -43,9 +42,9 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPartAdmin> GetList(int partId, int parentId)
         {
             var items = new List<WebPartAdmin>();
-            using (var r = SqlHelper.ExecuteReader("WebPartAdmin_Get",
-                new SqlParameter("@PartId", partId),
-                new SqlParameter("@ParentId", parentId)))
+            using (var r = DbHelper.ExecuteReader("WebPartAdmin_Get",
+                DbHelper.CreateParameter("@PartId", partId),
+                DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -56,8 +55,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPartAdmin Get(int partAdminId)
         {
-            using (var r = SqlHelper.ExecuteReader("WebPartAdmin_Get",
-                new SqlParameter("@PartAdminId", partAdminId)))
+            using (var r = DbHelper.ExecuteReader("WebPartAdmin_Get",
+                DbHelper.CreateParameter("@PartAdminId", partAdminId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -67,9 +66,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPartAdmin Get(int partId, string name)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPartAdmin_Get",
-                new SqlParameter("@PartId", partId),
-                new SqlParameter("@Name", name)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPartAdmin_Get",
+                DbHelper.CreateParameter("@PartId", partId),
+                DbHelper.CreateParameter("@Name", name)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -98,8 +97,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int partAdminId)
         {
-            SqlHelper.ExecuteNonQuery("WebPartAdmin_Del",
-                new SqlParameter("@PartAdminId", partAdminId)
+            DbHelper.ExecuteNonQuery("WebPartAdmin_Del",
+                DbHelper.CreateParameter("@PartAdminId", partAdminId)
             );
 
             return true;
@@ -107,17 +106,17 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebPartAdmin item)
         {
-            object o = SqlHelper.ExecuteScalar("WebPartAdmin_Set",
-                new SqlParameter("@PartAdminId", item.Id),
-                new SqlParameter("@PartId", item.PartId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@FileName", item.FileName),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@Active", item.Active),
-                new SqlParameter("@Visible", item.Visible),
-                new SqlParameter("@InSiteContext", item.InSiteContext),
-                new SqlParameter("@TemplateEngineId", item.TemplateEngineId),
-                new SqlParameter("@AutoTitle", item.AutoTitle)
+            object o = DbHelper.ExecuteScalar("WebPartAdmin_Set",
+                DbHelper.CreateParameter("@PartAdminId", item.Id),
+                DbHelper.CreateParameter("@PartId", item.PartId),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@FileName", item.FileName),
+                DbHelper.CreateParameter("@ParentId", item.ParentId),
+                DbHelper.CreateParameter("@Active", item.Active),
+                DbHelper.CreateParameter("@Visible", item.Visible),
+                DbHelper.CreateParameter("@InSiteContext", item.InSiteContext),
+                DbHelper.CreateParameter("@TemplateEngineId", item.TemplateEngineId),
+                DbHelper.CreateParameter("@AutoTitle", item.AutoTitle)
             );
 
             item.Id = DataUtil.GetId(o);

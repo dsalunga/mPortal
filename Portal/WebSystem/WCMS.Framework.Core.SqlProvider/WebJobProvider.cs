@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 
@@ -17,16 +17,16 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("WebJob_Del",
-                new SqlParameter("@Id", id));
+            DbHelper.ExecuteNonQuery("WebJob_Del",
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
 
         public WebJob Get(int id)
         {
-            using (var r = SqlHelper.ExecuteReader("WebJob_Get",
-                new SqlParameter("@Id", id)))
+            using (var r = DbHelper.ExecuteReader("WebJob_Get",
+                DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.Read())
                     return From(r);
@@ -37,8 +37,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebJob Get(string name)
         {
-            using (var r = SqlHelper.ExecuteReader("WebJob_Get",
-                new SqlParameter("@Name", name)))
+            using (var r = DbHelper.ExecuteReader("WebJob_Get",
+                DbHelper.CreateParameter("@Name", name)))
             {
                 if (r.Read())
                     return From(r);
@@ -47,7 +47,7 @@ namespace WCMS.Framework.Core.SqlProvider
             return null;
         }
 
-        private WebJob From(SqlDataReader r)
+        private WebJob From(DbDataReader r)
         {
             WebJob item = new WebJob();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
@@ -76,7 +76,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebJob> items = new List<WebJob>();
 
-            using (var r = SqlHelper.ExecuteReader("WebJob_Get"))
+            using (var r = DbHelper.ExecuteReader("WebJob_Get"))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -97,20 +97,20 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebJob item)
         {
-            object obj = SqlHelper.ExecuteScalar("WebJob_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@RecurrenceId", item.RecurrenceId),
-                new SqlParameter("@Weekdays", item.Weekdays),
-                new SqlParameter("@OccursEvery", item.OccursEvery),
-                new SqlParameter("@ExecutionStartDate", item.ExecutionStartDate),
-                new SqlParameter("@ExecutionEndDate", item.ExecutionEndDate),
-                new SqlParameter("@ExecutionStatus", item.ExecutionStatus),
-                new SqlParameter("@ExecutionMessage", item.ExecutionMessage),
-                new SqlParameter("@Enabled", item.Enabled),
-                new SqlParameter("@TypeName", item.TypeName),
-                new SqlParameter("@StartDate", item.StartDate),
-                new SqlParameter("@Description", item.Description)
+            object obj = DbHelper.ExecuteScalar("WebJob_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@RecurrenceId", item.RecurrenceId),
+                DbHelper.CreateParameter("@Weekdays", item.Weekdays),
+                DbHelper.CreateParameter("@OccursEvery", item.OccursEvery),
+                DbHelper.CreateParameter("@ExecutionStartDate", item.ExecutionStartDate),
+                DbHelper.CreateParameter("@ExecutionEndDate", item.ExecutionEndDate),
+                DbHelper.CreateParameter("@ExecutionStatus", item.ExecutionStatus),
+                DbHelper.CreateParameter("@ExecutionMessage", item.ExecutionMessage),
+                DbHelper.CreateParameter("@Enabled", item.Enabled),
+                DbHelper.CreateParameter("@TypeName", item.TypeName),
+                DbHelper.CreateParameter("@StartDate", item.StartDate),
+                DbHelper.CreateParameter("@Description", item.Description)
             );
 
             item.Id = DataUtil.GetId(obj);

@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 using WCMS.Framework.Core;
@@ -30,12 +29,12 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebSkin item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebSkin_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@Rank", item.Rank)
+            var obj = DbHelper.ExecuteScalar("WebSkin_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                DbHelper.CreateParameter("@RecordId", item.RecordId),
+                DbHelper.CreateParameter("@Rank", item.Rank)
             );
 
             item.Id = DataUtil.GetId(obj);
@@ -51,9 +50,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (objectId > -2 || recordId > -2)
             {
-                using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                    new SqlParameter("@ObjectId", objectId),
-                    new SqlParameter("@RecordId", recordId)
+                using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                    DbHelper.CreateParameter("@ObjectId", objectId),
+                    DbHelper.CreateParameter("@RecordId", recordId)
                 ))
                 {
                     while (r.Read())

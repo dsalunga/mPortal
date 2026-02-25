@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -20,8 +19,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WPart Get(int partId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPart_Get",
-                new SqlParameter("@PartId", partId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPart_Get",
+                DbHelper.CreateParameter("@PartId", partId)))
             {
                 if (r.HasRows && r.Read())
                     return (WPart)r;
@@ -32,8 +31,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WPart Get(string identity)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPart_Get",
-                new SqlParameter("@Identity", identity)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPart_Get",
+                DbHelper.CreateParameter("@Identity", identity)))
             {
                 if (r.HasRows && r.Read())
                     return (WPart)r;
@@ -46,7 +45,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WPart> items = new List<WPart>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPart_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPart_Get"))
             {
                 if (r.HasRows)
                 {
@@ -62,8 +61,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WPart> items = new List<WPart>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPart_Get",
-                new SqlParameter("@Active", active)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPart_Get",
+                DbHelper.CreateParameter("@Active", active)))
             {
                 if (r.HasRows)
                 {
@@ -80,11 +79,11 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WPart item)
         {
-            object o = SqlHelper.ExecuteScalar("WebPart_Set",
-                new SqlParameter("@PartId", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@Identity", item.Identity),
-                new SqlParameter("@Active", item.Active)
+            object o = DbHelper.ExecuteScalar("WebPart_Set",
+                DbHelper.CreateParameter("@PartId", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@Identity", item.Identity),
+                DbHelper.CreateParameter("@Active", item.Active)
                 );
 
             item.Id = DataUtil.GetId(o);
@@ -93,8 +92,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int partId)
         {
-            SqlHelper.ExecuteNonQuery("WebPart_Del",
-                new SqlParameter("@PartId", partId));
+            DbHelper.ExecuteNonQuery("WebPart_Del",
+                DbHelper.CreateParameter("@PartId", partId));
 
             return true;
         }

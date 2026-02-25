@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 using WCMS.Framework.Core;
@@ -43,8 +42,8 @@ namespace WCMS.Framework.Core.Shared
 
         public Country Get(string countryName)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@CountryName", countryName)))
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@CountryName", countryName)))
             {
                 if (r.Read())
                     return From(r);
@@ -55,8 +54,8 @@ namespace WCMS.Framework.Core.Shared
 
         public Country GetByISOCode(string isoCode)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@ISOCode", isoCode)))
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@ISOCode", isoCode)))
             {
                 if (r.Read())
                     return From(r);

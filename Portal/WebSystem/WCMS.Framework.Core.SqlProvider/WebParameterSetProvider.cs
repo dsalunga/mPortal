@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 using WCMS.Framework.Core;
@@ -28,10 +27,10 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebParameterSet item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebParameterSet_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@SchemaParameterName", item.SchemaParameterName)
+            var obj = DbHelper.ExecuteScalar("WebParameterSet_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@SchemaParameterName", item.SchemaParameterName)
             );
 
             item.Id = DataUtil.GetId(obj);

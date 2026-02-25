@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -22,8 +21,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebTemplate Get(int templateId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTemplate_Get",
-                new SqlParameter("@Id", templateId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebTemplate_Get",
+                DbHelper.CreateParameter("@Id", templateId)))
             {
                 if (r.Read())
                     return From(r);
@@ -55,7 +54,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTemplate> items = new List<WebTemplate>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTemplate_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebTemplate_Get"))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -68,8 +67,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             var items = new List<WebTemplate>();
 
-            using (var r = SqlHelper.ExecuteReader("WebTemplate_Get",
-                new SqlParameter("@ThemeId", themeId)))
+            using (var r = DbHelper.ExecuteReader("WebTemplate_Get",
+                DbHelper.CreateParameter("@ThemeId", themeId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -80,27 +79,27 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int templateId)
         {
-            SqlHelper.ExecuteNonQuery("WebTemplate_Del",
-                new SqlParameter("@Id", templateId));
+            DbHelper.ExecuteNonQuery("WebTemplate_Del",
+                DbHelper.CreateParameter("@Id", templateId));
 
             return true;
         }
 
         public int Update(WebTemplate item)
         {
-            object o = SqlHelper.ExecuteScalar("WebTemplate_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@Content", item.Content),
-                new SqlParameter("@FileName", item.FileName),
-                new SqlParameter("@Identity", item.Identity),
-                new SqlParameter("@PrimaryPanelId", item.PrimaryPanelId),
-                new SqlParameter("@DateModified", item.DateModified),
-                new SqlParameter("@SkinId", item.SkinId),
-                new SqlParameter("@Standalone", item.Standalone),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@ThemeId", item.ThemeId),
-                new SqlParameter("@TemplateEngineId", item.TemplateEngineId)
+            object o = DbHelper.ExecuteScalar("WebTemplate_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@Content", item.Content),
+                DbHelper.CreateParameter("@FileName", item.FileName),
+                DbHelper.CreateParameter("@Identity", item.Identity),
+                DbHelper.CreateParameter("@PrimaryPanelId", item.PrimaryPanelId),
+                DbHelper.CreateParameter("@DateModified", item.DateModified),
+                DbHelper.CreateParameter("@SkinId", item.SkinId),
+                DbHelper.CreateParameter("@Standalone", item.Standalone),
+                DbHelper.CreateParameter("@ParentId", item.ParentId),
+                DbHelper.CreateParameter("@ThemeId", item.ThemeId),
+                DbHelper.CreateParameter("@TemplateEngineId", item.TemplateEngineId)
             );
 
             item.Id = DataUtil.GetId(o.ToString());

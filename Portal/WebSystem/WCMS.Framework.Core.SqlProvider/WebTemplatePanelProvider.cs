@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -19,7 +18,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTemplatePanel> items = new List<WebTemplatePanel>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTemplatePanel_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebTemplatePanel_Get"))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -33,9 +32,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTemplatePanel> items = new List<WebTemplatePanel>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTemplatePanel_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebTemplatePanel_Get",
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -47,8 +46,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebTemplatePanel Get(int templatePanelId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTemplatePanel_Get",
-                new SqlParameter("@TemplatePanelId", templatePanelId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebTemplatePanel_Get",
+                DbHelper.CreateParameter("@TemplatePanelId", templatePanelId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -59,13 +58,13 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebTemplatePanel item)
         {
-            object o = SqlHelper.ExecuteScalar("WebTemplatePanel_Set",
-                new SqlParameter("@TemplatePanelId", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@PanelName", item.PanelName),
-                new SqlParameter("@Rank", item.Rank)
+            object o = DbHelper.ExecuteScalar("WebTemplatePanel_Set",
+                DbHelper.CreateParameter("@TemplatePanelId", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                DbHelper.CreateParameter("@RecordId", item.RecordId),
+                DbHelper.CreateParameter("@PanelName", item.PanelName),
+                DbHelper.CreateParameter("@Rank", item.Rank)
             );
 
             item.Id = DataUtil.GetId(o.ToString());
@@ -75,8 +74,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int templatePanelId)
         {
-            SqlHelper.ExecuteNonQuery("WebTemplatePanel_Del",
-                new SqlParameter("@TemplatePanelId", templatePanelId));
+            DbHelper.ExecuteNonQuery("WebTemplatePanel_Del",
+                DbHelper.CreateParameter("@TemplatePanelId", templatePanelId));
 
             return true;
         }

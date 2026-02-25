@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -19,7 +18,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPartConfig> items = new List<WebPartConfig>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPartConfig_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPartConfig_Get"))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -31,8 +30,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPartConfig Get(int partConfigId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPartConfig_Get",
-                new SqlParameter("@PartConfigId", partConfigId)
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPartConfig_Get",
+                DbHelper.CreateParameter("@PartConfigId", partConfigId)
                 ))
             {
                 if (r.HasRows && r.Read())
@@ -46,8 +45,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPartConfig> items = new List<WebPartConfig>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPartConfig_Get",
-                new SqlParameter("@PartId", partId)
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPartConfig_Get",
+                DbHelper.CreateParameter("@PartId", partId)
                 ))
             {
                 if (r.HasRows)
@@ -74,11 +73,11 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebPartConfig item)
         {
-            object o = SqlHelper.ExecuteScalar("WebPartConfig_Set",
-                new SqlParameter("@PartConfigId", item.Id),
-                new SqlParameter("@PartId", item.PartId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@FileName", item.FileName)
+            object o = DbHelper.ExecuteScalar("WebPartConfig_Set",
+                DbHelper.CreateParameter("@PartConfigId", item.Id),
+                DbHelper.CreateParameter("@PartId", item.PartId),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@FileName", item.FileName)
                 );
 
             item.Id = DataUtil.GetId(o);
@@ -87,8 +86,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int partConfigId)
         {
-            SqlHelper.ExecuteNonQuery("WebPartConfig_Del",
-                new SqlParameter("@PartConfigId", partConfigId));
+            DbHelper.ExecuteNonQuery("WebPartConfig_Del",
+                DbHelper.CreateParameter("@PartConfigId", partConfigId));
 
             return true;
         }

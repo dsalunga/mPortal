@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 namespace WCMS.Framework.Core.SqlProvider
@@ -16,16 +15,16 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("WebGlobalPolicy_Del",
-                new SqlParameter("@GlobalPolicyId", id));
+            DbHelper.ExecuteNonQuery("WebGlobalPolicy_Del",
+                DbHelper.CreateParameter("@GlobalPolicyId", id));
 
             return true;
         }
 
         public WebGlobalPolicy Get(int id)
         {
-            using (var r = SqlHelper.ExecuteReader("WebGlobalPolicy_Get",
-                new SqlParameter("@GlobalPolicyId", id)))
+            using (var r = DbHelper.ExecuteReader("WebGlobalPolicy_Get",
+                DbHelper.CreateParameter("@GlobalPolicyId", id)))
             {
                 if (r.Read())
                 {
@@ -36,7 +35,7 @@ namespace WCMS.Framework.Core.SqlProvider
             return null;
         }
 
-        private WebGlobalPolicy From(SqlDataReader r)
+        private WebGlobalPolicy From(DbDataReader r)
         {
             WebGlobalPolicy item = new WebGlobalPolicy();
             item.Id = DataUtil.GetId(r["GlobalPolicyId"]);
@@ -53,7 +52,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebGlobalPolicy> items = new List<WebGlobalPolicy>();
 
-            using (var r = SqlHelper.ExecuteReader("WebGlobalPolicy_Get"))
+            using (var r = DbHelper.ExecuteReader("WebGlobalPolicy_Get"))
             {
                 while (r.Read())
                 {
@@ -76,9 +75,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebGlobalPolicy item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebGlobalPolicy_Set",
-                new SqlParameter("@GlobalPolicyId", item.Id),
-                new SqlParameter("@Name", item.Name));
+            var obj = DbHelper.ExecuteScalar("WebGlobalPolicy_Set",
+                DbHelper.CreateParameter("@GlobalPolicyId", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name));
 
             item.Id = DataUtil.GetId(obj);
             return item.Id;

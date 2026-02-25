@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -19,8 +18,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             var items = new List<WebMasterPage>();
 
-            using (var r = SqlHelper.ExecuteReader("WebMasterPage_Get",
-                new SqlParameter("@SiteId", siteId)))
+            using (var r = DbHelper.ExecuteReader("WebMasterPage_Get",
+                DbHelper.CreateParameter("@SiteId", siteId)))
             {
                 while (r.Read())
                     items.Add(this.From(r));
@@ -31,8 +30,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebMasterPage Get(int masterPageId)
         {
-            using (var r = SqlHelper.ExecuteReader("WebMasterPage_Get",
-                new SqlParameter("@MasterPageId", masterPageId)))
+            using (var r = DbHelper.ExecuteReader("WebMasterPage_Get",
+                DbHelper.CreateParameter("@MasterPageId", masterPageId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -43,25 +42,25 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int masterPageId)
         {
-            SqlHelper.ExecuteNonQuery("WebMasterPage_Del",
-                new SqlParameter("@MasterPageId", masterPageId));
+            DbHelper.ExecuteNonQuery("WebMasterPage_Del",
+                DbHelper.CreateParameter("@MasterPageId", masterPageId));
 
             return true;
         }
 
         public int Update(WebMasterPage item)
         {
-            object o = SqlHelper.ExecuteScalar("WebMasterPage_Set",
-                new SqlParameter("@MasterPageId", item.Id),
-                new SqlParameter("@SiteId", item.SiteId),
-                new SqlParameter("@TemplateId", item.TemplateId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@PublicAccess", item.PublicAccess),
-                new SqlParameter("@OwnerPageId", item.OwnerPageId),
-                new SqlParameter("@ManagementAccess", item.ManagementAccess),
-                new SqlParameter("@SkinId", item.SkinId),
-                new SqlParameter("@ThemeId", item.ThemeId),
-                new SqlParameter("@ParentId", item.ParentId)
+            object o = DbHelper.ExecuteScalar("WebMasterPage_Set",
+                DbHelper.CreateParameter("@MasterPageId", item.Id),
+                DbHelper.CreateParameter("@SiteId", item.SiteId),
+                DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@PublicAccess", item.PublicAccess),
+                DbHelper.CreateParameter("@OwnerPageId", item.OwnerPageId),
+                DbHelper.CreateParameter("@ManagementAccess", item.ManagementAccess),
+                DbHelper.CreateParameter("@SkinId", item.SkinId),
+                DbHelper.CreateParameter("@ThemeId", item.ThemeId),
+                DbHelper.CreateParameter("@ParentId", item.ParentId)
             );
 
             if (o != null)
@@ -102,7 +101,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebMasterPage> items = new List<WebMasterPage>();
 
-            using (var r = SqlHelper.ExecuteReader("WebMasterPage_Get"))
+            using (var r = DbHelper.ExecuteReader("WebMasterPage_Get"))
             {
                 while (r.Read())
                     items.Add(this.From(r));

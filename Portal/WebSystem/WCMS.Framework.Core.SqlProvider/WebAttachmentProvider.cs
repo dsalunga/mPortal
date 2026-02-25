@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 using WCMS.Framework.Core;
@@ -34,16 +33,16 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebAttachment item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebAttachment_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@FilePath", item.FilePath),
-                new SqlParameter("@Size", item.Size),
-                new SqlParameter("@DateUploaded", item.DateUploaded),
-                new SqlParameter("@UserId", item.UserId),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@BatchGuid", item.BatchGuid));
+            var obj = DbHelper.ExecuteScalar("WebAttachment_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@FilePath", item.FilePath),
+                DbHelper.CreateParameter("@Size", item.Size),
+                DbHelper.CreateParameter("@DateUploaded", item.DateUploaded),
+                DbHelper.CreateParameter("@UserId", item.UserId),
+                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                DbHelper.CreateParameter("@RecordId", item.RecordId),
+                DbHelper.CreateParameter("@BatchGuid", item.BatchGuid));
 
             item.Id = DataUtil.GetId(obj);
             return item.Id;
@@ -55,10 +54,10 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebAttachment> items = new List<WebAttachment>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@UserId", userId),
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)))
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@UserId", userId),
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -71,8 +70,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebAttachment> items = new List<WebAttachment>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@BatchGuid", batchGuid)))
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@BatchGuid", batchGuid)))
             {
                 while (r.Read())
                     items.Add(From(r));

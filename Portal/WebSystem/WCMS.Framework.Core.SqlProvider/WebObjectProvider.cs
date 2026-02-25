@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -20,8 +19,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebObject Get(int id)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObject_Get",
-                new SqlParameter("@Id", id)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebObject_Get",
+                DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -35,7 +34,7 @@ namespace WCMS.Framework.Core.SqlProvider
             //return _provider.GetList<WebObject>();
             List<WebObject> items = new List<WebObject>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObject_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebObject_Get"))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -49,24 +48,24 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             //return _provider.Update<WebObject>(item);
 
-            object o = SqlHelper.ExecuteScalar("WebObject_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@IdentityColumn", item.IdentityColumn),
-                new SqlParameter("@ObjectType", item.ObjectType),
-                new SqlParameter("@LastRecordId", item.LastRecordId),
-                new SqlParameter("@MaxCacheCount", item.MaxCacheCount),
-                new SqlParameter("@AccessTypeId", item.AccessTypeId),
-                new SqlParameter("@CacheTypeId", item.CacheTypeId),
-                new SqlParameter("@MaxHistoryCount", item.MaxHistoryCount),
-                new SqlParameter("@Owner", item.Owner),
-                new SqlParameter("@Prefix", item.Prefix),
-                new SqlParameter("@DataProviderName", item.DataProviderName),
-                new SqlParameter("@TypeName", item.TypeName),
-                new SqlParameter("@CacheInterval", item.CacheInterval),
-                new SqlParameter("@NameColumn", item.NameColumn),
-                new SqlParameter("@FriendlyName", item.FriendlyName),
-                new SqlParameter("@ManagerName", item.ManagerName)
+            object o = DbHelper.ExecuteScalar("WebObject_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@IdentityColumn", item.IdentityColumn),
+                DbHelper.CreateParameter("@ObjectType", item.ObjectType),
+                DbHelper.CreateParameter("@LastRecordId", item.LastRecordId),
+                DbHelper.CreateParameter("@MaxCacheCount", item.MaxCacheCount),
+                DbHelper.CreateParameter("@AccessTypeId", item.AccessTypeId),
+                DbHelper.CreateParameter("@CacheTypeId", item.CacheTypeId),
+                DbHelper.CreateParameter("@MaxHistoryCount", item.MaxHistoryCount),
+                DbHelper.CreateParameter("@Owner", item.Owner),
+                DbHelper.CreateParameter("@Prefix", item.Prefix),
+                DbHelper.CreateParameter("@DataProviderName", item.DataProviderName),
+                DbHelper.CreateParameter("@TypeName", item.TypeName),
+                DbHelper.CreateParameter("@CacheInterval", item.CacheInterval),
+                DbHelper.CreateParameter("@NameColumn", item.NameColumn),
+                DbHelper.CreateParameter("@FriendlyName", item.FriendlyName),
+                DbHelper.CreateParameter("@ManagerName", item.ManagerName)
             );
 
             item.Id = DataUtil.GetId(o);
@@ -75,8 +74,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("WebObject_Del",
-                new SqlParameter("@Id", id));
+            DbHelper.ExecuteNonQuery("WebObject_Del",
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }

@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 using WCMS.Framework.Core;
@@ -18,10 +17,10 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebAddress Get(int objectId, int recordId, string tag)
         {
-            using (var r = SqlHelper.ExecuteReader("WebAddress_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@Tag", tag)))
+            using (var r = DbHelper.ExecuteReader("WebAddress_Get",
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@Tag", tag)))
             {
                 if (r.Read())
                     return From(r);
@@ -34,9 +33,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebAddress> items = new List<WebAddress>();
 
-            using (var r = SqlHelper.ExecuteReader("WebAddress_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)))
+            using (var r = DbHelper.ExecuteReader("WebAddress_Get",
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -73,20 +72,20 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             item.LastUpdated = DateTime.Now;
 
-            var obj = SqlHelper.ExecuteScalar("WebAddress_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@AddressLine1", item.AddressLine1),
-                new SqlParameter("@AddressLine2", item.AddressLine2),
-                new SqlParameter("@CityTown", item.CityTown),
-                new SqlParameter("@StateProvince", item.StateProvince),
-                new SqlParameter("@StateProvinceCode", item.StateProvinceCode),
-                new SqlParameter("@CountryCode", item.CountryCode),
-                new SqlParameter("@ZipCode", item.ZipCode),
-                new SqlParameter("@PhoneNumber", item.PhoneNumber),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@Tag", item.Tag),
-                new SqlParameter("@LastUpdated", item.LastUpdated)
+            var obj = DbHelper.ExecuteScalar("WebAddress_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@AddressLine1", item.AddressLine1),
+                DbHelper.CreateParameter("@AddressLine2", item.AddressLine2),
+                DbHelper.CreateParameter("@CityTown", item.CityTown),
+                DbHelper.CreateParameter("@StateProvince", item.StateProvince),
+                DbHelper.CreateParameter("@StateProvinceCode", item.StateProvinceCode),
+                DbHelper.CreateParameter("@CountryCode", item.CountryCode),
+                DbHelper.CreateParameter("@ZipCode", item.ZipCode),
+                DbHelper.CreateParameter("@PhoneNumber", item.PhoneNumber),
+                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                DbHelper.CreateParameter("@RecordId", item.RecordId),
+                DbHelper.CreateParameter("@Tag", item.Tag),
+                DbHelper.CreateParameter("@LastUpdated", item.LastUpdated)
             );
 
             item.Id = DataUtil.GetId(obj);

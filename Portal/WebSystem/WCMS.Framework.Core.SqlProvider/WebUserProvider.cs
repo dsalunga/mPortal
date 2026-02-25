@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -15,8 +14,8 @@ namespace WCMS.Framework.Core.SqlProvider
     {
         public WebUser Get(string userName)
         {
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get",
-                new SqlParameter("@UserName", userName)))
+            using (var r = DbHelper.ExecuteReader("WebUser_Get",
+                DbHelper.CreateParameter("@UserName", userName)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -27,8 +26,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebUser GetByEmail(string email)
         {
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get",
-                new SqlParameter("@Email", email)))
+            using (var r = DbHelper.ExecuteReader("WebUser_Get",
+                DbHelper.CreateParameter("@Email", email)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -39,8 +38,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebUser GetByEmailId(string emailId)
         {
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get",
-                new SqlParameter("@EmailId", emailId)))
+            using (var r = DbHelper.ExecuteReader("WebUser_Get",
+                DbHelper.CreateParameter("@EmailId", emailId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -51,8 +50,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebUser Get(int userId)
         {
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get",
-                new SqlParameter("@UserId", userId)))
+            using (var r = DbHelper.ExecuteReader("WebUser_Get",
+                DbHelper.CreateParameter("@UserId", userId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -64,7 +63,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebUser> GetList()
         {
             var items = new List<WebUser>();
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get"))
+            using (var r = DbHelper.ExecuteReader("WebUser_Get"))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -77,8 +76,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebUser> GetList(int active)
         {
             var items = new List<WebUser>();
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get",
-                new SqlParameter("@Active", active)))
+            using (var r = DbHelper.ExecuteReader("WebUser_Get",
+                DbHelper.CreateParameter("@Active", active)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -91,32 +90,32 @@ namespace WCMS.Framework.Core.SqlProvider
         public int Update(WebUser item)
         {
             string encryptedPwd = !string.IsNullOrEmpty(item.Password) ? WCryptography.EncryptString(item.Password) : string.Empty;
-            object o = SqlHelper.ExecuteScalar("WebUser_Set",
-                new SqlParameter("@UserId", item.Id),
-                new SqlParameter("@UserName", item.UserName),
-                new SqlParameter("@Password", encryptedPwd),
-                new SqlParameter("@FirstName", item.FirstName),
-                new SqlParameter("@MiddleName", item.MiddleName),
-                new SqlParameter("@LastName", item.LastName),
-                new SqlParameter("@Email", item.Email),
-                new SqlParameter("@ActivationKey", item.ActivationKey),
-                new SqlParameter("@LastUpdate", item.LastUpdate),
-                new SqlParameter("@DateCreated", item.DateCreated),
-                new SqlParameter("@NewEmail", item.NewEmail),
-                new SqlParameter("@Email2", item.Email2),
-                new SqlParameter("@Gender", item.Gender),
-                new SqlParameter("@NameSuffix", item.NameSuffix),
-                new SqlParameter("@MobileNumber", item.MobileNumber),
-                new SqlParameter("@TelephoneNumber", item.TelephoneNumber),
-                new SqlParameter("@LastLogin", item.LastLogin),
-                new SqlParameter("@StatusText", item.StatusText),
-                new SqlParameter("@PasswordExpiryDate", item.PasswordExpiryDate),
-                new SqlParameter("@PhotoPath", item.PhotoPath),
-                new SqlParameter("@ProviderId", item.ProviderId),
-                new SqlParameter("@Status", item.Status),
-                new SqlParameter("@MaritalStatusId", item.MaritalStatusId),
-                new SqlParameter("@LastLoginFailureDate", item.LastLoginFailureDate),
-                new SqlParameter("@LoginFailureCount", item.LoginFailureCount)
+            object o = DbHelper.ExecuteScalar("WebUser_Set",
+                DbHelper.CreateParameter("@UserId", item.Id),
+                DbHelper.CreateParameter("@UserName", item.UserName),
+                DbHelper.CreateParameter("@Password", encryptedPwd),
+                DbHelper.CreateParameter("@FirstName", item.FirstName),
+                DbHelper.CreateParameter("@MiddleName", item.MiddleName),
+                DbHelper.CreateParameter("@LastName", item.LastName),
+                DbHelper.CreateParameter("@Email", item.Email),
+                DbHelper.CreateParameter("@ActivationKey", item.ActivationKey),
+                DbHelper.CreateParameter("@LastUpdate", item.LastUpdate),
+                DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                DbHelper.CreateParameter("@NewEmail", item.NewEmail),
+                DbHelper.CreateParameter("@Email2", item.Email2),
+                DbHelper.CreateParameter("@Gender", item.Gender),
+                DbHelper.CreateParameter("@NameSuffix", item.NameSuffix),
+                DbHelper.CreateParameter("@MobileNumber", item.MobileNumber),
+                DbHelper.CreateParameter("@TelephoneNumber", item.TelephoneNumber),
+                DbHelper.CreateParameter("@LastLogin", item.LastLogin),
+                DbHelper.CreateParameter("@StatusText", item.StatusText),
+                DbHelper.CreateParameter("@PasswordExpiryDate", item.PasswordExpiryDate),
+                DbHelper.CreateParameter("@PhotoPath", item.PhotoPath),
+                DbHelper.CreateParameter("@ProviderId", item.ProviderId),
+                DbHelper.CreateParameter("@Status", item.Status),
+                DbHelper.CreateParameter("@MaritalStatusId", item.MaritalStatusId),
+                DbHelper.CreateParameter("@LastLoginFailureDate", item.LastLoginFailureDate),
+                DbHelper.CreateParameter("@LoginFailureCount", item.LoginFailureCount)
             );
 
             item.Id = DataUtil.GetId(o);
@@ -125,16 +124,16 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int userId)
         {
-            SqlHelper.ExecuteNonQuery("WebUser_Del",
-                new SqlParameter("@UserId", userId)
+            DbHelper.ExecuteNonQuery("WebUser_Del",
+                DbHelper.CreateParameter("@UserId", userId)
             );
             return true;
         }
 
         public bool Delete(string userName)
         {
-            SqlHelper.ExecuteNonQuery("WebUser_Del",
-                new SqlParameter("@UserName", userName));
+            DbHelper.ExecuteNonQuery("WebUser_Del",
+                DbHelper.CreateParameter("@UserName", userName));
             return true;
         }
 

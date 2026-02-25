@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
@@ -32,9 +31,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebShare> items = new List<WebShare>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)
             ))
             {
                 while (r.Read())
@@ -46,11 +45,11 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebShare Get(int objectId, int recordId, int shareObjectId, int shareRecordId)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ShareObjectId", shareObjectId),
-                new SqlParameter("@ShareRecordId", shareRecordId)
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ShareObjectId", shareObjectId),
+                DbHelper.CreateParameter("@ShareRecordId", shareRecordId)
             ))
             {
                 while (r.Read())

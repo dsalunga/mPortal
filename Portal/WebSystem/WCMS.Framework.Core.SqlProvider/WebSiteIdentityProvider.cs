@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
@@ -17,16 +16,16 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("WebSiteIdentity_Del",
-                new SqlParameter("@Id", id));
+            DbHelper.ExecuteNonQuery("WebSiteIdentity_Del",
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
 
         public WebSiteIdentity Get(int id)
         {
-            using (var r = SqlHelper.ExecuteReader("WebSiteIdentity_Get",
-                new SqlParameter("@Id", id)))
+            using (var r = DbHelper.ExecuteReader("WebSiteIdentity_Get",
+                DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.Read())
                     return From(r);
@@ -35,7 +34,7 @@ namespace WCMS.Framework.Core.SqlProvider
             return null;
         }
 
-        private WebSiteIdentity From(SqlDataReader r)
+        private WebSiteIdentity From(DbDataReader r)
         {
             var item = new WebSiteIdentity();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
@@ -58,7 +57,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebSiteIdentity> GetList()
         {
             var items = new List<WebSiteIdentity>();
-            using (var r = SqlHelper.ExecuteReader("WebSiteIdentity_Get"))
+            using (var r = DbHelper.ExecuteReader("WebSiteIdentity_Get"))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -70,8 +69,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebSiteIdentity> GetList(int siteId)
         {
             var items = new List<WebSiteIdentity>();
-            using (var r = SqlHelper.ExecuteReader("WebSiteIdentity_Get",
-                new SqlParameter("@SiteId", siteId)))
+            using (var r = DbHelper.ExecuteReader("WebSiteIdentity_Get",
+                DbHelper.CreateParameter("@SiteId", siteId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -92,15 +91,15 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebSiteIdentity item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebSiteIdentity_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@SiteId", item.SiteId),
-                new SqlParameter("@HostName", item.HostName),
-                new SqlParameter("@UrlPath", item.UrlPath),
-                new SqlParameter("@Port", item.Port),
-                new SqlParameter("@IPAddress", item.IPAddress),
-                new SqlParameter("@RedirectUrl", item.RedirectUrl),
-                new SqlParameter("@ProtocolId", item.ProtocolId)
+            var obj = DbHelper.ExecuteScalar("WebSiteIdentity_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@SiteId", item.SiteId),
+                DbHelper.CreateParameter("@HostName", item.HostName),
+                DbHelper.CreateParameter("@UrlPath", item.UrlPath),
+                DbHelper.CreateParameter("@Port", item.Port),
+                DbHelper.CreateParameter("@IPAddress", item.IPAddress),
+                DbHelper.CreateParameter("@RedirectUrl", item.RedirectUrl),
+                DbHelper.CreateParameter("@ProtocolId", item.ProtocolId)
             );
 
             item.Id = DataUtil.GetId(obj);

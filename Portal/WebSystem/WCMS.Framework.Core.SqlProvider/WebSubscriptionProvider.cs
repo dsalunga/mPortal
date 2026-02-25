@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 namespace WCMS.Framework.Core.SqlProvider
@@ -33,12 +32,12 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebSubscription> GetList(int objectId, int recordId, int partId, int pageId, int allow)
         {
             var items = new List<WebSubscription>();
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@PartId", partId),
-                new SqlParameter("@PageId", pageId),
-                new SqlParameter("@Allow", allow)))
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@PartId", partId),
+                DbHelper.CreateParameter("@PageId", pageId),
+                DbHelper.CreateParameter("@Allow", allow)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -49,13 +48,13 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebSubscription item)
         {
-            var obj = SqlHelper.ExecuteReader("WebSubscription_Set",
-                new SqlParameter("@SubscriptionId", item.Id),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@PartId", item.PartId),
-                new SqlParameter("@PageId", item.PageId),
-                new SqlParameter("@Allow", item.Allow));
+            var obj = DbHelper.ExecuteReader("WebSubscription_Set",
+                DbHelper.CreateParameter("@SubscriptionId", item.Id),
+                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                DbHelper.CreateParameter("@RecordId", item.RecordId),
+                DbHelper.CreateParameter("@PartId", item.PartId),
+                DbHelper.CreateParameter("@PageId", item.PageId),
+                DbHelper.CreateParameter("@Allow", item.Allow));
 
             item.Id = DataUtil.GetId(obj);
             return item.Id;

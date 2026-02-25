@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Data.Common;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +16,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (id > 0)
             {
-                using (var r = SqlHelper.ExecuteReader("WebGroup_Get",
-                    new SqlParameter("@Id", id)))
+                using (var r = DbHelper.ExecuteReader("WebGroup_Get",
+                    DbHelper.CreateParameter("@Id", id)))
                 {
                     if (r.HasRows && r.Read())
                         return this.From(r);
@@ -30,9 +29,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebGroup Get(int parentId, string name)
         {
-            using (var r = SqlHelper.ExecuteReader("WebGroup_Get",
-                new SqlParameter("@ParentId", parentId),
-                new SqlParameter("@Name", name)))
+            using (var r = DbHelper.ExecuteReader("WebGroup_Get",
+                DbHelper.CreateParameter("@ParentId", parentId),
+                DbHelper.CreateParameter("@Name", name)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -45,8 +44,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (!string.IsNullOrEmpty(name))
             {
-                using (var r = SqlHelper.ExecuteReader("WebGroup_Get",
-                    new SqlParameter("@Name", name)))
+                using (var r = DbHelper.ExecuteReader("WebGroup_Get",
+                    DbHelper.CreateParameter("@Name", name)))
                 {
                     if (r.HasRows && r.Read())
                         return this.From(r);
@@ -79,7 +78,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebGroup> items = new List<WebGroup>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebGroup_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebGroup_Get"))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -93,8 +92,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebGroup> items = new List<WebGroup>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebGroup_Get",
-                new SqlParameter("@ParentId", parentId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebGroup_Get",
+                DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -106,18 +105,18 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebGroup item)
         {
-            object o = SqlHelper.ExecuteScalar("WebGroup_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@IsSystem", item.IsSystem),
-                new SqlParameter("@OwnerId", item.OwnerId),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@JoinApproval", item.JoinApproval),
-                new SqlParameter("@JoinAlert", item.JoinAlert),
-                new SqlParameter("@PageUrl", item.PageUrl),
-                new SqlParameter("@PageId", item.PageId),
-                new SqlParameter("@Description", item.Description),
-                new SqlParameter("@Managers", item.Managers)
+            object o = DbHelper.ExecuteScalar("WebGroup_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@IsSystem", item.IsSystem),
+                DbHelper.CreateParameter("@OwnerId", item.OwnerId),
+                DbHelper.CreateParameter("@ParentId", item.ParentId),
+                DbHelper.CreateParameter("@JoinApproval", item.JoinApproval),
+                DbHelper.CreateParameter("@JoinAlert", item.JoinAlert),
+                DbHelper.CreateParameter("@PageUrl", item.PageUrl),
+                DbHelper.CreateParameter("@PageId", item.PageId),
+                DbHelper.CreateParameter("@Description", item.Description),
+                DbHelper.CreateParameter("@Managers", item.Managers)
             );
 
             item.Id = DataUtil.GetId(o);
@@ -126,8 +125,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("WebGroup_Del",
-                new SqlParameter("@Id", id)
+            DbHelper.ExecuteNonQuery("WebGroup_Del",
+                DbHelper.CreateParameter("@Id", id)
             );
 
             return true;

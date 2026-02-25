@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 namespace WCMS.Framework.Core.SqlProvider
@@ -29,13 +28,13 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebParameter item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebParameter_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@Value", item.Value),
-                new SqlParameter("@IsRequired", item.IsRequired));
+            var obj = DbHelper.ExecuteScalar("WebParameter_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                DbHelper.CreateParameter("@RecordId", item.RecordId),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@Value", item.Value),
+                DbHelper.CreateParameter("@IsRequired", item.IsRequired));
 
             return UpdatePostProcess(item, obj);
         }
@@ -46,9 +45,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebParameter> items = new List<WebParameter>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)))
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -59,10 +58,10 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebParameter Get(int objectId, int recordId, string name)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@Name", name)))
+            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@Name", name)))
             {
                 if (r.Read())
                     return From(r);

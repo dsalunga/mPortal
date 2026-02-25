@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -24,8 +23,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebObjectHeader Get(int objectHeaderId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObjectHeader_Get",
-                new SqlParameter("@ObjectHeaderId", objectHeaderId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebObjectHeader_Get",
+                DbHelper.CreateParameter("@ObjectHeaderId", objectHeaderId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -37,10 +36,10 @@ namespace WCMS.Framework.Core.SqlProvider
         // This can contain multiple items, so this implementation should be changed
         public WebObjectHeader Get(int objectId, int recordId, int textResourceId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObjectHeader_Get",
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@TextResourceId", textResourceId)
+            using (DbDataReader r = DbHelper.ExecuteReader("WebObjectHeader_Get",
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@TextResourceId", textResourceId)
                 ))
             {
                 if (r.HasRows && r.Read())
@@ -52,11 +51,11 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebObjectHeader item)
         {
-            object o = SqlHelper.ExecuteScalar("WebObjectHeader_Set",
-                new SqlParameter("@ObjectHeaderId", item.Id),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@TextResourceId", item.TextResourceId));
+            object o = DbHelper.ExecuteScalar("WebObjectHeader_Set",
+                DbHelper.CreateParameter("@ObjectHeaderId", item.Id),
+                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                DbHelper.CreateParameter("@RecordId", item.RecordId),
+                DbHelper.CreateParameter("@TextResourceId", item.TextResourceId));
 
             item.Id = DataUtil.GetId(o);
             return item.Id;
@@ -64,8 +63,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int objectHeaderId)
         {
-            SqlHelper.ExecuteNonQuery("WebObjectHeader_Del",
-                new SqlParameter("@ObjectHeaderId", objectHeaderId));
+            DbHelper.ExecuteNonQuery("WebObjectHeader_Del",
+                DbHelper.CreateParameter("@ObjectHeaderId", objectHeaderId));
 
             return true;
         }
@@ -74,9 +73,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebObjectHeader> items = new List<WebObjectHeader>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObjectHeader_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)
+            using (DbDataReader r = DbHelper.ExecuteReader("WebObjectHeader_Get",
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)
                 ))
             {
                 if (r.HasRows)
@@ -91,8 +90,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebObjectHeader> items = new List<WebObjectHeader>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObjectHeader_Get",
-                new SqlParameter("@TextResourceId", textResourceId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebObjectHeader_Get",
+                DbHelper.CreateParameter("@TextResourceId", textResourceId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -106,7 +105,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebObjectHeader> items = new List<WebObjectHeader>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObjectHeader_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebObjectHeader_Get"))
             {
                 if (r.HasRows)
                     while (r.Read())

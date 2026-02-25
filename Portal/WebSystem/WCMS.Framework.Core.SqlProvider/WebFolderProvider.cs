@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
@@ -16,16 +15,16 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("WebFolder_Del",
-                new SqlParameter("@Id", id));
+            DbHelper.ExecuteNonQuery("WebFolder_Del",
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
 
         public WebFolder Get(int id)
         {
-            using (var r = SqlHelper.ExecuteReader("WebFolder_Get",
-                new SqlParameter("@Id", id)))
+            using (var r = DbHelper.ExecuteReader("WebFolder_Get",
+                DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.Read())
                     return From(r);
@@ -36,9 +35,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebFolder Get(int parentId, string name)
         {
-            using (var r = SqlHelper.ExecuteReader("WebFolder_Get",
-                new SqlParameter("@ParentId", parentId),
-                new SqlParameter("@Name", name)))
+            using (var r = DbHelper.ExecuteReader("WebFolder_Get",
+                DbHelper.CreateParameter("@ParentId", parentId),
+                DbHelper.CreateParameter("@Name", name)))
             {
                 if (r.Read())
                     return From(r);
@@ -47,7 +46,7 @@ namespace WCMS.Framework.Core.SqlProvider
             return null;
         }
 
-        private WebFolder From(SqlDataReader r)
+        private WebFolder From(DbDataReader r)
         {
             WebFolder item = new WebFolder();
             item.Id = DataUtil.GetId(r["Id"]);
@@ -69,7 +68,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebFolder> items = new List<WebFolder>();
 
-            using (var r = SqlHelper.ExecuteReader("WebFolder_Get"))
+            using (var r = DbHelper.ExecuteReader("WebFolder_Get"))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -82,8 +81,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebFolder> items = new List<WebFolder>();
 
-            using (var r = SqlHelper.ExecuteReader("WebFolder_Get",
-                new SqlParameter("@ParentId", parentId)))
+            using (var r = DbHelper.ExecuteReader("WebFolder_Get",
+                DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -96,9 +95,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebFolder> items = new List<WebFolder>();
 
-            using (var r = SqlHelper.ExecuteReader("WebFolder_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@SiteId", siteId)))
+            using (var r = DbHelper.ExecuteReader("WebFolder_Get",
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@SiteId", siteId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -119,13 +118,13 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebFolder item)
         {
-            object obj = SqlHelper.ExecuteScalar("WebFolder_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@ShareName", item.ShareName),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@SiteId", item.SiteId));
+            object obj = DbHelper.ExecuteScalar("WebFolder_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@ParentId", item.ParentId),
+                DbHelper.CreateParameter("@ShareName", item.ShareName),
+                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                DbHelper.CreateParameter("@SiteId", item.SiteId));
 
             item.Id = DataUtil.GetId(obj);
             return item.Id;

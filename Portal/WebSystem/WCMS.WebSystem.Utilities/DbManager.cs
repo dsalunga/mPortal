@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -114,7 +114,7 @@ namespace WCMS.WebSystem.Utilities
         private void TruncateObject(WebObject item)
         {
             // Clear table
-            SqlHelper.ExecuteNonQuery(CommandType.Text, string.Format("TRUNCATE TABLE {0}", item.Name));
+            DbHelper.ExecuteNonQuery(CommandType.Text, string.Format("TRUNCATE TABLE {0}", item.Name));
         }
 
         public void RestoreObjectData(WebObject item, Action<string> notify)
@@ -131,7 +131,7 @@ namespace WCMS.WebSystem.Utilities
             var ds = new DataSet();
             ds.ReadXml(tableXml, XmlReadMode.ReadSchema);
 
-            SqlHelper.ExecuteUpdateDataSet(string.Format("SELECT * FROM {0}", item.Name), ds.Tables[0]);
+            DbHelper.ExecuteUpdateDataSet(string.Format("SELECT * FROM {0}", item.Name), ds.Tables[0]);
 
             notify(string.Format("{0}.xml RESTORED.", item.Name));
         }
@@ -142,7 +142,7 @@ namespace WCMS.WebSystem.Utilities
 
             string targetXmlFile = string.Format(@"{0}\{1}.xml", BackupPath, item.Name);
             // Backup the data
-            var ds = SqlHelper.ExecuteDataSetSchema(CommandType.Text,
+            var ds = DbHelper.ExecuteDataSetSchema(CommandType.Text,
                 string.Format("SELECT * FROM {0}", item.Name));
 
             ds.DataSetName = "mPortal";
@@ -244,7 +244,7 @@ namespace WCMS.WebSystem.Utilities
                             {
                                 try
                                 {
-                                    SqlHelper.ExecuteNonQuery(CommandType.Text, query);
+                                    DbHelper.ExecuteNonQuery(CommandType.Text, query);
                                 }
                                 catch (Exception ex)
                                 {
@@ -345,7 +345,7 @@ namespace WCMS.WebSystem.Utilities
                 /*
                 string targetXmlFile = string.Format(@"{0}\{1}.xml", backupPath, item.Name);
                 // Backup the data
-                var ds = SqlHelper.ExecuteDataSetSchema(CommandType.Text,
+                var ds = DbHelper.ExecuteDataSetSchema(CommandType.Text,
                     string.Format("SELECT * FROM {0}", item.Name));
 
                 ds.DataSetName = "mPortal";
@@ -376,7 +376,7 @@ namespace WCMS.WebSystem.Utilities
             notify("");
 
             // Generate procedures script
-            using (var r = SqlHelper.ExecuteReader(CommandType.Text,
+            using (var r = DbHelper.ExecuteReader(CommandType.Text,
                 string.Format("SELECT ROUTINE_NAME, ROUTINE_DEFINITION from INFORMATION_SCHEMA.ROUTINES" +
                               " WHERE ROUTINE_TYPE='PROCEDURE'")))
             {

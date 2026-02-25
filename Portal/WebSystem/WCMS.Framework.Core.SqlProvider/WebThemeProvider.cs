@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 using WCMS.Framework.Core;
@@ -31,13 +30,13 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebTheme item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebTheme_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@TemplateId", item.TemplateId),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@Identity", item.Identity),
-                new SqlParameter("@SkinId", item.SkinId)
+            var obj = DbHelper.ExecuteScalar("WebTheme_Set",
+                DbHelper.CreateParameter("@Id", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                DbHelper.CreateParameter("@ParentId", item.ParentId),
+                DbHelper.CreateParameter("@Identity", item.Identity),
+                DbHelper.CreateParameter("@SkinId", item.SkinId)
             );
 
             item.Id = DataUtil.GetId(obj);

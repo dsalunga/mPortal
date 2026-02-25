@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -24,9 +23,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WPage> items = new List<WPage>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPage_Get",
-                new SqlParameter("@SiteId", siteId),
-                new SqlParameter("@ParentId", parentId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPage_Get",
+                DbHelper.CreateParameter("@SiteId", siteId),
+                DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -38,8 +37,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetCount(int siteId)
         {
-            object o = SqlHelper.ExecuteScalar("WebPage_GetCount",
-                new SqlParameter("@SiteId", siteId));
+            object o = DbHelper.ExecuteScalar("WebPage_GetCount",
+                DbHelper.CreateParameter("@SiteId", siteId));
 
             if (o != null)
                 return Convert.ToInt32(o.ToString());
@@ -55,8 +54,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WPage> GetList(int siteId)
         {
             List<WPage> items = new List<WPage>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPage_Get",
-                new SqlParameter("@SiteId", siteId)))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPage_Get",
+                DbHelper.CreateParameter("@SiteId", siteId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -70,8 +69,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (pageId > 0)
             {
-                using (DbDataReader r = SqlHelper.ExecuteReader("WebPage_Get",
-                    new SqlParameter("@PageId", pageId)))
+                using (DbDataReader r = DbHelper.ExecuteReader("WebPage_Get",
+                    DbHelper.CreateParameter("@PageId", pageId)))
                 {
                     if (r.HasRows && r.Read())
                         return this.From(r);
@@ -85,10 +84,10 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (!string.IsNullOrEmpty(identity))
             {
-                using (var r = SqlHelper.ExecuteReader("WebPage_Get",
-                    new SqlParameter("@ParentId", parentId),
-                    new SqlParameter("@Identity", identity),
-                    new SqlParameter("@SiteId", siteId)))
+                using (var r = DbHelper.ExecuteReader("WebPage_Get",
+                    DbHelper.CreateParameter("@ParentId", parentId),
+                    DbHelper.CreateParameter("@Identity", identity),
+                    DbHelper.CreateParameter("@SiteId", siteId)))
                 {
                     if (r.HasRows && r.Read())
                         return this.From(r);
@@ -101,7 +100,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WPage> GetList()
         {
             List<WPage> items = new List<WPage>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPage_Get"))
+            using (DbDataReader r = DbHelper.ExecuteReader("WebPage_Get"))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -115,8 +114,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (pageId > 0)
             {
-                SqlHelper.ExecuteNonQuery("WebPage_Del",
-                    new SqlParameter("@PageId", pageId));
+                DbHelper.ExecuteNonQuery("WebPage_Del",
+                    DbHelper.CreateParameter("@PageId", pageId));
 
                 return true;
             }
@@ -126,23 +125,23 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WPage item)
         {
-            object o = SqlHelper.ExecuteScalar("WebPage_Set",
-                new SqlParameter("@PageId", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@SiteId", item.SiteId),
-                new SqlParameter("@Rank", item.Rank),
-                new SqlParameter("@Active", item.Active),
-                new SqlParameter("@Identity", item.Identity),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@Title", item.Title),
-                new SqlParameter("@MasterPageId", item.MasterPageId),
-                new SqlParameter("@PartControlTemplateId", item.PartControlTemplateId),
-                new SqlParameter("@PublicAccess", item.PublicAccess),
-                new SqlParameter("@PageType", item.PageType),
-                new SqlParameter("@UsePartTemplatePath", item.UsePartTemplatePath),
-                new SqlParameter("@ManagementAccess", item.ManagementAccess),
-                new SqlParameter("@ThemeId", item.ThemeId),
-                new SqlParameter("@SkinId", item.SkinId)
+            object o = DbHelper.ExecuteScalar("WebPage_Set",
+                DbHelper.CreateParameter("@PageId", item.Id),
+                DbHelper.CreateParameter("@Name", item.Name),
+                DbHelper.CreateParameter("@SiteId", item.SiteId),
+                DbHelper.CreateParameter("@Rank", item.Rank),
+                DbHelper.CreateParameter("@Active", item.Active),
+                DbHelper.CreateParameter("@Identity", item.Identity),
+                DbHelper.CreateParameter("@ParentId", item.ParentId),
+                DbHelper.CreateParameter("@Title", item.Title),
+                DbHelper.CreateParameter("@MasterPageId", item.MasterPageId),
+                DbHelper.CreateParameter("@PartControlTemplateId", item.PartControlTemplateId),
+                DbHelper.CreateParameter("@PublicAccess", item.PublicAccess),
+                DbHelper.CreateParameter("@PageType", item.PageType),
+                DbHelper.CreateParameter("@UsePartTemplatePath", item.UsePartTemplatePath),
+                DbHelper.CreateParameter("@ManagementAccess", item.ManagementAccess),
+                DbHelper.CreateParameter("@ThemeId", item.ThemeId),
+                DbHelper.CreateParameter("@SkinId", item.SkinId)
                 );
 
             item.Id = DataUtil.GetId(o.ToString());
@@ -175,8 +174,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetMaxRank(int siteId)
         {
-            object result = SqlHelper.ExecuteScalar("WebPage_GetMaxRank",
-                new SqlParameter("@SiteId", siteId));
+            object result = DbHelper.ExecuteScalar("WebPage_GetMaxRank",
+                DbHelper.CreateParameter("@SiteId", siteId));
 
             return DataUtil.GetId(result);
         }
