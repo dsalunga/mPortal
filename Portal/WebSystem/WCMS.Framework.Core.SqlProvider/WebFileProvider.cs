@@ -123,8 +123,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebFile> GetList(int objectId, int recordId)
         {
             List<WebFile> items = new List<WebFile>();
-            var sql2 = "SELECT * FROM WebFile WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
-            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql2,
+            var sql = "SELECT * FROM WebFile WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId)))
             {
