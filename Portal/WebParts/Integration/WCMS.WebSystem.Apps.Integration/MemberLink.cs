@@ -8,9 +8,6 @@ using WCMS.Framework.Core;
 using WCMS.Framework.Core.Shared;
 
 using WCMS.WebSystem.Apps.Integration.Providers;
-#if NETFRAMEWORK
-using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
-#endif
 using WCMS.Common.Utilities;
 using WCMS.WebSystem.Apps.Integration;
 
@@ -212,12 +209,6 @@ namespace WCMS.WebSystem.Apps.Integration
             }
         }
 
-#if NETFRAMEWORK
-        public Member Member
-        {
-            get { return Member.Provider.Get(MemberId); }
-        }
-#endif
 
         public string SingleLineHomeAddress
         {
@@ -277,234 +268,6 @@ namespace WCMS.WebSystem.Apps.Integration
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
-#if NETFRAMEWORK
-        public bool TryPopulateHomeAddressFromExt(MemberSoapClient client)
-        {
-            if (client == null)
-                client = MemberSoapClient.GetNewClientInstance();
-
-            var extAddress = client.GetDefaultAddress(this.MemberId);
-            var user = this.User;
-            if (extAddress != null && user != null)
-            {
-                var address = user.GetAddress(AddressTags.Home);
-                if (address == null)
-                    address = user.NewAddress(AddressTags.Home);
-
-                var extIsNewer = extAddress.DateUpdated > address.LastUpdated;
-                if (extIsNewer || string.IsNullOrEmpty(address.AddressLine1))
-                    address.AddressLine1 = extAddress.Address1;
-                if (extIsNewer || string.IsNullOrEmpty(address.AddressLine2))
-                    address.AddressLine2 = extAddress.Address2;
-                if (extIsNewer || string.IsNullOrEmpty(address.ZipCode))
-                    address.ZipCode = extAddress.PostalCode;
-                if (extIsNewer || string.IsNullOrEmpty(address.PhoneNumber))
-                    address.PhoneNumber = extAddress.Phone;
-
-                // Update User Phone
-                if (extIsNewer || string.IsNullOrEmpty(user.TelephoneNumber))
-                {
-                    user.TelephoneNumber = extAddress.Phone;
-                    user.Update();
-                }
-
-                if (extIsNewer || address.CountryCode == -1)
-                {
-                    try
-                    {
-                        var extCountries = AMSCountry.CACHE;
-                        if (extAddress.CountryID > 0 && extCountries.Count() > 0)
-                        {
-                            var extCountry = extCountries.FirstOrDefault(i => i.CountryID == extAddress.CountryID);
-                            if (extCountry != null)
-                            {
-                                var country = Country.Provider.Get(extCountry.CountryName);
-                                if (country != null)
-                                    address.CountryCode = country.CountryCode;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        LogHelper.WriteLog(ex);
-                    }
-                }
-                address.Update();
-            }
-
-            return true;
-        }
-
-        public bool TryLinkToExt()
-        {
-            var link = this;
-            if (link.MemberId == -1 && !string.IsNullOrEmpty(link.ExternalIdNo))
-            {
-                var client = MemberSoapClient.GetNewClientInstance();
-                var item = client.GetProfile(link.ExternalIdNo, link.MembershipDate);
-                if (item != null)
-                {
-                    link.MemberId = (int)item.MemberID;
-                    //link.PhotoPath = item.PhotoPath;
-                    link.ExternalIdNo = item.EvalExternalId;
-
-                    link.TryPopulateHomeAddressFromExt(client);
-                    link.TryPopulateGroupsFromExt(client);
-                    link.TryPopulateProfileFromExt(client);
-                    link.TryStatusFromExt(client);
-                    link.Update();
-
-                    var photoPath = item.PhotoPath;
-                    var user = link.User;
-                    if (!string.IsNullOrEmpty(photoPath) && user != null)
-                    {
-                        user.PhotoPath = photoPath;
-                        user.Update(true);
-                    }
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool TryStatusFromExt(MemberSoapClient client)
-        {
-            if (MemberId > 0)
-            {
-                var status = client.GetMembershipStatus(MemberId);
-                if (status != null && status.LocaleID != LocaleId)
-                {
-                    LocaleId = status.LocaleID;
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public bool TryPopulateProfileFromExt(MemberSoapClient client)
-        {
-            if (client == null)
-                client = MemberSoapClient.GetNewClientInstance();
-
-            var member = client.GetProfile(ExternalIdNo, MembershipDate);
-
-            #region Update User Mobile and Gender
-
-            var user = User;
-            if (member != null)
-            {
-                if (user != null)
-                {
-                    //if (!this.MembershipDate.Date.Equals(member.MembershipDate.Date))
-                    //    this.MembershipDate = member.MembershipDate;
-
-                    if (member.DateUpdated > user.LastUpdate)
-                    {
-                        if (!string.IsNullOrEmpty(member.Gender))
-                            user.Gender = Convert.ToChar(member.Gender);
-
-                        if (!string.IsNullOrEmpty(member.Mobile))
-                            user.MobileNumber = member.Mobile;
-
-                        if (string.IsNullOrEmpty(member.Phone))
-                            user.TelephoneNumber = member.Phone;
-                    }
-                    else
-                    {
-                        if (user.Gender == GenderTypes.Unspecified)
-                            user.Gender = Convert.ToChar(member.Gender);
-
-                        if (string.IsNullOrEmpty(user.MobileNumber))
-                            user.MobileNumber = member.Mobile;
-
-                        if (string.IsNullOrEmpty(user.TelephoneNumber))
-                            user.TelephoneNumber = member.Phone;
-                    }
-
-                    user.Update(!user.NoLastUpdate);
-                }
-            }
-
-            #endregion
-
-            //if (!string.IsNullOrEmpty(member.Mobile))
-            //    this.MobileNumber = member.Mobile;
-
-            //if (!string.IsNullOrEmpty(member.Phone))
-            //    this.HomePhone = member.Phone;
-            if (member != null && member.DateUpdated > this.LastUpdate)
-            {
-                if (!string.IsNullOrEmpty(member.NickName))
-                    this.Nickname = member.NickName;
-
-                //if(!string.IsNullOrEmpty(wsMember.Email))
-                //item.MembershipDate = wsMember.MembershipDate;
-                //item.LastUpdate = DateTime.Now;
-            }
-
-            return true;
-        }
-
-
-        public bool TryPopulatePhotoFromExt(MemberSoapClient client)
-        {
-            if (client == null)
-                client = MemberSoapClient.GetNewClientInstance();
-
-            if (string.IsNullOrEmpty(this.GetPhotoPathIfNull()))
-            {
-                var photos = client.GetPhoto(this.MemberId);
-                if (photos != null && photos.Length > 0)
-                    this.PhotoPath = photos.First().PhotoPath;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Does not require MemberLink.Update()
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns></returns>
-        public bool TryPopulateGroupsFromExt(MemberSoapClient client = null)
-        {
-            if (client == null)
-                client = MemberSoapClient.GetNewClientInstance();
-
-            var localGroups = WebGroup.SelectNode(MemberConstants.LocaleGroupPath).Children;
-            var memberGroup = client.GetActiveLocaleGroup(this.MemberId);
-            if (memberGroup != null)
-            {
-                var extGroup = client.GetLocaleGroup(memberGroup.LocaleGroupID);
-                if (extGroup != null)
-                {
-                    // Get the corresponding portal group matching from ext group
-                    var localGroup = localGroups.FirstOrDefault(i => i.Name.Equals(extGroup.LocaleGroupName));
-                    if (localGroup != null)
-                    {
-                        var user = this.User;
-                        if (user != null)
-                        {
-                            // Get existing user's locale group/s and check if user is already member of that group
-                            var userLocaleGroups = user.Groups.Intersect(localGroups);
-                            if (!userLocaleGroups.Contains(localGroup))
-                            {
-                                // Removed existing user's locale groups
-                                foreach (var userLocaleGroup in userLocaleGroups)
-                                    user.RemoveToGroup(userLocaleGroup.Id);
-
-                                // Add new locale group
-                                user.AddToGroup(localGroup.Id);
-                            }
-                        }
-                    }
-                }
-            }
-
-            return true;
-        }
-#endif
 
         private string _photoPath;
         /// <summary>
@@ -525,18 +288,6 @@ namespace WCMS.WebSystem.Apps.Integration
 
             if (string.IsNullOrEmpty(_photoPath) && MemberId > 0)
             {
-#if NETFRAMEWORK
-                try
-                {
-                    var client = MemberSoapClient.GetNewClientInstance();
-                    var photo = client.GetPhoto(MemberId);
-                    _photoPath = photo.Length > 0 ? photo.First().PhotoPath : WConstants.NoPhotoThumb; //MemberPhoto.GetNoPhotoPath();
-                }
-                catch (Exception ex)
-                {
-                    LogHelper.WriteLog(ex);
-                }
-#endif
             }
 
             if (string.IsNullOrEmpty(_photoPath))
@@ -595,15 +346,6 @@ namespace WCMS.WebSystem.Apps.Integration
 
         #endregion
 
-#if NETFRAMEWORK
-        public static string GetPhotoPath(int memberId)
-        {
-            var client = new MemberSoapClient(false);
-            var photo = client.GetPhoto(memberId);
-
-            return photo.Length > 0 ? photo.First().PhotoPath : WConstants.NoPhotoThumb; //MemberPhoto.GetNoPhotoPath();
-        }
-#endif
 
         public static WebAddress WebAddressFromMemberLink(MemberLink link, string tag = "", WebAddress eAddress = null)
         {

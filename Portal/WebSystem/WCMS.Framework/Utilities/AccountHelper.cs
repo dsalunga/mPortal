@@ -8,9 +8,6 @@ using WCMS.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 using System.IO;
-#if NETFRAMEWORK
-using System.Web.UI.WebControls;
-#endif
 
 namespace WCMS.Framework.Utilities
 {
@@ -1202,46 +1199,5 @@ namespace WCMS.Framework.Utilities
             user.Update();
         }
 
-#if NETFRAMEWORK
-        public static string UploadPhotoForPreview(int userId, FileUpload photoUpload, int photoSize = 600)
-        {
-            var photoPathUrl = WConfig.UserPhotoPath;
-            var absPhotoPath = WebUtil.MapPath(photoPathUrl);
-            var tempAbsPath = FileHelper.Combine(absPhotoPath, "temp");
-            var origAbsPath = FileHelper.Combine(absPhotoPath, "original");
-            var thumbsAbsPath = FileHelper.Combine(absPhotoPath, "thumb");
-
-            if (!Directory.Exists(absPhotoPath))
-                Directory.CreateDirectory(absPhotoPath);
-
-            if (!Directory.Exists(tempAbsPath))
-                Directory.CreateDirectory(tempAbsPath);
-
-            if (!Directory.Exists(thumbsAbsPath))
-                Directory.CreateDirectory(thumbsAbsPath);
-
-            if (!Directory.Exists(origAbsPath))
-                Directory.CreateDirectory(origAbsPath);
-
-            var fileName = Path.GetFileName(photoUpload.PostedFile.FileName);
-            var ext = Path.GetExtension(fileName);
-            var fileNameWE = Path.GetFileNameWithoutExtension(fileName);
-            var newPreviewName = string.Format("U{0}.preview{1}", userId, ext);
-            var tempFile = FileHelper.Combine(tempAbsPath, string.Format("U{0}{1}", userId, ext));
-            var tempThumbFile = FileHelper.Combine(tempAbsPath, newPreviewName);
-
-            if (File.Exists(tempFile))
-                File.Delete(tempFile);
-
-            if (File.Exists(tempThumbFile))
-                File.Delete(tempThumbFile);
-
-            // Upload the file
-            photoUpload.PostedFile.SaveAs(tempFile);
-            ImageUtil.GenerateThumbnail(tempFile, tempThumbFile, photoSize, photoSize, true);
-
-            return WebUtil.CombineAddress(photoPathUrl, "temp", newPreviewName);
-        }
-#endif
     }
 }

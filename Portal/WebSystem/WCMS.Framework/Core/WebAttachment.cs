@@ -1,8 +1,5 @@
 ﻿using System;
 using System.IO;
-#if NETFRAMEWORK
-using System.Web.UI.WebControls;
-#endif
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
@@ -94,45 +91,6 @@ namespace WCMS.Framework.Core
             }
         }
 
-#if NETFRAMEWORK
-        public static WebAttachment Upload(FileUpload fileUpload, int objectId, int recordId, string batchGuid)
-        {
-            if (fileUpload != null && fileUpload.HasFile)
-            {
-                var fileName = Path.GetFileName(fileUpload.PostedFile.FileName);
-                var ext = Path.GetExtension(fileName);
-                var fileNameWE = Path.GetFileNameWithoutExtension(fileName);
-                var newFileName = string.Format("O{0}-{1}-{2}{3}", recordId, batchGuid,
-                    fileNameWE.Length > 50 ? fileNameWE.Substring(0, 50) : fileNameWE, ext);
-                var filePath = WebUtil.CombineAddress(
-                    string.Format("{0}/{1}", WConfig.AttachmentBasePath, objectId), newFileName);
-                var absFilePath = WebUtil.MapPath(filePath);
-
-                var absFolder = FileHelper.GetFolder(absFilePath, '\\');
-                if (!Directory.Exists(absFolder))
-                    Directory.CreateDirectory(absFolder);
-
-                WebAttachment item = new WebAttachment();
-                item.Name = fileName;
-                item.FilePath = filePath;
-                item.Size = fileUpload.PostedFile.ContentLength;
-                item.UserId = WSession.Current.UserId;
-                item.ObjectId = objectId;
-                item.RecordId = recordId;
-                item.BatchGuid = batchGuid;
-
-                // Upload the file
-                fileUpload.PostedFile.SaveAs(absFilePath);
-
-                item.DateUploaded = DateTime.Now;
-                item.Update();
-
-                return item;
-            }
-
-            return null;
-        }
-#endif
 
     }
 }
