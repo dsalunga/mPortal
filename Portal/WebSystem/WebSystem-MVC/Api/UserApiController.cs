@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.Utilities;
@@ -8,9 +9,11 @@ namespace WCMS.WebSystem.Api
 {
     /// <summary>
     /// Replaces the legacy WCF User.svc service.
+    /// Requires authentication for user management operations.
     /// </summary>
     [ApiController]
     [Route("api/user")]
+    [Authorize]
     public class UserApiController : ControllerBase
     {
         [HttpPost("check")]

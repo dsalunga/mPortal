@@ -9,10 +9,10 @@ namespace WCMS.Common
     {
         public LogManager()
         {
-            Loggers = new List<ILogger>();
+            Loggers = new List<IWcmsLogger>();
         }
 
-        public LogManager(IEnumerable<ILogger> loggers)
+        public LogManager(IEnumerable<IWcmsLogger> loggers)
             : this()
         {
             Loggers.AddRange(loggers);
@@ -28,12 +28,12 @@ namespace WCMS.Common
             Loggers.Add(new ConsoleLogger());
         }
 
-        public void Add(ILogger logger)
+        public void Add(IWcmsLogger logger)
         {
             Loggers.Add(logger);
         }
 
-        public List<ILogger> Loggers { get; set; }
+        public List<IWcmsLogger> Loggers { get; set; }
 
         public void WriteLine()
         {

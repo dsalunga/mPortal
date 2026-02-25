@@ -786,7 +786,7 @@ Currently only the main portal has `UseHsts()`. No web host sets `Content-Securi
 
 Currently 0 files use `ValidateAntiForgeryToken` or `@Html.AntiForgeryToken()`. All POST forms in ViewComponents are vulnerable to CSRF.
 
-- [ ] Add `services.AddAntiforgery()` and `@Html.AntiForgeryToken()` to all form-based ViewComponents
+- [x] Add `services.AddAntiforgery()` and `@Html.AntiForgeryToken()` to all form-based ViewComponents
 - [ ] Add `[ValidateAntiForgeryToken]` to all API controller POST/PUT/DELETE endpoints
 
 **c) Audit `Html.Raw` usage (35 instances)**
@@ -799,8 +799,8 @@ Currently 0 files use `ValidateAntiForgeryToken` or `@Html.AntiForgeryToken()`. 
 
 No API controllers currently have `[Authorize]` or `[AllowAnonymous]` attributes.
 
-- [ ] Add `[Authorize]` to administrative API controllers (DataSyncApi, FrameworkApi, UserApi)
-- [ ] Add `[AllowAnonymous]` to public API controllers (AccountApi login endpoint)
+- [x] Add `[Authorize]` to administrative API controllers (DataSyncApi, FrameworkApi, UserApi)
+- [x] Add `[AllowAnonymous]` to public API controllers (AccountApi login endpoint)
 
 ---
 
@@ -817,9 +817,9 @@ Only the main portal has `UseExceptionHandler("/error")`. 7 satellite web hosts 
 
 The codebase uses a custom `WCMS.Common.ILogger` interface (name conflicts with `Microsoft.Extensions.Logging.ILogger`). There's no structured logging, no log levels, and no integration with ASP.NET Core's logging pipeline.
 
-- [ ] Rename `WCMS.Common.ILogger` to `IWcmsLogger` to avoid conflict with `Microsoft.Extensions.Logging.ILogger`
-- [ ] Integrate `Microsoft.Extensions.Logging` in all web hosts (already available via DI)
-- [ ] Add request logging middleware (e.g., `UseSerilogRequestLogging()` or built-in `UseHttpLogging()`)
+- [x] Rename `WCMS.Common.ILogger` to `IWcmsLogger` to avoid conflict with `Microsoft.Extensions.Logging.ILogger`
+- [x] Integrate `Microsoft.Extensions.Logging` in all web hosts (already available via DI)
+- [x] Add request logging middleware (e.g., `UseSerilogRequestLogging()` or built-in `UseHttpLogging()`)
 
 ---
 
@@ -860,7 +860,7 @@ Core infrastructure like `SqlHelper`, `NetHelper`, and `LogHelper` are static cl
 The project has minimal test coverage: 17 unit tests + 2 integration tests. Core business logic (authentication, page rendering, data access) has zero test coverage.
 
 - [ ] Add unit tests for `AccountHelper` (login, session management)
-- [ ] Add unit tests for `WebCryptography` (encryption/decryption)
+- [x] Add unit tests for `WebCryptography` (encryption/decryption)
 - [x] Add unit tests for `WConfigService` (options monitor) — 3 tests added.
 - [ ] Add unit tests for `PageResolutionMiddleware` (URL → page resolution)
 - [ ] Add unit tests for `PageRenderingMiddleware` (template/panel rendering)
@@ -895,7 +895,7 @@ The current `/health` endpoints are simple string returns. They don't check data
 
 7 API controllers exist with no documentation. Adding Swagger enables developer self-service and automated client generation.
 
-- [ ] Add `Microsoft.AspNetCore.OpenApi` and `Swashbuckle.AspNetCore` to main portal
+- [x] Add `Microsoft.AspNetCore.OpenApi` and `Swashbuckle.AspNetCore` to main portal
 - [ ] Annotate API controllers with `[ProducesResponseType]` and XML documentation
 
 ---
@@ -906,7 +906,7 @@ The current `/health` endpoints are simple string returns. They don't check data
 
 No caching middleware is configured. CMS pages are re-rendered on every request.
 
-- [ ] Add `AddOutputCache()` / `UseOutputCache()` for static CMS pages
+- [x] Add `AddOutputCache()` / `UseOutputCache()` for static CMS pages
 - [ ] Add `[ResponseCache]` attributes to read-only API endpoints
 - [ ] Configure `Cache-Control` headers for static assets
 

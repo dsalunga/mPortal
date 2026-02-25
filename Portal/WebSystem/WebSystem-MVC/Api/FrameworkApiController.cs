@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -9,9 +10,11 @@ namespace WCMS.WebSystem.Api
 {
     /// <summary>
     /// Replaces the legacy ASMX FrameworkService (FxService.asmx).
+    /// Login endpoint is public; other endpoints require authentication.
     /// </summary>
     [ApiController]
     [Route("api/framework")]
+    [Authorize]
     public class FrameworkApiController : ControllerBase
     {
         private readonly IWSession _wSession;
@@ -21,6 +24,7 @@ namespace WCMS.WebSystem.Api
             _wSession = wSession;
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {

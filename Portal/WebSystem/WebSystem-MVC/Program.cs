@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,6 +21,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddProblemDetails();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
+
+// OpenAPI / Swagger documentation
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // CMS framework services (IWSession, IWContext)
 builder.Services.AddWcmsFramework();
@@ -50,6 +55,15 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 builder.Services.AddAuthorization();
+builder.Services.AddAntiforgery();
+builder.Services.AddHttpLogging(options => { });
+
+// Output caching for CMS pages
+builder.Services.AddOutputCache(options =>
+{
+    options.AddBasePolicy(builder => builder.Expire(TimeSpan.FromMinutes(5)));
+    options.AddPolicy("StaticAssets", builder => builder.Expire(TimeSpan.FromHours(1)));
+});
 
 // Bundling & minification
 builder.Services.AddWebOptimizer(pipeline =>
@@ -86,8 +100,18 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/error");
     app.UseHsts();
 }
+else
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "mPortal CMS API v1");
+        options.RoutePrefix = "swagger";
+    });
+}
 
 app.UseSecurityHeaders();
+app.UseHttpLogging();
 app.UseWebOptimizer();
 app.UseStaticFiles();
 app.UseRouting();
@@ -95,6 +119,7 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseOutputCache();
 
 // CMS page resolution and rendering pipeline
 app.UseWcmsPageResolution();

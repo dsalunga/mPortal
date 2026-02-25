@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WCMS.Common
 {
-    public class ConsoleLogger : ILogger
+    public class ConsoleLogger : IWcmsLogger
     {
         #region ILogger Members
 

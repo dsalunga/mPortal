@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Common.Utilities;
@@ -13,9 +14,11 @@ namespace WCMS.WebSystem.Api
 {
     /// <summary>
     /// Replaces the legacy WCF DataSync.svc handler service.
+    /// Requires authentication for data synchronization operations.
     /// </summary>
     [ApiController]
     [Route("api/datasync")]
+    [Authorize]
     public class DataSyncApiController : ControllerBase
     {
         private readonly IWebHostEnvironment _env;
