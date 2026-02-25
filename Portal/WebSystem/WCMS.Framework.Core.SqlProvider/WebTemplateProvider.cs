@@ -21,7 +21,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebTemplate Get(int templateId)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebTemplate_Get",
+            var sql = "SELECT * FROM WebTemplate WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", templateId)))
             {
                 if (r.Read())
@@ -54,7 +55,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTemplate> items = new List<WebTemplate>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebTemplate_Get"))
+            var sql = "SELECT * FROM WebTemplate";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -67,7 +69,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             var items = new List<WebTemplate>();
 
-            using (var r = DbHelper.ExecuteReader("WebTemplate_Get",
+            var sql = "SELECT * FROM WebTemplate WHERE " + DbSyntax.QuoteIdentifier("ThemeId") + " = @ThemeId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ThemeId", themeId)))
             {
                 while (r.Read())
@@ -79,7 +82,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int templateId)
         {
-            DbHelper.ExecuteNonQuery("WebTemplate_Del",
+            var sql = "DELETE FROM WebTemplate WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", templateId));
 
             return true;
@@ -87,22 +91,75 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebTemplate item)
         {
-            object o = DbHelper.ExecuteScalar("WebTemplate_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@Content", item.Content),
-                DbHelper.CreateParameter("@FileName", item.FileName),
-                DbHelper.CreateParameter("@Identity", item.Identity),
-                DbHelper.CreateParameter("@PrimaryPanelId", item.PrimaryPanelId),
-                DbHelper.CreateParameter("@DateModified", item.DateModified),
-                DbHelper.CreateParameter("@SkinId", item.SkinId),
-                DbHelper.CreateParameter("@Standalone", item.Standalone),
-                DbHelper.CreateParameter("@ParentId", item.ParentId),
-                DbHelper.CreateParameter("@ThemeId", item.ThemeId),
-                DbHelper.CreateParameter("@TemplateEngineId", item.TemplateEngineId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o.ToString());
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebTemplate SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("Content") + " = @Content, " +
+                    DbSyntax.QuoteIdentifier("FileName") + " = @FileName, " +
+                    DbSyntax.QuoteIdentifier("Identity") + " = @Identity, " +
+                    DbSyntax.QuoteIdentifier("PrimaryPanelId") + " = @PrimaryPanelId, " +
+                    DbSyntax.QuoteIdentifier("DateModified") + " = @DateModified, " +
+                    DbSyntax.QuoteIdentifier("SkinId") + " = @SkinId, " +
+                    DbSyntax.QuoteIdentifier("Standalone") + " = @Standalone, " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId, " +
+                    DbSyntax.QuoteIdentifier("ThemeId") + " = @ThemeId, " +
+                    DbSyntax.QuoteIdentifier("TemplateEngineId") + " = @TemplateEngineId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@FileName", item.FileName),
+                    DbHelper.CreateParameter("@Identity", item.Identity),
+                    DbHelper.CreateParameter("@PrimaryPanelId", item.PrimaryPanelId),
+                    DbHelper.CreateParameter("@DateModified", item.DateModified),
+                    DbHelper.CreateParameter("@SkinId", item.SkinId),
+                    DbHelper.CreateParameter("@Standalone", item.Standalone),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@ThemeId", item.ThemeId),
+                    DbHelper.CreateParameter("@TemplateEngineId", item.TemplateEngineId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebTemplate (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("Content") + ", " +
+                    DbSyntax.QuoteIdentifier("FileName") + ", " +
+                    DbSyntax.QuoteIdentifier("Identity") + ", " +
+                    DbSyntax.QuoteIdentifier("PrimaryPanelId") + ", " +
+                    DbSyntax.QuoteIdentifier("DateModified") + ", " +
+                    DbSyntax.QuoteIdentifier("SkinId") + ", " +
+                    DbSyntax.QuoteIdentifier("Standalone") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + ", " +
+                    DbSyntax.QuoteIdentifier("ThemeId") + ", " +
+                    DbSyntax.QuoteIdentifier("TemplateEngineId") +
+                    ") VALUES (@Name, @Content, @FileName, @Identity, @PrimaryPanelId, @DateModified, @SkinId, @Standalone, @ParentId, @ThemeId, @TemplateEngineId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@FileName", item.FileName),
+                    DbHelper.CreateParameter("@Identity", item.Identity),
+                    DbHelper.CreateParameter("@PrimaryPanelId", item.PrimaryPanelId),
+                    DbHelper.CreateParameter("@DateModified", item.DateModified),
+                    DbHelper.CreateParameter("@SkinId", item.SkinId),
+                    DbHelper.CreateParameter("@Standalone", item.Standalone),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@ThemeId", item.ThemeId),
+                    DbHelper.CreateParameter("@TemplateEngineId", item.TemplateEngineId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj.ToString());
+            }
 
             return item.Id;
         }

@@ -35,16 +35,51 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebTheme item)
         {
-            var obj = DbHelper.ExecuteScalar("WebTheme_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@TemplateId", item.TemplateId),
-                DbHelper.CreateParameter("@ParentId", item.ParentId),
-                DbHelper.CreateParameter("@Identity", item.Identity),
-                DbHelper.CreateParameter("@SkinId", item.SkinId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebTheme SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("TemplateId") + " = @TemplateId, " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId, " +
+                    DbSyntax.QuoteIdentifier("Identity") + " = @Identity, " +
+                    DbSyntax.QuoteIdentifier("SkinId") + " = @SkinId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@Identity", item.Identity),
+                    DbHelper.CreateParameter("@SkinId", item.SkinId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebTheme (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("TemplateId") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + ", " +
+                    DbSyntax.QuoteIdentifier("Identity") + ", " +
+                    DbSyntax.QuoteIdentifier("SkinId") +
+                    ") VALUES (@Name, @TemplateId, @ParentId, @Identity, @SkinId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@Identity", item.Identity),
+                    DbHelper.CreateParameter("@SkinId", item.SkinId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
 
             return item.Id;
         }

@@ -32,13 +32,40 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebParameterSet item)
         {
-            var obj = DbHelper.ExecuteScalar("WebParameterSet_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@SchemaParameterName", item.SchemaParameterName)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebParameterSet SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("SchemaParameterName") + " = @SchemaParameterName" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@SchemaParameterName", item.SchemaParameterName),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebParameterSet (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("SchemaParameterName") +
+                    ") VALUES (@Name, @SchemaParameterName)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@SchemaParameterName", item.SchemaParameterName)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
     }

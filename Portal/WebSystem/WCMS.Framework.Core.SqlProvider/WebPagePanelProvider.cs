@@ -14,7 +14,8 @@ namespace WCMS.Framework.Core.SqlProvider
     {
         public WebPagePanel Get(int pagePanelId)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPagePanel_Get",
+            var sql = "SELECT * FROM WebPagePanel WHERE " + DbSyntax.QuoteIdentifier("PagePanelId") + " = @PagePanelId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PagePanelId", pagePanelId)
                 ))
             {
@@ -29,7 +30,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPagePanel> items = new List<WebPagePanel>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPagePanel_Get",
+            var sql = "SELECT * FROM WebPagePanel WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PageId", pageId)
                 ))
             {
@@ -54,7 +56,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPagePanel Get(int templatePanelId, int pageId)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPagePanel_Get",
+            var sql = "SELECT * FROM WebPagePanel WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId AND " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PageId", pageId),
                 DbHelper.CreateParameter("@TemplatePanelId", templatePanelId)
                 ))
@@ -68,20 +71,51 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebPagePanel item)
         {
-            object o = DbHelper.ExecuteScalar("WebPagePanel_Set",
-                DbHelper.CreateParameter("@PagePanelId", item.Id),
-                DbHelper.CreateParameter("@TemplatePanelId", item.TemplatePanelId),
-                DbHelper.CreateParameter("@PageId", item.PageId),
-                DbHelper.CreateParameter("@UsageTypeId", item.UsageTypeId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebPagePanel SET " +
+                    DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId, " +
+                    DbSyntax.QuoteIdentifier("PageId") + " = @PageId, " +
+                    DbSyntax.QuoteIdentifier("UsageTypeId") + " = @UsageTypeId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("PagePanelId") + " = @PagePanelId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@TemplatePanelId", item.TemplatePanelId),
+                    DbHelper.CreateParameter("@PageId", item.PageId),
+                    DbHelper.CreateParameter("@UsageTypeId", item.UsageTypeId),
+                    DbHelper.CreateParameter("@PagePanelId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebPagePanel (" +
+                    DbSyntax.QuoteIdentifier("TemplatePanelId") + ", " +
+                    DbSyntax.QuoteIdentifier("PageId") + ", " +
+                    DbSyntax.QuoteIdentifier("UsageTypeId") +
+                    ") VALUES (@TemplatePanelId, @PageId, @UsageTypeId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("PagePanelId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@TemplatePanelId", item.TemplatePanelId),
+                    DbHelper.CreateParameter("@PageId", item.PageId),
+                    DbHelper.CreateParameter("@UsageTypeId", item.UsageTypeId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int pagePanelId)
         {
-            DbHelper.ExecuteNonQuery("WebPagePanel_Del",
+            var sql = "DELETE FROM WebPagePanel WHERE " + DbSyntax.QuoteIdentifier("PagePanelId") + " = @PagePanelId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PagePanelId", pagePanelId));
 
             return true;
@@ -99,7 +133,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPagePanel> items = new List<WebPagePanel>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPagePanel_Get"))
+            var sql = "SELECT * FROM WebPagePanel";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                 {

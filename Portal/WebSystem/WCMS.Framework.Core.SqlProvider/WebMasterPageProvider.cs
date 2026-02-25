@@ -18,7 +18,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             var items = new List<WebMasterPage>();
 
-            using (var r = DbHelper.ExecuteReader("WebMasterPage_Get",
+            var sql = "SELECT * FROM WebMasterPage WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@SiteId", siteId)))
             {
                 while (r.Read())
@@ -30,7 +31,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebMasterPage Get(int masterPageId)
         {
-            using (var r = DbHelper.ExecuteReader("WebMasterPage_Get",
+            var sql = "SELECT * FROM WebMasterPage WHERE " + DbSyntax.QuoteIdentifier("MasterPageId") + " = @MasterPageId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@MasterPageId", masterPageId)))
             {
                 if (r.HasRows && r.Read())
@@ -42,7 +44,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int masterPageId)
         {
-            DbHelper.ExecuteNonQuery("WebMasterPage_Del",
+            var sql = "DELETE FROM WebMasterPage WHERE " + DbSyntax.QuoteIdentifier("MasterPageId") + " = @MasterPageId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@MasterPageId", masterPageId));
 
             return true;
@@ -50,26 +53,69 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebMasterPage item)
         {
-            object o = DbHelper.ExecuteScalar("WebMasterPage_Set",
-                DbHelper.CreateParameter("@MasterPageId", item.Id),
-                DbHelper.CreateParameter("@SiteId", item.SiteId),
-                DbHelper.CreateParameter("@TemplateId", item.TemplateId),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@PublicAccess", item.PublicAccess),
-                DbHelper.CreateParameter("@OwnerPageId", item.OwnerPageId),
-                DbHelper.CreateParameter("@ManagementAccess", item.ManagementAccess),
-                DbHelper.CreateParameter("@SkinId", item.SkinId),
-                DbHelper.CreateParameter("@ThemeId", item.ThemeId),
-                DbHelper.CreateParameter("@ParentId", item.ParentId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            if (o != null)
+            if (item.Id > 0)
             {
-                item.Id = DataUtil.GetId(o.ToString());
-                return item.Id;
+                sql = "UPDATE WebMasterPage SET " +
+                    DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId, " +
+                    DbSyntax.QuoteIdentifier("TemplateId") + " = @TemplateId, " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("PublicAccess") + " = @PublicAccess, " +
+                    DbSyntax.QuoteIdentifier("OwnerPageId") + " = @OwnerPageId, " +
+                    DbSyntax.QuoteIdentifier("ManagementAccess") + " = @ManagementAccess, " +
+                    DbSyntax.QuoteIdentifier("SkinId") + " = @SkinId, " +
+                    DbSyntax.QuoteIdentifier("ThemeId") + " = @ThemeId, " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("MasterPageId") + " = @MasterPageId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@PublicAccess", item.PublicAccess),
+                    DbHelper.CreateParameter("@OwnerPageId", item.OwnerPageId),
+                    DbHelper.CreateParameter("@ManagementAccess", item.ManagementAccess),
+                    DbHelper.CreateParameter("@SkinId", item.SkinId),
+                    DbHelper.CreateParameter("@ThemeId", item.ThemeId),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@MasterPageId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebMasterPage (" +
+                    DbSyntax.QuoteIdentifier("SiteId") + ", " +
+                    DbSyntax.QuoteIdentifier("TemplateId") + ", " +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("PublicAccess") + ", " +
+                    DbSyntax.QuoteIdentifier("OwnerPageId") + ", " +
+                    DbSyntax.QuoteIdentifier("ManagementAccess") + ", " +
+                    DbSyntax.QuoteIdentifier("SkinId") + ", " +
+                    DbSyntax.QuoteIdentifier("ThemeId") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") +
+                    ") VALUES (@SiteId, @TemplateId, @Name, @PublicAccess, @OwnerPageId, @ManagementAccess, @SkinId, @ThemeId, @ParentId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("MasterPageId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@PublicAccess", item.PublicAccess),
+                    DbHelper.CreateParameter("@OwnerPageId", item.OwnerPageId),
+                    DbHelper.CreateParameter("@ManagementAccess", item.ManagementAccess),
+                    DbHelper.CreateParameter("@SkinId", item.SkinId),
+                    DbHelper.CreateParameter("@ThemeId", item.ThemeId),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj.ToString());
             }
 
-            return -1;
+            return item.Id;
         }
 
         public WebMasterPage From(DbDataReader r)
@@ -101,7 +147,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebMasterPage> items = new List<WebMasterPage>();
 
-            using (var r = DbHelper.ExecuteReader("WebMasterPage_Get"))
+            var sql = "SELECT * FROM WebMasterPage";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(this.From(r));

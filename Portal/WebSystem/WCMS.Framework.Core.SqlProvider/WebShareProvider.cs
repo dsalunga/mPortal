@@ -36,7 +36,10 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebShare> items = new List<WebShare>();
 
-            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+            var sql = "SELECT * FROM WebShare WHERE " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId)
             ))
@@ -50,7 +53,12 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebShare Get(int objectId, int recordId, int shareObjectId, int shareRecordId)
         {
-            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+            var sql = "SELECT * FROM WebShare WHERE " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " +
+                    DbSyntax.QuoteIdentifier("ShareObjectId") + " = @ShareObjectId AND " +
+                    DbSyntax.QuoteIdentifier("ShareRecordId") + " = @ShareRecordId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId),
                 DbHelper.CreateParameter("@ShareObjectId", shareObjectId),

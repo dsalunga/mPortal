@@ -19,7 +19,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebObject Get(int id)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebObject_Get",
+            var sql = "SELECT * FROM WebObject WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.HasRows && r.Read())
@@ -34,7 +35,8 @@ namespace WCMS.Framework.Core.SqlProvider
             //return _provider.GetList<WebObject>();
             List<WebObject> items = new List<WebObject>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebObject_Get"))
+            var sql = "SELECT * FROM WebObject";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -48,33 +50,103 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             //return _provider.Update<WebObject>(item);
 
-            object o = DbHelper.ExecuteScalar("WebObject_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@IdentityColumn", item.IdentityColumn),
-                DbHelper.CreateParameter("@ObjectType", item.ObjectType),
-                DbHelper.CreateParameter("@LastRecordId", item.LastRecordId),
-                DbHelper.CreateParameter("@MaxCacheCount", item.MaxCacheCount),
-                DbHelper.CreateParameter("@AccessTypeId", item.AccessTypeId),
-                DbHelper.CreateParameter("@CacheTypeId", item.CacheTypeId),
-                DbHelper.CreateParameter("@MaxHistoryCount", item.MaxHistoryCount),
-                DbHelper.CreateParameter("@Owner", item.Owner),
-                DbHelper.CreateParameter("@Prefix", item.Prefix),
-                DbHelper.CreateParameter("@DataProviderName", item.DataProviderName),
-                DbHelper.CreateParameter("@TypeName", item.TypeName),
-                DbHelper.CreateParameter("@CacheInterval", item.CacheInterval),
-                DbHelper.CreateParameter("@NameColumn", item.NameColumn),
-                DbHelper.CreateParameter("@FriendlyName", item.FriendlyName),
-                DbHelper.CreateParameter("@ManagerName", item.ManagerName)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebObject SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name" + ", " +
+                    DbSyntax.QuoteIdentifier("IdentityColumn") + " = @IdentityColumn" + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectType") + " = @ObjectType" + ", " +
+                    DbSyntax.QuoteIdentifier("LastRecordId") + " = @LastRecordId" + ", " +
+                    DbSyntax.QuoteIdentifier("MaxCacheCount") + " = @MaxCacheCount" + ", " +
+                    DbSyntax.QuoteIdentifier("AccessTypeId") + " = @AccessTypeId" + ", " +
+                    DbSyntax.QuoteIdentifier("CacheTypeId") + " = @CacheTypeId" + ", " +
+                    DbSyntax.QuoteIdentifier("MaxHistoryCount") + " = @MaxHistoryCount" + ", " +
+                    DbSyntax.QuoteIdentifier("Owner") + " = @Owner" + ", " +
+                    DbSyntax.QuoteIdentifier("Prefix") + " = @Prefix" + ", " +
+                    DbSyntax.QuoteIdentifier("DataProviderName") + " = @DataProviderName" + ", " +
+                    DbSyntax.QuoteIdentifier("TypeName") + " = @TypeName" + ", " +
+                    DbSyntax.QuoteIdentifier("CacheInterval") + " = @CacheInterval" + ", " +
+                    DbSyntax.QuoteIdentifier("NameColumn") + " = @NameColumn" + ", " +
+                    DbSyntax.QuoteIdentifier("FriendlyName") + " = @FriendlyName" + ", " +
+                    DbSyntax.QuoteIdentifier("ManagerName") + " = @ManagerName" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@IdentityColumn", item.IdentityColumn),
+                    DbHelper.CreateParameter("@ObjectType", item.ObjectType),
+                    DbHelper.CreateParameter("@LastRecordId", item.LastRecordId),
+                    DbHelper.CreateParameter("@MaxCacheCount", item.MaxCacheCount),
+                    DbHelper.CreateParameter("@AccessTypeId", item.AccessTypeId),
+                    DbHelper.CreateParameter("@CacheTypeId", item.CacheTypeId),
+                    DbHelper.CreateParameter("@MaxHistoryCount", item.MaxHistoryCount),
+                    DbHelper.CreateParameter("@Owner", item.Owner),
+                    DbHelper.CreateParameter("@Prefix", item.Prefix),
+                    DbHelper.CreateParameter("@DataProviderName", item.DataProviderName),
+                    DbHelper.CreateParameter("@TypeName", item.TypeName),
+                    DbHelper.CreateParameter("@CacheInterval", item.CacheInterval),
+                    DbHelper.CreateParameter("@NameColumn", item.NameColumn),
+                    DbHelper.CreateParameter("@FriendlyName", item.FriendlyName),
+                    DbHelper.CreateParameter("@ManagerName", item.ManagerName),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebObject (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("IdentityColumn") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectType") + ", " +
+                    DbSyntax.QuoteIdentifier("LastRecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("MaxCacheCount") + ", " +
+                    DbSyntax.QuoteIdentifier("AccessTypeId") + ", " +
+                    DbSyntax.QuoteIdentifier("CacheTypeId") + ", " +
+                    DbSyntax.QuoteIdentifier("MaxHistoryCount") + ", " +
+                    DbSyntax.QuoteIdentifier("Owner") + ", " +
+                    DbSyntax.QuoteIdentifier("Prefix") + ", " +
+                    DbSyntax.QuoteIdentifier("DataProviderName") + ", " +
+                    DbSyntax.QuoteIdentifier("TypeName") + ", " +
+                    DbSyntax.QuoteIdentifier("CacheInterval") + ", " +
+                    DbSyntax.QuoteIdentifier("NameColumn") + ", " +
+                    DbSyntax.QuoteIdentifier("FriendlyName") + ", " +
+                    DbSyntax.QuoteIdentifier("ManagerName") +
+                    ") VALUES (@Name, @IdentityColumn, @ObjectType, @LastRecordId, @MaxCacheCount, @AccessTypeId, @CacheTypeId, @MaxHistoryCount, @Owner, @Prefix, @DataProviderName, @TypeName, @CacheInterval, @NameColumn, @FriendlyName, @ManagerName)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@IdentityColumn", item.IdentityColumn),
+                    DbHelper.CreateParameter("@ObjectType", item.ObjectType),
+                    DbHelper.CreateParameter("@LastRecordId", item.LastRecordId),
+                    DbHelper.CreateParameter("@MaxCacheCount", item.MaxCacheCount),
+                    DbHelper.CreateParameter("@AccessTypeId", item.AccessTypeId),
+                    DbHelper.CreateParameter("@CacheTypeId", item.CacheTypeId),
+                    DbHelper.CreateParameter("@MaxHistoryCount", item.MaxHistoryCount),
+                    DbHelper.CreateParameter("@Owner", item.Owner),
+                    DbHelper.CreateParameter("@Prefix", item.Prefix),
+                    DbHelper.CreateParameter("@DataProviderName", item.DataProviderName),
+                    DbHelper.CreateParameter("@TypeName", item.TypeName),
+                    DbHelper.CreateParameter("@CacheInterval", item.CacheInterval),
+                    DbHelper.CreateParameter("@NameColumn", item.NameColumn),
+                    DbHelper.CreateParameter("@FriendlyName", item.FriendlyName),
+                    DbHelper.CreateParameter("@ManagerName", item.ManagerName)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int id)
         {
-            DbHelper.ExecuteNonQuery("WebObject_Del",
+            var sql = "DELETE FROM WebObject WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id));
 
             return true;

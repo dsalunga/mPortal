@@ -22,7 +22,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebRegistry> GetList()
         {
             List<WebRegistry> items = new List<WebRegistry>();
-            using (DbDataReader r = DbHelper.ExecuteReader("WebRegistry_Get"))
+            var sql = "SELECT * FROM WebRegistry";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                 {
@@ -35,7 +36,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebRegistry Get(string key)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebRegistry_Get",
+            var sql = "SELECT * FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("Key") + " = @Key";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Key", key)))
             {
                 if (r.HasRows && r.Read())
@@ -49,7 +51,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebRegistry Get(string key, int parentId)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebRegistry_Get",
+            var sql = "SELECT * FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("Key") + " = @Key AND " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Key", key),
                 DbHelper.CreateParameter("@ParentId", parentId)
                 ))
@@ -65,7 +68,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebRegistry Get(int registryId)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebRegistry_Get",
+            var sql = "SELECT * FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("RegistryId") + " = @RegistryId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@RegistryId", registryId)))
             {
                 if (r.HasRows && r.Read())
@@ -81,7 +85,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebRegistry> items = new List<WebRegistry>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebRegistry_Get",
+            var sql = "SELECT * FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 if (r.HasRows)
@@ -124,21 +129,55 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebRegistry item)
         {
-            object o = DbHelper.ExecuteScalar("WebRegistry_Set",
-                DbHelper.CreateParameter("@RegistryId", item.Id),
-                DbHelper.CreateParameter("@Key", item.Key),
-                DbHelper.CreateParameter("@Value", item.Value),
-                DbHelper.CreateParameter("@ParentId", item.ParentId),
-                DbHelper.CreateParameter("@StageId", item.StageId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebRegistry SET " +
+                    DbSyntax.QuoteIdentifier("Key") + " = @Key, " +
+                    DbSyntax.QuoteIdentifier("Value") + " = @Value, " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId, " +
+                    DbSyntax.QuoteIdentifier("StageId") + " = @StageId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("RegistryId") + " = @RegistryId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Key", item.Key),
+                    DbHelper.CreateParameter("@Value", item.Value),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@StageId", item.StageId),
+                    DbHelper.CreateParameter("@RegistryId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebRegistry (" +
+                    DbSyntax.QuoteIdentifier("Key") + ", " +
+                    DbSyntax.QuoteIdentifier("Value") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + ", " +
+                    DbSyntax.QuoteIdentifier("StageId") +
+                    ") VALUES (@Key, @Value, @ParentId, @StageId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("RegistryId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Key", item.Key),
+                    DbHelper.CreateParameter("@Value", item.Value),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@StageId", item.StageId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         public bool Delete(string key)
         {
-            DbHelper.ExecuteNonQuery("WebRegistry_Del",
+            var sql = "DELETE FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("Key") + " = @Key";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Key", key));
 
             return true;
@@ -146,7 +185,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int registryId)
         {
-            DbHelper.ExecuteNonQuery("WebRegistry_Del",
+            var sql = "DELETE FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("RegistryId") + " = @RegistryId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@RegistryId", registryId));
 
             return true;

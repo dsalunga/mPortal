@@ -15,7 +15,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            DbHelper.ExecuteNonQuery("WebGlobalPolicy_Del",
+            var sql = "DELETE FROM WebGlobalPolicy WHERE " + DbSyntax.QuoteIdentifier("GlobalPolicyId") + " = @GlobalPolicyId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@GlobalPolicyId", id));
 
             return true;
@@ -23,7 +24,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebGlobalPolicy Get(int id)
         {
-            using (var r = DbHelper.ExecuteReader("WebGlobalPolicy_Get",
+            var sql = "SELECT * FROM WebGlobalPolicy WHERE " + DbSyntax.QuoteIdentifier("GlobalPolicyId") + " = @GlobalPolicyId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@GlobalPolicyId", id)))
             {
                 if (r.Read())
@@ -52,7 +54,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebGlobalPolicy> items = new List<WebGlobalPolicy>();
 
-            using (var r = DbHelper.ExecuteReader("WebGlobalPolicy_Get"))
+            var sql = "SELECT * FROM WebGlobalPolicy";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                 {
@@ -75,11 +78,36 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebGlobalPolicy item)
         {
-            var obj = DbHelper.ExecuteScalar("WebGlobalPolicy_Set",
-                DbHelper.CreateParameter("@GlobalPolicyId", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name));
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebGlobalPolicy SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("GlobalPolicyId") + " = @GlobalPolicyId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@GlobalPolicyId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebGlobalPolicy (" +
+                    DbSyntax.QuoteIdentifier("Name") +
+                    ") VALUES (@Name)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("GlobalPolicyId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 

@@ -19,7 +19,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WPart Get(int partId)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPart_Get",
+            var sql = "SELECT * FROM WebPart WHERE " + DbSyntax.QuoteIdentifier("PartId") + " = @PartId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PartId", partId)))
             {
                 if (r.HasRows && r.Read())
@@ -31,7 +32,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WPart Get(string identity)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPart_Get",
+            var sql = "SELECT * FROM WebPart WHERE " + DbSyntax.QuoteIdentifier("Identity") + " = @Identity";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Identity", identity)))
             {
                 if (r.HasRows && r.Read())
@@ -45,7 +47,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WPart> items = new List<WPart>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPart_Get"))
+            var sql = "SELECT * FROM WebPart";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                 {
@@ -61,7 +64,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WPart> items = new List<WPart>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPart_Get",
+            var sql = "SELECT * FROM WebPart WHERE " + DbSyntax.QuoteIdentifier("Active") + " = @Active";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Active", active)))
             {
                 if (r.HasRows)
@@ -79,20 +83,51 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WPart item)
         {
-            object o = DbHelper.ExecuteScalar("WebPart_Set",
-                DbHelper.CreateParameter("@PartId", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@Identity", item.Identity),
-                DbHelper.CreateParameter("@Active", item.Active)
-                );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebPart SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name" + ", " +
+                    DbSyntax.QuoteIdentifier("Identity") + " = @Identity" + ", " +
+                    DbSyntax.QuoteIdentifier("Active") + " = @Active" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("PartId") + " = @PartId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Identity", item.Identity),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@PartId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebPart (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("Identity") + ", " +
+                    DbSyntax.QuoteIdentifier("Active") +
+                    ") VALUES (@Name, @Identity, @Active)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("PartId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Identity", item.Identity),
+                    DbHelper.CreateParameter("@Active", item.Active)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int partId)
         {
-            DbHelper.ExecuteNonQuery("WebPart_Del",
+            var sql = "DELETE FROM WebPart WHERE " + DbSyntax.QuoteIdentifier("PartId") + " = @PartId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PartId", partId));
 
             return true;

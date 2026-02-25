@@ -15,7 +15,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            DbHelper.ExecuteNonQuery("WebFolder_Del",
+            var sql = "DELETE FROM WebFolder WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id));
 
             return true;
@@ -23,7 +24,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebFolder Get(int id)
         {
-            using (var r = DbHelper.ExecuteReader("WebFolder_Get",
+            var sql = "SELECT * FROM WebFolder WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.Read())
@@ -35,7 +37,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebFolder Get(int parentId, string name)
         {
-            using (var r = DbHelper.ExecuteReader("WebFolder_Get",
+            var sql = "SELECT * FROM WebFolder WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId AND " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ParentId", parentId),
                 DbHelper.CreateParameter("@Name", name)))
             {
@@ -68,7 +71,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebFolder> items = new List<WebFolder>();
 
-            using (var r = DbHelper.ExecuteReader("WebFolder_Get"))
+            var sql = "SELECT * FROM WebFolder";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -81,7 +85,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebFolder> items = new List<WebFolder>();
 
-            using (var r = DbHelper.ExecuteReader("WebFolder_Get",
+            var sql = "SELECT * FROM WebFolder WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 while (r.Read())
@@ -95,7 +100,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebFolder> items = new List<WebFolder>();
 
-            using (var r = DbHelper.ExecuteReader("WebFolder_Get",
+            var sql = "SELECT * FROM WebFolder WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@SiteId", siteId)))
             {
@@ -118,15 +124,52 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebFolder item)
         {
-            object obj = DbHelper.ExecuteScalar("WebFolder_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@ParentId", item.ParentId),
-                DbHelper.CreateParameter("@ShareName", item.ShareName),
-                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
-                DbHelper.CreateParameter("@SiteId", item.SiteId));
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebFolder SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId, " +
+                    DbSyntax.QuoteIdentifier("ShareName") + " = @ShareName, " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
+                    DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@ShareName", item.ShareName),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebFolder (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + ", " +
+                    DbSyntax.QuoteIdentifier("ShareName") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("SiteId") +
+                    ") VALUES (@Name, @ParentId, @ShareName, @ObjectId, @SiteId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@ShareName", item.ShareName),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@SiteId", item.SiteId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 

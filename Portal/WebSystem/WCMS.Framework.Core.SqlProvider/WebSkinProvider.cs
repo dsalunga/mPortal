@@ -34,15 +34,47 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebSkin item)
         {
-            var obj = DbHelper.ExecuteScalar("WebSkin_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
-                DbHelper.CreateParameter("@RecordId", item.RecordId),
-                DbHelper.CreateParameter("@Rank", item.Rank)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebSkin SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
+                    DbSyntax.QuoteIdentifier("Rank") + " = @Rank" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Rank", item.Rank),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebSkin (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("Rank") +
+                    ") VALUES (@Name, @ObjectId, @RecordId, @Rank)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Rank", item.Rank)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
 
             return item.Id;
         }
@@ -55,7 +87,10 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (objectId > -2 || recordId > -2)
             {
-                using (var r = DbHelper.ExecuteReader(SelectProcedure,
+                var sql = "SELECT * FROM WebSkin WHERE " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                     DbHelper.CreateParameter("@ObjectId", objectId),
                     DbHelper.CreateParameter("@RecordId", recordId)
                 ))

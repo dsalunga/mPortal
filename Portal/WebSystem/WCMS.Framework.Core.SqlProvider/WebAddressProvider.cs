@@ -17,7 +17,11 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebAddress Get(int objectId, int recordId, string tag)
         {
-            using (var r = DbHelper.ExecuteReader("WebAddress_Get",
+            var sql = "SELECT * FROM WebAddress WHERE " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " +
+                    DbSyntax.QuoteIdentifier("Tag") + " = @Tag";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId),
                 DbHelper.CreateParameter("@Tag", tag)))
@@ -33,7 +37,10 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebAddress> items = new List<WebAddress>();
 
-            using (var r = DbHelper.ExecuteReader("WebAddress_Get",
+            var sql = "SELECT * FROM WebAddress WHERE " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId)))
             {
@@ -72,23 +79,80 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             item.LastUpdated = DateTime.Now;
 
-            var obj = DbHelper.ExecuteScalar("WebAddress_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@AddressLine1", item.AddressLine1),
-                DbHelper.CreateParameter("@AddressLine2", item.AddressLine2),
-                DbHelper.CreateParameter("@CityTown", item.CityTown),
-                DbHelper.CreateParameter("@StateProvince", item.StateProvince),
-                DbHelper.CreateParameter("@StateProvinceCode", item.StateProvinceCode),
-                DbHelper.CreateParameter("@CountryCode", item.CountryCode),
-                DbHelper.CreateParameter("@ZipCode", item.ZipCode),
-                DbHelper.CreateParameter("@PhoneNumber", item.PhoneNumber),
-                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
-                DbHelper.CreateParameter("@RecordId", item.RecordId),
-                DbHelper.CreateParameter("@Tag", item.Tag),
-                DbHelper.CreateParameter("@LastUpdated", item.LastUpdated)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebAddress SET " +
+                    DbSyntax.QuoteIdentifier("AddressLine1") + " = @AddressLine1" + ", " +
+                    DbSyntax.QuoteIdentifier("AddressLine2") + " = @AddressLine2" + ", " +
+                    DbSyntax.QuoteIdentifier("CityTown") + " = @CityTown" + ", " +
+                    DbSyntax.QuoteIdentifier("StateProvince") + " = @StateProvince" + ", " +
+                    DbSyntax.QuoteIdentifier("StateProvinceCode") + " = @StateProvinceCode" + ", " +
+                    DbSyntax.QuoteIdentifier("CountryCode") + " = @CountryCode" + ", " +
+                    DbSyntax.QuoteIdentifier("ZipCode") + " = @ZipCode" + ", " +
+                    DbSyntax.QuoteIdentifier("PhoneNumber") + " = @PhoneNumber" + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId" + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId" + ", " +
+                    DbSyntax.QuoteIdentifier("Tag") + " = @Tag" + ", " +
+                    DbSyntax.QuoteIdentifier("LastUpdated") + " = @LastUpdated" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@AddressLine1", item.AddressLine1),
+                    DbHelper.CreateParameter("@AddressLine2", item.AddressLine2),
+                    DbHelper.CreateParameter("@CityTown", item.CityTown),
+                    DbHelper.CreateParameter("@StateProvince", item.StateProvince),
+                    DbHelper.CreateParameter("@StateProvinceCode", item.StateProvinceCode),
+                    DbHelper.CreateParameter("@CountryCode", item.CountryCode),
+                    DbHelper.CreateParameter("@ZipCode", item.ZipCode),
+                    DbHelper.CreateParameter("@PhoneNumber", item.PhoneNumber),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Tag", item.Tag),
+                    DbHelper.CreateParameter("@LastUpdated", item.LastUpdated),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebAddress (" +
+                    DbSyntax.QuoteIdentifier("AddressLine1") + ", " +
+                    DbSyntax.QuoteIdentifier("AddressLine2") + ", " +
+                    DbSyntax.QuoteIdentifier("CityTown") + ", " +
+                    DbSyntax.QuoteIdentifier("StateProvince") + ", " +
+                    DbSyntax.QuoteIdentifier("StateProvinceCode") + ", " +
+                    DbSyntax.QuoteIdentifier("CountryCode") + ", " +
+                    DbSyntax.QuoteIdentifier("ZipCode") + ", " +
+                    DbSyntax.QuoteIdentifier("PhoneNumber") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("Tag") + ", " +
+                    DbSyntax.QuoteIdentifier("LastUpdated") +
+                    ") VALUES (@AddressLine1, @AddressLine2, @CityTown, @StateProvince, @StateProvinceCode, @CountryCode, @ZipCode, @PhoneNumber, @ObjectId, @RecordId, @Tag, @LastUpdated)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@AddressLine1", item.AddressLine1),
+                    DbHelper.CreateParameter("@AddressLine2", item.AddressLine2),
+                    DbHelper.CreateParameter("@CityTown", item.CityTown),
+                    DbHelper.CreateParameter("@StateProvince", item.StateProvince),
+                    DbHelper.CreateParameter("@StateProvinceCode", item.StateProvinceCode),
+                    DbHelper.CreateParameter("@CountryCode", item.CountryCode),
+                    DbHelper.CreateParameter("@ZipCode", item.ZipCode),
+                    DbHelper.CreateParameter("@PhoneNumber", item.PhoneNumber),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Tag", item.Tag),
+                    DbHelper.CreateParameter("@LastUpdated", item.LastUpdated)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 

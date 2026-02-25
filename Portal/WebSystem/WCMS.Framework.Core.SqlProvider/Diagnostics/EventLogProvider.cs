@@ -15,7 +15,8 @@ namespace WCMS.Framework.Core.SqlProvider.Diagnostics
     {
         public bool Delete(DateTime eventDate)
         {
-            DbHelper.ExecuteNonQuery("EventLog_Del",
+            var sql = "DELETE FROM EventLog WHERE " + DbSyntax.QuoteIdentifier("EventDate") + " = @EventDate";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@EventDate", eventDate));
 
             return true;
@@ -37,7 +38,8 @@ namespace WCMS.Framework.Core.SqlProvider.Diagnostics
         public IEnumerable<EventLog> GetList(DateTime eventDate, int userId = -1)
         {
             var items = new List<EventLog>();
-            using (var r = DbHelper.ExecuteReader("EventLog_Get",
+            var sql = "SELECT * FROM EventLog WHERE " + DbSyntax.QuoteIdentifier("EventDate") + " = @EventDate AND " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@EventDate", eventDate),
                 DbHelper.CreateParameter("@UserId", userId)))
             {
@@ -50,15 +52,52 @@ namespace WCMS.Framework.Core.SqlProvider.Diagnostics
 
         public override int Update(EventLog item)
         {
-            var obj = DbHelper.ExecuteScalar("EventLog_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@EventDate", item.EventDate),
-                DbHelper.CreateParameter("@Content", item.Content),
-                DbHelper.CreateParameter("@UserId", item.UserId),
-                DbHelper.CreateParameter("@EventName", item.EventName),
-                DbHelper.CreateParameter("@IPAddress", item.IPAddress));
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE EventLog SET " +
+                    DbSyntax.QuoteIdentifier("EventDate") + " = @EventDate, " +
+                    DbSyntax.QuoteIdentifier("Content") + " = @Content, " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId, " +
+                    DbSyntax.QuoteIdentifier("EventName") + " = @EventName, " +
+                    DbSyntax.QuoteIdentifier("IPAddress") + " = @IPAddress" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@EventDate", item.EventDate),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@EventName", item.EventName),
+                    DbHelper.CreateParameter("@IPAddress", item.IPAddress),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO EventLog (" +
+                    DbSyntax.QuoteIdentifier("EventDate") + ", " +
+                    DbSyntax.QuoteIdentifier("Content") + ", " +
+                    DbSyntax.QuoteIdentifier("UserId") + ", " +
+                    DbSyntax.QuoteIdentifier("EventName") + ", " +
+                    DbSyntax.QuoteIdentifier("IPAddress") +
+                    ") VALUES (@EventDate, @Content, @UserId, @EventName, @IPAddress)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@EventDate", item.EventDate),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@EventName", item.EventName),
+                    DbHelper.CreateParameter("@IPAddress", item.IPAddress)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 

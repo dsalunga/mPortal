@@ -18,7 +18,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPartConfig> items = new List<WebPartConfig>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPartConfig_Get"))
+            var sql = "SELECT * FROM WebPartConfig";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -30,7 +31,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPartConfig Get(int partConfigId)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPartConfig_Get",
+            var sql = "SELECT * FROM WebPartConfig WHERE " + DbSyntax.QuoteIdentifier("PartConfigId") + " = @PartConfigId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PartConfigId", partConfigId)
                 ))
             {
@@ -45,7 +47,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPartConfig> items = new List<WebPartConfig>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebPartConfig_Get",
+            var sql = "SELECT * FROM WebPartConfig WHERE " + DbSyntax.QuoteIdentifier("PartId") + " = @PartId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PartId", partId)
                 ))
             {
@@ -73,20 +76,51 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebPartConfig item)
         {
-            object o = DbHelper.ExecuteScalar("WebPartConfig_Set",
-                DbHelper.CreateParameter("@PartConfigId", item.Id),
-                DbHelper.CreateParameter("@PartId", item.PartId),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@FileName", item.FileName)
-                );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebPartConfig SET " +
+                    DbSyntax.QuoteIdentifier("PartId") + " = @PartId, " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("FileName") + " = @FileName" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("PartConfigId") + " = @PartConfigId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@PartId", item.PartId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@FileName", item.FileName),
+                    DbHelper.CreateParameter("@PartConfigId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebPartConfig (" +
+                    DbSyntax.QuoteIdentifier("PartId") + ", " +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("FileName") +
+                    ") VALUES (@PartId, @Name, @FileName)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("PartConfigId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@PartId", item.PartId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@FileName", item.FileName)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int partConfigId)
         {
-            DbHelper.ExecuteNonQuery("WebPartConfig_Del",
+            var sql = "DELETE FROM WebPartConfig WHERE " + DbSyntax.QuoteIdentifier("PartConfigId") + " = @PartConfigId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PartConfigId", partConfigId));
 
             return true;

@@ -16,8 +16,11 @@ namespace WCMS.Framework.Core.SqlProvider
         public bool Delete(int id)
         {
             if (id > 0)
-                DbHelper.ExecuteNonQuery("WebFile_Del",
+            {
+                var sql = "DELETE FROM WebFile WHERE " + DbSyntax.QuoteIdentifier("FileId") + " = @FileId";
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                     DbHelper.CreateParameter("@FileId", id));
+            }
 
             return true;
         }
@@ -25,12 +28,15 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebFile Get(int id)
         {
             if (id > 0)
-                using (var r = DbHelper.ExecuteReader("WebFile_Get",
+            {
+                var sql = "SELECT * FROM WebFile WHERE " + DbSyntax.QuoteIdentifier("FileId") + " = @FileId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                     DbHelper.CreateParameter("@FileId", id)))
                 {
                     if (r.Read())
                         return From(r);
                 }
+            }
 
             return null;
         }
@@ -38,7 +44,9 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebFile Get(int folderId, int objectId, int recordId)
         {
             if (folderId > 0 && objectId > 0 && recordId > 0)
-                using (var r = DbHelper.ExecuteReader("WebFile_Get",
+            {
+                var sql = "SELECT * FROM WebFile WHERE " + DbSyntax.QuoteIdentifier("FolderId") + " = @FolderId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                     DbHelper.CreateParameter("@FolderId", folderId),
                     DbHelper.CreateParameter("@ObjectId", objectId),
                     DbHelper.CreateParameter("@RecordId", recordId)))
@@ -46,6 +54,7 @@ namespace WCMS.Framework.Core.SqlProvider
                     if (r.Read())
                         return From(r);
                 }
+            }
 
             return null;
         }
@@ -53,13 +62,16 @@ namespace WCMS.Framework.Core.SqlProvider
         public WebFile Get(int objectId, int recordId)
         {
             if (objectId > 0 && recordId > 0)
-                using (var r = DbHelper.ExecuteReader("WebFile_Get",
+            {
+                var sql = "SELECT * FROM WebFile WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                     DbHelper.CreateParameter("@ObjectId", objectId),
                     DbHelper.CreateParameter("@RecordId", recordId)))
                 {
                     if (r.Read())
                         return From(r);
                 }
+            }
 
             return null;
         }
@@ -84,7 +96,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebFile> GetList()
         {
             List<WebFile> items = new List<WebFile>();
-            using (var r = DbHelper.ExecuteReader("WebFile_Get"))
+            var sql = "SELECT * FROM WebFile";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -96,7 +109,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebFile> GetList(int folderId)
         {
             List<WebFile> items = new List<WebFile>();
-            using (var r = DbHelper.ExecuteReader("WebFile_Get",
+            var sql = "SELECT * FROM WebFile WHERE " + DbSyntax.QuoteIdentifier("FolderId") + " = @FolderId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@FolderId", folderId)))
             {
                 while (r.Read())
@@ -109,7 +123,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebFile> GetList(int objectId, int recordId)
         {
             List<WebFile> items = new List<WebFile>();
-            using (var r = DbHelper.ExecuteReader("WebFile_Get",
+            var sql2 = "SELECT * FROM WebFile WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql2,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId)))
             {
@@ -132,14 +147,48 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebFile item)
         {
-            var obj = DbHelper.ExecuteScalar("WebFile_Set",
-                DbHelper.CreateParameter("@FileId", item.Id),
-                DbHelper.CreateParameter("@FolderId", item.FolderId),
-                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
-                DbHelper.CreateParameter("@RecordId", item.RecordId),
-                DbHelper.CreateParameter("@Name", item.Name));
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebFile SET " +
+                    DbSyntax.QuoteIdentifier("FolderId") + " = @FolderId, " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("FileId") + " = @FileId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@FolderId", item.FolderId),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@FileId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebFile (" +
+                    DbSyntax.QuoteIdentifier("FolderId") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("Name") +
+                    ") VALUES (@FolderId, @ObjectId, @RecordId, @Name)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("FileId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@FolderId", item.FolderId),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Name", item.Name)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 

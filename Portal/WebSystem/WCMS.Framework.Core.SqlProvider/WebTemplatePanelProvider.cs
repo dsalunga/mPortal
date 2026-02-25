@@ -18,7 +18,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTemplatePanel> items = new List<WebTemplatePanel>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebTemplatePanel_Get"))
+            var sql = "SELECT * FROM WebTemplatePanel";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -32,7 +33,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTemplatePanel> items = new List<WebTemplatePanel>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebTemplatePanel_Get",
+            var sql = "SELECT * FROM WebTemplatePanel WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId)))
             {
@@ -46,7 +48,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebTemplatePanel Get(int templatePanelId)
         {
-            using (DbDataReader r = DbHelper.ExecuteReader("WebTemplatePanel_Get",
+            var sql = "SELECT * FROM WebTemplatePanel WHERE " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@TemplatePanelId", templatePanelId)))
             {
                 if (r.HasRows && r.Read())
@@ -58,23 +61,59 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebTemplatePanel item)
         {
-            object o = DbHelper.ExecuteScalar("WebTemplatePanel_Set",
-                DbHelper.CreateParameter("@TemplatePanelId", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
-                DbHelper.CreateParameter("@RecordId", item.RecordId),
-                DbHelper.CreateParameter("@PanelName", item.PanelName),
-                DbHelper.CreateParameter("@Rank", item.Rank)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o.ToString());
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebTemplatePanel SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
+                    DbSyntax.QuoteIdentifier("PanelName") + " = @PanelName, " +
+                    DbSyntax.QuoteIdentifier("Rank") + " = @Rank" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@PanelName", item.PanelName),
+                    DbHelper.CreateParameter("@Rank", item.Rank),
+                    DbHelper.CreateParameter("@TemplatePanelId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebTemplatePanel (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("PanelName") + ", " +
+                    DbSyntax.QuoteIdentifier("Rank") +
+                    ") VALUES (@Name, @ObjectId, @RecordId, @PanelName, @Rank)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("TemplatePanelId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@PanelName", item.PanelName),
+                    DbHelper.CreateParameter("@Rank", item.Rank)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj.ToString());
+            }
 
             return item.Id;
         }
 
         public bool Delete(int templatePanelId)
         {
-            DbHelper.ExecuteNonQuery("WebTemplatePanel_Del",
+            var sql = "DELETE FROM WebTemplatePanel WHERE " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@TemplatePanelId", templatePanelId));
 
             return true;

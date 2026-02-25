@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using System.Data;
 using System.Data.Common;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,8 @@ namespace WCMS.WebSystem.ViewComponents
                 WcmsContext.Set("RecordId", recordId.ToString());
             }
 
-            // Load menu properties and items via stored procedures
-            using (var reader = DbHelper.ExecuteReader("MenuObject_Get",
+            var menuSql = "SELECT * FROM MenuObject WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+            using (var reader = DbHelper.ExecuteReader(CommandType.Text, menuSql,
                 DbHelper.CreateParameter("@ObjectId", WcmsContext.ObjectId),
                 DbHelper.CreateParameter("@RecordId", WcmsContext.RecordId)))
             {
@@ -44,7 +45,8 @@ namespace WCMS.WebSystem.ViewComponents
 
             if (model.MenuId > 0)
             {
-                var ds = DbHelper.ExecuteDataSet("MenuItem_Get",
+                var itemSql = "SELECT * FROM MenuItem WHERE " + DbSyntax.QuoteIdentifier("MenuID") + " = @MenuID";
+                var ds = DbHelper.ExecuteDataSet(CommandType.Text, itemSql,
                     DbHelper.CreateParameter("@MenuID", model.MenuId));
 
                 if (ds.Tables.Count > 0)

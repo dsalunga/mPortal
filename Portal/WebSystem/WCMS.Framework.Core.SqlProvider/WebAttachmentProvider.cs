@@ -38,18 +38,64 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebAttachment item)
         {
-            var obj = DbHelper.ExecuteScalar("WebAttachment_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@FilePath", item.FilePath),
-                DbHelper.CreateParameter("@Size", item.Size),
-                DbHelper.CreateParameter("@DateUploaded", item.DateUploaded),
-                DbHelper.CreateParameter("@UserId", item.UserId),
-                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
-                DbHelper.CreateParameter("@RecordId", item.RecordId),
-                DbHelper.CreateParameter("@BatchGuid", item.BatchGuid));
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebAttachment SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name" + ", " +
+                    DbSyntax.QuoteIdentifier("FilePath") + " = @FilePath" + ", " +
+                    DbSyntax.QuoteIdentifier("Size") + " = @Size" + ", " +
+                    DbSyntax.QuoteIdentifier("DateUploaded") + " = @DateUploaded" + ", " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId" + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId" + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId" + ", " +
+                    DbSyntax.QuoteIdentifier("BatchGuid") + " = @BatchGuid" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@FilePath", item.FilePath),
+                    DbHelper.CreateParameter("@Size", item.Size),
+                    DbHelper.CreateParameter("@DateUploaded", item.DateUploaded),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@BatchGuid", item.BatchGuid),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebAttachment (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("FilePath") + ", " +
+                    DbSyntax.QuoteIdentifier("Size") + ", " +
+                    DbSyntax.QuoteIdentifier("DateUploaded") + ", " +
+                    DbSyntax.QuoteIdentifier("UserId") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("BatchGuid") +
+                    ") VALUES (@Name, @FilePath, @Size, @DateUploaded, @UserId, @ObjectId, @RecordId, @BatchGuid)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@FilePath", item.FilePath),
+                    DbHelper.CreateParameter("@Size", item.Size),
+                    DbHelper.CreateParameter("@DateUploaded", item.DateUploaded),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@BatchGuid", item.BatchGuid)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
@@ -59,7 +105,11 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebAttachment> items = new List<WebAttachment>();
 
-            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+            var sql = "SELECT * FROM WebAttachment WHERE " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId AND " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@UserId", userId),
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId)))
@@ -75,7 +125,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebAttachment> items = new List<WebAttachment>();
 
-            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+            var sql = "SELECT * FROM WebAttachment WHERE " + DbSyntax.QuoteIdentifier("BatchGuid") + " = @BatchGuid";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@BatchGuid", batchGuid)))
             {
                 while (r.Read())

@@ -16,7 +16,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (id > 0)
             {
-                using (var r = DbHelper.ExecuteReader("WebGroup_Get",
+                var sql = "SELECT * FROM WebGroup WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                     DbHelper.CreateParameter("@Id", id)))
                 {
                     if (r.HasRows && r.Read())
@@ -29,7 +30,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebGroup Get(int parentId, string name)
         {
-            using (var r = DbHelper.ExecuteReader("WebGroup_Get",
+            var sql = "SELECT * FROM WebGroup WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId AND " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ParentId", parentId),
                 DbHelper.CreateParameter("@Name", name)))
             {
@@ -44,7 +46,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (!string.IsNullOrEmpty(name))
             {
-                using (var r = DbHelper.ExecuteReader("WebGroup_Get",
+                var sql = "SELECT * FROM WebGroup WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                     DbHelper.CreateParameter("@Name", name)))
                 {
                     if (r.HasRows && r.Read())
@@ -78,7 +81,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebGroup> items = new List<WebGroup>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebGroup_Get"))
+            var sql = "SELECT * FROM WebGroup";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -92,7 +96,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebGroup> items = new List<WebGroup>();
 
-            using (DbDataReader r = DbHelper.ExecuteReader("WebGroup_Get",
+            var sql = "SELECT * FROM WebGroup WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 if (r.HasRows)
@@ -105,27 +110,79 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebGroup item)
         {
-            object o = DbHelper.ExecuteScalar("WebGroup_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@IsSystem", item.IsSystem),
-                DbHelper.CreateParameter("@OwnerId", item.OwnerId),
-                DbHelper.CreateParameter("@ParentId", item.ParentId),
-                DbHelper.CreateParameter("@JoinApproval", item.JoinApproval),
-                DbHelper.CreateParameter("@JoinAlert", item.JoinAlert),
-                DbHelper.CreateParameter("@PageUrl", item.PageUrl),
-                DbHelper.CreateParameter("@PageId", item.PageId),
-                DbHelper.CreateParameter("@Description", item.Description),
-                DbHelper.CreateParameter("@Managers", item.Managers)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebGroup SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("IsSystem") + " = @IsSystem, " +
+                    DbSyntax.QuoteIdentifier("OwnerId") + " = @OwnerId, " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId, " +
+                    DbSyntax.QuoteIdentifier("JoinApproval") + " = @JoinApproval, " +
+                    DbSyntax.QuoteIdentifier("JoinAlert") + " = @JoinAlert, " +
+                    DbSyntax.QuoteIdentifier("PageUrl") + " = @PageUrl, " +
+                    DbSyntax.QuoteIdentifier("PageId") + " = @PageId, " +
+                    DbSyntax.QuoteIdentifier("Description") + " = @Description, " +
+                    DbSyntax.QuoteIdentifier("Managers") + " = @Managers" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@IsSystem", item.IsSystem),
+                    DbHelper.CreateParameter("@OwnerId", item.OwnerId),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@JoinApproval", item.JoinApproval),
+                    DbHelper.CreateParameter("@JoinAlert", item.JoinAlert),
+                    DbHelper.CreateParameter("@PageUrl", item.PageUrl),
+                    DbHelper.CreateParameter("@PageId", item.PageId),
+                    DbHelper.CreateParameter("@Description", item.Description),
+                    DbHelper.CreateParameter("@Managers", item.Managers),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebGroup (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("IsSystem") + ", " +
+                    DbSyntax.QuoteIdentifier("OwnerId") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + ", " +
+                    DbSyntax.QuoteIdentifier("JoinApproval") + ", " +
+                    DbSyntax.QuoteIdentifier("JoinAlert") + ", " +
+                    DbSyntax.QuoteIdentifier("PageUrl") + ", " +
+                    DbSyntax.QuoteIdentifier("PageId") + ", " +
+                    DbSyntax.QuoteIdentifier("Description") + ", " +
+                    DbSyntax.QuoteIdentifier("Managers") +
+                    ") VALUES (@Name, @IsSystem, @OwnerId, @ParentId, @JoinApproval, @JoinAlert, @PageUrl, @PageId, @Description, @Managers)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@IsSystem", item.IsSystem),
+                    DbHelper.CreateParameter("@OwnerId", item.OwnerId),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@JoinApproval", item.JoinApproval),
+                    DbHelper.CreateParameter("@JoinAlert", item.JoinAlert),
+                    DbHelper.CreateParameter("@PageUrl", item.PageUrl),
+                    DbHelper.CreateParameter("@PageId", item.PageId),
+                    DbHelper.CreateParameter("@Description", item.Description),
+                    DbHelper.CreateParameter("@Managers", item.Managers)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int id)
         {
-            DbHelper.ExecuteNonQuery("WebGroup_Del",
+            var sql = "DELETE FROM WebGroup WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id)
             );
 

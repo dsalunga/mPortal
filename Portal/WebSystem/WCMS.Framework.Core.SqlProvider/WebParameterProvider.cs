@@ -33,15 +33,53 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebParameter item)
         {
-            var obj = DbHelper.ExecuteScalar("WebParameter_Set",
-                DbHelper.CreateParameter("@Id", item.Id),
-                DbHelper.CreateParameter("@ObjectId", item.ObjectId),
-                DbHelper.CreateParameter("@RecordId", item.RecordId),
-                DbHelper.CreateParameter("@Name", item.Name),
-                DbHelper.CreateParameter("@Value", item.Value),
-                DbHelper.CreateParameter("@IsRequired", item.IsRequired));
+            string sql;
+            DbParameter[] parms;
 
-            return UpdatePostProcess(item, obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebParameter SET " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("Value") + " = @Value, " +
+                    DbSyntax.QuoteIdentifier("IsRequired") + " = @IsRequired" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Value", item.Value),
+                    DbHelper.CreateParameter("@IsRequired", item.IsRequired),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebParameter (" +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("Value") + ", " +
+                    DbSyntax.QuoteIdentifier("IsRequired") +
+                    ") VALUES (@ObjectId, @RecordId, @Name, @Value, @IsRequired)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Value", item.Value),
+                    DbHelper.CreateParameter("@IsRequired", item.IsRequired)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                return UpdatePostProcess(item, obj);
+            }
+
+            return UpdatePostProcess(item, item.Id);
         }
 
         #region IWebParameterProvider Members
@@ -50,7 +88,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebParameter> items = new List<WebParameter>();
 
-            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+            var sql = "SELECT * FROM WebParameter WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId)))
             {
@@ -63,7 +102,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebParameter Get(int objectId, int recordId, string name)
         {
-            using (var r = DbHelper.ExecuteReader(SelectProcedure,
+            var sql = "SELECT * FROM WebParameter WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId),
                 DbHelper.CreateParameter("@Name", name)))
