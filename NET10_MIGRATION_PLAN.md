@@ -667,11 +667,13 @@ The 269 ViewComponents have functional C# classes wired to the CMS framework. Th
 - [x] All 49 admin components — enhanced to production-quality Bootstrap 5 markup with typed ViewModels, ARIA labels, shadow-sm card panels, responsive tables, and semantic HTML.
 
 **Integration components (130):**
-- [ ] Account/Registration components — enhance to production markup
-- [ ] Profile/LessonReviewer components — enhance to production markup
-- [ ] MasterList/EventRegister components — enhance to production markup
-- [ ] MusicCompetition components — enhance to production markup
-- [ ] Streaming/BibleReader/Reminder/Theme components — enhance to production markup
+- [x] Account/Registration components (18) — enhanced to production-quality Bootstrap 5 with `<section>` wrappers, ARIA labels, dismissible alerts, `autocomplete` on password fields.
+- [x] Member/Profile components (14) — enhanced with `<section>` wrappers, Bootstrap Icons, `scope="col"` on tables, empty-state messaging.
+- [x] Group/Config components (17) — enhanced with `<section>` wrappers, ARIA labels, Bootstrap Icons, empty-state placeholders.
+- [x] Attendance/Registration/Event components (16) — enhanced with `<section>` wrappers, ARIA labels, form validation, Bootstrap 5 class upgrades.
+- [x] MusicCompetition components (29) — enhanced with `<section>` wrappers, Bootstrap Icons, `scope="col"` on tables, empty-state messaging.
+- [x] Streaming/Misc components (12) — enhanced with `<section>` wrappers, ARIA labels, Bootstrap Icons, dismissible alerts.
+- [x] Theme layout components (24) — enhanced with skip-to-content links, semantic HTML5 landmarks, `aria-label` on headers/footers/nav, unique IDs.
 
 **BibleReader component (1):**
 - [x] `BibleVerseViewComponent` — enhanced to production-quality Bootstrap 5 markup with ARIA labels, form controls, empty-state handling, and semantic HTML.
