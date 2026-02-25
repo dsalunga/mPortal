@@ -64,7 +64,7 @@ The codebase uses a custom `WCMS.Common.ILogger` interface (name conflicts with 
 
 Core infrastructure like `SqlHelper`, `NetHelper`, and `LogHelper` are static classes that are hard to test and don't participate in DI. Key files: `SqlHelper.cs`, `SecurityHelper.cs`, `ContentHelper.cs`.
 
-- [ ] Wrap `SqlHelper` in an `ISqlHelper` interface and register as scoped service
+- [x] Wrap `SqlHelper` in an `ISqlHelper` interface and register as scoped service
 - [ ] Gradually migrate static helpers to injectable services (start with most-used: `SqlHelper`, `AccountHelper`)
 
 **b) Resolve `HttpContext.Current` usage (20 files)**
@@ -97,7 +97,7 @@ The project has minimal test coverage: 17 unit tests + 2 integration tests. Core
 - [ ] Add unit tests for `AccountHelper` (login, session management)
 - [x] Add unit tests for `WebCryptography` (encryption/decryption)
 - [x] Add unit tests for `WConfigService` (options monitor) — 3 tests added.
-- [ ] Add unit tests for `PageResolutionMiddleware` (URL → page resolution)
+- [x] Add unit tests for `PageResolutionMiddleware` (URL → page resolution)
 - [ ] Add unit tests for `PageRenderingMiddleware` (template/panel rendering)
 - [ ] Add integration tests for all 7 API controllers (mocked data layer)
 - [x] Add code coverage reporting to CI — `--collect:"XPlat Code Coverage"` added to CI test steps. (e.g., `coverlet` + Codecov)
@@ -156,7 +156,7 @@ No caching middleware is configured. CMS pages are re-rendered on every request.
 
 269 of 271 ViewComponents use synchronous `Invoke()`. Converting to `InvokeAsync()` unblocks the thread pool for I/O-bound operations (database queries, file reads).
 
-- [ ] Convert high-traffic ViewComponents to `InvokeAsync` (Login, Navigation, Content, SideBar, Article first)
+- [x] Convert high-traffic ViewComponents to `InvokeAsync` (Login, Navigation, Content, SideBar, Article first)
 - [ ] Gradually convert remaining components as data access is refactored
 
 ---
