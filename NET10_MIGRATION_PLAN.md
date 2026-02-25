@@ -159,7 +159,7 @@ Legend:
 | 4 | [x] `Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj` | Rebuild | Replaced legacy SystemParts host with ASP.NET Core `net10.0` scaffold to drive phased module route/page migration. |
 | 4 | [x] `Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj` | Retire | Legacy web project retired and replaced with SDK-style `net10.0` automated smoke-test harness for CI. |
 | 5 | [x] `Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj` | Rebuild | Legacy primary host replaced with ASP.NET Core `net10.0` scaffold baseline to drive phased portal cutover. |
-| 5 | [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` | Replace | Replaced legacy control project with SDK-style `net10.0` editor integration abstraction for modern host consumption. |
+| 5 | [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` | Removed | FCKeditor project fully removed. `RichTextEditorRenderer` moved to `WCMS.Framework/RichTextEditor/` with CKEditor 5 CDN integration. |
 | 5 | [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.vs2003.csproj` | Retire | Obsolete VS2003 project removed and replaced with retirement marker documentation. |
 | 5 | [x] `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` | Replace | Replaced legacy ASP.NET control project with SDK-style `net10.0` media-renderer abstraction. |
 | 6 | [x] `Portal/Utilities/DbManager/DbManager/DbManager.csproj` | Port | Converted to SDK-style (`net48`) as interim CLI; move to `net10.0` after core runtime deps are off `System.Web`. |
@@ -229,26 +229,30 @@ Why Windows VM is still needed:
 ## 7) Outstanding Work (Not Yet Fully Implemented)
 
 Current status snapshot (2026-02-25, final update):
-- 49 C# projects (`.csproj`) on disk; all 49 now included in `mPortal.slnx` (including `Tests/WCMS.Framework.Tests` and `Tests/WCMS.Integration.Tests`). All converted to SDK-style format.
-- **All projects now target `.NET 10`** — 46 on `net10.0`, 3 on `net10.0-windows` (DbManagerWPF, WebSystemDeployer, MySQL TableEditor). Zero net48 projects remain.
+- 48 C# projects (`.csproj`) on disk; all 48 now included in `mPortal.slnx` (including `Tests/WCMS.Framework.Tests` and `Tests/WCMS.Integration.Tests`). FCKeditor project removed. All converted to SDK-style format.
+- **All projects now target `.NET 10`** — 45 on `net10.0`, 3 on `net10.0-windows` (DbManagerWPF, WebSystemDeployer, MySQL TableEditor). Zero net48 projects remain.
+- **Zero `System.Web` dependencies** — `Microsoft.AspNetCore.SystemWebAdapters` removed from all 14 projects. All `using System.Web` statements replaced with ASP.NET Core equivalents.
 - All `packages.config` files have been deleted (0 remaining).
 - EF6 removed from WCMS.Framework (migrated to EF Core 9.0). All EDMX `.edmx` files and EF6 code-behind files deleted.
 - WCF `System.ServiceModel` fully removed from codebase. All `#if NETFRAMEWORK` guards removed (0 remaining).
 - 8 web app hosts rebuilt as ASP.NET Core scaffolds with DI wiring, endpoint routing, `MapCmsPages()` fallback, and configuration.
 - All legacy `.aspx`, `.ascx`, `.svc`, `.asmx`, `.ashx`, `Global.asax`, `Startup.cs`, `Web.config`, and `.cmd` script files deleted. Zero legacy web assets remain.
-- All 19 legacy `.sln` files deleted; `mPortal.slnx` is the single solution file (49 projects).
-- Legacy `App_Start/` directory and `Service References/` directory in WebSystem-MVC deleted. Integration `Service References/` still exists (to be cleaned up).
-- 270 ViewComponents created (replacing legacy `.ascx` user controls); 271 `Default.cshtml` view files exist. **All 270 view refinements complete** across all modules (portal core, Admin, Theme, SystemParts, SystemPartsG2, SystemPartsG3, Integration, BibleReader, LessonReviewer, BranchLocator).
+- All 19 legacy `.sln` files deleted; `mPortal.slnx` is the single solution file (48 projects).
+- Legacy `App_Start/` directory and `Service References/` directory in WebSystem-MVC deleted. Integration `Service References/` deleted.
+- FCKeditor 2.6.3 replaced with CKEditor 5 CDN integration (`WCMS.Framework/RichTextEditor/`). FCKeditor project and 558 client-side files (5.1MB) removed.
+- 270 ViewComponents created (replacing legacy `.ascx` user controls); 271 `Default.cshtml` view files exist. **All 270 view refinements complete** across all modules. **All 268 ViewComponents converted to async `InvokeAsync`.**
 - `IWContext` and `IWSession` DI interfaces created and registered via `AddWcmsFramework()`.
 - `PageResolutionMiddleware` and `PageRenderingMiddleware` replace legacy URL rewriting and page rendering.
 - `CmsPageEndpointRouteBuilderExtensions.MapCmsPages()` provides endpoint routing integration for CMS pages — wired in all 8 web hosts.
 - `WConfigOptions` with `IOptions<T>` pattern created; `WConfigService` provides scoped DI access to `IOptionsMonitor<WConfigOptions>` for runtime config changes; `UserSessionManager` enhanced with `IDistributedCache` support.
 - `LigerShark.WebOptimizer.Core` configured for CSS/JS bundling and minification in main portal.
+- Security headers middleware, health checks (SQL Server), API authorization, anti-forgery, ProblemDetails, and code analyzers configured across all hosts.
 - `docker-compose.yml` created for multi-container development with SQL Server.
 - CI build workflow configured (`.github/workflows/build.yml`) with Ubuntu + Windows matrix; `.github/workflows/deploy.yml` deployment pipeline created.
 - Integration tests: `WCMS.Integration.Tests` (8 tests) + `WCMS.Framework.Tests` (35 tests) = 43 tests passing.
-- Full system documentation created: see `SYSTEM_DOCUMENTATION.md` and `DEPLOYMENT_RUNBOOK.md`.
+- Full system documentation created: see `SYSTEM_DOCUMENTATION.md`, `DEPLOYMENT_RUNBOOK.md`, and `POST_MIGRATION_IMPROVEMENTS.md`.
 - BibleReader.Core, LessonReviewer.Core, and BranchLocator services wired via DI.
+- §9 Post-Migration Improvements: **45/45 complete** (see `POST_MIGRATION_IMPROVEMENTS.md`).
 
 Important:
 - `[x]` rows in the wave map indicate the planned migration task was executed (including scaffold/interim conversions).

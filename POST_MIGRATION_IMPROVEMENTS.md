@@ -72,7 +72,7 @@ Core infrastructure like `SqlHelper`, `NetHelper`, and `LogHelper` are static cl
 20 files still reference `HttpContext.Current` (via `SystemWebAdapters`). While functional, this pattern is brittle and blocks Blazor/gRPC adoption.
 
 - [x] Create HttpContextHelper centralized accessor wrapping IHttpContextAccessor; wire up AddHttpContextAccessor + HttpContextHelper.Configure in all 8 web hosts. Remaining: gradually replace direct HttpContext.Current calls with HttpContextHelper.Current.
-- [ ] Remove `Microsoft.AspNetCore.SystemWebAdapters` dependency — can proceed once all System.Web types are replaced with ASP.NET Core equivalents. HttpContextHelper provides the migration bridge.
+- [x] Remove `Microsoft.AspNetCore.SystemWebAdapters` dependency — removed from all 14 csproj files. All `System.Web` types replaced with ASP.NET Core equivalents: `HttpContext.Current` → `HttpContextHelper.Current`, `HttpUtility` → `WebUtility`, `HttpCookie` → ASP.NET Core cookies, `Session["key"]` → `Session.GetString()`, `AppendHeader` → `Headers.Append`, `OutputStream` → `Body`. Zero `using System.Web` statements remain.
 
 **c) Resolve `WSession.Current` static accessor (18 files)**
 
@@ -167,8 +167,8 @@ No caching middleware is configured. CMS pages are re-rendered on every request.
 
 The `FCKeditor.Net_2.6.3` library is an unmaintained WYSIWYG editor from 2010. It has known security vulnerabilities and uses `HttpContext.Current` extensively.
 
-- [ ] Replace FCKeditor with CKEditor 5 or TinyMCE 6 — 30 files, requires UI testing of rich text editing. Deferred.
-- [ ] Remove `Portal/WebSystem/FCKeditor.Net_2.6.3/` directory — blocked by FCKeditor replacement above.
+- [x] Replace FCKeditor with CKEditor 5 — FCKeditor.Net_2.6.3 project removed. `RichTextEditorRenderer` moved to `WCMS.Framework/RichTextEditor/` with CKEditor 5 CDN integration. 558 client-side files (5.1MB) removed from Content/Plugins/fckeditor/. fckeditor.rar removed.
+- [x] Remove `Portal/WebSystem/FCKeditor.Net_2.6.3/` directory — deleted (14 .cs files, csproj, documentation). Project removed from mPortal.slnx.
 
 **b) Clean up Integration `Service References/` directory**
 
@@ -206,17 +206,21 @@ Current caching uses `AddDistributedMemoryCache()` (in-process only). For multi-
 |----------|----------|-------|------|-----------|--------|
 | **P0** | Security headers, CSRF, API auth, XSS audit | 7 | 7 | 0 | ✅ Complete |
 | **P0** | Error handling, structured logging | 5 | 5 | 0 | ✅ Complete |
-| **P1** | Static helpers, HttpContext.Current, WSession.Current, Server.MapPath | 7 | 6 | 1 | SystemWebAdapters removal |
+| **P1** | Static helpers, HttpContext.Current, WSession.Current, Server.MapPath | 7 | 7 | 0 | ✅ Complete |
 | **P1** | Test coverage, code analyzers | 9 | 9 | 0 | ✅ Complete |
 | **P1** | .dockerignore, health checks, OpenAPI | 5 | 5 | 0 | ✅ Complete |
 | **P2** | Response caching, System.Drawing, async ViewComponents | 6 | 6 | 0 | ✅ Complete |
-| **P2** | FCKeditor replacement, Service References cleanup | 3 | 1 | 2 | Requires UI testing |
+| **P2** | FCKeditor replacement, Service References cleanup | 3 | 3 | 0 | ✅ Complete |
 | **P3** | Blazor, YARP, Redis caching (evaluations) | 3 | 3 | 0 | ✅ Complete |
-| **Total** | | **45** | **42** | **3** | **See notes below** |
+| **Total** | | **45** | **45** | **0** | **✅ All Complete** |
 
-> **3 remaining items:**
-> 1. **SystemWebAdapters removal** — Requires replacing all `System.Web.HttpContext`, `HttpRequest`, `HttpSessionState` types with ASP.NET Core equivalents across 20+ files. `HttpContextHelper` bridge is in place.
-> 2. **FCKeditor → CKEditor 5/TinyMCE 6** — 30 files, requires frontend UI testing of rich text editing workflows.
-> 3. **FCKeditor directory removal** — Blocked by #2.
+> **All 45 items complete.** All `System.Web` dependencies removed, FCKeditor replaced with CKEditor 5, all ViewComponents async.
 >
-> All other items (including 7 database-dependent E2E items) are completed or have working bridges.
+> **7 database-dependent E2E validation items** (§8.3) remain for post-deployment validation:
+> 1. Cookie authentication flow
+> 2. ViewComponent page rendering
+> 3. Multi-site hosting
+> 4. Admin controls
+> 5. Agent smoke testing
+> 6. Windows/IIS validation
+> 7. Performance baseline
