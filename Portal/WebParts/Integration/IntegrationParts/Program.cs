@@ -28,6 +28,13 @@ var app = builder.Build();
 ConfigUtil.SetConfiguration(app.Configuration);
 PathMapper.Configure(app.Environment.ContentRootPath, app.Environment.WebRootPath);
 
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/error");
+    app.UseHsts();
+}
+
+app.UseSecurityHeaders();
 app.UseStaticFiles();
 app.UseRouting();
 

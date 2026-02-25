@@ -58,5 +58,21 @@ namespace WCMS.Integration.Tests
                 Assert.IsTrue(content.Contains(".NET 10"), "Response should contain framework version");
             }
         }
+
+        [TestMethod]
+        public async Task SecurityHeaders_ArePresent()
+        {
+            var client = _factory.CreateClient();
+            var response = await client.GetAsync("/health");
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+
+            Assert.IsTrue(response.Headers.Contains("X-Content-Type-Options"),
+                "Response should contain X-Content-Type-Options header");
+            Assert.IsTrue(response.Headers.Contains("X-Frame-Options"),
+                "Response should contain X-Frame-Options header");
+            Assert.IsTrue(response.Headers.Contains("Referrer-Policy"),
+                "Response should contain Referrer-Policy header");
+        }
     }
 }

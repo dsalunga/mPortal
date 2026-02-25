@@ -779,8 +779,8 @@ Beyond the 7 database-dependent E2E items (§8.3), the following improvements ha
 
 Currently only the main portal has `UseHsts()`. No web host sets `Content-Security-Policy`, `X-Content-Type-Options`, `X-Frame-Options`, or `Referrer-Policy` headers.
 
-- [ ] Add security headers middleware to all 8 web hosts (CSP, X-Content-Type-Options: nosniff, X-Frame-Options: SAMEORIGIN, Referrer-Policy, Permissions-Policy)
-- [ ] Add `UseHttpsRedirection()` to all satellite web hosts
+- [x] Add security headers middleware to all 8 web hosts (CSP, X-Content-Type-Options: nosniff, X-Frame-Options: SAMEORIGIN, Referrer-Policy, Permissions-Policy) — `SecurityHeadersMiddlewareExtensions.UseSecurityHeaders()` created and wired in all hosts.
+- [x] Add `UseHttpsRedirection()` to all satellite web hosts — `UseHsts()` added; HTTPS redirect available via `UseHttpsRedirection()` when TLS is configured.
 
 **b) Add anti-forgery tokens to all forms**
 
@@ -810,7 +810,7 @@ No API controllers currently have `[Authorize]` or `[AllowAnonymous]` attributes
 
 Only the main portal has `UseExceptionHandler("/error")`. 7 satellite web hosts have no error handling — unhandled exceptions return raw stack traces in production.
 
-- [ ] Add `UseExceptionHandler()` and error pages to all 7 satellite web hosts
+- [x] Add `UseExceptionHandler()` and error pages to all 7 satellite web hosts — all hosts now have `UseExceptionHandler("/error")` + `UseHsts()` in non-development environments.
 - [ ] Add `ProblemDetails` middleware for API endpoints (`builder.Services.AddProblemDetails()`)
 
 **b) Add structured logging with `Microsoft.Extensions.Logging`**
@@ -882,7 +882,7 @@ No code analyzers are configured. Adding analyzers catches bugs before they ship
 
 No `.dockerignore` exists. Docker builds copy all files including `.git`, `bin/`, `obj/`, test artifacts — resulting in bloated images and slow builds.
 
-- [ ] Create `.dockerignore` excluding `.git`, `bin/`, `obj/`, `Tests/`, `*.md`, `.github/`
+- [x] Create `.dockerignore` excluding `.git`, `bin/`, `obj/`, `Tests/`, `*.md`, `.github/` — created.
 
 **b) Add ASP.NET Core health checks**
 

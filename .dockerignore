@@ -1,0 +1,29 @@
+.git
+.github
+.gitignore
+.dockerignore
+*.md
+*.sln
+*.slnx
+
+# Build artifacts
+**/bin/
+**/obj/
+
+# Test projects
+Tests/
+
+# IDE settings
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Legacy utilities (Windows-only desktop apps)
+Portal/Utilities/
+
+# SQL projects (not needed at runtime)
+**/*.sqlproj
+
+# Content that's copied separately
+Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/

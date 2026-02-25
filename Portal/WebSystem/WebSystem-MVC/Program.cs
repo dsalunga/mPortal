@@ -77,6 +77,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSecurityHeaders();
 app.UseWebOptimizer();
 app.UseStaticFiles();
 app.UseRouting();
