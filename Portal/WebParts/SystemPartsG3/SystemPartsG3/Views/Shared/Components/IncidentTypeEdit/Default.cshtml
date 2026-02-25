@@ -3,8 +3,10 @@
 <section class="incident-type-edit" aria-labelledby="typeEditHeading-@Model.ObjectId">
     <h4 class="mb-3" id="typeEditHeading-@Model.ObjectId">@(Model.TypeId > 0 ? "Edit" : "Add") Incident Type</h4>
 
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-body">
+            <p class="text-muted small mb-3"><span class="text-danger" aria-hidden="true">*</span> <span class="visually-hidden">Asterisk</span> indicates a required field.</p>
+
             <form method="post" class="needs-validation" novalidate aria-labelledby="typeEditHeading-@Model.ObjectId">
                 <input type="hidden" name="TypeId" value="@Model.TypeId" />
                 <input type="hidden" name="ObjectId" value="@Model.ObjectId" />
@@ -13,33 +15,34 @@
                 <div class="mb-3">
                     <label for="typeName-@Model.ObjectId" class="form-label">Name <span class="text-danger" aria-hidden="true">*</span></label>
                     <input type="text" class="form-control" id="typeName-@Model.ObjectId" name="Name"
-                           value="@Model.Name" required maxlength="255" aria-required="true" />
+                           value="@Model.Name" required maxlength="255" aria-required="true"
+                           placeholder="Enter type name" />
                     <div class="invalid-feedback">Please enter a type name.</div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
+                <div class="row g-3 mb-3">
+                    <div class="col-sm-6">
                         <label for="typeRank-@Model.ObjectId" class="form-label">Rank</label>
                         <input type="number" class="form-control" id="typeRank-@Model.ObjectId" name="Rank"
                                value="@Model.Rank" min="0" aria-describedby="typeRankHelp-@Model.ObjectId" />
                         <div id="typeRankHelp-@Model.ObjectId" class="form-text">Display order for this type.</div>
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <div class="form-check mt-4">
-                            <input class="form-check-input" type="checkbox" id="typeUseSLA-@Model.ObjectId" name="UseSLA"
-                                   value="true" checked="@Model.UseSLA" aria-describedby="useSLAHelp-@Model.ObjectId" />
+                    <div class="col-sm-6 d-flex align-items-center">
+                        <div class="form-check form-switch mt-3">
+                            <input class="form-check-input" type="checkbox" role="switch" id="typeUseSLA-@Model.ObjectId" name="UseSLA"
+                                   value="true" @(Model.UseSLA ? "checked" : "") aria-describedby="useSLAHelp-@Model.ObjectId" />
                             <label class="form-check-label" for="typeUseSLA-@Model.ObjectId">Use SLA</label>
-                            <div id="useSLAHelp-@Model.ObjectId" class="form-text">Enable service-level agreement tracking for this type.</div>
+                            <div id="useSLAHelp-@Model.ObjectId" class="form-text">Enable service-level agreement tracking.</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="d-flex gap-2">
+                <div class="d-flex flex-wrap gap-2 pt-2 border-top">
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-check-lg" aria-hidden="true"></i> Save
                     </button>
-                    <button type="button" class="btn btn-secondary" data-action="cancel">
+                    <button type="button" class="btn btn-outline-secondary" data-action="cancel">
                         <i class="bi bi-x-lg" aria-hidden="true"></i> Cancel
                     </button>
                 </div>

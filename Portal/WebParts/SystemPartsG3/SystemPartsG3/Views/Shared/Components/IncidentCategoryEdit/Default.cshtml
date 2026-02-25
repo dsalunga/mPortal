@@ -3,8 +3,10 @@
 <section class="incident-category-edit" aria-labelledby="categoryEditHeading-@Model.ObjectId">
     <h4 class="mb-3" id="categoryEditHeading-@Model.ObjectId">@(Model.CategoryId > 0 ? "Edit" : "Add") Incident Category</h4>
 
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-body">
+            <p class="text-muted small mb-3"><span class="text-danger" aria-hidden="true">*</span> <span class="visually-hidden">Asterisk</span> indicates a required field.</p>
+
             <form method="post" class="needs-validation" novalidate aria-labelledby="categoryEditHeading-@Model.ObjectId">
                 <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
                 <input type="hidden" name="ObjectId" value="@Model.ObjectId" />
@@ -13,26 +15,28 @@
                 <div class="mb-3">
                     <label for="categoryName-@Model.ObjectId" class="form-label">Name <span class="text-danger" aria-hidden="true">*</span></label>
                     <input type="text" class="form-control" id="categoryName-@Model.ObjectId" name="Name"
-                           value="@Model.Name" required maxlength="255" aria-required="true" />
+                           value="@Model.Name" required maxlength="255" aria-required="true"
+                           placeholder="Enter category name" />
                     <div class="invalid-feedback">Please enter a category name.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="categoryDescription-@Model.ObjectId" class="form-label">Description</label>
                     <textarea class="form-control" id="categoryDescription-@Model.ObjectId" name="Description"
-                              rows="3" aria-describedby="descriptionHelp-@Model.ObjectId">@Model.Description</textarea>
+                              rows="3" aria-describedby="descriptionHelp-@Model.ObjectId"
+                              placeholder="Optional description">@Model.Description</textarea>
                     <div id="descriptionHelp-@Model.ObjectId" class="form-text">Provide a brief description of this category.</div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
+                <div class="row g-3 mb-3">
+                    <div class="col-sm-6">
                         <label for="categoryGroupId-@Model.ObjectId" class="form-label">Group ID</label>
                         <input type="number" class="form-control" id="categoryGroupId-@Model.ObjectId" name="GroupId"
                                value="@Model.GroupId" min="0" aria-describedby="groupIdHelp-@Model.ObjectId" />
                         <div id="groupIdHelp-@Model.ObjectId" class="form-text">The group this category belongs to.</div>
                     </div>
 
-                    <div class="col-md-6 mb-3">
+                    <div class="col-sm-6">
                         <label for="categoryRank-@Model.ObjectId" class="form-label">Rank</label>
                         <input type="number" class="form-control" id="categoryRank-@Model.ObjectId" name="Rank"
                                value="@Model.Rank" min="0" aria-describedby="rankHelp-@Model.ObjectId" />
@@ -40,11 +44,11 @@
                     </div>
                 </div>
 
-                <div class="d-flex gap-2">
+                <div class="d-flex flex-wrap gap-2 pt-2 border-top">
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-check-lg" aria-hidden="true"></i> Save
                     </button>
-                    <button type="button" class="btn btn-secondary" data-action="cancel">
+                    <button type="button" class="btn btn-outline-secondary" data-action="cancel">
                         <i class="bi bi-x-lg" aria-hidden="true"></i> Cancel
                     </button>
                 </div>
