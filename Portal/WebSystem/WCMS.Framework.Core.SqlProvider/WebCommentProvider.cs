@@ -12,6 +12,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebCommentProvider : GenericSqlDataProviderBase<WebComment>, IWebCommentProvider
     {
+        protected override string TableName { get { return "WebComment"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WebComment_Get"; } }
         protected override string DeleteProcedure { get { return "WebComment_Del"; } }
 

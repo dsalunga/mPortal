@@ -28,6 +28,13 @@ namespace WCMS.WebSystem.WebParts.BibleReader.Providers
             return item;
         }
 
+        protected override string TableName { get { return "BibleReaderAccess"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure { get { return "BibleReaderAccess_Get"; } }
 
         public override int Update(BibleAccess item)

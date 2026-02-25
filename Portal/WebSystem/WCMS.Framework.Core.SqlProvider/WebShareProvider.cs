@@ -11,6 +11,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebShareProvider : GenericSqlDataProviderBase<WebShare>, IWebShareProvider
     {
+        protected override string TableName { get { return "WebShare"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WebShare_Get"; } }
         protected override string DeleteProcedure { get { return "WebShare_Del"; } }
 

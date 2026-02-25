@@ -29,6 +29,13 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
             return item;
         }
 
+        protected override string TableName { get { return "GalleryCategoryLink"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure { get { return "GalleryCategoryLink_Get"; } }
 
         public IEnumerable<AlbumLink> GetList(int objectId, int recordId)

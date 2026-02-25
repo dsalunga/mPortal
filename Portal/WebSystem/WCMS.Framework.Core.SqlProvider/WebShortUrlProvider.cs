@@ -10,6 +10,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebShortUrlProvider : GenericSqlDataProviderBase<WebShortUrl>, IWebShortUrlProvider
     {
+        protected override string TableName { get { return "WebShortUrl"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure
         {
             get { return "WebShortUrl_Get"; }

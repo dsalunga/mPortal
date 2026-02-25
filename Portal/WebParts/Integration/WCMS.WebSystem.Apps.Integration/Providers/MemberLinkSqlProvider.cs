@@ -15,6 +15,11 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
     public class MemberLinkSqlProvider : GenericSqlDataProviderBase<MemberLink>, IMemberLinkProvider
     {
         protected override string DeleteProcedure { get { return "MemberLink_Del"; } }
+        protected override string TableName { get { return "MemberLink"; } }
+
+        protected override string IdColumn { get { return "MemberLinkId"; } }
+
+
         protected override string SelectProcedure { get { return "MemberLink_Get"; } }
         protected override string IdParameter { get { return "MemberLinkId"; } }
 

@@ -15,6 +15,11 @@ namespace WCMS.WebSystem.WebParts.Incident.Providers
     public class IncidentTicketProvider : GenericSqlDataProviderBase<IncidentTicket>, IIncidentTicketProvider
     {
         protected override string DeleteProcedure { get { return "IncidentTicket_Del"; } }
+        protected override string TableName { get { return "IncidentTicket"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "IncidentTicket_Get"; } }
 
         protected override IncidentTicket From(IDataReader r, IncidentTicket source)

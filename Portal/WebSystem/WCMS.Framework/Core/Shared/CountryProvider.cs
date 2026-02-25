@@ -13,6 +13,11 @@ namespace WCMS.Framework.Core.Shared
     public class CountryProvider : GenericSqlDataProviderBase<Country>, ICountryProvider
     {
         protected override string IdParameter { get { return "CountryCode"; } }
+        protected override string TableName { get { return "Country"; } }
+
+        protected override string IdColumn { get { return "CountryCode"; } }
+
+
         protected override string SelectProcedure { get { return "Country_Get"; } }
         protected override string DeleteProcedure { get { return "Country_Del"; } }
 

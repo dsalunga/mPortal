@@ -62,6 +62,13 @@ namespace WCMS.Framework.Core.SqlProvider.Diagnostics
             return item.Id;
         }
 
+        protected override string TableName { get { return "EventLog"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure
         {
             get { return "EventLog_Get"; }

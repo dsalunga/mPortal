@@ -14,6 +14,11 @@ namespace WCMS.WebSystem.Apps.BranchLocator
     public class MChapterSqlProvider : GenericSqlDataProviderBase<MChapter>, IMChapterProvider
     {
         protected override string DeleteProcedure { get { return "MChapter_Del"; } }
+        protected override string TableName { get { return "MChapter"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "MChapter_Get"; } }
 
         protected override MChapter From(IDataReader r, MChapter source)

@@ -12,6 +12,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class UserProviderProvider : GenericSqlDataProviderBase<UserProvider>, IUserProviderProvider
     {
+        protected override string TableName { get { return "UserProvider"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure
         {
             get { return "UserProvider_Get"; }

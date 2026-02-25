@@ -76,6 +76,11 @@ namespace WCMS.WebSystem.Apps.Integration
         #endregion
 
         protected override string DeleteProcedure { get { return "Registration_Del"; } }
+        protected override string TableName { get { return "Registration"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "Registration_Get"; } }
     }
 }

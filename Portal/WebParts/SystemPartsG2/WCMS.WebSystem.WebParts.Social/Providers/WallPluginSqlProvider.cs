@@ -21,6 +21,13 @@ namespace WCMS.Framework.Social.Providers
             return item;
         }
 
+        protected override string TableName { get { return "WallPlugin"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure { get { return "WallPlugin_Get"; } }
 
         public WallPlugin GetByEventType(int typeId)

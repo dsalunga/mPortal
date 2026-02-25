@@ -12,6 +12,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebSkinProvider : GenericSqlDataProviderBase<WebSkin>, IWebSkinProvider
     {
+        protected override string TableName { get { return "WebSkin"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WebSkin_Get"; } }
         protected override string DeleteProcedure { get { return "WebSkin_Del"; } }
 

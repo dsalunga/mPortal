@@ -12,6 +12,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebAttachmentProvider : GenericSqlDataProviderBase<WebAttachment>, IWebAttachmentProvider
     {
+        protected override string TableName { get { return "WebAttachment"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WebAttachment_Get"; } }
         protected override string DeleteProcedure { get { return "WebAttachment_Del"; } }
 

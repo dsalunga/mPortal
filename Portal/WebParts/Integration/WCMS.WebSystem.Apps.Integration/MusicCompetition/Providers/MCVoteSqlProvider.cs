@@ -39,6 +39,13 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             return item;
         }
 
+        protected override string TableName { get { return "MCVote"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure
         {
             get { return "MCVote_Get"; }

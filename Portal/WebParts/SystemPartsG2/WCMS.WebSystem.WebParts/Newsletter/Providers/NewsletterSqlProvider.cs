@@ -15,6 +15,11 @@ namespace WCMS.WebSystem.WebParts.Newsletter.Providers
     public class NewsletterSqlProvider : GenericSqlDataProviderBase<NewsletterEntry>, INewsletterProvider
     {
         protected override string DeleteProcedure { get { return string.Empty; } }
+        protected override string TableName { get { return "Newsletter"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "Newsletter_Get"; } }
 
         protected override NewsletterEntry From(IDataReader r, NewsletterEntry source)

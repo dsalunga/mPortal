@@ -100,6 +100,11 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
         }
 
         protected override string DeleteProcedure { get { return "ArticleLink_Del"; } }
+        protected override string TableName { get { return "ArticleLink"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "ArticleLink_Get"; } }
 
         protected override ArticleLink From(IDataReader r, ArticleLink source)

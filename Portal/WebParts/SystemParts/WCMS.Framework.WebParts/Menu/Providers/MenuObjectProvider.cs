@@ -14,6 +14,11 @@ namespace WCMS.WebSystem.WebParts.Menu.Providers
 {
     public class MenuObjectProvider : GenericSqlDataProviderBase<MenuObject>, IMenuObjectProvider
     {
+        protected override string TableName { get { return "MenuObject"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "MenuObject_Get"; } }
         protected override string DeleteProcedure { get { return "MenuObject_Del"; } }
 

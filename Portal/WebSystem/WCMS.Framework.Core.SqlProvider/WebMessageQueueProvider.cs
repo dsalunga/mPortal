@@ -13,6 +13,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebMessageQueueProvider : GenericSqlDataProviderBase<WebMessageQueue>, IWebMessageQueueProvider
     {
+        protected override string TableName { get { return "WebMessageQueue"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WebMessageQueue_Get"; } }
         protected override string DeleteProcedure { get { return "WebMessageQueue_Del"; } }
 

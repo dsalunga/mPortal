@@ -94,6 +94,13 @@ namespace WCMS.Framework.Core.SqlProvider
 
         #endregion
 
+        protected override string TableName { get { return "WebAddress"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure
         {
             get { return "WebAddress_Get"; }

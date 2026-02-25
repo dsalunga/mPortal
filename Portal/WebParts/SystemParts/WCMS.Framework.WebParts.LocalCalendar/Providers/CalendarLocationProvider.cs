@@ -16,6 +16,11 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
     public class CalendarLocationProvider : GenericSqlDataProviderBase<CalendarLocation>
     {
         protected override string DeleteProcedure { get { return "EventCalendarLocation_Del"; } }
+        protected override string TableName { get { return "EventCalendarLocations"; } }
+
+        protected override string IdColumn { get { return "LocationId"; } }
+
+
         protected override string SelectProcedure { get { return "EventCalendarLocations_Get"; } }
         protected override string IdParameter { get { return "@LocationId"; } }
 

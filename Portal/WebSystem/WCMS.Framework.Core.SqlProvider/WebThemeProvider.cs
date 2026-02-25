@@ -12,6 +12,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebThemeProvider : GenericSqlDataProviderBase<WebTheme>, IWebThemeProvider
     {
+        protected override string TableName { get { return "WebTheme"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WebTheme_Get"; } }
         protected override string DeleteProcedure { get { return "WebTheme_Del"; } }
 

@@ -15,6 +15,13 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
     {
         protected override string IdParameter { get { return "ServiceScheduleId"; } }
 
+        protected override string TableName { get { return "LessonReviewerVideo"; } }
+
+
+        protected override string IdColumn { get { return "ServiceScheduleId"; } }
+
+
+
         protected override string SelectProcedure { get { return "LessonReviewerVideo_Get"; } }
         protected override string DeleteProcedure { get { return "LessonReviewerVideo_Del"; } }
 

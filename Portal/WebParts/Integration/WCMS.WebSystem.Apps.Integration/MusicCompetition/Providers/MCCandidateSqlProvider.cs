@@ -15,6 +15,11 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
     public class MCCandidateSqlProvider : GenericSqlDataProviderBase<MCCandidate>, IMCCandidateProvider
     {
         protected override string DeleteProcedure { get { return "MCCandidate_Del"; } }
+        protected override string TableName { get { return "MCCandidate"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "MCCandidate_Get"; } }
 
         protected override MCCandidate From(IDataReader r, MCCandidate source)

@@ -27,6 +27,13 @@ namespace WCMS.WebSystem.WebParts.Jobs.Providers
             return item;
         }
 
+        protected override string TableName { get { return "Job"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure
         {
             get { return "Job_Get"; }

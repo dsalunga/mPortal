@@ -13,6 +13,11 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
     public class MCInterpreterScoreSqlProvider : GenericSqlDataProviderBase<MCInterpreterScore>, IMCInterpreterScoreProvider
     {
         protected override string DeleteProcedure { get { return "MCInterpreterScore_Del"; } }
+        protected override string TableName { get { return "MCInterpreterScore"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "MCInterpreterScore_Get"; } }
 
         protected override MCInterpreterScore From(IDataReader r, MCInterpreterScore source)

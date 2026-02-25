@@ -10,6 +10,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebParameterProvider : GenericSqlDataProviderBase<WebParameter>, IWebParameterProvider
     {
+        protected override string TableName { get { return "WebParameter"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WebParameter_Get"; } }
         protected override string DeleteProcedure { get { return "WebParameter_Del"; } }
 

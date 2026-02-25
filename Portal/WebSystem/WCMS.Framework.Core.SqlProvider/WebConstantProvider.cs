@@ -186,6 +186,13 @@ namespace WCMS.Framework.Core.SqlProvider
             return items;
         }
 
+        protected override string TableName { get { return "WebConstant"; } }
+
+
+        protected override string IdColumn { get { return "ConstantId"; } }
+
+
+
         protected override string SelectProcedure { get { return "WebConstant_Get"; } }
         protected override string DeleteProcedure { get { return "WebConstant_Del"; } }
     }

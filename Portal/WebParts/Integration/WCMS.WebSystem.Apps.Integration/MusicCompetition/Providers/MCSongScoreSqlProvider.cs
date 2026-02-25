@@ -13,6 +13,11 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
     public class MCSongScoreSqlProvider : GenericSqlDataProviderBase<MCSongScore>, IMCSongScoreProvider
     {
         protected override string DeleteProcedure { get { return "MCSongScore_Del"; } }
+        protected override string TableName { get { return "MCSongScore"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "MCSongScore_Get"; } }
 
         protected override MCSongScore From(IDataReader r, MCSongScore source)

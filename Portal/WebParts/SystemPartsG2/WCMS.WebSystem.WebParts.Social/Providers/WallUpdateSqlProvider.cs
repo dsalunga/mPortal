@@ -10,6 +10,11 @@ namespace WCMS.Framework.Social.Providers
     public class WallUpdateSqlProvider : GenericSqlDataProviderBase<WallUpdate>, IWallUpdateProvider
     {
         protected override string DeleteProcedure { get { return "WallUpdate_Del"; } }
+        protected override string TableName { get { return "WallUpdate"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WallUpdate_Get"; } }
 
         protected override WallUpdate From(IDataReader r, WallUpdate source)

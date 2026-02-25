@@ -12,6 +12,11 @@ namespace WCMS.Framework.Core.SqlProvider
     {
         protected override string IdParameter { get { return "SubscriptionId"; } }
         protected override string DeleteProcedure { get { return "WebSubscription_Del"; } }
+        protected override string TableName { get { return "WebSubscription"; } }
+
+        protected override string IdColumn { get { return "SubscriptionId"; } }
+
+
         protected override string SelectProcedure { get { return "WebSubscription_Get"; } }
 
         #region IDataProvider<WebSubscription> Members

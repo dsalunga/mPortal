@@ -13,6 +13,11 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
     public class MusicCompetitionProvider : GenericSqlDataProviderBase<MCCompetition>, IMusicCompetitionProvider
     {
         protected override string DeleteProcedure { get { return "MusicCompetition_Del"; } }
+        protected override string TableName { get { return "MusicCompetition"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "MusicCompetition_Get"; } }
 
         protected override MCCompetition From(IDataReader r, MCCompetition source)

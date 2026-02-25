@@ -69,6 +69,11 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
         }
 
         protected override string DeleteProcedure { get { return "Articles_Del"; } }
+        protected override string TableName { get { return "Articles"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "Articles_Get"; } }
     }
 }

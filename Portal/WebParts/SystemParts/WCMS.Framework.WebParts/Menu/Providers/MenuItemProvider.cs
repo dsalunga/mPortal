@@ -73,6 +73,13 @@ namespace WCMS.WebSystem.WebParts.Menu.Providers
 
         #endregion
 
+        protected override string TableName { get { return "MenuItem"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure { get { return "MenuItem_Get"; } }
         protected override string DeleteProcedure { get { return "MenuItem_Del"; } }
     }
