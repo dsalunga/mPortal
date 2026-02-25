@@ -1,23 +1,36 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntAccountInfoModel
 
-<div class="card" id="int-account-info-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Account Information</h5>
+<section aria-labelledby="account-info-heading-@Model.ObjectId">
+    <div class="card" id="int-account-info-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="account-info-heading-@Model.ObjectId">
+                <i class="bi bi-person-circle" aria-hidden="true"></i> Account Information
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (string.IsNullOrEmpty(Model.UserName) && string.IsNullOrEmpty(Model.FullName) && string.IsNullOrEmpty(Model.Email))
+            {
+                <div class="alert alert-info" role="status" aria-live="polite">
+                    <i class="bi bi-info-circle" aria-hidden="true"></i> No account information available.
+                </div>
+            }
+            else
+            {
+                <dl class="row mb-0" aria-label="Account details">
+                    <dt class="col-sm-4">User Name</dt>
+                    <dd class="col-sm-8">@Model.UserName</dd>
+                    <dt class="col-sm-4">Full Name</dt>
+                    <dd class="col-sm-8">@Model.FullName</dd>
+                    <dt class="col-sm-4">Email</dt>
+                    <dd class="col-sm-8">@Model.Email</dd>
+                    <dt class="col-sm-4">Phone</dt>
+                    <dd class="col-sm-8">@Model.Phone</dd>
+                    <dt class="col-sm-4">Organization</dt>
+                    <dd class="col-sm-8">@Model.Organization</dd>
+                    <dt class="col-sm-4">Last Login</dt>
+                    <dd class="col-sm-8">@(Model.LastLogin?.ToString("g") ?? "N/A")</dd>
+                </dl>
+            }
+        </div>
     </div>
-    <div class="card-body">
-        <dl class="row mb-0">
-            <dt class="col-sm-4">User Name</dt>
-            <dd class="col-sm-8">@Model.UserName</dd>
-            <dt class="col-sm-4">Full Name</dt>
-            <dd class="col-sm-8">@Model.FullName</dd>
-            <dt class="col-sm-4">Email</dt>
-            <dd class="col-sm-8">@Model.Email</dd>
-            <dt class="col-sm-4">Phone</dt>
-            <dd class="col-sm-8">@Model.Phone</dd>
-            <dt class="col-sm-4">Organization</dt>
-            <dd class="col-sm-8">@Model.Organization</dd>
-            <dt class="col-sm-4">Last Login</dt>
-            <dd class="col-sm-8">@(Model.LastLogin?.ToString("g") ?? "N/A")</dd>
-        </dl>
-    </div>
-</div>
+</section>

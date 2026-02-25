@@ -1,16 +1,21 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntBibleAuthModel
 
-<div class="card" id="int-bible-auth-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Bible Auth</h5>
+<section aria-labelledby="bible-auth-heading-@Model.ObjectId">
+    <div class="card" id="int-bible-auth-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="bible-auth-heading-@Model.ObjectId">
+                <i class="bi bi-book" aria-hidden="true"></i> Bible Auth
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <p>Bible auth gate placeholder content.</p>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
-                @Model.Message
-            </div>
-        }
-        <p>Bible auth gate placeholder content.</p>
-    </div>
-</div>
+</section>

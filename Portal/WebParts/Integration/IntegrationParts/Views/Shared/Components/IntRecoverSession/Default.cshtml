@@ -1,31 +1,39 @@
 @model dynamic
 
-<div class="card" id="int-recover-session-@Model.ObjectId" role="region" aria-label="Recover Session">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Recover Session</h5>
+<section aria-labelledby="recover-session-heading-@Model.ObjectId">
+    <div class="card" id="int-recover-session-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="recover-session-heading-@Model.ObjectId">
+                <i class="bi bi-arrow-repeat" aria-hidden="true"></i> Recover Session
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty((string)Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <p>Your previous session has expired. Please verify your identity to continue.</p>
+            <form method="post" novalidate aria-label="Session recovery form">
+                <div class="mb-3">
+                    <label for="txtUsername" class="form-label">Username <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtUsername" name="Username" class="form-control" required aria-required="true" autocomplete="username" />
+                </div>
+                <div class="mb-3">
+                    <label for="txtPassword" class="form-label">Password <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="password" id="txtPassword" name="Password" class="form-control" required aria-required="true" autocomplete="current-password" />
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" id="cmdRecover" class="btn btn-primary">
+                        <i class="bi bi-arrow-repeat" aria-hidden="true"></i> Recover Session
+                    </button>
+                    <a href="Login/" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Login
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty((string)Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
-                @Model.Message
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        }
-        <p>Your previous session has expired. Please verify your identity to continue.</p>
-        <form method="post" novalidate aria-label="Session recovery form">
-            <div class="mb-3">
-                <label for="txtUsername" class="form-label">Username <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="text" id="txtUsername" name="Username" class="form-control" required aria-required="true" autocomplete="username" />
-            </div>
-            <div class="mb-3">
-                <label for="txtPassword" class="form-label">Password <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="password" id="txtPassword" name="Password" class="form-control" required aria-required="true" autocomplete="current-password" />
-            </div>
-            <div class="d-flex gap-2">
-                <button type="submit" id="cmdRecover" class="btn btn-primary">Recover Session</button>
-                <a href="Login/" class="btn btn-outline-secondary">Back to Login</a>
-            </div>
-        </form>
-    </div>
-</div>
+</section>

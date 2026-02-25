@@ -1,33 +1,39 @@
 @model dynamic
 
-<div class="card" id="int-member-access-@Model.ObjectId" role="region" aria-label="Member Access">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Member Access</h5>
+<section aria-labelledby="member-access-heading-@Model.ObjectId">
+    <div class="card" id="int-member-access-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="member-access-heading-@Model.ObjectId">
+                <i class="bi bi-people" aria-hidden="true"></i> Member Access
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty((string)Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <form method="post" novalidate aria-label="Member access form">
+                <div class="mb-3">
+                    <label for="txtMemberId" class="form-label">Member ID <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtMemberId" name="MemberId" class="form-control" required aria-required="true" />
+                </div>
+                <div class="mb-3">
+                    <label for="ddlAccessLevel" class="form-label">Access Level</label>
+                    <select id="ddlAccessLevel" name="AccessLevel" class="form-select" aria-label="Select access level">
+                        <option value="">-- Select Level --</option>
+                    </select>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="chkActive" name="IsActive" value="true" />
+                    <label class="form-check-label" for="chkActive">Active</label>
+                </div>
+                <button type="submit" id="cmdSaveAccess" class="btn btn-primary">
+                    <i class="bi bi-save" aria-hidden="true"></i> Save
+                </button>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty((string)Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
-                @Model.Message
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        }
-        <form method="post" novalidate aria-label="Member access form">
-            <div class="mb-3">
-                <label for="txtMemberId" class="form-label">Member ID <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="text" id="txtMemberId" name="MemberId" class="form-control" required aria-required="true" />
-            </div>
-            <div class="mb-3">
-                <label for="ddlAccessLevel" class="form-label">Access Level</label>
-                <select id="ddlAccessLevel" name="AccessLevel" class="form-select" aria-label="Select access level">
-                    <option value="">-- Select Level --</option>
-                </select>
-            </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="chkActive" name="IsActive" value="true" />
-                <label class="form-check-label" for="chkActive">Active</label>
-            </div>
-            <button type="submit" id="cmdSaveAccess" class="btn btn-primary">Save</button>
-        </form>
-    </div>
-</div>
+</section>

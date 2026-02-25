@@ -1,133 +1,164 @@
 @model dynamic
 
-<div class="system-login" id="int-login-@Model.ObjectId">
-    @if (!string.IsNullOrEmpty((string)Model.Message))
-    {
-        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
-            @Model.Message
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
+<section aria-labelledby="login-heading-@Model.ObjectId">
+    <div class="system-login" id="int-login-@Model.ObjectId">
+        @if (!string.IsNullOrEmpty((string)Model.Message))
+        {
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
 
-    <!-- Login View -->
-    <div id="viewLogin">
-        <input type="hidden" id="hLocation" name="hLocation" value="" />
-        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+        <!-- Login View -->
+        <div id="viewLogin">
+            <h5 class="mb-3" id="login-heading-@Model.ObjectId">
+                <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Login
+            </h5>
+            <input type="hidden" id="hLocation" name="hLocation" value="" />
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
 
-        <script type="text/javascript">
-            function prepareAndSubmit() { return true; }
+            <script type="text/javascript">
+                function prepareAndSubmit() { return true; }
 
-            $(document).ready(function () {
-                var txtUserName = $("#txtUserName");
-                if (txtUserName.length > 0) {
-                    txtUserName.focus();
-                }
-                if (typeof ResolveGeoIp === 'function') {
-                    ResolveGeoIp(function (loc) { $('#hLocation').val(loc); });
-                }
-            });
-        </script>
+                $(document).ready(function () {
+                    var txtUserName = $("#txtUserName");
+                    if (txtUserName.length > 0) {
+                        txtUserName.focus();
+                    }
+                    if (typeof ResolveGeoIp === 'function') {
+                        ResolveGeoIp(function (loc) { $('#hLocation').val(loc); });
+                    }
+                });
+            </script>
 
-        <form method="post" novalidate aria-label="Login form">
-            <div class="mb-3">
-                <label for="txtUserName" class="form-label">Group ID or Email <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="text" id="txtUserName" name="UserName" class="form-control" placeholder="Your Group ID or Email" required aria-required="true" autocomplete="username" />
-            </div>
-            <div class="mb-3">
-                <label for="txtPassword" class="form-label">Password <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="password" id="txtPassword" name="Password" class="form-control" required aria-required="true" autocomplete="current-password" />
-            </div>
-            <div id="panelOtp" class="mb-3" style="display: none" role="group" aria-label="OTP delivery method">
-                <span class="form-label d-block">Send OTP Via</span>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="OtpMethod" id="otpEmail" value="0" checked />
-                    <label class="form-check-label" for="otpEmail">E-mail</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="OtpMethod" id="otpSms" value="1" />
-                    <label class="form-check-label" for="otpSms">SMS</label>
-                </div>
-            </div>
-            <div id="panelRememberMe" class="mb-3">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="chkRememberMe" name="RememberMe" value="true" />
-                    <label class="form-check-label" for="chkRememberMe">Keep me logged in</label>
-                </div>
-            </div>
-            <div class="mb-3">
-                <button type="submit" id="cmdLogin" class="btn btn-primary" data-loading-text="Logging in..." onclick="prepareAndSubmit();">Login</button>
-            </div>
-            <div id="panelSignUpLink" style="display: none">
-                <hr />
-                <p>No account or cannot login? <a id="linkSignup" href="#" title="Click here to Register">Get Access</a></p>
-            </div>
-        </form>
-    </div>
-
-    <!-- OTP Verification View -->
-    <div id="viewOtpVerification" style="display: none" role="region" aria-label="OTP Verification">
-        <form method="post" novalidate aria-label="OTP verification form">
-            <div class="mb-3">
-                <label for="txtOtpCode" class="form-label">One-time PIN <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="text" id="txtOtpCode" name="OtpCode" class="form-control" required aria-required="true" aria-describedby="otpHelp" />
-                <div id="otpHelp" class="form-text">
-                    Your OTP PIN has been sent to your <span id="lblOtpType"></span>.
-                    It will expire after <span id="lblOtpExpiry"></span>.
-                </div>
-            </div>
-            <div class="mb-3">
-                <a href="#" id="cmdNewOtpPin">Request New PIN</a>
-            </div>
-            <div class="mb-3">
-                <button type="submit" id="cmdOtpSubmit" class="btn btn-primary">Submit</button>
-                <button type="button" id="cmdOtpCancel" class="btn btn-secondary ms-2">Cancel</button>
-            </div>
-            <div class="text-danger" role="alert">
-                <span id="lblOtpMsg"></span>
-            </div>
-        </form>
-    </div>
-
-    <!-- Forgot Password View -->
-    <div id="viewForgot" style="display: none" role="region" aria-label="Forgot Password">
-        <div id="viewRetrieveSuccess" style="display: none">
-            <div class="alert alert-success" role="status">
-                Thank you! Your password has been sent to your email, <strong><span id="lblEmail"></span></strong>
-            </div>
-            <a href="Login/" title="Click here to login">Click here to login</a>
-        </div>
-        <div id="viewRetrieve">
-            <form method="post" novalidate aria-label="Forgot password form">
-                <h5 class="mb-3">Forgot Your Password?</h5>
-                <p>Enter your Username or Email to receive your password.</p>
+            <form method="post" novalidate aria-label="Login form">
                 <div class="mb-3">
-                    <label for="txtRetrieveUserName" class="form-label">Username or Email <span class="text-danger" aria-hidden="true">*</span></label>
-                    <input type="text" id="txtRetrieveUserName" name="RetrieveUserName" class="form-control" required aria-required="true" />
+                    <label for="txtUserName" class="form-label">Group ID or Email <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtUserName" name="UserName" class="form-control" placeholder="Your Group ID or Email" required aria-required="true" autocomplete="username" />
                 </div>
-                <div class="text-danger mb-3" role="alert">
-                    <span id="lblRetrieveFailed"></span>
+                <div class="mb-3">
+                    <label for="txtPassword" class="form-label">Password <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="password" id="txtPassword" name="Password" class="form-control" required aria-required="true" autocomplete="current-password" />
                 </div>
-                <div>
-                    <button type="submit" id="cmdRetrieve" class="btn btn-primary">Submit</button>
-                    <a href="Login/" class="btn btn-link" title="Click here to login">Back to Login</a>
+                <div id="panelOtp" class="mb-3" style="display: none" role="group" aria-label="OTP delivery method">
+                    <span class="form-label d-block">Send OTP Via</span>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="OtpMethod" id="otpEmail" value="0" checked />
+                        <label class="form-check-label" for="otpEmail">E-mail</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="OtpMethod" id="otpSms" value="1" />
+                        <label class="form-check-label" for="otpSms">SMS</label>
+                    </div>
+                </div>
+                <div id="panelRememberMe" class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="chkRememberMe" name="RememberMe" value="true" />
+                        <label class="form-check-label" for="chkRememberMe">Keep me logged in</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" id="cmdLogin" class="btn btn-primary" data-loading-text="Logging in..." onclick="prepareAndSubmit();">
+                        <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Login
+                    </button>
+                </div>
+                <div id="panelSignUpLink" style="display: none">
+                    <hr />
+                    <p>No account or cannot login? <a id="linkSignup" href="#" title="Click here to Register">Get Access</a></p>
                 </div>
             </form>
         </div>
-    </div>
 
-    <!-- Activation View -->
-    <div id="viewActivation" style="display: none" role="region" aria-label="Account Activation">
-        <div id="viewSuccess" style="display: none">
-            <div class="alert alert-success" role="status">Thank you! Your account has been successfully activated.</div>
-            <a href="Login/" title="Click here to login">Click here to login</a>
+        <!-- OTP Verification View -->
+        <div id="viewOtpVerification" style="display: none" role="region" aria-label="OTP Verification">
+            <form method="post" novalidate aria-label="OTP verification form">
+                <div class="mb-3">
+                    <label for="txtOtpCode" class="form-label">One-time PIN <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" id="txtOtpCode" name="OtpCode" class="form-control" required aria-required="true" aria-describedby="otpHelp" />
+                    <div id="otpHelp" class="form-text">
+                        Your OTP PIN has been sent to your <span id="lblOtpType"></span>.
+                        It will expire after <span id="lblOtpExpiry"></span>.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <a href="#" id="cmdNewOtpPin">
+                        <i class="bi bi-arrow-clockwise" aria-hidden="true"></i> Request New PIN
+                    </a>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" id="cmdOtpSubmit" class="btn btn-primary">
+                        <i class="bi bi-check-lg" aria-hidden="true"></i> Submit
+                    </button>
+                    <button type="button" id="cmdOtpCancel" class="btn btn-secondary ms-2">Cancel</button>
+                </div>
+                <div class="text-danger" role="alert" aria-live="assertive">
+                    <span id="lblOtpMsg"></span>
+                </div>
+            </form>
         </div>
-        <div id="viewNoNeed" style="display: none">
-            <div class="alert alert-info" role="status">Your account has been activated already.</div>
-            <a href="Login/" title="Click here to login">Click here to login</a>
+
+        <!-- Forgot Password View -->
+        <div id="viewForgot" style="display: none" role="region" aria-label="Forgot Password">
+            <div id="viewRetrieveSuccess" style="display: none">
+                <div class="alert alert-success" role="status" aria-live="polite">
+                    <i class="bi bi-check-circle" aria-hidden="true"></i> Thank you! Your password has been sent to your email, <strong><span id="lblEmail"></span></strong>
+                </div>
+                <a href="Login/" title="Click here to login">
+                    <i class="bi bi-arrow-left" aria-hidden="true"></i> Click here to login
+                </a>
+            </div>
+            <div id="viewRetrieve">
+                <form method="post" novalidate aria-label="Forgot password form">
+                    <h5 class="mb-3">
+                        <i class="bi bi-question-circle" aria-hidden="true"></i> Forgot Your Password?
+                    </h5>
+                    <p>Enter your Username or Email to receive your password.</p>
+                    <div class="mb-3">
+                        <label for="txtRetrieveUserName" class="form-label">Username or Email <span class="text-danger" aria-hidden="true">*</span></label>
+                        <input type="text" id="txtRetrieveUserName" name="RetrieveUserName" class="form-control" required aria-required="true" />
+                    </div>
+                    <div class="text-danger mb-3" role="alert" aria-live="assertive">
+                        <span id="lblRetrieveFailed"></span>
+                    </div>
+                    <div>
+                        <button type="submit" id="cmdRetrieve" class="btn btn-primary">
+                            <i class="bi bi-envelope" aria-hidden="true"></i> Submit
+                        </button>
+                        <a href="Login/" class="btn btn-link" title="Click here to login">
+                            <i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Login
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div id="viewFailed" style="display: none">
-            <div class="alert alert-danger" role="alert">Sorry! Activation failed.</div>
-            <a href="Login/" title="Click here to login">Click here to login</a>
+
+        <!-- Activation View -->
+        <div id="viewActivation" style="display: none" role="region" aria-label="Account Activation">
+            <div id="viewSuccess" style="display: none">
+                <div class="alert alert-success" role="status" aria-live="polite">
+                    <i class="bi bi-check-circle" aria-hidden="true"></i> Thank you! Your account has been successfully activated.
+                </div>
+                <a href="Login/" title="Click here to login">
+                    <i class="bi bi-arrow-left" aria-hidden="true"></i> Click here to login
+                </a>
+            </div>
+            <div id="viewNoNeed" style="display: none">
+                <div class="alert alert-info" role="status" aria-live="polite">
+                    <i class="bi bi-info-circle" aria-hidden="true"></i> Your account has been activated already.
+                </div>
+                <a href="Login/" title="Click here to login">
+                    <i class="bi bi-arrow-left" aria-hidden="true"></i> Click here to login
+                </a>
+            </div>
+            <div id="viewFailed" style="display: none">
+                <div class="alert alert-danger" role="alert" aria-live="assertive">
+                    <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Sorry! Activation failed.
+                </div>
+                <a href="Login/" title="Click here to login">
+                    <i class="bi bi-arrow-left" aria-hidden="true"></i> Click here to login
+                </a>
+            </div>
         </div>
     </div>
-</div>
+</section>
