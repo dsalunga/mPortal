@@ -51,10 +51,10 @@ jobs:
         dotnet build BibleReader/BibleReader/BibleReader.WebApp.csproj --no-restore -c Release
         dotnet build LessonReviewer/LessonReviewer/LessonReviewer.csproj --no-restore -c Release
 
-    - name: Run tests
+    - name: Run tests with coverage
       run: |
-        dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj --no-restore -c Release --verbosity normal
-        dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -c Release --verbosity normal
+        dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj --no-restore -c Release --verbosity normal --collect:"XPlat Code Coverage"
+        dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -c Release --verbosity normal --collect:"XPlat Code Coverage"
         dotnet test Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj --no-restore -c Release --verbosity normal
 
   build-windows:

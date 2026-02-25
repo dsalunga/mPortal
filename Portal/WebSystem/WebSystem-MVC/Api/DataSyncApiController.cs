@@ -29,12 +29,14 @@ namespace WCMS.WebSystem.Api
         }
 
         [HttpGet("user")]
+        [ResponseCache(Duration = 60)]
         public IActionResult GetObject()
         {
             return Ok(new WebUser());
         }
 
         [HttpGet("users/{objectId:int}")]
+        [ResponseCache(Duration = 60)]
         public IActionResult GetObjectList(int objectId)
         {
             switch (objectId)
@@ -47,6 +49,7 @@ namespace WCMS.WebSystem.Api
         }
 
         [HttpGet("bindings")]
+        [ResponseCache(Duration = 300)]
         public IActionResult GetBindings()
         {
             var bindings = new List<WebSiteIdentity>();

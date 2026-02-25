@@ -16,6 +16,7 @@ namespace WCMS.WebSystem.Api
     public class AccountApiController : ControllerBase
     {
         [HttpGet("session/{sessionId}")]
+        [ResponseCache(Duration = 0, NoStore = true)]
         public IActionResult GetUserSession(string sessionId)
         {
             UserSession session = null;

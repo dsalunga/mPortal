@@ -113,7 +113,13 @@ else
 app.UseSecurityHeaders();
 app.UseHttpLogging();
 app.UseWebOptimizer();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = ctx =>
+    {
+        ctx.Context.Response.Headers["Cache-Control"] = "public,max-age=31536000";
+    }
+});
 app.UseRouting();
 
 app.UseSession();
