@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
+using System.Threading.Tasks;
 
 namespace WCMS.WebSystem.WebParts.G2.ViewComponents
 {
@@ -8,7 +9,7 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
     {
         public DownloadDetailViewComponent(IWContext context) : base(context) { }
 
-        public IViewComponentResult Invoke(int objectId = 0, int recordId = 0)
+        public async Task<IViewComponentResult> InvokeAsync(int objectId = 0, int recordId = 0)
         {
             if (objectId > 0)
             {
@@ -28,7 +29,7 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
                 DownloadCount = 0
             };
 
-            return View(model);
+            return await Task.FromResult(View(model));
         }
     }
 

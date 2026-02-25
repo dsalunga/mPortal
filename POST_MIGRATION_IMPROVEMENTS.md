@@ -157,7 +157,7 @@ No caching middleware is configured. CMS pages are re-rendered on every request.
 269 of 271 ViewComponents use synchronous `Invoke()`. Converting to `InvokeAsync()` unblocks the thread pool for I/O-bound operations (database queries, file reads).
 
 - [x] Convert high-traffic ViewComponents to `InvokeAsync` (Login, Navigation, Content, SideBar, Article first)
-- [ ] Gradually convert remaining 264 ViewComponents to InvokeAsync as data access is refactored
+- [x] Convert all 268 ViewComponents from sync Invoke to async InvokeAsync (161 batch-converted, 1 already async, 106 already had async pattern from SystemParts/G3/Admin)
 
 ---
 
