@@ -1,20 +1,23 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.SplashNavigatorViewModel
-<div class="wcms-splash-navigator" data-object-id="@Model.ObjectId">
+<nav id="splash-nav-@Model.ObjectId" class="wcms-splash-navigator" data-object-id="@Model.ObjectId"
+     aria-label="Feature navigation">
     @if (Model.Items.Count == 0)
     {
-        <p class="text-muted">No navigation items configured.</p>
+        <p class="text-muted" role="status">No navigation items configured.</p>
     }
     else
     {
-        <div class="row g-3">
+        <div class="row g-3" role="list">
             @foreach (var item in Model.Items)
             {
-                <div class="col-md-4 col-sm-6">
-                    <a href="@item.Url" class="text-decoration-none">
-                        <div class="card text-center h-100 shadow-sm">
+                <div class="col-lg-4 col-md-4 col-sm-6" role="listitem">
+                    <a href="@item.Url" class="text-decoration-none" aria-label="@item.Title">
+                        <article class="card text-center h-100 shadow-sm">
                             @if (!string.IsNullOrEmpty(item.ImageUrl))
                             {
-                                <img src="@item.ImageUrl" alt="@item.Title" class="card-img-top" loading="lazy" />
+                                <figure class="mb-0">
+                                    <img src="@item.ImageUrl" alt="@item.Title" class="card-img-top" loading="lazy" />
+                                </figure>
                             }
                             <div class="card-body">
                                 <h5 class="card-title">@item.Title</h5>
@@ -23,10 +26,10 @@
                                     <p class="card-text text-muted">@item.Description</p>
                                 }
                             </div>
-                        </div>
+                        </article>
                     </a>
                 </div>
             }
         </div>
     }
-</div>
+</nav>

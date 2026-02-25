@@ -1,8 +1,8 @@
 @model WCMS.WebSystem.ViewComponents.DesignModeViewModel
 
-<div class="design-mode-toolbar bg-dark text-white p-2 d-flex justify-content-between align-items-center">
+<section class="design-mode-toolbar bg-dark text-white p-2 d-flex justify-content-between align-items-center" aria-label="Design Mode Toolbar">
     <div>
-        <span class="me-3"><i class="bi bi-file-earmark"></i> @(Model.CurrentPageName ?? "No page selected")</span>
+        <span class="me-3"><i class="bi bi-file-earmark" aria-hidden="true"></i> @(Model.CurrentPageName ?? "No page selected")</span>
         @if (Model.CurrentPageId > 0)
         {
             <small class="text-muted">ID: @Model.CurrentPageId</small>
@@ -21,8 +21,8 @@
         @if (!string.IsNullOrEmpty(Model.PreviewUrl))
         {
             <a href="@Model.PreviewUrl" class="btn btn-sm btn-outline-light" target="_blank">
-                <i class="bi bi-box-arrow-up-right"></i> Preview
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Preview
             </a>
         }
     </div>
-</div>
+</section>

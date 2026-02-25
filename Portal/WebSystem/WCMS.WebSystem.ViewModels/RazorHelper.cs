@@ -5,8 +5,6 @@ using System.IO;
 using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.WebPages;
 
 using RazorEngine;
 using WCMS.Common.Utilities;
@@ -22,11 +20,6 @@ namespace WCMS.WebSystem
             return pageData;
         }
 
-        public static HelperResult RenderPanel(string panelName, WebPage page) //, params object[] data)
-        {
-            return page.RenderPage("~/_loader.cshtml", SetPanel(page.PageData, panelName));
-        }
-
         public static string RenderPage(string template, object model, string cacheName)
         {
             string tmpl = null;
@@ -37,7 +30,7 @@ namespace WCMS.WebSystem
                 tmpl = cache[fileCacheName] as string;
                 if (tmpl == null)
                 {
-                    var cachedFilePath = HttpContext.Current.Server.MapPath(template);
+                    var cachedFilePath = PathMapper.MapPath(template);
                     var filePaths = new List<string>();
                     filePaths.Add(cachedFilePath);
 
@@ -52,7 +45,7 @@ namespace WCMS.WebSystem
             }
             else
             {
-                tmpl = File.ReadAllText(HttpContext.Current.Server.MapPath(template));
+                tmpl = File.ReadAllText(PathMapper.MapPath(template));
             }
 
             var output = Razor.Parse(tmpl, model, cacheName);

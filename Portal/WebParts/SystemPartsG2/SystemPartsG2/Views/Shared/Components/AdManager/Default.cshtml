@@ -1,110 +1,130 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.AdManagerViewModel
-<div class="wcms-ad-manager" data-object-id="@Model.ObjectId">
-    <!-- Selected Ad Section (from CMS_Ad.ascx) -->
-    <div class="mb-4">
-        <h5><strong>Selected Ad:</strong></h5>
+<section id="ad-manager-@Model.ObjectId" class="wcms-ad-manager" data-object-id="@Model.ObjectId"
+         aria-label="Advertisement management">
+    <!-- Selected Ad Section -->
+    <section class="mb-4" aria-labelledby="selected-ads-heading-@Model.ObjectId">
+        <h5 id="selected-ads-heading-@Model.ObjectId"><strong>Selected Ad:</strong></h5>
         @if (Model.SelectedAds != null && Model.SelectedAds.Count > 0)
         {
-            <table class="table table-bordered" style="background-color: #fff;" cellpadding="3">
-                <thead>
-                    <tr class="grid_header">
-                        <th style="width: 20px;" class="text-center"></th>
-                        <th>Ad Name</th>
-                        <th style="width: 100px;" class="text-center">Hits</th>
-                        <th>User</th>
-                        <th>Category</th>
-                        <th>XML File</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var ad in Model.SelectedAds)
-                    {
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle" aria-describedby="selected-ads-heading-@Model.ObjectId">
+                    <thead class="table-light">
                         <tr>
-                            <td class="text-center">
-                                <input type="radio" value="@ad.Id" name="chkChecked" />
-                            </td>
-                            <td>@ad.Name</td>
-                            <td class="text-center">@ad.Hits</td>
-                            <td>@ad.FirstName</td>
-                            <td>@ad.CategoryName</td>
-                            <td>@ad.AdvertisementFile</td>
+                            <th scope="col" class="text-center" style="width: 20px;">
+                                <span class="visually-hidden">Select</span>
+                            </th>
+                            <th scope="col">Ad Name</th>
+                            <th scope="col" class="text-center" style="width: 100px;">Hits</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">XML File</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-            <button type="button" class="btn btn-outline-danger btn-sm" style="width: 96px;">Remove</button>
+                    </thead>
+                    <tbody>
+                        @foreach (var ad in Model.SelectedAds)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    <input type="radio" class="form-check-input" value="@ad.Id" name="chkChecked"
+                                           aria-label="Select ad @ad.Name" />
+                                </td>
+                                <td>@ad.Name</td>
+                                <td class="text-center">@ad.Hits</td>
+                                <td>@ad.FirstName</td>
+                                <td>@ad.CategoryName</td>
+                                <td>@ad.AdvertisementFile</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" class="btn btn-outline-danger btn-sm" aria-label="Remove selected ad">
+                <i class="bi bi-trash"></i> Remove
+            </button>
         }
         else
         {
-            <div class="alert alert-info">No ads selected.</div>
+            <div class="alert alert-info" role="status">No ads selected.</div>
         }
-    </div>
+    </section>
 
-    <div class="mb-3">&nbsp;</div>
+    <hr class="my-4" />
 
     <!-- All Ads Section -->
-    <div class="mb-4">
-        <h5><strong>All Ads:</strong></h5>
-        <div class="d-flex align-items-center gap-2 mb-3">
-            <label>By Category:&nbsp;</label>
-            <select class="form-select form-select-sm" style="width: auto;" name="cboTypes">
-                <option value="">-- All --</option>
-                @if (Model.Categories != null)
-                {
-                    @foreach (var cat in Model.Categories)
+    <section class="mb-4" aria-labelledby="all-ads-heading-@Model.ObjectId">
+        <h5 id="all-ads-heading-@Model.ObjectId"><strong>All Ads:</strong></h5>
+        <fieldset class="d-flex flex-wrap align-items-end gap-2 mb-3">
+            <legend class="visually-hidden">Filter advertisements</legend>
+            <div>
+                <label for="ad-category-@Model.ObjectId" class="form-label form-label-sm mb-1">By Category</label>
+                <select class="form-select form-select-sm" id="ad-category-@Model.ObjectId" name="cboTypes">
+                    <option value="">-- All --</option>
+                    @if (Model.Categories != null)
                     {
-                        <option value="@cat.Id">@cat.Name</option>
+                        @foreach (var cat in Model.Categories)
+                        {
+                            <option value="@cat.Id">@cat.Name</option>
+                        }
                     }
-                }
-            </select>
-            <label>&nbsp;By Author:&nbsp;</label>
-            <select class="form-select form-select-sm" style="width: auto;" name="cboWriters">
-                <option value="">-- All --</option>
-                @if (Model.Authors != null)
-                {
-                    @foreach (var author in Model.Authors)
+                </select>
+            </div>
+            <div>
+                <label for="ad-author-@Model.ObjectId" class="form-label form-label-sm mb-1">By Author</label>
+                <select class="form-select form-select-sm" id="ad-author-@Model.ObjectId" name="cboWriters">
+                    <option value="">-- All --</option>
+                    @if (Model.Authors != null)
                     {
-                        <option value="@author.Id">@author.FirstName</option>
+                        @foreach (var author in Model.Authors)
+                        {
+                            <option value="@author.Id">@author.FirstName</option>
+                        }
                     }
-                }
-            </select>
-            <button type="button" class="btn btn-secondary btn-sm" style="width: 80px;">Show</button>
-        </div>
+                </select>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm">Show</button>
+        </fieldset>
 
         @if (Model.Ads != null && Model.Ads.Count > 0)
         {
-            <table class="table table-bordered table-hover" style="background-color: #fff;" cellpadding="3">
-                <thead>
-                    <tr class="grid_header">
-                        <th style="width: 20px;" class="text-center"></th>
-                        <th>Ad Name</th>
-                        <th style="width: 100px;" class="text-center">Hits</th>
-                        <th>User</th>
-                        <th>Category</th>
-                        <th>XML File</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var ad in Model.Ads)
-                    {
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle" aria-describedby="all-ads-heading-@Model.ObjectId">
+                    <thead class="table-light">
                         <tr>
-                            <td class="text-center">
-                                <input type="radio" value="@ad.Id" name="chkChecked" />
-                            </td>
-                            <td>@ad.Name</td>
-                            <td class="text-center">@ad.Hits</td>
-                            <td>@ad.FirstName</td>
-                            <td>@ad.CategoryName</td>
-                            <td>@ad.AdvertisementFile</td>
+                            <th scope="col" class="text-center" style="width: 20px;">
+                                <span class="visually-hidden">Select</span>
+                            </th>
+                            <th scope="col">Ad Name</th>
+                            <th scope="col" class="text-center" style="width: 100px;">Hits</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">XML File</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var ad in Model.Ads)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    <input type="radio" class="form-check-input" value="@ad.Id" name="chkChecked"
+                                           aria-label="Select ad @ad.Name" />
+                                </td>
+                                <td>@ad.Name</td>
+                                <td class="text-center">@ad.Hits</td>
+                                <td>@ad.FirstName</td>
+                                <td>@ad.CategoryName</td>
+                                <td>@ad.AdvertisementFile</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         }
         else
         {
-            <div class="alert alert-info">No ads configured.</div>
+            <div class="alert alert-info" role="status">No ads configured.</div>
         }
-        <button type="button" class="btn btn-primary btn-sm" style="width: 100px;">Insert</button>
-    </div>
-</div>
+        <button type="button" class="btn btn-primary btn-sm" aria-label="Insert selected ad">
+            <i class="bi bi-plus-circle"></i> Insert
+        </button>
+    </section>
+</section>

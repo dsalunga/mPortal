@@ -1,25 +1,42 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.FileEditorViewModel
-<div class="wcms-file-editor">
+<section class="wcms-file-editor" aria-label="File editor">
     @if (!Model.IsLoggedIn)
     {
-        <div class="alert alert-warning">Please sign in to edit files.</div>
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Please sign in to edit files.
+        </div>
     }
     else
     {
-        <h4>@(string.IsNullOrEmpty(Model.FileName) ? "File Editor" : Model.FileName)</h4>
-        @if (!string.IsNullOrEmpty(Model.FilePath))
-        {
-            <p class="text-muted small">@Model.FilePath</p>
-        }
-        <form method="post">
-            <input type="hidden" name="objectId" value="@Model.ObjectId" />
-            <input type="hidden" name="recordId" value="@Model.RecordId" />
-            <input type="hidden" name="fileId" value="@Model.FileId" />
-            <div class="mb-3">
-                <textarea name="content" class="form-control font-monospace" rows="20">@Model.Content</textarea>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <i class="bi bi-file-earmark-code" aria-hidden="true"></i>
+                    @(string.IsNullOrEmpty(Model.FileName) ? "File Editor" : Model.FileName)
+                </h4>
+                @if (!string.IsNullOrEmpty(Model.FilePath))
+                {
+                    <p class="text-muted small mb-3">
+                        <i class="bi bi-folder2" aria-hidden="true"></i> @Model.FilePath
+                    </p>
+                }
+                <form method="post" aria-label="Edit file content">
+                    <input type="hidden" name="objectId" value="@Model.ObjectId" />
+                    <input type="hidden" name="recordId" value="@Model.RecordId" />
+                    <input type="hidden" name="fileId" value="@Model.FileId" />
+                    <div class="mb-3">
+                        <label for="fileContent-@Model.ObjectId" class="form-label visually-hidden">File content</label>
+                        <textarea id="fileContent-@Model.ObjectId" name="content" class="form-control font-monospace"
+                                  rows="20" aria-label="File content editor">@Model.Content</textarea>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save" aria-hidden="true"></i> Save
+                        </button>
+                        <a href="javascript:history.back()" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
-            <a href="javascript:history.back()" class="btn btn-outline-secondary">Cancel</a>
-        </form>
+        </div>
     }
-</div>
+</section>

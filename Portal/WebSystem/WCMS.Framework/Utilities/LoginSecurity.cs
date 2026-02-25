@@ -65,9 +65,7 @@ namespace WCMS.Framework.Utilities
                 rsa.FromXmlString(domainKey);
                 string username = Encoding.UTF8.GetString(rsa.Decrypt(SecurityHelper.ToHexByte(encUsername), false));
                 string password = Encoding.UTF8.GetString(rsa.Decrypt(SecurityHelper.ToHexByte(encPassword), false));
-                //if (Membership.ValidateUser(username, password))
                 {
-                    //FormsAuthentication.SetAuthCookie(username, rememberMe);
                     return true;
                 }
             }

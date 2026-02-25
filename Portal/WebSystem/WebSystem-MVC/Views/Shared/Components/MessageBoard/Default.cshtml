@@ -1,0 +1,43 @@
+@model WCMS.WebSystem.ViewComponents.MessageBoardViewModel
+<section class="system-message-board" aria-label="Message Board">
+    <h5>Message Board</h5>
+
+    @if (Model.Posts.Any())
+    {
+        <div class="message-board-list">
+            @foreach (var post in Model.Posts)
+            {
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <strong>@post.AuthorName</strong>
+                            <small class="text-muted">@post.DatePosted.ToString("g")</small>
+                        </div>
+                        <p class="mb-0">@post.Content</p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-muted">No messages yet. Be the first to post!</p>
+    }
+
+    @if (Model.IsLoggedIn)
+    {
+        <form method="post" asp-action="PostMessage" asp-controller="MessageBoard" aria-label="Post a message">
+            <input type="hidden" name="objectId" value="@Model.ObjectId" />
+            <input type="hidden" name="recordId" value="@Model.RecordId" />
+            <div class="mb-3">
+                <label class="form-label" for="messageContent">Write a message</label>
+                <textarea id="messageContent" name="content" class="form-control" rows="3" required aria-required="true"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" aria-label="Post message">Post Message</button>
+        </form>
+    }
+    else
+    {
+        <p class="text-muted">Please log in to post a message.</p>
+    }
+</section>

@@ -1,0 +1,63 @@
+@model WCMS.WebSystem.ViewComponents.UserPhotoUploadViewModel
+<section class="system-user-photo-upload" aria-label="User Photo Upload">
+    <h5>Profile Photo</h5>
+
+    @if (!Model.IsLoggedIn)
+    {
+        <p class="text-muted">Please log in to upload a profile photo.</p>
+    }
+    else
+    {
+        @if (!string.IsNullOrEmpty(Model.StatusMessage))
+        {
+            <div class="alert alert-info" role="status">@Model.StatusMessage</div>
+        }
+
+        <div class="mb-3 text-center">
+            @if (!string.IsNullOrEmpty(Model.CurrentPhotoUrl))
+            {
+                <img src="@Model.CurrentPhotoUrl" alt="Current profile photo for @Model.UserName"
+                     class="img-thumbnail" style="max-width: 200px; max-height: 200px;" />
+            }
+            else
+            {
+                <div class="border rounded d-inline-flex align-items-center justify-content-center"
+                     style="width: 200px; height: 200px;" aria-label="No photo uploaded">
+                    <span class="text-muted">No Photo</span>
+                </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <img id="photoPreview" src="#" alt="Photo preview" class="img-thumbnail d-none"
+                 style="max-width: 200px; max-height: 200px;" />
+        </div>
+
+        <form method="post" asp-action="UploadPhoto" asp-controller="UserPhoto" enctype="multipart/form-data" aria-label="Upload profile photo">
+            <input type="hidden" name="userId" value="@Model.UserId" />
+            <div class="mb-3">
+                <label class="form-label" for="photoFile">Select a photo</label>
+                <input type="file" id="photoFile" name="photoFile" class="form-control"
+                       accept="image/*" required aria-required="true" />
+            </div>
+            <button type="submit" class="btn btn-primary" aria-label="Upload photo">Upload Photo</button>
+        </form>
+
+        <script type="text/javascript">
+            document.getElementById('photoFile').addEventListener('change', function (e) {
+                var preview = document.getElementById('photoPreview');
+                var file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    var reader = new FileReader();
+                    reader.onload = function (ev) {
+                        preview.src = ev.target.result;
+                        preview.classList.remove('d-none');
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.classList.add('d-none');
+                }
+            });
+        </script>
+    }
+</section>

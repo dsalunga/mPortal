@@ -1,68 +1,72 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ContactFormModel
-<div class="Contact-Us">
+<section class="Contact-Us wcms-contact" aria-label="Contact us">
     @if (Model.Submitted)
     {
-        <span>Thank you for your message. We will get back to you shortly.</span>
+        <div class="alert alert-success" role="status" aria-live="polite">
+            <i class="bi bi-check-circle"></i> Thank you for your message. We will get back to you shortly.
+        </div>
     }
     else
     {
-        <form method="post" asp-action="Submit" asp-controller="ContentApi">
-            <input type="hidden" name="objectId" value="@Model.ObjectId" />
-            <input type="hidden" name="recordId" value="@Model.RecordId" />
-            <table cellspacing="5" cellpadding="0" border="0">
-                @if (Model.IsLoggedIn)
-                {
-                    <tr>
-                        <td style="width: 120px">Name:</td>
-                        <td>
-                            <strong><span>@Model.Name</span></strong>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Contact Us</h5>
+                <form method="post" asp-action="Submit" asp-controller="ContentApi" aria-label="Contact form">
+                    <input type="hidden" name="objectId" value="@Model.ObjectId" />
+                    <input type="hidden" name="recordId" value="@Model.RecordId" />
+                    @if (Model.IsLoggedIn)
+                    {
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <p class="form-control-plaintext fw-bold">@Model.Name</p>
                             <input type="hidden" name="name" value="@Model.Name" />
-                        </td>
-                    </tr>
-                }
-                else
-                {
-                    <tr>
-                        <td style="width: 120px">Name:<span style="color: red">*</span>&nbsp;</td>
-                        <td>
-                            <input type="text" name="name" class="span3 input" value="@Model.Name" required />
-                        </td>
-                    </tr>
-                }
-                <tr>
-                    <td>Email Address:<span style="color: red">*</span>&nbsp;</td>
-                    <td>
-                        <input type="email" name="email" class="span3 input" value="@Model.Email" required />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Contact No:</td>
-                    <td>
-                        <input type="text" name="contactNo" class="input" />
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 120px">Subject:<span style="color: red">*</span>&nbsp;</td>
-                    <td>
-                        <input type="text" name="subject" class="span5 input" required />
-                    </td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top">Message:<span style="color: red">*</span></td>
-                    <td>
-                        <textarea name="message" class="span5 input" cols="68" rows="8" required></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="font-style: italic">
-                        <span style="color: Red">*</span>&nbsp;-&nbsp;required&nbsp;
-                    </td>
-                    <td align="left">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <br />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mb-3">
+                            <label for="contactName-@Model.ObjectId" class="form-label">
+                                Name <span class="text-danger" aria-hidden="true">*</span>
+                            </label>
+                            <input type="text" id="contactName-@Model.ObjectId" name="name"
+                                   class="form-control" value="@Model.Name" required aria-required="true" />
+                        </div>
+                    }
+                    <div class="mb-3">
+                        <label for="contactEmail-@Model.ObjectId" class="form-label">
+                            Email Address <span class="text-danger" aria-hidden="true">*</span>
+                        </label>
+                        <input type="email" id="contactEmail-@Model.ObjectId" name="email"
+                               class="form-control" value="@Model.Email" required aria-required="true" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="contactPhone-@Model.ObjectId" class="form-label">Contact No</label>
+                        <input type="tel" id="contactPhone-@Model.ObjectId" name="contactNo" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="contactSubject-@Model.ObjectId" class="form-label">
+                            Subject <span class="text-danger" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="contactSubject-@Model.ObjectId" name="subject"
+                               class="form-control" required aria-required="true" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="contactMessage-@Model.ObjectId" class="form-label">
+                            Message <span class="text-danger" aria-hidden="true">*</span>
+                        </label>
+                        <textarea id="contactMessage-@Model.ObjectId" name="message"
+                                  class="form-control" rows="6" required aria-required="true"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted fst-italic">
+                            <span class="text-danger" aria-hidden="true">*</span> Required fields
+                        </small>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-send"></i> Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     }
-</div>
+</section>

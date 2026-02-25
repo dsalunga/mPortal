@@ -1,25 +1,30 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.ListingPageViewModel
-<div class="wcms-listing-page" data-object-id="@Model.ObjectId">
+@{
+    var totalPages = Model.PageSize > 0 ? (int)Math.Ceiling((double)Model.TotalItems / Model.PageSize) : 1;
+}
+<section id="listing-@Model.ObjectId" class="wcms-listing-page" data-object-id="@Model.ObjectId"
+         aria-labelledby="@(string.IsNullOrEmpty(Model.Title) ? "" : $"listing-heading-{Model.ObjectId}")">
     @if (!string.IsNullOrEmpty(Model.Title))
     {
-        <h4>@Model.Title</h4>
+        <h4 id="listing-heading-@Model.ObjectId">@Model.Title</h4>
     }
     @if (Model.Items.Count == 0)
     {
-        <p class="text-muted">No items to display.</p>
+        <p class="text-muted" role="status">No items to display.</p>
     }
     else
     {
-        <div class="list-group mb-3">
+        <div class="list-group mb-3" role="list">
             @foreach (var item in Model.Items)
             {
-                <a href="@item.Url" class="list-group-item list-group-item-action">
-                    <div class="d-flex">
+                <a href="@item.Url" class="list-group-item list-group-item-action" role="listitem"
+                   aria-label="@item.Title">
+                    <div class="d-flex align-items-start">
                         @if (!string.IsNullOrEmpty(item.ImageUrl))
                         {
-                            <div class="flex-shrink-0 me-3">
-                                <img src="@item.ImageUrl" alt="@item.Title" class="rounded" style="max-width: 100px;" loading="lazy" />
-                            </div>
+                            <figure class="flex-shrink-0 me-3 mb-0">
+                                <img src="@item.ImageUrl" alt="@item.Title" class="rounded img-thumbnail" style="max-width: 100px;" loading="lazy" />
+                            </figure>
                         }
                         <div class="flex-grow-1">
                             <h6 class="mb-1">@item.Title</h6>
@@ -29,7 +34,9 @@
                             }
                             @if (!string.IsNullOrEmpty(item.Date))
                             {
-                                <small class="text-muted">@item.Date</small>
+                                <time class="text-muted small" datetime="@item.Date">
+                                    <i class="bi bi-calendar3 me-1" aria-hidden="true"></i>@item.Date
+                                </time>
                             }
                         </div>
                     </div>
@@ -38,19 +45,21 @@
         </div>
         @if (Model.TotalItems > Model.PageSize)
         {
-            <nav aria-label="Page navigation">
+            <nav aria-label="Listing page navigation for @(string.IsNullOrEmpty(Model.Title) ? "items" : Model.Title)">
                 <ul class="pagination justify-content-center">
                     <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
-                        <a class="page-link" href="#">Previous</a>
+                        <a class="page-link" href="#" aria-label="Previous page">&laquo; Previous</a>
                     </li>
-                    <li class="page-item active">
-                        <span class="page-link">@Model.CurrentPage</span>
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">
+                            @Model.CurrentPage <span class="visually-hidden">(current)</span>
+                        </span>
                     </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                    <li class="page-item @(Model.CurrentPage >= totalPages ? "disabled" : "")">
+                        <a class="page-link" href="#" aria-label="Next page">Next &raquo;</a>
                     </li>
                 </ul>
             </nav>
         }
     }
-</div>
+</section>

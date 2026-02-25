@@ -1,28 +1,29 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.BasicListViewModel
-<div class="wcms-basic-list" data-object-id="@Model.ObjectId">
+<section id="basic-list-@Model.ObjectId" class="wcms-basic-list" data-object-id="@Model.ObjectId"
+         aria-labelledby="@(string.IsNullOrEmpty(Model.Title) ? "" : $"basic-list-heading-{Model.ObjectId}")">
     @if (!string.IsNullOrEmpty(Model.Title))
     {
-        <h4>@Model.Title</h4>
+        <h4 id="basic-list-heading-@Model.ObjectId">@Model.Title</h4>
     }
     @if (Model.Items.Count == 0)
     {
-        <p class="text-muted">No items to display.</p>
+        <p class="text-muted" role="status">No items to display.</p>
     }
     else
     {
         if (Model.ShowBullets)
         {
-            <ul class="list-group">
+            <ul class="list-group list-group-flush" role="list">
                 @foreach (var item in Model.Items)
                 {
-                    <li class="list-group-item">
+                    <li class="list-group-item list-group-item-action">
                         @if (!string.IsNullOrEmpty(item.Url))
                         {
-                            <a href="@item.Url">@item.Title</a>
+                            <a href="@item.Url" class="text-decoration-none">@item.Title</a>
                         }
                         else
                         {
-                            @item.Title
+                            <span>@item.Title</span>
                         }
                         @if (!string.IsNullOrEmpty(item.Description))
                         {
@@ -34,21 +35,21 @@
         }
         else
         {
-            <div class="list-unstyled">
+            <ul class="list-unstyled" role="list">
                 @foreach (var item in Model.Items)
                 {
-                    <div class="mb-2">
+                    <li class="mb-2">
                         @if (!string.IsNullOrEmpty(item.Url))
                         {
-                            <a href="@item.Url">@item.Title</a>
+                            <a href="@item.Url" class="text-decoration-none">@item.Title</a>
                         }
                         else
                         {
                             <span>@item.Title</span>
                         }
-                    </div>
+                    </li>
                 }
-            </div>
+            </ul>
         }
     }
-</div>
+</section>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Configuration;
-using System.Web;
 
 using System.Collections.Generic;
 using System.IO;
@@ -87,7 +86,7 @@ namespace WCMS.Common.Utilities
             if (!string.IsNullOrWhiteSpace(password))
                 cmdLineFormat += string.Format(@" -p""{0}""", password);
 
-            string s7z = Context.Server.MapPath(binPath);
+            string s7z = PathMapper.MapPath(binPath);
             string sArgs = string.Format(cmdLineFormat, GetArchiveType(zipFile), zipFile, sourcePath);
 
             return ExecuteProcess(waitForExit, s7z, sArgs);
@@ -98,9 +97,6 @@ namespace WCMS.Common.Utilities
             return Add(zipFile, sourcePath, false, password);
         }
 
-
-        private static HttpContext Context { get { return HttpContext.Current; } }
-
         public static int Download2(string zipFile, string sourcePath, string password = "")
         {
             string cmdLineFormat = "a -t{0} \"{1}\" \"{2}\"";
@@ -108,15 +104,10 @@ namespace WCMS.Common.Utilities
                 cmdLineFormat += string.Format(@" -p""{0}""", password);
 
             string sFile = Path.GetFileName(zipFile);
-            string s7z = Context.Server.MapPath(binPath);
+            string s7z = PathMapper.MapPath(binPath);
             string sArgs = string.Format(cmdLineFormat, GetArchiveType(zipFile), zipFile, sourcePath);
 
             var exitCode = ExecuteProcess(true, s7z, sArgs);
-
-            Context.Response.Clear();
-            Context.Response.AppendHeader("content-disposition", "attachment; filename=" + sFile);
-            Context.Response.WriteFile(zipFile);
-            Context.Response.End();
 
             return exitCode;
         }
@@ -125,13 +116,13 @@ namespace WCMS.Common.Utilities
         {
             string downloadFilename = string.IsNullOrWhiteSpace(baseFilename) ? "Download" : baseFilename;
 
-            return Download2(Context.Server.MapPath(string.Format(WebUtil.TEMP_DATA_PATH + "{0}_{1}.zip", downloadFilename, Convert.ToString(DateTime.Now.Ticks, 16))), sourcePath, password);
+            return Download2(PathMapper.MapPath(string.Format(WebUtil.TEMP_DATA_PATH + "{0}_{1}.zip", downloadFilename, Convert.ToString(DateTime.Now.Ticks, 16))), sourcePath, password);
         }
 
         public static int Extract(string sourcePath, string destPath, bool replaceAll, bool waitForExit)
         {
             // Extract with full paths (x), Replace all files (-y) SKIP: -aos, REPLACE: -aoa
-            string s7z = WebUtil.MapPath(binPath);
+            string s7z = PathMapper.MapPath(binPath);
             string sReplace = (replaceAll) ? "-aoa" : "-aos";
             string sDest = (destPath == string.Empty) ? string.Empty : string.Format("-o\"{0}\" ", destPath);
             string sArgs = string.Format("x \"{0}\" {1}-r {2}", sourcePath, sDest, sReplace);

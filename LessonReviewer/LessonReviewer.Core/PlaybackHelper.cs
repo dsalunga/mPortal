@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Xml;
-using System.Web;
 
 using WCMS.Common.Utilities;
 using WCMS.WebSystem.Apps.Integration.Net;
@@ -15,7 +14,7 @@ namespace WCMS.LessonReviewer.Core
     {
         public static ServiceDefinition GetService(string value)
         {
-            var xmlPath = HttpContext.Current.Server.MapPath("~/App_Data/Services.xml");
+            var xmlPath = PathMapper.MapPath("~/App_Data/Services.xml");
             XmlDocument xdoc = new XmlDocument();
             xdoc.Load(xmlPath);
 

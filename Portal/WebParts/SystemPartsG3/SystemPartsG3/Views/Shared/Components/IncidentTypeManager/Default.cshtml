@@ -1,70 +1,83 @@
-@model dynamic
+@model WCMS.WebSystem.WebParts.ViewComponents.IncidentTypeManagerViewModel
 
-<div class="incident-type-manager" role="region" aria-label="Incident Type Management">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 id="typeManagerHeading">Incident Types</h4>
-        @if ((bool)(Model.CanEdit ?? false))
+<section class="incident-type-manager" aria-labelledby="typeManagerHeading-@Model.ObjectId">
+    <header class="d-flex justify-content-between align-items-center mb-3">
+        <h4 id="typeManagerHeading-@Model.ObjectId" class="mb-0">Incident Types</h4>
+        @if (Model.CanEdit)
         {
             <button type="button" class="btn btn-primary btn-sm" data-action="add-type" aria-label="Add new incident type">
                 <i class="bi bi-plus-lg" aria-hidden="true"></i> Add Type
             </button>
         }
-    </div>
+    </header>
 
     <div class="mb-3">
-        <label for="typeFilter" class="visually-hidden">Filter incident types</label>
+        <label for="typeFilter-@Model.ObjectId" class="visually-hidden">Filter incident types</label>
         <div class="input-group">
             <span class="input-group-text" aria-hidden="true"><i class="bi bi-search"></i></span>
-            <input type="text" class="form-control" id="typeFilter" placeholder="Filter types..."
+            <input type="text" class="form-control" id="typeFilter-@Model.ObjectId" placeholder="Filter types..."
                    value="@Model.FilterText" data-action="filter-types" aria-label="Filter incident types" />
         </div>
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-striped table-hover" aria-labelledby="typeManagerHeading">
-            <thead class="table-light">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Severity</th>
-                    <th scope="col" class="text-end">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Types == null || Model.Types.Count == 0)
-                {
-                    <tr>
-                        <td colspan="4" class="text-center text-muted py-4">No types found.</td>
-                    </tr>
-                }
-                else
-                {
-                    foreach (var type in Model.Types)
-                    {
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover mb-0" aria-labelledby="typeManagerHeading-@Model.ObjectId">
+                    <thead class="table-light">
                         <tr>
-                            <td>@type.Name</td>
-                            <td>@type.CategoryName</td>
-                            <td>
-                                @{
-                                    string severityClass = type.Severity == "Critical" ? "bg-danger"
-                                        : type.Severity == "High" ? "bg-warning text-dark"
-                                        : type.Severity == "Medium" ? "bg-info text-dark"
-                                        : "bg-secondary";
-                                }
-                                <span class="badge @severityClass">@type.Severity</span>
-                            </td>
-                            <td class="text-end">
-                                <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-action="edit-type" data-id="@type.Id" aria-label="Edit @type.Name">
-                                    <i class="bi bi-pencil" aria-hidden="true"></i> Edit
-                                </button>
-                                <button type="button" class="btn btn-outline-danger btn-sm" data-action="delete-type" data-id="@type.Id" aria-label="Delete @type.Name">
-                                    <i class="bi bi-trash" aria-hidden="true"></i> Delete
-                                </button>
-                            </td>
+                            <th scope="col">Name</th>
+                            <th scope="col" class="text-center">Rank</th>
+                            <th scope="col" class="text-center">SLA</th>
+                            @if (Model.CanEdit)
+                            {
+                                <th scope="col" class="text-end">Actions</th>
+                            }
                         </tr>
-                    }
-                }
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody aria-live="polite">
+                        @if (Model.Types == null || Model.Types.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="@(Model.CanEdit ? 4 : 3)" class="text-center text-muted py-4" role="status">No types found.</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var incidentType in Model.Types)
+                            {
+                                <tr>
+                                    <td><strong>@incidentType.Name</strong></td>
+                                    <td class="text-center"><span class="badge bg-secondary">@incidentType.Rank</span></td>
+                                    <td class="text-center">
+                                        @if (incidentType.UseSLA)
+                                        {
+                                            <span class="badge bg-success" aria-label="SLA enabled"><i class="bi bi-check-circle" aria-hidden="true"></i> Enabled</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-light text-dark" aria-label="SLA disabled"><i class="bi bi-dash-circle" aria-hidden="true"></i> Disabled</span>
+                                        }
+                                    </td>
+                                    @if (Model.CanEdit)
+                                    {
+                                        <td class="text-end">
+                                            <div class="btn-group btn-group-sm" role="group" aria-label="Actions for @incidentType.Name">
+                                                <button type="button" class="btn btn-outline-secondary" data-action="edit-type" data-id="@incidentType.Id" aria-label="Edit @incidentType.Name">
+                                                    <i class="bi bi-pencil" aria-hidden="true"></i> Edit
+                                                </button>
+                                                <button type="button" class="btn btn-outline-danger" data-action="delete-type" data-id="@incidentType.Id" aria-label="Delete @incidentType.Name">
+                                                    <i class="bi bi-trash" aria-hidden="true"></i> Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</div>
+</section>

@@ -1,24 +1,24 @@
 @model WCMS.WebSystem.ViewComponents.WebPartControlTemplatesViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Control Templates">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-file-earmark-code"></i> Control Templates</h5>
-        <button type="button" class="btn btn-sm btn-success" id="btnAddTemplate"><i class="bi bi-plus-lg"></i> New Template</button>
+        <h5 class="mb-0"><i class="bi bi-file-earmark-code" aria-hidden="true"></i> Control Templates</h5>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddTemplate" aria-label="Add template"><i class="bi bi-plus-lg" aria-hidden="true"></i> New Template</button>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm mb-0">
+            <table class="table table-striped table-hover table-sm mb-0" aria-label="Control templates list">
                 <thead class="table-light">
                     <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Default</th>
-                        <th>Modified</th>
-                        <th>Actions</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Default</th>
+                        <th scope="col">Modified</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +30,7 @@
                     {
                         <tr class="@(tmpl.Id == Model.SelectedTemplateId ? "table-primary" : "")">
                             <td>
-                                <i class="bi bi-file-earmark-code"></i> @tmpl.Name
+                                <i class="bi bi-file-earmark-code" aria-hidden="true"></i> @tmpl.Name
                                 @if (!string.IsNullOrEmpty(tmpl.Description))
                                 {
                                     <br /><small class="text-muted">@tmpl.Description</small>
@@ -40,13 +40,13 @@
                             <td>
                                 @if (tmpl.IsDefault)
                                 {
-                                    <i class="bi bi-check-circle text-success"></i>
+                                    <i class="bi bi-check-circle text-success" aria-hidden="true"></i>
                                 }
                             </td>
                             <td>@(tmpl.ModifiedDate?.ToString("yyyy-MM-dd") ?? "-")</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-template" data-template-id="@tmpl.Id"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-template" data-template-id="@tmpl.Id"><i class="bi bi-trash"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-edit-template" data-template-id="@tmpl.Id" aria-label="Edit @tmpl.Name"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-template" data-template-id="@tmpl.Id" aria-label="Delete @tmpl.Name"><i class="bi bi-trash" aria-hidden="true"></i></button>
                             </td>
                         </tr>
                     }
@@ -54,4 +54,4 @@
             </table>
         </div>
     </div>
-</div>
+</section>

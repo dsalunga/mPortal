@@ -1,28 +1,40 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.InstagramGalleryViewModel
-<div class="wcms-instagram-gallery">
+<section class="wcms-instagram-gallery" aria-label="Instagram gallery">
     @if (!string.IsNullOrEmpty(Model.Username))
     {
         <h5 class="mb-3">
-            <i class="bi bi-instagram"></i> @@@Model.Username
+            <i class="bi bi-instagram" aria-hidden="true"></i>
+            <a href="https://instagram.com/@Model.Username" target="_blank" rel="noopener noreferrer"
+               aria-label="Visit @Model.Username on Instagram">@@@Model.Username</a>
         </h5>
     }
     @if (Model.Posts.Count == 0)
     {
-        <p class="text-muted">No Instagram posts to display.</p>
+        <p class="text-muted" role="status">No Instagram posts to display.</p>
     }
     else
     {
-        <div class="row">
+        <div class="row" role="list" aria-label="Instagram posts">
             @foreach (var post in Model.Posts)
             {
                 var colClass = "col-" + (12 / Model.ColumnsPerRow);
-                <div class="@colClass mb-3">
-                    <a href="@post.Permalink" target="_blank" rel="noopener noreferrer">
-                        <img src="@(post.ThumbnailUrl ?? post.ImageUrl)" alt="@post.Caption"
-                             class="img-fluid rounded" loading="lazy" />
-                    </a>
+                <div class="@colClass mb-3" role="listitem">
+                    <figure class="card h-100 border-0">
+                        <a href="@post.Permalink" target="_blank" rel="noopener noreferrer"
+                           aria-label="@(!string.IsNullOrEmpty(post.Caption) ? post.Caption : "View Instagram post")">
+                            <img src="@(post.ThumbnailUrl ?? post.ImageUrl)"
+                                 alt="@(!string.IsNullOrEmpty(post.Caption) ? post.Caption : "Instagram post")"
+                                 class="img-fluid rounded card-img-top" loading="lazy" />
+                        </a>
+                        @if (!string.IsNullOrEmpty(post.Caption))
+                        {
+                            <figcaption class="card-body p-2">
+                                <small class="text-muted text-truncate d-block">@post.Caption</small>
+                            </figcaption>
+                        }
+                    </figure>
                 </div>
             }
         </div>
     }
-</div>
+</section>

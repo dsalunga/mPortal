@@ -1,33 +1,44 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.UploadFilesViewModel
-<div class="wcms-upload-files">
+<section class="wcms-upload-files" aria-label="File upload">
     @if (!Model.IsLoggedIn)
     {
-        <div class="alert alert-warning">Please sign in to upload files.</div>
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Please sign in to upload files.
+        </div>
     }
     else
     {
         @if (Model.IsUploaded)
         {
-            <div class="alert alert-success">@(Model.Message ?? "Files uploaded successfully.")</div>
-        }
-        <h4>Upload Files</h4>
-        <form method="post" enctype="multipart/form-data">
-            <input type="hidden" name="objectId" value="@Model.ObjectId" />
-            <input type="hidden" name="recordId" value="@Model.RecordId" />
-            <div class="mb-3">
-                <label for="fileUpload" class="form-label">Choose files</label>
-                <input type="file" id="fileUpload" name="files" class="form-control" multiple required />
-                <div class="form-text">
-                    Max file size: @Model.MaxFileSizeMb MB.
-                    @if (!string.IsNullOrEmpty(Model.AllowedExtensions))
-                    {
-                        <span>Allowed: @Model.AllowedExtensions</span>
-                    }
-                </div>
+            <div class="alert alert-success" role="status" aria-live="polite">
+                <i class="bi bi-check-circle" aria-hidden="true"></i>
+                @(Model.Message ?? "Files uploaded successfully.")
             </div>
-            <button type="submit" class="btn btn-primary">
-                <i class="bi bi-upload"></i> Upload
-            </button>
-        </form>
+        }
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Upload Files</h4>
+                <form method="post" enctype="multipart/form-data" aria-label="File upload form">
+                    <input type="hidden" name="objectId" value="@Model.ObjectId" />
+                    <input type="hidden" name="recordId" value="@Model.RecordId" />
+                    <div class="mb-3">
+                        <label for="fileUpload-@Model.ObjectId" class="form-label">Choose files</label>
+                        <input type="file" id="fileUpload-@Model.ObjectId" name="files" class="form-control"
+                               multiple required aria-required="true"
+                               aria-describedby="fileHelp-@Model.ObjectId" />
+                        <div id="fileHelp-@Model.ObjectId" class="form-text">
+                            Max file size: @Model.MaxFileSizeMb MB.
+                            @if (!string.IsNullOrEmpty(Model.AllowedExtensions))
+                            {
+                                <span>Allowed: @Model.AllowedExtensions</span>
+                            }
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-upload" aria-hidden="true"></i> Upload
+                    </button>
+                </form>
+            </div>
+        </div>
     }
-</div>
+</section>

@@ -1,14 +1,14 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ThreeColumnViewModel
-<div class="wcms-three-column @Model.CssClass">
+<section class="wcms-three-column @Model.CssClass" aria-label="Three-column layout">
     <div class="row">
-        <div class="col-md-@Model.LeftColumnWidth">
+        <div class="col-md-@Model.LeftColumnWidth" role="region" aria-label="Left column">
             @Html.Raw(Model.LeftContent)
         </div>
-        <div class="col-md-@Model.CenterColumnWidth">
+        <div class="col-md-@Model.CenterColumnWidth" role="region" aria-label="Center column">
             @Html.Raw(Model.CenterContent)
         </div>
-        <div class="col-md-@Model.RightColumnWidth">
+        <div class="col-md-@Model.RightColumnWidth" role="region" aria-label="Right column">
             @Html.Raw(Model.RightContent)
         </div>
     </div>
-</div>
+</section>

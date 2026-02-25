@@ -4,12 +4,12 @@
     void RenderChildSiteTree(List<WCMS.WebSystem.ViewComponents.ChildSiteNode> nodes)
     {
         if (nodes == null || nodes.Count == 0) return;
-        <ul class="list-unstyled ms-3">
+        <ul class="list-unstyled ms-3" role="group">
             @foreach (var s in nodes)
             {
-                <li class="mb-1">
+                <li class="mb-1" role="treeitem">
                     <a href="javascript:void(0)" class="child-site-link text-decoration-none" data-site-id="@s.Id">
-                        <i class="bi @(s.IsActive ? "bi-globe text-success" : "bi-globe2 text-muted")"></i> @s.Name
+                        <i class="bi @(s.IsActive ? "bi-globe text-success" : "bi-globe2 text-muted")" aria-hidden="true"></i> @s.Name
                         <span class="badge bg-secondary">@s.PageCount</span>
                     </a>
                     @if (!s.IsActive)
@@ -26,21 +26,21 @@
     }
 }
 
-<div class="card admin-panel" id="pnlChildSites">
+<section class="card admin-panel" id="pnlChildSites" aria-label="Child Sites">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0">
-            <i class="bi bi-diagram-3"></i> Child Sites
+            <i class="bi bi-diagram-3" aria-hidden="true"></i> Child Sites
             @if (!string.IsNullOrEmpty(Model.ParentSiteName))
             {
                 <small class="text-muted fw-normal">— @Model.ParentSiteName</small>
             }
         </h5>
-        <button type="button" class="btn btn-sm btn-success" id="btnAddChildSite" data-parent-site-id="@Model.ParentSiteId"><i class="bi bi-plus-lg"></i> Add Child Site</button>
+        <button type="button" class="btn btn-sm btn-success" id="btnAddChildSite" data-parent-site-id="@Model.ParentSiteId" aria-label="Add child site"><i class="bi bi-plus-lg" aria-hidden="true"></i> Add Child Site</button>
     </div>
     <div class="card-body p-0">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger m-3">@Model.ErrorMessage</div>
+            <div class="alert alert-danger m-3" role="alert">@Model.ErrorMessage</div>
         }
         <div class="child-site-tree p-3" id="childSiteTreeContainer">
             @if (Model.ChildSites.Count == 0)
@@ -49,8 +49,26 @@
             }
             else
             {
-                RenderChildSiteTree(Model.ChildSites);
+                <ul class="list-unstyled ms-3" role="tree" aria-label="Child sites hierarchy">
+                @foreach (var s in Model.ChildSites)
+                {
+                    <li class="mb-1" role="treeitem">
+                        <a href="javascript:void(0)" class="child-site-link text-decoration-none" data-site-id="@s.Id">
+                            <i class="bi @(s.IsActive ? "bi-globe text-success" : "bi-globe2 text-muted")" aria-hidden="true"></i> @s.Name
+                            <span class="badge bg-secondary">@s.PageCount</span>
+                        </a>
+                        @if (!s.IsActive)
+                        {
+                            <span class="badge bg-warning text-dark ms-1">Inactive</span>
+                        }
+                        @if (s.Children != null && s.Children.Count > 0)
+                        {
+                            RenderChildSiteTree(s.Children);
+                        }
+                    </li>
+                }
+                </ul>
             }
         </div>
     </div>
-</div>
+</section>

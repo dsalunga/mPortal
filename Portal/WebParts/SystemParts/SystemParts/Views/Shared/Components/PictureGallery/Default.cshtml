@@ -1,38 +1,43 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.PictureGalleryViewModel
-<div class="wcms-picture-gallery">
+<section class="wcms-picture-gallery" aria-label="Photo gallery">
     @if (Model.Albums.Count == 0)
     {
-        <p class="text-muted">No albums available.</p>
+        <p class="text-muted" role="status">No albums available.</p>
     }
     else
     {
         @foreach (var album in Model.Albums)
         {
-            <div class="mb-4">
-                <h5>@album.Title <span class="badge bg-secondary">@album.PhotoCount</span></h5>
-                <div class="row">
+            <article class="mb-4">
+                <h5 id="album-@album.Id">
+                    @album.Title
+                    <span class="badge bg-secondary" aria-label="@album.PhotoCount photos">@album.PhotoCount</span>
+                </h5>
+                <div class="row" role="list" aria-labelledby="album-@album.Id">
                     @if (album.Photos != null)
                     {
                         @foreach (var photo in album.Photos)
                         {
-                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                                <div class="card gallery-item">
-                                    <a href="@photo.ImageUrl" data-lightbox="album-@album.Id" data-title="@photo.Title">
-                                        <img src="@(photo.ThumbnailUrl ?? photo.ImageUrl)" alt="@photo.Title"
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3" role="listitem">
+                                <figure class="card gallery-item h-100">
+                                    <a href="@photo.ImageUrl" data-lightbox="album-@album.Id" data-title="@photo.Title"
+                                       aria-label="View full size: @(!string.IsNullOrEmpty(photo.Title) ? photo.Title : "Photo")">
+                                        <img src="@(photo.ThumbnailUrl ?? photo.ImageUrl)"
+                                             alt="@(!string.IsNullOrEmpty(photo.Title) ? photo.Title : "Gallery photo")"
                                              class="card-img-top" loading="lazy" />
                                     </a>
                                     @if (!string.IsNullOrEmpty(photo.Title))
                                     {
-                                        <div class="card-body p-2">
+                                        <figcaption class="card-body p-2">
                                             <small class="card-title">@photo.Title</small>
-                                        </div>
+                                        </figcaption>
                                     }
-                                </div>
+                                </figure>
                             </div>
                         }
                     }
                 </div>
-            </div>
+            </article>
         }
     }
-</div>
+</section>

@@ -17,6 +17,16 @@ namespace WCMS.Framework
         public const string DefaultName = "WSession";
 
         private static UserSessionManager _userSessions = new UserSessionManager();
+        private static Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContextAccessor;
+
+        /// <summary>
+        /// Configures WSession to resolve IWSession from DI when available.
+        /// Call from application startup after building the service provider.
+        /// </summary>
+        public static void Configure(Microsoft.AspNetCore.Http.IHttpContextAccessor accessor)
+        {
+            _httpContextAccessor = accessor;
+        }
 
         public WSession()
             : this(DefaultName) { }
@@ -114,6 +124,16 @@ namespace WCMS.Framework
         {
             get
             {
+                // Try DI resolution first when configured
+                if (_httpContextAccessor?.HttpContext?.RequestServices != null)
+                {
+                    var resolved = _httpContextAccessor.HttpContext.RequestServices
+                        .GetService(typeof(IWSession)) as WSession;
+                    if (resolved != null)
+                        return resolved;
+                }
+
+                // Fall back to legacy System.Web session behavior
                 WSession current = Context.Session == null ? null : Context.Session[DefaultName] as WSession;
                 if (current == null)
                 {
@@ -299,7 +319,7 @@ namespace WCMS.Framework
 
         public static string MapPath(string relPath)
         {
-            return Context.Server.MapPath(relPath);
+            return PathMapper.MapPath(relPath);
         }
 
 

@@ -1,32 +1,35 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.SiteListViewModel
-<div class="wcms-site-list" data-object-id="@Model.ObjectId">
+<section id="site-list-@Model.ObjectId" class="wcms-site-list" data-object-id="@Model.ObjectId"
+         aria-label="Site directory">
     @if (Model.Sites.Count == 0)
     {
-        <p class="text-muted">No sites to display.</p>
+        <p class="text-muted" role="status">No sites to display.</p>
     }
     else
     {
-        <div class="row">
+        <div class="row g-3" role="list">
             @foreach (var site in Model.Sites)
             {
-                <div class="col-md-4 col-sm-6 mb-3">
-                    <div class="card h-100">
+                <div class="col-lg-4 col-md-4 col-sm-6" role="listitem">
+                    <article class="card h-100 shadow-sm" aria-label="@site.Name">
                         @if (!string.IsNullOrEmpty(site.ThumbnailUrl))
                         {
-                            <img src="@site.ThumbnailUrl" alt="@site.Name" class="card-img-top" loading="lazy" />
+                            <figure class="mb-0">
+                                <img src="@site.ThumbnailUrl" alt="@site.Name" class="card-img-top" loading="lazy" />
+                            </figure>
                         }
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="@site.Url">@site.Name</a>
+                                <a href="@site.Url" class="text-decoration-none stretched-link">@site.Name</a>
                             </h5>
                             @if (!string.IsNullOrEmpty(site.Description))
                             {
                                 <p class="card-text text-muted">@site.Description</p>
                             }
                         </div>
-                    </div>
+                    </article>
                 </div>
             }
         </div>
     }
-</div>
+</section>

@@ -14,11 +14,13 @@ builder.Services.AddWcmsFramework();
 var app = builder.Build();
 
 ConfigUtil.SetConfiguration(app.Configuration);
+PathMapper.Configure(app.Environment.ContentRootPath, app.Environment.WebRootPath);
 
 app.UseStaticFiles();
 app.UseRouting();
 
 app.UseWcmsPageResolution();
+app.UseWcmsFramework();
 
 app.MapGet("/", () => Results.Ok(new { app = "BibleReader.WebApp", status = "running", framework = ".NET 10" }));
 app.MapGet("/health", () => Results.Ok("ok"));

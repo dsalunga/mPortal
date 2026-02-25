@@ -1,0 +1,53 @@
+@model WCMS.WebSystem.ViewComponents.LessonListViewModel
+@*
+    LessonList ViewComponent - Shows available lessons with dates and language selector.
+*@
+<div class="lesson-list">
+    <div class="d-flex align-items-center mb-3 flex-wrap gap-2">
+        <h4 class="mb-0">Available Lessons</h4>
+        <select class="form-select form-select-sm d-inline-block" style="width: auto;"
+                onchange="location.href='@(Model.BasePath)?lang=' + this.value">
+            @foreach (var lang in Model.Languages)
+            {
+                var langText = !string.IsNullOrEmpty(lang.Value) ? lang.Value : "All Languages";
+                <option value="@lang.Key" selected="@(lang.Key == Model.SelectedLanguage ? "selected" : null)">@langText</option>
+            }
+        </select>
+    </div>
+
+    @if (Model.Lessons.Count == 0)
+    {
+        <p class="text-muted">No lessons available.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Service</th>
+                    <th>Language</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var lesson in Model.Lessons)
+                {
+                    <tr>
+                        <td>@lesson.Title</td>
+                        <td>@lesson.Date.ToString("MMM dd, yyyy")</td>
+                        <td>@lesson.ServiceType</td>
+                        <td>@lesson.Language</td>
+                        <td>
+                            @if (lesson.HasFiles)
+                            {
+                                <a href="@Model.BasePath?lessonId=@lesson.Id" class="btn btn-sm btn-primary">Play</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

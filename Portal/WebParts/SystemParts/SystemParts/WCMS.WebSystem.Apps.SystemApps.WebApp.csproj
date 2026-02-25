@@ -3,17 +3,12 @@
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>WCMS.WebSystem.WebParts.SystemParts.WebApp</AssemblyName>
     <RootNamespace>WCMS.WebSystem</RootNamespace>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
-    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
-    <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Api/**/*.cs" />
-    <Compile Include="ViewComponents/**/*.cs" />
-    <Content Include="Views/**/*.cshtml" />
+    <Compile Remove="AppBundle\**" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+    <Content Remove="AppBundle\**" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

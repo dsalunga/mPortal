@@ -1,16 +1,24 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.AdViewModel
-<div class="wcms-ad" data-object-id="@Model.ObjectId">
+<aside id="ad-@Model.ObjectId-@Model.RecordId" class="wcms-ad" data-object-id="@Model.ObjectId"
+       aria-label="@(string.IsNullOrEmpty(Model.Title) ? "Advertisement" : Model.Title)">
     @if (!string.IsNullOrEmpty(Model.ImageUrl) && Model.IsActive)
     {
-        if (!string.IsNullOrEmpty(Model.TargetUrl))
-        {
-            <a href="@Model.TargetUrl" target="_blank" rel="noopener noreferrer">
-                <img src="@Model.ImageUrl" alt="@Model.AltText" class="img-fluid" loading="lazy" />
-            </a>
-        }
-        else
-        {
-            <img src="@Model.ImageUrl" alt="@Model.AltText" class="img-fluid" loading="lazy" />
-        }
+        <figure class="figure mb-0">
+            @if (!string.IsNullOrEmpty(Model.TargetUrl))
+            {
+                <a href="@Model.TargetUrl" target="_blank" rel="noopener noreferrer"
+                   aria-label="@(string.IsNullOrEmpty(Model.AltText) ? "View advertisement" : Model.AltText)">
+                    <img src="@Model.ImageUrl" alt="@Model.AltText" class="img-fluid figure-img rounded" loading="lazy" />
+                </a>
+            }
+            else
+            {
+                <img src="@Model.ImageUrl" alt="@Model.AltText" class="img-fluid figure-img rounded" loading="lazy" />
+            }
+            @if (!string.IsNullOrEmpty(Model.Title))
+            {
+                <figcaption class="figure-caption visually-hidden">@Model.Title</figcaption>
+            }
+        </figure>
     }
-</div>
+</aside>

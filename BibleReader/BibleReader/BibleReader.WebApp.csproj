@@ -3,17 +3,12 @@
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>BibleReader.WebApp</AssemblyName>
     <RootNamespace>BibleReader.WebApp</RootNamespace>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
-    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
-    <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Api/**/*.cs" />
-    <Compile Include="ViewComponents/**/*.cs" />
-    <Content Include="Views/**/*.cshtml" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+    <Compile Remove="Site.Master.cs" />
+    <Compile Remove="Site.Master.designer.cs" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

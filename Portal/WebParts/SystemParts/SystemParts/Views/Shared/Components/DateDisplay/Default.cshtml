@@ -1,4 +1,4 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.DateDisplayViewModel
-<div class="wcms-date-display @Model.CssClass">
-    <span>@Model.CurrentDate.ToString(Model.Format)</span>
+<div class="wcms-date-display @Model.CssClass" role="status" aria-label="Current date">
+    <time datetime="@Model.CurrentDate.ToString("yyyy-MM-dd")">@Model.CurrentDate.ToString(Model.Format)</time>
 </div>

@@ -1,48 +1,48 @@
 @model WCMS.WebSystem.ViewComponents.ChangePasswordViewModel
 
-<div class="card admin-panel">
+<section class="card admin-panel" aria-label="Change Password">
     <div class="card-header">
-        <h5 class="mb-0"><i class="bi bi-lock"></i> Change Password</h5>
+        <h5 class="mb-0"><i class="bi bi-lock" aria-hidden="true"></i> Change Password</h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.SuccessMessage))
         {
-            <div class="alert alert-success">@Model.SuccessMessage</div>
+            <div class="alert alert-success" role="status">@Model.SuccessMessage</div>
         }
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
         }
         <form method="post" id="changePasswordForm">
             <input type="hidden" name="userId" value="@Model.UserId" />
             @if (!string.IsNullOrEmpty(Model.UserName))
             {
                 <div class="mb-3">
-                    <label class="form-label">User</label>
-                    <input type="text" class="form-control" value="@Model.UserName" readonly />
+                    <label class="form-label" for="userName">User</label>
+                    <input type="text" class="form-control" id="userName" value="@Model.UserName" readonly />
                 </div>
             }
             @if (Model.RequireCurrentPassword)
             {
                 <div class="mb-3">
-                    <label class="form-label">Current Password</label>
-                    <input type="password" class="form-control" name="currentPassword" required />
+                    <label class="form-label" for="currentPassword">Current Password</label>
+                    <input type="password" class="form-control" name="currentPassword" id="currentPassword" required />
                 </div>
             }
             <div class="mb-3">
-                <label class="form-label">New Password</label>
-                <input type="password" class="form-control" name="newPassword" id="newPassword" required minlength="@Model.MinPasswordLength" />
-                <div class="form-text">
+                <label class="form-label" for="newPassword">New Password</label>
+                <input type="password" class="form-control" name="newPassword" id="newPassword" required minlength="@Model.MinPasswordLength" aria-describedby="passwordHelpText" />
+                <div class="form-text" id="passwordHelpText">
                     Minimum @Model.MinPasswordLength characters.
                     @if (Model.RequireDigit) { <span>Must include a digit.</span> }
                     @if (Model.RequireSpecialCharacter) { <span>Must include a special character.</span> }
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label">Confirm New Password</label>
-                <input type="password" class="form-control" name="confirmPassword" required />
+                <label class="form-label" for="confirmPassword">Confirm New Password</label>
+                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required />
             </div>
-            <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Change Password</button>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i> Change Password</button>
         </form>
     </div>
-</div>
+</section>

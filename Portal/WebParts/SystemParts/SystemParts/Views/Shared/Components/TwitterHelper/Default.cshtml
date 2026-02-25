@@ -1,19 +1,22 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.TwitterHelperViewModel
-<div class="wcms-twitter-helper">
+<aside class="wcms-twitter-helper" aria-label="Twitter feed">
     @if (string.IsNullOrEmpty(Model.TwitterHandle))
     {
-        <p class="text-muted">No Twitter handle configured.</p>
+        <p class="text-muted" role="status">No Twitter handle configured.</p>
     }
     else
     {
-        <div class="twitter-embed" data-theme="@Model.Theme">
-            <a class="twitter-timeline"
-               href="https://twitter.com/@Model.TwitterHandle"
-               data-tweet-limit="@(Model.TweetCount > 0 ? Model.TweetCount : 5)"
-               data-theme="@(Model.Theme ?? "light")"
-               data-widget-id="@Model.WidgetId">
-                Tweets by @@@Model.TwitterHandle
-            </a>
+        <div class="card">
+            <div class="card-body twitter-embed" data-theme="@Model.Theme">
+                <a class="twitter-timeline"
+                   href="https://twitter.com/@Model.TwitterHandle"
+                   data-tweet-limit="@(Model.TweetCount > 0 ? Model.TweetCount : 5)"
+                   data-theme="@(Model.Theme ?? "light")"
+                   data-widget-id="@Model.WidgetId"
+                   aria-label="Twitter timeline for @Model.TwitterHandle">
+                    Tweets by <span aria-hidden="true">@@</span>@Model.TwitterHandle
+                </a>
+            </div>
         </div>
     }
-</div>
+</aside>

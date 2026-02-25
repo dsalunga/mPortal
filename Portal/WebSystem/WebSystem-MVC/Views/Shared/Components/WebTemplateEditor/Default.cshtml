@@ -1,21 +1,21 @@
 @model WCMS.WebSystem.ViewComponents.WebTemplateEditorViewModel
 
-<div class="card admin-panel" id="pnlTemplateEditor">
+<section class="card admin-panel" id="pnlTemplateEditor" aria-label="Template Editor">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-code-slash"></i> Template Editor</h5>
+        <h5 class="mb-0"><i class="bi bi-code-slash" aria-hidden="true"></i> Template Editor</h5>
         <div>
-            <button type="button" class="btn btn-sm btn-primary" id="btnSaveTemplate"><i class="bi bi-save"></i> Save</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnPreviewTemplate"><i class="bi bi-eye"></i> Preview</button>
+            <button type="button" class="btn btn-sm btn-primary" id="btnSaveTemplate"><i class="bi bi-save" aria-hidden="true"></i> Save</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btnPreviewTemplate"><i class="bi bi-eye" aria-hidden="true"></i> Preview</button>
         </div>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.SuccessMessage))
         {
-            <div class="alert alert-success">@Model.SuccessMessage</div>
+            <div class="alert alert-success" role="status">@Model.SuccessMessage</div>
         }
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
         }
         <input type="hidden" id="templateId" value="@Model.TemplateId" />
         <div class="row mb-3">
@@ -39,19 +39,19 @@
         </div>
         <ul class="nav nav-tabs mb-3" id="templateEditorTabs" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="html-tab" data-bs-toggle="tab" data-bs-target="#htmlPanel" type="button" role="tab">HTML</button>
+                <button class="nav-link active" id="html-tab" data-bs-toggle="tab" data-bs-target="#htmlPanel" type="button" role="tab" aria-controls="htmlPanel">HTML</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="css-tab" data-bs-toggle="tab" data-bs-target="#cssPanel" type="button" role="tab">CSS</button>
+                <button class="nav-link" id="css-tab" data-bs-toggle="tab" data-bs-target="#cssPanel" type="button" role="tab" aria-controls="cssPanel">CSS</button>
             </li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade show active" id="htmlPanel" role="tabpanel">
-                <textarea class="form-control font-monospace" id="htmlEditor" rows="20">@Model.HtmlContent</textarea>
+            <div class="tab-pane fade show active" id="htmlPanel" role="tabpanel" aria-labelledby="html-tab">
+                <textarea class="form-control font-monospace" id="htmlEditor" rows="20" aria-label="Template HTML content">@Model.HtmlContent</textarea>
             </div>
-            <div class="tab-pane fade" id="cssPanel" role="tabpanel">
-                <textarea class="form-control font-monospace" id="cssEditor" rows="20">@Model.CssContent</textarea>
+            <div class="tab-pane fade" id="cssPanel" role="tabpanel" aria-labelledby="css-tab">
+                <textarea class="form-control font-monospace" id="cssEditor" rows="20" aria-label="Template CSS content">@Model.CssContent</textarea>
             </div>
         </div>
     </div>
-</div>
+</section>

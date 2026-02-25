@@ -1,30 +1,41 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.MediaListViewModel
-<div class="wcms-media-list" data-object-id="@Model.ObjectId">
+<section id="media-list-@Model.ObjectId" class="wcms-media-list" data-object-id="@Model.ObjectId"
+         aria-label="Media gallery">
     @if (Model.Items.Count == 0)
     {
-        <p class="text-muted">No media items available.</p>
+        <p class="text-muted" role="status">No media items available.</p>
     }
     else
     {
-        <div class="row">
+        <div class="row g-3" role="list">
             @foreach (var item in Model.Items)
             {
-                <div class="col-md-4 col-sm-6 mb-3">
-                    <div class="card h-100">
+                <div class="col-lg-4 col-md-4 col-sm-6" role="listitem">
+                    <article class="card h-100 shadow-sm" aria-label="@item.Title">
                         @if (!string.IsNullOrEmpty(item.ThumbnailUrl))
                         {
-                            <img src="@item.ThumbnailUrl" alt="@item.Title" class="card-img-top" loading="lazy" />
+                            <figure class="mb-0">
+                                <img src="@item.ThumbnailUrl" alt="@item.Title" class="card-img-top" loading="lazy" />
+                            </figure>
                         }
                         <div class="card-body">
-                            <h6 class="card-title">@item.Title</h6>
-                            @if (!string.IsNullOrEmpty(item.Duration))
-                            {
-                                <small class="text-muted">@item.Duration</small>
-                            }
+                            <h6 class="card-title mb-1">@item.Title</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                @if (!string.IsNullOrEmpty(item.MediaType))
+                                {
+                                    <span class="badge bg-light text-dark">@item.MediaType</span>
+                                }
+                                @if (!string.IsNullOrEmpty(item.Duration))
+                                {
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock me-1" aria-hidden="true"></i>@item.Duration
+                                    </small>
+                                }
+                            </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
             }
         </div>
     }
-</div>
+</section>

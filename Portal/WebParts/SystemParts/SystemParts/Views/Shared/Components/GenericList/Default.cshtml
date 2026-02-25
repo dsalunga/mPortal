@@ -1,24 +1,24 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.GenericListViewModel
-<div class="wcms-generic-list">
+<section class="wcms-generic-list" aria-label="@(Model.Title ?? "Data list")">
     @if (!string.IsNullOrEmpty(Model.Title))
     {
         <h4>@Model.Title</h4>
     }
     @if (Model.Rows.Count == 0)
     {
-        <p class="text-muted">No records found.</p>
+        <p class="text-muted" role="status">No records found.</p>
     }
     else
     {
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" aria-label="@(Model.Title ?? "Records")">
                 <thead>
                     <tr>
                         @foreach (var col in Model.Columns)
                         {
                             if (col.Visible)
                             {
-                                <th>@col.Header</th>
+                                <th scope="col">@col.Header</th>
                             }
                         }
                     </tr>
@@ -43,16 +43,23 @@
         @if (Model.TotalRecords > Model.PageSize && Model.PageSize > 0)
         {
             var totalPages = (int)System.Math.Ceiling((double)Model.TotalRecords / Model.PageSize);
-            <nav>
+            <nav aria-label="List pagination">
                 <ul class="pagination pagination-sm">
                     @for (var p = 1; p <= totalPages; p++)
                     {
                         <li class="page-item @(p == Model.CurrentPage ? "active" : "")">
-                            <a class="page-link" href="@Model.BasePath?page=@p">@p</a>
+                            <a class="page-link" href="@Model.BasePath?page=@p"
+                               @(p == Model.CurrentPage ? "aria-current=page" : "")>
+                                @p
+                                @if (p == Model.CurrentPage)
+                                {
+                                    <span class="visually-hidden">(current)</span>
+                                }
+                            </a>
                         </li>
                     }
                 </ul>
             </nav>
         }
     }
-</div>
+</section>
