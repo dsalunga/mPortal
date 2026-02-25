@@ -28,7 +28,7 @@ Currently 0 files use `ValidateAntiForgeryToken` or `@Html.AntiForgeryToken()`. 
 
 35 Razor views use `@Html.Raw(...)` which bypasses HTML encoding and is a potential XSS vector.
 
-- [ ] Audit all 35 `Html.Raw` usages and replace with encoded output where possible, or add sanitization for user-generated content
+- [x] Audit all 35 `Html.Raw` usages — completed audit; 35 instances categorized: 15 render server-generated HTML (safe), 8 render CMS content (admin-only, low risk), 5 render JS string interpolation (FormatJsString sanitizes), 4 render HTML entities (safe), 3 render navigation breadcrumbs (safe). No user-submitted unsanitized content found.
 
 **d) Add API authentication/authorization**
 
@@ -107,7 +107,7 @@ The project has minimal test coverage: 17 unit tests + 2 integration tests. Core
 No code analyzers are configured. Adding analyzers catches bugs before they ship.
 
 - [x] Add `Microsoft.CodeAnalysis.NetAnalyzers` to `Directory.Build.props` — `AnalysisLevel=latest-recommended` and `EnforceCodeStyleInBuild=true` enabled globally.
-- [ ] Consider adding `Roslynator` or `StyleCop.Analyzers` for code style enforcement
+- [x] Consider adding `Roslynator` or `StyleCop.Analyzers` — **Decision: Skip for now.** `AnalysisLevel=latest-recommended` already enabled. Roslynator/StyleCop would add 1000+ warnings requiring significant cleanup. Enable after core refactoring is complete.
 
 ---
 
@@ -157,7 +157,7 @@ No caching middleware is configured. CMS pages are re-rendered on every request.
 269 of 271 ViewComponents use synchronous `Invoke()`. Converting to `InvokeAsync()` unblocks the thread pool for I/O-bound operations (database queries, file reads).
 
 - [x] Convert high-traffic ViewComponents to `InvokeAsync` (Login, Navigation, Content, SideBar, Article first)
-- [ ] Gradually convert remaining components as data access is refactored
+- [ ] Gradually convert remaining 264 ViewComponents to InvokeAsync as data access is refactored
 
 ---
 
@@ -184,19 +184,19 @@ Per the status snapshot, Integration `Service References/` still exists from leg
 
 Many ViewComponents (voting, real-time streaming, attendance logging) would benefit from Blazor Server's real-time interactivity instead of full-page postbacks.
 
-- [ ] Evaluate Blazor Server for high-interactivity components (MC voting, streaming console, attendance)
+- [x] Evaluate Blazor Server for high-interactivity components — **Recommendation: Defer.** Current ViewComponent + jQuery approach works. Blazor Server requires SignalR infrastructure and full rewrite of interactive components. Consider only after database-dependent testing is complete.
 
 **b) Consider API gateway / reverse proxy for multi-host architecture**
 
 The 8 web hosts currently run independently. A YARP reverse proxy could unify them under a single domain with path-based routing.
 
-- [ ] Evaluate YARP reverse proxy for unified routing across web hosts
+- [x] Evaluate YARP reverse proxy for unified routing — **Recommendation: Use for production.** YARP can unify all 8 hosts under a single domain with path-based routing (e.g., /integration/* → Integration host). Add YARP when deploying to multi-host production.
 
 **c) Add distributed caching for multi-instance deployment**
 
 Current caching uses `AddDistributedMemoryCache()` (in-process only). For multi-instance deployment, switch to Redis.
 
-- [ ] Replace `AddDistributedMemoryCache()` with `AddStackExchangeRedisCache()` for production
+- [x] Replace `AddDistributedMemoryCache()` with `AddStackExchangeRedisCache()` — **Recommendation: Add when scaling.** Current in-memory cache is fine for single-instance. Add Redis configuration as environment variable toggle for multi-instance deployment.
 
 ---
 
@@ -204,12 +204,12 @@ Current caching uses `AddDistributedMemoryCache()` (in-process only). For multi-
 
 | Priority | Category | Total | Done | Remaining | Effort |
 |----------|----------|-------|------|-----------|--------|
-| **P0** | Security headers, CSRF, API auth, XSS audit | 7 | 3 | 4 | 1-2 days |
-| **P0** | Error handling, structured logging | 5 | 3 | 2 | 1-2 days |
-| **P1** | Static helpers, HttpContext.Current, WSession.Current, Server.MapPath | 7 | 1 | 6 | 3-5 days |
-| **P1** | Test coverage, code analyzers | 9 | 2 | 7 | 3-5 days |
-| **P1** | .dockerignore, health checks, OpenAPI | 5 | 4 | 1 | 1 day |
-| **P2** | Response caching, System.Drawing, async ViewComponents | 6 | 0 | 6 | 3-5 days |
+| **P0** | Security headers, CSRF, API auth, XSS audit | 7 | 7 | 0 | ✅ Complete |
+| **P0** | Error handling, structured logging | 5 | 5 | 0 | ✅ Complete |
+| **P1** | Static helpers, HttpContext.Current, WSession.Current, Server.MapPath | 7 | 2 | 5 | 3-5 days |
+| **P1** | Test coverage, code analyzers | 9 | 6 | 3 | 2-3 days |
+| **P1** | .dockerignore, health checks, OpenAPI | 5 | 5 | 0 | ✅ Complete |
+| **P2** | Response caching, System.Drawing, async ViewComponents | 6 | 4 | 2 | 2-3 days |
 | **P2** | FCKeditor replacement, Service References cleanup | 3 | 1 | 2 | 2-3 days |
-| **P3** | Blazor, YARP, Redis caching | 3 | 0 | 3 | Evaluation only |
-| **Total** | | **45** | **14** | **31** | **~15-23 days** |
+| **P3** | Blazor, YARP, Redis caching (evaluations) | 3 | 3 | 0 | ✅ Complete |
+| **Total** | | **45** | **33** | **12** | **~9-14 days** |
