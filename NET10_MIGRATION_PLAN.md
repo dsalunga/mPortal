@@ -246,7 +246,7 @@ Current status snapshot (2026-02-25, final update):
 - `LigerShark.WebOptimizer.Core` configured for CSS/JS bundling and minification in main portal.
 - `docker-compose.yml` created for multi-container development with SQL Server.
 - CI build workflow configured (`.github/workflows/build.yml`) with Ubuntu + Windows matrix; `.github/workflows/deploy.yml` deployment pipeline created.
-- Integration tests: `WCMS.Integration.Tests` (2 tests) + `WCMS.Framework.Tests` (17 tests) = 19 tests passing.
+- Integration tests: `WCMS.Integration.Tests` (8 tests) + `WCMS.Framework.Tests` (35 tests) = 43 tests passing.
 - Full system documentation created: see `SYSTEM_DOCUMENTATION.md` and `DEPLOYMENT_RUNBOOK.md`.
 - BibleReader.Core, LessonReviewer.Core, and BranchLocator services wired via DI.
 

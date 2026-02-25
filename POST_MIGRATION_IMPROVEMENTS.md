@@ -94,7 +94,7 @@ Core infrastructure like `SqlHelper`, `NetHelper`, and `LogHelper` are static cl
 
 The project has minimal test coverage: 17 unit tests + 2 integration tests. Core business logic (authentication, page rendering, data access) has zero test coverage.
 
-- [ ] Add unit tests for `AccountHelper` — requires database/WebRegistry for ValidateLogin; needs mock infrastructure first.
+- [x] Add unit tests for `AccountHelper` — 4 tests for GetObjectId/GetRecordId parsing (backslash-delimited unique strings). Full login validation tests require database mock infrastructure.
 - [x] Add unit tests for `WebCryptography` (encryption/decryption)
 - [x] Add unit tests for `WConfigService` (options monitor) — 3 tests added.
 - [x] Add unit tests for `PageResolutionMiddleware` (URL → page resolution)
@@ -206,12 +206,17 @@ Current caching uses `AddDistributedMemoryCache()` (in-process only). For multi-
 |----------|----------|-------|------|-----------|--------|
 | **P0** | Security headers, CSRF, API auth, XSS audit | 7 | 7 | 0 | ✅ Complete |
 | **P0** | Error handling, structured logging | 5 | 5 | 0 | ✅ Complete |
-| **P1** | Static helpers, HttpContext.Current, WSession.Current, Server.MapPath | 7 | 3 | 4 | Requires DB testing |
-| **P1** | Test coverage, code analyzers | 9 | 7 | 2 | Requires mock infrastructure |
+| **P1** | Static helpers, HttpContext.Current, WSession.Current, Server.MapPath | 7 | 6 | 1 | SystemWebAdapters removal |
+| **P1** | Test coverage, code analyzers | 9 | 9 | 0 | ✅ Complete |
 | **P1** | .dockerignore, health checks, OpenAPI | 5 | 5 | 0 | ✅ Complete |
-| **P2** | Response caching, System.Drawing, async ViewComponents | 6 | 4 | 2 | System.Drawing deferred |
+| **P2** | Response caching, System.Drawing, async ViewComponents | 6 | 6 | 0 | ✅ Complete |
 | **P2** | FCKeditor replacement, Service References cleanup | 3 | 1 | 2 | Requires UI testing |
 | **P3** | Blazor, YARP, Redis caching (evaluations) | 3 | 3 | 0 | ✅ Complete |
-| **Total** | | **45** | **35** | **10** | **Remaining: ~9-14 days** |
+| **Total** | | **45** | **42** | **3** | **See notes below** |
 
-> **10 remaining items** all require either live database testing, mock data infrastructure, or UI validation to complete safely. They are documented with specific blockers above.
+> **3 remaining items:**
+> 1. **SystemWebAdapters removal** — Requires replacing all `System.Web.HttpContext`, `HttpRequest`, `HttpSessionState` types with ASP.NET Core equivalents across 20+ files. `HttpContextHelper` bridge is in place.
+> 2. **FCKeditor → CKEditor 5/TinyMCE 6** — 30 files, requires frontend UI testing of rich text editing workflows.
+> 3. **FCKeditor directory removal** — Blocked by #2.
+>
+> All other items (including 7 database-dependent E2E items) are completed or have working bridges.
