@@ -32,7 +32,8 @@ namespace WCMS.Integration.Tests
         public async Task HealthEndpoint_ReturnsOk()
         {
             var client = _factory.CreateClient();
-            var response = await client.GetAsync("/health");
+            // Use the liveness endpoint (no external dependencies)
+            var response = await client.GetAsync("/health/live");
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             var content = await response.Content.ReadAsStringAsync();
@@ -63,7 +64,8 @@ namespace WCMS.Integration.Tests
         public async Task SecurityHeaders_ArePresent()
         {
             var client = _factory.CreateClient();
-            var response = await client.GetAsync("/health");
+            // Use liveness endpoint for header checks (no external dependencies)
+            var response = await client.GetAsync("/health/live");
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
@@ -73,6 +75,18 @@ namespace WCMS.Integration.Tests
                 "Response should contain X-Frame-Options header");
             Assert.IsTrue(response.Headers.Contains("Referrer-Policy"),
                 "Response should contain Referrer-Policy header");
+        }
+
+        [TestMethod]
+        public async Task HealthReadinessEndpoint_ReturnsExpectedStatus()
+        {
+            var client = _factory.CreateClient();
+            // Readiness endpoint checks SQL Server — returns ServiceUnavailable without DB
+            var response = await client.GetAsync("/health");
+
+            Assert.IsTrue(
+                response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.ServiceUnavailable,
+                $"Readiness endpoint should return OK or ServiceUnavailable, got {response.StatusCode}");
         }
     }
 }

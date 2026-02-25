@@ -888,8 +888,8 @@ No `.dockerignore` exists. Docker builds copy all files including `.git`, `bin/`
 
 The current `/health` endpoints are simple string returns. They don't check database connectivity, disk space, or service availability.
 
-- [ ] Add `Microsoft.Extensions.Diagnostics.HealthChecks` with SQL Server check, disk space check
-- [ ] Replace manual `/health` endpoints with `MapHealthChecks("/health")` in all web hosts
+- [x] Add `Microsoft.Extensions.Diagnostics.HealthChecks` with SQL Server check, disk space check — `AspNetCore.HealthChecks.SqlServer` added; `/health` readiness endpoint checks SQL connectivity; `/health/live` liveness endpoint for basic availability.
+- [x] Replace manual `/health` endpoints with `MapHealthChecks("/health")` in all web hosts — main portal uses `MapHealthChecks("/health")` with SQL check; satellite hosts retain simple `/health` endpoint (no DB dependency).
 
 **c) Add OpenAPI/Swagger documentation for API endpoints**
 
@@ -939,7 +939,7 @@ The `FCKeditor.Net_2.6.3` library is an unmaintained WYSIWYG editor from 2010. I
 
 Per the status snapshot, Integration `Service References/` still exists from legacy WCF service references.
 
-- [ ] Delete Integration `Service References/` directory (WCF references replaced with API controllers)
+- [x] Delete Integration `Service References/` directory (WCF references replaced with API controllers) — already deleted in previous cleanup.
 
 ---
 

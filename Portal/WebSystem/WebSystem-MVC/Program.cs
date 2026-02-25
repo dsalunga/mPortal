@@ -2,6 +2,8 @@ using System;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WCMS.Common.Utilities;
@@ -56,6 +58,13 @@ builder.Services.AddWebOptimizer(pipeline =>
     pipeline.MinifyJsFiles("Content/**/*.js");
 });
 
+// Health checks
+var defaultConnStr = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddHealthChecks()
+    .AddSqlServer(defaultConnStr ?? "Server=.;Database=WCMS;Trusted_Connection=True;TrustServerCertificate=True",
+        name: "sqlserver",
+        tags: new[] { "db", "sql" });
+
 var app = builder.Build();
 
 // --- Initialize CMS ---
@@ -94,7 +103,8 @@ app.UseWcmsFramework();
 
 // --- Endpoints ---
 
-app.MapGet("/health", () => Results.Ok("ok"));
+app.MapHealthChecks("/health");
+app.MapGet("/health/live", () => Results.Ok("ok"));
 
 app.MapGet("/api/system/info", () => Results.Ok(new
 {
