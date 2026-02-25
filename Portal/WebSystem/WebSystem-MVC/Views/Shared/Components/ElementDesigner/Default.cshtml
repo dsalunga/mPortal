@@ -1,17 +1,17 @@
 @model WCMS.WebSystem.ViewComponents.ElementDesignerViewModel
 
-<section class="card admin-panel" id="pnlElementDesigner" aria-label="Element Designer">
+<section class="card shadow-sm admin-panel" id="pnlElementDesigner" aria-label="Element Designer">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-puzzle"></i> Element Designer</h5>
+        <h5 class="mb-0"><i class="bi bi-puzzle" aria-hidden="true"></i> Element Designer</h5>
         <div>
-            <button type="button" class="btn btn-sm btn-primary" id="btnSaveElement"><i class="bi bi-save"></i> Save</button>
-            <button type="button" class="btn btn-sm btn-outline-danger" id="btnDeleteElement"><i class="bi bi-trash"></i> Delete</button>
+            <button type="button" class="btn btn-sm btn-primary" id="btnSaveElement" aria-label="Save element"><i class="bi bi-save" aria-hidden="true"></i> Save</button>
+            <button type="button" class="btn btn-sm btn-outline-danger" id="btnDeleteElement" aria-label="Delete element"><i class="bi bi-trash" aria-hidden="true"></i> Delete</button>
         </div>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
-            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
         }
         <input type="hidden" id="elementId" value="@Model.ElementId" />
         <div class="row mb-3">
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <h6><i class="bi bi-list-ul"></i> Parameters</h6>
+        <h6><i class="bi bi-list-ul" aria-hidden="true"></i> Parameters</h6>
         <div id="parameterContainer">
             @if (Model.Parameters.Count == 0)
             {
@@ -54,11 +54,11 @@
             }
             else
             {
-                <table class="table table-sm table-bordered">
+                <table class="table table-sm table-striped table-bordered" aria-label="Element parameters">
                     <thead class="table-light">
                         <tr>
-                            <th>Parameter</th>
-                            <th>Value</th>
+                            <th scope="col">Parameter</th>
+                            <th scope="col">Value</th>
                         </tr>
                     </thead>
                     <tbody>
