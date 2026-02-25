@@ -1,16 +1,16 @@
 @model dynamic
 
-<div class="card" id="mc-asop-mobile-@Model.ObjectId" role="region" aria-label="Mobile ASOP Viewer">
+<section class="card" id="mc-asop-mobile-@Model.ObjectId" aria-labelledby="mc-asop-mobile-heading-@Model.ObjectId">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0"><i class="bi bi-phone" aria-hidden="true"></i> Mobile ASOP Viewer</h5>
-        <span class="badge bg-info" aria-label="Platform">Mobile</span>
+        <h5 id="mc-asop-mobile-heading-@Model.ObjectId" class="card-title mb-0"><i class="bi bi-phone" aria-hidden="true"></i> Mobile ASOP Viewer</h5>
+        <span class="badge bg-info" aria-label="Platform"><i class="bi bi-phone" aria-hidden="true"></i> Mobile</span>
     </div>
     <div class="card-body">
         <div class="row g-3" role="list" aria-label="ASOP songs">
             <div class="col-12" role="listitem">
                 <div class="card border-0 shadow-sm">
                     <div class="card-body p-3 d-flex align-items-center gap-3">
-                        <img src="/images/placeholder-song.png" alt="" class="rounded" width="56" height="56" aria-hidden="true" />
+                        <img src="/images/placeholder-song.png" alt="" class="rounded" width="56" height="56" aria-hidden="true" loading="lazy" />
                         <div class="flex-grow-1">
                             <h6 class="mb-1">Song Title</h6>
                             <small class="text-muted">Artist Name</small>
@@ -22,12 +22,15 @@
                 </div>
             </div>
         </div>
+        <p class="text-center text-muted mt-3 mb-0 empty-state">
+            <i class="bi bi-music-note" aria-hidden="true"></i> No songs to display.
+        </p>
         <nav aria-label="Song navigation" class="mt-3">
             <ul class="pagination pagination-sm justify-content-center mb-0">
-                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous">&laquo;</a></li>
+                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left" aria-hidden="true"></i></a></li>
                 <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#" aria-label="Next">&raquo;</a></li>
+                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right" aria-hidden="true"></i></a></li>
             </ul>
         </nav>
     </div>
-</div>
+</section>

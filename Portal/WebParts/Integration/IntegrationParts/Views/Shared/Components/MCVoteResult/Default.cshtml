@@ -1,8 +1,8 @@
 @model dynamic
 
-<section class="card" id="mc-vote-result-@Model.ObjectId" role="region" aria-label="Vote Results">
+<section class="card" id="mc-vote-result-@Model.ObjectId" aria-labelledby="mc-vote-result-heading-@Model.ObjectId">
     <div class="card-header">
-        <h5 class="card-title mb-0"><i class="bi bi-bar-chart-fill" aria-hidden="true"></i> Vote Results</h5>
+        <h5 id="mc-vote-result-heading-@Model.ObjectId" class="card-title mb-0"><i class="bi bi-bar-chart-fill" aria-hidden="true"></i> Vote Results</h5>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -17,7 +17,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="4" class="text-center text-muted py-4">No results available.</td>
+                        <td colspan="4" class="text-center text-muted py-4">
+                            <i class="bi bi-inbox" aria-hidden="true"></i> No results available.
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -1,8 +1,8 @@
 @model dynamic
 
-<section class="card" id="mc-message-board-@Model.ObjectId" role="region" aria-label="Message Board">
+<section class="card" id="mc-message-board-@Model.ObjectId" aria-labelledby="mc-message-board-heading-@Model.ObjectId">
     <div class="card-header">
-        <h5 class="card-title mb-0"><i class="bi bi-chat-left-text-fill" aria-hidden="true"></i> Message Board</h5>
+        <h5 id="mc-message-board-heading-@Model.ObjectId" class="card-title mb-0"><i class="bi bi-chat-left-text-fill" aria-hidden="true"></i> Message Board</h5>
     </div>
     <div class="card-body">
         <form method="post" class="mb-3" aria-label="Post a new message">
@@ -16,13 +16,17 @@
         <div role="list" aria-label="Messages">
             <div class="border rounded p-3 mb-2" role="listitem">
                 <div class="d-flex justify-content-between align-items-start">
-                    <strong>Author Name</strong>
+                    <strong><i class="bi bi-person-circle" aria-hidden="true"></i> Author Name</strong>
                     <small class="text-muted"><time datetime="">Jan 1, 2025</time></small>
                 </div>
                 <p class="mb-1 mt-1">Message content goes here.</p>
-                <button type="button" class="btn btn-sm btn-link p-0 text-muted" aria-label="Reply to this message">Reply</button>
+                <button type="button" class="btn btn-sm btn-link p-0 text-muted" aria-label="Reply to this message">
+                    <i class="bi bi-reply" aria-hidden="true"></i> Reply
+                </button>
             </div>
-            <p class="text-center text-muted">No messages yet.</p>
+            <p class="text-center text-muted empty-state">
+                <i class="bi bi-chat" aria-hidden="true"></i> No messages yet.
+            </p>
         </div>
     </div>
 </section>
