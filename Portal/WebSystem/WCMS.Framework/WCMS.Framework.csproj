@@ -27,21 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Core/ObjectCapsule.cs" />
-    <Compile Remove="ObjectRecordPair.cs" />
-    <Compile Remove="SiteModel/WebObjectItem.cs" />
-    <Compile Remove="Utilities/WebSubstituter.cs" />
-    <!-- EF6 generated files excluded; kept as documentation -->
-    <Compile Remove="WFrameworkModel.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="notes.txt" />
     <None Include="App.Config" />
-    <None Include="WFrameworkModel.edmx" />
-    <None Include="WFrameworkModel.Context.tt" />
-    <None Include="WFrameworkModel.edmx.diagram" />
-    <None Include="WFrameworkModel.tt" />
-    <None Include="WFrameworkModel.Designer.cs" />
   </ItemGroup>
 </Project>

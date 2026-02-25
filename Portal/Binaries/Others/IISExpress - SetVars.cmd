@@ -1,1 +1,0 @@
-set PortalPath=D:\Projects\wcms

@@ -6,25 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Exclude legacy WebForms code-behind files -->
-    <Compile Remove="**/*.aspx.cs" />
-    <Compile Remove="**/*.aspx.designer.cs" />
-    <Compile Remove="**/*.ascx.cs" />
-    <Compile Remove="**/*.ascx.designer.cs" />
-    <Compile Remove="**/*.Master.cs" />
-    <Compile Remove="**/*.Master.designer.cs" />
-    <Compile Remove="**/*.asmx.cs" />
-    <Compile Remove="**/*.ashx.cs" />
-    <Compile Remove="**/*.svc.cs" />
-    <Compile Remove="Global.asax.cs" />
-    <Compile Remove="Startup.cs" />
-    <Compile Remove="App_Start/**" />
-    <Compile Remove="App_Code/**" />
-    <Compile Remove="Controllers/**" />
-    <Compile Remove="Content/Controllers/**" />
-    <Compile Remove="Content/Handlers/IDataSync.cs" />
-    <Compile Remove="Service References/**" />
-    <Compile Remove="Properties/AssemblyInfo.cs" />
     <!-- Exclude legacy Razor views that use System.Web APIs (will be replaced with View Components) -->
     <Content Remove="Content/**/*.cshtml" />
     <Content Remove="Default.cshtml" />
