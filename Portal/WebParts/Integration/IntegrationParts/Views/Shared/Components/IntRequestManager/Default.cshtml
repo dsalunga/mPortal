@@ -1,14 +1,16 @@
 @model dynamic
 
-<div class="card" id="int-request-manager-@Model.ObjectId" role="region" aria-label="Request Manager">
+<section class="card" id="int-request-manager-@Model.ObjectId" aria-labelledby="request-manager-heading-@Model.ObjectId">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0">Registration Requests</h5>
+        <h5 class="card-title mb-0" id="request-manager-heading-@Model.ObjectId">
+            <i class="bi bi-card-checklist" aria-hidden="true"></i> Registration Requests
+        </h5>
         <span class="badge bg-secondary" id="lblRequestCount">0</span>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -36,6 +38,10 @@
                 <tbody id="requestList">
                 </tbody>
             </table>
+            <div id="requestsEmpty" class="text-center text-muted py-4 d-none">
+                <i class="bi bi-inbox fs-1" aria-hidden="true"></i>
+                <p class="mt-2 mb-0">No registration requests found.</p>
+            </div>
         </div>
     </div>
-</div>
+</section>

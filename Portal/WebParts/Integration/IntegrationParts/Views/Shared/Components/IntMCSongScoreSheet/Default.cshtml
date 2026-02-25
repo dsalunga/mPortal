@@ -1,48 +1,72 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntMCSongScoreSheetModel
 
-<div id="int-mc-song-score-sheet-@Model.ObjectId">
+<section id="int-mc-song-score-sheet-@Model.ObjectId" aria-labelledby="int-mc-song-score-sheet-heading-@Model.ObjectId">
+    <h5 id="int-mc-song-score-sheet-heading-@Model.ObjectId" class="visually-hidden">Song Score Sheet</h5>
+
     @if (!string.IsNullOrEmpty(Model.Message))
     {
-        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") d-flex align-items-center" role="status" aria-live="polite">
+            <i class="bi @(Model.IsSuccess ? "bi-check-circle-fill" : "bi-exclamation-triangle-fill") me-2" aria-hidden="true"></i>
             @Model.Message
         </div>
     }
 
-    <div class="control-box no-bottom-margin">
-        <div>
-            <select id="cboCompetition" name="CompetitionId" class="input">
-                <option value="-1">-- Select Competition --</option>
-            </select>
-            <button type="submit" id="cmdDelete" name="Action" value="Delete" class="btn btn-default btn-sm" onclick="return confirm('Are you sure you want to delete the selected items?');">Delete</button>
-            <div class="pull-right">
-                <input type="text" id="txtSearch" name="SearchKeyword" class="input" size="25" />
-                <button type="button" id="cmdSearch" class="btn btn-default btn-sm">Search</button>&nbsp;
-                <button type="button" id="cmdReset" class="btn btn-default btn-sm">Reset</button>
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="row g-2 align-items-end">
+                <div class="col-md-4">
+                    <label for="cboCompetition" class="form-label"><i class="bi bi-trophy" aria-hidden="true"></i> Competition</label>
+                    <select id="cboCompetition" name="CompetitionId" class="form-select" aria-label="Select competition">
+                        <option value="-1">-- Select Competition --</option>
+                    </select>
+                </div>
+                <div class="col-md-auto">
+                    <button type="submit" id="cmdDelete" name="Action" value="Delete" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete the selected items?');" aria-label="Delete selected scores">
+                        <i class="bi bi-trash" aria-hidden="true"></i> Delete
+                    </button>
+                </div>
+                <div class="col-md d-flex gap-2 justify-content-md-end">
+                    <div class="input-group input-group-sm" style="max-width:300px;">
+                        <label for="txtSearch" class="visually-hidden">Search scores</label>
+                        <input type="text" id="txtSearch" name="SearchKeyword" class="form-control" placeholder="Search…" aria-label="Search scores" />
+                        <button type="button" id="cmdSearch" class="btn btn-outline-secondary" aria-label="Search">
+                            <i class="bi bi-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <button type="button" id="cmdReset" class="btn btn-outline-secondary btn-sm" aria-label="Reset search">
+                        <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i> Reset
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <table class="table table-borderless" id="scoreGrid" style="width: 100%">
-        <thead>
-            <tr style="background-color: #507CD1; color: white; font-weight: bold; text-align: left">
-                <th style="width: 15px; text-align: center">
-                    <input type="checkbox" name="chkCheckedMain" onclick="CheckAll(this, 'chkChecked');" />
-                </th>
-                <th style="width: 20px; text-align: center"></th>
-                <th style="text-align: left">ID</th>
-                <th style="text-align: left">Song</th>
-                <th style="text-align: left">Judge</th>
-                <th style="text-align: left">Musicality</th>
-                <th style="text-align: left">Lyrics/Message</th>
-                <th style="text-align: left">Over-all Impact</th>
-                <th style="text-align: left">Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Score rows populated dynamically -->
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped mb-0" id="scoreGrid" aria-label="Song score sheet">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col" class="text-center" style="width:40px;">
+                        <input type="checkbox" name="chkCheckedMain" class="form-check-input" onclick="CheckAll(this, 'chkChecked');" aria-label="Select all scores" />
+                    </th>
+                    <th scope="col" class="text-center" style="width:40px;"><span class="visually-hidden">Edit</span></th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Song</th>
+                    <th scope="col">Judge</th>
+                    <th scope="col">Musicality</th>
+                    <th scope="col">Lyrics/Message</th>
+                    <th scope="col">Over-all Impact</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="9" class="text-center text-muted py-4">
+                        <i class="bi bi-inbox" aria-hidden="true"></i> No scores recorded.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <br /><br />
-    <span id="lblStatus" style="color: Red"></span>
-</div>
+    <div id="lblStatus" class="mt-3" role="status" aria-live="polite"></div>
+</section>

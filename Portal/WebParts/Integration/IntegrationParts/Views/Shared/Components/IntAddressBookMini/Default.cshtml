@@ -1,16 +1,23 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntAddressBookMiniModel
 
-<div class="card" id="int-address-book-mini-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Address Book</h5>
-    </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
-                @Model.Message
+<section aria-labelledby="address-book-mini-heading-@Model.ObjectId">
+    <div class="card" id="int-address-book-mini-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="address-book-mini-heading-@Model.ObjectId">
+                <i class="bi bi-person-lines-fill" aria-hidden="true"></i> Address Book
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <div id="addressBookMiniContent-@Model.ObjectId">
+                <p class="text-muted"><i class="bi bi-info-circle" aria-hidden="true"></i> No contacts to display.</p>
             </div>
-        }
-        <p>Mini address book widget placeholder content.</p>
+        </div>
     </div>
-</div>
+</section>

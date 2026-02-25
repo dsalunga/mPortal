@@ -1,17 +1,18 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntConfigExternalMemberModel
 
-<div class="card" id="int-config-external-member-@Model.ObjectId">
+<section class="card" id="int-config-external-member-@Model.ObjectId" aria-labelledby="int-config-external-member-heading">
     <div class="card-header">
-        <h5 class="card-title mb-0">Configure External Member</h5>
+        <h5 id="int-config-external-member-heading" class="card-title mb-0"><i class="bi bi-person-badge" aria-hidden="true"></i> Configure External Member</h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <form method="post" novalidate>
+        <form method="post" novalidate aria-label="Configure external member form">
             <div class="mb-3">
                 <label for="extMemberId" class="form-label">Member ID</label>
                 <input type="text" class="form-control" id="extMemberId" name="MemberId" value="@Model.MemberId" />
@@ -32,7 +33,7 @@
                 <label for="extStatus" class="form-label">Status</label>
                 <input type="text" class="form-control" id="extStatus" name="Status" value="@Model.Status" />
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i> Save</button>
         </form>
     </div>
-</div>
+</section>

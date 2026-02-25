@@ -5,9 +5,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
+using Microsoft.AspNetCore.Http;
 using System.Reflection;
 using System.Text;
 using System.Xml;
@@ -59,19 +57,9 @@ namespace WCMS.Common.Utilities
             return GetId(r[key], nativeValue: nativeValue);
         }
 
-        public static int GetId(HttpSessionState r, string key)
-        {
-            return GetId(r[key]);
-        }
-
         public static int GetId(HttpRequest r, string key)
         {
-            return GetId(r[key]);
-        }
-
-        public static int GetId(HttpRequestBase r, string key)
-        {
-            return GetId(r[key]);
+            return GetId((string)r.Query[key]);
         }
 
         #endregion
@@ -88,23 +76,9 @@ namespace WCMS.Common.Utilities
             return r[key].ToString();
         }
 
-        public static string Get(HttpSessionState r, string key)
-        {
-            var value = r[key];
-            if (value != null)
-                return value.ToString();
-
-            return null;
-        }
-
         public static string Get(HttpRequest r, string key)
         {
-            return r[key];
-        }
-
-        public static string Get(HttpRequestBase r, string key)
-        {
-            return r[key];
+            return r.Query[key];
         }
 
         #endregion
@@ -140,12 +114,7 @@ namespace WCMS.Common.Utilities
 
         public static int GetInt32(HttpRequest r, string key, int defaultValue = 0)
         {
-            return GetInt32(r[key], defaultValue);
-        }
-
-        public static int GetInt32(HttpRequestBase r, string key, int defaultValue = 0)
-        {
-            return GetInt32(r[key], defaultValue);
+            return GetInt32((string)r.Query[key], defaultValue);
         }
 
         public static int GetInt32(string o, int defaultValue)
@@ -189,7 +158,7 @@ namespace WCMS.Common.Utilities
 
         public static Int64 GetInt64(HttpRequest r, string key)
         {
-            return GetInt64(r[key]);
+            return GetInt64((string)r.Query[key]);
         }
 
         public static Int64 GetInt64(string o, Int64 defaultValue)
@@ -293,7 +262,7 @@ namespace WCMS.Common.Utilities
 
         public static char GetChar(HttpRequest r, string key)
         {
-            return GetChar(r[key]);
+            return GetChar((string)r.Query[key]);
         }
 
         #endregion
@@ -445,7 +414,7 @@ namespace WCMS.Common.Utilities
 
         public static bool GetBool(HttpRequest r, string key, bool defaultValue = false)
         {
-            return GetBool(r[key], defaultValue);
+            return GetBool((string)r.Query[key], defaultValue);
         }
 
         public static bool GetBool(NameValueCollection r, string key, bool defaultValue = false)

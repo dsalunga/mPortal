@@ -8,7 +8,7 @@ using WCMS.Common.Utilities;
 
 namespace WCMS.Common
 {
-    public class FileLogger : ILogger
+    public class FileLogger : IWcmsLogger
     {
         private string _filePath;
         private string _extension;

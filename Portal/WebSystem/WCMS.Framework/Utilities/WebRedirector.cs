@@ -2,8 +2,8 @@
 using System.Data;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Http;
 
 using WCMS.Common.Utilities;
 
@@ -28,7 +28,7 @@ namespace WCMS.Framework
 
         public static void ReturnFromContentMgt()
         {
-            var query = new WQuery(HttpContext.Current);
+            var query = new WQuery(HttpContextHelper.Current);
             WPage page = null;
             //int masterPageItemId = DataHelper.GetDbId(qs[WebColumns.MasterPageItemId]);
             int pageElementId = query.GetId(WebColumns.PageElementId);

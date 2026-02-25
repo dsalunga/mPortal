@@ -1,8 +1,8 @@
 @model dynamic
 
-<div class="card" id="mc-admin-interpreter-score-manager-@Model.ObjectId" role="region" aria-label="Interpreter Score Manager">
+<section class="card" id="mc-admin-interpreter-score-manager-@Model.ObjectId" aria-labelledby="mc-admin-interpreter-score-heading-@Model.ObjectId">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0"><i class="bi bi-mic-fill" aria-hidden="true"></i> Interpreter Score Manager</h5>
+        <h5 id="mc-admin-interpreter-score-heading-@Model.ObjectId" class="card-title mb-0"><i class="bi bi-mic-fill" aria-hidden="true"></i> Interpreter Score Manager</h5>
         <button type="button" class="btn btn-sm btn-primary" aria-label="Add interpreter score">
             <i class="bi bi-plus-lg" aria-hidden="true"></i> Add
         </button>
@@ -21,10 +21,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="5" class="text-center text-muted py-4">No interpreter scores recorded.</td>
+                        <td colspan="5" class="text-center text-muted py-4">
+                            <i class="bi bi-inbox" aria-hidden="true"></i> No interpreter scores recorded.
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+</section>

@@ -2,7 +2,9 @@
 @model dynamic
 
 <div id="theme-asop-inside-@Model.ObjectId">
-    <header class="bg-primary text-white py-3" role="banner">
+    <a href="#asop-inside-main-@Model.ObjectId" class="visually-hidden-focusable skip-link">Skip to main content</a>
+
+    <header class="bg-primary text-white py-3" role="banner" aria-label="ASOP site header">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Header" })
         </div>
@@ -14,10 +16,10 @@
         </div>
     </nav>
 
-    <main class="container py-4" role="main">
+    <main id="asop-inside-main-@Model.ObjectId" class="container py-4">
         <div class="row">
             <div class="col-md-3">
-                <aside aria-label="Sidebar">
+                <aside aria-label="Sidebar navigation">
                     @await Component.InvokeAsync("WZone", new { zone = "Sidebar" })
                 </aside>
             </div>
@@ -27,7 +29,7 @@
         </div>
     </main>
 
-    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo" aria-label="ASOP site footer">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
             <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year ASOP. All rights reserved.</small></p>

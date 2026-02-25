@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 
@@ -7,12 +8,15 @@ namespace WCMS.WebSystem.Api
 {
     /// <summary>
     /// Replaces the legacy ASMX AccountService (AccountService.asmx).
+    /// Requires authentication for session management operations.
     /// </summary>
     [ApiController]
     [Route("api/account")]
+    [Authorize]
     public class AccountApiController : ControllerBase
     {
         [HttpGet("session/{sessionId}")]
+        [ResponseCache(Duration = 0, NoStore = true)]
         public IActionResult GetUserSession(string sessionId)
         {
             UserSession session = null;

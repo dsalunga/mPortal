@@ -2,6 +2,9 @@ using System;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WCMS.Common.Utilities;
@@ -15,8 +18,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // --- Services ---
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddProblemDetails();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
+
+// OpenAPI / Swagger documentation
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // CMS framework services (IWSession, IWContext)
 builder.Services.AddWcmsFramework();
@@ -47,6 +56,29 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 builder.Services.AddAuthorization();
+builder.Services.AddAntiforgery();
+builder.Services.AddHttpLogging(options => { });
+
+// Output caching for CMS pages
+builder.Services.AddOutputCache(options =>
+{
+    options.AddBasePolicy(builder => builder.Expire(TimeSpan.FromMinutes(5)));
+    options.AddPolicy("StaticAssets", builder => builder.Expire(TimeSpan.FromHours(1)));
+});
+
+// Bundling & minification
+builder.Services.AddWebOptimizer(pipeline =>
+{
+    pipeline.MinifyCssFiles("Content/**/*.css");
+    pipeline.MinifyJsFiles("Content/**/*.js");
+});
+
+// Health checks
+var defaultConnStr = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddHealthChecks()
+    .AddSqlServer(defaultConnStr ?? "Server=.;Database=WCMS;Trusted_Connection=True;TrustServerCertificate=True",
+        name: "sqlserver",
+        tags: new[] { "db", "sql" });
 
 var app = builder.Build();
 
@@ -55,6 +87,12 @@ var app = builder.Build();
 var config = app.Configuration;
 ConfigUtil.SetConfiguration(config);
 PathMapper.Configure(app.Environment.ContentRootPath, app.Environment.WebRootPath);
+
+// Wire up IHttpContextAccessor for legacy static accessors
+var httpContextAccessor = app.Services.GetRequiredService<Microsoft.AspNetCore.Http.IHttpContextAccessor>();
+HttpContextHelper.Configure(httpContextAccessor);
+WebContextBase.ConfigureAccessor(httpContextAccessor);
+WSession.Configure(httpContextAccessor);
 
 if (WConfig.AllowCache)
 {
@@ -69,13 +107,32 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/error");
     app.UseHsts();
 }
+else
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "mPortal CMS API v1");
+        options.RoutePrefix = "swagger";
+    });
+}
 
-app.UseStaticFiles();
+app.UseSecurityHeaders();
+app.UseHttpLogging();
+app.UseWebOptimizer();
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = ctx =>
+    {
+        ctx.Context.Response.Headers["Cache-Control"] = "public,max-age=31536000";
+    }
+});
 app.UseRouting();
 
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseOutputCache();
 
 // CMS page resolution and rendering pipeline
 app.UseWcmsPageResolution();
@@ -84,7 +141,8 @@ app.UseWcmsFramework();
 
 // --- Endpoints ---
 
-app.MapGet("/health", () => Results.Ok("ok"));
+app.MapHealthChecks("/health");
+app.MapGet("/health/live", () => Results.Ok("ok"));
 
 app.MapGet("/api/system/info", () => Results.Ok(new
 {
@@ -101,3 +159,6 @@ app.MapControllers();
 app.MapCmsPages();
 
 app.Run();
+
+// Expose Program class for integration testing (WebApplicationFactory<Program>)
+public partial class Program { }

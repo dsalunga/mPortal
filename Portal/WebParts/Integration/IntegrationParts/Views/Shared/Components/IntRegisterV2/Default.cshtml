@@ -1,30 +1,33 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntRegisterV2Model
 
-<div class="card" id="int-register-v2-@Model.ObjectId">
+<section class="card" id="int-register-v2-@Model.ObjectId" aria-labelledby="register-v2-heading-@Model.ObjectId">
     <div class="card-header">
-        <h5 class="card-title mb-0">Create Account</h5>
+        <h5 class="card-title mb-0" id="register-v2-heading-@Model.ObjectId">
+            <i class="bi bi-person-plus-fill" aria-hidden="true"></i> Create Account
+        </h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <form method="post" novalidate>
+        <form method="post" novalidate aria-label="Create account form">
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="regV2FirstName" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="regV2FirstName" name="FirstName" required />
+                    <label for="regV2FirstName" class="form-label">First Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" class="form-control" id="regV2FirstName" name="FirstName" required aria-required="true" />
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="regV2LastName" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="regV2LastName" name="LastName" required />
+                    <label for="regV2LastName" class="form-label">Last Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" class="form-control" id="regV2LastName" name="LastName" required aria-required="true" />
                 </div>
             </div>
             <div class="mb-3">
-                <label for="regV2Email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="regV2Email" name="Email" required />
+                <label for="regV2Email" class="form-label">Email <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="email" class="form-control" id="regV2Email" name="Email" required aria-required="true" />
             </div>
             <div class="mb-3">
                 <label for="regV2Phone" class="form-label">Phone</label>
@@ -38,14 +41,16 @@
                 </div>
             }
             <div class="mb-3">
-                <label for="regV2Password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="regV2Password" name="Password" required />
+                <label for="regV2Password" class="form-label">Password <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="password" class="form-control" id="regV2Password" name="Password" required aria-required="true" />
             </div>
             <div class="mb-3">
-                <label for="regV2ConfirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="regV2ConfirmPassword" name="ConfirmPassword" required />
+                <label for="regV2ConfirmPassword" class="form-label">Confirm Password <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="password" class="form-control" id="regV2ConfirmPassword" name="ConfirmPassword" required aria-required="true" />
             </div>
-            <button type="submit" class="btn btn-primary">Create Account</button>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-person-plus" aria-hidden="true"></i> Create Account
+            </button>
         </form>
     </div>
-</div>
+</section>

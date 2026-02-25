@@ -1,13 +1,15 @@
 @model dynamic
 
-<div class="card" id="int-log-attendance-@Model.ObjectId" role="region" aria-label="Log Attendance">
+<section class="card" id="int-log-attendance-@Model.ObjectId" aria-labelledby="log-attendance-heading-@Model.ObjectId">
     <div class="card-header">
-        <h5 class="card-title mb-0">Log Attendance</h5>
+        <h5 class="card-title mb-0" id="log-attendance-heading-@Model.ObjectId">
+            <i class="bi bi-clipboard-check" aria-hidden="true"></i> Log Attendance
+        </h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -44,7 +46,9 @@
                 <label for="txtAttRemarks" class="form-label">Remarks</label>
                 <textarea id="txtAttRemarks" name="Remarks" class="form-control" rows="2"></textarea>
             </div>
-            <button type="submit" id="cmdLogAttendance" class="btn btn-primary">Log Attendance</button>
+            <button type="submit" id="cmdLogAttendance" class="btn btn-primary">
+                <i class="bi bi-check2-square" aria-hidden="true"></i> Log Attendance
+            </button>
         </form>
     </div>
-</div>
+</section>

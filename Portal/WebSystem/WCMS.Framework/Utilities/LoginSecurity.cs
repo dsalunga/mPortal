@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace WCMS.Framework.Utilities
 {
@@ -13,7 +13,7 @@ namespace WCMS.Framework.Utilities
     {
         public static List<string> Decode(string[] decode)
         {
-            string domainKey = HttpContext.Current.Session["KeyPair"] as string; //(string)HttpRuntime.Cache["KeyPair"];
+            string domainKey = WCMS.Common.Utilities.HttpContextHelper.Current.Session.GetString("KeyPair"); //(string)HttpRuntime.Cache["KeyPair"];
             if (!string.IsNullOrEmpty(domainKey))
             {
                 RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
@@ -36,7 +36,7 @@ namespace WCMS.Framework.Utilities
 
         public static string[] DecodeLogin(string encUserName, string encPassword)
         {
-            string domainKey = HttpContext.Current.Session["KeyPair"] as string; //(string)HttpRuntime.Cache["KeyPair"];
+            string domainKey = WCMS.Common.Utilities.HttpContextHelper.Current.Session.GetString("KeyPair"); //(string)HttpRuntime.Cache["KeyPair"];
             if (!string.IsNullOrEmpty(domainKey))
             {
                 RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
@@ -58,7 +58,7 @@ namespace WCMS.Framework.Utilities
                 return false;*/
 
             //read Key Pair (Public + Private Key) from Cache
-            string domainKey = HttpContext.Current.Session["KeyPair"] as string; //(string)HttpRuntime.Cache["KeyPair"];
+            string domainKey = WCMS.Common.Utilities.HttpContextHelper.Current.Session.GetString("KeyPair"); //(string)HttpRuntime.Cache["KeyPair"];
             if (!string.IsNullOrEmpty(domainKey))
             {
                 RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
@@ -109,13 +109,13 @@ namespace WCMS.Framework.Utilities
         public static byte[] GetPublicKey()
         {
             var rsa = new RSACryptoServiceProvider();
-            var session = HttpContext.Current.Session;
+            var session = WCMS.Common.Utilities.HttpContextHelper.Current.Session;
 
-            var keyPair = session["KeyPair"] as string;
+            var keyPair = session.GetString("KeyPair");
             if (!string.IsNullOrEmpty(keyPair))
                 rsa.FromXmlString(keyPair);
             else
-                session["KeyPair"] = rsa.ToXmlString(true);
+                session.SetString("KeyPair", rsa.ToXmlString(true));
 
             //Add Key Pair (Public + Private Key) to Cache to be used by ValidateUser
             //HttpContext.Current.Session["KeyPair"] = rsa.ToXmlString(true); //HttpRuntime.Cache["KeyPair"] = rsa.ToXmlString(true);

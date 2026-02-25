@@ -1,16 +1,19 @@
 @model dynamic
 
+<section aria-labelledby="int-member-manager-heading-@Model.ObjectId">
 <div class="card" id="int-member-manager-@Model.ObjectId" role="region" aria-label="Member Manager">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0">Member Manager</h5>
+        <h5 id="int-member-manager-heading-@Model.ObjectId" class="card-title mb-0">
+            <i class="bi bi-people-fill" aria-hidden="true"></i> Member Manager
+        </h5>
         <button type="button" id="cmdAddMember" class="btn btn-sm btn-primary" aria-label="Add new member">
-            <span aria-hidden="true">+</span> Add Member
+            <i class="bi bi-plus-circle" aria-hidden="true"></i> Add Member
         </button>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -43,5 +46,9 @@
                 </tbody>
             </table>
         </div>
+        <div id="noMembersMessage" class="text-muted text-center py-4" style="display: none;">
+            <i class="bi bi-info-circle" aria-hidden="true"></i> No members found.
+        </div>
     </div>
 </div>
+</section>

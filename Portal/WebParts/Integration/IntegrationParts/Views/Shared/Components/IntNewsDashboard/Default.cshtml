@@ -1,16 +1,23 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntNewsDashboardModel
 
-<div class="card" id="int-news-dashboard-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">News Dashboard</h5>
-    </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
-                @Model.Message
+<section aria-labelledby="news-dashboard-heading-@Model.ObjectId">
+    <div class="card" id="int-news-dashboard-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="news-dashboard-heading-@Model.ObjectId">
+                <i class="bi bi-newspaper" aria-hidden="true"></i> News Dashboard
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <div id="newsDashboardContent-@Model.ObjectId">
+                <p class="text-muted"><i class="bi bi-info-circle" aria-hidden="true"></i> No news articles available.</p>
             </div>
-        }
-        <p>News dashboard placeholder content.</p>
+        </div>
     </div>
-</div>
+</section>

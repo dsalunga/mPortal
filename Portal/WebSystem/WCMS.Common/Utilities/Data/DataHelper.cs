@@ -5,7 +5,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 using System.Reflection;
 using System.Text;
 using System.Xml;
@@ -60,7 +60,7 @@ namespace WCMS.Common.Utilities
 
         public static int GetId(HttpRequest r, string key)
         {
-            return GetId(r[key]);
+            return GetId((string)r.Query[key]);
         }
 
 
@@ -81,7 +81,7 @@ namespace WCMS.Common.Utilities
 
         public static string Get(HttpRequest r, string key)
         {
-            return r[key];
+            return r.Query[key];
         }
 
 
@@ -118,7 +118,7 @@ namespace WCMS.Common.Utilities
 
         public static int GetInt32(HttpRequest r, string key, int defaultValue = 0)
         {
-            return GetInt32(r[key], defaultValue);
+            return GetInt32((string)r.Query[key], defaultValue);
         }
 
 
@@ -163,7 +163,7 @@ namespace WCMS.Common.Utilities
 
         public static Int64 GetInt64(HttpRequest r, string key)
         {
-            return GetInt64(r[key]);
+            return GetInt64((string)r.Query[key]);
         }
 
         public static Int64 GetInt64(string o, Int64 defaultValue)
@@ -267,7 +267,7 @@ namespace WCMS.Common.Utilities
 
         public static char GetChar(HttpRequest r, string key)
         {
-            return GetChar(r[key]);
+            return GetChar((string)r.Query[key]);
         }
 
         #endregion
@@ -419,7 +419,7 @@ namespace WCMS.Common.Utilities
 
         public static bool GetBool(HttpRequest r, string key, bool defaultValue = false)
         {
-            return GetBool(r[key], defaultValue);
+            return GetBool((string)r.Query[key], defaultValue);
         }
 
         public static bool GetBool(NameValueCollection r, string key, bool defaultValue = false)

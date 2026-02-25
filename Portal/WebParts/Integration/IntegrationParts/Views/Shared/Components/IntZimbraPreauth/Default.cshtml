@@ -1,16 +1,21 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntZimbraPreauthModel
 
-<div class="card" id="int-zimbra-preauth-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Zimbra Pre-Authentication</h5>
+<section aria-labelledby="zimbra-preauth-heading-@Model.ObjectId">
+    <div class="card" id="int-zimbra-preauth-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="zimbra-preauth-heading-@Model.ObjectId">
+                <i class="bi bi-envelope-check" aria-hidden="true"></i> Zimbra Pre-Authentication
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <p>Zimbra pre-auth placeholder content.</p>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
-                @Model.Message
-            </div>
-        }
-        <p>Zimbra pre-auth placeholder content.</p>
-    </div>
-</div>
+</section>

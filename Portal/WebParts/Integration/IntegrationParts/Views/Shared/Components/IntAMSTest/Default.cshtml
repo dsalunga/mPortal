@@ -1,16 +1,21 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntAMSTestModel
 
-<div class="card" id="int-ams-test-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">AMS Test</h5>
+<section aria-labelledby="ams-test-heading-@Model.ObjectId">
+    <div class="card" id="int-ams-test-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="ams-test-heading-@Model.ObjectId">
+                <i class="bi bi-wrench-adjustable" aria-hidden="true"></i> AMS Test
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <p>Ams test interface placeholder content.</p>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
-                @Model.Message
-            </div>
-        }
-        <p>Ams test interface placeholder content.</p>
-    </div>
-</div>
+</section>

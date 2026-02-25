@@ -1,32 +1,38 @@
 @model dynamic
 
-<div class="card" id="int-change-password-profile-@Model.ObjectId" role="region" aria-label="Change Password">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Change Password</h5>
+<section aria-labelledby="change-password-profile-heading-@Model.ObjectId">
+    <div class="card" id="int-change-password-profile-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="change-password-profile-heading-@Model.ObjectId">
+                <i class="bi bi-key" aria-hidden="true"></i> Change Password
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty((string)Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <form method="post" novalidate aria-label="Change password form">
+                <div class="mb-3">
+                    <label for="txtCurrentPassword" class="form-label">Current Password <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="password" id="txtCurrentPassword" name="CurrentPassword" class="form-control" required aria-required="true" autocomplete="current-password" />
+                </div>
+                <div class="mb-3">
+                    <label for="txtNewPassword" class="form-label">New Password <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="password" id="txtNewPassword" name="NewPassword" class="form-control" required aria-required="true" autocomplete="new-password" aria-describedby="passwordHelp" />
+                    <div id="passwordHelp" class="form-text">Password must be at least 8 characters long.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="txtConfirmPassword" class="form-label">Confirm New Password <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="password" id="txtConfirmPassword" name="ConfirmPassword" class="form-control" required aria-required="true" autocomplete="new-password" />
+                </div>
+                <button type="submit" id="cmdChangePassword" class="btn btn-primary">
+                    <i class="bi bi-check-lg" aria-hidden="true"></i> Change Password
+                </button>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty((string)Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
-                @Model.Message
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        }
-        <form method="post" novalidate aria-label="Change password form">
-            <div class="mb-3">
-                <label for="txtCurrentPassword" class="form-label">Current Password <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="password" id="txtCurrentPassword" name="CurrentPassword" class="form-control" required aria-required="true" autocomplete="current-password" />
-            </div>
-            <div class="mb-3">
-                <label for="txtNewPassword" class="form-label">New Password <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="password" id="txtNewPassword" name="NewPassword" class="form-control" required aria-required="true" autocomplete="new-password" aria-describedby="passwordHelp" />
-                <div id="passwordHelp" class="form-text">Password must be at least 8 characters long.</div>
-            </div>
-            <div class="mb-3">
-                <label for="txtConfirmPassword" class="form-label">Confirm New Password <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="password" id="txtConfirmPassword" name="ConfirmPassword" class="form-control" required aria-required="true" autocomplete="new-password" />
-            </div>
-            <button type="submit" id="cmdChangePassword" class="btn btn-primary">Change Password</button>
-        </form>
-    </div>
-</div>
+</section>

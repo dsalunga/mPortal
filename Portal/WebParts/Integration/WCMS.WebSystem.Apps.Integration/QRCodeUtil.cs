@@ -1,10 +1,12 @@
 ﻿using QRCoder;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
 using WCMS.Common.Utilities;
 
 namespace WCMS.WebSystem.Apps.Integration
@@ -29,28 +31,28 @@ namespace WCMS.WebSystem.Apps.Integration
             return string.Format("https://someorg.org/a?s={0}", encodedServiceSchedule);
         }
 
-        public static System.Drawing.Image CreateQRCode(string s, int width, int height)
+        public static Image CreateQRCode(string s, int width, int height)
         {
             var qrGenerator = new QRCodeGenerator();
             var qrCodeData = qrGenerator.CreateQrCode(s, QRCodeGenerator.ECCLevel.Q);
             var qrCode = new PngByteQRCode(qrCodeData);
             byte[] qrCodeBytes = qrCode.GetGraphic(20);
 
-            var ms = new System.IO.MemoryStream(qrCodeBytes);
-            var qr = new Bitmap(ms);
+            var qr = Image.Load<Rgba32>(qrCodeBytes);
 
+            // Crop the QR code (remove border padding)
             var qrCropPx = 50;
-            var newSize = new Point(qr.Width - qrCropPx * 2, qr.Height - qrCropPx * 2);
-            var target = new Bitmap(newSize.X, newSize.Y);
-            using (var graphics = Graphics.FromImage(target))
-            {
-                // Crop and draw QR code
-                var cropRect = new Rectangle(qrCropPx, qrCropPx, newSize.X, newSize.Y);
-                graphics.DrawImage(qr, new Rectangle(0, 0, target.Width, target.Height), cropRect, GraphicsUnit.Pixel);
-            }
+            var cropRect = new Rectangle(qrCropPx, qrCropPx, qr.Width - qrCropPx * 2, qr.Height - qrCropPx * 2);
+            qr.Mutate(x => x.Crop(cropRect));
 
-            var resizedQR = ImageUtil.ScaleImage(target, width, height);
-            return resizedQR;
+            // Scale to requested size
+            qr.Mutate(x => x.Resize(new ResizeOptions
+            {
+                Size = new Size(width, height),
+                Mode = ResizeMode.Max
+            }));
+
+            return qr;
         }
 
         public static Image CreateQRCode(int serviceScheduleId, int width, int height)

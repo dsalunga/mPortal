@@ -1,21 +1,24 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntRegistrationV2Model
 
-<div id="int-registration-v2-@Model.ObjectId">
+<section id="int-registration-v2-@Model.ObjectId" aria-labelledby="registration-v2-heading-@Model.ObjectId">
     <input type="hidden" id="hUserId" name="UserId" value="-1" />
     <input type="hidden" id="hHasTerms" name="HasTerms" value="" />
     <input type="hidden" id="hLinkExternalRegister" name="LinkExternalRegister" value="" />
 
     @if (!string.IsNullOrEmpty(Model.Message))
     {
-        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
             @Model.Message
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
 
     <!-- Terms View -->
     <div id="viewTerms">
         <div id="panelTerms">
-            <h2>ADD Music Ministry Portal</h2>
+            <h2 id="registration-v2-heading-@Model.ObjectId">
+                <i class="bi bi-music-note-list" aria-hidden="true"></i> ADD Music Ministry Portal
+            </h2>
             <p><strong>Usage Terms and Conditions</strong></p>
             <p>Welcome to <span style="color: red;">Integration Portal</span>. If you continue to browse and use this website, you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern <span style="color: red;">ADDCIT Asia Oceania&rsquo;s</span>&nbsp; relationship with you in relation to this website. If you disagree with any part of these terms and conditions, please do not use our website.</p>
             <p>
@@ -45,136 +48,137 @@
             <p>&nbsp;</p>
         </div>
         <div>
-            <form method="post">
-                <button type="submit" id="cmdAgree" name="Action" value="Agree" class="btn btn-primary">I AGREE AND ACCEPT</button>&nbsp;<a id="linkDisagreeTerms" class="btn btn-default" href="/public/Login">Cancel</a>
+            <form method="post" aria-label="Terms and conditions agreement">
+                <button type="submit" id="cmdAgree" name="Action" value="Agree" class="btn btn-primary">
+                    <i class="bi bi-check-circle" aria-hidden="true"></i> I AGREE AND ACCEPT
+                </button>&nbsp;<a id="linkDisagreeTerms" class="btn btn-outline-secondary" href="/public/Login">Cancel</a>
             </form>
         </div>
     </div>
 
     <!-- ONE First Time Login View -->
     <div id="viewONEFirstTime" style="display: none">
-        <h3>Integration Ext Account - First Time Login</h3>
+        <h3><i class="bi bi-link-45deg" aria-hidden="true"></i> Integration Ext Account - First Time Login</h3>
         <p>
             You have chosen your Integration Ext account as your primary login to Integration Portal. In order to continue using your Integration Ext account, you need to link your Integration Ext account to Integration Portal.
         </p>
         <p>Please click the continue button to confirm.</p>
         <br />
         <div>
-            <form method="post">
-                <button type="submit" id="cmdONESetupContinue" name="Action" value="ONEContinue" class="btn btn-primary">Continue using my Integration Ext account</button>
+            <form method="post" aria-label="First time login confirmation">
+                <button type="submit" id="cmdONESetupContinue" name="Action" value="ONEContinue" class="btn btn-primary">
+                    <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Continue using my Integration Ext account
+                </button>
                 &nbsp;
-                <button type="submit" id="cmdONESetupCancel" name="Action" value="ONECancel" class="btn btn-default">Cancel</button>
+                <button type="submit" id="cmdONESetupCancel" name="Action" value="ONECancel" class="btn btn-outline-secondary">Cancel</button>
             </form>
         </div>
     </div>
 
     <!-- Enter Email View -->
     <div id="viewEnterEmail" style="display: none">
-        <form method="post" novalidate>
-            <div class="form-group">
-                <label for="txtEnterEmail">Please enter your e-mail:<span class="text-danger">*</span></label>
+        <form method="post" novalidate aria-label="Enter email form">
+            <div class="mb-3">
+                <label for="txtEnterEmail" class="form-label">Please enter your e-mail: <span class="text-danger" aria-hidden="true">*</span></label>
                 <div class="row">
                     <div class="col-sm-6 col-md-5">
-                        <input type="email" id="txtEnterEmail" name="EnterEmail" class="form-control" placeholder="Your e-mail" required />
+                        <input type="email" id="txtEnterEmail" name="EnterEmail" class="form-control" placeholder="Your e-mail" required aria-required="true" />
                     </div>
                 </div>
             </div>
             <div>
-                <button type="submit" id="cmdNext" name="Action" value="EmailNext" class="btn btn-primary">Next</button>&nbsp;<a class="btn btn-default" href="/public/Login">Cancel</a>
+                <button type="submit" id="cmdNext" name="Action" value="EmailNext" class="btn btn-primary">
+                    <i class="bi bi-arrow-right" aria-hidden="true"></i> Next
+                </button>&nbsp;<a class="btn btn-outline-secondary" href="/public/Login">Cancel</a>
             </div>
         </form>
     </div>
 
     <!-- Portal User View -->
     <div id="viewPortalUser" style="display: none">
-        <div class="Header">You have an existing Integration Portal account. If you are experiencing issues, please contact the Portal admin via the contact form.</div>
+        <div class="alert alert-info" role="status" aria-live="polite">
+            <i class="bi bi-info-circle" aria-hidden="true"></i> You have an existing Integration Portal account. If you are experiencing issues, please contact the Portal admin via the contact form.
+        </div>
         <br />
-        <table>
-            <tr>
-                <td>
-                    <a href="/public/Login" class="btn btn-primary">Login Now</a>&nbsp;<a class="btn btn-danger" href="/public/Forgot">Forgot Password</a>
-                </td>
-            </tr>
-        </table>
+        <div class="d-flex gap-2">
+            <a href="/public/Login" class="btn btn-primary">
+                <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Login Now
+            </a>
+            <a class="btn btn-danger" href="/public/Forgot">
+                <i class="bi bi-key" aria-hidden="true"></i> Forgot Password
+            </a>
+        </div>
     </div>
 
     <!-- Enter Info View -->
     <div id="viewEnterInfo" style="display: none">
-        <div class="Header">Please enter your details.</div>
-        <br />
-        <form method="post" novalidate>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label for="txtFirstName" class="col-sm-3 col-md-2 control-label">
-                        First Name:<span class="text-danger">*</span></label>
-                    <div class="col-sm-8 col-md-6">
-                        <input type="text" id="txtFirstName" name="FirstName" class="form-control" placeholder="First Name" required />
-                    </div>
+        <div class="alert alert-info mb-3" role="status" aria-live="polite">
+            <i class="bi bi-pencil-square" aria-hidden="true"></i> Please enter your details.
+        </div>
+        <form method="post" novalidate aria-label="Registration details form">
+            <div class="row g-3">
+                <div class="col-sm-8 col-md-6 mb-3">
+                    <label for="txtFirstName" class="form-label">
+                        First Name <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input type="text" id="txtFirstName" name="FirstName" class="form-control" placeholder="First Name" required aria-required="true" />
                 </div>
-                <div class="form-group">
-                    <label for="txtLastName" class="col-sm-3 col-md-2 control-label">Last Name:<span class="text-danger">*</span></label>
-                    <div class="col-sm-8 col-md-6">
-                        <input type="text" id="txtLastName" name="LastName" class="form-control" placeholder="Last Name" required />
-                    </div>
+                <div class="col-sm-8 col-md-6 mb-3">
+                    <label for="txtLastName" class="form-label">
+                        Last Name <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input type="text" id="txtLastName" name="LastName" class="form-control" placeholder="Last Name" required aria-required="true" />
                 </div>
-                <div class="form-group">
-                    <label for="cboGender" class="col-sm-3 col-md-2 control-label">Gender:<span class="text-danger">*</span></label>
-                    <div class="col-sm-8 col-md-6">
-                        <select id="cboGender" name="Gender" class="form-control" required>
-                            <option selected value=""></option>
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
-                        </select>
-                    </div>
+                <div class="col-sm-8 col-md-6 mb-3">
+                    <label for="cboGender" class="form-label">
+                        Gender <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <select id="cboGender" name="Gender" class="form-select" required aria-required="true">
+                        <option selected value="">-- Select --</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">&nbsp;</div>
+                <div class="col-12"><hr /></div>
+                <div class="col-sm-8 col-md-6 mb-3">
+                    <label for="txtRegisterEmail" class="form-label">E-mail</label>
+                    <input type="email" id="txtRegisterEmail" name="RegisterEmail" class="form-control" readonly />
                 </div>
-                <div class="form-group">
-                    <label for="txtRegisterEmail" class="col-sm-3 col-md-2 control-label">E-mail:</label>
-                    <div class="col-sm-8 col-md-6">
-                        <input type="email" id="txtRegisterEmail" name="RegisterEmail" class="form-control" readonly />
-                    </div>
+                <div class="col-sm-8 col-md-6 mb-3">
+                    <label for="txtMobileNumber" class="form-label">Mobile Number</label>
+                    <input type="text" id="txtMobileNumber" name="MobileNumber" class="form-control" placeholder="Mobile Number (Optional)" />
                 </div>
-                <div class="form-group">
-                    <label for="txtMobileNumber" class="col-sm-3 col-md-2 control-label">Mobile Number:</label>
-                    <div class="col-sm-8 col-md-6">
-                        <input type="text" id="txtMobileNumber" name="MobileNumber" class="form-control" placeholder="Mobile Number (Optional)" />
-                    </div>
+                <div class="col-12"><hr /></div>
+                <div class="col-sm-8 col-md-6 mb-3">
+                    <label for="txtExternalID" class="form-label">
+                        Group ID <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input type="text" id="txtExternalID" name="ExternalID" class="form-control" placeholder="Group ID" required aria-required="true" />
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-8 col-md-6 mb-3">
+                    <label for="txtMembershipDate" class="form-label">
+                        Date of Membership <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input type="text" id="txtMembershipDate" name="MembershipDate" class="form-control" placeholder="Membership Date (YYYY-MM-DD)" required aria-required="true" />
                 </div>
-                <div class="form-group">
-                    <label for="txtExternalID" class="col-sm-3 col-md-2 control-label">Group ID:<span class="text-danger">*</span></label>
-                    <div class="col-sm-8 col-md-6">
-                        <input type="text" id="txtExternalID" name="ExternalID" class="form-control" placeholder="Group ID" required />
-                    </div>
+                <div class="col-sm-8 col-md-6 mb-3">
+                    <label for="txtLocale" class="form-label">
+                        Group Locale <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <textarea id="txtLocale" name="Locale" rows="3" class="form-control" title="The Group Locale where are you are currently registered." placeholder="Group Locale" required aria-required="true"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="txtMembershipDate" class="col-sm-3 col-md-2 control-label">Date of Membership:<span class="text-danger">*</span></label>
-                    <div class="col-sm-8 col-md-6">
-                        <input type="text" id="txtMembershipDate" name="MembershipDate" class="form-control" placeholder="Membership Date (YYYY-MM-DD)" required />
-                    </div>
+                <div class="col-sm-8 col-md-6 mb-3">
+                    <label for="cboCountries" class="form-label">
+                        Locale Country <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <select id="cboCountries" name="Country" class="form-select" required aria-required="true">
+                        <option selected value="">-- Select Country --</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="txtLocale" class="col-sm-3 col-md-2 control-label">Group Locale:<span class="text-danger">*</span></label>
-                    <div class="col-sm-8 col-md-6">
-                        <textarea id="txtLocale" name="Locale" rows="3" class="form-control" title="The Group Locale where are you are currently registered." placeholder="Group Locale" required></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="cboCountries" class="col-sm-3 col-md-2 control-label">Locale Country:<span class="text-danger">*</span></label>
-                    <div class="col-sm-8 col-md-6">
-                        <select id="cboCountries" name="Country" class="form-control" required>
-                            <option selected value=""></option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-md-offset-2 col-sm-10 col-md-6">
-                        <button type="submit" id="cmdInfoNext" name="Action" value="InfoNext" class="btn btn-primary">Next</button>&nbsp;<a class="btn btn-default link-cancel" href="/public/Login">Cancel</a>
-                    </div>
+                <div class="col-sm-8 col-md-6 mb-3">
+                    <button type="submit" id="cmdInfoNext" name="Action" value="InfoNext" class="btn btn-primary">
+                        <i class="bi bi-arrow-right" aria-hidden="true"></i> Next
+                    </button>&nbsp;<a class="btn btn-outline-secondary link-cancel" href="/public/Login">Cancel</a>
                 </div>
             </div>
         </form>
@@ -185,16 +189,22 @@
         <input type="hidden" id="hExtension" name="Extension" value="" />
 
         <div id="viewUpload">
-            <div class="Header">Upload Your Profile Photo</div>
+            <h5><i class="bi bi-camera" aria-hidden="true"></i> Upload Your Profile Photo</h5>
             <br />
-            <form method="post" enctype="multipart/form-data" novalidate>
-                <input type="file" id="photoUpload" name="PhotoUpload" />
-                <br /><br />
+            <form method="post" enctype="multipart/form-data" novalidate aria-label="Photo upload form">
+                <div class="mb-3">
+                    <label for="photoUpload" class="form-label">Choose a photo</label>
+                    <input type="file" id="photoUpload" name="PhotoUpload" class="form-control" />
+                </div>
                 <span id="uploadPanel">
-                    <button type="submit" id="cmdUpload" name="Action" value="Upload" class="btn btn-primary">Upload Now</button>&nbsp;</span>
+                    <button type="submit" id="cmdUpload" name="Action" value="Upload" class="btn btn-primary">
+                        <i class="bi bi-upload" aria-hidden="true"></i> Upload Now
+                    </button>&nbsp;</span>
                 <span id="panelSkip">
-                    <button type="submit" id="cmdUploadSkip" name="Action" value="UploadSkip" class="btn btn-inverse">Skip</button>&nbsp;</span>
-                <a class="btn btn-default link-cancel" href="/public/Login">Cancel</a>
+                    <button type="submit" id="cmdUploadSkip" name="Action" value="UploadSkip" class="btn btn-secondary">
+                        <i class="bi bi-skip-forward" aria-hidden="true"></i> Skip
+                    </button>&nbsp;</span>
+                <a class="btn btn-outline-secondary link-cancel" href="/public/Login">Cancel</a>
             </form>
             <script type="text/javascript">
                 $(document).ready(function () {
@@ -208,75 +218,95 @@
         </div>
 
         <div id="viewPreview" style="display: none">
-            <div class="Header">Photo Preview</div>
+            <h5><i class="bi bi-image" aria-hidden="true"></i> Photo Preview</h5>
             <br />
-            <img id="imagePreview" src="" alt="Photo Preview" />
-            <br /><br />
-            <form method="post">
-                <button type="submit" id="cmdRegister" name="Action" value="AcceptFinish" class="btn btn-primary">Accept &amp; Finish</button>&nbsp;
-                <button type="submit" id="cmdReUpload" name="Action" value="ReUpload" class="btn btn-warning">Re-Upload</button>&nbsp;
-                <a class="btn btn-default link-cancel" href="/public/Login">Cancel</a>
+            <img id="imagePreview" src="" alt="Photo Preview" class="img-thumbnail mb-3" />
+            <br />
+            <form method="post" aria-label="Photo confirmation form">
+                <button type="submit" id="cmdRegister" name="Action" value="AcceptFinish" class="btn btn-primary">
+                    <i class="bi bi-check-lg" aria-hidden="true"></i> Accept &amp; Finish
+                </button>&nbsp;
+                <button type="submit" id="cmdReUpload" name="Action" value="ReUpload" class="btn btn-warning">
+                    <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i> Re-Upload
+                </button>&nbsp;
+                <a class="btn btn-outline-secondary link-cancel" href="/public/Login">Cancel</a>
             </form>
         </div>
     </div>
 
     <!-- ONE Link Finish View -->
     <div id="viewONELinkFinish" style="display: none">
-        <div class="alert alert-success">Your Integration Ext Account is now linked to your Integration Portal account! From now on, your Integration Portal login will your Integration Ext account.</div>
-        <a class="btn btn-primary" href="/public/Login/">Continue to Login</a>
+        <div class="alert alert-success" role="status" aria-live="polite">
+            <i class="bi bi-check-circle-fill" aria-hidden="true"></i> Your Integration Ext Account is now linked to your Integration Portal account! From now on, your Integration Portal login will your Integration Ext account.
+        </div>
+        <a class="btn btn-primary" href="/public/Login/">
+            <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Continue to Login
+        </a>
     </div>
 
     <!-- Registration Finish View -->
     <div id="viewFinish" style="display: none">
-        <div class="alert alert-success">
-            <strong>Registration successful!</strong>
+        <div class="alert alert-success" role="status" aria-live="polite">
+            <strong><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Registration successful!</strong>
             <br />
             You have completed the registration, however, your account is sent for review.
             <br /><br />
             You will receive an e-mail with your temporary password once your account is approved. Please check your e-mail inbox regularly.
         </div>
-        <a class="btn btn-primary" href="/public/Login/">Done</a>
+        <a class="btn btn-primary" href="/public/Login/">
+            <i class="bi bi-check-lg" aria-hidden="true"></i> Done
+        </a>
     </div>
 
     <!-- ONE Finish View -->
     <div id="viewONEFinish" style="display: none">
-        <div class="alert alert-success">Registration successful! You may now start using your Integration Ext account in Integration Portal by logging in.</div>
-        <a class="btn btn-primary" href="/public/Login/">Continue to Login</a>
+        <div class="alert alert-success" role="status" aria-live="polite">
+            <i class="bi bi-check-circle-fill" aria-hidden="true"></i> Registration successful! You may now start using your Integration Ext account in Integration Portal by logging in.
+        </div>
+        <a class="btn btn-primary" href="/public/Login/">
+            <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Continue to Login
+        </a>
     </div>
 
     <!-- Register Options View -->
     <div id="viewRegisterOptions" style="display: none">
         <div class="row">
             <div class="col-md-8 col-sm-12">
-                <div class="alert alert-info">
+                <div class="alert alert-info" role="status" aria-live="polite">
                     <div style="padding-bottom: 10px">
-                        <strong>Do you have an Integration Ext account?</strong>
+                        <strong><i class="bi bi-question-circle" aria-hidden="true"></i> Do you have an Integration Ext account?</strong>
                         <br />
                         If yes, just log-in!
                     </div>
-                    <a class="btn btn-info" href="/public/Login/">Login Now</a>
+                    <a class="btn btn-info" href="/public/Login/">
+                        <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Login Now
+                    </a>
                 </div>
                 <br />
 
-                <div class="alert alert-danger">
+                <div class="alert alert-danger" role="status" aria-live="polite">
                     <div style="padding-bottom: 5px">
-                        <strong>Forgot your password?</strong>
+                        <strong><i class="bi bi-key" aria-hidden="true"></i> Forgot your password?</strong>
                         <br />
                         Click here if you have an existing account but you forgot your password.
                     </div>
-                    <a class="btn btn-danger" href="/public/Forgot">Forgot Password</a>
+                    <a class="btn btn-danger" href="/public/Forgot">
+                        <i class="bi bi-key-fill" aria-hidden="true"></i> Forgot Password
+                    </a>
                 </div>
                 <br />
 
-                <div class="alert alert-success">
+                <div class="alert alert-success" role="status" aria-live="polite">
                     <div style="padding-bottom: 5px">
-                        <strong>Need a new Account?</strong>
+                        <strong><i class="bi bi-person-plus" aria-hidden="true"></i> Need a new Account?</strong>
                         <br />
                         Click here to register :)
                     </div>
-                    <a class="btn btn-success" id="linkRegisterLocal" href="#">Register @@ Integration Portal</a>
+                    <a class="btn btn-success" id="linkRegisterLocal" href="#">
+                        <i class="bi bi-pencil-square" aria-hidden="true"></i> Register @@ Integration Portal
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

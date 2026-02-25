@@ -1,8 +1,8 @@
 @model dynamic
 
-<section class="card" id="mc-message-board-v2-@Model.ObjectId" role="region" aria-label="Message Board">
+<section class="card" id="mc-message-board-v2-@Model.ObjectId" aria-labelledby="mc-message-board-v2-heading-@Model.ObjectId">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0"><i class="bi bi-chat-left-text-fill" aria-hidden="true"></i> Message Board</h5>
+        <h5 id="mc-message-board-v2-heading-@Model.ObjectId" class="card-title mb-0"><i class="bi bi-chat-left-text-fill" aria-hidden="true"></i> Message Board</h5>
         <span class="badge bg-secondary" aria-label="Message count">0</span>
     </div>
     <div class="card-body">
@@ -25,11 +25,15 @@
                         <p class="mb-0 small">Message content goes here.</p>
                     </div>
                     <div class="mt-1">
-                        <button type="button" class="btn btn-sm btn-link p-0 text-muted small" aria-label="Reply to message">Reply</button>
+                        <button type="button" class="btn btn-sm btn-link p-0 text-muted small" aria-label="Reply to message">
+                            <i class="bi bi-reply" aria-hidden="true"></i> Reply
+                        </button>
                     </div>
                 </div>
             </div>
-            <p class="text-center text-muted mb-0">No messages yet.</p>
+            <p class="text-center text-muted mb-0 empty-state">
+                <i class="bi bi-chat" aria-hidden="true"></i> No messages yet.
+            </p>
         </div>
     </div>
 </section>

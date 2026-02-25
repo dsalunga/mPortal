@@ -1,13 +1,13 @@
 @model dynamic
 
-<div class="card" id="int-update-my-groups-@Model.ObjectId" role="region" aria-label="Update My Groups">
+<section class="card" id="int-update-my-groups-@Model.ObjectId" aria-labelledby="int-update-my-groups-heading">
     <div class="card-header">
-        <h5 class="card-title mb-0">Update My Groups</h5>
+        <h5 id="int-update-my-groups-heading" class="card-title mb-0"><i class="bi bi-pencil" aria-hidden="true"></i> Update My Groups</h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -16,7 +16,8 @@
         <form method="post" novalidate aria-label="Update my groups form">
             <div class="list-group mb-3" id="groupCheckList" role="group" aria-label="Available groups">
             </div>
-            <button type="submit" id="cmdUpdateGroups" class="btn btn-primary">Save Changes</button>
+            <p id="groupCheckListEmpty" class="text-center text-muted py-2 d-none" role="status"><i class="bi bi-inbox" aria-hidden="true"></i> No groups available.</p>
+            <button type="submit" id="cmdUpdateGroups" class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i> Save Changes</button>
         </form>
     </div>
-</div>
+</section>

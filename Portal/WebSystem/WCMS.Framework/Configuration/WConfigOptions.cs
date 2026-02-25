@@ -48,6 +48,7 @@ namespace WCMS.Framework.Configuration
         public static IServiceCollection AddWcmsConfiguration(this IServiceCollection services, IConfiguration config)
         {
             services.Configure<WConfigOptions>(config.GetSection("WConfig"));
+            services.AddScoped<WConfigService>();
             return services;
         }
     }

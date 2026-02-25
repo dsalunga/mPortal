@@ -1,33 +1,39 @@
 @model dynamic
 
-<div class="card" id="int-service-video-duration-input-@Model.ObjectId" role="region" aria-label="Video Duration Input">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Service Video Duration</h5>
+<section aria-labelledby="video-duration-heading-@Model.ObjectId">
+    <div class="card" id="int-service-video-duration-input-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="video-duration-heading-@Model.ObjectId">
+                <i class="bi bi-camera-video" aria-hidden="true"></i> Service Video Duration
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty((string)Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <form method="post" novalidate aria-label="Video duration form">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="txtHours" class="form-label">Hours</label>
+                        <input type="number" id="txtHours" name="Hours" class="form-control" min="0" max="23" value="0" aria-label="Hours" />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="txtMinutes" class="form-label">Minutes</label>
+                        <input type="number" id="txtMinutes" name="Minutes" class="form-control" min="0" max="59" value="0" aria-label="Minutes" />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="txtSeconds" class="form-label">Seconds</label>
+                        <input type="number" id="txtSeconds" name="Seconds" class="form-control" min="0" max="59" value="0" aria-label="Seconds" />
+                    </div>
+                </div>
+                <button type="submit" id="cmdSaveDuration" class="btn btn-primary">
+                    <i class="bi bi-save" aria-hidden="true"></i> Save Duration
+                </button>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty((string)Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
-                @Model.Message
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        }
-        <form method="post" novalidate aria-label="Video duration form">
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <label for="txtHours" class="form-label">Hours</label>
-                    <input type="number" id="txtHours" name="Hours" class="form-control" min="0" max="23" value="0" aria-label="Hours" />
-                </div>
-                <div class="col-md-4">
-                    <label for="txtMinutes" class="form-label">Minutes</label>
-                    <input type="number" id="txtMinutes" name="Minutes" class="form-control" min="0" max="59" value="0" aria-label="Minutes" />
-                </div>
-                <div class="col-md-4">
-                    <label for="txtSeconds" class="form-label">Seconds</label>
-                    <input type="number" id="txtSeconds" name="Seconds" class="form-control" min="0" max="59" value="0" aria-label="Seconds" />
-                </div>
-            </div>
-            <button type="submit" id="cmdSaveDuration" class="btn btn-primary">Save Duration</button>
-        </form>
-    </div>
-</div>
+</section>

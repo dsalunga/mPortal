@@ -1,15 +1,17 @@
 @* Originally: area51/Parts/Profile/Profile/ForgotPassword.ascx *@
 @model dynamic
 
-<section id="theme-area51-forgot-password-@Model.ObjectId" aria-label="Forgot password">
+<section id="theme-area51-forgot-password-@Model.ObjectId" aria-labelledby="forgot-pw-heading-@Model.ObjectId">
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="card shadow-sm">
                     <div class="card-body p-4">
-                        <h4 class="card-title text-center mb-4" id="forgot-pw-heading">Forgot Password</h4>
+                        <h4 class="card-title text-center mb-4" id="forgot-pw-heading-@Model.ObjectId">
+                            <i class="bi bi-key" aria-hidden="true"></i> Forgot Password
+                        </h4>
 
-                        <div role="form" aria-labelledby="forgot-pw-heading">
+                        <div role="form" aria-labelledby="forgot-pw-heading-@Model.ObjectId">
                             @await Component.InvokeAsync("WZone", new { zone = "ForgotPasswordForm" })
                         </div>
 

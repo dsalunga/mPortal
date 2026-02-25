@@ -3,10 +3,10 @@ using System.Data;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Xml.Linq;
 using System.Text;
 using System.Xml;
+using Microsoft.AspNetCore.Http;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
@@ -291,7 +291,7 @@ namespace WCMS.Framework
 
         public static PageElementBase GetCurrentWebElement()
         {
-            var query = new QueryParser(HttpContext.Current);
+            var query = new QueryParser(HttpContextHelper.Current);
 
             int pageId = query.GetId(WebColumns.PageId);
             int pageElementId = query.GetId(WebColumns.PageElementId);
@@ -321,7 +321,7 @@ namespace WCMS.Framework
 
         public static ObjectKey GetObjectKey()
         {
-            var query = new QueryParser(HttpContext.Current);
+            var query = new QueryParser(HttpContextHelper.Current);
             string keyString = query.Get(ObjectKey.KeyString);
 
             if (!string.IsNullOrEmpty(keyString))
@@ -338,7 +338,7 @@ namespace WCMS.Framework
 
         public static ObjectKey GetObjectStruct()
         {
-            var query = new QueryParser(HttpContext.Current);
+            var query = new QueryParser(HttpContextHelper.Current);
 
             var item = new ObjectKey();
             int siteId = query.GetId(WebColumns.SiteId);
@@ -384,9 +384,9 @@ namespace WCMS.Framework
 
         public static string GetUserHostAddress()
         {
-            var context = HttpContext.Current;
+            var context = HttpContextHelper.Current;
             if (context != null)
-                return context.Request.UserHostAddress;
+                return context.Connection.RemoteIpAddress?.ToString();
             return
                 string.Empty;
         }

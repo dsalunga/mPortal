@@ -1,8 +1,8 @@
 @model dynamic
 
-<section class="card" id="mc-vote-result-v4-@Model.ObjectId" role="region" aria-label="Vote Results">
+<section class="card" id="mc-vote-result-v4-@Model.ObjectId" aria-labelledby="mc-vote-result-v4-heading-@Model.ObjectId">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0"><i class="bi bi-bar-chart-fill" aria-hidden="true"></i> Vote Results</h5>
+        <h5 id="mc-vote-result-v4-heading-@Model.ObjectId" class="card-title mb-0"><i class="bi bi-bar-chart-fill" aria-hidden="true"></i> Vote Results</h5>
         <div class="btn-group btn-group-sm" role="group" aria-label="View toggle">
             <button type="button" class="btn btn-outline-secondary active" aria-label="Table view"><i class="bi bi-table" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-outline-secondary" aria-label="Chart view"><i class="bi bi-graph-up" aria-hidden="true"></i></button>
@@ -23,7 +23,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="6" class="text-center text-muted py-4">No results available.</td>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            <i class="bi bi-inbox" aria-hidden="true"></i> No results available.
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WCMS.Common
 {
-    public interface ILogger
+    public interface IWcmsLogger
     {
         void WriteLine(string format, params object[] args);
     }

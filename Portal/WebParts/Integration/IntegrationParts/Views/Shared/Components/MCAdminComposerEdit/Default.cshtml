@@ -1,8 +1,8 @@
 @model dynamic
 
-<div class="card" id="mc-admin-composer-edit-@Model.ObjectId" role="region" aria-label="Edit Composer">
+<section class="card" id="mc-admin-composer-edit-@Model.ObjectId" aria-labelledby="mc-admin-composer-edit-heading-@Model.ObjectId">
     <div class="card-header">
-        <h5 class="card-title mb-0"><i class="bi bi-pencil-square" aria-hidden="true"></i> Edit Composer</h5>
+        <h5 id="mc-admin-composer-edit-heading-@Model.ObjectId" class="card-title mb-0"><i class="bi bi-pencil-square" aria-hidden="true"></i> Edit Composer</h5>
     </div>
     <div class="card-body">
         <form method="post" novalidate aria-label="Composer edit form">
@@ -20,8 +20,8 @@
             </div>
             <div class="d-flex gap-2">
                 <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i> Save</button>
-                <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                <button type="button" class="btn btn-outline-secondary"><i class="bi bi-x-lg" aria-hidden="true"></i> Cancel</button>
             </div>
         </form>
     </div>
-</div>
+</section>

@@ -1,34 +1,40 @@
 @model dynamic
 
-<div class="card" id="int-registration-login-@Model.ObjectId" role="region" aria-label="Login">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Login</h5>
+<section aria-labelledby="registration-login-heading-@Model.ObjectId">
+    <div class="card" id="int-registration-login-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="registration-login-heading-@Model.ObjectId">
+                <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Login
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty((string)Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <form method="post" novalidate aria-label="Login form">
+                <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+                <div class="mb-3">
+                    <label for="regLoginUser" class="form-label">User Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" class="form-control" id="regLoginUser" name="UserName" required aria-required="true" autocomplete="username" />
+                </div>
+                <div class="mb-3">
+                    <label for="regLoginPass" class="form-label">Password <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="password" class="form-control" id="regLoginPass" name="Password" required aria-required="true" autocomplete="current-password" />
+                </div>
+                <div class="d-flex gap-2 align-items-center">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Sign In
+                    </button>
+                    @if (Model.ShowRegistrationLink)
+                    {
+                        <a href="#" class="btn btn-link">Create an account</a>
+                    }
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty((string)Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
-                @Model.Message
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        }
-        <form method="post" novalidate aria-label="Login form">
-            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
-            <div class="mb-3">
-                <label for="regLoginUser" class="form-label">User Name <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="text" class="form-control" id="regLoginUser" name="UserName" required aria-required="true" autocomplete="username" />
-            </div>
-            <div class="mb-3">
-                <label for="regLoginPass" class="form-label">Password <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="password" class="form-control" id="regLoginPass" name="Password" required aria-required="true" autocomplete="current-password" />
-            </div>
-            <div class="d-flex gap-2 align-items-center">
-                <button type="submit" class="btn btn-primary">Sign In</button>
-                @if (Model.ShowRegistrationLink)
-                {
-                    <a href="#" class="btn btn-link">Create an account</a>
-                }
-            </div>
-        </form>
-    </div>
-</div>
+</section>

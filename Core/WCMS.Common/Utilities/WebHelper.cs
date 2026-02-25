@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Data;
 using System.Configuration;
-using System.Web;
-using System.Web.Security;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Web.Hosting;
-using System.Web.Caching;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace WCMS.Common.Utilities
 {
@@ -30,7 +27,7 @@ namespace WCMS.Common.Utilities
 
         public static bool IsWeb
         {
-            get { return HttpContext.Current != null; }
+            get { return HttpContextHelper.Current != null; }
         }
 
         public static string GetResponseString(string httpAddress)
@@ -67,7 +64,7 @@ namespace WCMS.Common.Utilities
         public static string UrlEncode(string url)
         {
             if (!string.IsNullOrEmpty(url))
-                return HttpUtility.UrlEncode(url).Replace(AMPERSAND, AMPERSAND_SUBST);
+                return WebUtility.UrlEncode(url).Replace(AMPERSAND, AMPERSAND_SUBST);
 
             return string.Empty;
         }
@@ -75,7 +72,7 @@ namespace WCMS.Common.Utilities
         public static string UrlDecode(string url)
         {
             if (!string.IsNullOrEmpty(url))
-                return HttpUtility.UrlDecode(url).Replace(AMPERSAND_SUBST, AMPERSAND);
+                return WebUtility.UrlDecode(url).Replace(AMPERSAND_SUBST, AMPERSAND);
 
             return string.Empty;
         }
@@ -157,30 +154,29 @@ namespace WCMS.Common.Utilities
 
         public static void Redirect(string url)
         {
-            Redirect(url, HttpContext.Current);
+            Redirect(url, HttpContextHelper.Current);
         }
 
         public static void Redirect(string url, HttpContext context)
         {
-            context.Response.Redirect(url, false);
-            context.ApplicationInstance.CompleteRequest();
+            context.Response.Redirect(url);
         }
 
         public static string MapPath(string path, bool extensive = false)
         {
             if (!string.IsNullOrWhiteSpace(path))
             {
-                var context = HttpContext.Current;
+                var context = HttpContextHelper.Current;
                 if (context == null || path.Contains(":") || path.StartsWith(@"\\"))
                     return FileHelper.EvalPath(path);
 
                 if (extensive && path.Contains("~"))
                 {
-                    var newPath = path.Replace("~", context.Server.MapPath("~"));
+                    var newPath = path.Replace("~", PathMapper.ContentRootPath);
                     return FileHelper.EvalPath(newPath);
                 }
 
-                return context.Server.MapPath(path);
+                return PathMapper.MapPath(path);
             }
 
             return path;
@@ -241,7 +237,8 @@ namespace WCMS.Common.Utilities
                 return true;
 
             var url = new Uri(urlRef);
-            if (context.Request.Url.Host.Equals(url.Host, StringComparison.InvariantCultureIgnoreCase))
+            var requestUrl = new Uri($"{context.Request.Scheme}://{context.Request.Host}{context.Request.Path}{context.Request.QueryString}");
+            if (requestUrl.Host.Equals(url.Host, StringComparison.InvariantCultureIgnoreCase))
                 return true;
 
             return false;
@@ -360,7 +357,7 @@ namespace WCMS.Common.Utilities
         public static void DownloadAsCsv(DataSet ds, string fileName = "Data")
         {
             bool IsOutputStreamed = false;
-            var response = HttpContext.Current.Response;
+            var response = HttpContextHelper.Current.Response;
 
             try
             {
@@ -402,13 +399,12 @@ namespace WCMS.Common.Utilities
                     var dataToExportString = dataToExport.ToString();
                     if (!string.IsNullOrEmpty(dataToExportString))
                     {
-                        response.Clear();
                         response.ContentType = "text/vnd.ms-excel";
-                        response.AddHeader("content-disposition",
+                        response.Headers.Append("content-disposition",
                             string.Format("attachment;filename={0}_{1}.csv",
                                 string.IsNullOrEmpty(dtExport.TableName) || dtExport.TableName.Equals("Default", StringComparison.InvariantCultureIgnoreCase) ? fileName : dtExport.TableName,
                                 DateTime.Now.ToString("yyyyMMdd")));
-                        response.Write(dataToExportString);
+                        response.WriteAsync(dataToExportString).Wait();
                         IsOutputStreamed = true;
                     }
                 }
@@ -419,7 +415,7 @@ namespace WCMS.Common.Utilities
             finally
             {
                 if (IsOutputStreamed)
-                    response.End();
+                    response.CompleteAsync().Wait();
             }
         }
 
@@ -433,18 +429,15 @@ namespace WCMS.Common.Utilities
             var absFilePath = needMapping ? MapPath(filePath) : filePath;
             var fileName = string.IsNullOrEmpty(downloadFileName) ? Path.GetFileName(absFilePath) : downloadFileName;
 
-            var response = HttpContext.Current.Response;
-
-            response.Clear();
+            var response = HttpContextHelper.Current.Response;
 
             if (force)
-                response.AppendHeader("content-disposition", string.Format("attachment; filename=\"{0}\"", fileName));
+                response.Headers.Append("content-disposition", string.Format("attachment; filename=\"{0}\"", fileName));
             else
-                response.AppendHeader("content-disposition", string.Format("filename=\"{0}\"", fileName));
+                response.Headers.Append("content-disposition", string.Format("filename=\"{0}\"", fileName));
 
             response.ContentType = MIMEHelper.GetMIMEType(fileName);
-            response.TransmitFile(absFilePath);
-            response.End();
+            response.SendFileAsync(absFilePath).Wait();
         }
 
         /*public static void DownloadFolder(string folderPath, string baseFilename = "", string password = "")

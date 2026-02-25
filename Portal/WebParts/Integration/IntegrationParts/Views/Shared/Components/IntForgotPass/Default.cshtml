@@ -1,23 +1,30 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntForgotPassModel
 
-<div class="card" id="int-forgot-pass-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Forgot Password</h5>
+<section aria-labelledby="forgot-pass-heading-@Model.ObjectId">
+    <div class="card" id="int-forgot-pass-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="forgot-pass-heading-@Model.ObjectId">
+                <i class="bi bi-question-circle" aria-hidden="true"></i> Forgot Password
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <p>Enter your email address and we will send you instructions to reset your password.</p>
+            <form method="post" novalidate aria-label="Forgot password form">
+                <div class="mb-3">
+                    <label for="forgotEmail" class="form-label">Email Address <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="email" class="form-control" id="forgotEmail" name="Email" required aria-required="true" />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-envelope" aria-hidden="true"></i> Send Reset Link
+                </button>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
-                @Model.Message
-            </div>
-        }
-        <p>Enter your email address and we will send you instructions to reset your password.</p>
-        <form method="post" novalidate>
-            <div class="mb-3">
-                <label for="forgotEmail" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="forgotEmail" name="Email" required />
-            </div>
-            <button type="submit" class="btn btn-primary">Send Reset Link</button>
-        </form>
-    </div>
-</div>
+</section>

@@ -3,10 +3,10 @@ using System.Data;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Xml.Linq;
 using System.Text;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
@@ -118,11 +118,11 @@ namespace WCMS.Framework
                 {
 
                     int defaultSiteId = -1;
-                    context = context ?? HttpContext.Current;
+                    context = context ?? HttpContextHelper.Current;
                     if (context != null)
                     {
-                        string hostName = context.Request.ServerVariables["SERVER_NAME"];
-                        int port = DataUtil.GetInt32(context.Request.ServerVariables["SERVER_PORT"], 80);
+                        string hostName = context.Request.Host.Host;
+                        int port = context.Request.Host.Port ?? (context.Request.IsHttps ? 443 : 80);
 
                         defaultSiteId = WebSiteIdentity.GetDefaultSite(hostName, port);
                         if (defaultSiteId == site.Id)
@@ -178,7 +178,7 @@ namespace WCMS.Framework
 
         public static WPage ResolvePage(string urlPath)
         {
-            var context = HttpContext.Current;
+            var context = HttpContextHelper.Current;
             return ResolvePageLowered(context, urlPath.ToLower()).Item1;
         }
 
@@ -216,7 +216,7 @@ namespace WCMS.Framework
             if (string.IsNullOrEmpty(loweredPath))
                 return new Tuple<WPage, string>(null, null);
 
-            string hostName = context.Request.ServerVariables["SERVER_NAME"];
+            string hostName = context.Request.Host.Host;
             WSite site = null;
 
             if (loweredPath.Equals("/"))

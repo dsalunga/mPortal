@@ -1,14 +1,14 @@
 @model dynamic
 
-<section class="card" id="mc-finalists-@Model.ObjectId" role="region" aria-label="Finalists">
+<section class="card" id="mc-finalists-@Model.ObjectId" aria-labelledby="mc-finalists-heading-@Model.ObjectId">
     <div class="card-header">
-        <h5 class="card-title mb-0"><i class="bi bi-star-fill text-warning" aria-hidden="true"></i> Finalists</h5>
+        <h5 id="mc-finalists-heading-@Model.ObjectId" class="card-title mb-0"><i class="bi bi-star-fill text-warning" aria-hidden="true"></i> Finalists</h5>
     </div>
     <div class="card-body">
         <div class="row g-3" role="list" aria-label="Finalist cards">
             <div class="col-md-4 col-sm-6" role="listitem">
                 <div class="card h-100 shadow-sm">
-                    <img src="/images/placeholder-finalist.png" class="card-img-top" alt="Finalist photo" />
+                    <img src="/images/placeholder-finalist.png" class="card-img-top" alt="Finalist photo" loading="lazy" />
                     <div class="card-body text-center">
                         <h6 class="card-title">Finalist Name</h6>
                         <p class="text-muted small mb-2">Song Title</p>
@@ -17,5 +17,8 @@
                 </div>
             </div>
         </div>
+        <p class="text-center text-muted mt-3 mb-0 empty-state">
+            <i class="bi bi-inbox" aria-hidden="true"></i> No finalists to display.
+        </p>
     </div>
 </section>

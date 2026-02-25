@@ -2,7 +2,9 @@
 @model dynamic
 
 <div id="theme-mcgisg-inside-@Model.ObjectId">
-    <header class="bg-success text-white py-3" role="banner">
+    <a href="#mcgisg-inside-main-@Model.ObjectId" class="visually-hidden-focusable skip-link">Skip to main content</a>
+
+    <header class="bg-success text-white py-3" role="banner" aria-label="MCGI Small Groups site header">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "SgHeader" })
         </div>
@@ -14,7 +16,7 @@
         </div>
     </nav>
 
-    <main class="container py-4" role="main">
+    <main id="mcgisg-inside-main-@Model.ObjectId" class="container py-4">
         <div class="row">
             <div class="col-md-8">
                 @await Component.InvokeAsync("WZone", new { zone = "Content" })
@@ -27,7 +29,7 @@
         </div>
     </main>
 
-    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo" aria-label="MCGI Small Groups site footer">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
             <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year MCGI Small Groups. All rights reserved.</small></p>

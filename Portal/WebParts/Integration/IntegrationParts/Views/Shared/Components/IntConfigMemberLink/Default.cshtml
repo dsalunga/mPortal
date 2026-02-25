@@ -1,17 +1,18 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntConfigMemberLinkModel
 
-<div class="card" id="int-config-member-link-@Model.ObjectId">
+<section class="card" id="int-config-member-link-@Model.ObjectId" aria-labelledby="int-config-member-link-heading">
     <div class="card-header">
-        <h5 class="card-title mb-0">Configure Member Link</h5>
+        <h5 id="int-config-member-link-heading" class="card-title mb-0"><i class="bi bi-link-45deg" aria-hidden="true"></i> Configure Member Link</h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <form method="post" novalidate>
+        <form method="post" novalidate aria-label="Configure member link form">
             <div class="mb-3">
                 <label for="mlMemberId" class="form-label">Member ID</label>
                 <input type="text" class="form-control" id="mlMemberId" name="MemberId" value="@Model.MemberId" />
@@ -28,7 +29,7 @@
                 <label for="mlStatus" class="form-label">Status</label>
                 <input type="text" class="form-control" id="mlStatus" name="Status" value="@Model.Status" />
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i> Save</button>
         </form>
     </div>
-</div>
+</section>

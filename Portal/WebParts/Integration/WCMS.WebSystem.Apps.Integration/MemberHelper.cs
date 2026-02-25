@@ -14,7 +14,7 @@ using WCMS.WebSystem.Apps.Integration.ExtApp;
 using WCMS.Framework.Net;
 using WCMS.WebSystem.Agent;
 using WCMS.Framework.Core;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace WCMS.WebSystem.Apps.Integration
 {
@@ -55,7 +55,7 @@ namespace WCMS.WebSystem.Apps.Integration
                 if (user != null && group != null)
                 {
                     // Send Notification Email
-                    var content = FileHelper.ReadFile(context.Server.MapPath(paramSet.GetParameterValue("AccountApprovedEmailToUser")));
+                    var content = FileHelper.ReadFile(PathMapper.MapPath(paramSet.GetParameterValue("AccountApprovedEmailToUser")));
                     var subject = paramSet.GetParameterValue("AccountApprovedEmailToUserSubject", "Integration Portal: Congratulations! Your New Account is Now Approved!");
                     var loginUrl = paramSet.GetParameterValue("LoginUrl");
                     if (loginUrl.StartsWith("/"))

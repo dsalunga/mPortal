@@ -1,0 +1,120 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+      app:
+        description: 'Application to deploy'
+        required: true
+        type: choice
+        options:
+          - web (Main Portal)
+          - integration
+          - all
+
+env:
+  DOTNET_VERSION: '10.0.x'
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Restore and build
+      run: dotnet publish Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj -c Release -o ./publish/web
+
+    - name: Build Integration host
+      if: inputs.app == 'integration' || inputs.app == 'all'
+      run: dotnet publish Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj -c Release -o ./publish/integration
+
+    - name: Upload web artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: web-app
+        path: ./publish/web/
+
+    - name: Upload integration artifact
+      if: inputs.app == 'integration' || inputs.app == 'all'
+      uses: actions/upload-artifact@v4
+      with:
+        name: integration-app
+        path: ./publish/integration/
+
+    - name: Log in to Container Registry
+      if: inputs.environment == 'staging' || inputs.environment == 'production'
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push Docker image
+      if: inputs.app == 'web (Main Portal)' || inputs.app == 'all'
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        push: true
+        tags: |
+          ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/web:${{ inputs.environment }}
+          ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/web:${{ github.sha }}
+
+  deploy-staging:
+    needs: build-and-publish
+    if: inputs.environment == 'staging'
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: web-app
+        path: ./deploy/
+
+    - name: Deploy to staging
+      run: |
+        echo "Deploying to staging environment..."
+        echo "Artifact contents:"
+        ls -la ./deploy/
+        echo "Deployment target: staging"
+        echo "Note: Configure actual deployment steps (Azure App Service, Docker Compose, IIS, etc.) per your infrastructure."
+
+  deploy-production:
+    needs: build-and-publish
+    if: inputs.environment == 'production'
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: web-app
+        path: ./deploy/
+
+    - name: Deploy to production
+      run: |
+        echo "Deploying to production environment..."
+        echo "Artifact contents:"
+        ls -la ./deploy/
+        echo "Deployment target: production"
+        echo "Note: Configure actual deployment steps (Azure App Service, Docker Compose, IIS, etc.) per your infrastructure."

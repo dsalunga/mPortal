@@ -2,9 +2,6 @@
 using System;
 using System.ComponentModel;
 using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 #endregion
 
 namespace Media_Player_ASP.NET_Control

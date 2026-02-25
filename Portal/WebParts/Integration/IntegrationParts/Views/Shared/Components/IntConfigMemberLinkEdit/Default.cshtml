@@ -1,17 +1,18 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntConfigMemberLinkEditModel
 
-<div class="card" id="int-config-member-link-edit-@Model.ObjectId">
+<section class="card" id="int-config-member-link-edit-@Model.ObjectId" aria-labelledby="int-config-member-link-edit-heading">
     <div class="card-header">
-        <h5 class="card-title mb-0">Edit Member Link</h5>
+        <h5 id="int-config-member-link-edit-heading" class="card-title mb-0"><i class="bi bi-pencil-square" aria-hidden="true"></i> Edit Member Link</h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <form method="post" novalidate>
+        <form method="post" novalidate aria-label="Edit member link form">
             <input type="hidden" name="LinkId" value="@Model.LinkId" />
             <div class="mb-3">
                 <label for="mleditMemberId" class="form-label">Member ID</label>
@@ -33,8 +34,8 @@
                 <label for="mleditNotes" class="form-label">Notes</label>
                 <textarea class="form-control" id="mleditNotes" name="Notes" rows="3">@Model.Notes</textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
-            <a href="#" class="btn btn-outline-secondary ms-2">Cancel</a>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i> Update</button>
+            <a href="#" class="btn btn-outline-secondary ms-2"><i class="bi bi-x-lg" aria-hidden="true"></i> Cancel</a>
         </form>
     </div>
-</div>
+</section>

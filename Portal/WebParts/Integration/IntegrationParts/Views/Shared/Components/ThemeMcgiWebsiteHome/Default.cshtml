@@ -2,7 +2,9 @@
 @model dynamic
 
 <div id="theme-mcgi-website-home-@Model.ObjectId">
-    <header class="bg-primary text-white py-3" role="banner">
+    <a href="#mcgi-home-main-@Model.ObjectId" class="visually-hidden-focusable skip-link">Skip to main content</a>
+
+    <header class="bg-primary text-white py-3" role="banner" aria-label="MCGI site header">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Header" })
         </div>
@@ -12,39 +14,41 @@
         @await Component.InvokeAsync("WZone", new { zone = "HeroSlider" })
     </section>
 
-    <section class="container py-5" aria-label="Features">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        @await Component.InvokeAsync("WZone", new { zone = "FeatureCard1" })
+    <main id="mcgi-home-main-@Model.ObjectId">
+        <section class="container py-5" aria-label="Features">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            @await Component.InvokeAsync("WZone", new { zone = "FeatureCard1" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            @await Component.InvokeAsync("WZone", new { zone = "FeatureCard2" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            @await Component.InvokeAsync("WZone", new { zone = "FeatureCard3" })
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        @await Component.InvokeAsync("WZone", new { zone = "FeatureCard2" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        @await Component.InvokeAsync("WZone", new { zone = "FeatureCard3" })
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="bg-light py-4" aria-label="News">
-        <div class="container">
-            @await Component.InvokeAsync("WZone", new { zone = "NewsSection" })
-        </div>
-    </section>
+        <section class="bg-light py-4" aria-label="News">
+            <div class="container">
+                @await Component.InvokeAsync("WZone", new { zone = "NewsSection" })
+            </div>
+        </section>
+    </main>
 
-    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo" aria-label="MCGI site footer">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
             <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year MCGI. All rights reserved.</small></p>

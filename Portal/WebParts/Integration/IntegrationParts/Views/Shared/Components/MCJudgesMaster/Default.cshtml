@@ -1,8 +1,8 @@
 @model dynamic
 
-<div class="card" id="mc-judges-master-@Model.ObjectId" role="region" aria-label="Master Judges Management">
+<section class="card" id="mc-judges-master-@Model.ObjectId" aria-labelledby="mc-judges-master-heading-@Model.ObjectId">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0"><i class="bi bi-person-badge-fill" aria-hidden="true"></i> Master Judges</h5>
+        <h5 id="mc-judges-master-heading-@Model.ObjectId" class="card-title mb-0"><i class="bi bi-person-badge-fill" aria-hidden="true"></i> Master Judges</h5>
         <button type="button" class="btn btn-sm btn-primary" aria-label="Add new judge">
             <i class="bi bi-plus-lg" aria-hidden="true"></i> Add
         </button>
@@ -20,10 +20,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="4" class="text-center text-muted py-4">No judges assigned.</td>
+                        <td colspan="4" class="text-center text-muted py-4">
+                            <i class="bi bi-inbox" aria-hidden="true"></i> No judges assigned.
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+</section>

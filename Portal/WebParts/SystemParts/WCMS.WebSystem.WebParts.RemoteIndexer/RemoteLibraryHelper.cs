@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 using WCMS.Common.Net;
 using WCMS.Common.Utilities;
 
@@ -31,7 +31,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                         break;
                 }
             }
-            HttpContext.Current.Response.End();
+            WCMS.Common.Utilities.HttpContextHelper.Current?.Response.CompleteAsync().Wait();
         }
 
         public static void InvokeWindowsFileDownload(RemoteItem item, bool force)
@@ -88,15 +88,15 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
             ftpClient.Credentials = new NetworkCredential(library.UserName, library.Password);
 
             //ftpClient.BeginGetResponse
-            var httpContext = HttpContext.Current;
+            var httpContext = HttpContextHelper.Current;
             var response = httpContext.Response;
             var request = httpContext.Request;
 
             string lastUpdateTiemStr = item.DateModified.ToUniversalTime().ToString("r");
-            string eTag = HttpUtility.UrlEncode(item.Name, Encoding.UTF8) + " " + lastUpdateTiemStr;
-            if (request.Headers["If-Range"] != null)
+            string eTag = System.Net.WebUtility.UrlEncode(item.Name) + " " + lastUpdateTiemStr;
+            if (!string.IsNullOrEmpty(request.Headers["If-Range"].ToString()))
             {
-                if (request.Headers["If-Range"].Replace("\"", "") != eTag)
+                if (request.Headers["If-Range"].ToString().Replace("\"", "") != eTag)
                 {
                     response.StatusCode = (int)HttpStatusCode.PreconditionFailed;
                     return;
@@ -115,31 +115,30 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                         if(fileLength < 0)
                             fileLength = item.Size;
 
-                        response.Clear();
-                        response.BufferOutput = false;
+                        response.Headers.Clear();
+                        // BufferOutput not available in ASP.NET Core (responses are unbuffered by default)
                         //httpResponse.AddHeader("Content-MD5", GetMd5Hash(myFile));
-                        response.AppendHeader("Accept-Ranges", "bytes");
-                        response.AppendHeader("ETag", "\"" + eTag + "\"");
-                        response.AppendHeader("Last-Modified", lastUpdateTiemStr);
+                        response.Headers.Append("Accept-Ranges", "bytes");
+                        response.Headers.Append("ETag", "\"" + eTag + "\"");
+                        response.Headers.Append("Last-Modified", lastUpdateTiemStr);
 
                         if (force)
                         {
-                            response.AppendHeader("Content-Disposition", string.Format("attachment; filename=\"{0}\"", item.Name));
+                            response.Headers.Append("Content-Disposition", string.Format("attachment; filename=\"{0}\"", item.Name));
                         }
                         else
                         {
-                            response.AppendHeader("Content-Disposition", string.Format("filename=\"{0}\"", item.Name));
+                            response.Headers.Append("Content-Disposition", string.Format("filename=\"{0}\"", item.Name));
                             response.ContentType = MIMEHelper.GetMIMEType(item.Name);
                         }
-                        response.AddHeader("Content-Length", fileLength.ToString());
-                        response.AddHeader("Connection", "Keep-Alive");
-                        response.ContentEncoding = Encoding.UTF8;
+                        response.Headers.Append("Content-Length", fileLength.ToString());
+                        response.Headers.Append("Connection", "Keep-Alive");
 
 
-                        if (request.Headers["Range"] != null)
+                        if (!string.IsNullOrEmpty(request.Headers["Range"].ToString()))
                         {
                             response.StatusCode = (int)HttpStatusCode.PartialContent;
-                            string[] range = request.Headers["Range"].Split(new char[] { '=', '-' });
+                            string[] range = request.Headers["Range"].ToString().Split(new char[] { '=', '-' });
                             startBytes = Convert.ToInt64(range[1]);
                             if (startBytes < 0 || startBytes >= fileLength)
                             {
@@ -149,7 +148,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                         }
 
                         if (startBytes > 0)
-                            response.AddHeader("Content-Range", string.Format(" bytes {0}-{1}/{2}", startBytes, fileLength - 1, fileLength));
+                            response.Headers.Append("Content-Range", string.Format(" bytes {0}-{1}/{2}", startBytes, fileLength - 1, fileLength));
 
                         int packSize = 1024 * 10; //read in block，every block 10K bytes //65536; //2048 // 10240;
                         int readCount;
@@ -157,7 +156,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
 
                         try
                         {
-                            var responseStream = response.OutputStream;
+                            var responseStream = response.Body;
 
                             if (startBytes > 0)
                             {
@@ -169,9 +168,9 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                             {
                                 readCount = ftpStream.Read(buffer, 0, packSize);
                                 responseStream.Write(buffer, 0, readCount);
-                                response.Flush();
+                                response.Body.FlushAsync().GetAwaiter().GetResult();
                             }
-                            while (readCount > 0 && response.IsClientConnected);
+                            while (readCount > 0 && !httpContext.RequestAborted.IsCancellationRequested);
 
                             //response.StatusCode = (int)HttpStatusCode.OK;
                             responseStream.Close();
@@ -183,7 +182,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer
                         {
                             LogHelper.WriteLog(ex);
                         }
-                        catch (HttpException ex)
+                        catch (System.Net.Http.HttpRequestException ex)
                         {
                             LogHelper.WriteLog(ex);
                         }

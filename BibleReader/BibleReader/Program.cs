@@ -6,9 +6,11 @@ using WCMS.BibleReader.Core;
 using WCMS.BibleReader.Core.Providers;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Extensions;
+using WCMS.Framework.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddWcmsFramework();
@@ -24,7 +26,15 @@ var app = builder.Build();
 
 ConfigUtil.SetConfiguration(app.Configuration);
 PathMapper.Configure(app.Environment.ContentRootPath, app.Environment.WebRootPath);
+HttpContextHelper.Configure(app.Services.GetRequiredService<Microsoft.AspNetCore.Http.IHttpContextAccessor>());
 
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/error");
+    app.UseHsts();
+}
+
+app.UseSecurityHeaders();
 app.UseStaticFiles();
 app.UseRouting();
 
@@ -35,5 +45,8 @@ app.MapGet("/", () => Results.Ok(new { app = "BibleReader.WebApp", status = "run
 app.MapGet("/health", () => Results.Ok("ok"));
 app.MapRazorPages();
 app.MapControllers();
+
+// CMS page fallback endpoint
+app.MapCmsPages();
 
 app.Run();

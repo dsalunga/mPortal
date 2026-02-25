@@ -1,13 +1,13 @@
 @model dynamic
 
-<div class="card" id="int-group-user-manager-@Model.ObjectId" role="region" aria-label="Group User Manager">
+<section class="card" id="int-group-user-manager-@Model.ObjectId" aria-labelledby="int-group-user-manager-heading">
     <div class="card-header">
-        <h5 class="card-title mb-0">Group User Manager</h5>
+        <h5 id="int-group-user-manager-heading" class="card-title mb-0"><i class="bi bi-person-gear" aria-hidden="true"></i> Group User Manager</h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -29,15 +29,17 @@
                 <h6>Available Users</h6>
                 <div class="list-group" id="availableUsers" role="listbox" aria-label="Available users" style="max-height: 300px; overflow-y: auto;">
                 </div>
+                <p id="availableUsersEmpty" class="text-center text-muted py-2 d-none" role="status"><i class="bi bi-person-x" aria-hidden="true"></i> No available users.</p>
             </div>
             <div class="col-md-6">
                 <h6>Assigned Users</h6>
                 <div class="list-group" id="assignedUsers" role="listbox" aria-label="Assigned users" style="max-height: 300px; overflow-y: auto;">
                 </div>
+                <p id="assignedUsersEmpty" class="text-center text-muted py-2 d-none" role="status"><i class="bi bi-person-x" aria-hidden="true"></i> No assigned users.</p>
             </div>
         </div>
         <div class="mt-3">
-            <button type="button" id="cmdSaveAssignments" class="btn btn-primary">Save Assignments</button>
+            <button type="button" id="cmdSaveAssignments" class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i> Save Assignments</button>
         </div>
     </div>
-</div>
+</section>

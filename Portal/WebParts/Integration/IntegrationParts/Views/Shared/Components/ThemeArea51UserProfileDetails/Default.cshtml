@@ -1,15 +1,17 @@
 @* Originally: area51/Parts/Profile/Profile/UserProfileDetails.ascx *@
 @model dynamic
 
-<section id="theme-area51-profile-details-@Model.ObjectId" aria-label="User profile details">
+<section id="theme-area51-profile-details-@Model.ObjectId" aria-labelledby="profile-details-heading-@Model.ObjectId">
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0" id="profile-details-heading">Profile Details</h5>
+                        <h5 class="card-title mb-0" id="profile-details-heading-@Model.ObjectId">
+                            <i class="bi bi-person-badge" aria-hidden="true"></i> Profile Details
+                        </h5>
                     </div>
-                    <div class="card-body" role="region" aria-labelledby="profile-details-heading">
+                    <div class="card-body" role="region" aria-labelledby="profile-details-heading-@Model.ObjectId">
                         @await Component.InvokeAsync("WZone", new { zone = "ProfileInfo" })
                     </div>
                 </div>

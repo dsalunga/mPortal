@@ -5,7 +5,6 @@ using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Xml.Linq;
 
 using WCMS.Common.Utilities;

@@ -67,7 +67,7 @@ namespace WCMS.Framework.Agent
 
             var logPath = Path.Combine(_logPath, "Agent.txt");
 
-            _logManager = new LogManager(new List<ILogger>
+            _logManager = new LogManager(new List<IWcmsLogger>
                 {
                     new ConsoleLogger(),
                     new FileLogger(logPath)
@@ -218,7 +218,7 @@ namespace WCMS.Framework.Agent
                 var logPath = Path.Combine(_logPath, job.Name + ".txt");
 
                 task.Logger = new LogManager(
-                    new List<ILogger>
+                    new List<IWcmsLogger>
                     {
                         new ConsoleLogger(),
                         new FileLogger(logPath)

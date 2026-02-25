@@ -2,7 +2,9 @@
 @model dynamic
 
 <div id="theme-area51-default-@Model.ObjectId">
-    <header class="bg-white border-bottom py-3" role="banner">
+    <a href="#area51-main-content-@Model.ObjectId" class="visually-hidden-focusable skip-link">Skip to main content</a>
+
+    <header class="bg-white border-bottom py-3" role="banner" aria-label="Site header">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-auto">
@@ -21,7 +23,7 @@
         </div>
     </nav>
 
-    <main class="container-fluid py-4" role="main">
+    <main id="area51-main-content-@Model.ObjectId" class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
                 @await Component.InvokeAsync("WZone", new { zone = "Content" })
@@ -29,7 +31,7 @@
         </div>
     </main>
 
-    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo" aria-label="Site footer">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
             <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year All rights reserved.</small></p>

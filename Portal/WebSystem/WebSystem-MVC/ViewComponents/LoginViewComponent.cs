@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace WCMS.WebSystem.ViewComponents
     {
         public LoginViewComponent(IWContext context) : base(context) { }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             var element = WcmsContext.Element;
             var mode = WcmsContext.Get(AccountConstants.ModeKey);

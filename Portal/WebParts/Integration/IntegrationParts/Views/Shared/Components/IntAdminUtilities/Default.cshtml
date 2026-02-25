@@ -1,20 +1,23 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntAdminUtilitiesModel
 
+<section aria-labelledby="int-admin-utilities-heading-@Model.ObjectId">
 <div class="card" id="int-admin-utilities-@Model.ObjectId">
     <div class="card-header">
-        <h5 class="card-title mb-0">Admin Utilities</h5>
+        <h5 id="int-admin-utilities-heading-@Model.ObjectId" class="card-title mb-0">
+            <i class="bi bi-gear" aria-hidden="true"></i> Admin Utilities
+        </h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="status" aria-live="polite">
                 @Model.Message
             </div>
         }
-        <form method="post" novalidate>
+        <form method="post" novalidate aria-label="Admin utilities form">
             <div class="mb-3">
                 <label for="adminAction" class="form-label">Action</label>
-                <select class="form-select" id="adminAction" name="Action">
+                <select class="form-select" id="adminAction" name="Action" aria-label="Select admin action">
                     <option value="">-- Select Action --</option>
                     @if (Model.AvailableActions != null)
                     {
@@ -29,7 +32,10 @@
                 <label for="adminParam" class="form-label">Parameter</label>
                 <input type="text" class="form-control" id="adminParam" name="Parameter" />
             </div>
-            <button type="submit" class="btn btn-warning">Execute</button>
+            <button type="submit" class="btn btn-warning">
+                <i class="bi bi-play-fill" aria-hidden="true"></i> Execute
+            </button>
         </form>
     </div>
 </div>
+</section>

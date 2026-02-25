@@ -3,8 +3,8 @@ using System.Data;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Http;
 
 using WCMS.Common;
 using WCMS.Common.Utilities;
@@ -27,7 +27,7 @@ namespace WCMS.Framework
         public static WContext GetInstance(dynamic args = null)
         {
             if (args == null)
-                args = HttpContext.Current;
+                args = HttpContextHelper.Current;
 
             var item = new WContext(args);
             return item;
@@ -78,7 +78,7 @@ namespace WCMS.Framework
             get { return _contextType; }
         }
 
-        public HttpContext HttpContext { get { return HttpContext.Current; } }
+        public HttpContext HttpContext { get { return HttpContextHelper.Current; } }
 
         public int RecordId { get; set; }
         public int ObjectId { get; set; }
@@ -147,7 +147,7 @@ namespace WCMS.Framework
         /// </summary>
         public string UserHostAddress
         {
-            get { return HttpContext.Request.UserHostAddress; }
+            get { return HttpContext.Connection.RemoteIpAddress?.ToString(); }
         }
 
         //public string this[string name]

@@ -1,13 +1,16 @@
 @model dynamic
 
+<section aria-labelledby="int-profile-update-profile-heading-@Model.ObjectId">
 <div class="card" id="int-profile-update-profile-@Model.ObjectId" role="region" aria-label="Update Profile">
     <div class="card-header">
-        <h5 class="card-title mb-0">Update Profile</h5>
+        <h5 id="int-profile-update-profile-heading-@Model.ObjectId" class="card-title mb-0">
+            <i class="bi bi-person-lines-fill" aria-hidden="true"></i> Update Profile
+        </h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -16,7 +19,9 @@
             <div class="text-center mb-3">
                 <img src="/Content/Assets/Images/nophoto.png" id="profilePhoto" class="rounded-circle" width="120" height="120" alt="Profile photo" />
                 <div class="mt-2">
-                    <button type="button" id="cmdChangePhoto" class="btn btn-sm btn-outline-secondary">Change Photo</button>
+                    <button type="button" id="cmdChangePhoto" class="btn btn-sm btn-outline-secondary" aria-label="Change profile photo">
+                        <i class="bi bi-camera" aria-hidden="true"></i> Change Photo
+                    </button>
                 </div>
             </div>
             <div class="row">
@@ -41,7 +46,10 @@
                 <label for="txtAddress" class="form-label">Address</label>
                 <textarea id="txtAddress" name="Address" class="form-control" rows="2"></textarea>
             </div>
-            <button type="submit" id="cmdUpdateProfile" class="btn btn-primary">Save Changes</button>
+            <button type="submit" id="cmdUpdateProfile" class="btn btn-primary">
+                <i class="bi bi-check-lg" aria-hidden="true"></i> Save Changes
+            </button>
         </form>
     </div>
 </div>
+</section>

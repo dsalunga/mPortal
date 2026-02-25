@@ -1,16 +1,21 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntBibleBrowserModel
 
-<div class="card" id="int-bible-browser-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Bible Browser</h5>
+<section aria-labelledby="bible-browser-heading-@Model.ObjectId">
+    <div class="card" id="int-bible-browser-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="bible-browser-heading-@Model.ObjectId">
+                <i class="bi bi-journal-text" aria-hidden="true"></i> Bible Browser
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <p>Bible browser placeholder content.</p>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
-                @Model.Message
-            </div>
-        }
-        <p>Bible browser placeholder content.</p>
-    </div>
-</div>
+</section>

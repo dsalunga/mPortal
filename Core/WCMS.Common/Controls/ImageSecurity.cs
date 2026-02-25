@@ -4,10 +4,6 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Drawing;
-using System.Web.Caching;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace WCMS.Common.Controls
 {
