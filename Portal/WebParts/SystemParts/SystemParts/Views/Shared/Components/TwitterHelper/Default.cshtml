@@ -2,11 +2,27 @@
 <aside class="wcms-twitter-helper" aria-label="Twitter feed">
     @if (string.IsNullOrEmpty(Model.TwitterHandle))
     {
-        <p class="text-muted" role="status">No Twitter handle configured.</p>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <p class="text-muted text-center py-3 mb-0" role="status">
+                    <i class="bi bi-twitter" aria-hidden="true"></i> No Twitter handle configured.
+                </p>
+            </div>
+        </div>
     }
     else
     {
-        <div class="card">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-twitter" aria-hidden="true"></i>
+                    <a href="https://twitter.com/@Model.TwitterHandle" target="_blank"
+                       rel="noopener noreferrer" class="text-decoration-none"
+                       aria-label="Visit @Model.TwitterHandle on Twitter">
+                        @@@Model.TwitterHandle
+                    </a>
+                </h5>
+            </div>
             <div class="card-body twitter-embed" data-theme="@Model.Theme">
                 <a class="twitter-timeline"
                    href="https://twitter.com/@Model.TwitterHandle"

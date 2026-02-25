@@ -1,40 +1,59 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.PictureGalleryViewModel
 <section class="wcms-picture-gallery" aria-label="Photo gallery">
-    @if (Model.Albums.Count == 0)
+    @if (Model.Albums == null || Model.Albums.Count == 0)
     {
-        <p class="text-muted" role="status">No albums available.</p>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <p class="text-muted text-center py-3 mb-0" role="status">
+                    <i class="bi bi-images" aria-hidden="true"></i> No albums available.
+                </p>
+            </div>
+        </div>
     }
     else
     {
         @foreach (var album in Model.Albums)
         {
-            <article class="mb-4">
-                <h5 id="album-@album.Id">
-                    @album.Title
-                    <span class="badge bg-secondary" aria-label="@album.PhotoCount photos">@album.PhotoCount</span>
-                </h5>
-                <div class="row" role="list" aria-labelledby="album-@album.Id">
-                    @if (album.Photos != null)
+            <article class="card shadow-sm mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0" id="album-@album.Id">
+                        <i class="bi bi-images" aria-hidden="true"></i> @album.Title
+                    </h5>
+                    <span class="badge bg-secondary rounded-pill" aria-label="@album.PhotoCount photos">
+                        @album.PhotoCount
+                    </span>
+                </div>
+                <div class="card-body">
+                    @if (album.Photos == null || album.Photos.Count == 0)
                     {
-                        @foreach (var photo in album.Photos)
-                        {
-                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3" role="listitem">
-                                <figure class="card gallery-item h-100">
-                                    <a href="@photo.ImageUrl" data-lightbox="album-@album.Id" data-title="@photo.Title"
-                                       aria-label="View full size: @(!string.IsNullOrEmpty(photo.Title) ? photo.Title : "Photo")">
-                                        <img src="@(photo.ThumbnailUrl ?? photo.ImageUrl)"
-                                             alt="@(!string.IsNullOrEmpty(photo.Title) ? photo.Title : "Gallery photo")"
-                                             class="card-img-top" loading="lazy" />
-                                    </a>
-                                    @if (!string.IsNullOrEmpty(photo.Title))
-                                    {
-                                        <figcaption class="card-body p-2">
-                                            <small class="card-title">@photo.Title</small>
-                                        </figcaption>
-                                    }
-                                </figure>
-                            </div>
-                        }
+                        <p class="text-muted text-center py-3 mb-0" role="status">
+                            <i class="bi bi-image" aria-hidden="true"></i> No photos in this album.
+                        </p>
+                    }
+                    else
+                    {
+                        <div class="row g-3" role="list" aria-labelledby="album-@album.Id">
+                            @foreach (var photo in album.Photos)
+                            {
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6" role="listitem">
+                                    <figure class="card gallery-item h-100 shadow-sm mb-0">
+                                        <a href="@photo.ImageUrl" data-lightbox="album-@album.Id"
+                                           data-title="@photo.Title"
+                                           aria-label="View full size: @(!string.IsNullOrEmpty(photo.Title) ? photo.Title : "Photo")">
+                                            <img src="@(photo.ThumbnailUrl ?? photo.ImageUrl)"
+                                                 alt="@(!string.IsNullOrEmpty(photo.Title) ? photo.Title : "Gallery photo")"
+                                                 class="card-img-top" loading="lazy" decoding="async" />
+                                        </a>
+                                        @if (!string.IsNullOrEmpty(photo.Title))
+                                        {
+                                            <figcaption class="card-body p-2 text-center">
+                                                <small class="card-title fw-semibold">@photo.Title</small>
+                                            </figcaption>
+                                        }
+                                    </figure>
+                                </div>
+                            }
+                        </div>
                     }
                 </div>
             </article>

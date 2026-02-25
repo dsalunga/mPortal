@@ -2,21 +2,27 @@
 <section class="wcms-send-email" aria-label="Send email">
     @if (Model.IsSent)
     {
-        <div class="alert alert-success" role="status" aria-live="polite">
-            <i class="bi bi-check-circle" aria-hidden="true"></i> Your email has been sent successfully.
+        <div class="alert alert-success d-flex align-items-center" role="status" aria-live="polite">
+            <i class="bi bi-check-circle-fill me-2" aria-hidden="true"></i>
+            Your email has been sent successfully.
         </div>
     }
     else if (!Model.IsLoggedIn)
     {
-        <div class="alert alert-warning" role="alert">
-            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Please sign in to send emails.
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2" aria-hidden="true"></i>
+            Please sign in to send emails.
         </div>
     }
     else
     {
-        <div class="card">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="bi bi-envelope" aria-hidden="true"></i> Send Email
+                </h4>
+            </div>
             <div class="card-body">
-                <h4 class="card-title">Send Email</h4>
                 <form method="post" aria-label="Email composition form">
                     <input type="hidden" name="objectId" value="@Model.ObjectId" />
                     <input type="hidden" name="recordId" value="@Model.RecordId" />
@@ -24,15 +30,17 @@
                         <label for="emailRecipient-@Model.ObjectId" class="form-label">
                             To <span class="text-danger" aria-hidden="true">*</span>
                         </label>
-                        <input type="email" id="emailRecipient-@Model.ObjectId" name="recipient" class="form-control"
-                               value="@Model.Recipient" required aria-required="true" />
+                        <input type="email" id="emailRecipient-@Model.ObjectId" name="recipient"
+                               class="form-control" value="@Model.Recipient"
+                               required aria-required="true" />
                     </div>
                     <div class="mb-3">
                         <label for="emailSubject-@Model.ObjectId" class="form-label">
                             Subject <span class="text-danger" aria-hidden="true">*</span>
                         </label>
-                        <input type="text" id="emailSubject-@Model.ObjectId" name="subject" class="form-control"
-                               value="@Model.Subject" required aria-required="true" />
+                        <input type="text" id="emailSubject-@Model.ObjectId" name="subject"
+                               class="form-control" value="@Model.Subject"
+                               required aria-required="true" />
                     </div>
                     <div class="mb-3">
                         <label for="emailBody-@Model.ObjectId" class="form-label">
@@ -41,12 +49,16 @@
                         <textarea id="emailBody-@Model.ObjectId" name="body" class="form-control" rows="6"
                                   required aria-required="true">@Model.Body</textarea>
                     </div>
-                    <p class="text-muted small">
-                        <i class="bi bi-person" aria-hidden="true"></i> Sending as: <strong>@Model.SenderName</strong>
-                    </p>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-envelope" aria-hidden="true"></i> Send
-                    </button>
+                    <hr />
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted fst-italic">
+                            <i class="bi bi-person" aria-hidden="true"></i>
+                            Sending as: <strong>@Model.SenderName</strong>
+                        </small>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-send" aria-hidden="true"></i> Send
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -2,36 +2,57 @@
 <section class="wcms-container-designer" aria-label="Container layout designer">
     @if (!Model.IsLoggedIn)
     {
-        <div class="alert alert-warning" role="alert">
-            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Please sign in to design layouts.
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2" aria-hidden="true"></i>
+            Please sign in to design layouts.
         </div>
     }
     else
     {
-        <div class="mb-3">
-            <h4 id="designerHeading-@Model.ObjectId">Container Layout Designer</h4>
-            <div class="btn-group mb-3" role="group" aria-label="Layout type selection">
-                <button type="button" class="btn btn-outline-secondary @(Model.LayoutType == "two-column" ? "active" : "")"
-                        aria-pressed="@(Model.LayoutType == "two-column" ? "true" : "false")">Two Columns</button>
-                <button type="button" class="btn btn-outline-secondary @(Model.LayoutType == "three-column" ? "active" : "")"
-                        aria-pressed="@(Model.LayoutType == "three-column" ? "true" : "false")">Three Columns</button>
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h4 class="mb-0" id="designerHeading-@Model.ObjectId">
+                    <i class="bi bi-layout-three-columns" aria-hidden="true"></i> Container Layout Designer
+                </h4>
             </div>
-        </div>
-        <div class="row border rounded p-3" role="region" aria-labelledby="designerHeading-@Model.ObjectId">
-            @foreach (var col in Model.Columns)
-            {
-                <div class="col-md-@col.Width @col.CssClass border p-2 min-vh-25"
-                     role="region" aria-label="Column @(col.Index + 1)">
-                    <div class="text-muted text-center small">Column @(col.Index + 1) (width: @col.Width)</div>
-                    @Html.Raw(col.Content)
+            <div class="card-body">
+                <div class="btn-group mb-3" role="group" aria-label="Layout type selection">
+                    <button type="button"
+                            class="btn btn-outline-secondary @(Model.LayoutType == "two-column" ? "active" : "")"
+                            aria-pressed="@(Model.LayoutType == "two-column" ? "true" : "false")">
+                        <i class="bi bi-layout-split" aria-hidden="true"></i> Two Columns
+                    </button>
+                    <button type="button"
+                            class="btn btn-outline-secondary @(Model.LayoutType == "three-column" ? "active" : "")"
+                            aria-pressed="@(Model.LayoutType == "three-column" ? "true" : "false")">
+                        <i class="bi bi-layout-three-columns" aria-hidden="true"></i> Three Columns
+                    </button>
                 </div>
-            }
-            @if (Model.Columns.Count == 0)
-            {
-                <div class="col text-center text-muted p-4" role="status">
-                    Select a layout type to begin designing.
+                <div class="row g-3" role="region" aria-labelledby="designerHeading-@Model.ObjectId">
+                    @if (Model.Columns == null || Model.Columns.Count == 0)
+                    {
+                        <div class="col text-center text-muted py-4" role="status">
+                            <i class="bi bi-grid" aria-hidden="true"></i>
+                            Select a layout type to begin designing.
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var col in Model.Columns)
+                        {
+                            <div class="col-md-@col.Width @col.CssClass">
+                                <div class="border rounded p-3 h-100 bg-light" role="region"
+                                     aria-label="Column @(col.Index + 1)">
+                                    <small class="text-muted d-block text-center mb-2 fw-semibold">
+                                        Column @(col.Index + 1) <span class="badge bg-secondary">@col.Width</span>
+                                    </small>
+                                    @Html.Raw(col.Content)
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
-            }
+            </div>
         </div>
     }
 </section>

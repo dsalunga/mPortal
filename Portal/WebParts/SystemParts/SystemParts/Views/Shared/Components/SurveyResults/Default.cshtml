@@ -1,44 +1,73 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.SurveyResultsViewModel
 <section class="wcms-survey-results" aria-label="Survey results">
-    @if (!string.IsNullOrEmpty(Model.Title))
-    {
-        <h4 id="surveyResultsTitle-@Model.ObjectId">@Model.Title</h4>
-    }
-    <p class="text-muted">
-        Total responses: <strong>@Model.TotalResponses</strong>
-    </p>
-    @if (Model.Questions.Count == 0)
-    {
-        <p class="text-muted" role="status">No results available.</p>
-    }
-    else
-    {
-        @foreach (var question in Model.Questions)
-        {
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h6 id="resultQ-@question.Id">@question.Text</h6>
-                    @if (question.Options != null)
-                    {
-                        <div role="list" aria-labelledby="resultQ-@question.Id">
-                            @foreach (var opt in question.Options)
+    <div class="card shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            @if (!string.IsNullOrEmpty(Model.Title))
+            {
+                <h4 class="mb-0" id="surveyResultsTitle-@Model.ObjectId">
+                    <i class="bi bi-bar-chart-line" aria-hidden="true"></i> @Model.Title
+                </h4>
+            }
+            else
+            {
+                <h4 class="mb-0" id="surveyResultsTitle-@Model.ObjectId">
+                    <i class="bi bi-bar-chart-line" aria-hidden="true"></i> Survey Results
+                </h4>
+            }
+            <span class="badge bg-primary rounded-pill" aria-label="@Model.TotalResponses total responses">
+                @Model.TotalResponses responses
+            </span>
+        </div>
+        <div class="card-body">
+            @if (Model.Questions == null || Model.Questions.Count == 0)
+            {
+                <p class="text-muted text-center py-3 mb-0" role="status">
+                    <i class="bi bi-clipboard-x" aria-hidden="true"></i> No results available.
+                </p>
+            }
+            else
+            {
+                @foreach (var question in Model.Questions)
+                {
+                    <div class="card mb-3 border">
+                        <div class="card-body">
+                            <h6 class="fw-bold" id="resultQ-@question.Id">
+                                <i class="bi bi-question-circle" aria-hidden="true"></i> @question.Text
+                            </h6>
+                            @if (question.Options != null && question.Options.Count > 0)
                             {
-                                <div class="mb-2" role="listitem">
-                                    <div class="d-flex justify-content-between">
-                                        <span>@opt.Text</span>
-                                        <span class="text-muted">@opt.Count (@opt.Percentage.ToString("F1")%)</span>
-                                    </div>
-                                    <div class="progress" style="height: 20px;" role="progressbar"
-                                         aria-label="@opt.Text: @opt.Percentage.ToString("F1")%"
-                                         aria-valuenow="@opt.Percentage" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar" style="width: @opt.Percentage%"></div>
-                                    </div>
+                                <div role="list" aria-labelledby="resultQ-@question.Id">
+                                    @foreach (var opt in question.Options)
+                                    {
+                                        <div class="mb-2" role="listitem">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>@opt.Text</span>
+                                                <span class="text-muted fw-semibold">
+                                                    @opt.Count <small>(@opt.Percentage.ToString("F1")%)</small>
+                                                </span>
+                                            </div>
+                                            <div class="progress" style="height: 20px;" role="progressbar"
+                                                 aria-label="@opt.Text: @opt.Percentage.ToString("F1")%"
+                                                 aria-valuenow="@opt.Percentage" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="progress-bar bg-primary" style="width: @opt.Percentage%">
+                                                    @if (opt.Percentage >= 10)
+                                                    {
+                                                        <small>@opt.Percentage.ToString("F1")%</small>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             }
+                            else
+                            {
+                                <p class="text-muted small mb-0" role="status">No options recorded.</p>
+                            }
                         </div>
-                    }
-                </div>
-            </div>
-        }
-    }
+                    </div>
+                }
+            }
+        </div>
+    </div>
 </section>

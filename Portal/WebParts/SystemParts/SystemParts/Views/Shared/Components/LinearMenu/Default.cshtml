@@ -1,12 +1,20 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.LinearMenuViewModel
 <nav class="wcms-linear-menu" aria-label="Navigation">
-    <ul class="nav" role="menubar">
-        @foreach (var item in Model.Items)
-        {
-            <li class="nav-item @item.CssClass" role="none">
-                <a class="nav-link @(item.IsActive ? "active" : "")" href="@item.Url" role="menuitem"
-                   @(item.IsActive ? "aria-current=page" : "")>@item.Title</a>
-            </li>
-        }
-    </ul>
+    @if (Model.Items == null || Model.Items.Count == 0)
+    {
+        <p class="text-muted fst-italic mb-0 p-2" role="status">No menu items available.</p>
+    }
+    else
+    {
+        <ul class="nav" role="menubar">
+            @foreach (var item in Model.Items)
+            {
+                <li class="nav-item @item.CssClass" role="none">
+                    <a class="nav-link @(item.IsActive ? "active fw-semibold" : "")"
+                       href="@item.Url" role="menuitem"
+                       @(item.IsActive ? "aria-current=page" : "")>@item.Title</a>
+                </li>
+            }
+        </ul>
+    }
 </nav>

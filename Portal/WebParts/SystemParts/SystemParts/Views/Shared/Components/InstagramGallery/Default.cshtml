@@ -1,40 +1,49 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.InstagramGalleryViewModel
 <section class="wcms-instagram-gallery" aria-label="Instagram gallery">
-    @if (!string.IsNullOrEmpty(Model.Username))
-    {
-        <h5 class="mb-3">
-            <i class="bi bi-instagram" aria-hidden="true"></i>
-            <a href="https://instagram.com/@Model.Username" target="_blank" rel="noopener noreferrer"
-               aria-label="Visit @Model.Username on Instagram">@@@Model.Username</a>
-        </h5>
-    }
-    @if (Model.Posts.Count == 0)
-    {
-        <p class="text-muted" role="status">No Instagram posts to display.</p>
-    }
-    else
-    {
-        <div class="row" role="list" aria-label="Instagram posts">
-            @foreach (var post in Model.Posts)
+    <div class="card shadow-sm">
+        @if (!string.IsNullOrEmpty(Model.Username))
+        {
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-instagram" aria-hidden="true"></i>
+                    <a href="https://instagram.com/@Model.Username" target="_blank" rel="noopener noreferrer"
+                       class="text-decoration-none"
+                       aria-label="Visit @Model.Username on Instagram">@@@Model.Username</a>
+                </h5>
+            </div>
+        }
+        <div class="card-body">
+            @if (Model.Posts == null || Model.Posts.Count == 0)
             {
-                var colClass = "col-" + (12 / Model.ColumnsPerRow);
-                <div class="@colClass mb-3" role="listitem">
-                    <figure class="card h-100 border-0">
-                        <a href="@post.Permalink" target="_blank" rel="noopener noreferrer"
-                           aria-label="@(!string.IsNullOrEmpty(post.Caption) ? post.Caption : "View Instagram post")">
-                            <img src="@(post.ThumbnailUrl ?? post.ImageUrl)"
-                                 alt="@(!string.IsNullOrEmpty(post.Caption) ? post.Caption : "Instagram post")"
-                                 class="img-fluid rounded card-img-top" loading="lazy" />
-                        </a>
-                        @if (!string.IsNullOrEmpty(post.Caption))
-                        {
-                            <figcaption class="card-body p-2">
-                                <small class="text-muted text-truncate d-block">@post.Caption</small>
-                            </figcaption>
-                        }
-                    </figure>
+                <p class="text-muted text-center py-3" role="status">
+                    <i class="bi bi-camera" aria-hidden="true"></i> No Instagram posts to display.
+                </p>
+            }
+            else
+            {
+                <div class="row g-3" role="list" aria-label="Instagram posts">
+                    @foreach (var post in Model.Posts)
+                    {
+                        var colClass = "col-" + (12 / Model.ColumnsPerRow);
+                        <div class="@colClass" role="listitem">
+                            <figure class="card h-100 border-0 mb-0">
+                                <a href="@post.Permalink" target="_blank" rel="noopener noreferrer"
+                                   aria-label="@(!string.IsNullOrEmpty(post.Caption) ? post.Caption : "View Instagram post")">
+                                    <img src="@(post.ThumbnailUrl ?? post.ImageUrl)"
+                                         alt="@(!string.IsNullOrEmpty(post.Caption) ? post.Caption : "Instagram post")"
+                                         class="img-fluid rounded card-img-top" loading="lazy" decoding="async" />
+                                </a>
+                                @if (!string.IsNullOrEmpty(post.Caption))
+                                {
+                                    <figcaption class="card-body p-2">
+                                        <small class="text-muted text-truncate d-block">@post.Caption</small>
+                                    </figcaption>
+                                }
+                            </figure>
+                        </div>
+                    }
                 </div>
             }
         </div>
-    }
+    </div>
 </section>

@@ -5,22 +5,26 @@
         @switch (Model.HeaderTag)
         {
             case "h1":
-                <h1>@Model.Title</h1>
+                <h1 class="fw-bold">@Model.Title</h1>
                 break;
             case "h3":
-                <h3>@Model.Title</h3>
+                <h3 class="fw-bold">@Model.Title</h3>
                 break;
             default:
-                <h2>@Model.Title</h2>
+                <h2 class="fw-bold">@Model.Title</h2>
                 break;
         }
     }
     @if (!string.IsNullOrEmpty(Model.Subtitle))
     {
-        <p class="lead" role="doc-subtitle">@Model.Subtitle</p>
+        <p class="lead text-muted" role="doc-subtitle">@Model.Subtitle</p>
     }
     @if (!string.IsNullOrEmpty(Model.Description))
     {
-        <p>@Model.Description</p>
+        <p class="mb-0">@Model.Description</p>
+    }
+    @if (string.IsNullOrEmpty(Model.Title) && string.IsNullOrEmpty(Model.Subtitle) && string.IsNullOrEmpty(Model.Description))
+    {
+        <span class="visually-hidden">Empty site section</span>
     }
 </section>

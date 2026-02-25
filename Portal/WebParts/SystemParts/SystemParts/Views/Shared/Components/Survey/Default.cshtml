@@ -6,8 +6,9 @@
 <section class="wcms-survey" aria-label="Survey">
     @if (Model.IsSubmitted)
     {
-        <div class="alert alert-success" role="status" aria-live="polite">
-            <i class="bi bi-check-circle"></i> Thank you for completing the survey!
+        <div class="alert alert-success d-flex align-items-center" role="status" aria-live="polite">
+            <i class="bi bi-check-circle-fill me-2" aria-hidden="true"></i>
+            Thank you for completing the survey!
         </div>
     }
     else
@@ -24,7 +25,7 @@
             }
         </script>
 
-        <div class="card">
+        <div class="card shadow-sm">
             <div class="card-body">
                 <form method="post" id="@formId" aria-label="Survey form">
                     <input id="@surveyAction" type="hidden" name="@surveyAction" />
@@ -34,7 +35,7 @@
 
                     @if (!string.IsNullOrEmpty(Model.Title))
                     {
-                        <h5 class="card-title text-center">@Model.Title</h5>
+                        <h5 class="card-title text-center fw-bold">@Model.Title</h5>
                     }
                     @if (!string.IsNullOrEmpty(Model.Description))
                     {
@@ -53,7 +54,8 @@
 
                     @if (!string.IsNullOrEmpty(Model.ErrorMessage))
                     {
-                        <div class="alert alert-danger" role="alert" aria-live="assertive">
+                        <div class="alert alert-danger d-flex align-items-center" role="alert" aria-live="assertive">
+                            <i class="bi bi-exclamation-triangle-fill me-2" aria-hidden="true"></i>
                             @Model.ErrorMessage
                         </div>
                     }
@@ -62,7 +64,7 @@
                         <legend class="visually-hidden">Survey Questions</legend>
                         @foreach (var question in Model.Questions)
                         {
-                            <div class="mb-4">
+                            <div class="mb-4 p-3 border rounded bg-light">
                                 <label class="form-label fw-bold" id="qlabel-@question.Id">
                                     @question.Text
                                     @if (question.IsRequired)
@@ -124,18 +126,20 @@
                             @if (Model.ShowRestartButton)
                             {
                                 <button type="submit" class="btn btn-outline-secondary"
-                                        onclick="SurveyRestart()">Restart</button>
+                                        onclick="SurveyRestart()" aria-label="Restart survey">
+                                    <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i> Restart
+                                </button>
                             }
                             @if (Model.ShowBackButton)
                             {
                                 <button type="submit" class="btn btn-secondary"
-                                        onclick="SurveyBack()">
-                                    <i class="bi bi-arrow-left"></i> Back
+                                        onclick="SurveyBack()" aria-label="Go to previous page">
+                                    <i class="bi bi-arrow-left" aria-hidden="true"></i> Back
                                 </button>
                             }
                             <button type="submit" class="btn btn-primary"
-                                    onclick="SurveyNext()">
-                                @(Model.SubmitButtonText ?? "Submit") <i class="bi bi-arrow-right"></i>
+                                    onclick="SurveyNext()" aria-label="@(Model.SubmitButtonText ?? "Submit")">
+                                @(Model.SubmitButtonText ?? "Submit") <i class="bi bi-arrow-right" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>

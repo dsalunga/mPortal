@@ -4,84 +4,100 @@
     CSS classes preserved: _wp_FileManager, wp-FileManager, control-box, Header, _FileManager_Button
 *@
 <section class="_wp_FileManager wp-FileManager" aria-label="File manager">
-    <nav aria-label="File path breadcrumb" class="mb-3">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="@Model.BasePath"><i class="bi bi-house-door"></i> Root</a>
-            </li>
-            @if (!string.IsNullOrEmpty(Model.CurrentPath))
-            {
-                <li class="breadcrumb-item active" aria-current="page">@Model.CurrentPath</li>
-            }
-        </ol>
-    </nav>
-    @if (Model.IsLoggedIn)
-    {
-        <div class="control-box d-flex gap-2 mb-3" role="toolbar" aria-label="File actions">
-            <button type="button" class="btn btn-outline-primary btn-sm">
-                <i class="bi bi-file-earmark-plus"></i> Add files
-            </button>
-            <button type="button" class="btn btn-outline-secondary btn-sm">
-                <i class="bi bi-folder-plus"></i> Create folder
-            </button>
-        </div>
-    }
-    @if (Model.Files.Count == 0)
-    {
-        <p class="text-muted" role="status">No files found.</p>
-    }
-    else
-    {
-        <div class="table-responsive">
-            <table class="table table-striped table-hover align-middle" aria-label="File listing">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Size</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Date Modified</th>
-                        <th scope="col"><span class="visually-hidden">Actions</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var file in Model.Files)
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <nav aria-label="File path breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="@Model.BasePath">
+                            <i class="bi bi-house-door" aria-hidden="true"></i>
+                            <span class="visually-hidden">Root</span>
+                        </a>
+                    </li>
+                    @if (!string.IsNullOrEmpty(Model.CurrentPath))
                     {
-                        <tr>
-                            <td>
-                                @if (file.IsDirectory)
-                                {
-                                    <i class="bi bi-folder-fill text-warning" aria-hidden="true"></i>
-                                    <a href="@Model.BasePath?path=@file.FilePath">@file.FileName</a>
-                                }
-                                else
-                                {
-                                    <i class="bi bi-file-earmark text-secondary" aria-hidden="true"></i>
-                                    <a href="@file.FilePath" target="_blank" rel="noopener">@file.FileName</a>
-                                }
-                            </td>
-                            <td>
-                                @if (!file.IsDirectory)
-                                {
-                                    @(file.FileSize < 1024 ? file.FileSize + " B" : (file.FileSize / 1024) + " KB")
-                                }
-                            </td>
-                            <td><span class="badge bg-light text-dark">@file.ContentType</span></td>
-                            <td><time>@file.LastModified</time></td>
-                            <td>
-                                @if (!file.IsDirectory)
-                                {
-                                    <a href="@file.FilePath" class="btn btn-sm btn-outline-secondary" download
-                                       aria-label="Download @file.FileName">
-                                        <i class="bi bi-download"></i>
-                                    </a>
-                                }
-                            </td>
-                        </tr>
+                        <li class="breadcrumb-item active" aria-current="page">@Model.CurrentPath</li>
                     }
-                </tbody>
-            </table>
+                </ol>
+            </nav>
         </div>
-    }
+        @if (Model.IsLoggedIn)
+        {
+            <div class="card-body py-2 border-bottom">
+                <div class="control-box d-flex gap-2" role="toolbar" aria-label="File actions">
+                    <button type="button" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-file-earmark-plus" aria-hidden="true"></i> Add files
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-folder-plus" aria-hidden="true"></i> Create folder
+                    </button>
+                </div>
+            </div>
+        }
+        <div class="card-body">
+            @if (Model.Files == null || Model.Files.Count == 0)
+            {
+                <p class="text-muted text-center py-3" role="status">
+                    <i class="bi bi-folder2-open" aria-hidden="true"></i> No files found.
+                </p>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle mb-0" aria-label="File listing">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Date Modified</th>
+                                <th scope="col"><span class="visually-hidden">Actions</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var file in Model.Files)
+                            {
+                                <tr>
+                                    <td>
+                                        @if (file.IsDirectory)
+                                        {
+                                            <i class="bi bi-folder-fill text-warning" aria-hidden="true"></i>
+                                            <a href="@Model.BasePath?path=@file.FilePath" class="fw-semibold">
+                                                @file.FileName
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <i class="bi bi-file-earmark text-secondary" aria-hidden="true"></i>
+                                            <a href="@file.FilePath" target="_blank" rel="noopener"
+                                               aria-label="Open @file.FileName">@file.FileName</a>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!file.IsDirectory)
+                                        {
+                                            <small>@(file.FileSize < 1024 ? file.FileSize + " B" : (file.FileSize / 1024) + " KB")</small>
+                                        }
+                                    </td>
+                                    <td><span class="badge bg-light text-dark">@file.ContentType</span></td>
+                                    <td><time><small class="text-muted">@file.LastModified</small></time></td>
+                                    <td>
+                                        @if (!file.IsDirectory)
+                                        {
+                                            <a href="@file.FilePath" class="btn btn-sm btn-outline-secondary"
+                                               download aria-label="Download @file.FileName">
+                                                <i class="bi bi-download" aria-hidden="true"></i>
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
     <div aria-live="polite">
         <span class="Header text-danger visually-hidden"></span>
     </div>
