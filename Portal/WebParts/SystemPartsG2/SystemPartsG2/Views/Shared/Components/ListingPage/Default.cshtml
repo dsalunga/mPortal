@@ -4,62 +4,81 @@
 }
 <section id="listing-@Model.ObjectId" class="wcms-listing-page" data-object-id="@Model.ObjectId"
          aria-labelledby="@(string.IsNullOrEmpty(Model.Title) ? "" : $"listing-heading-{Model.ObjectId}")">
-    @if (!string.IsNullOrEmpty(Model.Title))
-    {
-        <h4 id="listing-heading-@Model.ObjectId">@Model.Title</h4>
-    }
-    @if (Model.Items.Count == 0)
-    {
-        <p class="text-muted" role="status">No items to display.</p>
-    }
-    else
-    {
-        <div class="list-group mb-3" role="list">
-            @foreach (var item in Model.Items)
+    <div class="card shadow-sm">
+        @if (!string.IsNullOrEmpty(Model.Title))
+        {
+            <div class="card-header">
+                <h4 class="mb-0" id="listing-heading-@Model.ObjectId">
+                    <i class="bi bi-list-columns-reverse" aria-hidden="true"></i> @Model.Title
+                </h4>
+            </div>
+        }
+        <div class="card-body">
+            @if (Model.Items == null || Model.Items.Count == 0)
             {
-                <a href="@item.Url" class="list-group-item list-group-item-action" role="listitem"
-                   aria-label="@item.Title">
-                    <div class="d-flex align-items-start">
-                        @if (!string.IsNullOrEmpty(item.ImageUrl))
-                        {
-                            <figure class="flex-shrink-0 me-3 mb-0">
-                                <img src="@item.ImageUrl" alt="@item.Title" class="rounded img-thumbnail" style="max-width: 100px;" loading="lazy" />
-                            </figure>
-                        }
-                        <div class="flex-grow-1">
-                            <h6 class="mb-1">@item.Title</h6>
-                            @if (!string.IsNullOrEmpty(item.Summary))
-                            {
-                                <p class="mb-1 text-muted small">@item.Summary</p>
-                            }
-                            @if (!string.IsNullOrEmpty(item.Date))
-                            {
-                                <time class="text-muted small" datetime="@item.Date">
-                                    <i class="bi bi-calendar3 me-1" aria-hidden="true"></i>@item.Date
-                                </time>
-                            }
-                        </div>
-                    </div>
-                </a>
+                <p class="text-muted text-center py-3" role="status">
+                    <i class="bi bi-inbox" aria-hidden="true"></i> No items to display.
+                </p>
+            }
+            else
+            {
+                <div class="list-group list-group-flush mb-3" role="list">
+                    @foreach (var item in Model.Items)
+                    {
+                        <a href="@item.Url" class="list-group-item list-group-item-action" role="listitem"
+                           aria-label="@item.Title">
+                            <div class="d-flex align-items-start">
+                                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                {
+                                    <figure class="flex-shrink-0 me-3 mb-0">
+                                        <img src="@item.ImageUrl" alt="@item.Title" class="rounded img-thumbnail"
+                                             style="max-width: 100px;" loading="lazy" decoding="async" />
+                                    </figure>
+                                }
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">@item.Title</h6>
+                                    @if (!string.IsNullOrEmpty(item.Summary))
+                                    {
+                                        <p class="mb-1 text-muted small">@item.Summary</p>
+                                    }
+                                    @if (!string.IsNullOrEmpty(item.Date))
+                                    {
+                                        <time class="text-muted small" datetime="@item.Date">
+                                            <i class="bi bi-calendar3 me-1" aria-hidden="true"></i>@item.Date
+                                        </time>
+                                    }
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+                @if (Model.TotalItems > Model.PageSize && totalPages > 1)
+                {
+                    <nav aria-label="Listing page navigation for @(string.IsNullOrEmpty(Model.Title) ? "items" : Model.Title)">
+                        <ul class="pagination justify-content-center mb-0">
+                            <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                                <a class="page-link" href="#" aria-label="Previous page"
+                                   @(Model.CurrentPage <= 1 ? "tabindex=-1 aria-disabled=true" : "")>
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="visually-hidden">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link">
+                                    @Model.CurrentPage <span class="visually-hidden">(current)</span>
+                                </span>
+                            </li>
+                            <li class="page-item @(Model.CurrentPage >= totalPages ? "disabled" : "")">
+                                <a class="page-link" href="#" aria-label="Next page"
+                                   @(Model.CurrentPage >= totalPages ? "tabindex=-1 aria-disabled=true" : "")>
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="visually-hidden">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
             }
         </div>
-        @if (Model.TotalItems > Model.PageSize)
-        {
-            <nav aria-label="Listing page navigation for @(string.IsNullOrEmpty(Model.Title) ? "items" : Model.Title)">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
-                        <a class="page-link" href="#" aria-label="Previous page">&laquo; Previous</a>
-                    </li>
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">
-                            @Model.CurrentPage <span class="visually-hidden">(current)</span>
-                        </span>
-                    </li>
-                    <li class="page-item @(Model.CurrentPage >= totalPages ? "disabled" : "")">
-                        <a class="page-link" href="#" aria-label="Next page">Next &raquo;</a>
-                    </li>
-                </ul>
-            </nav>
-        }
-    }
+    </div>
 </section>

@@ -1,79 +1,89 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.DownloadsViewModel
 <section id="downloads-@Model.ObjectId" class="wcms-downloads" data-object-id="@Model.ObjectId"
          aria-labelledby="downloads-heading-@Model.ObjectId">
-    <h4 id="downloads-heading-@Model.ObjectId">Downloads</h4>
-    @if (Model.Categories != null && Model.Categories.Count > 0)
-    {
-        <div class="mb-3">
-            <label for="downloads-category-@Model.ObjectId" class="form-label visually-hidden">Filter by category</label>
-            <select class="form-select" id="downloads-category-@Model.ObjectId" aria-label="Filter by category">
-                <option value="">All Categories</option>
-                @foreach (var cat in Model.Categories)
-                {
-                    <option value="@cat.Id">@cat.Name</option>
-                }
-            </select>
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h4 class="mb-0" id="downloads-heading-@Model.ObjectId">
+                <i class="bi bi-cloud-arrow-down" aria-hidden="true"></i> Downloads
+            </h4>
         </div>
-    }
-    @if (Model.Items == null || Model.Items.Count == 0)
-    {
-        <p class="text-muted" role="status">No downloads available.</p>
-    }
-    else if (Model.GroupByYear)
-    {
-        var years = Model.Items.Select(i => i.FileYear).Distinct().OrderByDescending(y => y);
-        @foreach (var year in years)
-        {
-            <section class="mb-4" aria-label="Downloads from @year">
-                <h5 class="border-bottom pb-1">@year</h5>
-                <ul class="list-group list-group-flush">
-                    @foreach (var item in Model.Items.Where(i => i.FileYear == year))
-                    {
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="@(string.IsNullOrEmpty(item.FileUrl) ? $"/_Sections/Download/Handler.ashx?ID={item.Id}&Force={(Model.ForceDownload ? "true" : "false")}" : item.FileUrl)"
-                               aria-label="Download @item.Title">
-                                <i class="bi bi-file-earmark-arrow-down me-1" aria-hidden="true"></i>@item.Title
-                            </a>
-                            @if (item.DownloadCount > 0)
+        <div class="card-body">
+            @if (Model.Categories != null && Model.Categories.Count > 0)
+            {
+                <div class="mb-3">
+                    <label for="downloads-category-@Model.ObjectId" class="form-label visually-hidden">Filter by category</label>
+                    <select class="form-select" id="downloads-category-@Model.ObjectId" aria-label="Filter downloads by category">
+                        <option value="">All Categories</option>
+                        @foreach (var cat in Model.Categories)
+                        {
+                            <option value="@cat.Id">@cat.Name</option>
+                        }
+                    </select>
+                </div>
+            }
+            @if (Model.Items == null || Model.Items.Count == 0)
+            {
+                <p class="text-muted text-center py-3" role="status">
+                    <i class="bi bi-inbox" aria-hidden="true"></i> No downloads available.
+                </p>
+            }
+            else if (Model.GroupByYear)
+            {
+                var years = Model.Items.Select(i => i.FileYear).Distinct().OrderByDescending(y => y);
+                @foreach (var year in years)
+                {
+                    <section class="mb-4" aria-label="Downloads from @year">
+                        <h5 class="border-bottom pb-1">@year</h5>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var item in Model.Items.Where(i => i.FileYear == year))
                             {
-                                <span class="badge bg-primary rounded-pill">@item.DownloadCount</span>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="@(string.IsNullOrEmpty(item.FileUrl) ? $"/_Sections/Download/Handler.ashx?ID={item.Id}&Force={(Model.ForceDownload ? "true" : "false")}" : item.FileUrl)"
+                                       aria-label="Download @item.Title">
+                                        <i class="bi bi-file-earmark-arrow-down me-1" aria-hidden="true"></i>@item.Title
+                                    </a>
+                                    @if (item.DownloadCount > 0)
+                                    {
+                                        <span class="badge bg-primary rounded-pill">@item.DownloadCount</span>
+                                    }
+                                </li>
                             }
+                        </ul>
+                    </section>
+                }
+            }
+            else
+            {
+                <ul class="list-group list-group-flush">
+                    @foreach (var item in Model.Items)
+                    {
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <a href="@(string.IsNullOrEmpty(item.FileUrl) ? $"/_Sections/Download/Handler.ashx?ID={item.Id}&Force={(Model.ForceDownload ? "true" : "false")}" : item.FileUrl)"
+                                       aria-label="Download @item.Title">
+                                        <i class="bi bi-file-earmark-arrow-down me-1" aria-hidden="true"></i>@item.Title
+                                    </a>
+                                    @if (!string.IsNullOrEmpty(item.FileInfo))
+                                    {
+                                        <p class="mb-0 text-muted small mt-1">@item.FileInfo</p>
+                                    }
+                                    else if (!string.IsNullOrEmpty(item.FileName))
+                                    {
+                                        <p class="mb-0 small mt-1">
+                                            <span class="text-muted"><code>@item.FileName</code> &middot; @item.CategoryName</span>
+                                        </p>
+                                    }
+                                </div>
+                                @if (item.DownloadCount > 0)
+                                {
+                                    <span class="badge bg-primary rounded-pill">@item.DownloadCount</span>
+                                }
+                            </div>
                         </li>
                     }
                 </ul>
-            </section>
-        }
-    }
-    else
-    {
-        <ul class="list-group list-group-flush">
-            @foreach (var item in Model.Items)
-            {
-                <li class="list-group-item">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div>
-                            <a href="@(string.IsNullOrEmpty(item.FileUrl) ? $"/_Sections/Download/Handler.ashx?ID={item.Id}&Force={(Model.ForceDownload ? "true" : "false")}" : item.FileUrl)"
-                               aria-label="Download @item.Title">
-                                <i class="bi bi-file-earmark-arrow-down me-1" aria-hidden="true"></i>@item.Title
-                            </a>
-                            @if (!string.IsNullOrEmpty(item.FileInfo))
-                            {
-                                <p class="mb-0 text-muted small mt-1">@item.FileInfo</p>
-                            }
-                            else if (!string.IsNullOrEmpty(item.FileName))
-                            {
-                                <p class="mb-0 small mt-1">
-                                    <span class="text-muted"><code>@item.FileName</code> &middot; @item.CategoryName</span>
-                                </p>
-                            }
-                        </div>
-                        @if (item.DownloadCount > 0)
-                        {
-                            <span class="badge bg-primary rounded-pill">@item.DownloadCount</span>
-                        }
-                    </div>
-                </li>
             }
-        </ul>
-    }
+        </div>
+    </div>
 </section>

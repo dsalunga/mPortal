@@ -3,7 +3,7 @@
          aria-label="Social wall">
     @if (Model.AllowNewPosts)
     {
-        <div class="card mb-3">
+        <div class="card shadow-sm mb-3">
             <div class="card-body">
                 <form method="post" aria-label="Create a new post">
                     <div class="mb-2">
@@ -19,23 +19,31 @@
             </div>
         </div>
     }
-    @if (Model.Posts.Count == 0)
+    @if (Model.Posts == null || Model.Posts.Count == 0)
     {
-        <p class="text-muted" role="status">No posts yet.</p>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <p class="text-muted text-center py-3 mb-0" role="status">
+                    <i class="bi bi-chat-square-text" aria-hidden="true"></i> No posts yet. Be the first to share something.
+                </p>
+            </div>
+        </div>
     }
     else
     {
         <div aria-live="polite">
             @foreach (var post in Model.Posts)
             {
-                <article class="card mb-3" aria-label="Post by @post.Author">
+                <article class="card shadow-sm mb-3" aria-label="Post by @post.Author">
                     <div class="card-body">
                         <header class="d-flex justify-content-between align-items-center mb-2">
-                            <strong>@post.Author</strong>
+                            <strong>
+                                <i class="bi bi-person-circle me-1" aria-hidden="true"></i>@post.Author
+                            </strong>
                             <time class="text-muted small" datetime="@post.DatePosted">@post.DatePosted</time>
                         </header>
                         <p class="card-text">@post.Content</p>
-                        <footer class="d-flex gap-3">
+                        <footer class="d-flex gap-3 border-top pt-2">
                             <small class="text-muted" aria-label="@post.LikeCount likes">
                                 <i class="bi bi-hand-thumbs-up" aria-hidden="true"></i> @post.LikeCount
                             </small>

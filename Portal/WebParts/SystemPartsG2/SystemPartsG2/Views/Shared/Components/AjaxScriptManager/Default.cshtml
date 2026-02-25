@@ -1,13 +1,17 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.AjaxScriptManagerViewModel
+@* Script references are invisible to users — no visual chrome needed *@
 <section id="script-manager-@Model.ObjectId" class="wcms-script-manager" data-object-id="@Model.ObjectId"
          aria-hidden="true" role="presentation">
-    @foreach (var script in Model.Scripts)
+    @if (Model.Scripts != null && Model.Scripts.Count > 0)
     {
-        if (!string.IsNullOrEmpty(script.Src))
+        @foreach (var script in Model.Scripts)
         {
-            <script src="@script.Src"
-                    @(script.IsAsync ? "async" : "")
-                    @(script.IsDefer ? "defer" : "")></script>
+            if (!string.IsNullOrEmpty(script.Src))
+            {
+                <script src="@script.Src"
+                        @(script.IsAsync ? "async" : "")
+                        @(script.IsDefer ? "defer" : "")></script>
+            }
         }
     }
 </section>

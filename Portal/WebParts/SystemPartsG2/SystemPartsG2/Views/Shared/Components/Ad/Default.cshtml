@@ -3,22 +3,32 @@
        aria-label="@(string.IsNullOrEmpty(Model.Title) ? "Advertisement" : Model.Title)">
     @if (!string.IsNullOrEmpty(Model.ImageUrl) && Model.IsActive)
     {
-        <figure class="figure mb-0">
-            @if (!string.IsNullOrEmpty(Model.TargetUrl))
-            {
-                <a href="@Model.TargetUrl" target="_blank" rel="noopener noreferrer"
-                   aria-label="@(string.IsNullOrEmpty(Model.AltText) ? "View advertisement" : Model.AltText)">
-                    <img src="@Model.ImageUrl" alt="@Model.AltText" class="img-fluid figure-img rounded" loading="lazy" />
-                </a>
-            }
-            else
-            {
-                <img src="@Model.ImageUrl" alt="@Model.AltText" class="img-fluid figure-img rounded" loading="lazy" />
-            }
-            @if (!string.IsNullOrEmpty(Model.Title))
-            {
-                <figcaption class="figure-caption visually-hidden">@Model.Title</figcaption>
-            }
-        </figure>
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0">
+                <figure class="figure mb-0 w-100">
+                    @if (!string.IsNullOrEmpty(Model.TargetUrl))
+                    {
+                        <a href="@Model.TargetUrl" target="_blank" rel="noopener noreferrer"
+                           aria-label="@(string.IsNullOrEmpty(Model.AltText) ? "View advertisement" : Model.AltText)">
+                            <img src="@Model.ImageUrl" alt="@Model.AltText" class="img-fluid rounded w-100" loading="lazy" />
+                        </a>
+                    }
+                    else
+                    {
+                        <img src="@Model.ImageUrl" alt="@Model.AltText" class="img-fluid rounded w-100" loading="lazy" />
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Title))
+                    {
+                        <figcaption class="figure-caption visually-hidden">@Model.Title</figcaption>
+                    }
+                </figure>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p class="text-muted text-center py-3" role="status">
+            <i class="bi bi-megaphone" aria-hidden="true"></i> No advertisement to display.
+        </p>
     }
 </aside>

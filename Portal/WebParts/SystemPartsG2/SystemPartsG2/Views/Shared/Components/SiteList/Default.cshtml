@@ -1,30 +1,37 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.SiteListViewModel
 <section id="site-list-@Model.ObjectId" class="wcms-site-list" data-object-id="@Model.ObjectId"
          aria-label="Site directory">
-    @if (Model.Sites.Count == 0)
+    @if (Model.Sites == null || Model.Sites.Count == 0)
     {
-        <p class="text-muted" role="status">No sites to display.</p>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <p class="text-muted text-center py-3 mb-0" role="status">
+                    <i class="bi bi-globe2" aria-hidden="true"></i> No sites to display.
+                </p>
+            </div>
+        </div>
     }
     else
     {
         <div class="row g-3" role="list">
             @foreach (var site in Model.Sites)
             {
-                <div class="col-lg-4 col-md-4 col-sm-6" role="listitem">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6" role="listitem">
                     <article class="card h-100 shadow-sm" aria-label="@site.Name">
                         @if (!string.IsNullOrEmpty(site.ThumbnailUrl))
                         {
                             <figure class="mb-0">
-                                <img src="@site.ThumbnailUrl" alt="@site.Name" class="card-img-top" loading="lazy" />
+                                <img src="@site.ThumbnailUrl" alt="@site.Name" class="card-img-top"
+                                     loading="lazy" decoding="async" />
                             </figure>
                         }
                         <div class="card-body">
-                            <h5 class="card-title">
+                            <h5 class="card-title text-truncate">
                                 <a href="@site.Url" class="text-decoration-none stretched-link">@site.Name</a>
                             </h5>
                             @if (!string.IsNullOrEmpty(site.Description))
                             {
-                                <p class="card-text text-muted">@site.Description</p>
+                                <p class="card-text text-muted small">@site.Description</p>
                             }
                         </div>
                     </article>

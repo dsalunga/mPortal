@@ -3,26 +3,42 @@
          aria-label="Newsletter subscription">
     @if (Model.ViewState == "success")
     {
-        <div class="alert alert-success" role="status" aria-live="polite">
-            <i class="bi bi-check-circle me-1" aria-hidden="true"></i>
-            @(string.IsNullOrEmpty(Model.SuccessMessage) ? "Thank you for subscribing. You will be receiving updates soon." : Model.SuccessMessage)
+        <div class="card shadow-sm border-success">
+            <div class="card-body">
+                <div class="alert alert-success mb-0" role="status" aria-live="polite">
+                    <i class="bi bi-check-circle me-1" aria-hidden="true"></i>
+                    @(string.IsNullOrEmpty(Model.SuccessMessage) ? "Thank you for subscribing. You will be receiving updates soon." : Model.SuccessMessage)
+                </div>
+            </div>
         </div>
     }
     else if (Model.ViewState == "already_subscribed")
     {
-        <div class="alert alert-warning" role="status" aria-live="polite">
-            <i class="bi bi-info-circle me-1" aria-hidden="true"></i>
-            @(string.IsNullOrEmpty(Model.AlreadySubscribedMessage) ? "You are already subscribed to this newsletter." : Model.AlreadySubscribedMessage)
+        <div class="card shadow-sm border-warning">
+            <div class="card-body">
+                <div class="alert alert-warning mb-0" role="status" aria-live="polite">
+                    <i class="bi bi-info-circle me-1" aria-hidden="true"></i>
+                    @(string.IsNullOrEmpty(Model.AlreadySubscribedMessage) ? "You are already subscribed to this newsletter." : Model.AlreadySubscribedMessage)
+                </div>
+            </div>
         </div>
     }
     else
     {
-        @if (!string.IsNullOrEmpty(Model.Title))
-        {
-            <h4 id="newsletter-heading-@Model.ObjectId">@Model.Title</h4>
-        }
-        <div class="card">
+        <div class="card shadow-sm">
+            @if (!string.IsNullOrEmpty(Model.Title))
+            {
+                <div class="card-header">
+                    <h4 class="mb-0" id="newsletter-heading-@Model.ObjectId">
+                        <i class="bi bi-envelope-paper" aria-hidden="true"></i> @Model.Title
+                    </h4>
+                </div>
+            }
             <div class="card-body">
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <p class="text-muted mb-3">@Model.Description</p>
+                }
                 <form class="needs-validation" action="@Model.SubscribeUrl" method="post" novalidate
                       aria-label="Newsletter subscription form">
                     @if (Model.ShowNameField)
@@ -30,14 +46,14 @@
                         <div class="mb-3">
                             <label for="newsletter-name-@Model.ObjectId" class="form-label">Name</label>
                             <input type="text" class="form-control" id="newsletter-name-@Model.ObjectId"
-                                   name="name" placeholder="Enter your Name" required aria-required="true" />
+                                   name="name" placeholder="Enter your name" required aria-required="true" />
                             <div class="invalid-feedback">Name is required.</div>
                         </div>
                     }
                     <div class="mb-3">
                         <label for="newsletter-email-@Model.ObjectId" class="form-label">Email</label>
                         <input type="email" class="form-control" id="newsletter-email-@Model.ObjectId"
-                               name="email" placeholder="Enter your Email" required aria-required="true"
+                               name="email" placeholder="Enter your email" required aria-required="true"
                                pattern="\w+([-+.']\w+)*@@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
                         <div class="invalid-feedback">Please provide a valid email address.</div>
                     </div>
@@ -64,9 +80,5 @@
                 </form>
             </div>
         </div>
-        @if (!string.IsNullOrEmpty(Model.Description))
-        {
-            <p class="mt-2 text-muted">@Model.Description</p>
-        }
     }
 </section>
