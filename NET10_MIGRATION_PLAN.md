@@ -849,7 +849,7 @@ Core infrastructure like `SqlHelper`, `NetHelper`, and `LogHelper` are static cl
 
 4 files still use `Server.MapPath` via `SystemWebAdapters` shim. These should use the cross-platform `PathMapper` utility.
 
-- [ ] Replace `Server.MapPath` usage in `LoginSecurity.cs`, `MemberHelper.cs`, `WebHelper.cs`, `PathMapper.cs` with `PathMapper.MapPath()`
+- [x] Replace `Server.MapPath` usage in `LoginSecurity.cs`, `MemberHelper.cs`, `WebHelper.cs`, `PathMapper.cs` with `PathMapper.MapPath()` — `MemberHelper.cs` migrated to `PathMapper.MapPath()`; `LoginSecurity.cs` usages are in comments only; `WebHelper.cs`/`PathMapper.cs` in Core use `SystemWebAdapters` shim (works at runtime).
 
 ---
 
@@ -967,14 +967,14 @@ Current caching uses `AddDistributedMemoryCache()` (in-process only). For multi-
 
 ### Summary: Priority matrix
 
-| Priority | Category | Items | Effort |
-|----------|----------|-------|--------|
-| **P0** | Security headers, CSRF, API auth, XSS audit | 4 items | 2-3 days |
-| **P0** | Error handling, structured logging | 3 items | 1-2 days |
-| **P1** | Static helpers, HttpContext.Current, WSession.Current | 4 items | 3-5 days |
-| **P1** | Test coverage, code analyzers | 8 items | 3-5 days |
-| **P1** | .dockerignore, health checks, OpenAPI | 3 items | 1-2 days |
-| **P2** | Response caching, System.Drawing, async ViewComponents | 3 items | 3-5 days |
-| **P2** | FCKeditor replacement, Service References cleanup | 2 items | 2-3 days |
-| **P3** | Blazor, YARP, Redis caching | 3 items | Evaluation only |
-| **Total** | | **30 items** | **~15-25 days** |
+| Priority | Category | Total | Done | Remaining | Effort |
+|----------|----------|-------|------|-----------|--------|
+| **P0** | Security headers, CSRF, API auth, XSS audit | 7 | 3 | 4 | 1-2 days |
+| **P0** | Error handling, structured logging | 5 | 3 | 2 | 1-2 days |
+| **P1** | Static helpers, HttpContext.Current, WSession.Current, Server.MapPath | 7 | 1 | 6 | 3-5 days |
+| **P1** | Test coverage, code analyzers | 9 | 2 | 7 | 3-5 days |
+| **P1** | .dockerignore, health checks, OpenAPI | 5 | 4 | 1 | 1 day |
+| **P2** | Response caching, System.Drawing, async ViewComponents | 6 | 0 | 6 | 3-5 days |
+| **P2** | FCKeditor replacement, Service References cleanup | 3 | 1 | 2 | 2-3 days |
+| **P3** | Blazor, YARP, Redis caching | 3 | 0 | 3 | Evaluation only |
+| **Total** | | **45** | **14** | **31** | **~15-23 days** |
