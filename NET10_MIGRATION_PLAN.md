@@ -661,10 +661,10 @@ The 269 ViewComponents have functional C# classes wired to the CMS framework. Th
 - [x] All 21 components enhanced to production-quality Bootstrap 5 markup with ARIA labels, responsive design, empty-state handling, and semantic HTML.
 
 **SystemPartsG3 components (10):**
-- [ ] All 10 Incident/Jobs components — enhance to production markup
+- [x] All 10 Incident/Jobs components — enhanced to production-quality Bootstrap 5 markup with typed ViewModels, ARIA labels, semantic HTML, responsive design, and form validation.
 
 **Admin components (49):**
-- [ ] All 49 admin components — enhance to production markup (lower priority, iteratively improved)
+- [x] All 49 admin components — enhanced to production-quality Bootstrap 5 markup with typed ViewModels, ARIA labels, shadow-sm card panels, responsive tables, and semantic HTML.
 
 **Integration components (130):**
 - [ ] Account/Registration components — enhance to production markup
@@ -674,13 +674,13 @@ The 269 ViewComponents have functional C# classes wired to the CMS framework. Th
 - [ ] Streaming/BibleReader/Reminder/Theme components — enhance to production markup
 
 **BibleReader component (1):**
-- [ ] `BibleVerseViewComponent` — enhance to production markup
+- [x] `BibleVerseViewComponent` — enhanced to production-quality Bootstrap 5 markup with ARIA labels, form controls, empty-state handling, and semantic HTML.
 
 **LessonReviewer components (3):**
-- [ ] `LessonListViewComponent`, `LessonPlayerViewComponent`, `LessonScheduleViewComponent` — enhance to production markup
+- [x] `LessonListViewComponent`, `LessonPlayerViewComponent`, `LessonScheduleViewComponent` — enhanced to production-quality Bootstrap 5 markup with ARIA labels, responsive tables, semantic HTML, accessible calendar grid, and media player controls.
 
 **BranchLocator components (2):**
-- [ ] `BranchLocatorViewComponent`, `BranchMapViewComponent` — enhance to production markup
+- [x] `BranchLocatorViewComponent`, `BranchMapViewComponent` — enhanced to production-quality Bootstrap 5 markup replacing Bootstrap 3 glyphicons with Bootstrap Icons, ARIA labels, list-group cards, accessible map overlay, and responsive layout.
 
 ---
 

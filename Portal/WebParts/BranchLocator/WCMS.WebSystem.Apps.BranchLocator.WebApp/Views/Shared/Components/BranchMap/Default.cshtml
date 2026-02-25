@@ -1,69 +1,89 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.BranchMapViewModel
+
 @if (Model.HasCenter)
 {
-    <div class="map-overlay" onclick="style.display = 'none'">
-        <div>Click or touch map to activate</div>
+    <section class="branch-map position-relative" aria-label="Branch locations map">
+        <div class="map-overlay d-flex align-items-center justify-content-center position-absolute top-0 start-0 w-100 h-100"
+             style="z-index: 10; background: rgba(0,0,0,0.1); cursor: pointer;"
+             onclick="this.style.display='none'" role="button" tabindex="0"
+             onkeydown="if(event.key==='Enter'){this.style.display='none';}"
+             aria-label="Click to activate map">
+            <div class="bg-white rounded-3 px-4 py-2 shadow-sm text-center">
+                <i class="bi bi-hand-index me-1" aria-hidden="true"></i>
+                Click or touch map to activate
+            </div>
+        </div>
+        <div id="mapContainer" class="map-container rounded border" style="height: 450px; width: 100%;"
+             role="application" aria-label="Interactive map showing branch locations"></div>
+
+        <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
+        <script type="text/javascript">
+            function branchMapInfoContent(name, address, url) {
+                var el = document.createElement('div');
+                el.style.maxWidth = '250px';
+                var strong = document.createElement('strong');
+                strong.textContent = name;
+                el.appendChild(strong);
+                if (address) {
+                    el.appendChild(document.createElement('br'));
+                    var addrSpan = document.createElement('span');
+                    addrSpan.className = 'text-muted';
+                    addrSpan.textContent = address;
+                    el.appendChild(addrSpan);
+                }
+                el.appendChild(document.createElement('br'));
+                var a = document.createElement('a');
+                a.href = url;
+                a.textContent = 'View Details';
+                a.className = 'btn btn-sm btn-outline-primary mt-1';
+                el.appendChild(a);
+                return el;
+            }
+            function initializeBranchMap() {
+                var lat = @Json.Serialize(Model.CenterLatitude);
+                var lng = @Json.Serialize(Model.CenterLongitude);
+                var latLng = new google.maps.LatLng(lat, lng);
+                var mapOptions = {
+                    zoom: 10,
+                    center: latLng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById('mapContainer'), mapOptions);
+                var bounds = new google.maps.LatLngBounds();
+
+                @foreach (var marker in Model.MapMarkers)
+                {
+                    <text>
+                    (function() {
+                        var markerName = @Json.Serialize(marker.Name);
+                        var markerAddress = @Json.Serialize(marker.Address);
+                        var detailsUrl = @Json.Serialize("?open=details&id=" + marker.Id);
+                        var pos = new google.maps.LatLng(@Json.Serialize(marker.Latitude), @Json.Serialize(marker.Longitude));
+                        var infoWindow = new google.maps.InfoWindow({ content: branchMapInfoContent(markerName, markerAddress, detailsUrl) });
+                        var mapMarker = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                            title: markerName
+                        });
+                        mapMarker.addListener('click', function() { infoWindow.open(map, mapMarker); });
+                        bounds.extend(pos);
+                    })();
+                    </text>
+                }
+
+                @if (Model.MapMarkers.Count > 0)
+                {
+                    <text>map.fitBounds(bounds);</text>
+                }
+            }
+            google.maps.event.addDomListener(window, 'load', initializeBranchMap);
+        </script>
+    </section>
+}
+else
+{
+    <div class="alert alert-secondary" role="status">
+        <i class="bi bi-geo-alt me-1" aria-hidden="true"></i>
+        Map is not available — no location data found for this branch.
     </div>
-    <div id="mapContainer" class="map-container"></div>
-
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
-    <script type="text/javascript">
-        function branchMapEscape(s) {
-            var d = document.createElement('div');
-            d.appendChild(document.createTextNode(s));
-            return d.innerHTML;
-        }
-        function branchMapInfoContent(name, address, url) {
-            var el = document.createElement('div');
-            var strong = document.createElement('strong');
-            strong.textContent = name;
-            el.appendChild(strong);
-            el.appendChild(document.createElement('br'));
-            el.appendChild(document.createTextNode(address));
-            el.appendChild(document.createElement('br'));
-            var a = document.createElement('a');
-            a.href = url;
-            a.textContent = 'View Details';
-            el.appendChild(a);
-            return el;
-        }
-        function initializeBranchMap() {
-            var lat = @Json.Serialize(Model.CenterLatitude);
-            var lng = @Json.Serialize(Model.CenterLongitude);
-            var latLng = new google.maps.LatLng(lat, lng);
-            var mapOptions = {
-                zoom: 10,
-                center: latLng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(document.getElementById('mapContainer'), mapOptions);
-            var bounds = new google.maps.LatLngBounds();
-
-            @foreach (var marker in Model.MapMarkers)
-            {
-                <text>
-                (function() {
-                    var markerName = @Json.Serialize(marker.Name);
-                    var markerAddress = @Json.Serialize(marker.Address);
-                    var detailsUrl = @Json.Serialize("?open=details&id=" + marker.Id);
-                    var pos = new google.maps.LatLng(@Json.Serialize(marker.Latitude), @Json.Serialize(marker.Longitude));
-                    var infoWindow = new google.maps.InfoWindow({ content: branchMapInfoContent(markerName, markerAddress, detailsUrl) });
-                    var mapMarker = new google.maps.Marker({
-                        position: pos,
-                        map: map,
-                        title: markerName
-                    });
-                    mapMarker.addListener('click', function() { infoWindow.open(map, mapMarker); });
-                    bounds.extend(pos);
-                })();
-                </text>
-            }
-
-            @if (Model.MapMarkers.Count > 0)
-            {
-                <text>map.fitBounds(bounds);</text>
-            }
-        }
-        google.maps.event.addDomListener(window, 'load', initializeBranchMap);
-    </script>
 }
