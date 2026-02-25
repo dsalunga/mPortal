@@ -1,17 +1,24 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntRegistrationManagerModel
 
-<div class="card" id="int-registration-manager-@Model.ObjectId">
+<section class="card" id="int-registration-manager-@Model.ObjectId" aria-labelledby="reg-manager-heading-@Model.ObjectId">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0">Registration Manager</h5>
+        <h5 class="card-title mb-0" id="reg-manager-heading-@Model.ObjectId">
+            <i class="bi bi-people-fill" aria-hidden="true"></i> Registration Manager
+        </h5>
         <span class="badge bg-secondary">@Model.TotalCount total</span>
     </div>
     <div class="card-body">
-        <form method="get" class="row g-2 mb-3">
+        <form method="get" class="row g-2 mb-3" aria-label="Filter registrations">
             <div class="col-auto">
-                <input type="text" class="form-control" name="search" placeholder="Search..." value="@Model.SearchTerm" />
+                <label for="regMgrSearch" class="visually-hidden">Search registrations</label>
+                <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control" id="regMgrSearch" name="search" placeholder="Search..." value="@Model.SearchTerm" aria-label="Search registrations" />
+                </div>
             </div>
             <div class="col-auto">
-                <select class="form-select" name="status">
+                <label for="regMgrStatus" class="visually-hidden">Filter by status</label>
+                <select class="form-select" id="regMgrStatus" name="status" aria-label="Filter by status">
                     <option value="">All Statuses</option>
                     <option value="Active" selected="@(Model.FilterStatus == "Active")">Active</option>
                     <option value="Pending" selected="@(Model.FilterStatus == "Pending")">Pending</option>
@@ -19,24 +26,26 @@
                 </select>
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-outline-secondary">Filter</button>
+                <button type="submit" class="btn btn-outline-secondary">
+                    <i class="bi bi-funnel" aria-hidden="true"></i> Filter
+                </button>
             </div>
         </form>
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" aria-label="Registration records">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>User Name</th>
-                        <th>Full Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                        <th>Actions</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if (Model.Registrations != null)
+                    @if (Model.Registrations != null && Model.Registrations.Any())
                     {
                         @foreach (var reg in Model.Registrations)
                         {
@@ -48,13 +57,22 @@
                                 <td>@reg.Status</td>
                                 <td>@reg.RegisteredDate</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                                    <a href="#" class="btn btn-sm btn-outline-primary" aria-label="View details for @reg.FullName">
+                                        <i class="bi bi-eye" aria-hidden="true"></i> View
+                                    </a>
                                 </td>
                             </tr>
                         }
                     }
                 </tbody>
             </table>
+            @if (Model.Registrations == null || !Model.Registrations.Any())
+            {
+                <div class="text-center text-muted py-4">
+                    <i class="bi bi-inbox fs-1" aria-hidden="true"></i>
+                    <p class="mt-2 mb-0">No registrations found.</p>
+                </div>
+            }
         </div>
     </div>
-</div>
+</section>

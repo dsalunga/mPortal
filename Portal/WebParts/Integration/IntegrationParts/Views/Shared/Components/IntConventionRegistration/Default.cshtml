@@ -1,38 +1,48 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntConventionRegistrationModel
 
-<div class="card" id="int-convention-registration-@Model.ObjectId">
+<section class="card" id="int-convention-registration-@Model.ObjectId" aria-labelledby="convention-reg-heading-@Model.ObjectId">
     <div class="card-header">
-        <h5 class="card-title mb-0">Convention Registration</h5>
+        <h5 class="card-title mb-0" id="convention-reg-heading-@Model.ObjectId">
+            <i class="bi bi-calendar-event" aria-hidden="true"></i> Convention Registration
+        </h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
         @if (!string.IsNullOrEmpty(Model.EventName))
         {
             <div class="mb-3">
-                <h6>@Model.EventName</h6>
+                <h6><i class="bi bi-geo-alt" aria-hidden="true"></i> @Model.EventName</h6>
                 <p class="text-muted mb-1">@Model.EventDate</p>
                 <p class="text-muted">@Model.Location</p>
             </div>
         }
-        <form method="post" novalidate>
+        else
+        {
+            <div class="text-center text-muted py-4">
+                <i class="bi bi-calendar-x fs-1" aria-hidden="true"></i>
+                <p class="mt-2 mb-0">No event information available.</p>
+            </div>
+        }
+        <form method="post" novalidate aria-label="Convention registration form">
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="convFirstName" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="convFirstName" name="FirstName" required />
+                    <label for="convFirstName" class="form-label">First Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" class="form-control" id="convFirstName" name="FirstName" required aria-required="true" />
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="convLastName" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="convLastName" name="LastName" required />
+                    <label for="convLastName" class="form-label">Last Name <span class="text-danger" aria-hidden="true">*</span></label>
+                    <input type="text" class="form-control" id="convLastName" name="LastName" required aria-required="true" />
                 </div>
             </div>
             <div class="mb-3">
-                <label for="convEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" id="convEmail" name="Email" required />
+                <label for="convEmail" class="form-label">Email <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="email" class="form-control" id="convEmail" name="Email" required aria-required="true" />
             </div>
             <div class="mb-3">
                 <label for="convPhone" class="form-label">Phone</label>
@@ -40,8 +50,8 @@
             </div>
             @if (Model.SessionOptions != null && Model.SessionOptions.Count > 0)
             {
-                <div class="mb-3">
-                    <label class="form-label">Sessions</label>
+                <fieldset class="mb-3">
+                    <legend class="form-label">Sessions</legend>
                     @foreach (var session in Model.SessionOptions)
                     {
                         <div class="form-check">
@@ -49,9 +59,11 @@
                             <label class="form-check-label" for="session-@session.GetHashCode()">@session</label>
                         </div>
                     }
-                </div>
+                </fieldset>
             }
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-person-check" aria-hidden="true"></i> Register
+            </button>
         </form>
     </div>
-</div>
+</section>

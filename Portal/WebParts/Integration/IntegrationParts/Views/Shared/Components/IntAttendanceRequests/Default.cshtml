@@ -1,19 +1,21 @@
 @model dynamic
 
-<div class="card" id="int-attendance-requests-@Model.ObjectId" role="region" aria-label="Attendance Requests">
+<section class="card" id="int-attendance-requests-@Model.ObjectId" aria-labelledby="attendance-requests-heading-@Model.ObjectId">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0">Attendance Requests</h5>
+        <h5 class="card-title mb-0" id="attendance-requests-heading-@Model.ObjectId">
+            <i class="bi bi-list-check" aria-hidden="true"></i> Attendance Requests
+        </h5>
         <span class="badge bg-secondary" id="lblTotalRequests">0</span>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty((string)Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <div class="row mb-3">
+        <form class="row mb-3 g-2" aria-label="Filter attendance requests">
             <div class="col-md-4">
                 <label for="ddlStatusFilter" class="form-label">Status</label>
                 <select id="ddlStatusFilter" name="StatusFilter" class="form-select" aria-label="Filter by status">
@@ -31,7 +33,7 @@
                 <label for="txtDateTo" class="form-label">To</label>
                 <input type="date" id="txtDateTo" name="DateTo" class="form-control" />
             </div>
-        </div>
+        </form>
         <div class="table-responsive">
             <table class="table table-striped table-hover" id="tblAttendanceRequests" aria-label="Attendance requests">
                 <thead>
@@ -46,6 +48,10 @@
                 <tbody id="attendanceRequestList">
                 </tbody>
             </table>
+            <div id="attendanceRequestsEmpty" class="text-center text-muted py-4 d-none">
+                <i class="bi bi-inbox fs-1" aria-hidden="true"></i>
+                <p class="mt-2 mb-0">No attendance requests found.</p>
+            </div>
         </div>
     </div>
-</div>
+</section>

@@ -1,29 +1,32 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntRegisterSGModel
 
-<div class="system-reg" id="int-register-sg-@Model.ObjectId" style="text-align: left">
+<section class="system-reg" id="int-register-sg-@Model.ObjectId" style="text-align: left" aria-labelledby="register-sg-heading-@Model.ObjectId">
     @if (!string.IsNullOrEmpty(Model.Message))
     {
-        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
             @Model.Message
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
 
-    <form method="post" novalidate>
+    <form method="post" novalidate aria-label="Member registration form">
         <input type="hidden" id="hLocaleFilter" name="LocaleFilter" value="" />
 
         <!-- Group information -->
         <table cellpadding="1" cellspacing="1" style="float: left">
             <tr>
                 <td align="left" colspan="2">
-                    <h4 class="heading colr" id="lblTitle">Member Registration</h4>
+                    <h4 class="heading colr" id="register-sg-heading-@Model.ObjectId">
+                        <i class="bi bi-person-plus" aria-hidden="true"></i> Member Registration
+                    </h4>
                 </td>
             </tr>
             <tr>
                 <td style="width: 110px; text-align: left">
-                    Group ID
+                    <label for="txtExternalIDNo">Group ID</label>
                 </td>
                 <td style="text-align: left">
-                    <input type="text" id="txtExternalIDNo" name="ExternalIDNo" class="input" size="20" tabindex="1" required />
+                    <input type="text" id="txtExternalIDNo" name="ExternalIDNo" class="input" size="20" tabindex="1" required aria-required="true" />
                     &nbsp;<a href="#" style="color: Gray; text-decoration: underline" id="linkNoExternal"
                         title="Click here to register if you don't have an External account." tabindex="2">No External account?</a>
                     <a href="#" style="color: Gray; text-decoration: underline" id="linkWithExternal"
@@ -32,16 +35,18 @@
             </tr>
             <tr>
                 <td style="text-align: left">
-                    Date of Membership
+                    <label for="txtMembershipDate">Date of Membership</label>
                 </td>
                 <td style="text-align: left">
                     <table border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td style="padding-right: 1px;">
-                                <input type="text" id="txtMembershipDate" name="MembershipDate" class="span2 input" placeholder="YYYY-MM-DD" maxlength="10" tabindex="4" required />
+                                <input type="text" id="txtMembershipDate" name="MembershipDate" class="span2 input" placeholder="YYYY-MM-DD" maxlength="10" tabindex="4" required aria-required="true" />
                             </td>
                             <td>
-                                &nbsp;<button type="submit" id="btnRetrieve" name="Action" value="Retrieve" class="btn btn-default btn-inline btn-sm" tabindex="6">Retrieve</button>
+                                &nbsp;<button type="submit" id="btnRetrieve" name="Action" value="Retrieve" class="btn btn-default btn-inline btn-sm" tabindex="6">
+                                    <i class="bi bi-search" aria-hidden="true"></i> Retrieve
+                                </button>
                             </td>
                         </tr>
                     </table>
@@ -49,7 +54,7 @@
             </tr>
             <tr id="rowLocale" style="display: none">
                 <td style="text-align: left">
-                    Group Locale
+                    <label for="txtLocale">Group Locale</label>
                 </td>
                 <td>
                     <input type="text" id="txtLocale" name="Locale" class="span5 input" size="52" tabindex="7" />
@@ -67,15 +72,15 @@
             <table cellpadding="1" cellspacing="1">
                 <tr>
                     <td style="width: 110px; text-align: left">
-                        First Name
+                        <label for="txtFirstName">First Name</label>
                     </td>
                     <td>
-                        <input type="text" id="txtFirstName" name="FirstName" class="input" size="31" readonly disabled tabindex="8" required />
+                        <input type="text" id="txtFirstName" name="FirstName" class="input" size="31" readonly disabled tabindex="8" required aria-required="true" />
                     </td>
                 </tr>
                 <tr id="rowMiddleName" style="display: none">
                     <td style="text-align: left">
-                        Middle Name
+                        <label for="txtMiddleName">Middle Name</label>
                     </td>
                     <td>
                         <input type="text" id="txtMiddleName" name="MiddleName" class="input" size="31" tabindex="9" />
@@ -83,23 +88,23 @@
                 </tr>
                 <tr>
                     <td style="text-align: left">
-                        Last Name
+                        <label for="txtLastName">Last Name</label>
                     </td>
                     <td>
-                        <input type="text" id="txtLastName" name="LastName" class="input" size="31" readonly disabled tabindex="10" required />
+                        <input type="text" id="txtLastName" name="LastName" class="input" size="31" readonly disabled tabindex="10" required aria-required="true" />
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: left">
-                        E-mail
+                        <label for="txtEmail">E-mail</label>
                     </td>
                     <td>
-                        <input type="email" id="txtEmail" name="Email" class="input" size="31" readonly disabled tabindex="11" required />
+                        <input type="email" id="txtEmail" name="Email" class="input" size="31" readonly disabled tabindex="11" required aria-required="true" />
                     </td>
                 </tr>
                 <tr id="rowContact">
                     <td style="text-align: left">
-                        Mobile Number
+                        <label for="txtMobileNumber">Mobile Number</label>
                     </td>
                     <td>
                         <input type="text" id="txtMobileNumber" name="MobileNumber" class="span2 input" readonly size="25" tabindex="12" />
@@ -107,7 +112,7 @@
                 </tr>
                 <tr id="rowAddress" style="display: none">
                     <td style="text-align: left">
-                        Home Address
+                        <label for="txtAddress">Home Address</label>
                     </td>
                     <td>
                         <input type="text" id="txtAddress" name="Address" class="span5 input" size="52" tabindex="13" />
@@ -120,14 +125,16 @@
                 </tr>
             </table>
 
-            <img id="imgPhoto" src="" alt="" class="PhotoFrame" style="border-width: 1px; float: left; margin-left: 10px;" />
+            <img id="imgPhoto" src="" alt="Member photo" class="PhotoFrame" style="border-width: 1px; float: left; margin-left: 10px;" />
 
             <!-- Account information -->
             <table cellpadding="1" cellspacing="1">
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <button type="submit" id="btnRegister" name="Action" value="Register" class="btn btn-primary" style="width: 85px" disabled tabindex="17">Register</button>
+                        <button type="submit" id="btnRegister" name="Action" value="Register" class="btn btn-primary" style="width: 85px" disabled tabindex="17">
+                            <i class="bi bi-person-check" aria-hidden="true"></i> Register
+                        </button>
                         <br /><br />
                         NOTE: Your Temporary Password will be sent to your e-mail address and SMS number,
                         please make sure your contact information is correct.
@@ -148,4 +155,4 @@
             </tr>
         </table>
     </form>
-</div>
+</section>

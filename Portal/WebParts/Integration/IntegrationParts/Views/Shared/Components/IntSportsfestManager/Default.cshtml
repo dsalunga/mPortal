@@ -1,16 +1,19 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntSportsfestManagerModel
 
-<div class="card" id="int-sportsfest-manager-@Model.ObjectId">
+<section class="card" id="int-sportsfest-manager-@Model.ObjectId" aria-labelledby="sportsfest-mgr-heading-@Model.ObjectId">
     <div class="card-header">
-        <h5 class="card-title mb-0">Sportsfest Manager</h5>
+        <h5 class="card-title mb-0" id="sportsfest-mgr-heading-@Model.ObjectId">
+            <i class="bi bi-trophy-fill" aria-hidden="true"></i> Sportsfest Manager
+        </h5>
     </div>
     <div class="card-body">
         @if (!string.IsNullOrEmpty(Model.Message))
         {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
+            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
                 @Model.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
         <p>Sportsfest management placeholder content.</p>
     </div>
-</div>
+</section>
