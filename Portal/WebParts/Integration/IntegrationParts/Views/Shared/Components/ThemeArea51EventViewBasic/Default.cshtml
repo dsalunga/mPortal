@@ -1,27 +1,27 @@
 @* Originally: area51/Parts/EventCalendar/Event/EventViewBasic.ascx *@
 @model dynamic
 
-<article id="theme-area51-event-view-@Model.ObjectId" aria-label="Event details">
+<article id="theme-area51-event-view-@Model.ObjectId" aria-labelledby="event-view-heading-@Model.ObjectId">
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="event-view-heading-@Model.ObjectId">
                         @await Component.InvokeAsync("WZone", new { zone = "EventTitle" })
                     </div>
                     <div class="card-body">
                         <dl>
-                            <dt class="text-muted">Date &amp; Time</dt>
+                            <dt class="text-muted"><i class="bi bi-clock" aria-hidden="true"></i> Date &amp; Time</dt>
                             <dd class="mb-3">
                                 @await Component.InvokeAsync("WZone", new { zone = "EventDateTime" })
                             </dd>
 
-                            <dt class="text-muted">Location</dt>
+                            <dt class="text-muted"><i class="bi bi-geo-alt" aria-hidden="true"></i> Location</dt>
                             <dd class="mb-3">
                                 @await Component.InvokeAsync("WZone", new { zone = "EventLocation" })
                             </dd>
 
-                            <dt class="text-muted">Description</dt>
+                            <dt class="text-muted"><i class="bi bi-card-text" aria-hidden="true"></i> Description</dt>
                             <dd class="mb-3">
                                 @await Component.InvokeAsync("WZone", new { zone = "EventDescription" })
                             </dd>

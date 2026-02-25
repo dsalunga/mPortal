@@ -1,35 +1,41 @@
 @model dynamic
 
-<div class="card" id="int-service-picker-@Model.ObjectId" role="region" aria-label="Service Picker">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Select Service</h5>
+<section aria-labelledby="service-picker-heading-@Model.ObjectId">
+    <div class="card" id="int-service-picker-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="service-picker-heading-@Model.ObjectId">
+                <i class="bi bi-calendar-check" aria-hidden="true"></i> Select Service
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty((string)Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <form method="post" novalidate aria-label="Service selection form">
+                <div class="mb-3">
+                    <label for="ddlServiceType" class="form-label">Service Type</label>
+                    <select id="ddlServiceType" name="ServiceType" class="form-select" aria-label="Filter by service type">
+                        <option value="">All Types</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="ddlService" class="form-label">Service <span class="text-danger" aria-hidden="true">*</span></label>
+                    <select id="ddlService" name="ServiceId" class="form-select" required aria-required="true" aria-label="Select a service">
+                        <option value="">-- Select Service --</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="txtServiceDate" class="form-label">Date</label>
+                    <input type="date" id="txtServiceDate" name="ServiceDate" class="form-control" />
+                </div>
+                <button type="submit" id="cmdSelectService" class="btn btn-primary">
+                    <i class="bi bi-check-lg" aria-hidden="true"></i> Select
+                </button>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty((string)Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
-                @Model.Message
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        }
-        <form method="post" novalidate aria-label="Service selection form">
-            <div class="mb-3">
-                <label for="ddlServiceType" class="form-label">Service Type</label>
-                <select id="ddlServiceType" name="ServiceType" class="form-select" aria-label="Filter by service type">
-                    <option value="">All Types</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="ddlService" class="form-label">Service <span class="text-danger" aria-hidden="true">*</span></label>
-                <select id="ddlService" name="ServiceId" class="form-select" required aria-required="true" aria-label="Select a service">
-                    <option value="">-- Select Service --</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="txtServiceDate" class="form-label">Date</label>
-                <input type="date" id="txtServiceDate" name="ServiceDate" class="form-control" />
-            </div>
-            <button type="submit" id="cmdSelectService" class="btn btn-primary">Select</button>
-        </form>
-    </div>
-</div>
+</section>

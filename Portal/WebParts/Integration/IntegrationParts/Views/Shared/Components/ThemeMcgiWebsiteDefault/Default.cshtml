@@ -2,7 +2,9 @@
 @model dynamic
 
 <div id="theme-mcgi-website-default-@Model.ObjectId">
-    <header class="bg-primary text-white py-3" role="banner">
+    <a href="#mcgi-default-main-@Model.ObjectId" class="visually-hidden-focusable skip-link">Skip to main content</a>
+
+    <header class="bg-primary text-white py-3" role="banner" aria-label="MCGI site header">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
@@ -18,7 +20,7 @@
         </div>
     </nav>
 
-    <main class="container py-4" role="main">
+    <main id="mcgi-default-main-@Model.ObjectId" class="container py-4">
         <div class="row">
             <div class="col-12">
                 @await Component.InvokeAsync("WZone", new { zone = "Content" })
@@ -26,7 +28,7 @@
         </div>
     </main>
 
-    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo" aria-label="MCGI site footer">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
             <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year MCGI. All rights reserved.</small></p>

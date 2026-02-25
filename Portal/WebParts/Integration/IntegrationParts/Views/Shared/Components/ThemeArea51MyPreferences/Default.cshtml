@@ -1,15 +1,17 @@
 @* Originally: area51/Parts/Profile/Profile/MyPreferences.ascx *@
 @model dynamic
 
-<section id="theme-area51-preferences-@Model.ObjectId" aria-label="My preferences">
+<section id="theme-area51-preferences-@Model.ObjectId" aria-labelledby="prefs-heading-@Model.ObjectId">
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0" id="prefs-heading">My Preferences</h5>
+                        <h5 class="card-title mb-0" id="prefs-heading-@Model.ObjectId">
+                            <i class="bi bi-sliders" aria-hidden="true"></i> My Preferences
+                        </h5>
                     </div>
-                    <div class="card-body" role="form" aria-labelledby="prefs-heading">
+                    <div class="card-body" role="form" aria-labelledby="prefs-heading-@Model.ObjectId">
                         @await Component.InvokeAsync("WZone", new { zone = "PreferenceSettings" })
                     </div>
                     <div class="card-footer text-end">

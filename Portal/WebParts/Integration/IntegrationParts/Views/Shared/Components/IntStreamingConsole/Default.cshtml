@@ -1,16 +1,23 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntStreamingConsoleModel
 
-<div class="card" id="int-streaming-console-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Streaming Console</h5>
-    </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
-                @Model.Message
+<section aria-labelledby="streaming-console-heading-@Model.ObjectId">
+    <div class="card" id="int-streaming-console-@Model.ObjectId">
+        <div class="card-header">
+            <h5 class="card-title mb-0" id="streaming-console-heading-@Model.ObjectId">
+                <i class="bi bi-broadcast" aria-hidden="true"></i> Streaming Console
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <div id="streamingConsoleContent-@Model.ObjectId" role="region" aria-label="Streaming controls">
+                <p class="text-muted"><i class="bi bi-info-circle" aria-hidden="true"></i> No active streaming session.</p>
             </div>
-        }
-        <p>Streaming console placeholder content.</p>
+        </div>
     </div>
-</div>
+</section>

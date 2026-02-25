@@ -2,7 +2,9 @@
 @model dynamic
 
 <div id="theme-mcgi-website-home2-@Model.ObjectId">
-    <header class="bg-primary text-white py-3" role="banner">
+    <a href="#mcgi-home2-main-@Model.ObjectId" class="visually-hidden-focusable skip-link">Skip to main content</a>
+
+    <header class="bg-primary text-white py-3" role="banner" aria-label="MCGI site header">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Header" })
         </div>
@@ -14,24 +16,26 @@
         </div>
     </section>
 
-    <section class="container py-5" aria-label="Features">
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                @await Component.InvokeAsync("WZone", new { zone = "FeatureLeft" })
+    <main id="mcgi-home2-main-@Model.ObjectId">
+        <section class="container py-5" aria-label="Features">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    @await Component.InvokeAsync("WZone", new { zone = "FeatureLeft" })
+                </div>
+                <div class="col-md-6 mb-4">
+                    @await Component.InvokeAsync("WZone", new { zone = "FeatureRight" })
+                </div>
             </div>
-            <div class="col-md-6 mb-4">
-                @await Component.InvokeAsync("WZone", new { zone = "FeatureRight" })
+        </section>
+
+        <section class="bg-light py-5" aria-label="Testimonials">
+            <div class="container">
+                @await Component.InvokeAsync("WZone", new { zone = "Testimonials" })
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <section class="bg-light py-5" aria-label="Testimonials">
-        <div class="container">
-            @await Component.InvokeAsync("WZone", new { zone = "Testimonials" })
-        </div>
-    </section>
-
-    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo">
+    <footer class="bg-dark text-white py-3 mt-4" role="contentinfo" aria-label="MCGI site footer">
         <div class="container">
             @await Component.InvokeAsync("WZone", new { zone = "Footer" })
             <p class="text-center text-muted mb-0 mt-2"><small>&copy; @DateTime.Now.Year MCGI. All rights reserved.</small></p>

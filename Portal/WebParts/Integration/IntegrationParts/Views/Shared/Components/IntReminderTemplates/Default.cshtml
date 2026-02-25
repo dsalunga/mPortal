@@ -1,33 +1,40 @@
 @model dynamic
 
-<div class="card" id="int-reminder-templates-@Model.ObjectId" role="region" aria-label="Reminder Templates">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0">Reminder Templates</h5>
-        <button type="button" id="cmdAddTemplate" class="btn btn-sm btn-primary" aria-label="Add new template">
-            <span aria-hidden="true">+</span> Add Template
-        </button>
-    </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty((string)Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
-                @Model.Message
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<section aria-labelledby="reminder-templates-heading-@Model.ObjectId">
+    <div class="card" id="int-reminder-templates-@Model.ObjectId">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0" id="reminder-templates-heading-@Model.ObjectId">
+                <i class="bi bi-bell" aria-hidden="true"></i> Reminder Templates
+            </h5>
+            <button type="button" id="cmdAddTemplate" class="btn btn-sm btn-primary" aria-label="Add new reminder template">
+                <i class="bi bi-plus-lg" aria-hidden="true"></i> Add Template
+            </button>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty((string)Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <div class="table-responsive">
+                <table class="table table-striped table-hover" id="tblTemplates" aria-label="Reminder templates list">
+                    <thead>
+                        <tr>
+                            <th scope="col">Template Name</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="templateList">
+                    </tbody>
+                </table>
             </div>
-        }
-        <div class="table-responsive">
-            <table class="table table-striped table-hover" id="tblTemplates" aria-label="Reminder templates list">
-                <thead>
-                    <tr>
-                        <th scope="col">Template Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="templateList">
-                </tbody>
-            </table>
+            <div id="templateEmptyState-@Model.ObjectId" class="text-center py-4 d-none">
+                <p class="text-muted"><i class="bi bi-bell-slash" aria-hidden="true"></i> No reminder templates found. Click <strong>Add Template</strong> to create one.</p>
+            </div>
         </div>
     </div>
-</div>
+</section>

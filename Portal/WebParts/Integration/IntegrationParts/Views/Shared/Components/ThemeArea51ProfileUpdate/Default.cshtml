@@ -1,15 +1,17 @@
 @* Originally: area51/Parts/Profile/Profile/ProfileUpdate.ascx *@
 @model dynamic
 
-<section id="theme-area51-profile-update-@Model.ObjectId" aria-label="Update profile">
+<section id="theme-area51-profile-update-@Model.ObjectId" aria-labelledby="profile-update-heading-@Model.ObjectId">
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0" id="profile-update-heading">Update Profile</h5>
+                        <h5 class="card-title mb-0" id="profile-update-heading-@Model.ObjectId">
+                            <i class="bi bi-person-gear" aria-hidden="true"></i> Update Profile
+                        </h5>
                     </div>
-                    <div class="card-body" role="form" aria-labelledby="profile-update-heading">
+                    <div class="card-body" role="form" aria-labelledby="profile-update-heading-@Model.ObjectId">
                         <div class="text-center mb-4">
                             @await Component.InvokeAsync("WZone", new { zone = "ProfileAvatar" })
                         </div>

@@ -1,16 +1,23 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.IntStreamingUserManagerModel
 
-<div class="card" id="int-streaming-user-manager-@Model.ObjectId">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Streaming User Manager</h5>
-    </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")" role="alert">
-                @Model.Message
+<section aria-labelledby="streaming-user-mgr-heading-@Model.ObjectId">
+    <div class="card" id="int-streaming-user-manager-@Model.ObjectId">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0" id="streaming-user-mgr-heading-@Model.ObjectId">
+                <i class="bi bi-people" aria-hidden="true"></i> Streaming User Manager
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="status" aria-live="polite">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <div id="streamingUserMgrContent-@Model.ObjectId">
+                <p class="text-muted"><i class="bi bi-info-circle" aria-hidden="true"></i> No streaming users to display.</p>
             </div>
-        }
-        <p>Streaming user management placeholder content.</p>
+        </div>
     </div>
-</div>
+</section>
