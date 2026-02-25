@@ -99,6 +99,12 @@ namespace WCMS.Common.Utilities
         public static int ExecuteNonQuery(string cmdText, params DbParameter[] cmdParms)
             => Instance.ExecuteNonQuery(cmdText, cmdParms);
 
+        public static int ExecuteNonQuery(DbConnection conn, CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
+            => Instance.ExecuteNonQuery(conn, cmdType, cmdText, cmdParms);
+
+        public static int ExecuteNonQuery(DbTransaction trans, CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
+            => Instance.ExecuteNonQuery(trans, cmdType, cmdText, cmdParms);
+
         public static DbDataReader ExecuteReader(string connString, CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
             => Instance.ExecuteReader(connString, cmdType, cmdText, cmdParms);
 
@@ -111,6 +117,9 @@ namespace WCMS.Common.Utilities
         public static DbDataReader ExecuteReader(string connString, string cmdText, params DbParameter[] cmdParms)
             => Instance.ExecuteReader(connString, cmdText, cmdParms);
 
+        public static DbDataReader ExecuteReader(DbConnection conn, CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
+            => Instance.ExecuteReader(conn, cmdType, cmdText, cmdParms);
+
         public static object ExecuteScalar(string connString, CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
             => Instance.ExecuteScalar(connString, cmdType, cmdText, cmdParms);
 
@@ -119,6 +128,12 @@ namespace WCMS.Common.Utilities
 
         public static object ExecuteScalar(string cmdText, params DbParameter[] cmdParms)
             => Instance.ExecuteScalar(cmdText, cmdParms);
+
+        public static object ExecuteScalar(DbConnection conn, CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
+            => Instance.ExecuteScalar(conn, cmdType, cmdText, cmdParms);
+
+        public static DataSet ExecuteDataSet(string connString, CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
+            => Instance.ExecuteDataSet(connString, cmdType, cmdText, cmdParms);
 
         public static DataSet ExecuteDataSet(CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
             => Instance.ExecuteDataSet(cmdType, cmdText, cmdParms);
