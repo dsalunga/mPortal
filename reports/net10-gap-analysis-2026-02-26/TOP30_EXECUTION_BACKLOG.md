@@ -39,6 +39,8 @@ Suggested owners:
   Implemented by `Portal/WebParts/SystemPartsG2/SystemPartsG2/Api/LegacyFlashBannerHandlerController.cs` (legacy XML payload + route aliases).
 - [x] Rank 5 (`MAP-122`) - `Portal/WebParts/SystemPartsG2/SystemPartsG2/AppBundle2/Social/WebService.asmx`  
   Implemented by `Portal/WebParts/SystemPartsG2/SystemPartsG2/Api/LegacySocialWebServiceController.cs` (ASMX-style `{ d: ... }` responses + route aliases).
+- [x] Rank 6 (`MAP-017`) - `Portal/WebParts/SystemParts/SystemParts/AppBundle/Article/EmailPreview.ashx`  
+  Implemented by `Portal/WebParts/SystemParts/SystemParts/Api/LegacyArticleEmailPreviewController.cs` (legacy email template preview contract + route aliases).
 
 ## Top 30 (ranked)
 
