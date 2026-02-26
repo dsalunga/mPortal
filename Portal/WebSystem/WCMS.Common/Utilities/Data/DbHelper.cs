@@ -126,6 +126,9 @@ namespace WCMS.Common.Utilities
         public static object ExecuteScalar(CommandType cmdType, string cmdText, params DbParameter[] cmdParms)
             => Instance.ExecuteScalar(cmdType, cmdText, cmdParms);
 
+        public static object ExecuteScalar(string connString, string cmdText, params DbParameter[] cmdParms)
+            => Instance.ExecuteScalar(connString, cmdText, cmdParms);
+
         public static object ExecuteScalar(string cmdText, params DbParameter[] cmdParms)
             => Instance.ExecuteScalar(cmdText, cmdParms);
 
