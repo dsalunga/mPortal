@@ -35,7 +35,8 @@ Suggested owners:
   Implemented by `Portal/WebParts/SystemPartsG2/SystemPartsG2/Api/LegacyDownloadHandlerController.cs` (filename DB lookup + force download parity).
 - [x] Rank 3 (`MAP-102`) - `Portal/WebParts/SystemPartsG2/SystemPartsG2/AppBundle2/FlashBanner/FlashService.asmx`  
   Implemented by `Portal/WebParts/SystemPartsG2/SystemPartsG2/Api/LegacyFlashServiceController.cs` (legacy XML payload + route aliases).
-- [ ] Rank 4 (`MAP-103`) - `Portal/WebParts/SystemPartsG2/SystemPartsG2/AppBundle2/FlashBanner/Handler.ashx`
+- [x] Rank 4 (`MAP-103`) - `Portal/WebParts/SystemPartsG2/SystemPartsG2/AppBundle2/FlashBanner/Handler.ashx`  
+  Implemented by `Portal/WebParts/SystemPartsG2/SystemPartsG2/Api/LegacyFlashBannerHandlerController.cs` (legacy XML payload + route aliases).
 - [ ] Rank 5 (`MAP-122`) - `Portal/WebParts/SystemPartsG2/SystemPartsG2/AppBundle2/Social/WebService.asmx`
 
 ## Top 30 (ranked)
