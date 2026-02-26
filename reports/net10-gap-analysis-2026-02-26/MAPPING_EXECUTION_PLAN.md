@@ -8,6 +8,13 @@ Date: 2026-02-26
 - Input source: `legacy-unmatched-web-artifacts.txt`
 - Prioritized execution subset: `top30-p0-p1-prioritized.csv`
 - Ranked backlog view: `TOP30_EXECUTION_BACKLOG.md`
+- Full remaining checklist (includes mapping coverage gaps): `REMAINING_EXECUTION_CHECKLIST.md`
+
+## Coverage caveat
+
+- `legacy-to-modern-mapping.csv` is scoped to `legacy-unmatched-web-artifacts.txt` (187 rows).
+- Additional legacy web/service artifacts exist in `only-in-pre-migration.txt` that were not represented in the mapping CSV.
+- These untracked items are now captured in `REMAINING_EXECUTION_CHECKLIST.md` as `Untracked-MappingGap` entries.
 
 ## Mapping status summary
 
