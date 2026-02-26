@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -27,9 +29,12 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
 
             var model = new GalleryViewModel { Items = new List<GalleryItem>() };
 
-            using (var reader = SqlHelper.ExecuteReader("Gallery_Get",
-                new Microsoft.Data.SqlClient.SqlParameter("@ObjectId", WcmsContext.ObjectId),
-                new Microsoft.Data.SqlClient.SqlParameter("@RecordId", WcmsContext.RecordId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Gallery") + " WHERE " +
+                DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+            using (var reader = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ObjectId", WcmsContext.ObjectId),
+                DbHelper.CreateParameter("@RecordId", WcmsContext.RecordId)))
             {
                 while (reader.Read())
                 {

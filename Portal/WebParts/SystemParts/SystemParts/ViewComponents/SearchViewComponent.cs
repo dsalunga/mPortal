@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -27,9 +29,13 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 model.Results = new List<SearchResultItem>();
 
                 // Search pages by title/content containing the query
-                using (var reader = SqlHelper.ExecuteReader("WebPage_Search",
-                    new Microsoft.Data.SqlClient.SqlParameter("@Query", model.Query),
-                    new Microsoft.Data.SqlClient.SqlParameter("@SiteId", WcmsContext.Site?.Id ?? -1)))
+                var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("WebPage") + " WHERE (" +
+                    DbSyntax.QuoteIdentifier("Title") + " LIKE @Query OR " +
+                    DbSyntax.QuoteIdentifier("Description") + " LIKE @Query) AND " +
+                    DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+                using (var reader = DbHelper.ExecuteReader(CommandType.Text, sql,
+                    DbHelper.CreateParameter("@Query", "%" + model.Query + "%"),
+                    DbHelper.CreateParameter("@SiteId", WcmsContext.Site?.Id ?? -1)))
                 {
                     while (reader.Read())
                     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
@@ -43,20 +43,22 @@ namespace WCMS.WebSystem.WebParts.Jobs.Providers
         {
             List<Job> items = new List<Job>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@Keyword", keyword)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Job");
+            var parmList = new List<DbParameter>();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                sql += " WHERE " + DbSyntax.QuoteIdentifier("Title") + " LIKE @Keyword OR " +
+                    DbSyntax.QuoteIdentifier("Description") + " LIKE @Keyword";
+                parmList.Add(DbHelper.CreateParameter("@Keyword", "%" + keyword + "%"));
+            }
+
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql, parmList.ToArray()))
             {
                 while (r.Read())
                     items.Add(From(r));
             }
 
             return items;
-
-
-            //SqlHelper.ExecuteReader(CommandType.Text, "SELECT * FROM Job");
-            //SqlHelper.ExecuteReader("Job_Get",
-            //    new SqlParameter("@param", 123),
-            //    new SqlParameter();
         }
     }
 }

@@ -38,6 +38,14 @@ namespace WCMS.Common.Utilities
         public static string ConnString { get; private set; }
 
         /// <summary>
+        /// Gets a named connection string from configuration (delegates to ConfigUtil).
+        /// </summary>
+        public static string GetConnectionString(string connectionStringKey)
+        {
+            return ConfigUtil.GetConnectionString(connectionStringKey);
+        }
+
+        /// <summary>
         /// Whether the DbHelper has been configured.
         /// </summary>
         public static bool IsConfigured => _instance != null;

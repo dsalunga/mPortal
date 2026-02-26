@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Data;
 using WCMS.Common.Utilities;
@@ -19,14 +19,15 @@ namespace WCMS.BibleReader.Core.Providers
         private string connectionString;
         public BibleBookNameProvider()
         {
-            connectionString = SqlHelper.GetConnectionString(BibleConstants.ConnectionString);
+            connectionString = DbHelper.GetConnectionString(BibleConstants.ConnectionString);
         }
 
         public List<BibleBookName> GetList(int bookNameCode)
         {
             List<BibleBookName> items = new List<BibleBookName>();
-            using (var r = SqlHelper.ExecuteReader(connectionString, SelectProcedure,
-                new SqlParameter("@BookNameCode", bookNameCode)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("BibleBookName") + " WHERE " + DbSyntax.QuoteIdentifier("BookNameCode") + " = @BookNameCode";
+            using (var r = DbHelper.ExecuteReader(connectionString, CommandType.Text, sql,
+                DbHelper.CreateParameter("@BookNameCode", bookNameCode)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -37,9 +38,12 @@ namespace WCMS.BibleReader.Core.Providers
 
         public BibleBookName Get(int bookNameCode, int bookCode)
         {
-            using (var r = SqlHelper.ExecuteReader(connectionString, SelectProcedure,
-                new SqlParameter("@BookNameCode", bookNameCode),
-                new SqlParameter("@BookCode", bookCode)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("BibleBookName") + " WHERE " +
+                DbSyntax.QuoteIdentifier("BookNameCode") + " = @BookNameCode AND " +
+                DbSyntax.QuoteIdentifier("BookCode") + " = @BookCode";
+            using (var r = DbHelper.ExecuteReader(connectionString, CommandType.Text, sql,
+                DbHelper.CreateParameter("@BookNameCode", bookNameCode),
+                DbHelper.CreateParameter("@BookCode", bookCode)))
             {
                 if (r.Read())
                     return From(r);

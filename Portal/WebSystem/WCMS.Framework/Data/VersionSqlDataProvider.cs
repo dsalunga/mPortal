@@ -165,10 +165,6 @@ namespace WCMS.Framework.Core
                     query.Append(" AND ");
             }
 
-            //QueryFilterElement lastFilter = filters[filters.Length];
-            //query.AppendFormat("{0}=@{0}", lastFilter.Name);
-            //sqlParams.Add(new SqlParameter("@" + lastFilter.Name, lastFilter.Value));
-
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString(),
                 sqlParams.ToArray()
             ))
@@ -235,13 +231,6 @@ namespace WCMS.Framework.Core
             }
 
             query.Remove(query.Length - 5, 5);
-
-            //QueryFilterElement lastFilter = filters[filters.Length - 1];
-            //if (lastFilter.Value != lastFilter.NullValue)
-            //{
-            //    query.AppendFormat("{0}=@{0}", lastFilter.Name);
-            //    sqlParams.Add(new SqlParameter("@" + lastFilter.Name, lastFilter.Value));
-            //}
 
             List<T> items = new List<T>();
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString(),

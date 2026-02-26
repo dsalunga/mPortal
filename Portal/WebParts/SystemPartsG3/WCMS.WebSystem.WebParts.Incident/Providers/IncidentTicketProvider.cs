@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -47,26 +47,92 @@ namespace WCMS.WebSystem.WebParts.Incident.Providers
 
         public override int Update(IncidentTicket item)
         {
-            var obj = SqlHelper.ExecuteScalar("IncidentTicket_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@UserId", item.UserId),
-                new SqlParameter("@DateCreated", item.DateCreated),
-                new SqlParameter("@CategoryId", item.CategoryId),
-                new SqlParameter("@Description", item.Description),
-                new SqlParameter("@Urgency", item.Urgency),
-                new SqlParameter("@Status", item.Status),
-                new SqlParameter("@AssignedGroupId", item.AssignedGroupId),
-                new SqlParameter("@AssignedUserId", item.AssignedUserId),
-                new SqlParameter("@TicketGuid", item.TicketGuid),
-                new SqlParameter("@DateClosed", item.DateClosed),
-                new SqlParameter("@SubmitterId", item.SubmitterId),
-                new SqlParameter("@TypeId", item.TypeId),
-                new SqlParameter("@ETA", item.ETA),
-                new SqlParameter("@NotifyAlso", item.NotifyAlso),
-                new SqlParameter("@InstanceId", item.InstanceId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("IncidentTicket") + " SET " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId, " +
+                    DbSyntax.QuoteIdentifier("DateCreated") + " = @DateCreated, " +
+                    DbSyntax.QuoteIdentifier("CategoryId") + " = @CategoryId, " +
+                    DbSyntax.QuoteIdentifier("Description") + " = @Description, " +
+                    DbSyntax.QuoteIdentifier("Urgency") + " = @Urgency, " +
+                    DbSyntax.QuoteIdentifier("Status") + " = @Status, " +
+                    DbSyntax.QuoteIdentifier("AssignedGroupId") + " = @AssignedGroupId, " +
+                    DbSyntax.QuoteIdentifier("AssignedUserId") + " = @AssignedUserId, " +
+                    DbSyntax.QuoteIdentifier("TicketGuid") + " = @TicketGuid, " +
+                    DbSyntax.QuoteIdentifier("DateClosed") + " = @DateClosed, " +
+                    DbSyntax.QuoteIdentifier("SubmitterId") + " = @SubmitterId, " +
+                    DbSyntax.QuoteIdentifier("TypeId") + " = @TypeId, " +
+                    DbSyntax.QuoteIdentifier("ETA") + " = @ETA, " +
+                    DbSyntax.QuoteIdentifier("NotifyAlso") + " = @NotifyAlso, " +
+                    DbSyntax.QuoteIdentifier("InstanceId") + " = @InstanceId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                    DbHelper.CreateParameter("@CategoryId", item.CategoryId),
+                    DbHelper.CreateParameter("@Description", item.Description),
+                    DbHelper.CreateParameter("@Urgency", item.Urgency),
+                    DbHelper.CreateParameter("@Status", item.Status),
+                    DbHelper.CreateParameter("@AssignedGroupId", item.AssignedGroupId),
+                    DbHelper.CreateParameter("@AssignedUserId", item.AssignedUserId),
+                    DbHelper.CreateParameter("@TicketGuid", item.TicketGuid),
+                    DbHelper.CreateParameter("@DateClosed", item.DateClosed),
+                    DbHelper.CreateParameter("@SubmitterId", item.SubmitterId),
+                    DbHelper.CreateParameter("@TypeId", item.TypeId),
+                    DbHelper.CreateParameter("@ETA", item.ETA),
+                    DbHelper.CreateParameter("@NotifyAlso", item.NotifyAlso),
+                    DbHelper.CreateParameter("@InstanceId", item.InstanceId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("IncidentTicket") + " (" +
+                    DbSyntax.QuoteIdentifier("UserId") + ", " +
+                    DbSyntax.QuoteIdentifier("DateCreated") + ", " +
+                    DbSyntax.QuoteIdentifier("CategoryId") + ", " +
+                    DbSyntax.QuoteIdentifier("Description") + ", " +
+                    DbSyntax.QuoteIdentifier("Urgency") + ", " +
+                    DbSyntax.QuoteIdentifier("Status") + ", " +
+                    DbSyntax.QuoteIdentifier("AssignedGroupId") + ", " +
+                    DbSyntax.QuoteIdentifier("AssignedUserId") + ", " +
+                    DbSyntax.QuoteIdentifier("TicketGuid") + ", " +
+                    DbSyntax.QuoteIdentifier("DateClosed") + ", " +
+                    DbSyntax.QuoteIdentifier("SubmitterId") + ", " +
+                    DbSyntax.QuoteIdentifier("TypeId") + ", " +
+                    DbSyntax.QuoteIdentifier("ETA") + ", " +
+                    DbSyntax.QuoteIdentifier("NotifyAlso") + ", " +
+                    DbSyntax.QuoteIdentifier("InstanceId") +
+                    ") VALUES (@UserId, @DateCreated, @CategoryId, @Description, @Urgency, @Status, @AssignedGroupId, @AssignedUserId, @TicketGuid, @DateClosed, @SubmitterId, @TypeId, @ETA, @NotifyAlso, @InstanceId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                    DbHelper.CreateParameter("@CategoryId", item.CategoryId),
+                    DbHelper.CreateParameter("@Description", item.Description),
+                    DbHelper.CreateParameter("@Urgency", item.Urgency),
+                    DbHelper.CreateParameter("@Status", item.Status),
+                    DbHelper.CreateParameter("@AssignedGroupId", item.AssignedGroupId),
+                    DbHelper.CreateParameter("@AssignedUserId", item.AssignedUserId),
+                    DbHelper.CreateParameter("@TicketGuid", item.TicketGuid),
+                    DbHelper.CreateParameter("@DateClosed", item.DateClosed),
+                    DbHelper.CreateParameter("@SubmitterId", item.SubmitterId),
+                    DbHelper.CreateParameter("@TypeId", item.TypeId),
+                    DbHelper.CreateParameter("@ETA", item.ETA),
+                    DbHelper.CreateParameter("@NotifyAlso", item.NotifyAlso),
+                    DbHelper.CreateParameter("@InstanceId", item.InstanceId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
@@ -76,13 +142,16 @@ namespace WCMS.WebSystem.WebParts.Incident.Providers
         {
             List<IncidentTicket> items = new List<IncidentTicket>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@UserId", userId),
-                new SqlParameter("@CategoryId", categoryId),
-                new SqlParameter("@Status", status),
-                new SqlParameter("@Urgency", urgency),
-                new SqlParameter("@AssignedGroupId", assignedGroupId),
-                new SqlParameter("@AssignedUserId", assignedUserId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("IncidentTicket") + " WHERE 1=1";
+            var parmList = new List<DbParameter>();
+            if (userId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId"; parmList.Add(DbHelper.CreateParameter("@UserId", userId)); }
+            if (categoryId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("CategoryId") + " = @CategoryId"; parmList.Add(DbHelper.CreateParameter("@CategoryId", categoryId)); }
+            if (status != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("Status") + " = @Status"; parmList.Add(DbHelper.CreateParameter("@Status", status)); }
+            if (urgency != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("Urgency") + " = @Urgency"; parmList.Add(DbHelper.CreateParameter("@Urgency", urgency)); }
+            if (assignedGroupId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("AssignedGroupId") + " = @AssignedGroupId"; parmList.Add(DbHelper.CreateParameter("@AssignedGroupId", assignedGroupId)); }
+            if (assignedUserId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("AssignedUserId") + " = @AssignedUserId"; parmList.Add(DbHelper.CreateParameter("@AssignedUserId", assignedUserId)); }
+
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql, parmList.ToArray()))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -93,8 +162,9 @@ namespace WCMS.WebSystem.WebParts.Incident.Providers
 
         public IncidentTicket Get(string ticketGuid)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@TicketGuid", ticketGuid)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("IncidentTicket") + " WHERE " + DbSyntax.QuoteIdentifier("TicketGuid") + " = @TicketGuid";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@TicketGuid", ticketGuid)))
             {
                 if (r.Read())
                     return From(r);
@@ -105,8 +175,10 @@ namespace WCMS.WebSystem.WebParts.Incident.Providers
 
         public int GetMaxTicketCount(DateTime date)
         {
-            var obj = SqlHelper.ExecuteScalar("IncidentTicket_GetMaxCount",
-                new SqlParameter("@Date", date.Date));
+            var sql = "SELECT COUNT(1) FROM " + DbSyntax.QuoteIdentifier("IncidentTicket") +
+                " WHERE CAST(" + DbSyntax.QuoteIdentifier("DateCreated") + " AS DATE) = @Date";
+            var obj = DbHelper.ExecuteScalar(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Date", date.Date));
 
             var dayMax = DataUtil.GetInt32(obj);
 

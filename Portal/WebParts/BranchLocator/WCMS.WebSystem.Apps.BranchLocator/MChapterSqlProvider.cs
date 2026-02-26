@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,29 +49,103 @@ namespace WCMS.WebSystem.Apps.BranchLocator
 
         public override int Update(MChapter item)
         {
-            var o = SqlHelper.ExecuteScalar("MChapter_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@Address", item.Address),
-                new SqlParameter("@ChapterType", item.ChapterType),
-                new SqlParameter("@Latitude", item.Latitude),
-                new SqlParameter("@Longitude", item.Longitude),
-                new SqlParameter("@AccessType", item.AccessType),
-                new SqlParameter("@CountryCode", item.CountryCode),
-                new SqlParameter("@Email", item.Email),
-                new SqlParameter("@Mobile", item.Mobile),
-                new SqlParameter("@Telephone", item.Telephone),
-                new SqlParameter("@ServiceSchedule", item.ServiceSchedule),
-                new SqlParameter("@MoreInfo", item.MoreInfo),
-                new SqlParameter("@Extra", item.Extra),
-                new SqlParameter("@DistrictNo", item.DistrictNo),
-                new SqlParameter("@DivisionId", item.DivisionId),
-                new SqlParameter("@LocaleId", item.LocaleId),
-                new SqlParameter("@LastUpdate", item.LastUpdate)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("MChapter") + " SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId, " +
+                    DbSyntax.QuoteIdentifier("Address") + " = @Address, " +
+                    DbSyntax.QuoteIdentifier("ChapterType") + " = @ChapterType, " +
+                    DbSyntax.QuoteIdentifier("Latitude") + " = @Latitude, " +
+                    DbSyntax.QuoteIdentifier("Longitude") + " = @Longitude, " +
+                    DbSyntax.QuoteIdentifier("AccessType") + " = @AccessType, " +
+                    DbSyntax.QuoteIdentifier("CountryCode") + " = @CountryCode, " +
+                    DbSyntax.QuoteIdentifier("Email") + " = @Email, " +
+                    DbSyntax.QuoteIdentifier("Mobile") + " = @Mobile, " +
+                    DbSyntax.QuoteIdentifier("Telephone") + " = @Telephone, " +
+                    DbSyntax.QuoteIdentifier("ServiceSchedule") + " = @ServiceSchedule, " +
+                    DbSyntax.QuoteIdentifier("MoreInfo") + " = @MoreInfo, " +
+                    DbSyntax.QuoteIdentifier("Extra") + " = @Extra, " +
+                    DbSyntax.QuoteIdentifier("DistrictNo") + " = @DistrictNo, " +
+                    DbSyntax.QuoteIdentifier("DivisionId") + " = @DivisionId, " +
+                    DbSyntax.QuoteIdentifier("LocaleId") + " = @LocaleId, " +
+                    DbSyntax.QuoteIdentifier("LastUpdate") + " = @LastUpdate" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@Address", item.Address),
+                    DbHelper.CreateParameter("@ChapterType", item.ChapterType),
+                    DbHelper.CreateParameter("@Latitude", item.Latitude),
+                    DbHelper.CreateParameter("@Longitude", item.Longitude),
+                    DbHelper.CreateParameter("@AccessType", item.AccessType),
+                    DbHelper.CreateParameter("@CountryCode", item.CountryCode),
+                    DbHelper.CreateParameter("@Email", item.Email),
+                    DbHelper.CreateParameter("@Mobile", item.Mobile),
+                    DbHelper.CreateParameter("@Telephone", item.Telephone),
+                    DbHelper.CreateParameter("@ServiceSchedule", item.ServiceSchedule),
+                    DbHelper.CreateParameter("@MoreInfo", item.MoreInfo),
+                    DbHelper.CreateParameter("@Extra", item.Extra),
+                    DbHelper.CreateParameter("@DistrictNo", item.DistrictNo),
+                    DbHelper.CreateParameter("@DivisionId", item.DivisionId),
+                    DbHelper.CreateParameter("@LocaleId", item.LocaleId),
+                    DbHelper.CreateParameter("@LastUpdate", item.LastUpdate),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("MChapter") + " (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + ", " +
+                    DbSyntax.QuoteIdentifier("Address") + ", " +
+                    DbSyntax.QuoteIdentifier("ChapterType") + ", " +
+                    DbSyntax.QuoteIdentifier("Latitude") + ", " +
+                    DbSyntax.QuoteIdentifier("Longitude") + ", " +
+                    DbSyntax.QuoteIdentifier("AccessType") + ", " +
+                    DbSyntax.QuoteIdentifier("CountryCode") + ", " +
+                    DbSyntax.QuoteIdentifier("Email") + ", " +
+                    DbSyntax.QuoteIdentifier("Mobile") + ", " +
+                    DbSyntax.QuoteIdentifier("Telephone") + ", " +
+                    DbSyntax.QuoteIdentifier("ServiceSchedule") + ", " +
+                    DbSyntax.QuoteIdentifier("MoreInfo") + ", " +
+                    DbSyntax.QuoteIdentifier("Extra") + ", " +
+                    DbSyntax.QuoteIdentifier("DistrictNo") + ", " +
+                    DbSyntax.QuoteIdentifier("DivisionId") + ", " +
+                    DbSyntax.QuoteIdentifier("LocaleId") + ", " +
+                    DbSyntax.QuoteIdentifier("LastUpdate") +
+                    ") VALUES (@Name, @ParentId, @Address, @ChapterType, @Latitude, @Longitude, @AccessType, @CountryCode, @Email, @Mobile, @Telephone, @ServiceSchedule, @MoreInfo, @Extra, @DistrictNo, @DivisionId, @LocaleId, @LastUpdate)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@Address", item.Address),
+                    DbHelper.CreateParameter("@ChapterType", item.ChapterType),
+                    DbHelper.CreateParameter("@Latitude", item.Latitude),
+                    DbHelper.CreateParameter("@Longitude", item.Longitude),
+                    DbHelper.CreateParameter("@AccessType", item.AccessType),
+                    DbHelper.CreateParameter("@CountryCode", item.CountryCode),
+                    DbHelper.CreateParameter("@Email", item.Email),
+                    DbHelper.CreateParameter("@Mobile", item.Mobile),
+                    DbHelper.CreateParameter("@Telephone", item.Telephone),
+                    DbHelper.CreateParameter("@ServiceSchedule", item.ServiceSchedule),
+                    DbHelper.CreateParameter("@MoreInfo", item.MoreInfo),
+                    DbHelper.CreateParameter("@Extra", item.Extra),
+                    DbHelper.CreateParameter("@DistrictNo", item.DistrictNo),
+                    DbHelper.CreateParameter("@DivisionId", item.DivisionId),
+                    DbHelper.CreateParameter("@LocaleId", item.LocaleId),
+                    DbHelper.CreateParameter("@LastUpdate", item.LastUpdate)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
 
             return item.Id;
         }
@@ -79,8 +153,9 @@ namespace WCMS.WebSystem.Apps.BranchLocator
         public IEnumerable<MChapter> GetList(int parentId)
         {
             var items = new List<MChapter>();
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@ParentId", parentId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MChapter") + " WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -91,8 +166,9 @@ namespace WCMS.WebSystem.Apps.BranchLocator
         public IEnumerable<MChapter> GetListByLocaleId(int localeId)
         {
             var items = new List<MChapter>();
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@LocaleId", localeId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MChapter") + " WHERE " + DbSyntax.QuoteIdentifier("LocaleId") + " = @LocaleId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@LocaleId", localeId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -102,8 +178,9 @@ namespace WCMS.WebSystem.Apps.BranchLocator
 
         public MChapter GetByLocaleId(int localeId)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@LocaleId", localeId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MChapter") + " WHERE " + DbSyntax.QuoteIdentifier("LocaleId") + " = @LocaleId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@LocaleId", localeId)))
             {
                 if (r.Read())
                     return From(r);
@@ -113,9 +190,11 @@ namespace WCMS.WebSystem.Apps.BranchLocator
 
         public MChapter Get(string name, int parentId = -2)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@ParentId", parentId),
-                new SqlParameter("@Name", name)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MChapter") + " WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+            var parmList = new List<DbParameter> { DbHelper.CreateParameter("@Name", name) };
+            if (parentId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId"; parmList.Add(DbHelper.CreateParameter("@ParentId", parentId)); }
+
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql, parmList.ToArray()))
             {
                 if (r.Read())
                     return From(r);

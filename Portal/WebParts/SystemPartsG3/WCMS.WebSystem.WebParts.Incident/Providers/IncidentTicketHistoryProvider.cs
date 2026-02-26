@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -37,15 +37,52 @@ namespace WCMS.WebSystem.WebParts.Incident.Providers
 
         public override int Update(IncidentTicketHistory item)
         {
-            var obj = SqlHelper.ExecuteScalar("IncidentTicketHistory_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@TicketId", item.TicketId),
-                new SqlParameter("@UserId", item.UserId),
-                new SqlParameter("@Content", item.Content),
-                new SqlParameter("@DateCreated", item.DateCreated),
-                new SqlParameter("@Type", item.Type));
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("IncidentTicketHistory") + " SET " +
+                    DbSyntax.QuoteIdentifier("TicketId") + " = @TicketId, " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId, " +
+                    DbSyntax.QuoteIdentifier("Content") + " = @Content, " +
+                    DbSyntax.QuoteIdentifier("DateCreated") + " = @DateCreated, " +
+                    DbSyntax.QuoteIdentifier("Type") + " = @Type" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@TicketId", item.TicketId),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                    DbHelper.CreateParameter("@Type", item.Type),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("IncidentTicketHistory") + " (" +
+                    DbSyntax.QuoteIdentifier("TicketId") + ", " +
+                    DbSyntax.QuoteIdentifier("UserId") + ", " +
+                    DbSyntax.QuoteIdentifier("Content") + ", " +
+                    DbSyntax.QuoteIdentifier("DateCreated") + ", " +
+                    DbSyntax.QuoteIdentifier("Type") +
+                    ") VALUES (@TicketId, @UserId, @Content, @DateCreated, @Type)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@TicketId", item.TicketId),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                    DbHelper.CreateParameter("@Type", item.Type)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
@@ -55,10 +92,13 @@ namespace WCMS.WebSystem.WebParts.Incident.Providers
         {
             List<IncidentTicketHistory> items = new List<IncidentTicketHistory>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@TicketId", ticketId),
-                new SqlParameter("@UserId", userId),
-                new SqlParameter("@Type", type)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("IncidentTicketHistory") + " WHERE 1=1";
+            var parmList = new List<DbParameter>();
+            if (ticketId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("TicketId") + " = @TicketId"; parmList.Add(DbHelper.CreateParameter("@TicketId", ticketId)); }
+            if (userId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId"; parmList.Add(DbHelper.CreateParameter("@UserId", userId)); }
+            if (type != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("Type") + " = @Type"; parmList.Add(DbHelper.CreateParameter("@Type", type)); }
+
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql, parmList.ToArray()))
             {
                 while (r.Read())
                     items.Add(From(r));
