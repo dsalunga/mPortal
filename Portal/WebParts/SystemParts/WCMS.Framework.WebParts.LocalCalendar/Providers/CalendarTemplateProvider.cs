@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,13 +13,12 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
 {
     public class CalendarTemplateProvider : IDataProvider<CalendarTemplate>
     {
-        public const string GET_SQL = "EventCalendarTemplates_Get";
-        public const string SET_SQL = "EventCalendarTemplates_Set";
-        
         public CalendarTemplate Get(int templateId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader(GET_SQL,
-                new SqlParameter("@TemplateId", templateId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("EventCalendarTemplates") +
+                " WHERE " + DbSyntax.QuoteIdentifier("TemplateId") + " = @TemplateId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@TemplateId", templateId)))
             {
                 if (r.Read())
                     return this.From(r);
@@ -32,7 +31,8 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
         {
             var items = new List<CalendarTemplate>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader(GET_SQL))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("EventCalendarTemplates");
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(this.From(r));
@@ -43,16 +43,52 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
 
         public int Update(CalendarTemplate item)
         {
-            object o = SqlHelper.ExecuteReader(SET_SQL,
-                new SqlParameter("@TemplateId", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@ForeColor", item.ForeColor),
-                new SqlParameter("@BackColor", item.BackColor),
-                new SqlParameter("@ReminderHtml", item.ReminderHtml),
-                new SqlParameter("@SmsContent", item.SmsContent)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("EventCalendarTemplates") + " SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("ForeColor") + " = @ForeColor, " +
+                    DbSyntax.QuoteIdentifier("BackColor") + " = @BackColor, " +
+                    DbSyntax.QuoteIdentifier("ReminderHtml") + " = @ReminderHtml, " +
+                    DbSyntax.QuoteIdentifier("SmsContent") + " = @SmsContent" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("TemplateId") + " = @TemplateId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@ForeColor", item.ForeColor),
+                    DbHelper.CreateParameter("@BackColor", item.BackColor),
+                    DbHelper.CreateParameter("@ReminderHtml", item.ReminderHtml),
+                    DbHelper.CreateParameter("@SmsContent", item.SmsContent),
+                    DbHelper.CreateParameter("@TemplateId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("EventCalendarTemplates") + " (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("ForeColor") + ", " +
+                    DbSyntax.QuoteIdentifier("BackColor") + ", " +
+                    DbSyntax.QuoteIdentifier("ReminderHtml") + ", " +
+                    DbSyntax.QuoteIdentifier("SmsContent") +
+                    ") VALUES (@Name, @ForeColor, @BackColor, @ReminderHtml, @SmsContent)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("TemplateId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@ForeColor", item.ForeColor),
+                    DbHelper.CreateParameter("@BackColor", item.BackColor),
+                    DbHelper.CreateParameter("@ReminderHtml", item.ReminderHtml),
+                    DbHelper.CreateParameter("@SmsContent", item.SmsContent)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
@@ -73,8 +109,10 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("EventCalendarTemplate_Del",
-                new SqlParameter("@Id", id));
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier("EventCalendarTemplates") +
+                " WHERE " + DbSyntax.QuoteIdentifier("TemplateId") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }

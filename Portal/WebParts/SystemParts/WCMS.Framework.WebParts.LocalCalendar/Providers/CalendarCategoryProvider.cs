@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -14,8 +13,6 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
 {
     public class CalendarCategoryProvider : IDataProvider<CalendarCategory>
     {
-        private const string SQL_GET = "EventCalendarCategories_Get";
-
         public IEnumerable<WebDirectoryEntry> GetByDirectory(int directoryId, string loweredKeyword)
         {
             throw new NotImplementedException();
@@ -25,7 +22,8 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
         {
             List<CalendarCategory> items = new List<CalendarCategory>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader(SQL_GET))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("EventCalendarCategories");
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -37,8 +35,10 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
 
         public CalendarCategory Get(int categoryId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader(SQL_GET,
-                new SqlParameter("@CategoryId", categoryId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("EventCalendarCategories") +
+                " WHERE " + DbSyntax.QuoteIdentifier("CategoryId") + " = @CategoryId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@CategoryId", categoryId)))
             {
                 if (r.Read())
                     return this.From(r);
@@ -61,8 +61,10 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("EventCalendarCategory_Del",
-                new SqlParameter("@Id", id));
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier("EventCalendarCategories") +
+                " WHERE " + DbSyntax.QuoteIdentifier("CategoryId") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
@@ -84,12 +86,40 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
 
         public int Update(CalendarCategory item)
         {
-            var obj = SqlHelper.ExecuteScalar("EventCalendarCategory_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@TemplateId", item.TemplateId));
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("EventCalendarCategories") + " SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("TemplateId") + " = @TemplateId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("CategoryId") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("EventCalendarCategories") + " (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("TemplateId") +
+                    ") VALUES (@Name, @TemplateId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("CategoryId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@TemplateId", item.TemplateId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 

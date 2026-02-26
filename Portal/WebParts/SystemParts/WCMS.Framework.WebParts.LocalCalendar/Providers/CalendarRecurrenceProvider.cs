@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Data.Common;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,8 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
         {
             List<CalendarRecurrence> items = new List<CalendarRecurrence>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("EventCalendarRecurrences_Get"))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("EventCalendarRecurrences");
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                 {
