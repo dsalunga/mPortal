@@ -51,6 +51,8 @@ Suggested owners:
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAccountServiceController.cs` (legacy `GetUserSession`/`GetUserSessionByAuthKey` routes with `{ d: ... }` response shape).
 - [x] Rank 11 (`MAP-159`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/Streaming/VerifySession.ashx`  
   Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyStreamingVerifySessionController.cs` (legacy stream/session validation contract with `OK`/`FAIL` response).
+- [x] Rank 12 (`MAP-157`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/Profile/MemberService.asmx`  
+  Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyMemberServiceController.cs` (legacy MemberService method routes and `{ d: ... }` payload parity).
 
 ## Top 30 (ranked)
 
