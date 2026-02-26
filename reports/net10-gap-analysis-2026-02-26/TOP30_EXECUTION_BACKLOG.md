@@ -59,6 +59,16 @@ Suggested owners:
   Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyIntegrationBibleServiceController.cs` (legacy BibleReader app-access/version-access method routes and payload contracts).
 - [x] Rank 15 (`MAP-001`) - `BibleReader/BibleReader/BibleService.asmx`  
   Implemented by `BibleReader/BibleReader/Api/LegacyBibleServiceController.cs` (legacy HelloWorld/GetVerseContent/GetVerse routes with `{ d: ... }` payload parity).
+- [x] Rank 17 (`MAP-136`) - `Portal/WebSystem/WebSystem-MVC/Content/Admin/WebBinding.aspx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAdminPagesController.cs` (legacy entry point redirected to `/Central/Site/WebSiteHeaders/` with query-string preservation).
+- [x] Rank 18 (`MAP-137`) - `Portal/WebSystem/WebSystem-MVC/Content/Admin/WebBindings.aspx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAdminPagesController.cs` (legacy entry point redirected to `/Central/Site/WebSiteHeaders/` with query-string preservation).
+- [x] Rank 19 (`MAP-138`) - `Portal/WebSystem/WebSystem-MVC/Content/Admin/WebEvents.aspx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAdminPagesController.cs` (legacy entry point redirected to `/Central/Dashboard/` with query-string preservation).
+- [x] Rank 20 (`MAP-139`) - `Portal/WebSystem/WebSystem-MVC/Content/Admin/WebLogs.aspx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAdminPagesController.cs` (legacy entry point redirected to `/Central/Tools/SessionDiagnostics/` with query-string preservation).
+- [x] Rank 21 (`MAP-140`) - `Portal/WebSystem/WebSystem-MVC/Content/Admin/WebOpen.aspx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAdminPagesController.cs` (legacy entry point redirected to `/Central/WebOpen/` with query-string preservation).
 
 ## Top 30 (ranked)
 
