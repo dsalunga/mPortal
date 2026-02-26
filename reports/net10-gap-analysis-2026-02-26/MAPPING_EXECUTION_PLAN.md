@@ -6,6 +6,8 @@ Date: 2026-02-26
 
 - Mapping CSV: `legacy-to-modern-mapping.csv`
 - Input source: `legacy-unmatched-web-artifacts.txt`
+- Prioritized execution subset: `top30-p0-p1-prioritized.csv`
+- Ranked backlog view: `TOP30_EXECUTION_BACKLOG.md`
 
 ## Mapping status summary
 

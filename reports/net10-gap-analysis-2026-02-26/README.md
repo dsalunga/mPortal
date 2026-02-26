@@ -165,7 +165,8 @@ Evidence of interim/scaffold behavior:
 1. [ ] Freeze this diff snapshot as baseline for parity work.
 2. [x] Build the `legacy -> replacement` mapping for all 187 unmatched web artifacts.  
    Output: `legacy-to-modern-mapping.csv` + `MAPPING_EXECUTION_PLAN.md`
-3. [ ] Prioritize top 30 unmatched artifacts by user/business criticality.
+3. [x] Prioritize top 30 unmatched artifacts by user/business criticality.  
+   Output: `top30-p0-p1-prioritized.csv` + `TOP30_EXECUTION_BACKLOG.md`
 4. [ ] Validate `SystemParts/AppBundle` critical flows first.
 5. [ ] Validate `SystemPartsG2/AppBundle2` critical flows second.
 6. [ ] Validate CMS admin flows under `Content/Admin` and `Content/Parts/Central`.
@@ -182,3 +183,5 @@ Evidence of interim/scaffold behavior:
 - `missing-csharp-non-codegen.txt`
 - `legacy-to-modern-mapping.csv`
 - `MAPPING_EXECUTION_PLAN.md`
+- `top30-p0-p1-prioritized.csv`
+- `TOP30_EXECUTION_BACKLOG.md`
