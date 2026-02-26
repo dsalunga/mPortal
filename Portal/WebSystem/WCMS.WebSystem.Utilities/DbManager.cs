@@ -240,11 +240,13 @@ namespace WCMS.WebSystem.Utilities
             if (IsSqlServer)
             {
                 const char cDelim = '\u00b6';
-                queries = queryBatch.Replace("\r\nGO", cDelim.ToString()).Split(cDelim);
+                queries = queryBatch.Replace("\r\nGO", cDelim.ToString())
+                                    .Replace("\nGO", cDelim.ToString())
+                                    .Split(cDelim);
             }
             else
             {
-                // PostgreSQL: execute each semicolon-separated statement, or full script as one batch
+                // PostgreSQL: execute full script as one batch
                 queries = new[] { queryBatch, string.Empty };
             }
 
@@ -439,9 +441,11 @@ namespace WCMS.WebSystem.Utilities
                 createSb.AppendLine();
 
                 bool first = true;
+                var tableNameParam = DbHelper.CreateParameter("@TableName", item.Name);
                 using (var r = DbHelper.ExecuteReader(CommandType.Text,
-                    string.Format("SELECT column_name, data_type, character_maximum_length, is_nullable, column_default " +
-                                  "FROM information_schema.columns WHERE table_name = '{0}' ORDER BY ordinal_position", item.Name)))
+                    "SELECT column_name, data_type, character_maximum_length, is_nullable, column_default " +
+                    "FROM information_schema.columns WHERE table_name = @TableName ORDER BY ordinal_position",
+                    tableNameParam))
                 {
                     while (r.Read())
                     {
