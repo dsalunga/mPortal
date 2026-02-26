@@ -58,7 +58,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
             if (item.Id > 0)
             {
-                sql = "UPDATE MCVote SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("MCVote") + " SET " +
                     DbSyntax.QuoteIdentifier("Code") + " = @Code, " +
                     DbSyntax.QuoteIdentifier("FirstName") + " = @FirstName, " +
                     DbSyntax.QuoteIdentifier("LastName") + " = @LastName, " +
@@ -91,7 +91,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             }
             else
             {
-                sql = "INSERT INTO MCVote (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("MCVote") + " (" +
                     DbSyntax.QuoteIdentifier("Code") + ", " +
                     DbSyntax.QuoteIdentifier("FirstName") + ", " +
                     DbSyntax.QuoteIdentifier("LastName") + ", " +
@@ -127,14 +127,14 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
                 return UpdatePostProcess(item, o);
             }
 
-            return UpdatePostProcess(item, item.Id);
+            return item.Id;
         }
 
         public MCVote Get(string code)
         {
             MCVote item = null;
 
-            var sql = "SELECT * FROM MCVote WHERE " + DbSyntax.QuoteIdentifier("Code") + " = @Code";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MCVote") + " WHERE " + DbSyntax.QuoteIdentifier("Code") + " = @Code";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Code", code)))
             {
@@ -149,7 +149,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             List<MCVote> items = new List<MCVote>();
 
-            var sql = "SELECT * FROM MCVote WHERE " +
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MCVote") + " WHERE " +
                 "(@CandidateId = -2 OR " + DbSyntax.QuoteIdentifier("CandidateId") + " = @CandidateId) AND " +
                 "(@CompetitionId = -2 OR " + DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId)";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
@@ -167,7 +167,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             MCVote item = null;
 
-            var sql = "SELECT * FROM MCVote WHERE " +
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MCVote") + " WHERE " +
                 DbSyntax.QuoteIdentifier("UserName") + " = @UserName AND " +
                 DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
@@ -185,7 +185,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             MCVote item = null;
 
-            var sql = "SELECT * FROM MCVote WHERE " +
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MCVote") + " WHERE " +
                 DbSyntax.QuoteIdentifier("Email") + " = @Email AND " +
                 "(@Status = -1 OR " + DbSyntax.QuoteIdentifier("Status") + " = @Status) AND " +
                 DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId";

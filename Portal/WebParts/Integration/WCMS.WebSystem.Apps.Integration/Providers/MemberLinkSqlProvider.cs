@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public MemberLink Get(string externalIdNo, DateTime membershipDate)
         {
-            var sql = "SELECT * FROM MemberLink WHERE " +
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " +
                 DbSyntax.QuoteIdentifier("ExternalIdNo") + " = @ExternalIdNo AND " +
                 DbSyntax.QuoteIdentifier("MembershipDate") + " = @MembershipDate";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
@@ -43,7 +43,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public MemberLink Get(string externalIdNo)
         {
-            var sql = "SELECT * FROM MemberLink WHERE " + DbSyntax.QuoteIdentifier("ExternalIdNo") + " = @ExternalIdNo";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " + DbSyntax.QuoteIdentifier("ExternalIdNo") + " = @ExternalIdNo";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ExternalIdNo", externalIdNo)))
             {
@@ -102,7 +102,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             var monthExpr = DbHelper.Provider == DatabaseProvider.PostgreSql
                 ? "EXTRACT(MONTH FROM " + DbSyntax.QuoteIdentifier("MembershipDate") + ")"
                 : "MONTH(" + DbSyntax.QuoteIdentifier("MembershipDate") + ")";
-            var sql = "SELECT * FROM MemberLink WHERE " +
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " +
                 "(@Approved = -1 OR " + DbSyntax.QuoteIdentifier("Approved") + " = @Approved) AND " +
                 "(@CelebrantsMonth = -1 OR " + monthExpr + " = @CelebrantsMonth)";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
@@ -120,7 +120,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             var items = new List<MemberLink>();
 
-            var sql = "SELECT * FROM MemberLink WHERE " +
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " +
                 DbSyntax.QuoteIdentifier("LastUpdate") + " >= @LastUpdate AND " +
                 "(@Approved = -1 OR " + DbSyntax.QuoteIdentifier("Approved") + " = @Approved)";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
@@ -144,7 +144,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
             if (item.MemberLinkId > 0)
             {
-                sql = "UPDATE MemberLink SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("MemberLink") + " SET " +
                     DbSyntax.QuoteIdentifier("UserId") + " = @UserId, " +
                     DbSyntax.QuoteIdentifier("MemberId") + " = @MemberId, " +
                     DbSyntax.QuoteIdentifier("ExternalIdNo") + " = @ExternalIdNo, " +
@@ -205,7 +205,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             }
             else
             {
-                sql = "INSERT INTO MemberLink (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("MemberLink") + " (" +
                     DbSyntax.QuoteIdentifier("UserId") + ", " +
                     DbSyntax.QuoteIdentifier("MemberId") + ", " +
                     DbSyntax.QuoteIdentifier("ExternalIdNo") + ", " +
@@ -274,7 +274,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public MemberLink GetByUserId(int userId)
         {
-            var sql = "SELECT * FROM MemberLink WHERE " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@UserId", userId)))
             {
@@ -287,7 +287,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public MemberLink GetByMemberId(int memberId)
         {
-            var sql = "SELECT * FROM MemberLink WHERE " + DbSyntax.QuoteIdentifier("MemberId") + " = @MemberId";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " + DbSyntax.QuoteIdentifier("MemberId") + " = @MemberId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@MemberId", memberId)))
             {

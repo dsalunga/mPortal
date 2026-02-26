@@ -43,7 +43,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
             if (item.Id > 0)
             {
-                sql = "UPDATE MusicCompetition SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("MusicCompetition") + " SET " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
                     DbSyntax.QuoteIdentifier("Judges") + " = @Judges, " +
                     DbSyntax.QuoteIdentifier("ScoreLocked") + " = @ScoreLocked, " +
@@ -68,7 +68,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             }
             else
             {
-                sql = "INSERT INTO MusicCompetition (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("MusicCompetition") + " (" +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("Judges") + ", " +
                     DbSyntax.QuoteIdentifier("ScoreLocked") + ", " +
@@ -96,7 +96,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
                 return UpdatePostProcess(item, o);
             }
 
-            return UpdatePostProcess(item, item.Id);
+            return item.Id;
         }
     }
 }

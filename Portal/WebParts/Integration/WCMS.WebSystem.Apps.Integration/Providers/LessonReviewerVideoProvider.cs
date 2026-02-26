@@ -43,7 +43,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
                 DbHelper.CreateParameter("@Duration", item.Duration)
             };
 
-            var sql = "UPDATE LessonReviewerVideo SET " +
+            var sql = "UPDATE " + DbSyntax.QuoteIdentifier("LessonReviewerVideo") + " SET " +
                 DbSyntax.QuoteIdentifier("ServiceStartDate") + " = @ServiceStartDate, " +
                 DbSyntax.QuoteIdentifier("Duration") + " = @Duration" +
                 " WHERE " + DbSyntax.QuoteIdentifier("ServiceScheduleId") + " = @ServiceScheduleId";
@@ -51,7 +51,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
             if (rows == 0)
             {
-                sql = "INSERT INTO LessonReviewerVideo (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("LessonReviewerVideo") + " (" +
                     DbSyntax.QuoteIdentifier("ServiceScheduleId") + ", " +
                     DbSyntax.QuoteIdentifier("ServiceStartDate") + ", " +
                     DbSyntax.QuoteIdentifier("Duration") +
@@ -73,7 +73,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
             var startDate = new DateTime(month.Year, month.Month, 1);
             var endDate = startDate.AddMonths(1);
-            var sql = "SELECT * FROM LessonReviewerVideo WHERE " +
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("LessonReviewerVideo") + " WHERE " +
                 DbSyntax.QuoteIdentifier("ServiceStartDate") + " >= @StartDate AND " +
                 DbSyntax.QuoteIdentifier("ServiceStartDate") + " < @EndDate";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,

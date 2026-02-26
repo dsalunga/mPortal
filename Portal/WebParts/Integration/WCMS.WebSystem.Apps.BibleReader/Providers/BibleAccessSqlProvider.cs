@@ -44,7 +44,7 @@ namespace WCMS.WebSystem.WebParts.BibleReader.Providers
 
             if (item.Id > 0)
             {
-                sql = "UPDATE BibleReaderAccess SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("BibleReaderAccess") + " SET " +
                     DbSyntax.QuoteIdentifier("UserId") + " = @UserId, " +
                     DbSyntax.QuoteIdentifier("AppAccessCount") + " = @AppAccessCount, " +
                     DbSyntax.QuoteIdentifier("LastAccessed") + " = @LastAccessed" +
@@ -59,7 +59,7 @@ namespace WCMS.WebSystem.WebParts.BibleReader.Providers
             }
             else
             {
-                sql = "INSERT INTO BibleReaderAccess (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("BibleReaderAccess") + " (" +
                     DbSyntax.QuoteIdentifier("UserId") + ", " +
                     DbSyntax.QuoteIdentifier("AppAccessCount") + ", " +
                     DbSyntax.QuoteIdentifier("LastAccessed") +
@@ -77,12 +77,12 @@ namespace WCMS.WebSystem.WebParts.BibleReader.Providers
                 return UpdatePostProcess(item, o);
             }
 
-            return UpdatePostProcess(item, item.Id);
+            return item.Id;
         }
 
         public new BibleAccess Get(int userId)
         {
-            var sql = "SELECT * FROM BibleReaderAccess WHERE " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("BibleReaderAccess") + " WHERE " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@UserId", userId)))
             {

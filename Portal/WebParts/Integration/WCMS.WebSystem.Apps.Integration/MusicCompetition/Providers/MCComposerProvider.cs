@@ -53,7 +53,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
             if (item.Id > 0)
             {
-                sql = "UPDATE MCComposer SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("MCComposer") + " SET " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
                     DbSyntax.QuoteIdentifier("Entry") + " = @Entry, " +
                     DbSyntax.QuoteIdentifier("Locale") + " = @Locale, " +
@@ -80,7 +80,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             }
             else
             {
-                sql = "INSERT INTO MCComposer (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("MCComposer") + " (" +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("Entry") + ", " +
                     DbSyntax.QuoteIdentifier("Locale") + ", " +
@@ -110,14 +110,14 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
                 return UpdatePostProcess(item, o);
             }
 
-            return UpdatePostProcess(item, item.Id);
+            return item.Id;
         }
 
         public IEnumerable<MCComposer> GetList(int competitionId)
         {
             List<MCComposer> items = new List<MCComposer>();
 
-            var sql = "SELECT * FROM MCComposer WHERE " + DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MCComposer") + " WHERE " + DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@CompetitionId", competitionId)))
             {

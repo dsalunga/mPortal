@@ -45,7 +45,7 @@ namespace WCMS.WebSystem.WebParts.BibleReader.Providers
 
             if (item.Id > 0)
             {
-                sql = "UPDATE BibleReaderVersionAccess SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("BibleReaderVersionAccess") + " SET " +
                     DbSyntax.QuoteIdentifier("BibleAccessId") + " = @BibleAccessId, " +
                     DbSyntax.QuoteIdentifier("BibleVersionId") + " = @BibleVersionId, " +
                     DbSyntax.QuoteIdentifier("BibleVersionName") + " = @BibleVersionName, " +
@@ -64,7 +64,7 @@ namespace WCMS.WebSystem.WebParts.BibleReader.Providers
             }
             else
             {
-                sql = "INSERT INTO BibleReaderVersionAccess (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("BibleReaderVersionAccess") + " (" +
                     DbSyntax.QuoteIdentifier("BibleAccessId") + ", " +
                     DbSyntax.QuoteIdentifier("BibleVersionId") + ", " +
                     DbSyntax.QuoteIdentifier("BibleVersionName") + ", " +
@@ -86,14 +86,14 @@ namespace WCMS.WebSystem.WebParts.BibleReader.Providers
                 return UpdatePostProcess(item, o);
             }
 
-            return UpdatePostProcess(item, item.Id);
+            return item.Id;
         }
 
         public IEnumerable<BibleVersionAccess> GetList(int accessId)
         {
             List<BibleVersionAccess> items = new List<BibleVersionAccess>();
 
-            var sql = "SELECT * FROM BibleReaderVersionAccess WHERE " + DbSyntax.QuoteIdentifier("BibleAccessId") + " = @BibleAccessId";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("BibleReaderVersionAccess") + " WHERE " + DbSyntax.QuoteIdentifier("BibleAccessId") + " = @BibleAccessId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@BibleAccessId", accessId)))
             {

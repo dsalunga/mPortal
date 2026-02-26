@@ -23,7 +23,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
         public bool Delete(int id)
         {
-            var sql = "DELETE FROM Sportsfest WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier("Sportsfest") + " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id));
 
@@ -32,7 +32,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
         public Sportsfest Get(int id)
         {
-            var sql = "SELECT * FROM Sportsfest WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Sportsfest") + " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id)))
             {
@@ -45,7 +45,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
         public Sportsfest Get(string name)
         {
-            var sql = "SELECT * FROM Sportsfest WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Sportsfest") + " WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Name", name)))
             {
@@ -84,7 +84,7 @@ namespace WCMS.WebSystem.Apps.Integration
         {
             List<Sportsfest> items = new List<Sportsfest>();
 
-            var sql = "SELECT * FROM Sportsfest";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Sportsfest");
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
@@ -111,7 +111,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
             if (item.Id > 0)
             {
-                sql = "UPDATE Sportsfest SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("Sportsfest") + " SET " +
                     DbSyntax.QuoteIdentifier("MemberId") + " = @MemberId, " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
                     DbSyntax.QuoteIdentifier("GroupColor") + " = @GroupColor, " +
@@ -142,7 +142,7 @@ namespace WCMS.WebSystem.Apps.Integration
             }
             else
             {
-                sql = "INSERT INTO Sportsfest (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("Sportsfest") + " (" +
                     DbSyntax.QuoteIdentifier("MemberId") + ", " +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("GroupColor") + ", " +

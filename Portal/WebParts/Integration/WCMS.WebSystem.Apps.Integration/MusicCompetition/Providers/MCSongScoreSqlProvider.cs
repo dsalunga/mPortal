@@ -42,7 +42,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
             if (item.Id > 0)
             {
-                sql = "UPDATE MCSongScore SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("MCSongScore") + " SET " +
                     DbSyntax.QuoteIdentifier("JudgeId") + " = @JudgeId, " +
                     DbSyntax.QuoteIdentifier("Musicality") + " = @Musicality, " +
                     DbSyntax.QuoteIdentifier("LyricsMessage") + " = @LyricsMessage, " +
@@ -65,7 +65,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             }
             else
             {
-                sql = "INSERT INTO MCSongScore (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("MCSongScore") + " (" +
                     DbSyntax.QuoteIdentifier("JudgeId") + ", " +
                     DbSyntax.QuoteIdentifier("Musicality") + ", " +
                     DbSyntax.QuoteIdentifier("LyricsMessage") + ", " +
@@ -91,14 +91,14 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
                 return UpdatePostProcess(item, o);
             }
 
-            return UpdatePostProcess(item, item.Id);
+            return item.Id;
         }
 
         public IEnumerable<MCSongScore> GetList(int competitionId = -2, int candidateId = -2, int judgeId = -2)
         {
             List<MCSongScore> items = new List<MCSongScore>();
 
-            var sql = "SELECT * FROM MCSongScore WHERE " +
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MCSongScore") + " WHERE " +
                 "(@CandidateId = -2 OR " + DbSyntax.QuoteIdentifier("CandidateId") + " = @CandidateId) AND " +
                 "(@JudgeId = -2 OR " + DbSyntax.QuoteIdentifier("JudgeId") + " = @JudgeId) AND " +
                 "(@CompetitionId = -2 OR " + DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId)";

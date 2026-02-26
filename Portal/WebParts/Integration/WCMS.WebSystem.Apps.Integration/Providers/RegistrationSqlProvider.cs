@@ -18,7 +18,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
         public GenericRegistration Get(string name)
         {
-            var sql = "SELECT * FROM Registration WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Registration") + " WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Name", name)))
             {
@@ -58,7 +58,7 @@ namespace WCMS.WebSystem.Apps.Integration
 
             if (item.Id > 0)
             {
-                sql = "UPDATE Registration SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("Registration") + " SET " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
                     DbSyntax.QuoteIdentifier("EntryDate") + " = @EntryDate, " +
                     DbSyntax.QuoteIdentifier("Country") + " = @Country, " +
@@ -95,7 +95,7 @@ namespace WCMS.WebSystem.Apps.Integration
             }
             else
             {
-                sql = "INSERT INTO Registration (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("Registration") + " (" +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("EntryDate") + ", " +
                     DbSyntax.QuoteIdentifier("Country") + ", " +
@@ -135,7 +135,7 @@ namespace WCMS.WebSystem.Apps.Integration
                 return UpdatePostProcess(item, o);
             }
 
-            return UpdatePostProcess(item, item.Id);
+            return item.Id;
         }
 
         #endregion

@@ -22,7 +22,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             List<MemberVisit> items = new List<MemberVisit>();
 
-            var sql = "SELECT * FROM ODKVisit WHERE " + DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("ODKVisit") + " WHERE " + DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@GroupId", groupId)))
             {
@@ -46,7 +46,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
             List<MemberVisit> items = new List<MemberVisit>();
 
-            var sql = "SELECT * FROM ODKVisit WHERE " +
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("ODKVisit") + " WHERE " +
                 "(@GroupId = -1 OR " + DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId) AND " +
                 "(@UserId = -2 OR " + DbSyntax.QuoteIdentifier("CreatedUserId") + " = @UserId) AND " +
                 "(@Tag IS NULL OR " + DbSyntax.QuoteIdentifier("Tags") + " = @Tag)";
@@ -66,7 +66,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             List<MemberVisit> items = new List<MemberVisit>();
 
-            var sql = "SELECT * FROM ODKVisit WHERE " +
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("ODKVisit") + " WHERE " +
                 "(@UserId = -2 OR " + DbSyntax.QuoteIdentifier("CreatedUserId") + " = @UserId)";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@UserId", userId)))
@@ -106,7 +106,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public bool Delete(int id)
         {
-            var sql = "DELETE FROM ODKVisit WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier("ODKVisit") + " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id));
 
@@ -115,7 +115,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public MemberVisit Get(int id)
         {
-            var sql = "SELECT * FROM ODKVisit WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("ODKVisit") + " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id)))
             {
@@ -135,7 +135,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             List<MemberVisit> items = new List<MemberVisit>();
 
-            var sql = "SELECT * FROM ODKVisit";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("ODKVisit");
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
@@ -149,7 +149,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             List<MemberVisit> items = new List<MemberVisit>();
 
-            var sql = "SELECT * FROM ODKVisit WHERE " + DbSyntax.QuoteIdentifier("Tags") + " = @Tag";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("ODKVisit") + " WHERE " + DbSyntax.QuoteIdentifier("Tags") + " = @Tag";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Tag", tag)))
             {
@@ -177,7 +177,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
             if (item.Id > 0)
             {
-                sql = "UPDATE ODKVisit SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("ODKVisit") + " SET " +
                     DbSyntax.QuoteIdentifier("CreatedUserId") + " = @CreatedUserId, " +
                     DbSyntax.QuoteIdentifier("DateCreated") + " = @DateCreated, " +
                     DbSyntax.QuoteIdentifier("ActualReport") + " = @ActualReport, " +
@@ -214,7 +214,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             }
             else
             {
-                sql = "INSERT INTO ODKVisit (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("ODKVisit") + " (" +
                     DbSyntax.QuoteIdentifier("CreatedUserId") + ", " +
                     DbSyntax.QuoteIdentifier("DateCreated") + ", " +
                     DbSyntax.QuoteIdentifier("ActualReport") + ", " +
