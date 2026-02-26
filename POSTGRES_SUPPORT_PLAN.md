@@ -37,6 +37,7 @@ This PR introduces the **core database abstraction layer** and **eliminates all 
 
 - [x] **43 provider files** migrated from `SqlHelper`/`SqlParameter` to `DbHelper`/`DbParameter`
 - [x] **38 provider files** migrated from stored procedures to inline parameterized SQL
+- [x] **18 peripheral provider files** migrated from `SqlHelper`/`SqlParameter` to `DbHelper`/`DbParameter` with inline SQL
 - [x] `GenericSqlDataProviderBase.cs` — New `TableName`/`IdColumn` abstract properties, inline SQL for Get/GetList/Delete/Refresh
 - [x] `GenericSqlDataProvider.cs` — Uses `DbSyntax.QuoteIdentifier()` for portable SQL
 - [x] `VersionSqlDataProvider.cs` — Uses `DbHelper`/`DbSyntax`
@@ -44,6 +45,8 @@ This PR introduces the **core database abstraction layer** and **eliminates all 
 - [x] `ServiceCollectionExtensions.cs` — New `AddWcmsDatabase()` method
 - [x] `WConfigOptions.cs` — New `DatabaseProvider` property
 - [x] `Program.cs` (WebSystem-MVC) — Provider-aware health checks + DbHelper init
+- [x] `Program.cs` (BranchLocator) — Config-driven `UseNpgsql()`/`UseSqlServer()` for EF Core DbContext
+- [x] `Program.cs` (IntegrationParts) — Config-driven `UseNpgsql()`/`UseSqlServer()` for 3 EF Core DbContexts
 - [x] `appsettings.json` — New `DatabaseProvider` setting
 - [x] `docker-compose.yml` — PostgreSQL service with profile support
 
@@ -128,13 +131,22 @@ The following items are needed for a complete PostgreSQL deployment:
 - [x] ~~Ensure `CommandType.StoredProcedure` works with PostgreSQL~~ — **No longer needed; all queries use `CommandType.Text`**
 - [x] **Migrated all stored procedures to inline parameterized SQL** — reduces DB-specific code entirely
 
-### Phase 4: EF Core DbContext Multi-Provider
-- [ ] Update `IntegrationDbContext`, `MusicDbContext`, `ExternalDbContext`, `BranchLocatorDbContext` registration to use config-driven `UseNpgsql()`/`UseSqlServer()`
+### ~~Phase 4: EF Core DbContext Multi-Provider~~ — **COMPLETE**
+- [x] Update `IntegrationDbContext`, `MusicDbContext`, `ExternalDbContext`, `BranchLocatorDbContext` registration to use config-driven `UseNpgsql()`/`UseSqlServer()`
 - [ ] Add EF Core migrations for both providers
 - [ ] Test EF Core model compatibility with PostgreSQL data types
 
-### Phase 5: Peripheral Apps
-- [ ] Update BibleReader, LessonReviewer, SystemPartsG2/G3 Program.cs files
+### ~~Phase 5: Peripheral Apps~~ — **COMPLETE** (provider migration)
+- [x] Migrated all remaining ~55 peripheral provider files from `SqlHelper`/`SqlParameter` to `DbHelper`/`DbParameter` with inline SQL
+- [x] SystemParts providers (Menu, Content, Photo, Calendar, FileManager, Article, RemoteIndexer)
+- [x] Integration providers (Bible, MusicCompetition, Registration, MemberLink, MemberVisit, Sportsfest, etc.)
+- [x] SystemPartsG2/G3 providers (Social, Newsletter, Incident, Jobs)
+- [x] BranchLocator provider
+- [x] BibleReader providers
+- [x] ViewComponents + presenters (Gallery, Search, BibleVerse, GenericList)
+- [x] Core/WCMS.Common mirrored files (GenericSqlDataProvider, SqlDataProviderBase)
+- [x] VersionSqlDataProvider cleanup — zero `SqlParameter` references remain
+- [x] **Zero `SqlHelper` or `new SqlParameter` references** remain outside infrastructure files (`SqlHelper.cs`, `SqlServerDbHelper.cs`)
 - [ ] Update DbManager utility for PostgreSQL backup/restore
 - [ ] Update Agent/AgentService for PostgreSQL connectivity
 
