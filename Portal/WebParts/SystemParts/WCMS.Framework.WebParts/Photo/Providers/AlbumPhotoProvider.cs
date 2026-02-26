@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
@@ -16,17 +16,20 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("Gallery_Del",
-                new SqlParameter("@Id", id)
-            );
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier("Gallery") +
+                " WHERE " + DbSyntax.QuoteIdentifier("GalleryID") + " = @GalleryID";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@GalleryID", id));
 
             return true;
         }
 
         public AlbumPhoto Get(int id)
         {
-            using (SqlDataReader dr = SqlHelper.ExecuteReader("Gallery_Get",
-                new SqlParameter("@GalleryID", id)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Gallery") +
+                " WHERE " + DbSyntax.QuoteIdentifier("GalleryID") + " = @GalleryID";
+            using (DbDataReader dr = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@GalleryID", id)))
             {
                 if (dr.Read())
                     return From(dr);
@@ -35,7 +38,7 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
             return null;
         }
 
-        private static AlbumPhoto From(SqlDataReader r)
+        private static AlbumPhoto From(DbDataReader r)
         {
             AlbumPhoto item = new AlbumPhoto();
             item.Id = DataUtil.GetId(r, "GalleryID");
@@ -58,8 +61,8 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
         public IEnumerable<AlbumPhoto> GetList()
         {
             List<AlbumPhoto> items = new List<AlbumPhoto>();
-
-            using (SqlDataReader r = SqlHelper.ExecuteReader("Gallery_Get"))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Gallery");
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -71,9 +74,10 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
         public IEnumerable<AlbumPhoto> GetList(int albumId)
         {
             List<AlbumPhoto> items = new List<AlbumPhoto>();
-
-            using (SqlDataReader dr = SqlHelper.ExecuteReader("Gallery_Get",
-                new SqlParameter("@CategoryID", albumId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Gallery") +
+                " WHERE " + DbSyntax.QuoteIdentifier("CategoryID") + " = @CategoryID";
+            using (DbDataReader dr = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@CategoryID", albumId)))
             {
                 while (dr.Read())
                     items.Add(From(dr));
@@ -94,17 +98,53 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
 
         public int Update(AlbumPhoto item)
         {
-            var obj = SqlHelper.ExecuteNonQuery("Gallery_Set",
-                new SqlParameter("@GalleryID", item.Id),
-                new SqlParameter("@Caption", item.Caption),
-                //new SqlParameter("@Thumbnail", imageFile),
-                new SqlParameter("@ImageURL", item.PhotoName),
-                new SqlParameter("@SiteID", item.SiteId),
-                new SqlParameter("@CategoryID", item.AlbumId),
-                new SqlParameter("@IsActive", item.IsActive)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("Gallery") + " SET " +
+                    DbSyntax.QuoteIdentifier("Caption") + " = @Caption, " +
+                    DbSyntax.QuoteIdentifier("ImageURL") + " = @ImageURL, " +
+                    DbSyntax.QuoteIdentifier("SiteID") + " = @SiteID, " +
+                    DbSyntax.QuoteIdentifier("CategoryID") + " = @CategoryID, " +
+                    DbSyntax.QuoteIdentifier("IsActive") + " = @IsActive" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("GalleryID") + " = @GalleryID";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Caption", item.Caption),
+                    DbHelper.CreateParameter("@ImageURL", item.PhotoName),
+                    DbHelper.CreateParameter("@SiteID", item.SiteId),
+                    DbHelper.CreateParameter("@CategoryID", item.AlbumId),
+                    DbHelper.CreateParameter("@IsActive", item.IsActive),
+                    DbHelper.CreateParameter("@GalleryID", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("Gallery") + " (" +
+                    DbSyntax.QuoteIdentifier("Caption") + ", " +
+                    DbSyntax.QuoteIdentifier("ImageURL") + ", " +
+                    DbSyntax.QuoteIdentifier("SiteID") + ", " +
+                    DbSyntax.QuoteIdentifier("CategoryID") + ", " +
+                    DbSyntax.QuoteIdentifier("IsActive") + ", " +
+                    DbSyntax.QuoteIdentifier("DateCreated") +
+                    ") VALUES (@Caption, @ImageURL, @SiteID, @CategoryID, @IsActive, @DateCreated)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("GalleryID");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Caption", item.Caption),
+                    DbHelper.CreateParameter("@ImageURL", item.PhotoName),
+                    DbHelper.CreateParameter("@SiteID", item.SiteId),
+                    DbHelper.CreateParameter("@CategoryID", item.AlbumId),
+                    DbHelper.CreateParameter("@IsActive", item.IsActive),
+                    DbHelper.CreateParameter("@DateCreated", DateTime.Now)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
 
             return item.Id;
         }

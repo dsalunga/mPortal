@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using WCMS.Common.Utilities;
@@ -41,10 +41,12 @@ namespace WCMS.WebSystem.WebParts.Photo.Providers
         public IEnumerable<AlbumLink> GetList(int objectId, int recordId)
         {
             List<AlbumLink> items = new List<AlbumLink>();
-
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier(TableName) +
+                " WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)))
             {
                 while (r.Read())
                     items.Add(From(r));
