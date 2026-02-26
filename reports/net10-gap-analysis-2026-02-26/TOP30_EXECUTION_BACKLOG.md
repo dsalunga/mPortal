@@ -49,16 +49,18 @@ Suggested owners:
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyWebSystemAjaxHandlerController.cs` (SetDesignPanel, GetText, Status/KeepAlive, SessionValid contract parity).
 - [x] Rank 10 (`MAP-150`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/AccountService.asmx`  
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAccountServiceController.cs` (legacy `GetUserSession`/`GetUserSessionByAuthKey` routes with `{ d: ... }` response shape).
-- [x] Rank 11 (`MAP-159`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/Streaming/VerifySession.ashx`  
+- [x] Rank 11 (`MAP-011`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/Streaming/VerifySession.ashx`  
   Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyStreamingVerifySessionController.cs` (legacy stream/session validation contract with `OK`/`FAIL` response).
-- [x] Rank 12 (`MAP-157`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/Profile/MemberService.asmx`  
+- [x] Rank 12 (`MAP-010`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/Profile/MemberService.asmx`  
   Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyMemberServiceController.cs` (legacy MemberService method routes and `{ d: ... }` payload parity).
-- [x] Rank 13 (`MAP-151`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Common/FxService.asmx`  
+- [x] Rank 13 (`MAP-174`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Common/FxService.asmx`  
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyFxServiceController.cs` (legacy FxService method routes + rendered comment HTML contract + `{ d: ... }` payloads).
-- [x] Rank 14 (`MAP-160`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/BibleReader/BibleService.asmx`  
+- [x] Rank 14 (`MAP-008`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/BibleReader/BibleService.asmx`  
   Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyIntegrationBibleServiceController.cs` (legacy BibleReader app-access/version-access method routes and payload contracts).
-- [x] Rank 15 (`MAP-001`) - `BibleReader/BibleReader/BibleService.asmx`  
+- [x] Rank 15 (`MAP-003`) - `BibleReader/BibleReader/BibleService.asmx`  
   Implemented by `BibleReader/BibleReader/Api/LegacyBibleServiceController.cs` (legacy HelloWorld/GetVerseContent/GetVerse routes with `{ d: ... }` payload parity).
+- [x] Rank 16 (`MAP-159`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/UserActivities.ascx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyCentralControlRoutesController.cs` (legacy control path redirected to `/Central/Security/WebUsers/` with query-string preservation).
 - [x] Rank 17 (`MAP-136`) - `Portal/WebSystem/WebSystem-MVC/Content/Admin/WebBinding.aspx`  
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAdminPagesController.cs` (legacy entry point redirected to `/Central/Site/WebSiteHeaders/` with query-string preservation).
 - [x] Rank 18 (`MAP-137`) - `Portal/WebSystem/WebSystem-MVC/Content/Admin/WebBindings.aspx`  
@@ -69,6 +71,24 @@ Suggested owners:
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAdminPagesController.cs` (legacy entry point redirected to `/Central/Tools/SessionDiagnostics/` with query-string preservation).
 - [x] Rank 21 (`MAP-140`) - `Portal/WebSystem/WebSystem-MVC/Content/Admin/WebOpen.aspx`  
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAdminPagesController.cs` (legacy entry point redirected to `/Central/WebOpen/` with query-string preservation).
+- [x] Rank 22 (`MAP-155`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/UserProfileForm.ascx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyCentralControlRoutesController.cs` (legacy control path redirected to `/Central/Security/UserProfile/` with query-string preservation).
+- [x] Rank 23 (`MAP-156`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/UserRolesForm.ascx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyCentralControlRoutesController.cs` (legacy control path redirected to `/Central/Security/WebUserRoles/` with query-string preservation).
+- [x] Rank 24 (`MAP-158`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebResourceManager.ascx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyCentralControlRoutesController.cs` (legacy control path redirected to `/Central/Tools/WebResourceManager/` with query-string preservation).
+- [x] Rank 25 (`MAP-160`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/ImportExportHome.ascx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyCentralControlRoutesController.cs` (legacy control path redirected to `/Central/Tools/WebDataStoreManager/` with query-string preservation).
+- [x] Rank 26 (`MAP-161`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/ImportExportPage.ascx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyCentralControlRoutesController.cs` (legacy control path redirected to `/Central/Tools/WebDataStoreManager/` with query-string preservation).
+- [x] Rank 27 (`MAP-162`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/ImportExportParameterSets.ascx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyCentralControlRoutesController.cs` (legacy control path redirected to `/Central/Misc/WebParameterSets/` with query-string preservation).
+- [x] Rank 28 (`MAP-163`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/MessageQueueManager.ascx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyCentralControlRoutesController.cs` (legacy control path redirected to `/Central/Tools/MessageQueueManager/` with query-string preservation).
+- [x] Rank 29 (`MAP-165`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/SmtpAnalyzer.ascx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyCentralControlRoutesController.cs` (legacy control path redirected to `/Central/Tools/SmtpAnalyzer/` with query-string preservation).
+- [x] Rank 30 (`MAP-170`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebOpen.ascx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyCentralControlRoutesController.cs` (legacy control path redirected to `/Central/WebOpen/` with query-string preservation).
 
 ## Top 30 (ranked)
 
