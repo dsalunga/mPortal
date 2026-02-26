@@ -10,6 +10,7 @@ bin
 *.jfm
 *.userprefs
 
+.idea
 /Others
 
 /Portal/Binaries/IISExpress

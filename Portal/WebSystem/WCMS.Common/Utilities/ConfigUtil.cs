@@ -30,7 +30,30 @@ namespace WCMS.Common.Utilities
         public static string Get(string key)
         {
             if (_configuration != null)
-                return _configuration[key];
+            {
+                if (string.IsNullOrEmpty(key))
+                    return _configuration[key];
+
+                var value = _configuration[key];
+                if (!string.IsNullOrEmpty(value))
+                    return value;
+
+                // Legacy keys used "." separators while IConfiguration uses ":" for sections.
+                if (key.Contains("."))
+                {
+                    value = _configuration[key.Replace('.', ':')];
+                    if (!string.IsNullOrEmpty(value))
+                        return value;
+                }
+                else if (key.Contains(":"))
+                {
+                    value = _configuration[key.Replace(':', '.')];
+                    if (!string.IsNullOrEmpty(value))
+                        return value;
+                }
+
+                return value;
+            }
 
             return SysConfig.ConfigurationManager.AppSettings[key];
         }
