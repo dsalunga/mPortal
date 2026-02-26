@@ -41,6 +41,8 @@ Suggested owners:
   Implemented by `Portal/WebParts/SystemPartsG2/SystemPartsG2/Api/LegacySocialWebServiceController.cs` (ASMX-style `{ d: ... }` responses + route aliases).
 - [x] Rank 6 (`MAP-017`) - `Portal/WebParts/SystemParts/SystemParts/AppBundle/Article/EmailPreview.ashx`  
   Implemented by `Portal/WebParts/SystemParts/SystemParts/Api/LegacyArticleEmailPreviewController.cs` (legacy email template preview contract + route aliases).
+- [x] Rank 7 (`MAP-004`) - `LessonReviewer/LessonReviewer/Handlers/AjaxHandler.ashx`  
+  Implemented by `LessonReviewer/LessonReviewer/Api/LegacyAjaxHandlerController.cs` (Status + KeepAlive contract parity).
 
 ## Top 30 (ranked)
 
