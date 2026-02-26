@@ -25,11 +25,14 @@ namespace WCMS.Framework.Middleware
         public async Task InvokeAsync(HttpContext httpContext)
         {
             var path = httpContext.Request.Path.Value?.ToLower() ?? "/";
+            var pageExt = WConfig.PageExt;
+            var isPageExtensionRequest = !string.IsNullOrWhiteSpace(pageExt) &&
+                                         path.EndsWith(pageExt, StringComparison.OrdinalIgnoreCase);
 
             // Skip static files, API routes, content paths, and health checks
             if (path.StartsWith("/u/") || path.StartsWith("/content/") ||
                 path.StartsWith("/api/") || path.StartsWith("/health") ||
-                (Path.HasExtension(path) && !path.EndsWith(WConfig.PageExt)))
+                (Path.HasExtension(path) && !isPageExtensionRequest))
             {
                 await _next(httpContext);
                 return;
