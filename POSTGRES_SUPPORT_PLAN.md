@@ -120,10 +120,14 @@ The `DatabaseProvider` setting accepts these values (case-insensitive):
 
 The following items are needed for a complete PostgreSQL deployment:
 
-### ~~Phase 2: Schema Migration~~ → Phase 2: Schema DDL
-- [ ] Create PostgreSQL schema DDL scripts matching the SQL Server table structure
-- [ ] Handle data type differences (e.g., `nvarchar` → `varchar`/`text`, `datetime` → `timestamp`, `bit` → `boolean`, `uniqueidentifier` → `uuid`)
-- [ ] Convert `IDENTITY` columns to `SERIAL`/`BIGSERIAL` in PostgreSQL DDL
+### ~~Phase 2: Schema Migration~~ → Phase 2: Schema DDL — **COMPLETE**
+- [x] Create PostgreSQL schema DDL scripts matching the SQL Server table structure — **197 tables across 3 databases**
+- [x] Handle data type differences (e.g., `nvarchar` → `varchar`/`text`, `datetime` → `timestamp`, `bit` → `boolean`, `uniqueidentifier` → `uuid`)
+- [x] Convert `IDENTITY` columns to `SERIAL`/`BIGSERIAL` in PostgreSQL DDL
+- [x] `Database/PostgreSQL/schema.sql` — 121 core tables (mPortal CMS)
+- [x] `Database/PostgreSQL/schema-integration.sql` — 16 Integration tables
+- [x] `Database/PostgreSQL/schema-biblereader.sql` — 60 BibleReader tables
+- [x] `Database/PostgreSQL/init-db.sh` — Database initialization script
 - ~~Create PostgreSQL equivalents of stored procedures as functions~~ — **DONE: All stored procedures eliminated**
 
 ### ~~Phase 3: Stored Procedures → PostgreSQL Functions~~ — **COMPLETE**
@@ -149,18 +153,18 @@ The following items are needed for a complete PostgreSQL deployment:
 - [x] **Zero `SqlHelper` or `new SqlParameter` references** remain outside infrastructure files (`SqlHelper.cs`, `SqlServerDbHelper.cs`)
 - [x] **Zero unused `using Microsoft.Data.SqlClient` imports** — removed from 11 framework model files
 - [x] Update DbManager utility for PostgreSQL backup/restore — provider-aware schema generation, `GO` batch handling, `DbSyntax.QuoteIdentifier()` for portable SQL
-- [ ] Update Agent/AgentService for PostgreSQL connectivity
+- [x] Agent/AgentService — already uses framework layer (WebJob, AgentTaskBase) which is fully migrated to DbHelper
 
 ### Phase 6: Testing & Validation
-- [ ] Integration tests with PostgreSQL (Testcontainers)
-- [ ] CI pipeline with both SQL Server and PostgreSQL
+- [ ] Integration tests with PostgreSQL (Testcontainers) — requires running PostgreSQL instance
+- [ ] CI pipeline with both SQL Server and PostgreSQL — requires CI service containers
 - [ ] Performance benchmarking on PostgreSQL
 - [ ] Data migration testing (SQL Server → PostgreSQL)
 
 ### Phase 7: Docker & Deployment
-- [ ] PostgreSQL-specific Dockerfile variant
+- [x] Docker Compose with PostgreSQL profile (`docker-compose.yml`)
+- [x] Database initialization scripts (`Database/PostgreSQL/init-db.sh`)
 - [ ] Kubernetes manifests with PostgreSQL support
-- [ ] Database initialization scripts (seed data)
 
 ---
 
