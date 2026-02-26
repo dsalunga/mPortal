@@ -43,6 +43,8 @@ Suggested owners:
   Implemented by `Portal/WebParts/SystemParts/SystemParts/Api/LegacyArticleEmailPreviewController.cs` (legacy email template preview contract + route aliases).
 - [x] Rank 7 (`MAP-004`) - `LessonReviewer/LessonReviewer/Handlers/AjaxHandler.ashx`  
   Implemented by `LessonReviewer/LessonReviewer/Api/LegacyAjaxHandlerController.cs` (Status + KeepAlive contract parity).
+- [x] Rank 8 (`MAP-009`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/MusicCompetition/ASOP-WS.asmx`  
+  Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyAsopWebServiceController.cs` (ASMX-style `{ d: ... }` methods for HelloWorld, GetCandidate, IsEmailNotTaken, Vote).
 
 ## Top 30 (ranked)
 
