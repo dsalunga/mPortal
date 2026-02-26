@@ -31,7 +31,8 @@ Suggested owners:
 
 - [x] Rank 1 (`MAP-131`) - `Portal/WebSystem/WebSystem-MVC/Content/Admin/Handlers/Handler.ashx`  
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAdminHandlerController.cs` (legacy route parity + fallback image support).
-- [ ] Rank 2 (`MAP-098`) - `Portal/WebParts/SystemPartsG2/SystemPartsG2/AppBundle2/Download/Handler.ashx`
+- [x] Rank 2 (`MAP-098`) - `Portal/WebParts/SystemPartsG2/SystemPartsG2/AppBundle2/Download/Handler.ashx`  
+  Implemented by `Portal/WebParts/SystemPartsG2/SystemPartsG2/Api/LegacyDownloadHandlerController.cs` (filename DB lookup + force download parity).
 - [ ] Rank 3 (`MAP-102`) - `Portal/WebParts/SystemPartsG2/SystemPartsG2/AppBundle2/FlashBanner/FlashService.asmx`
 - [ ] Rank 4 (`MAP-103`) - `Portal/WebParts/SystemPartsG2/SystemPartsG2/AppBundle2/FlashBanner/Handler.ashx`
 - [ ] Rank 5 (`MAP-122`) - `Portal/WebParts/SystemPartsG2/SystemPartsG2/AppBundle2/Social/WebService.asmx`
