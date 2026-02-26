@@ -147,7 +147,8 @@ The following items are needed for a complete PostgreSQL deployment:
 - [x] Core/WCMS.Common mirrored files (GenericSqlDataProvider, SqlDataProviderBase)
 - [x] VersionSqlDataProvider cleanup — zero `SqlParameter` references remain
 - [x] **Zero `SqlHelper` or `new SqlParameter` references** remain outside infrastructure files (`SqlHelper.cs`, `SqlServerDbHelper.cs`)
-- [ ] Update DbManager utility for PostgreSQL backup/restore
+- [x] **Zero unused `using Microsoft.Data.SqlClient` imports** — removed from 11 framework model files
+- [x] Update DbManager utility for PostgreSQL backup/restore — provider-aware schema generation, `GO` batch handling, `DbSyntax.QuoteIdentifier()` for portable SQL
 - [ ] Update Agent/AgentService for PostgreSQL connectivity
 
 ### Phase 6: Testing & Validation
