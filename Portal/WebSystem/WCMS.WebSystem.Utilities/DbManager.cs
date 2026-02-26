@@ -24,6 +24,8 @@ namespace WCMS.WebSystem.Utilities
         public string ProcedureSqlPath { get { return string.Format(@"{0}\Database\Procedures\", XML_PATH); } }
         public string TableSqlPath { get { return string.Format(@"{0}\Database\Tables\", XML_PATH); } }
 
+        private bool IsSqlServer => DbHelper.Provider == DatabaseProvider.SqlServer;
+
         public DbManager()
         {
             //if (SqlScriptGenerator.CheckCreateDatabase())
@@ -32,7 +34,8 @@ namespace WCMS.WebSystem.Utilities
 
         public bool CheckCreateDatabase()
         {
-            if (SqlScriptGenerator.CheckCreateDatabase())
+            // SMO-based database creation is only supported on SQL Server
+            if (IsSqlServer && SqlScriptGenerator.CheckCreateDatabase())
             {
                 IsNewDb = true;
                 return true;
@@ -48,10 +51,13 @@ namespace WCMS.WebSystem.Utilities
             foreach (string tableFile in tableFiles)
                 ExecuteSqlScriptFile(tableFile, errors, true);
 
-            // Restore procedure schema
-            string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, string.Format("{0}_*{1}", item.Name, DbConstants.CREATE_FILTER_WC));
-            foreach (string procedureFile in procedureFiles)
-                ExecuteSqlScriptFile(procedureFile, errors, true);
+            // Restore procedure schema (SQL Server only — stored procedures eliminated for PostgreSQL)
+            if (IsSqlServer && Directory.Exists(ProcedureSqlPath))
+            {
+                string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, string.Format("{0}_*{1}", item.Name, DbConstants.CREATE_FILTER_WC));
+                foreach (string procedureFile in procedureFiles)
+                    ExecuteSqlScriptFile(procedureFile, errors, true);
+            }
 
             return errors.ToString();
         }
@@ -59,14 +65,17 @@ namespace WCMS.WebSystem.Utilities
         public string DropObjectSchema(WebObject item, Action<string> notify)
         {
             var errors = new StringBuilder();
-            string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, string.Format("{0}_{1}", item.Name, DbConstants.DROP_FILTER_WC));
-            foreach (string procedureFile in procedureFiles)
-            {
-                notify(string.Format("Drop Procedure: {0}", Path.GetFileName(procedureFile)));
-                ExecuteSqlScriptFile(procedureFile, errors, true);
-            }
 
-            //this.WriteStatus("");
+            // Drop procedures (SQL Server only)
+            if (IsSqlServer && Directory.Exists(ProcedureSqlPath))
+            {
+                string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, string.Format("{0}_{1}", item.Name, DbConstants.DROP_FILTER_WC));
+                foreach (string procedureFile in procedureFiles)
+                {
+                    notify(string.Format("Drop Procedure: {0}", Path.GetFileName(procedureFile)));
+                    ExecuteSqlScriptFile(procedureFile, errors, true);
+                }
+            }
 
             // Get all table drop scripts and execute them
             var tableFiles = Directory.GetFiles(TableSqlPath, string.Format("{0}{1}", item.Name, DbConstants.DROP_FILTER));
@@ -81,10 +90,8 @@ namespace WCMS.WebSystem.Utilities
 
         public void DropSelectedTables(string selected, Action<string> notify)
         {
-            //string selected = Request.Form["chkChecked"];
             if (!string.IsNullOrEmpty(selected))
             {
-                // Map to exact path
                 string tableSqlPath = TableSqlPath;
 
                 try
@@ -94,7 +101,7 @@ namespace WCMS.WebSystem.Utilities
 
                     foreach (var item in items)
                     {
-                        string dropScript = Path.Combine(tableSqlPath, string.Format(@"{1}.drop.sql", item.Name));
+                        string dropScript = Path.Combine(tableSqlPath, string.Format(@"{0}.drop.sql", item.Name));
                         if (File.Exists(dropScript))
                         {
                             notify(string.Format("Drop Table: {0}", Path.GetFileName(item.Name)));
@@ -113,8 +120,8 @@ namespace WCMS.WebSystem.Utilities
 
         private void TruncateObject(WebObject item)
         {
-            // Clear table
-            DbHelper.ExecuteNonQuery(CommandType.Text, string.Format("TRUNCATE TABLE {0}", item.Name));
+            var quotedName = DbSyntax.QuoteIdentifier(item.Name);
+            DbHelper.ExecuteNonQuery(CommandType.Text, string.Format("TRUNCATE TABLE {0}", quotedName));
         }
 
         public void RestoreObjectData(WebObject item, Action<string> notify)
@@ -131,19 +138,20 @@ namespace WCMS.WebSystem.Utilities
             var ds = new DataSet();
             ds.ReadXml(tableXml, XmlReadMode.ReadSchema);
 
-            DbHelper.ExecuteUpdateDataSet(string.Format("SELECT * FROM {0}", item.Name), ds.Tables[0]);
+            var quotedName = DbSyntax.QuoteIdentifier(item.Name);
+            DbHelper.ExecuteUpdateDataSet(string.Format("SELECT * FROM {0}", quotedName), ds.Tables[0]);
 
             notify(string.Format("{0}.xml RESTORED.", item.Name));
         }
 
         public void BackupObjectData(WebObject item, Action<string> notify, int index = -1)
         {
-            // TruncateObject(item); // Should be update last record
-
             string targetXmlFile = string.Format(@"{0}\{1}.xml", BackupPath, item.Name);
+            var quotedName = DbSyntax.QuoteIdentifier(item.Name);
+
             // Backup the data
             var ds = DbHelper.ExecuteDataSetSchema(CommandType.Text,
-                string.Format("SELECT * FROM {0}", item.Name));
+                string.Format("SELECT * FROM {0}", quotedName));
 
             ds.DataSetName = "mPortal";
             ds.Tables[0].TableName = item.Name;
@@ -172,18 +180,19 @@ namespace WCMS.WebSystem.Utilities
             foreach (string tableFile in tableFiles)
                 ExecuteSqlScriptFile(tableFile, errors, true);
 
-            // Restore procedure schema
-            string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, DbConstants.CREATE_FILTER_WC);
-            foreach (string procedureFile in procedureFiles)
-                ExecuteSqlScriptFile(procedureFile, errors, true);
+            // Restore procedure schema (SQL Server only)
+            if (IsSqlServer && Directory.Exists(ProcedureSqlPath))
+            {
+                string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, DbConstants.CREATE_FILTER_WC);
+                foreach (string procedureFile in procedureFiles)
+                    ExecuteSqlScriptFile(procedureFile, errors, true);
+            }
 
             // Start restoring data
-            // Insert data
             if (Directory.Exists(BackupPath))
             {
                 notify(string.Format("Database restore process STARTED.{0}", WConstants.WBREAK));
 
-                // Execute stored procedures
                 var items = WebObject.XmlProvider.GetList();
 
                 foreach (var item in items)
@@ -201,8 +210,6 @@ namespace WCMS.WebSystem.Utilities
                         notify(ex.ToString());
                     }
                 }
-
-                //RestoreSelectedObjectData(items);
 
                 notify(string.Format("{0}Database restore process COMPLETED.", WConstants.WBREAK));
             }
@@ -223,73 +230,80 @@ namespace WCMS.WebSystem.Utilities
 
         private void ExecuteSqlScriptFile(string sqlFile, StringBuilder errors, bool continueOnError)
         {
-            const char cDelim = '\u00b6';
+            if (!File.Exists(sqlFile))
+                return;
 
-            // Drop all procedures
-            if (File.Exists(sqlFile))
+            string queryBatch = FileHelper.ReadFile(sqlFile);
+
+            // Split on GO batch separator (SQL Server convention) or execute as single statement
+            string[] queries;
+            if (IsSqlServer)
             {
-                string queryBatch = FileHelper.ReadFile(sqlFile);
-                string[] queries = queryBatch.Replace("\r\nGO", cDelim.ToString()).Split(cDelim);
+                const char cDelim = '\u00b6';
+                queries = queryBatch.Replace("\r\nGO", cDelim.ToString()).Split(cDelim);
+            }
+            else
+            {
+                // PostgreSQL: execute each semicolon-separated statement, or full script as one batch
+                queries = new[] { queryBatch, string.Empty };
+            }
 
-                if (queries.Length > 1)
+            if (queries.Length > 1)
+            {
+                try
                 {
-                    // multiple queries
-                    try
+                    for (int i = 0; i < queries.Length - 1; i++)
                     {
-                        // execute each query
-                        for (int i = 0; i < queries.Length - 1; i++)
+                        string query = queries[i].Trim();
+                        if (!string.IsNullOrEmpty(query))
                         {
-                            string query = queries[i].Trim();
-                            if (!string.IsNullOrEmpty(query))
+                            try
                             {
-                                try
-                                {
-                                    DbHelper.ExecuteNonQuery(CommandType.Text, query);
-                                }
-                                catch (Exception ex)
-                                {
-                                    LogHelper.WriteLog(ex);
+                                DbHelper.ExecuteNonQuery(CommandType.Text, query);
+                            }
+                            catch (Exception ex)
+                            {
+                                LogHelper.WriteLog(ex);
 
-                                    if (errors != null)
-                                        errors.Append(ex.ToString());
+                                if (errors != null)
+                                    errors.Append(ex.ToString());
 
-                                    if (!continueOnError)
-                                        break;
-                                }
+                                if (!continueOnError)
+                                    break;
                             }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        LogHelper.WriteLog(ex);
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(ex);
 
-                        if (errors != null)
-                            errors.Append(ex.ToString());
-                    }
+                    if (errors != null)
+                        errors.Append(ex.ToString());
                 }
             }
         }
 
         public bool DropAllObjects(Action<string> notify)
         {
-            // Map to exact path
-
-            string procedureSqlPath = ProcedureSqlPath;
             string tableSqlPath = TableSqlPath;
 
             notify(string.Format("Object drop process STARTED...", WConstants.WBREAK));
 
             var sbErrors = new StringBuilder();
 
-            // Get all procedure drop scripts and execute them
-            string[] procedureFiles = Directory.GetFiles(procedureSqlPath, DbConstants.DROP_FILTER_WC);
-            foreach (string procedureFile in procedureFiles)
+            // Drop procedures (SQL Server only — stored procedures have been eliminated)
+            if (IsSqlServer && Directory.Exists(ProcedureSqlPath))
             {
-                notify(string.Format("Drop Procedure: {0}", Path.GetFileName(procedureFile)));
-                ExecuteSqlScriptFile(procedureFile, sbErrors, true);
-            }
+                string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, DbConstants.DROP_FILTER_WC);
+                foreach (string procedureFile in procedureFiles)
+                {
+                    notify(string.Format("Drop Procedure: {0}", Path.GetFileName(procedureFile)));
+                    ExecuteSqlScriptFile(procedureFile, sbErrors, true);
+                }
 
-            notify("");
+                notify("");
+            }
 
             // Get all table drop scripts and execute them
             var tableFiles = Directory.GetFiles(tableSqlPath, DbConstants.DROP_FILTER_WC);
@@ -310,8 +324,6 @@ namespace WCMS.WebSystem.Utilities
 
         public bool Backup(Action<string> notify)
         {
-            // Map to exact path
-
             if (IsNewDb)
             {
                 notify(string.Format("{0}{0}This is a new database, nothing to backup.{0}{0}", WConstants.WBREAK));
@@ -325,7 +337,9 @@ namespace WCMS.WebSystem.Utilities
 
             FileHelper.CreateFolderOrDeleteAllFiles(backupPath);
             FileHelper.CreateFolderOrDeleteAllFiles(backupTablesPath);
-            FileHelper.CreateFolderOrDeleteAllFiles(backupProceduresPath);
+
+            if (IsSqlServer)
+                FileHelper.CreateFolderOrDeleteAllFiles(backupProceduresPath);
 
             notify(string.Format("{0}{0}Backup process STARTED...{0}", WConstants.WBREAK));
 
@@ -333,102 +347,135 @@ namespace WCMS.WebSystem.Utilities
 
             var items = WebObject.GetList();
 
-            var sbRoutinesDrop = new StringBuilder();
-            var sbRoutinesBody = new StringBuilder();
-
             // Export all data into xml files
             for (int i = 0; i < items.Count(); i++)
             {
                 var item = items.ElementAt(i);
                 BackupObjectData(item, notify, i);
-
-                /*
-                string targetXmlFile = string.Format(@"{0}\{1}.xml", backupPath, item.Name);
-                // Backup the data
-                var ds = DbHelper.ExecuteDataSetSchema(CommandType.Text,
-                    string.Format("SELECT * FROM {0}", item.Name));
-
-                ds.DataSetName = "mPortal";
-                ds.Tables[0].TableName = item.Name;
-                ds.WriteXml(targetXmlFile, XmlWriteMode.WriteSchema);
-
-                if (item.Name == "WebObject")
-                    File.Copy(targetXmlFile, dbXml, true);
-
-                notify(string.Format("{0} {1} COMPLETED.", i, item.Name));
-                */
             }
 
             notify("");
 
-            // Generate drop scripts
-            SqlScriptGenerator.GenerateScript(backupTablesPath, true, (string objName) =>
-                { notify(string.Format("Generate Drop Table Script: {0}", objName)); }
-            );
+            // SMO-based script generation (SQL Server only)
+            if (IsSqlServer)
+            {
+                // Generate drop scripts
+                SqlScriptGenerator.GenerateScript(backupTablesPath, true, (string objName) =>
+                    { notify(string.Format("Generate Drop Table Script: {0}", objName)); }
+                );
 
-            notify("");
+                notify("");
 
-            // Generate object scripts
-            SqlScriptGenerator.GenerateScript(backupTablesPath, false, (string objName) =>
-                { notify(string.Format("Generate Restore Table Script: {0}", objName)); }
-            );
+                // Generate object scripts
+                SqlScriptGenerator.GenerateScript(backupTablesPath, false, (string objName) =>
+                    { notify(string.Format("Generate Restore Table Script: {0}", objName)); }
+                );
 
-            notify("");
+                notify("");
 
-            // Generate procedures script
+                // Generate procedures script (legacy — stored procedures have been eliminated)
+                BackupStoredProcedures(backupProceduresPath, notify);
+            }
+            else
+            {
+                // PostgreSQL: generate portable DROP/CREATE table scripts
+                BackupTableSchemaPortable(items, backupTablesPath, notify);
+            }
+
+            notify(string.Format("{0}{0}Backup process COMPLETED.{0}{0}", WConstants.WBREAK));
+
+            return true;
+        }
+
+        private void BackupStoredProcedures(string backupProceduresPath, Action<string> notify)
+        {
+            // SQL Server: backup stored procedure definitions from INFORMATION_SCHEMA
             using (var r = DbHelper.ExecuteReader(CommandType.Text,
-                string.Format("SELECT ROUTINE_NAME, ROUTINE_DEFINITION from INFORMATION_SCHEMA.ROUTINES" +
-                              " WHERE ROUTINE_TYPE='PROCEDURE'")))
+                "SELECT ROUTINE_NAME, ROUTINE_DEFINITION FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE='PROCEDURE'"))
             {
                 while (r.Read())
                 {
                     string routineName = r["ROUTINE_NAME"].ToString();
                     string routineDef = r["ROUTINE_DEFINITION"].ToString().Trim();
 
-                    sbRoutinesDrop = new StringBuilder();
-                    sbRoutinesDrop.AppendFormat("{1}if exists (select * from dbo.sysobjects where id = object_id(N'[{0}]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)", routineName, Environment.NewLine);
-                    sbRoutinesDrop.AppendFormat("{1}drop procedure [{0}]{1}", routineName, Environment.NewLine);
-                    sbRoutinesDrop.AppendLine("GO" + Environment.NewLine);
+                    var sbDrop = new StringBuilder();
+                    sbDrop.AppendFormat("{1}IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[{0}]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)", routineName, Environment.NewLine);
+                    sbDrop.AppendFormat("{1}DROP PROCEDURE [{0}]{1}", routineName, Environment.NewLine);
+                    sbDrop.AppendLine("GO" + Environment.NewLine);
 
-                    using (StreamWriter writer = new StreamWriter(Path.Combine(backupProceduresPath, routineName + ".drop.sql")))
-                    {
-                        writer.WriteLine(sbRoutinesDrop.ToString());
-                    }
+                    using (var writer = new StreamWriter(Path.Combine(backupProceduresPath, routineName + ".drop.sql")))
+                        writer.WriteLine(sbDrop.ToString());
 
-                    // Write the sql codes to file
-                    sbRoutinesBody = new StringBuilder();
-                    sbRoutinesBody.AppendFormat("{1}-- Procedure {0}", routineName, Environment.NewLine);
-                    sbRoutinesBody.AppendFormat("{0}SET ANSI_NULLS ON{0}GO{0}SET QUOTED_IDENTIFIER ON{0}GO{0}", Environment.NewLine);
-                    sbRoutinesBody.AppendLine(routineDef);
-                    sbRoutinesBody.AppendLine("GO" + Environment.NewLine);
-                    sbRoutinesBody.AppendFormat("{0}SET ANSI_NULLS ON{0}GO{0}SET QUOTED_IDENTIFIER OFF{0}GO{0}", Environment.NewLine);
+                    var sbBody = new StringBuilder();
+                    sbBody.AppendFormat("{1}-- Procedure {0}", routineName, Environment.NewLine);
+                    sbBody.AppendFormat("{0}SET ANSI_NULLS ON{0}GO{0}SET QUOTED_IDENTIFIER ON{0}GO{0}", Environment.NewLine);
+                    sbBody.AppendLine(routineDef);
+                    sbBody.AppendLine("GO" + Environment.NewLine);
+                    sbBody.AppendFormat("{0}SET ANSI_NULLS ON{0}GO{0}SET QUOTED_IDENTIFIER OFF{0}GO{0}", Environment.NewLine);
 
-                    using (StreamWriter writer = new StreamWriter(Path.Combine(backupProceduresPath, routineName + ".create.sql")))
-                    {
-                        writer.WriteLine(sbRoutinesBody.ToString());
-                    }
+                    using (var writer = new StreamWriter(Path.Combine(backupProceduresPath, routineName + ".create.sql")))
+                        writer.WriteLine(sbBody.ToString());
 
                     notify(string.Format("Procedure {0} WRITTEN.", routineName));
                 }
             }
+        }
 
-            // Write procedures to file
+        private void BackupTableSchemaPortable(IEnumerable<WebObject> items, string backupTablesPath, Action<string> notify)
+        {
+            // PostgreSQL: generate portable DROP TABLE / CREATE TABLE scripts via information_schema
+            foreach (var item in items)
+            {
+                var quotedName = DbSyntax.QuoteIdentifier(item.Name);
 
-            //using (StreamWriter writer = new StreamWriter(Path.Combine(dbPath, "Procedures.drop.sql")))
-            //{
-            //    writer.WriteLine(sbRoutinesDrop.ToString());
-            //    this.WriteStatus("Procedures written.");
-            //}
+                // Generate drop script
+                var dropSql = string.Format("DROP TABLE IF EXISTS {0};", quotedName);
+                var dropFile = Path.Combine(backupTablesPath, item.Name + ".drop.sql");
+                File.WriteAllText(dropFile, dropSql);
 
-            //using (StreamWriter writer = new StreamWriter(Path.Combine(dbPath, "Procedures.sql")))
-            //{
-            //    writer.WriteLine(sbRoutinesBody.ToString());
-            //    this.WriteStatus("Procedures written.");
-            //}
+                // Generate column info for create script
+                var createSb = new StringBuilder();
+                createSb.AppendFormat("CREATE TABLE IF NOT EXISTS {0} (", quotedName);
+                createSb.AppendLine();
 
-            notify(string.Format("{0}{0}Backup process COMPLETED.{0}{0}", WConstants.WBREAK));
+                bool first = true;
+                using (var r = DbHelper.ExecuteReader(CommandType.Text,
+                    string.Format("SELECT column_name, data_type, character_maximum_length, is_nullable, column_default " +
+                                  "FROM information_schema.columns WHERE table_name = '{0}' ORDER BY ordinal_position", item.Name)))
+                {
+                    while (r.Read())
+                    {
+                        if (!first) createSb.AppendLine(",");
+                        first = false;
 
-            return true;
+                        string colName = DbSyntax.QuoteIdentifier(r["column_name"].ToString());
+                        string dataType = r["data_type"].ToString();
+                        var maxLen = r["character_maximum_length"];
+                        string nullable = r["is_nullable"].ToString() == "NO" ? "NOT NULL" : "NULL";
+                        string colDefault = r["column_default"] != DBNull.Value ? r["column_default"].ToString() : null;
+
+                        string typeDef = dataType;
+                        if (maxLen != DBNull.Value && maxLen != null)
+                        {
+                            long len = Convert.ToInt64(maxLen);
+                            if (len > 0)
+                                typeDef = string.Format("{0}({1})", dataType, len);
+                        }
+
+                        createSb.AppendFormat("    {0} {1} {2}", colName, typeDef, nullable);
+                        if (!string.IsNullOrEmpty(colDefault))
+                            createSb.AppendFormat(" DEFAULT {0}", colDefault);
+                    }
+                }
+
+                createSb.AppendLine();
+                createSb.AppendLine(");");
+
+                var createFile = Path.Combine(backupTablesPath, item.Name + ".create.sql");
+                File.WriteAllText(createFile, createSb.ToString());
+
+                notify(string.Format("Generate Table Script: {0}", item.Name));
+            }
         }
 
         public bool Restore(Action<string> notify)
