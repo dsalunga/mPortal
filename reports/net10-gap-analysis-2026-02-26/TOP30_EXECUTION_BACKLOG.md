@@ -57,7 +57,8 @@ Suggested owners:
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyFxServiceController.cs` (legacy FxService method routes + rendered comment HTML contract + `{ d: ... }` payloads).
 - [x] Rank 14 (`MAP-160`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/BibleReader/BibleService.asmx`  
   Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyIntegrationBibleServiceController.cs` (legacy BibleReader app-access/version-access method routes and payload contracts).
-- [ ] Rank 15 (`MAP-001`) - `BibleReader/BibleReader/BibleService.asmx`
+- [x] Rank 15 (`MAP-001`) - `BibleReader/BibleReader/BibleService.asmx`  
+  Implemented by `BibleReader/BibleReader/Api/LegacyBibleServiceController.cs` (legacy HelloWorld/GetVerseContent/GetVerse routes with `{ d: ... }` payload parity).
 
 ## Top 30 (ranked)
 
