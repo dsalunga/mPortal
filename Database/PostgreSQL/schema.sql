@@ -1,4 +1,4 @@
--- mPortal CMS — PostgreSQL Schema DDL
+-- mPortal CMS — mPortal CMS PostgreSQL Schema DDL
 -- Auto-generated from SQL Server table definitions
 -- Tables: 121
 --
@@ -869,7 +869,7 @@ CREATE TABLE IF NOT EXISTS "WebAttachment" (
 -- Table: WebCategory
 CREATE TABLE IF NOT EXISTS "WebCategory" (
     "Id" INTEGER NOT NULL,
-    "Name" VARCHAR(500) DEFAULT -1 NOT NULL,
+    "Name" VARCHAR(500) DEFAULT '-1' NOT NULL,
     "ObjectId" INTEGER DEFAULT -1 NOT NULL,
     "Rank" INTEGER DEFAULT 0 NOT NULL,
     "ParentId" INTEGER DEFAULT -1 NOT NULL,
