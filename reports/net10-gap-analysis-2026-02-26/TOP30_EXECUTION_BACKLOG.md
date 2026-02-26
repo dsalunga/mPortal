@@ -47,6 +47,8 @@ Suggested owners:
   Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyAsopWebServiceController.cs` (ASMX-style `{ d: ... }` methods for HelloWorld, GetCandidate, IsEmailNotTaken, Vote).
 - [x] Rank 9 (`MAP-149`) - `Portal/WebSystem/WebSystem-MVC/Content/Handlers/AjaxHandler.ashx`  
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyWebSystemAjaxHandlerController.cs` (SetDesignPanel, GetText, Status/KeepAlive, SessionValid contract parity).
+- [x] Rank 10 (`MAP-150`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/AccountService.asmx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAccountServiceController.cs` (legacy `GetUserSession`/`GetUserSessionByAuthKey` routes with `{ d: ... }` response shape).
 
 ## Top 30 (ranked)
 
