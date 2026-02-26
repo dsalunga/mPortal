@@ -49,6 +49,8 @@ Suggested owners:
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyWebSystemAjaxHandlerController.cs` (SetDesignPanel, GetText, Status/KeepAlive, SessionValid contract parity).
 - [x] Rank 10 (`MAP-150`) - `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/AccountService.asmx`  
   Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyAccountServiceController.cs` (legacy `GetUserSession`/`GetUserSessionByAuthKey` routes with `{ d: ... }` response shape).
+- [x] Rank 11 (`MAP-159`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/Streaming/VerifySession.ashx`  
+  Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyStreamingVerifySessionController.cs` (legacy stream/session validation contract with `OK`/`FAIL` response).
 
 ## Top 30 (ranked)
 
