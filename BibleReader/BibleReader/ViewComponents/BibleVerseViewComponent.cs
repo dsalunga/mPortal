@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -20,7 +22,8 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
 
             // Load available versions
             model.Versions = new List<BibleVersionItem>();
-            using (var reader = SqlHelper.ExecuteReader("BibleVersion_GetAll"))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("BibleVersion");
+            using (var reader = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (reader.Read())
                 {
@@ -41,10 +44,14 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
             if (model.SelectedVersionId > 0 && bookId > 0 && chapter > 0)
             {
                 model.Verses = new List<BibleVerseItem>();
-                using (var reader = SqlHelper.ExecuteReader("BibleVerse_GetByChapter",
-                    new Microsoft.Data.SqlClient.SqlParameter("@VersionId", model.SelectedVersionId),
-                    new Microsoft.Data.SqlClient.SqlParameter("@BookId", bookId),
-                    new Microsoft.Data.SqlClient.SqlParameter("@Chapter", chapter)))
+                var verseSql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("BibleVerse") + " WHERE " +
+                    DbSyntax.QuoteIdentifier("VersionId") + " = @VersionId AND " +
+                    DbSyntax.QuoteIdentifier("BookId") + " = @BookId AND " +
+                    DbSyntax.QuoteIdentifier("Chapter") + " = @Chapter";
+                using (var reader = DbHelper.ExecuteReader(CommandType.Text, verseSql,
+                    DbHelper.CreateParameter("@VersionId", model.SelectedVersionId),
+                    DbHelper.CreateParameter("@BookId", bookId),
+                    DbHelper.CreateParameter("@Chapter", chapter)))
                 {
                     while (reader.Read())
                     {

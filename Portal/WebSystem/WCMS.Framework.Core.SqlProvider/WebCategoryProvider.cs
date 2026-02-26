@@ -9,6 +9,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebCategoryProvider : GenericSqlDataProviderBase<WebCategory>, IWebCategoryProvider
     {
+        protected override string TableName { get { return "WebCategory"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WebCategory_Get"; } }
         protected override string DeleteProcedure { get { return "WebCategory_Del"; } }
 

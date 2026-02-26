@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 using WCMS.Common.Data;
@@ -19,7 +19,7 @@ namespace WCMS.BibleReader.Core.Providers
         private string connectionString;
         public BibleVersionProvider()
         {
-            connectionString = SqlHelper.GetConnectionString(BibleConstants.ConnectionString);
+            connectionString = DbHelper.GetConnectionString(BibleConstants.ConnectionString);
         }
 
         protected override BibleVersion From(IDataReader r)
@@ -41,9 +41,13 @@ namespace WCMS.BibleReader.Core.Providers
         public List<BibleVersion> GetList(int langaugeType = -2, int translationType = -2)
         {
             List<BibleVersion> items = new List<BibleVersion>();
-            using (var r = SqlHelper.ExecuteReader(connectionString, SelectProcedure,
-                new SqlParameter("@LanguageType", langaugeType),
-                new SqlParameter("@TranslationType", translationType)))
+
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("BibleVersion") + " WHERE 1=1";
+            var parmList = new List<DbParameter>();
+            if (langaugeType != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("LanguageType") + " = @LanguageType"; parmList.Add(DbHelper.CreateParameter("@LanguageType", langaugeType)); }
+            if (translationType != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("TranslationType") + " = @TranslationType"; parmList.Add(DbHelper.CreateParameter("@TranslationType", translationType)); }
+
+            using (var r = DbHelper.ExecuteReader(connectionString, CommandType.Text, sql, parmList.ToArray()))
             {
                 while (r.Read())
                     items.Add(From(r));

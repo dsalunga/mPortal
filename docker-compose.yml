@@ -1,10 +1,12 @@
 # mPortal CMS - Docker Compose
 # Multi-container development environment with SQL Server and web hosts
+# Set DATABASE_PROVIDER=PostgreSql and use the postgres profile for PostgreSQL.
 
 services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: mportal-sqlserver
+    profiles: ["sqlserver", "default"]
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "${SA_PASSWORD:-YourStrong!Passw0rd}"
@@ -20,6 +22,25 @@ services:
       retries: 10
       start_period: 10s
 
+  postgres:
+    image: postgres:17
+    container_name: mportal-postgres
+    profiles: ["postgres"]
+    environment:
+      POSTGRES_USER: "${PG_USER:-postgres}"
+      POSTGRES_PASSWORD: "${PG_PASSWORD:-YourStrong!Passw0rd}"
+      POSTGRES_DB: mPortal
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER:-postgres}"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
   web:
     build:
       context: .
@@ -28,12 +49,19 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=WCMS;User Id=sa;Password=${SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=True;"
+      WCMS__DatabaseProvider: "${DATABASE_PROVIDER:-SqlServer}"
+      ConnectionStrings__DefaultConnection: "${CONNECTION_STRING:-Server=sqlserver;Database=WCMS;User Id=sa;Password=${SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=True;}"
+      ConnectionStrings__ConnectionString: "${CONNECTION_STRING:-Server=sqlserver;Database=WCMS;User Id=sa;Password=${SA_PASSWORD:-YourStrong!Passw0rd};TrustServerCertificate=True;}"
     ports:
       - "8080:8080"
     depends_on:
       sqlserver:
         condition: service_healthy
+        required: false
+      postgres:
+        condition: service_healthy
+        required: false
 
 volumes:
   sqlserver-data:
+  postgres-data:

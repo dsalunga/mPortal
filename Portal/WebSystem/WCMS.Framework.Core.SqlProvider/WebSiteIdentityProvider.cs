@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
@@ -17,16 +16,18 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("WebSiteIdentity_Del",
-                new SqlParameter("@Id", id));
+            var sql = "DELETE FROM WebSiteIdentity WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
 
         public WebSiteIdentity Get(int id)
         {
-            using (var r = SqlHelper.ExecuteReader("WebSiteIdentity_Get",
-                new SqlParameter("@Id", id)))
+            var sql = "SELECT * FROM WebSiteIdentity WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.Read())
                     return From(r);
@@ -35,7 +36,7 @@ namespace WCMS.Framework.Core.SqlProvider
             return null;
         }
 
-        private WebSiteIdentity From(SqlDataReader r)
+        private WebSiteIdentity From(DbDataReader r)
         {
             var item = new WebSiteIdentity();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
@@ -58,7 +59,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebSiteIdentity> GetList()
         {
             var items = new List<WebSiteIdentity>();
-            using (var r = SqlHelper.ExecuteReader("WebSiteIdentity_Get"))
+            var sql = "SELECT * FROM WebSiteIdentity";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -70,8 +72,9 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebSiteIdentity> GetList(int siteId)
         {
             var items = new List<WebSiteIdentity>();
-            using (var r = SqlHelper.ExecuteReader("WebSiteIdentity_Get",
-                new SqlParameter("@SiteId", siteId)))
+            var sql = "SELECT * FROM WebSiteIdentity WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@SiteId", siteId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -92,18 +95,59 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebSiteIdentity item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebSiteIdentity_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@SiteId", item.SiteId),
-                new SqlParameter("@HostName", item.HostName),
-                new SqlParameter("@UrlPath", item.UrlPath),
-                new SqlParameter("@Port", item.Port),
-                new SqlParameter("@IPAddress", item.IPAddress),
-                new SqlParameter("@RedirectUrl", item.RedirectUrl),
-                new SqlParameter("@ProtocolId", item.ProtocolId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebSiteIdentity SET " +
+                    DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId, " +
+                    DbSyntax.QuoteIdentifier("HostName") + " = @HostName, " +
+                    DbSyntax.QuoteIdentifier("UrlPath") + " = @UrlPath, " +
+                    DbSyntax.QuoteIdentifier("Port") + " = @Port, " +
+                    DbSyntax.QuoteIdentifier("IPAddress") + " = @IPAddress, " +
+                    DbSyntax.QuoteIdentifier("RedirectUrl") + " = @RedirectUrl, " +
+                    DbSyntax.QuoteIdentifier("ProtocolId") + " = @ProtocolId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@HostName", item.HostName),
+                    DbHelper.CreateParameter("@UrlPath", item.UrlPath),
+                    DbHelper.CreateParameter("@Port", item.Port),
+                    DbHelper.CreateParameter("@IPAddress", item.IPAddress),
+                    DbHelper.CreateParameter("@RedirectUrl", item.RedirectUrl),
+                    DbHelper.CreateParameter("@ProtocolId", item.ProtocolId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebSiteIdentity (" +
+                    DbSyntax.QuoteIdentifier("SiteId") + ", " +
+                    DbSyntax.QuoteIdentifier("HostName") + ", " +
+                    DbSyntax.QuoteIdentifier("UrlPath") + ", " +
+                    DbSyntax.QuoteIdentifier("Port") + ", " +
+                    DbSyntax.QuoteIdentifier("IPAddress") + ", " +
+                    DbSyntax.QuoteIdentifier("RedirectUrl") + ", " +
+                    DbSyntax.QuoteIdentifier("ProtocolId") +
+                    ") VALUES (@SiteId, @HostName, @UrlPath, @Port, @IPAddress, @RedirectUrl, @ProtocolId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@HostName", item.HostName),
+                    DbHelper.CreateParameter("@UrlPath", item.UrlPath),
+                    DbHelper.CreateParameter("@Port", item.Port),
+                    DbHelper.CreateParameter("@IPAddress", item.IPAddress),
+                    DbHelper.CreateParameter("@RedirectUrl", item.RedirectUrl),
+                    DbHelper.CreateParameter("@ProtocolId", item.ProtocolId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
 
             return item.Id;
         }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 
 using WCMS.Framework;
 using WCMS.Common.Utilities;
@@ -31,23 +30,73 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
 
         public override int Update(ArticleTemplate item)
         {
-            var obj = SqlHelper.ExecuteScalar("ArticleTemplate_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@Date", item.Date),
-                new SqlParameter("@File", item.File),
-                new SqlParameter("@ImageUrl", item.ImageUrl),
-                new SqlParameter("@ListItemTemplate", item.ListItemTemplate),
-                new SqlParameter("@ListTemplate", item.ListTemplate),
-                new SqlParameter("@DetailsTemplate", item.DetailsTemplate),
-                new SqlParameter("@DateFormat", item.DateFormat)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("ArticleTemplate") + " SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("Date") + " = @Date, " +
+                    DbSyntax.QuoteIdentifier("File") + " = @File, " +
+                    DbSyntax.QuoteIdentifier("ImageUrl") + " = @ImageUrl, " +
+                    DbSyntax.QuoteIdentifier("ListItemTemplate") + " = @ListItemTemplate, " +
+                    DbSyntax.QuoteIdentifier("ListTemplate") + " = @ListTemplate, " +
+                    DbSyntax.QuoteIdentifier("DetailsTemplate") + " = @DetailsTemplate, " +
+                    DbSyntax.QuoteIdentifier("DateFormat") + " = @DateFormat" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Date", item.Date),
+                    DbHelper.CreateParameter("@File", item.File),
+                    DbHelper.CreateParameter("@ImageUrl", item.ImageUrl),
+                    DbHelper.CreateParameter("@ListItemTemplate", item.ListItemTemplate),
+                    DbHelper.CreateParameter("@ListTemplate", item.ListTemplate),
+                    DbHelper.CreateParameter("@DetailsTemplate", item.DetailsTemplate),
+                    DbHelper.CreateParameter("@DateFormat", item.DateFormat),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("ArticleTemplate") + " (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("Date") + ", " +
+                    DbSyntax.QuoteIdentifier("File") + ", " +
+                    DbSyntax.QuoteIdentifier("ImageUrl") + ", " +
+                    DbSyntax.QuoteIdentifier("ListItemTemplate") + ", " +
+                    DbSyntax.QuoteIdentifier("ListTemplate") + ", " +
+                    DbSyntax.QuoteIdentifier("DetailsTemplate") + ", " +
+                    DbSyntax.QuoteIdentifier("DateFormat") +
+                    ") VALUES (@Name, @Date, @File, @ImageUrl, @ListItemTemplate, @ListTemplate, @DetailsTemplate, @DateFormat)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Date", item.Date),
+                    DbHelper.CreateParameter("@File", item.File),
+                    DbHelper.CreateParameter("@ImageUrl", item.ImageUrl),
+                    DbHelper.CreateParameter("@ListItemTemplate", item.ListItemTemplate),
+                    DbHelper.CreateParameter("@ListTemplate", item.ListTemplate),
+                    DbHelper.CreateParameter("@DetailsTemplate", item.DetailsTemplate),
+                    DbHelper.CreateParameter("@DateFormat", item.DateFormat)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         protected override string DeleteProcedure { get { return "ArticleTemplate_Del"; } }
+        protected override string TableName { get { return "ArticleTemplate"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "ArticleTemplate_Get"; } }
     }
 }

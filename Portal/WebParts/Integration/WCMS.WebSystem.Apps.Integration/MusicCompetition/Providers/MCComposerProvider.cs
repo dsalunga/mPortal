@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using WCMS.Common.Utilities;
@@ -34,6 +34,13 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             return item;
         }
 
+        protected override string TableName { get { return "MCComposer"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure
         {
             get { return "MCComposer_Get"; }
@@ -41,28 +48,78 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public override int Update(MCComposer item)
         {
-            var obj = SqlHelper.ExecuteScalar("MCComposer_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@Entry", item.Entry),
-                new SqlParameter("@Locale", item.Locale),
-                new SqlParameter("@Work", item.Work),
-                new SqlParameter("@Description", item.Description),
-                new SqlParameter("@PhotoFile", item.PhotoFile),
-                new SqlParameter("@NickName", item.NickName),
-                new SqlParameter("@Active", item.Active),
-                new SqlParameter("@CompetitionId", item.CompetitionId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            return UpdatePostProcess(item, obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("MCComposer") + " SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("Entry") + " = @Entry, " +
+                    DbSyntax.QuoteIdentifier("Locale") + " = @Locale, " +
+                    DbSyntax.QuoteIdentifier("Work") + " = @Work, " +
+                    DbSyntax.QuoteIdentifier("Description") + " = @Description, " +
+                    DbSyntax.QuoteIdentifier("PhotoFile") + " = @PhotoFile, " +
+                    DbSyntax.QuoteIdentifier("NickName") + " = @NickName, " +
+                    DbSyntax.QuoteIdentifier("Active") + " = @Active, " +
+                    DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Entry", item.Entry),
+                    DbHelper.CreateParameter("@Locale", item.Locale),
+                    DbHelper.CreateParameter("@Work", item.Work),
+                    DbHelper.CreateParameter("@Description", item.Description),
+                    DbHelper.CreateParameter("@PhotoFile", item.PhotoFile),
+                    DbHelper.CreateParameter("@NickName", item.NickName),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@CompetitionId", item.CompetitionId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("MCComposer") + " (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("Entry") + ", " +
+                    DbSyntax.QuoteIdentifier("Locale") + ", " +
+                    DbSyntax.QuoteIdentifier("Work") + ", " +
+                    DbSyntax.QuoteIdentifier("Description") + ", " +
+                    DbSyntax.QuoteIdentifier("PhotoFile") + ", " +
+                    DbSyntax.QuoteIdentifier("NickName") + ", " +
+                    DbSyntax.QuoteIdentifier("Active") + ", " +
+                    DbSyntax.QuoteIdentifier("CompetitionId") +
+                    ") VALUES (@Name, @Entry, @Locale, @Work, @Description, @PhotoFile, @NickName, @Active, @CompetitionId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Entry", item.Entry),
+                    DbHelper.CreateParameter("@Locale", item.Locale),
+                    DbHelper.CreateParameter("@Work", item.Work),
+                    DbHelper.CreateParameter("@Description", item.Description),
+                    DbHelper.CreateParameter("@PhotoFile", item.PhotoFile),
+                    DbHelper.CreateParameter("@NickName", item.NickName),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@CompetitionId", item.CompetitionId)
+                };
+                var o = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                return UpdatePostProcess(item, o);
+            }
+
+            return item.Id;
         }
 
         public IEnumerable<MCComposer> GetList(int competitionId)
         {
             List<MCComposer> items = new List<MCComposer>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@CompetitionId", competitionId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MCComposer") + " WHERE " + DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@CompetitionId", competitionId)))
             {
                 while (r.Read())
                     items.Add(From(r));

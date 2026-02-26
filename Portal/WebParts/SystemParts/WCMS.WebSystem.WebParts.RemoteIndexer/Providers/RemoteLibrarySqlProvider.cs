@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -17,8 +17,10 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("RemoteLibrary_Del",
-                new SqlParameter("@Id", id));
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier("RemoteLibrary") +
+                " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
@@ -27,8 +29,10 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
         {
             if (id > 0)
             {
-                using (var r = SqlHelper.ExecuteReader("RemoteLibrary_Get",
-                    new SqlParameter("@Id", id)))
+                var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("RemoteLibrary") +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                    DbHelper.CreateParameter("@Id", id)))
                 {
                     if (r.Read())
                         return From(r);
@@ -38,7 +42,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
             return null;
         }
 
-        private RemoteLibrary From(SqlDataReader r)
+        private RemoteLibrary From(IDataReader r)
         {
             var item = new RemoteLibrary();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
@@ -70,7 +74,8 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
         public IEnumerable<RemoteLibrary> GetList()
         {
             var items = new List<RemoteLibrary>();
-            using (var r = SqlHelper.ExecuteReader("RemoteLibrary_Get"))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("RemoteLibrary");
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -91,27 +96,95 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
 
         public int Update(RemoteLibrary item)
         {
-            var obj = SqlHelper.ExecuteScalar("RemoteLibrary_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@SourceTypeId", item.SourceTypeId),
-                new SqlParameter("@BaseAddress", item.BaseAddress),
-                new SqlParameter("@UserName", item.UserName),
-                new SqlParameter("@Password", item.Password),
-                new SqlParameter("@LastIndexDate", item.LastIndexDate),
-                new SqlParameter("@Active", item.Active),
-                new SqlParameter("@DisplayBaseAddress", item.DisplayBaseAddress),
-                new SqlParameter("@DownloadCountSince", item.DownloadCountSince),
-                new SqlParameter("@FileCacheEnabled", item.FileCacheEnabled),
-                new SqlParameter("@FileCacheFolder", item.FileCacheFolder),
-                new SqlParameter("@FileCacheMinDownloadCount", item.FileCacheMinDownloadCount),
-                new SqlParameter("@FileCacheCeilingSize", item.FileCacheCeilingSize),
-                new SqlParameter("@FileCacheMaxSize", item.FileCacheMaxSize),
-                new SqlParameter("@FileCacheMinDiskFreeMB", item.FileCacheMinDiskFreeMB),
-                new SqlParameter("@Size", item.Size)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("RemoteLibrary") + " SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("SourceTypeId") + " = @SourceTypeId, " +
+                    DbSyntax.QuoteIdentifier("BaseAddress") + " = @BaseAddress, " +
+                    DbSyntax.QuoteIdentifier("UserName") + " = @UserName, " +
+                    DbSyntax.QuoteIdentifier("Password") + " = @Password, " +
+                    DbSyntax.QuoteIdentifier("LastIndexDate") + " = @LastIndexDate, " +
+                    DbSyntax.QuoteIdentifier("Active") + " = @Active, " +
+                    DbSyntax.QuoteIdentifier("DisplayBaseAddress") + " = @DisplayBaseAddress, " +
+                    DbSyntax.QuoteIdentifier("DownloadCountSince") + " = @DownloadCountSince, " +
+                    DbSyntax.QuoteIdentifier("FileCacheEnabled") + " = @FileCacheEnabled, " +
+                    DbSyntax.QuoteIdentifier("FileCacheFolder") + " = @FileCacheFolder, " +
+                    DbSyntax.QuoteIdentifier("FileCacheMinDownloadCount") + " = @FileCacheMinDownloadCount, " +
+                    DbSyntax.QuoteIdentifier("FileCacheCeilingSize") + " = @FileCacheCeilingSize, " +
+                    DbSyntax.QuoteIdentifier("FileCacheMaxSize") + " = @FileCacheMaxSize, " +
+                    DbSyntax.QuoteIdentifier("FileCacheMinDiskFreeMB") + " = @FileCacheMinDiskFreeMB, " +
+                    DbSyntax.QuoteIdentifier("Size") + " = @Size" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@SourceTypeId", item.SourceTypeId),
+                    DbHelper.CreateParameter("@BaseAddress", item.BaseAddress),
+                    DbHelper.CreateParameter("@UserName", item.UserName),
+                    DbHelper.CreateParameter("@Password", item.Password),
+                    DbHelper.CreateParameter("@LastIndexDate", item.LastIndexDate),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@DisplayBaseAddress", item.DisplayBaseAddress),
+                    DbHelper.CreateParameter("@DownloadCountSince", item.DownloadCountSince),
+                    DbHelper.CreateParameter("@FileCacheEnabled", item.FileCacheEnabled),
+                    DbHelper.CreateParameter("@FileCacheFolder", item.FileCacheFolder),
+                    DbHelper.CreateParameter("@FileCacheMinDownloadCount", item.FileCacheMinDownloadCount),
+                    DbHelper.CreateParameter("@FileCacheCeilingSize", item.FileCacheCeilingSize),
+                    DbHelper.CreateParameter("@FileCacheMaxSize", item.FileCacheMaxSize),
+                    DbHelper.CreateParameter("@FileCacheMinDiskFreeMB", item.FileCacheMinDiskFreeMB),
+                    DbHelper.CreateParameter("@Size", item.Size),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("RemoteLibrary") + " (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("SourceTypeId") + ", " +
+                    DbSyntax.QuoteIdentifier("BaseAddress") + ", " +
+                    DbSyntax.QuoteIdentifier("UserName") + ", " +
+                    DbSyntax.QuoteIdentifier("Password") + ", " +
+                    DbSyntax.QuoteIdentifier("LastIndexDate") + ", " +
+                    DbSyntax.QuoteIdentifier("Active") + ", " +
+                    DbSyntax.QuoteIdentifier("DisplayBaseAddress") + ", " +
+                    DbSyntax.QuoteIdentifier("DownloadCountSince") + ", " +
+                    DbSyntax.QuoteIdentifier("FileCacheEnabled") + ", " +
+                    DbSyntax.QuoteIdentifier("FileCacheFolder") + ", " +
+                    DbSyntax.QuoteIdentifier("FileCacheMinDownloadCount") + ", " +
+                    DbSyntax.QuoteIdentifier("FileCacheCeilingSize") + ", " +
+                    DbSyntax.QuoteIdentifier("FileCacheMaxSize") + ", " +
+                    DbSyntax.QuoteIdentifier("FileCacheMinDiskFreeMB") + ", " +
+                    DbSyntax.QuoteIdentifier("Size") +
+                    ") VALUES (@Name, @SourceTypeId, @BaseAddress, @UserName, @Password, @LastIndexDate, @Active, @DisplayBaseAddress, @DownloadCountSince, @FileCacheEnabled, @FileCacheFolder, @FileCacheMinDownloadCount, @FileCacheCeilingSize, @FileCacheMaxSize, @FileCacheMinDiskFreeMB, @Size)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@SourceTypeId", item.SourceTypeId),
+                    DbHelper.CreateParameter("@BaseAddress", item.BaseAddress),
+                    DbHelper.CreateParameter("@UserName", item.UserName),
+                    DbHelper.CreateParameter("@Password", item.Password),
+                    DbHelper.CreateParameter("@LastIndexDate", item.LastIndexDate),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@DisplayBaseAddress", item.DisplayBaseAddress),
+                    DbHelper.CreateParameter("@DownloadCountSince", item.DownloadCountSince),
+                    DbHelper.CreateParameter("@FileCacheEnabled", item.FileCacheEnabled),
+                    DbHelper.CreateParameter("@FileCacheFolder", item.FileCacheFolder),
+                    DbHelper.CreateParameter("@FileCacheMinDownloadCount", item.FileCacheMinDownloadCount),
+                    DbHelper.CreateParameter("@FileCacheCeilingSize", item.FileCacheCeilingSize),
+                    DbHelper.CreateParameter("@FileCacheMaxSize", item.FileCacheMaxSize),
+                    DbHelper.CreateParameter("@FileCacheMinDiskFreeMB", item.FileCacheMinDiskFreeMB),
+                    DbHelper.CreateParameter("@Size", item.Size)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
 
             return item.Id;
         }

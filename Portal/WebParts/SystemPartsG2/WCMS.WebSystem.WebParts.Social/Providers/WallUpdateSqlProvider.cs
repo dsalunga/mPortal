@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
@@ -10,6 +10,11 @@ namespace WCMS.Framework.Social.Providers
     public class WallUpdateSqlProvider : GenericSqlDataProviderBase<WallUpdate>, IWallUpdateProvider
     {
         protected override string DeleteProcedure { get { return "WallUpdate_Del"; } }
+        protected override string TableName { get { return "WallUpdate"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WallUpdate_Get"; } }
 
         protected override WallUpdate From(IDataReader r, WallUpdate source)
@@ -29,18 +34,61 @@ namespace WCMS.Framework.Social.Providers
 
         public override int Update(WallUpdate item)
         {
-            var obj = SqlHelper.ExecuteScalar("WallUpdate_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@UpdateObjectId", item.UpdateObjectId),
-                new SqlParameter("@UpdateRecordId", item.UpdateRecordId),
-                new SqlParameter("@ByObjectId", item.ByObjectId),
-                new SqlParameter("@ByRecordId", item.ByRecordId),
-                new SqlParameter("@Content", item.Content),
-                new SqlParameter("@UpdateDate", item.UpdateDate),
-                new SqlParameter("@EventTypeId", item.EventTypeId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            return UpdatePostProcess(item, obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("WallUpdate") + " SET " +
+                    DbSyntax.QuoteIdentifier("UpdateObjectId") + " = @UpdateObjectId, " +
+                    DbSyntax.QuoteIdentifier("UpdateRecordId") + " = @UpdateRecordId, " +
+                    DbSyntax.QuoteIdentifier("ByObjectId") + " = @ByObjectId, " +
+                    DbSyntax.QuoteIdentifier("ByRecordId") + " = @ByRecordId, " +
+                    DbSyntax.QuoteIdentifier("Content") + " = @Content, " +
+                    DbSyntax.QuoteIdentifier("UpdateDate") + " = @UpdateDate, " +
+                    DbSyntax.QuoteIdentifier("EventTypeId") + " = @EventTypeId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UpdateObjectId", item.UpdateObjectId),
+                    DbHelper.CreateParameter("@UpdateRecordId", item.UpdateRecordId),
+                    DbHelper.CreateParameter("@ByObjectId", item.ByObjectId),
+                    DbHelper.CreateParameter("@ByRecordId", item.ByRecordId),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@UpdateDate", item.UpdateDate),
+                    DbHelper.CreateParameter("@EventTypeId", item.EventTypeId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("WallUpdate") + " (" +
+                    DbSyntax.QuoteIdentifier("UpdateObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("UpdateRecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("ByObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("ByRecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("Content") + ", " +
+                    DbSyntax.QuoteIdentifier("UpdateDate") + ", " +
+                    DbSyntax.QuoteIdentifier("EventTypeId") +
+                    ") VALUES (@UpdateObjectId, @UpdateRecordId, @ByObjectId, @ByRecordId, @Content, @UpdateDate, @EventTypeId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UpdateObjectId", item.UpdateObjectId),
+                    DbHelper.CreateParameter("@UpdateRecordId", item.UpdateRecordId),
+                    DbHelper.CreateParameter("@ByObjectId", item.ByObjectId),
+                    DbHelper.CreateParameter("@ByRecordId", item.ByRecordId),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@UpdateDate", item.UpdateDate),
+                    DbHelper.CreateParameter("@EventTypeId", item.EventTypeId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
+            return item.Id;
         }
 
         public IEnumerable<WallUpdate> GetList(int updateObjectId = -2, int updateRecordId = -2, int byObjectId = -2, int byRecordId = -2, 
@@ -48,14 +96,17 @@ namespace WCMS.Framework.Social.Providers
         {
             List<WallUpdate> items = new List<WallUpdate>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@UpdateObjectId", updateObjectId),
-                new SqlParameter("@UpdateRecordId", updateRecordId),
-                new SqlParameter("@ByObjectId", byObjectId),
-                new SqlParameter("@ByRecordId", byRecordId),
-                new SqlParameter("@EventTypeId", eventTypeId),
-                new SqlParameter("@UpdateDateStart", updateDateStart),
-                new SqlParameter("@UpdateDateEnd", updateDateEnd)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("WallUpdate") + " WHERE 1=1";
+            var parmList = new List<DbParameter>();
+            if (updateObjectId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("UpdateObjectId") + " = @UpdateObjectId"; parmList.Add(DbHelper.CreateParameter("@UpdateObjectId", updateObjectId)); }
+            if (updateRecordId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("UpdateRecordId") + " = @UpdateRecordId"; parmList.Add(DbHelper.CreateParameter("@UpdateRecordId", updateRecordId)); }
+            if (byObjectId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("ByObjectId") + " = @ByObjectId"; parmList.Add(DbHelper.CreateParameter("@ByObjectId", byObjectId)); }
+            if (byRecordId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("ByRecordId") + " = @ByRecordId"; parmList.Add(DbHelper.CreateParameter("@ByRecordId", byRecordId)); }
+            if (eventTypeId != -2) { sql += " AND " + DbSyntax.QuoteIdentifier("EventTypeId") + " = @EventTypeId"; parmList.Add(DbHelper.CreateParameter("@EventTypeId", eventTypeId)); }
+            if (updateDateStart != null) { sql += " AND " + DbSyntax.QuoteIdentifier("UpdateDate") + " >= @UpdateDateStart"; parmList.Add(DbHelper.CreateParameter("@UpdateDateStart", updateDateStart)); }
+            if (updateDateEnd != null) { sql += " AND " + DbSyntax.QuoteIdentifier("UpdateDate") + " <= @UpdateDateEnd"; parmList.Add(DbHelper.CreateParameter("@UpdateDateEnd", updateDateEnd)); }
+
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql, parmList.ToArray()))
             {
                 while (r.Read())
                     items.Add(From(r));

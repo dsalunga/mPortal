@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -24,9 +23,10 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPageElement> GetList(int recordId, int objectId)
         {
             List<WebPageElement> items = new List<WebPageElement>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPageElement_Get",
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId)
+            var sql = "SELECT * FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId)
                 ))
             {
                 if (r.HasRows)
@@ -47,10 +47,11 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPageElement> GetList(int recordId, int objectId, int templatePanelId)
         {
             List<WebPageElement> items = new List<WebPageElement>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPageElement_Get",
-                new SqlParameter("@TemplatePanelId", templatePanelId),
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId)
+            var sql = "SELECT * FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@TemplatePanelId", templatePanelId),
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId)
                 ))
             {
                 if (r.HasRows)
@@ -63,8 +64,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPageElement Get(int id)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPageElement_Get",
-                new SqlParameter("@PageElementId", id)))
+            var sql = "SELECT * FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("PageElementId") + " = @PageElementId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@PageElementId", id)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -75,20 +77,22 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetCount(int recordId, int objectId, int templatePanelId)
         {
-            object o = SqlHelper.ExecuteScalar("WebPageElement_GetCount",
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@TemplatePanelId", templatePanelId));
+            var sql = "SELECT COUNT(1) FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
+            object o = DbHelper.ExecuteScalar(CommandType.Text, sql,
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@TemplatePanelId", templatePanelId));
 
             return DataUtil.GetId(o);
         }
 
         public int GetMaxRank(int recordId, int objectId, int templatePanelId)
         {
-            object o = SqlHelper.ExecuteScalar("WebPageElement_GetMaxRank",
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@TemplatePanelId", templatePanelId));
+            var sql = "SELECT MAX(" + DbSyntax.QuoteIdentifier("Rank") + ") FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
+            object o = DbHelper.ExecuteScalar(CommandType.Text, sql,
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@TemplatePanelId", templatePanelId));
 
             return DataUtil.GetId(o);
         }
@@ -97,30 +101,80 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             // Validation goes here
 
-            object o = SqlHelper.ExecuteScalar("WebPageElement_Set",
-                new SqlParameter("@PageElementId", item.Id),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@TemplatePanelId", item.TemplatePanelId),
-                new SqlParameter("@Rank", item.Rank),
-                new SqlParameter("@PartControlTemplateId", item.PartControlTemplateId),
-                new SqlParameter("@Active", item.Active),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@UsePartTemplatePath", item.UsePartTemplatePath),
-                new SqlParameter("@PublicAccess", item.PublicAccess),
-                new SqlParameter("@ManagementAccess", item.ManagementAccess)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            if (o != null)
-                item.Id = DataUtil.GetId(o.ToString());
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebPageElement SET " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId, " +
+                    DbSyntax.QuoteIdentifier("Rank") + " = @Rank, " +
+                    DbSyntax.QuoteIdentifier("PartControlTemplateId") + " = @PartControlTemplateId, " +
+                    DbSyntax.QuoteIdentifier("Active") + " = @Active, " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
+                    DbSyntax.QuoteIdentifier("UsePartTemplatePath") + " = @UsePartTemplatePath, " +
+                    DbSyntax.QuoteIdentifier("PublicAccess") + " = @PublicAccess, " +
+                    DbSyntax.QuoteIdentifier("ManagementAccess") + " = @ManagementAccess" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("PageElementId") + " = @PageElementId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@TemplatePanelId", item.TemplatePanelId),
+                    DbHelper.CreateParameter("@Rank", item.Rank),
+                    DbHelper.CreateParameter("@PartControlTemplateId", item.PartControlTemplateId),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@UsePartTemplatePath", item.UsePartTemplatePath),
+                    DbHelper.CreateParameter("@PublicAccess", item.PublicAccess),
+                    DbHelper.CreateParameter("@ManagementAccess", item.ManagementAccess),
+                    DbHelper.CreateParameter("@PageElementId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebPageElement (" +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("TemplatePanelId") + ", " +
+                    DbSyntax.QuoteIdentifier("Rank") + ", " +
+                    DbSyntax.QuoteIdentifier("PartControlTemplateId") + ", " +
+                    DbSyntax.QuoteIdentifier("Active") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("UsePartTemplatePath") + ", " +
+                    DbSyntax.QuoteIdentifier("PublicAccess") + ", " +
+                    DbSyntax.QuoteIdentifier("ManagementAccess") +
+                    ") VALUES (@RecordId, @Name, @TemplatePanelId, @Rank, @PartControlTemplateId, @Active, @ObjectId, @UsePartTemplatePath, @PublicAccess, @ManagementAccess)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("PageElementId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@TemplatePanelId", item.TemplatePanelId),
+                    DbHelper.CreateParameter("@Rank", item.Rank),
+                    DbHelper.CreateParameter("@PartControlTemplateId", item.PartControlTemplateId),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@UsePartTemplatePath", item.UsePartTemplatePath),
+                    DbHelper.CreateParameter("@PublicAccess", item.PublicAccess),
+                    DbHelper.CreateParameter("@ManagementAccess", item.ManagementAccess)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj.ToString());
+            }
 
             return item.Id;
         }
 
         public bool Delete(int PageElementId)
         {
-            SqlHelper.ExecuteNonQuery("WebPageElement_Del",
-                new SqlParameter("@PageElementId", PageElementId));
+            var sql = "DELETE FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("PageElementId") + " = @PageElementId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@PageElementId", PageElementId));
 
             return true;
         }
@@ -154,7 +208,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPageElement> items = new List<WebPageElement>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPageElement_Get"))
+            var sql = "SELECT * FROM WebPageElement";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                 {
@@ -175,7 +230,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetCount()
         {
-            object o = SqlHelper.ExecuteScalar("WebPageElement_GetCount");
+            var sql = "SELECT COUNT(1) FROM WebPageElement";
+            object o = DbHelper.ExecuteScalar(CommandType.Text, sql);
             return DataUtil.GetId(o);
         }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using WCMS.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -13,12 +13,12 @@ namespace WCMS.WebSystem.WebParts.GenericForm
     {
         private DataSet _ds;
         private List<NamedValueProvider> _list;
-        //private List<DataColumn> _schemaColumns;
 
         public GenericListPresenter(int listId)
         {
-            _ds = SqlHelper.ExecuteDataSet("GenericListRow_Get",
-                new SqlParameter("@ListId", listId));
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("GenericListRow") + " WHERE " + DbSyntax.QuoteIdentifier("ListId") + " = @ListId";
+            _ds = DbHelper.ExecuteDataSet(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ListId", listId));
         }
 
         public DataSet DataSet

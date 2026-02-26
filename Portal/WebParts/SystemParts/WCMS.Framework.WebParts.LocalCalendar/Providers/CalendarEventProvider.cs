@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -12,14 +11,12 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
 {
     public class CalendarEventProvider
     {
-        private const string SQL_GET = "EventCalendarEvents_Get";
-        private const string SQL_SET = "EventCalendarEvents_Set";
-        private const string SQL_DEL = "EventCalendarEvents_Del";
-
         public CalendarEvent Get(int eventId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader(SQL_GET,
-                new SqlParameter("@EventId", eventId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("EventCalendarEvents") +
+                " WHERE " + DbSyntax.QuoteIdentifier("EventId") + " = @EventId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@EventId", eventId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -31,8 +28,14 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
         public IEnumerable<CalendarEvent> GetList(int calendarId = -1)
         {
             List<CalendarEvent> items = new List<CalendarEvent>();
-            using (DbDataReader r = SqlHelper.ExecuteReader(SQL_GET,
-                new SqlParameter("@CalendarId", calendarId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("EventCalendarEvents");
+            var parms = new List<DbParameter>();
+            if (calendarId != -1)
+            {
+                sql += " WHERE " + DbSyntax.QuoteIdentifier("CalendarId") + " = @CalendarId";
+                parms.Add(DbHelper.CreateParameter("@CalendarId", calendarId));
+            }
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql, parms.ToArray()))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -45,11 +48,18 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
         public IEnumerable<CalendarEvent> GetList(DateTime startDateFrom, DateTime startDateTo, int calendarId = -1)
         {
             List<CalendarEvent> items = new List<CalendarEvent>();
-            using (DbDataReader r = SqlHelper.ExecuteReader(SQL_GET,
-                new SqlParameter("@CalendarId", calendarId),
-                new SqlParameter("@StartDateFrom", startDateFrom),
-                new SqlParameter("@StartDateTo", startDateTo)
-                ))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("EventCalendarEvents") +
+                " WHERE " + DbSyntax.QuoteIdentifier("StartDate") + " >= @StartDateFrom" +
+                " AND " + DbSyntax.QuoteIdentifier("StartDate") + " <= @StartDateTo";
+            var parms = new List<DbParameter>();
+            parms.Add(DbHelper.CreateParameter("@StartDateFrom", startDateFrom));
+            parms.Add(DbHelper.CreateParameter("@StartDateTo", startDateTo));
+            if (calendarId != -1)
+            {
+                sql += " AND " + DbSyntax.QuoteIdentifier("CalendarId") + " = @CalendarId";
+                parms.Add(DbHelper.CreateParameter("@CalendarId", calendarId));
+            }
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql, parms.ToArray()))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -62,12 +72,29 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
         public IEnumerable<CalendarEvent> GetList(int selectType, DateTime startDateFrom, DateTime repeatUntil, int calendarId = -1)
         {
             List<CalendarEvent> items = new List<CalendarEvent>();
-            using (DbDataReader r = SqlHelper.ExecuteReader(SQL_GET,
-                new SqlParameter("@StartDateFrom", startDateFrom),
-                new SqlParameter("@RepeatUntil", repeatUntil),
-                new SqlParameter("@SelectType", selectType),
-                new SqlParameter("@CalendarId", calendarId)
-                ))
+            var parms = new List<DbParameter>();
+            parms.Add(DbHelper.CreateParameter("@StartDateFrom", startDateFrom));
+            parms.Add(DbHelper.CreateParameter("@RepeatUntil", repeatUntil));
+
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("EventCalendarEvents") + " WHERE ";
+            if (selectType == EventSelectTypes.SELECT_FOR_MONTH_DISPLAY)
+            {
+                sql += DbSyntax.QuoteIdentifier("StartDate") + " <= @RepeatUntil AND " +
+                    DbSyntax.QuoteIdentifier("RepeatUntil") + " >= @StartDateFrom";
+            }
+            else
+            {
+                sql += DbSyntax.QuoteIdentifier("StartDate") + " >= @StartDateFrom AND " +
+                    DbSyntax.QuoteIdentifier("StartDate") + " <= @RepeatUntil";
+            }
+
+            if (calendarId != -1)
+            {
+                sql += " AND " + DbSyntax.QuoteIdentifier("CalendarId") + " = @CalendarId";
+                parms.Add(DbHelper.CreateParameter("@CalendarId", calendarId));
+            }
+
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql, parms.ToArray()))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -79,36 +106,109 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
 
         public int Update(CalendarEvent item)
         {
-            object o = SqlHelper.ExecuteScalar(SQL_SET,
-                new SqlParameter("@EventId", item.Id),
-                new SqlParameter("@Subject", item.Subject),
-                new SqlParameter("@Message", item.Message),
-                new SqlParameter("@Location", item.LocationString),
-                new SqlParameter("@CategoryId", item.CategoryId),
-                new SqlParameter("@RecurrenceId", item.RecurrenceId),
-                new SqlParameter("@EndDate", item.EndDate),
-                new SqlParameter("@ReminderBefore", item.ReminderBefore),
-                new SqlParameter("@ReminderTo", item.ReminderTo),
-                new SqlParameter("@RepeatUntil", item.RepeatUntil),
-                new SqlParameter("@StartDate", item.StartDate),
-                new SqlParameter("@LocationId", item.LocationId),
-                new SqlParameter("@Weekdays", item.Weekdays),
-                new SqlParameter("@LastReminderSent", item.LastReminderSent),
-                new SqlParameter("@BookLocation", item.BookLocation),
-                new SqlParameter("@CalendarId", item.CalendarId),
-                new SqlParameter("@TemplateId", item.TemplateId),
-                new SqlParameter("@SendReminderVia", item.SendReminderVia)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("EventCalendarEvents") + " SET " +
+                    DbSyntax.QuoteIdentifier("Subject") + " = @Subject, " +
+                    DbSyntax.QuoteIdentifier("Message") + " = @Message, " +
+                    DbSyntax.QuoteIdentifier("Location") + " = @Location, " +
+                    DbSyntax.QuoteIdentifier("CategoryId") + " = @CategoryId, " +
+                    DbSyntax.QuoteIdentifier("RecurrenceId") + " = @RecurrenceId, " +
+                    DbSyntax.QuoteIdentifier("EndDate") + " = @EndDate, " +
+                    DbSyntax.QuoteIdentifier("ReminderBefore") + " = @ReminderBefore, " +
+                    DbSyntax.QuoteIdentifier("ReminderTo") + " = @ReminderTo, " +
+                    DbSyntax.QuoteIdentifier("RepeatUntil") + " = @RepeatUntil, " +
+                    DbSyntax.QuoteIdentifier("StartDate") + " = @StartDate, " +
+                    DbSyntax.QuoteIdentifier("LocationId") + " = @LocationId, " +
+                    DbSyntax.QuoteIdentifier("Weekdays") + " = @Weekdays, " +
+                    DbSyntax.QuoteIdentifier("LastReminderSent") + " = @LastReminderSent, " +
+                    DbSyntax.QuoteIdentifier("BookLocation") + " = @BookLocation, " +
+                    DbSyntax.QuoteIdentifier("CalendarId") + " = @CalendarId, " +
+                    DbSyntax.QuoteIdentifier("TemplateId") + " = @TemplateId, " +
+                    DbSyntax.QuoteIdentifier("SendReminderVia") + " = @SendReminderVia" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("EventId") + " = @EventId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Subject", item.Subject),
+                    DbHelper.CreateParameter("@Message", item.Message),
+                    DbHelper.CreateParameter("@Location", item.LocationString),
+                    DbHelper.CreateParameter("@CategoryId", item.CategoryId),
+                    DbHelper.CreateParameter("@RecurrenceId", item.RecurrenceId),
+                    DbHelper.CreateParameter("@EndDate", item.EndDate),
+                    DbHelper.CreateParameter("@ReminderBefore", item.ReminderBefore),
+                    DbHelper.CreateParameter("@ReminderTo", item.ReminderTo),
+                    DbHelper.CreateParameter("@RepeatUntil", item.RepeatUntil),
+                    DbHelper.CreateParameter("@StartDate", item.StartDate),
+                    DbHelper.CreateParameter("@LocationId", item.LocationId),
+                    DbHelper.CreateParameter("@Weekdays", item.Weekdays),
+                    DbHelper.CreateParameter("@LastReminderSent", item.LastReminderSent),
+                    DbHelper.CreateParameter("@BookLocation", item.BookLocation),
+                    DbHelper.CreateParameter("@CalendarId", item.CalendarId),
+                    DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                    DbHelper.CreateParameter("@SendReminderVia", item.SendReminderVia),
+                    DbHelper.CreateParameter("@EventId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("EventCalendarEvents") + " (" +
+                    DbSyntax.QuoteIdentifier("Subject") + ", " +
+                    DbSyntax.QuoteIdentifier("Message") + ", " +
+                    DbSyntax.QuoteIdentifier("Location") + ", " +
+                    DbSyntax.QuoteIdentifier("CategoryId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecurrenceId") + ", " +
+                    DbSyntax.QuoteIdentifier("EndDate") + ", " +
+                    DbSyntax.QuoteIdentifier("ReminderBefore") + ", " +
+                    DbSyntax.QuoteIdentifier("ReminderTo") + ", " +
+                    DbSyntax.QuoteIdentifier("RepeatUntil") + ", " +
+                    DbSyntax.QuoteIdentifier("StartDate") + ", " +
+                    DbSyntax.QuoteIdentifier("LocationId") + ", " +
+                    DbSyntax.QuoteIdentifier("Weekdays") + ", " +
+                    DbSyntax.QuoteIdentifier("LastReminderSent") + ", " +
+                    DbSyntax.QuoteIdentifier("BookLocation") + ", " +
+                    DbSyntax.QuoteIdentifier("CalendarId") + ", " +
+                    DbSyntax.QuoteIdentifier("TemplateId") + ", " +
+                    DbSyntax.QuoteIdentifier("SendReminderVia") +
+                    ") VALUES (@Subject, @Message, @Location, @CategoryId, @RecurrenceId, @EndDate, @ReminderBefore, @ReminderTo, @RepeatUntil, @StartDate, @LocationId, @Weekdays, @LastReminderSent, @BookLocation, @CalendarId, @TemplateId, @SendReminderVia)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("EventId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Subject", item.Subject),
+                    DbHelper.CreateParameter("@Message", item.Message),
+                    DbHelper.CreateParameter("@Location", item.LocationString),
+                    DbHelper.CreateParameter("@CategoryId", item.CategoryId),
+                    DbHelper.CreateParameter("@RecurrenceId", item.RecurrenceId),
+                    DbHelper.CreateParameter("@EndDate", item.EndDate),
+                    DbHelper.CreateParameter("@ReminderBefore", item.ReminderBefore),
+                    DbHelper.CreateParameter("@ReminderTo", item.ReminderTo),
+                    DbHelper.CreateParameter("@RepeatUntil", item.RepeatUntil),
+                    DbHelper.CreateParameter("@StartDate", item.StartDate),
+                    DbHelper.CreateParameter("@LocationId", item.LocationId),
+                    DbHelper.CreateParameter("@Weekdays", item.Weekdays),
+                    DbHelper.CreateParameter("@LastReminderSent", item.LastReminderSent),
+                    DbHelper.CreateParameter("@BookLocation", item.BookLocation),
+                    DbHelper.CreateParameter("@CalendarId", item.CalendarId),
+                    DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                    DbHelper.CreateParameter("@SendReminderVia", item.SendReminderVia)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int eventId)
         {
-            SqlHelper.ExecuteNonQuery(SQL_DEL,
-                new SqlParameter("@EventId", eventId)
-            );
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier("EventCalendarEvents") +
+                " WHERE " + DbSyntax.QuoteIdentifier("EventId") + " = @EventId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@EventId", eventId));
 
             return true;
         }

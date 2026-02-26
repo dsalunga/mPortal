@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Microsoft.Data.SqlClient;
+using System.Data;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -17,16 +18,20 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("FileVersion_Del",
-                new SqlParameter("@Id", id));
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier("FileVersion") +
+                " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
 
         public FileVersion Get(int id)
         {
-            using (var r = SqlHelper.ExecuteReader("FileVersion_Get",
-                new SqlParameter("@Id", id)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("FileVersion") +
+                " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.Read())
                     return From(r);
@@ -35,7 +40,7 @@ namespace WCMS.WebSystem.WebParts.FileManager
             return null;
         }
 
-        private FileVersion From(SqlDataReader r)
+        private FileVersion From(IDataReader r)
         {
             FileVersion item = new FileVersion();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
@@ -56,7 +61,8 @@ namespace WCMS.WebSystem.WebParts.FileManager
         {
             List<FileVersion> items = new List<FileVersion>();
 
-            using (var r = SqlHelper.ExecuteReader("FileVersion_Get"))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("FileVersion");
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                 {
@@ -73,8 +79,10 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
             if (fileId > 0)
             {
-                using (var r = SqlHelper.ExecuteReader("FileVersion_Get",
-                    new SqlParameter("@FileId", fileId)))
+                var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("FileVersion") +
+                    " WHERE " + DbSyntax.QuoteIdentifier("FileId") + " = @FileId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                    DbHelper.CreateParameter("@FileId", fileId)))
                 {
                     while (r.Read())
                     {
@@ -98,14 +106,48 @@ namespace WCMS.WebSystem.WebParts.FileManager
 
         public int Update(FileVersion item)
         {
-            var obj = SqlHelper.ExecuteScalar("FileVersion_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@FileId", item.FileId),
-                new SqlParameter("@VersionDate", item.VersionDate),
-                new SqlParameter("@Activity", item.Activity),
-                new SqlParameter("@UserId", item.UserId));
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("FileVersion") + " SET " +
+                    DbSyntax.QuoteIdentifier("FileId") + " = @FileId, " +
+                    DbSyntax.QuoteIdentifier("VersionDate") + " = @VersionDate, " +
+                    DbSyntax.QuoteIdentifier("Activity") + " = @Activity, " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@FileId", item.FileId),
+                    DbHelper.CreateParameter("@VersionDate", item.VersionDate),
+                    DbHelper.CreateParameter("@Activity", item.Activity),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("FileVersion") + " (" +
+                    DbSyntax.QuoteIdentifier("FileId") + ", " +
+                    DbSyntax.QuoteIdentifier("VersionDate") + ", " +
+                    DbSyntax.QuoteIdentifier("Activity") + ", " +
+                    DbSyntax.QuoteIdentifier("UserId") +
+                    ") VALUES (@FileId, @VersionDate, @Activity, @UserId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@FileId", item.FileId),
+                    DbHelper.CreateParameter("@VersionDate", item.VersionDate),
+                    DbHelper.CreateParameter("@Activity", item.Activity),
+                    DbHelper.CreateParameter("@UserId", item.UserId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 

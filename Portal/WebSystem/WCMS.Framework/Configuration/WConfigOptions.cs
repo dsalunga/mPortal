@@ -11,6 +11,7 @@ namespace WCMS.Framework.Configuration
     public class WConfigOptions
     {
         public string Environment { get; set; } = "DEV";
+        public string DatabaseProvider { get; set; } = "SqlServer";
         public string SystemName { get; set; }
         public string BaseAddress { get; set; }
         public string TempFolder { get; set; }

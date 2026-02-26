@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,8 +15,14 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
         public IEnumerable<Article> GetList(int siteId = -2)
         {
             var items = new List<Article>();
-            using (var r = SqlHelper.ExecuteReader("Articles_Get",
-                new SqlParameter("@SiteId", siteId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Articles");
+            var parms = new List<DbParameter>();
+            if (siteId != -2)
+            {
+                sql += " WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+                parms.Add(DbHelper.CreateParameter("@SiteId", siteId));
+            }
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql, parms.ToArray()))
             {
                 while (r.Read())
                     items.Add(this.From(r));
@@ -28,23 +33,80 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
 
         public override int Update(Article item)
         {
-            object o = SqlHelper.ExecuteScalar("Articles_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Title", item.Title),
-                new SqlParameter("@Image", item.Image),
-                new SqlParameter("@Description", item.Description),
-                new SqlParameter("@Date", item.Date),
-                new SqlParameter("@Content", item.Content),
-                new SqlParameter("@Author", item.Author),
-                new SqlParameter("@SiteId", item.SiteId),
-                new SqlParameter("@Active", item.Active),
-                new SqlParameter("@DateModified", item.DateModified),
-                new SqlParameter("@UserId", item.UserId),
-                new SqlParameter("@ModifiedUserId", item.ModifiedUserId),
-                new SqlParameter("@Tags", item.Tags)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("Articles") + " SET " +
+                    DbSyntax.QuoteIdentifier("Title") + " = @Title, " +
+                    DbSyntax.QuoteIdentifier("Image") + " = @Image, " +
+                    DbSyntax.QuoteIdentifier("Description") + " = @Description, " +
+                    DbSyntax.QuoteIdentifier("Date") + " = @Date, " +
+                    DbSyntax.QuoteIdentifier("Content") + " = @Content, " +
+                    DbSyntax.QuoteIdentifier("Author") + " = @Author, " +
+                    DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId, " +
+                    DbSyntax.QuoteIdentifier("Active") + " = @Active, " +
+                    DbSyntax.QuoteIdentifier("DateModified") + " = @DateModified, " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId, " +
+                    DbSyntax.QuoteIdentifier("ModifiedUserId") + " = @ModifiedUserId, " +
+                    DbSyntax.QuoteIdentifier("Tags") + " = @Tags" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Title", item.Title),
+                    DbHelper.CreateParameter("@Image", item.Image),
+                    DbHelper.CreateParameter("@Description", item.Description),
+                    DbHelper.CreateParameter("@Date", item.Date),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@Author", item.Author),
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@DateModified", item.DateModified),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@ModifiedUserId", item.ModifiedUserId),
+                    DbHelper.CreateParameter("@Tags", item.Tags),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("Articles") + " (" +
+                    DbSyntax.QuoteIdentifier("Title") + ", " +
+                    DbSyntax.QuoteIdentifier("Image") + ", " +
+                    DbSyntax.QuoteIdentifier("Description") + ", " +
+                    DbSyntax.QuoteIdentifier("Date") + ", " +
+                    DbSyntax.QuoteIdentifier("Content") + ", " +
+                    DbSyntax.QuoteIdentifier("Author") + ", " +
+                    DbSyntax.QuoteIdentifier("SiteId") + ", " +
+                    DbSyntax.QuoteIdentifier("Active") + ", " +
+                    DbSyntax.QuoteIdentifier("DateModified") + ", " +
+                    DbSyntax.QuoteIdentifier("UserId") + ", " +
+                    DbSyntax.QuoteIdentifier("ModifiedUserId") + ", " +
+                    DbSyntax.QuoteIdentifier("Tags") +
+                    ") VALUES (@Title, @Image, @Description, @Date, @Content, @Author, @SiteId, @Active, @DateModified, @UserId, @ModifiedUserId, @Tags)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Title", item.Title),
+                    DbHelper.CreateParameter("@Image", item.Image),
+                    DbHelper.CreateParameter("@Description", item.Description),
+                    DbHelper.CreateParameter("@Date", item.Date),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@Author", item.Author),
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@DateModified", item.DateModified),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@ModifiedUserId", item.ModifiedUserId),
+                    DbHelper.CreateParameter("@Tags", item.Tags)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
@@ -69,6 +131,11 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
         }
 
         protected override string DeleteProcedure { get { return "Articles_Del"; } }
+        protected override string TableName { get { return "Articles"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "Articles_Get"; } }
     }
 }

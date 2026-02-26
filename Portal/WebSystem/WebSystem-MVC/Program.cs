@@ -30,6 +30,9 @@ builder.Services.AddSwaggerGen();
 // CMS framework services (IWSession, IWContext)
 builder.Services.AddWcmsFramework();
 
+// CMS database provider (SQL Server or PostgreSQL)
+builder.Services.AddWcmsDatabase(builder.Configuration);
+
 // CMS configuration options
 builder.Services.AddWcmsConfiguration(builder.Configuration);
 
@@ -73,12 +76,22 @@ builder.Services.AddWebOptimizer(pipeline =>
     pipeline.MinifyJsFiles("Content/**/*.js");
 });
 
-// Health checks
+// Health checks — provider-aware
 var defaultConnStr = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddHealthChecks()
-    .AddSqlServer(defaultConnStr ?? "Server=.;Database=WCMS;Trusted_Connection=True;TrustServerCertificate=True",
-        name: "sqlserver",
-        tags: new[] { "db", "sql" });
+var dbProviderName = builder.Configuration["WCMS:DatabaseProvider"];
+var dbProvider = DbHelper.ParseProvider(dbProviderName);
+
+var healthChecks = builder.Services.AddHealthChecks();
+if (dbProvider == DatabaseProvider.PostgreSql)
+{
+    healthChecks.AddNpgSql(defaultConnStr ?? "Host=localhost;Database=mPortal;Username=postgres;Password=${PG_PASSWORD}",
+        name: "postgresql", tags: new[] { "db", "sql" });
+}
+else
+{
+    healthChecks.AddSqlServer(defaultConnStr ?? "Server=.;Database=WCMS;Trusted_Connection=True;TrustServerCertificate=True",
+        name: "sqlserver", tags: new[] { "db", "sql" });
+}
 
 var app = builder.Build();
 
@@ -149,7 +162,8 @@ app.MapGet("/api/system/info", () => Results.Ok(new
     app = "mPortal CMS",
     framework = ".NET 10",
     initialized = WebObject.IsInitialized,
-    environment = WConfig.Environment
+    environment = WConfig.Environment,
+    databaseProvider = DbHelper.Provider.ToString()
 }));
 
 app.MapRazorPages();

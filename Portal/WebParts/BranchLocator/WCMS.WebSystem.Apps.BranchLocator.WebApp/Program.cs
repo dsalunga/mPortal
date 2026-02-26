@@ -17,9 +17,19 @@ builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddWcmsFramework();
 
-// EF Core DbContext
+// CMS database provider (SQL Server or PostgreSQL)
+builder.Services.AddWcmsDatabase(builder.Configuration);
+
+// EF Core DbContext — provider-aware
+var branchLocatorConn = builder.Configuration.GetConnectionString("BranchLocatorDb")
+    ?? builder.Configuration.GetConnectionString("ConnectionString") ?? string.Empty;
 builder.Services.AddDbContext<BranchLocatorDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BranchLocatorDb")));
+{
+    if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+        options.UseNpgsql(branchLocatorConn);
+    else
+        options.UseSqlServer(branchLocatorConn);
+});
 
 // BranchLocator data provider
 builder.Services.AddScoped<IMChapterProvider, MChapterSqlProvider>();

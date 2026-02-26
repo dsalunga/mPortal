@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -13,8 +13,11 @@ namespace WCMS.Framework.Core
 {
     public abstract class GenericSqlDataProviderBase<T> : GenericSqlDataProvider<T>, IDataProvider<T> where T : IWebObject
     {
-        protected abstract string SelectProcedure { get; }
-        protected abstract string DeleteProcedure { get; }
+        protected abstract string TableName { get; }
+        protected abstract string IdColumn { get; }
+
+        protected virtual string SelectProcedure { get { return TableName + "_Get"; } }
+        protected virtual string DeleteProcedure { get { return TableName + "_Del"; } }
         protected virtual string IdParameter { get { return "@Id"; } }
 
         protected virtual T From(IDataReader r)
@@ -26,8 +29,9 @@ namespace WCMS.Framework.Core
 
         public virtual T Refresh(T item)
         {
-            using (IDataReader r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter(IdParameter, item.Id)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier(TableName) + " WHERE " + DbSyntax.QuoteIdentifier(IdColumn) + " = @" + IdColumn;
+            using (IDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@" + IdColumn, item.Id)))
             {
                 if (r.Read())
                     return From(r, item);
@@ -40,16 +44,18 @@ namespace WCMS.Framework.Core
 
         public new virtual bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery(DeleteProcedure,
-                new SqlParameter(IdParameter, id));
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier(TableName) + " WHERE " + DbSyntax.QuoteIdentifier(IdColumn) + " = @" + IdColumn;
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@" + IdColumn, id));
 
             return true;
         }
 
         public new virtual T Get(int id)
         {
-            using (IDataReader r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter(IdParameter, id)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier(TableName) + " WHERE " + DbSyntax.QuoteIdentifier(IdColumn) + " = @" + IdColumn;
+            using (IDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@" + IdColumn, id)))
             {
                 if (r.Read())
                     return From(r);
@@ -62,7 +68,8 @@ namespace WCMS.Framework.Core
         {
             List<T> items = new List<T>();
 
-            using (IDataReader r = SqlHelper.ExecuteReader(SelectProcedure))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier(TableName);
+            using (IDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));

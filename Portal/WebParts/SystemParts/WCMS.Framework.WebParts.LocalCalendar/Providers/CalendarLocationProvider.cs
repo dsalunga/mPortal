@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 
 using WCMS.Common.Utilities;
 
@@ -16,6 +15,11 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
     public class CalendarLocationProvider : GenericSqlDataProviderBase<CalendarLocation>
     {
         protected override string DeleteProcedure { get { return "EventCalendarLocation_Del"; } }
+        protected override string TableName { get { return "EventCalendarLocations"; } }
+
+        protected override string IdColumn { get { return "LocationId"; } }
+
+
         protected override string SelectProcedure { get { return "EventCalendarLocations_Get"; } }
         protected override string IdParameter { get { return "@LocationId"; } }
 
@@ -31,12 +35,40 @@ namespace WCMS.WebSystem.WebParts.EventCalendar.Providers
 
         public override int Update(CalendarLocation item)
         {
-            var obj = SqlHelper.ExecuteScalar("EventCalendarLocations_Set",
-                new SqlParameter("@LocationId", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@Bookable", item.Bookable));
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("EventCalendarLocations") + " SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("Bookable") + " = @Bookable" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("LocationId") + " = @LocationId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Bookable", item.Bookable),
+                    DbHelper.CreateParameter("@LocationId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("EventCalendarLocations") + " (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("Bookable") +
+                    ") VALUES (@Name, @Bookable)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("LocationId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Bookable", item.Bookable)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
     }

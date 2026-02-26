@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -17,8 +16,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPartControl Get(int partControlId)
         {
-            using (var r = SqlHelper.ExecuteReader("WebPartControl_Get",
-                new SqlParameter("@PartControlId", partControlId)))
+            var sql = "SELECT * FROM WebPartControl WHERE " + DbSyntax.QuoteIdentifier("PartControlId") + " = @PartControlId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@PartControlId", partControlId)))
             {
                 if (r.HasRows && r.Read())
                     return (WebPartControl)r;
@@ -29,9 +29,10 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPartControl Get(int partId, string identity)
         {
-            using (var r = SqlHelper.ExecuteReader("WebPartControl_Get",
-                new SqlParameter("@PartId", partId),
-                new SqlParameter("@Identity", identity)))
+            var sql = "SELECT * FROM WebPartControl WHERE " + DbSyntax.QuoteIdentifier("PartId") + " = @PartId AND " + DbSyntax.QuoteIdentifier("Identity") + " = @Identity";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@PartId", partId),
+                DbHelper.CreateParameter("@Identity", identity)))
             {
                 if (r.HasRows && r.Read())
                     return (WebPartControl)r;
@@ -44,8 +45,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPartControl> items = new List<WebPartControl>();
 
-            using (var r = SqlHelper.ExecuteReader("WebPartControl_Get",
-                new SqlParameter("@PartId", partId)))
+            var sql = "SELECT * FROM WebPartControl WHERE " + DbSyntax.QuoteIdentifier("PartId") + " = @PartId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@PartId", partId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -59,8 +61,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPartControl> items = new List<WebPartControl>();
 
-            using (var r = SqlHelper.ExecuteReader("WebPartControl_Get",
-                new SqlParameter("@ParentId", parentId)))
+            var sql = "SELECT * FROM WebPartControl WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -74,25 +77,68 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebPartControl item)
         {
-            object o = SqlHelper.ExecuteScalar("WebPartControl_Set",
-                new SqlParameter("@PartControlId", item.Id),
-                new SqlParameter("@PartId", item.PartId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@Identity", item.Identity),
-                new SqlParameter("@ConfigFileName", item.ConfigFileName),
-                new SqlParameter("@PartAdminId", item.PartAdminId),
-                new SqlParameter("@EntryPoint", item.EntryPoint),
-                new SqlParameter("@ParentId", item.ParentId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebPartControl SET " +
+                    DbSyntax.QuoteIdentifier("PartId") + " = @PartId, " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("Identity") + " = @Identity, " +
+                    DbSyntax.QuoteIdentifier("ConfigFileName") + " = @ConfigFileName, " +
+                    DbSyntax.QuoteIdentifier("PartAdminId") + " = @PartAdminId, " +
+                    DbSyntax.QuoteIdentifier("EntryPoint") + " = @EntryPoint, " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("PartControlId") + " = @PartControlId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@PartId", item.PartId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Identity", item.Identity),
+                    DbHelper.CreateParameter("@ConfigFileName", item.ConfigFileName),
+                    DbHelper.CreateParameter("@PartAdminId", item.PartAdminId),
+                    DbHelper.CreateParameter("@EntryPoint", item.EntryPoint),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@PartControlId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebPartControl (" +
+                    DbSyntax.QuoteIdentifier("PartId") + ", " +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("Identity") + ", " +
+                    DbSyntax.QuoteIdentifier("ConfigFileName") + ", " +
+                    DbSyntax.QuoteIdentifier("PartAdminId") + ", " +
+                    DbSyntax.QuoteIdentifier("EntryPoint") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") +
+                    ") VALUES (@PartId, @Name, @Identity, @ConfigFileName, @PartAdminId, @EntryPoint, @ParentId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("PartControlId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@PartId", item.PartId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Identity", item.Identity),
+                    DbHelper.CreateParameter("@ConfigFileName", item.ConfigFileName),
+                    DbHelper.CreateParameter("@PartAdminId", item.PartAdminId),
+                    DbHelper.CreateParameter("@EntryPoint", item.EntryPoint),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int partControlId)
         {
-            SqlHelper.ExecuteNonQuery("WebPartControl_Del",
-                new SqlParameter("@PartControlId", partControlId));
+            var sql = "DELETE FROM WebPartControl WHERE " + DbSyntax.QuoteIdentifier("PartControlId") + " = @PartControlId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@PartControlId", partControlId));
 
             return true;
         }
@@ -109,7 +155,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPartControl> GetList()
         {
             List<WebPartControl> items = new List<WebPartControl>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPartControl_Get"))
+            var sql = "SELECT * FROM WebPartControl";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())

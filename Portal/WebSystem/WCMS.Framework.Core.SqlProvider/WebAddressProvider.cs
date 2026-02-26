@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 using WCMS.Framework.Core;
@@ -14,14 +13,23 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebAddressProvider : GenericSqlDataProviderBase<WebAddress>, IWebAddressProvider
     {
+        protected override string TableName { get { return "WebAddress"; } }
+        protected override string IdColumn { get { return "Id"; } }
+        protected override string SelectProcedure { get { return "WebAddress_Get"; } }
+        protected override string DeleteProcedure { get { return "WebAddress_Del"; } }
+
         #region IWebAddressProvider Members
 
         public WebAddress Get(int objectId, int recordId, string tag)
         {
-            using (var r = SqlHelper.ExecuteReader("WebAddress_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@Tag", tag)))
+            var sql = "SELECT * FROM WebAddress WHERE " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " +
+                    DbSyntax.QuoteIdentifier("Tag") + " = @Tag";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@Tag", tag)))
             {
                 if (r.Read())
                     return From(r);
@@ -34,9 +42,12 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebAddress> items = new List<WebAddress>();
 
-            using (var r = SqlHelper.ExecuteReader("WebAddress_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)))
+            var sql = "SELECT * FROM WebAddress WHERE " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -73,36 +84,83 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             item.LastUpdated = DateTime.Now;
 
-            var obj = SqlHelper.ExecuteScalar("WebAddress_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@AddressLine1", item.AddressLine1),
-                new SqlParameter("@AddressLine2", item.AddressLine2),
-                new SqlParameter("@CityTown", item.CityTown),
-                new SqlParameter("@StateProvince", item.StateProvince),
-                new SqlParameter("@StateProvinceCode", item.StateProvinceCode),
-                new SqlParameter("@CountryCode", item.CountryCode),
-                new SqlParameter("@ZipCode", item.ZipCode),
-                new SqlParameter("@PhoneNumber", item.PhoneNumber),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@Tag", item.Tag),
-                new SqlParameter("@LastUpdated", item.LastUpdated)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebAddress SET " +
+                    DbSyntax.QuoteIdentifier("AddressLine1") + " = @AddressLine1" + ", " +
+                    DbSyntax.QuoteIdentifier("AddressLine2") + " = @AddressLine2" + ", " +
+                    DbSyntax.QuoteIdentifier("CityTown") + " = @CityTown" + ", " +
+                    DbSyntax.QuoteIdentifier("StateProvince") + " = @StateProvince" + ", " +
+                    DbSyntax.QuoteIdentifier("StateProvinceCode") + " = @StateProvinceCode" + ", " +
+                    DbSyntax.QuoteIdentifier("CountryCode") + " = @CountryCode" + ", " +
+                    DbSyntax.QuoteIdentifier("ZipCode") + " = @ZipCode" + ", " +
+                    DbSyntax.QuoteIdentifier("PhoneNumber") + " = @PhoneNumber" + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId" + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId" + ", " +
+                    DbSyntax.QuoteIdentifier("Tag") + " = @Tag" + ", " +
+                    DbSyntax.QuoteIdentifier("LastUpdated") + " = @LastUpdated" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@AddressLine1", item.AddressLine1),
+                    DbHelper.CreateParameter("@AddressLine2", item.AddressLine2),
+                    DbHelper.CreateParameter("@CityTown", item.CityTown),
+                    DbHelper.CreateParameter("@StateProvince", item.StateProvince),
+                    DbHelper.CreateParameter("@StateProvinceCode", item.StateProvinceCode),
+                    DbHelper.CreateParameter("@CountryCode", item.CountryCode),
+                    DbHelper.CreateParameter("@ZipCode", item.ZipCode),
+                    DbHelper.CreateParameter("@PhoneNumber", item.PhoneNumber),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Tag", item.Tag),
+                    DbHelper.CreateParameter("@LastUpdated", item.LastUpdated),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebAddress (" +
+                    DbSyntax.QuoteIdentifier("AddressLine1") + ", " +
+                    DbSyntax.QuoteIdentifier("AddressLine2") + ", " +
+                    DbSyntax.QuoteIdentifier("CityTown") + ", " +
+                    DbSyntax.QuoteIdentifier("StateProvince") + ", " +
+                    DbSyntax.QuoteIdentifier("StateProvinceCode") + ", " +
+                    DbSyntax.QuoteIdentifier("CountryCode") + ", " +
+                    DbSyntax.QuoteIdentifier("ZipCode") + ", " +
+                    DbSyntax.QuoteIdentifier("PhoneNumber") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("Tag") + ", " +
+                    DbSyntax.QuoteIdentifier("LastUpdated") +
+                    ") VALUES (@AddressLine1, @AddressLine2, @CityTown, @StateProvince, @StateProvinceCode, @CountryCode, @ZipCode, @PhoneNumber, @ObjectId, @RecordId, @Tag, @LastUpdated)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@AddressLine1", item.AddressLine1),
+                    DbHelper.CreateParameter("@AddressLine2", item.AddressLine2),
+                    DbHelper.CreateParameter("@CityTown", item.CityTown),
+                    DbHelper.CreateParameter("@StateProvince", item.StateProvince),
+                    DbHelper.CreateParameter("@StateProvinceCode", item.StateProvinceCode),
+                    DbHelper.CreateParameter("@CountryCode", item.CountryCode),
+                    DbHelper.CreateParameter("@ZipCode", item.ZipCode),
+                    DbHelper.CreateParameter("@PhoneNumber", item.PhoneNumber),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Tag", item.Tag),
+                    DbHelper.CreateParameter("@LastUpdated", item.LastUpdated)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         #endregion
-
-        protected override string SelectProcedure
-        {
-            get { return "WebAddress_Get"; }
-        }
-
-        protected override string DeleteProcedure
-        {
-            get { return "WebAddress_Del"; }
-        }
     }
 }

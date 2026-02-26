@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -24,9 +23,10 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WPage> items = new List<WPage>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPage_Get",
-                new SqlParameter("@SiteId", siteId),
-                new SqlParameter("@ParentId", parentId)))
+            var sql = "SELECT * FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId AND " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@SiteId", siteId),
+                DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -38,8 +38,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetCount(int siteId)
         {
-            object o = SqlHelper.ExecuteScalar("WebPage_GetCount",
-                new SqlParameter("@SiteId", siteId));
+            var sql = "SELECT COUNT(1) FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            object o = DbHelper.ExecuteScalar(CommandType.Text, sql,
+                DbHelper.CreateParameter("@SiteId", siteId));
 
             if (o != null)
                 return Convert.ToInt32(o.ToString());
@@ -55,8 +56,9 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WPage> GetList(int siteId)
         {
             List<WPage> items = new List<WPage>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPage_Get",
-                new SqlParameter("@SiteId", siteId)))
+            var sql = "SELECT * FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@SiteId", siteId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -70,8 +72,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (pageId > 0)
             {
-                using (DbDataReader r = SqlHelper.ExecuteReader("WebPage_Get",
-                    new SqlParameter("@PageId", pageId)))
+                var sql = "SELECT * FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
+                using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                    DbHelper.CreateParameter("@PageId", pageId)))
                 {
                     if (r.HasRows && r.Read())
                         return this.From(r);
@@ -85,10 +88,11 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (!string.IsNullOrEmpty(identity))
             {
-                using (var r = SqlHelper.ExecuteReader("WebPage_Get",
-                    new SqlParameter("@ParentId", parentId),
-                    new SqlParameter("@Identity", identity),
-                    new SqlParameter("@SiteId", siteId)))
+                var sql = "SELECT * FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId AND " + DbSyntax.QuoteIdentifier("Identity") + " = @Identity AND " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                    DbHelper.CreateParameter("@ParentId", parentId),
+                    DbHelper.CreateParameter("@Identity", identity),
+                    DbHelper.CreateParameter("@SiteId", siteId)))
                 {
                     if (r.HasRows && r.Read())
                         return this.From(r);
@@ -101,7 +105,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WPage> GetList()
         {
             List<WPage> items = new List<WPage>();
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebPage_Get"))
+            var sql = "SELECT * FROM WebPage";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -115,8 +120,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (pageId > 0)
             {
-                SqlHelper.ExecuteNonQuery("WebPage_Del",
-                    new SqlParameter("@PageId", pageId));
+                var sql = "DELETE FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                    DbHelper.CreateParameter("@PageId", pageId));
 
                 return true;
             }
@@ -126,26 +132,91 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WPage item)
         {
-            object o = SqlHelper.ExecuteScalar("WebPage_Set",
-                new SqlParameter("@PageId", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@SiteId", item.SiteId),
-                new SqlParameter("@Rank", item.Rank),
-                new SqlParameter("@Active", item.Active),
-                new SqlParameter("@Identity", item.Identity),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@Title", item.Title),
-                new SqlParameter("@MasterPageId", item.MasterPageId),
-                new SqlParameter("@PartControlTemplateId", item.PartControlTemplateId),
-                new SqlParameter("@PublicAccess", item.PublicAccess),
-                new SqlParameter("@PageType", item.PageType),
-                new SqlParameter("@UsePartTemplatePath", item.UsePartTemplatePath),
-                new SqlParameter("@ManagementAccess", item.ManagementAccess),
-                new SqlParameter("@ThemeId", item.ThemeId),
-                new SqlParameter("@SkinId", item.SkinId)
-                );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o.ToString());
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebPage SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name" + ", " +
+                    DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId" + ", " +
+                    DbSyntax.QuoteIdentifier("Rank") + " = @Rank" + ", " +
+                    DbSyntax.QuoteIdentifier("Active") + " = @Active" + ", " +
+                    DbSyntax.QuoteIdentifier("Identity") + " = @Identity" + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId" + ", " +
+                    DbSyntax.QuoteIdentifier("Title") + " = @Title" + ", " +
+                    DbSyntax.QuoteIdentifier("MasterPageId") + " = @MasterPageId" + ", " +
+                    DbSyntax.QuoteIdentifier("PartControlTemplateId") + " = @PartControlTemplateId" + ", " +
+                    DbSyntax.QuoteIdentifier("PublicAccess") + " = @PublicAccess" + ", " +
+                    DbSyntax.QuoteIdentifier("PageType") + " = @PageType" + ", " +
+                    DbSyntax.QuoteIdentifier("UsePartTemplatePath") + " = @UsePartTemplatePath" + ", " +
+                    DbSyntax.QuoteIdentifier("ManagementAccess") + " = @ManagementAccess" + ", " +
+                    DbSyntax.QuoteIdentifier("ThemeId") + " = @ThemeId" + ", " +
+                    DbSyntax.QuoteIdentifier("SkinId") + " = @SkinId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@Rank", item.Rank),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@Identity", item.Identity),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@Title", item.Title),
+                    DbHelper.CreateParameter("@MasterPageId", item.MasterPageId),
+                    DbHelper.CreateParameter("@PartControlTemplateId", item.PartControlTemplateId),
+                    DbHelper.CreateParameter("@PublicAccess", item.PublicAccess),
+                    DbHelper.CreateParameter("@PageType", item.PageType),
+                    DbHelper.CreateParameter("@UsePartTemplatePath", item.UsePartTemplatePath),
+                    DbHelper.CreateParameter("@ManagementAccess", item.ManagementAccess),
+                    DbHelper.CreateParameter("@ThemeId", item.ThemeId),
+                    DbHelper.CreateParameter("@SkinId", item.SkinId),
+                    DbHelper.CreateParameter("@PageId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebPage (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("SiteId") + ", " +
+                    DbSyntax.QuoteIdentifier("Rank") + ", " +
+                    DbSyntax.QuoteIdentifier("Active") + ", " +
+                    DbSyntax.QuoteIdentifier("Identity") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + ", " +
+                    DbSyntax.QuoteIdentifier("Title") + ", " +
+                    DbSyntax.QuoteIdentifier("MasterPageId") + ", " +
+                    DbSyntax.QuoteIdentifier("PartControlTemplateId") + ", " +
+                    DbSyntax.QuoteIdentifier("PublicAccess") + ", " +
+                    DbSyntax.QuoteIdentifier("PageType") + ", " +
+                    DbSyntax.QuoteIdentifier("UsePartTemplatePath") + ", " +
+                    DbSyntax.QuoteIdentifier("ManagementAccess") + ", " +
+                    DbSyntax.QuoteIdentifier("ThemeId") + ", " +
+                    DbSyntax.QuoteIdentifier("SkinId") +
+                    ") VALUES (@Name, @SiteId, @Rank, @Active, @Identity, @ParentId, @Title, @MasterPageId, @PartControlTemplateId, @PublicAccess, @PageType, @UsePartTemplatePath, @ManagementAccess, @ThemeId, @SkinId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("PageId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@Rank", item.Rank),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@Identity", item.Identity),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@Title", item.Title),
+                    DbHelper.CreateParameter("@MasterPageId", item.MasterPageId),
+                    DbHelper.CreateParameter("@PartControlTemplateId", item.PartControlTemplateId),
+                    DbHelper.CreateParameter("@PublicAccess", item.PublicAccess),
+                    DbHelper.CreateParameter("@PageType", item.PageType),
+                    DbHelper.CreateParameter("@UsePartTemplatePath", item.UsePartTemplatePath),
+                    DbHelper.CreateParameter("@ManagementAccess", item.ManagementAccess),
+                    DbHelper.CreateParameter("@ThemeId", item.ThemeId),
+                    DbHelper.CreateParameter("@SkinId", item.SkinId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj.ToString());
+            }
 
             return item.Id;
         }
@@ -175,8 +246,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetMaxRank(int siteId)
         {
-            object result = SqlHelper.ExecuteScalar("WebPage_GetMaxRank",
-                new SqlParameter("@SiteId", siteId));
+            var sql = "SELECT MAX(" + DbSyntax.QuoteIdentifier("Rank") + ") FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            object result = DbHelper.ExecuteScalar(CommandType.Text, sql,
+                DbHelper.CreateParameter("@SiteId", siteId));
 
             return DataUtil.GetId(result);
         }

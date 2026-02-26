@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -13,6 +12,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebConstantProvider : GenericSqlDataProviderBase<WebConstant>, IWebConstantProvider
     {
+        protected override string TableName { get { return "WebConstant"; } }
+        protected override string IdColumn { get { return "ConstantId"; } }
+        protected override string SelectProcedure { get { return "WebConstant_Get"; } }
+        protected override string DeleteProcedure { get { return "WebConstant_Del"; } }
+
         public WebConstantProvider() { }
 
         protected override string IdParameter { get { return "ConstantId"; } }
@@ -21,8 +25,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebConstant> items = new List<WebConstant>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebConstant_Get",
-                new SqlParameter("@Category", category)))
+            var sql = "SELECT * FROM WebConstant WHERE " + DbSyntax.QuoteIdentifier("Category") + " = @Category";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Category", category)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -36,7 +41,7 @@ namespace WCMS.Framework.Core.SqlProvider
         //{
         //    List<WebConstant> items = new List<WebConstant>();
 
-        //    using (DbDataReader r = SqlHelper.ExecuteReader("WebConstant_Get"))
+        //    using (DbDataReader r = DbHelper.ExecuteReader("WebConstant_Get"))
         //    {
         //        if (r.HasRows)
         //            while (r.Read())
@@ -54,8 +59,8 @@ namespace WCMS.Framework.Core.SqlProvider
         //        return WebConstant.ObjectCache[constantId];
 
         //    // Not in cache, get from DB and return
-        //    using (DbDataReader r = SqlHelper.ExecuteReader("WebConstant_Get",
-        //        new SqlParameter("@ConstantId", constantId)))
+        //    using (DbDataReader r = DbHelper.ExecuteReader("WebConstant_Get",
+        //        DbHelper.CreateParameter("@ConstantId", constantId)))
         //    {
         //        if (r.HasRows && r.Read())
         //        {
@@ -72,7 +77,7 @@ namespace WCMS.Framework.Core.SqlProvider
         //public Dictionary<int, WebConstant> GetCacheList()
         //{
         //    // Get all objects from DB
-        //    using (DbDataReader r = SqlHelper.ExecuteReader("WebConstant_Get"))
+        //    using (DbDataReader r = DbHelper.ExecuteReader("WebConstant_Get"))
         //    {
         //        if (r.HasRows)
         //        {
@@ -93,15 +98,47 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebConstant item)
         {
-            object o = SqlHelper.ExecuteScalar("WebConstant_Set",
-                new SqlParameter("@ConstantId", item.Id),
-                new SqlParameter("@Value", item.Value),
-                new SqlParameter("@Rank", item.Rank),
-                new SqlParameter("@Category", item.Category),
-                new SqlParameter("@Text", item.Text)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebConstant SET " +
+                    DbSyntax.QuoteIdentifier("Value") + " = @Value, " +
+                    DbSyntax.QuoteIdentifier("Rank") + " = @Rank, " +
+                    DbSyntax.QuoteIdentifier("Category") + " = @Category, " +
+                    DbSyntax.QuoteIdentifier("Text") + " = @Text" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("ConstantId") + " = @ConstantId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Value", item.Value),
+                    DbHelper.CreateParameter("@Rank", item.Rank),
+                    DbHelper.CreateParameter("@Category", item.Category),
+                    DbHelper.CreateParameter("@Text", item.Text),
+                    DbHelper.CreateParameter("@ConstantId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebConstant (" +
+                    DbSyntax.QuoteIdentifier("Value") + ", " +
+                    DbSyntax.QuoteIdentifier("Rank") + ", " +
+                    DbSyntax.QuoteIdentifier("Category") + ", " +
+                    DbSyntax.QuoteIdentifier("Text") +
+                    ") VALUES (@Value, @Rank, @Category, @Text)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("ConstantId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Value", item.Value),
+                    DbHelper.CreateParameter("@Rank", item.Rank),
+                    DbHelper.CreateParameter("@Category", item.Category),
+                    DbHelper.CreateParameter("@Text", item.Text)
+                };
+                var o = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(o);
+            }
 
             //if (WebConstant.ObjectCache.ContainsKey(item.Id))
             //{
@@ -117,8 +154,8 @@ namespace WCMS.Framework.Core.SqlProvider
 
         //public bool Delete(int constantId)
         //{
-        //    SqlHelper.ExecuteNonQuery("WebConstant_Del",
-        //        new SqlParameter("@ConstantId", constantId));
+        //    DbHelper.ExecuteNonQuery("WebConstant_Del",
+        //        DbHelper.CreateParameter("@ConstantId", constantId));
 
         //    if (WebConstant.ObjectCache.ContainsKey(constantId))
         //    {
@@ -177,8 +214,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebConstant> items = new List<WebConstant>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@ObjectId", objectId)))
+            var sql = "SELECT * FROM WebConstant WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ObjectId", objectId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -186,8 +224,5 @@ namespace WCMS.Framework.Core.SqlProvider
 
             return items;
         }
-
-        protected override string SelectProcedure { get { return "WebConstant_Get"; } }
-        protected override string DeleteProcedure { get { return "WebConstant_Del"; } }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Data.Common;
 
 using WCMS.Common.Utilities;
@@ -15,10 +14,12 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
     {
         public ArticleList Get(int objectId, int recordId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("ArticleList_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)
-            ))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("ArticleList") +
+                " WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId" +
+                " AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)))
             {
                 if (r.Read())
                     return this.From(r);
@@ -29,28 +30,61 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
 
         public override int Update(ArticleList item)
         {
-            var o = SqlHelper.ExecuteScalar("ArticleList_Set",
-                new SqlParameter("@ListId", item.Id),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@SiteId", item.SiteId),
-                new SqlParameter("@TemplateId", item.TemplateId),
-                new SqlParameter("@PageSize", item.PageSize),
-                //new SqlParameter("@DateFormatString", item.DateFormatString),
-                new SqlParameter("@FolderId", item.FolderId),
-                new SqlParameter("@CommentOn", item.CommentOn)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("ArticleList") + " SET " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
+                    DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId, " +
+                    DbSyntax.QuoteIdentifier("TemplateId") + " = @TemplateId, " +
+                    DbSyntax.QuoteIdentifier("PageSize") + " = @PageSize, " +
+                    DbSyntax.QuoteIdentifier("FolderId") + " = @FolderId, " +
+                    DbSyntax.QuoteIdentifier("CommentOn") + " = @CommentOn" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("ListId") + " = @ListId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                    DbHelper.CreateParameter("@PageSize", item.PageSize),
+                    DbHelper.CreateParameter("@FolderId", item.FolderId),
+                    DbHelper.CreateParameter("@CommentOn", item.CommentOn),
+                    DbHelper.CreateParameter("@ListId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("ArticleList") + " (" +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("SiteId") + ", " +
+                    DbSyntax.QuoteIdentifier("TemplateId") + ", " +
+                    DbSyntax.QuoteIdentifier("PageSize") + ", " +
+                    DbSyntax.QuoteIdentifier("FolderId") + ", " +
+                    DbSyntax.QuoteIdentifier("CommentOn") +
+                    ") VALUES (@ObjectId, @RecordId, @SiteId, @TemplateId, @PageSize, @FolderId, @CommentOn)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("ListId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@TemplateId", item.TemplateId),
+                    DbHelper.CreateParameter("@PageSize", item.PageSize),
+                    DbHelper.CreateParameter("@FolderId", item.FolderId),
+                    DbHelper.CreateParameter("@CommentOn", item.CommentOn)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
-        }
-
-        public override bool Delete(int id)
-        {
-            SqlHelper.ExecuteNonQuery("ArticleList_Del",
-                new SqlParameter("@ListId", id));
-
-            return true;
         }
 
         protected override ArticleList From(IDataReader r, ArticleList source)
@@ -70,6 +104,11 @@ namespace WCMS.WebSystem.WebParts.Article.Providers
         }
 
         protected override string DeleteProcedure { get { return "ArticleList_Del"; } }
+        protected override string TableName { get { return "ArticleList"; } }
+
+        protected override string IdColumn { get { return "ListId"; } }
+
+
         protected override string SelectProcedure { get { return "ArticleList_Get"; } }
     }
 }

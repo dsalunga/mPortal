@@ -1,16 +1,20 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebShortUrlProvider : GenericSqlDataProviderBase<WebShortUrl>, IWebShortUrlProvider
     {
+        protected override string TableName { get { return "WebShortUrl"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure
         {
             get { return "WebShortUrl_Get"; }
@@ -34,20 +38,52 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebShortUrl item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebShortUrl_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@PageId", item.PageId),
-                new SqlParameter("@PageUrl", item.PageUrl)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            return UpdatePostProcess(item, obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebShortUrl SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("PageId") + " = @PageId, " +
+                    DbSyntax.QuoteIdentifier("PageUrl") + " = @PageUrl" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@PageId", item.PageId),
+                    DbHelper.CreateParameter("@PageUrl", item.PageUrl),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebShortUrl (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("PageId") + ", " +
+                    DbSyntax.QuoteIdentifier("PageUrl") +
+                    ") VALUES (@Name, @PageId, @PageUrl)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@PageId", item.PageId),
+                    DbHelper.CreateParameter("@PageUrl", item.PageUrl)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                return UpdatePostProcess(item, obj);
+            }
+
+            return UpdatePostProcess(item, item.Id);
         }
 
         public WebShortUrl Get(string name)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@Name", name)))
+            var sql = "SELECT * FROM WebShortUrl WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Name", name)))
             {
                 if (r.Read())
                     return From(r);
@@ -58,8 +94,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebShortUrl GetByPageId(int pageId)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@PageId", pageId)))
+            var sql = "SELECT * FROM WebShortUrl WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@PageId", pageId)))
             {
                 if (r.Read())
                     return From(r);

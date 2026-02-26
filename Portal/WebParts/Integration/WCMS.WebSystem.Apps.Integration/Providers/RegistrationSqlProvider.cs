@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -18,8 +18,9 @@ namespace WCMS.WebSystem.Apps.Integration
 
         public GenericRegistration Get(string name)
         {
-            using (var r = SqlHelper.ExecuteReader("Registration_Get",
-                new SqlParameter("@Name", name)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("Registration") + " WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Name", name)))
             {
                 if (r.Read())
                     return From(r);
@@ -52,30 +53,99 @@ namespace WCMS.WebSystem.Apps.Integration
 
         public override int Update(GenericRegistration item)
         {
-            var obj = SqlHelper.ExecuteScalar("Registration_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@EntryDate", item.EntryDate),
-                new SqlParameter("@Country", item.Country),
-                new SqlParameter("@Locale", item.Locale),
-                new SqlParameter("@ExternalId", item.ExternalId),
-                new SqlParameter("@Designation", item.Designation),
-                new SqlParameter("@ArrivalDate", item.ArrivalDate),
-                new SqlParameter("@Airline", item.Airline),
-                new SqlParameter("@FlightNo", item.FlightNo),
-                new SqlParameter("@DepartureDate", item.DepartureDate),
-                new SqlParameter("@Address", item.Address),
-                new SqlParameter("@Age", item.Age),
-                new SqlParameter("@PlaceType", item.PlaceType),
-                new SqlParameter("@Gender", item.Gender)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            return UpdatePostProcess(item, obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("Registration") + " SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("EntryDate") + " = @EntryDate, " +
+                    DbSyntax.QuoteIdentifier("Country") + " = @Country, " +
+                    DbSyntax.QuoteIdentifier("Locale") + " = @Locale, " +
+                    DbSyntax.QuoteIdentifier("ExternalId") + " = @ExternalId, " +
+                    DbSyntax.QuoteIdentifier("Designation") + " = @Designation, " +
+                    DbSyntax.QuoteIdentifier("ArrivalDate") + " = @ArrivalDate, " +
+                    DbSyntax.QuoteIdentifier("Airline") + " = @Airline, " +
+                    DbSyntax.QuoteIdentifier("FlightNo") + " = @FlightNo, " +
+                    DbSyntax.QuoteIdentifier("DepartureDate") + " = @DepartureDate, " +
+                    DbSyntax.QuoteIdentifier("Address") + " = @Address, " +
+                    DbSyntax.QuoteIdentifier("Age") + " = @Age, " +
+                    DbSyntax.QuoteIdentifier("PlaceType") + " = @PlaceType, " +
+                    DbSyntax.QuoteIdentifier("Gender") + " = @Gender" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@EntryDate", item.EntryDate),
+                    DbHelper.CreateParameter("@Country", item.Country),
+                    DbHelper.CreateParameter("@Locale", item.Locale),
+                    DbHelper.CreateParameter("@ExternalId", item.ExternalId),
+                    DbHelper.CreateParameter("@Designation", item.Designation),
+                    DbHelper.CreateParameter("@ArrivalDate", item.ArrivalDate),
+                    DbHelper.CreateParameter("@Airline", item.Airline),
+                    DbHelper.CreateParameter("@FlightNo", item.FlightNo),
+                    DbHelper.CreateParameter("@DepartureDate", item.DepartureDate),
+                    DbHelper.CreateParameter("@Address", item.Address),
+                    DbHelper.CreateParameter("@Age", item.Age),
+                    DbHelper.CreateParameter("@PlaceType", item.PlaceType),
+                    DbHelper.CreateParameter("@Gender", item.Gender),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("Registration") + " (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("EntryDate") + ", " +
+                    DbSyntax.QuoteIdentifier("Country") + ", " +
+                    DbSyntax.QuoteIdentifier("Locale") + ", " +
+                    DbSyntax.QuoteIdentifier("ExternalId") + ", " +
+                    DbSyntax.QuoteIdentifier("Designation") + ", " +
+                    DbSyntax.QuoteIdentifier("ArrivalDate") + ", " +
+                    DbSyntax.QuoteIdentifier("Airline") + ", " +
+                    DbSyntax.QuoteIdentifier("FlightNo") + ", " +
+                    DbSyntax.QuoteIdentifier("DepartureDate") + ", " +
+                    DbSyntax.QuoteIdentifier("Address") + ", " +
+                    DbSyntax.QuoteIdentifier("Age") + ", " +
+                    DbSyntax.QuoteIdentifier("PlaceType") + ", " +
+                    DbSyntax.QuoteIdentifier("Gender") +
+                    ") VALUES (@Name, @EntryDate, @Country, @Locale, @ExternalId, @Designation, @ArrivalDate, @Airline, @FlightNo, @DepartureDate, @Address, @Age, @PlaceType, @Gender)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@EntryDate", item.EntryDate),
+                    DbHelper.CreateParameter("@Country", item.Country),
+                    DbHelper.CreateParameter("@Locale", item.Locale),
+                    DbHelper.CreateParameter("@ExternalId", item.ExternalId),
+                    DbHelper.CreateParameter("@Designation", item.Designation),
+                    DbHelper.CreateParameter("@ArrivalDate", item.ArrivalDate),
+                    DbHelper.CreateParameter("@Airline", item.Airline),
+                    DbHelper.CreateParameter("@FlightNo", item.FlightNo),
+                    DbHelper.CreateParameter("@DepartureDate", item.DepartureDate),
+                    DbHelper.CreateParameter("@Address", item.Address),
+                    DbHelper.CreateParameter("@Age", item.Age),
+                    DbHelper.CreateParameter("@PlaceType", item.PlaceType),
+                    DbHelper.CreateParameter("@Gender", item.Gender)
+                };
+                var o = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                return UpdatePostProcess(item, o);
+            }
+
+            return item.Id;
         }
 
         #endregion
 
         protected override string DeleteProcedure { get { return "Registration_Del"; } }
+        protected override string TableName { get { return "Registration"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "Registration_Get"; } }
     }
 }

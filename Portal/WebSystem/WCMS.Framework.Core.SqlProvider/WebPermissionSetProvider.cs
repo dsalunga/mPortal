@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 
 using WCMS.Framework.Core;
 using WCMS.Common.Utilities;

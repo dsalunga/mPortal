@@ -6,7 +6,6 @@ using System.Reflection;
 
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -14,14 +14,22 @@ namespace WCMS.WebSystem.WebParts.Menu.Providers
 {
     public class MenuObjectProvider : GenericSqlDataProviderBase<MenuObject>, IMenuObjectProvider
     {
+        protected override string TableName { get { return "MenuObject"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "MenuObject_Get"; } }
         protected override string DeleteProcedure { get { return "MenuObject_Del"; } }
 
         public MenuObject Get(int objectId, int recordId)
         {
-            using (var r = SqlHelper.ExecuteReader("MenuObject_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)))
+            var sql = "SELECT * FROM MenuObject WHERE " +
+                DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)))
             {
                 if (r.Read())
                     return From(r);
@@ -49,19 +57,64 @@ namespace WCMS.WebSystem.WebParts.Menu.Providers
 
         public override int Update(MenuObject item)
         {
-            object obj = SqlHelper.ExecuteScalar("MenuObject_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@Width", item.Width),
-                new SqlParameter("@Height", item.Height),
-                new SqlParameter("@Horizontal", item.Horizontal),
-                new SqlParameter("@MenuId", item.MenuId),
-                new SqlParameter("@ParameterSetId", item.ParameterSetId),
-                new SqlParameter("@RenderMode", item.RenderMode)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE MenuObject SET " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
+                    DbSyntax.QuoteIdentifier("Width") + " = @Width, " +
+                    DbSyntax.QuoteIdentifier("Height") + " = @Height, " +
+                    DbSyntax.QuoteIdentifier("Horizontal") + " = @Horizontal, " +
+                    DbSyntax.QuoteIdentifier("MenuId") + " = @MenuId, " +
+                    DbSyntax.QuoteIdentifier("ParameterSetId") + " = @ParameterSetId, " +
+                    DbSyntax.QuoteIdentifier("RenderMode") + " = @RenderMode" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Width", item.Width),
+                    DbHelper.CreateParameter("@Height", item.Height),
+                    DbHelper.CreateParameter("@Horizontal", item.Horizontal),
+                    DbHelper.CreateParameter("@MenuId", item.MenuId),
+                    DbHelper.CreateParameter("@ParameterSetId", item.ParameterSetId),
+                    DbHelper.CreateParameter("@RenderMode", item.RenderMode),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO MenuObject (" +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("Width") + ", " +
+                    DbSyntax.QuoteIdentifier("Height") + ", " +
+                    DbSyntax.QuoteIdentifier("Horizontal") + ", " +
+                    DbSyntax.QuoteIdentifier("MenuId") + ", " +
+                    DbSyntax.QuoteIdentifier("ParameterSetId") + ", " +
+                    DbSyntax.QuoteIdentifier("RenderMode") +
+                    ") VALUES (@ObjectId, @RecordId, @Width, @Height, @Horizontal, @MenuId, @ParameterSetId, @RenderMode)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Width", item.Width),
+                    DbHelper.CreateParameter("@Height", item.Height),
+                    DbHelper.CreateParameter("@Horizontal", item.Horizontal),
+                    DbHelper.CreateParameter("@MenuId", item.MenuId),
+                    DbHelper.CreateParameter("@ParameterSetId", item.ParameterSetId),
+                    DbHelper.CreateParameter("@RenderMode", item.RenderMode)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
     }

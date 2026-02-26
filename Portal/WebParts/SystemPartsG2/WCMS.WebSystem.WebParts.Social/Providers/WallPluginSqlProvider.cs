@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
@@ -21,12 +21,20 @@ namespace WCMS.Framework.Social.Providers
             return item;
         }
 
+        protected override string TableName { get { return "WallPlugin"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure { get { return "WallPlugin_Get"; } }
 
         public WallPlugin GetByEventType(int typeId)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@EventTypeId", typeId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("WallPlugin") + " WHERE " + DbSyntax.QuoteIdentifier("EventTypeId") + " = @EventTypeId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@EventTypeId", typeId)))
             {
                 if (r.Read())
                     return From(r);

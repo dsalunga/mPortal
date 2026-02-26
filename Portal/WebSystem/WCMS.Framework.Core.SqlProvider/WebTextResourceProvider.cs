@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Text;
 
 using WCMS.Common.Utilities;
@@ -17,8 +16,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebTextResource Get(int textResourceId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTextResource_Get",
-                new SqlParameter("@TextResourceId", textResourceId)))
+            var sql = "SELECT * FROM WebTextResource WHERE " + DbSyntax.QuoteIdentifier("TextResourceId") + " = @TextResourceId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@TextResourceId", textResourceId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -29,8 +29,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebTextResource Get(string title)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTextResource_Get",
-                new SqlParameter("@Title", title)))
+            var sql = "SELECT * FROM WebTextResource WHERE " + DbSyntax.QuoteIdentifier("Title") + " = @Title";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Title", title)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -43,7 +44,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTextResource> items = new List<WebTextResource>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTextResource_Get"))
+            var sql = "SELECT * FROM WebTextResource";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -57,8 +59,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTextResource> items = new List<WebTextResource>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTextResource_Get",
-                new SqlParameter("@ContentTypeId", contentTypeId)))
+            var sql = "SELECT * FROM WebTextResource WHERE " + DbSyntax.QuoteIdentifier("ContentTypeId") + " = @ContentTypeId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ContentTypeId", contentTypeId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -72,8 +75,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTextResource> items = new List<WebTextResource>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebTextResource_Get",
-                new SqlParameter("@DirectoryId", directoryId)))
+            var sql = "SELECT * FROM WebTextResource WHERE " + DbSyntax.QuoteIdentifier("DirectoryId") + " = @DirectoryId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@DirectoryId", directoryId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -85,26 +89,68 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebTextResource item)
         {
-            object o = SqlHelper.ExecuteScalar("WebTextResource_Set",
-                new SqlParameter("@TextResourceId", item.Id),
-                new SqlParameter("@ContentTypeId", item.ContentTypeId),
-                new SqlParameter("@Title", item.Title),
-                new SqlParameter("@Content", item.Content),
-                new SqlParameter("@DirectoryId", item.DirectoryId),
-                new SqlParameter("@Rank", item.Rank),
-                new SqlParameter("@DatePersisted", item.DatePersisted),
-                new SqlParameter("@PhysicalPath", item.PhysicalPath)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebTextResource SET " +
+                    DbSyntax.QuoteIdentifier("ContentTypeId") + " = @ContentTypeId, " +
+                    DbSyntax.QuoteIdentifier("Title") + " = @Title, " +
+                    DbSyntax.QuoteIdentifier("Content") + " = @Content, " +
+                    DbSyntax.QuoteIdentifier("DirectoryId") + " = @DirectoryId, " +
+                    DbSyntax.QuoteIdentifier("Rank") + " = @Rank, " +
+                    DbSyntax.QuoteIdentifier("DatePersisted") + " = @DatePersisted, " +
+                    DbSyntax.QuoteIdentifier("PhysicalPath") + " = @PhysicalPath" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("TextResourceId") + " = @TextResourceId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@ContentTypeId", item.ContentTypeId),
+                    DbHelper.CreateParameter("@Title", item.Title),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@DirectoryId", item.DirectoryId),
+                    DbHelper.CreateParameter("@Rank", item.Rank),
+                    DbHelper.CreateParameter("@DatePersisted", item.DatePersisted),
+                    DbHelper.CreateParameter("@PhysicalPath", item.PhysicalPath),
+                    DbHelper.CreateParameter("@TextResourceId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebTextResource (" +
+                    DbSyntax.QuoteIdentifier("ContentTypeId") + ", " +
+                    DbSyntax.QuoteIdentifier("Title") + ", " +
+                    DbSyntax.QuoteIdentifier("Content") + ", " +
+                    DbSyntax.QuoteIdentifier("DirectoryId") + ", " +
+                    DbSyntax.QuoteIdentifier("Rank") + ", " +
+                    DbSyntax.QuoteIdentifier("DatePersisted") + ", " +
+                    DbSyntax.QuoteIdentifier("PhysicalPath") +
+                    ") VALUES (@ContentTypeId, @Title, @Content, @DirectoryId, @Rank, @DatePersisted, @PhysicalPath)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("TextResourceId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@ContentTypeId", item.ContentTypeId),
+                    DbHelper.CreateParameter("@Title", item.Title),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@DirectoryId", item.DirectoryId),
+                    DbHelper.CreateParameter("@Rank", item.Rank),
+                    DbHelper.CreateParameter("@DatePersisted", item.DatePersisted),
+                    DbHelper.CreateParameter("@PhysicalPath", item.PhysicalPath)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
 
             return item.Id;
         }
 
         public bool Delete(int textResourceId)
         {
-            SqlHelper.ExecuteNonQuery("WebTextResource_Del",
-                new SqlParameter("@TextResourceId", textResourceId));
+            var sql = "DELETE FROM WebTextResource WHERE " + DbSyntax.QuoteIdentifier("TextResourceId") + " = @TextResourceId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@TextResourceId", textResourceId));
 
             return true;
         }

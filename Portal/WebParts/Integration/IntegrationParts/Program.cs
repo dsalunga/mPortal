@@ -16,13 +16,39 @@ builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddWcmsFramework();
 
-// EF Core DbContexts
+// CMS database provider (SQL Server or PostgreSQL)
+builder.Services.AddWcmsDatabase(builder.Configuration);
+
+// EF Core DbContexts — provider-aware
+var integrationConn = builder.Configuration.GetConnectionString("IntegrationDb")
+    ?? builder.Configuration.GetConnectionString("ConnectionString") ?? string.Empty;
 builder.Services.AddDbContext<IntegrationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("IntegrationDb")));
+{
+    if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+        options.UseNpgsql(integrationConn);
+    else
+        options.UseSqlServer(integrationConn);
+});
+
+var musicConn = builder.Configuration.GetConnectionString("MusicDb")
+    ?? builder.Configuration.GetConnectionString("ConnectionString") ?? string.Empty;
 builder.Services.AddDbContext<MusicDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MusicDb")));
+{
+    if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+        options.UseNpgsql(musicConn);
+    else
+        options.UseSqlServer(musicConn);
+});
+
+var externalConn = builder.Configuration.GetConnectionString("ExternalDb")
+    ?? builder.Configuration.GetConnectionString("ConnectionString") ?? string.Empty;
 builder.Services.AddDbContext<ExternalDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ExternalDb")));
+{
+    if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+        options.UseNpgsql(externalConn);
+    else
+        options.UseSqlServer(externalConn);
+});
 
 var app = builder.Build();
 

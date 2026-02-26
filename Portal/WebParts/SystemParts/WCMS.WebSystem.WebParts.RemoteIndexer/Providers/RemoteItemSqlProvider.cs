@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -17,9 +17,17 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
         {
             var items = new List<RemoteItem>();
 
-            using (var r = SqlHelper.ExecuteReader("RemoteItem_Get",
-                new SqlParameter("@LibraryId", libraryId),
-                new SqlParameter("@ParentId", parentId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("RemoteItem") +
+                " WHERE " + DbSyntax.QuoteIdentifier("LibraryId") + " = @LibraryId";
+            var parms = new List<DbParameter>();
+            parms.Add(DbHelper.CreateParameter("@LibraryId", libraryId));
+            if (parentId != -2)
+            {
+                sql += " AND " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+                parms.Add(DbHelper.CreateParameter("@ParentId", parentId));
+            }
+
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql, parms.ToArray()))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -28,7 +36,7 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
             return items;
         }
 
-        private RemoteItem From(SqlDataReader r)
+        private RemoteItem From(IDataReader r)
         {
             var item = new RemoteItem();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
@@ -51,8 +59,10 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("RemoteItem_Del",
-                new SqlParameter("@Id", id));
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier("RemoteItem") +
+                " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
@@ -61,8 +71,10 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
         {
             if (id > 0)
             {
-                using (var r = SqlHelper.ExecuteReader("RemoteItem_Get",
-                    new SqlParameter("@Id", id)))
+                var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("RemoteItem") +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                    DbHelper.CreateParameter("@Id", id)))
                 {
                     if (r.Read())
                         return From(r);
@@ -80,7 +92,8 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
         public IEnumerable<RemoteItem> GetList()
         {
             var items = new List<RemoteItem>();
-            using (var r = SqlHelper.ExecuteReader("RemoteItem_Get"))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("RemoteItem");
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -101,24 +114,84 @@ namespace WCMS.WebSystem.WebParts.RemoteIndexer.Providers
 
         public int Update(RemoteItem item)
         {
-            var obj = SqlHelper.ExecuteScalar("RemoteItem_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@LibraryId", item.LibraryId),
-                new SqlParameter("@RelativePath", item.RelativePath),
-                new SqlParameter("@TypeId", item.TypeId),
-                new SqlParameter("@DateModified", item.DateModified),
-                new SqlParameter("@Size", item.Size),
-                new SqlParameter("@Content", item.Content),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@DownloadCount", item.DownloadCount),
-                new SqlParameter("@DisplayName", item.DisplayName),
-                new SqlParameter("@IndexDateModified", item.IndexDateModified),
-                new SqlParameter("@FileCacheEnabled", item.FileCacheEnabled),
-                new SqlParameter("@Cached", item.Cached)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("RemoteItem") + " SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("LibraryId") + " = @LibraryId, " +
+                    DbSyntax.QuoteIdentifier("RelativePath") + " = @RelativePath, " +
+                    DbSyntax.QuoteIdentifier("TypeId") + " = @TypeId, " +
+                    DbSyntax.QuoteIdentifier("DateModified") + " = @DateModified, " +
+                    DbSyntax.QuoteIdentifier("Size") + " = @Size, " +
+                    DbSyntax.QuoteIdentifier("Content") + " = @Content, " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId, " +
+                    DbSyntax.QuoteIdentifier("DownloadCount") + " = @DownloadCount, " +
+                    DbSyntax.QuoteIdentifier("DisplayName") + " = @DisplayName, " +
+                    DbSyntax.QuoteIdentifier("IndexDateModified") + " = @IndexDateModified, " +
+                    DbSyntax.QuoteIdentifier("FileCacheEnabled") + " = @FileCacheEnabled, " +
+                    DbSyntax.QuoteIdentifier("Cached") + " = @Cached" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@LibraryId", item.LibraryId),
+                    DbHelper.CreateParameter("@RelativePath", item.RelativePath),
+                    DbHelper.CreateParameter("@TypeId", item.TypeId),
+                    DbHelper.CreateParameter("@DateModified", item.DateModified),
+                    DbHelper.CreateParameter("@Size", item.Size),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@DownloadCount", item.DownloadCount),
+                    DbHelper.CreateParameter("@DisplayName", item.DisplayName),
+                    DbHelper.CreateParameter("@IndexDateModified", item.IndexDateModified),
+                    DbHelper.CreateParameter("@FileCacheEnabled", item.FileCacheEnabled),
+                    DbHelper.CreateParameter("@Cached", item.Cached),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("RemoteItem") + " (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("LibraryId") + ", " +
+                    DbSyntax.QuoteIdentifier("RelativePath") + ", " +
+                    DbSyntax.QuoteIdentifier("TypeId") + ", " +
+                    DbSyntax.QuoteIdentifier("DateModified") + ", " +
+                    DbSyntax.QuoteIdentifier("Size") + ", " +
+                    DbSyntax.QuoteIdentifier("Content") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + ", " +
+                    DbSyntax.QuoteIdentifier("DownloadCount") + ", " +
+                    DbSyntax.QuoteIdentifier("DisplayName") + ", " +
+                    DbSyntax.QuoteIdentifier("IndexDateModified") + ", " +
+                    DbSyntax.QuoteIdentifier("FileCacheEnabled") + ", " +
+                    DbSyntax.QuoteIdentifier("Cached") +
+                    ") VALUES (@Name, @LibraryId, @RelativePath, @TypeId, @DateModified, @Size, @Content, @ParentId, @DownloadCount, @DisplayName, @IndexDateModified, @FileCacheEnabled, @Cached)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@LibraryId", item.LibraryId),
+                    DbHelper.CreateParameter("@RelativePath", item.RelativePath),
+                    DbHelper.CreateParameter("@TypeId", item.TypeId),
+                    DbHelper.CreateParameter("@DateModified", item.DateModified),
+                    DbHelper.CreateParameter("@Size", item.Size),
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@DownloadCount", item.DownloadCount),
+                    DbHelper.CreateParameter("@DisplayName", item.DisplayName),
+                    DbHelper.CreateParameter("@IndexDateModified", item.IndexDateModified),
+                    DbHelper.CreateParameter("@FileCacheEnabled", item.FileCacheEnabled),
+                    DbHelper.CreateParameter("@Cached", item.Cached)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 

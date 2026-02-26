@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -28,23 +28,63 @@ namespace WCMS.WebSystem.WebParts.BibleReader.Providers
             return item;
         }
 
+        protected override string TableName { get { return "BibleReaderAccess"; } }
+
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
+
         protected override string SelectProcedure { get { return "BibleReaderAccess_Get"; } }
 
         public override int Update(BibleAccess item)
         {
-            var o = SqlHelper.ExecuteScalar("BibleReaderAccess_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@UserId", item.UserId),
-                new SqlParameter("@AppAccessCount", item.AppAccessCount),
-                new SqlParameter("@LastAccessed", item.LastAccessed));
+            string sql;
+            DbParameter[] parms;
 
-            return UpdatePostProcess(item, o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("BibleReaderAccess") + " SET " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId, " +
+                    DbSyntax.QuoteIdentifier("AppAccessCount") + " = @AppAccessCount, " +
+                    DbSyntax.QuoteIdentifier("LastAccessed") + " = @LastAccessed" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@AppAccessCount", item.AppAccessCount),
+                    DbHelper.CreateParameter("@LastAccessed", item.LastAccessed),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("BibleReaderAccess") + " (" +
+                    DbSyntax.QuoteIdentifier("UserId") + ", " +
+                    DbSyntax.QuoteIdentifier("AppAccessCount") + ", " +
+                    DbSyntax.QuoteIdentifier("LastAccessed") +
+                    ") VALUES (@UserId, @AppAccessCount, @LastAccessed)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@AppAccessCount", item.AppAccessCount),
+                    DbHelper.CreateParameter("@LastAccessed", item.LastAccessed)
+                };
+                var o = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                return UpdatePostProcess(item, o);
+            }
+
+            return item.Id;
         }
 
         public new BibleAccess Get(int userId)
         {
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@UserId", userId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("BibleReaderAccess") + " WHERE " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@UserId", userId)))
             {
                 if (r.Read())
                     return From(r);

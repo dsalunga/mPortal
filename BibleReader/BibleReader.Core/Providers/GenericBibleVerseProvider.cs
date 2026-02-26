@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common;
 using WCMS.Common.Data;
@@ -16,7 +16,7 @@ namespace WCMS.BibleReader.Core.Providers
         private string connectionString;
         public GenericBibleVerseProvider()
         {
-            connectionString = SqlHelper.GetConnectionString(BibleConstants.ConnectionString);
+            connectionString = DbHelper.GetConnectionString(BibleConstants.ConnectionString);
         }
 
         public BibleVerse Get(BibleVersion version, BibleBookName bookName, int chapterCode, int verseCode)
@@ -26,10 +26,10 @@ namespace WCMS.BibleReader.Core.Providers
 
             string verseSql = Substituter.Substitute(BibleConstants.VERSE_GET_SQL_TEMPLATE, provider);
 
-            using (var r = SqlHelper.ExecuteReader(connectionString, CommandType.Text, verseSql,
-                new SqlParameter("@BookCode", bookName.BookCode),
-                new SqlParameter("@ChapterCode", chapterCode),
-                new SqlParameter("@VerseCode", verseCode)
+            using (var r = DbHelper.ExecuteReader(connectionString, CommandType.Text, verseSql,
+                DbHelper.CreateParameter("@BookCode", bookName.BookCode),
+                DbHelper.CreateParameter("@ChapterCode", chapterCode),
+                DbHelper.CreateParameter("@VerseCode", verseCode)
             ))
             {
                 if (r.Read())
@@ -60,10 +60,10 @@ namespace WCMS.BibleReader.Core.Providers
 
             List<BibleVerse> items = new List<BibleVerse>();
 
-            using (var r = SqlHelper.ExecuteReader(connectionString, CommandType.Text, verseSql,
-                new SqlParameter("@BookCode", bookName.BookCode),
-                new SqlParameter("@ChapterCode", chapterCode),
-                new SqlParameter("@VerseCode", -2)
+            using (var r = DbHelper.ExecuteReader(connectionString, CommandType.Text, verseSql,
+                DbHelper.CreateParameter("@BookCode", bookName.BookCode),
+                DbHelper.CreateParameter("@ChapterCode", chapterCode),
+                DbHelper.CreateParameter("@VerseCode", -2)
             ))
             {
                 while (r.Read())
@@ -89,7 +89,6 @@ namespace WCMS.BibleReader.Core.Providers
         {
             var provider = new NamedValueProvider();
             provider.Add("VERSION_SHORT_NAME", version.ShortName);
-            //provider.Add("SEARCH", search);
 
             var searchParam = string.Format("%{0}%", search);
             BibleBookName bkName = bookName;
@@ -97,10 +96,10 @@ namespace WCMS.BibleReader.Core.Providers
             string verseSql = Substituter.Substitute(BibleConstants.VERSE_SEARCH_SQL_TEMPLATE, provider);
             var items = new List<BibleVerse>();
 
-            using (var r = SqlHelper.ExecuteReader(connectionString, CommandType.Text, verseSql,
-                new SqlParameter("@BookCode", bkName == null ? -2 : bkName.BookCode),
-                new SqlParameter("@ChapterCode", -2),
-                new SqlParameter("@Search", searchParam)
+            using (var r = DbHelper.ExecuteReader(connectionString, CommandType.Text, verseSql,
+                DbHelper.CreateParameter("@BookCode", bkName == null ? -2 : bkName.BookCode),
+                DbHelper.CreateParameter("@ChapterCode", -2),
+                DbHelper.CreateParameter("@Search", searchParam)
             ))
             {
                 while (r.Read())

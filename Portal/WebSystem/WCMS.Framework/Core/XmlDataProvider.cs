@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,6 @@ using System.IO;
 using System.Reflection;
 
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Data.Common;
 
 using WCMS.Common.Utilities;
@@ -116,19 +115,19 @@ namespace WCMS.Framework.Core
             query.Append(props.ElementAt(count - 1).Name);
             query.AppendFormat(" FROM {0} WHERE ", t.Name); //{1}=@{1}", t.Name, pk.Name, id);
 
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            List<DbParameter> sqlParams = new List<DbParameter>();
             for (int i = 0; i < filters.Length; i++)
             {
                 QueryFilterElement filter = filters[i];
 
-                sqlParams.Add(new SqlParameter("@" + filter.Name, filter.Value));
+                sqlParams.Add(DbHelper.CreateParameter("@" + filter.Name, filter.Value));
                 query.AppendFormat("[{0}]=@{0}", filter.Name);
 
                 if (i < filters.Length - 1)
                     query.Append(" AND ");
             }
 
-            using (DbDataReader r = SqlHelper.ExecuteReader(CommandType.Text, query.ToString(),
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString(),
                 sqlParams.ToArray()
             ))
             {
@@ -181,14 +180,14 @@ namespace WCMS.Framework.Core
 
             query.AppendFormat("[{0}] FROM {1} WHERE ", props.ElementAt(count - 1).Name, itemType.Name); //{1}=@{1}", t.Name, pk.Name, id);
 
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            List<DbParameter> sqlParams = new List<DbParameter>();
             for (int i = 0; i < filters.Length; i++)
             {
                 QueryFilterElement filter = filters[i];
 
                 if (!filter.IsValueNull())
                 {
-                    sqlParams.Add(new SqlParameter("@" + filter.Name, filter.Value));
+                    sqlParams.Add(DbHelper.CreateParameter("@" + filter.Name, filter.Value));
                     query.AppendFormat("[{0}]=@{0} AND ", filter.Name);
                 }
             }
@@ -196,7 +195,7 @@ namespace WCMS.Framework.Core
             query.Remove(query.Length - 5, 5);
 
             List<T> items = new List<T>();
-            using (DbDataReader r = SqlHelper.ExecuteReader(CommandType.Text, query.ToString(),
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString(),
                 sqlParams.ToArray()
             ))
             {
@@ -241,8 +240,8 @@ namespace WCMS.Framework.Core
             query.AppendFormat("DELETE FROM {0} WHERE [{1}]=@{1}", itemType.Name, pk.Name);
 
             // Execute delete SQL
-            SqlHelper.ExecuteNonQuery(CommandType.Text, query.ToString(),
-                new SqlParameter("@" + pk.Name, id));
+            DbHelper.ExecuteNonQuery(CommandType.Text, query.ToString(),
+                DbHelper.CreateParameter("@" + pk.Name, id));
 
             return true;
         }
@@ -304,13 +303,13 @@ namespace WCMS.Framework.Core
             }
 
             // Prepare the select parameters
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            List<DbParameter> sqlParams = new List<DbParameter>();
             foreach (var prop in props)
             {
-                sqlParams.Add(new SqlParameter("@" + prop.Name, prop.GetValue(item, null)));
+                sqlParams.Add(DbHelper.CreateParameter("@" + prop.Name, prop.GetValue(item, null)));
             }
 
-            SqlHelper.ExecuteScalar(CommandType.Text,
+            DbHelper.ExecuteScalar(CommandType.Text,
                 query.ToString(), sqlParams.ToArray());
 
             return pkValue;

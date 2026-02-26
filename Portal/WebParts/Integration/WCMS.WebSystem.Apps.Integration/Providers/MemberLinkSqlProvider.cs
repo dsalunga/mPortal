@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -15,6 +15,11 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
     public class MemberLinkSqlProvider : GenericSqlDataProviderBase<MemberLink>, IMemberLinkProvider
     {
         protected override string DeleteProcedure { get { return "MemberLink_Del"; } }
+        protected override string TableName { get { return "MemberLink"; } }
+
+        protected override string IdColumn { get { return "MemberLinkId"; } }
+
+
         protected override string SelectProcedure { get { return "MemberLink_Get"; } }
         protected override string IdParameter { get { return "MemberLinkId"; } }
 
@@ -22,9 +27,12 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public MemberLink Get(string externalIdNo, DateTime membershipDate)
         {
-            using (var r = SqlHelper.ExecuteReader("MemberLink_Get",
-                new SqlParameter("@ExternalIdNo", externalIdNo),
-                new SqlParameter("@MembershipDate", membershipDate)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " +
+                DbSyntax.QuoteIdentifier("ExternalIdNo") + " = @ExternalIdNo AND " +
+                DbSyntax.QuoteIdentifier("MembershipDate") + " = @MembershipDate";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ExternalIdNo", externalIdNo),
+                DbHelper.CreateParameter("@MembershipDate", membershipDate)))
             {
                 if (r.Read())
                     return From(r);
@@ -35,8 +43,9 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public MemberLink Get(string externalIdNo)
         {
-            using (var r = SqlHelper.ExecuteReader("MemberLink_Get",
-                new SqlParameter("@ExternalIdNo", externalIdNo)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " + DbSyntax.QuoteIdentifier("ExternalIdNo") + " = @ExternalIdNo";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ExternalIdNo", externalIdNo)))
             {
                 if (r.Read())
                     return From(r);
@@ -90,9 +99,15 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             var items = new List<MemberLink>();
 
-            using (var r = SqlHelper.ExecuteReader("MemberLink_Get",
-                new SqlParameter("@Approved", approved),
-                new SqlParameter("@CelebrantsMonth", celebrantsMonth)))
+            var monthExpr = DbHelper.Provider == DatabaseProvider.PostgreSql
+                ? "EXTRACT(MONTH FROM " + DbSyntax.QuoteIdentifier("MembershipDate") + ")"
+                : "MONTH(" + DbSyntax.QuoteIdentifier("MembershipDate") + ")";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " +
+                "(@Approved = -1 OR " + DbSyntax.QuoteIdentifier("Approved") + " = @Approved) AND " +
+                "(@CelebrantsMonth = -1 OR " + monthExpr + " = @CelebrantsMonth)";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Approved", approved),
+                DbHelper.CreateParameter("@CelebrantsMonth", celebrantsMonth)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -104,9 +119,13 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         public IEnumerable<MemberLink> GetList(DateTime lastUpdate, int approved = -1)
         {
             var items = new List<MemberLink>();
-            using (var r = SqlHelper.ExecuteReader("MemberLink_Get",
-                new SqlParameter("@Approved", approved),
-                new SqlParameter("@LastUpdate", lastUpdate)))
+
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " +
+                DbSyntax.QuoteIdentifier("LastUpdate") + " >= @LastUpdate AND " +
+                "(@Approved = -1 OR " + DbSyntax.QuoteIdentifier("Approved") + " = @Approved)";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Approved", approved),
+                DbHelper.CreateParameter("@LastUpdate", lastUpdate)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -120,49 +139,144 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             if (item.MembershipDate < WConstants.DateTimeMinValue)
                 item.MembershipDate = WConstants.DateTimeMinValue;
 
-            var obj = SqlHelper.ExecuteScalar("MemberLink_Set",
-                new SqlParameter("@MemberLinkId", item.MemberLinkId),
-                new SqlParameter("@UserId", item.UserId),
-                new SqlParameter("@MemberId", item.MemberId),
-                new SqlParameter("@ExternalIdNo", item.ExternalIdNo),
+            string sql;
+            DbParameter[] parms;
 
-                new SqlParameter("@HomeAddressLine1", item.HomeAddressLine1),
-                new SqlParameter("@HomeAddressLine2", item.HomeAddressLine2),
-                new SqlParameter("@HomeAddressStateCode", item.HomeAddressStateCode),
-                new SqlParameter("@HomeAddressCountryCode", item.LocaleCountryCode),
-                new SqlParameter("@HomeAddressZipCode", item.HomeAddressZipCode),
+            if (item.MemberLinkId > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("MemberLink") + " SET " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId, " +
+                    DbSyntax.QuoteIdentifier("MemberId") + " = @MemberId, " +
+                    DbSyntax.QuoteIdentifier("ExternalIdNo") + " = @ExternalIdNo, " +
+                    DbSyntax.QuoteIdentifier("HomeAddressLine1") + " = @HomeAddressLine1, " +
+                    DbSyntax.QuoteIdentifier("HomeAddressLine2") + " = @HomeAddressLine2, " +
+                    DbSyntax.QuoteIdentifier("HomeAddressStateCode") + " = @HomeAddressStateCode, " +
+                    DbSyntax.QuoteIdentifier("HomeAddressCountryCode") + " = @HomeAddressCountryCode, " +
+                    DbSyntax.QuoteIdentifier("HomeAddressZipCode") + " = @HomeAddressZipCode, " +
+                    DbSyntax.QuoteIdentifier("MobileNumber") + " = @MobileNumber, " +
+                    DbSyntax.QuoteIdentifier("HomePhone") + " = @HomePhone, " +
+                    DbSyntax.QuoteIdentifier("WorkAddressLine1") + " = @WorkAddressLine1, " +
+                    DbSyntax.QuoteIdentifier("WorkAddressLine2") + " = @WorkAddressLine2, " +
+                    DbSyntax.QuoteIdentifier("WorkAddressStateCode") + " = @WorkAddressStateCode, " +
+                    DbSyntax.QuoteIdentifier("WorkAddressCountryCode") + " = @WorkAddressCountryCode, " +
+                    DbSyntax.QuoteIdentifier("WorkAddressZipCode") + " = @WorkAddressZipCode, " +
+                    DbSyntax.QuoteIdentifier("WorkDesignation") + " = @WorkDesignation, " +
+                    DbSyntax.QuoteIdentifier("WorkPhone") + " = @WorkPhone, " +
+                    DbSyntax.QuoteIdentifier("Nickname") + " = @Nickname, " +
+                    DbSyntax.QuoteIdentifier("LastUpdate") + " = @LastUpdate, " +
+                    DbSyntax.QuoteIdentifier("PhotoPath") + " = @PhotoPath, " +
+                    DbSyntax.QuoteIdentifier("MembershipDate") + " = @MembershipDate, " +
+                    DbSyntax.QuoteIdentifier("Approved") + " = @Approved, " +
+                    DbSyntax.QuoteIdentifier("Private") + " = @Private, " +
+                    DbSyntax.QuoteIdentifier("Locale") + " = @Locale, " +
+                    DbSyntax.QuoteIdentifier("AdditionalInfo") + " = @AdditionalInfo, " +
+                    DbSyntax.QuoteIdentifier("LocaleId") + " = @LocaleId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("MemberLinkId") + " = @MemberLinkId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@MemberId", item.MemberId),
+                    DbHelper.CreateParameter("@ExternalIdNo", item.ExternalIdNo),
+                    DbHelper.CreateParameter("@HomeAddressLine1", item.HomeAddressLine1),
+                    DbHelper.CreateParameter("@HomeAddressLine2", item.HomeAddressLine2),
+                    DbHelper.CreateParameter("@HomeAddressStateCode", item.HomeAddressStateCode),
+                    DbHelper.CreateParameter("@HomeAddressCountryCode", item.LocaleCountryCode),
+                    DbHelper.CreateParameter("@HomeAddressZipCode", item.HomeAddressZipCode),
+                    DbHelper.CreateParameter("@MobileNumber", item.MobileNumber),
+                    DbHelper.CreateParameter("@HomePhone", item.HomePhone),
+                    DbHelper.CreateParameter("@WorkAddressLine1", item.WorkAddressLine1),
+                    DbHelper.CreateParameter("@WorkAddressLine2", item.WorkAddressLine2),
+                    DbHelper.CreateParameter("@WorkAddressStateCode", item.WorkAddressStateCode),
+                    DbHelper.CreateParameter("@WorkAddressCountryCode", item.WorkAddressCountryCode),
+                    DbHelper.CreateParameter("@WorkAddressZipCode", item.WorkAddressZipCode),
+                    DbHelper.CreateParameter("@WorkDesignation", item.WorkDesignation),
+                    DbHelper.CreateParameter("@WorkPhone", item.WorkPhone),
+                    DbHelper.CreateParameter("@Nickname", item.Nickname),
+                    DbHelper.CreateParameter("@LastUpdate", item.LastUpdate),
+                    DbHelper.CreateParameter("@PhotoPath", item.GetPhotoPathIfNull()),
+                    DbHelper.CreateParameter("@MembershipDate", item.MembershipDate),
+                    DbHelper.CreateParameter("@Approved", item.Approved),
+                    DbHelper.CreateParameter("@Private", item.Private),
+                    DbHelper.CreateParameter("@Locale", item.Locale),
+                    DbHelper.CreateParameter("@AdditionalInfo", item.AdditionalInfo),
+                    DbHelper.CreateParameter("@LocaleId", item.LocaleId),
+                    DbHelper.CreateParameter("@MemberLinkId", item.MemberLinkId)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("MemberLink") + " (" +
+                    DbSyntax.QuoteIdentifier("UserId") + ", " +
+                    DbSyntax.QuoteIdentifier("MemberId") + ", " +
+                    DbSyntax.QuoteIdentifier("ExternalIdNo") + ", " +
+                    DbSyntax.QuoteIdentifier("HomeAddressLine1") + ", " +
+                    DbSyntax.QuoteIdentifier("HomeAddressLine2") + ", " +
+                    DbSyntax.QuoteIdentifier("HomeAddressStateCode") + ", " +
+                    DbSyntax.QuoteIdentifier("HomeAddressCountryCode") + ", " +
+                    DbSyntax.QuoteIdentifier("HomeAddressZipCode") + ", " +
+                    DbSyntax.QuoteIdentifier("MobileNumber") + ", " +
+                    DbSyntax.QuoteIdentifier("HomePhone") + ", " +
+                    DbSyntax.QuoteIdentifier("WorkAddressLine1") + ", " +
+                    DbSyntax.QuoteIdentifier("WorkAddressLine2") + ", " +
+                    DbSyntax.QuoteIdentifier("WorkAddressStateCode") + ", " +
+                    DbSyntax.QuoteIdentifier("WorkAddressCountryCode") + ", " +
+                    DbSyntax.QuoteIdentifier("WorkAddressZipCode") + ", " +
+                    DbSyntax.QuoteIdentifier("WorkDesignation") + ", " +
+                    DbSyntax.QuoteIdentifier("WorkPhone") + ", " +
+                    DbSyntax.QuoteIdentifier("Nickname") + ", " +
+                    DbSyntax.QuoteIdentifier("LastUpdate") + ", " +
+                    DbSyntax.QuoteIdentifier("PhotoPath") + ", " +
+                    DbSyntax.QuoteIdentifier("MembershipDate") + ", " +
+                    DbSyntax.QuoteIdentifier("Approved") + ", " +
+                    DbSyntax.QuoteIdentifier("Private") + ", " +
+                    DbSyntax.QuoteIdentifier("Locale") + ", " +
+                    DbSyntax.QuoteIdentifier("AdditionalInfo") + ", " +
+                    DbSyntax.QuoteIdentifier("LocaleId") +
+                    ") VALUES (@UserId, @MemberId, @ExternalIdNo, @HomeAddressLine1, @HomeAddressLine2, @HomeAddressStateCode, @HomeAddressCountryCode, @HomeAddressZipCode, @MobileNumber, @HomePhone, @WorkAddressLine1, @WorkAddressLine2, @WorkAddressStateCode, @WorkAddressCountryCode, @WorkAddressZipCode, @WorkDesignation, @WorkPhone, @Nickname, @LastUpdate, @PhotoPath, @MembershipDate, @Approved, @Private, @Locale, @AdditionalInfo, @LocaleId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("MemberLinkId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@MemberId", item.MemberId),
+                    DbHelper.CreateParameter("@ExternalIdNo", item.ExternalIdNo),
+                    DbHelper.CreateParameter("@HomeAddressLine1", item.HomeAddressLine1),
+                    DbHelper.CreateParameter("@HomeAddressLine2", item.HomeAddressLine2),
+                    DbHelper.CreateParameter("@HomeAddressStateCode", item.HomeAddressStateCode),
+                    DbHelper.CreateParameter("@HomeAddressCountryCode", item.LocaleCountryCode),
+                    DbHelper.CreateParameter("@HomeAddressZipCode", item.HomeAddressZipCode),
+                    DbHelper.CreateParameter("@MobileNumber", item.MobileNumber),
+                    DbHelper.CreateParameter("@HomePhone", item.HomePhone),
+                    DbHelper.CreateParameter("@WorkAddressLine1", item.WorkAddressLine1),
+                    DbHelper.CreateParameter("@WorkAddressLine2", item.WorkAddressLine2),
+                    DbHelper.CreateParameter("@WorkAddressStateCode", item.WorkAddressStateCode),
+                    DbHelper.CreateParameter("@WorkAddressCountryCode", item.WorkAddressCountryCode),
+                    DbHelper.CreateParameter("@WorkAddressZipCode", item.WorkAddressZipCode),
+                    DbHelper.CreateParameter("@WorkDesignation", item.WorkDesignation),
+                    DbHelper.CreateParameter("@WorkPhone", item.WorkPhone),
+                    DbHelper.CreateParameter("@Nickname", item.Nickname),
+                    DbHelper.CreateParameter("@LastUpdate", item.LastUpdate),
+                    DbHelper.CreateParameter("@PhotoPath", item.GetPhotoPathIfNull()),
+                    DbHelper.CreateParameter("@MembershipDate", item.MembershipDate),
+                    DbHelper.CreateParameter("@Approved", item.Approved),
+                    DbHelper.CreateParameter("@Private", item.Private),
+                    DbHelper.CreateParameter("@Locale", item.Locale),
+                    DbHelper.CreateParameter("@AdditionalInfo", item.AdditionalInfo),
+                    DbHelper.CreateParameter("@LocaleId", item.LocaleId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.MemberLinkId = DataUtil.GetId(obj);
+            }
 
-                new SqlParameter("@MobileNumber", item.MobileNumber),
-                new SqlParameter("@HomePhone", item.HomePhone),
-
-                new SqlParameter("@WorkAddressLine1", item.WorkAddressLine1),
-                new SqlParameter("@WorkAddressLine2", item.WorkAddressLine2),
-                new SqlParameter("@WorkAddressStateCode", item.WorkAddressStateCode),
-                new SqlParameter("@WorkAddressCountryCode", item.WorkAddressCountryCode),
-                new SqlParameter("@WorkAddressZipCode", item.WorkAddressZipCode),
-
-                new SqlParameter("@WorkDesignation", item.WorkDesignation),
-                new SqlParameter("@WorkPhone", item.WorkPhone),
-                new SqlParameter("@Nickname", item.Nickname),
-                new SqlParameter("@LastUpdate", item.LastUpdate),
-                new SqlParameter("@PhotoPath", item.GetPhotoPathIfNull()),
-                new SqlParameter("@MembershipDate", item.MembershipDate),
-
-                new SqlParameter("@Approved", item.Approved),
-                new SqlParameter("@Private", item.Private),
-                new SqlParameter("@Locale", item.Locale),
-                new SqlParameter("@AdditionalInfo", item.AdditionalInfo),
-                new SqlParameter("@LocaleId", item.LocaleId)
-            );
-
-            item.MemberLinkId = DataUtil.GetId(obj);
             return item.MemberLinkId;
         }
 
         public MemberLink GetByUserId(int userId)
         {
-            using (var r = SqlHelper.ExecuteReader("MemberLink_Get",
-                new SqlParameter("@UserId", userId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@UserId", userId)))
             {
                 if (r.Read())
                     return From(r);
@@ -173,8 +287,9 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public MemberLink GetByMemberId(int memberId)
         {
-            using (var r = SqlHelper.ExecuteReader("MemberLink_Get",
-                new SqlParameter("@MemberId", memberId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("MemberLink") + " WHERE " + DbSyntax.QuoteIdentifier("MemberId") + " = @MemberId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@MemberId", memberId)))
             {
                 if (r.Read())
                     return From(r);

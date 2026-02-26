@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -15,8 +14,9 @@ namespace WCMS.Framework.Core.SqlProvider
     {
         public WebUser Get(string userName)
         {
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get",
-                new SqlParameter("@UserName", userName)))
+            var sql = "SELECT * FROM WebUser WHERE " + DbSyntax.QuoteIdentifier("UserName") + " = @UserName";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@UserName", userName)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -27,8 +27,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebUser GetByEmail(string email)
         {
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get",
-                new SqlParameter("@Email", email)))
+            var sql = "SELECT * FROM WebUser WHERE " + DbSyntax.QuoteIdentifier("Email") + " = @Email";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Email", email)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -39,8 +40,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebUser GetByEmailId(string emailId)
         {
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get",
-                new SqlParameter("@EmailId", emailId)))
+            var sql = "SELECT * FROM WebUser WHERE " + DbSyntax.QuoteIdentifier("EmailId") + " = @EmailId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@EmailId", emailId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -51,8 +53,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebUser Get(int userId)
         {
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get",
-                new SqlParameter("@UserId", userId)))
+            var sql = "SELECT * FROM WebUser WHERE " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@UserId", userId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -64,7 +67,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebUser> GetList()
         {
             var items = new List<WebUser>();
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get"))
+            var sql = "SELECT * FROM WebUser";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -77,8 +81,9 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebUser> GetList(int active)
         {
             var items = new List<WebUser>();
-            using (var r = SqlHelper.ExecuteReader("WebUser_Get",
-                new SqlParameter("@Active", active)))
+            var sql = "SELECT * FROM WebUser WHERE " + DbSyntax.QuoteIdentifier("Active") + " = @Active";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Active", active)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -91,50 +96,145 @@ namespace WCMS.Framework.Core.SqlProvider
         public int Update(WebUser item)
         {
             string encryptedPwd = !string.IsNullOrEmpty(item.Password) ? WCryptography.EncryptString(item.Password) : string.Empty;
-            object o = SqlHelper.ExecuteScalar("WebUser_Set",
-                new SqlParameter("@UserId", item.Id),
-                new SqlParameter("@UserName", item.UserName),
-                new SqlParameter("@Password", encryptedPwd),
-                new SqlParameter("@FirstName", item.FirstName),
-                new SqlParameter("@MiddleName", item.MiddleName),
-                new SqlParameter("@LastName", item.LastName),
-                new SqlParameter("@Email", item.Email),
-                new SqlParameter("@ActivationKey", item.ActivationKey),
-                new SqlParameter("@LastUpdate", item.LastUpdate),
-                new SqlParameter("@DateCreated", item.DateCreated),
-                new SqlParameter("@NewEmail", item.NewEmail),
-                new SqlParameter("@Email2", item.Email2),
-                new SqlParameter("@Gender", item.Gender),
-                new SqlParameter("@NameSuffix", item.NameSuffix),
-                new SqlParameter("@MobileNumber", item.MobileNumber),
-                new SqlParameter("@TelephoneNumber", item.TelephoneNumber),
-                new SqlParameter("@LastLogin", item.LastLogin),
-                new SqlParameter("@StatusText", item.StatusText),
-                new SqlParameter("@PasswordExpiryDate", item.PasswordExpiryDate),
-                new SqlParameter("@PhotoPath", item.PhotoPath),
-                new SqlParameter("@ProviderId", item.ProviderId),
-                new SqlParameter("@Status", item.Status),
-                new SqlParameter("@MaritalStatusId", item.MaritalStatusId),
-                new SqlParameter("@LastLoginFailureDate", item.LastLoginFailureDate),
-                new SqlParameter("@LoginFailureCount", item.LoginFailureCount)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebUser SET " +
+                    DbSyntax.QuoteIdentifier("UserName") + " = @UserName, " +
+                    DbSyntax.QuoteIdentifier("Password") + " = @Password, " +
+                    DbSyntax.QuoteIdentifier("FirstName") + " = @FirstName, " +
+                    DbSyntax.QuoteIdentifier("MiddleName") + " = @MiddleName, " +
+                    DbSyntax.QuoteIdentifier("LastName") + " = @LastName, " +
+                    DbSyntax.QuoteIdentifier("Email") + " = @Email, " +
+                    DbSyntax.QuoteIdentifier("ActivationKey") + " = @ActivationKey, " +
+                    DbSyntax.QuoteIdentifier("LastUpdate") + " = @LastUpdate, " +
+                    DbSyntax.QuoteIdentifier("DateCreated") + " = @DateCreated, " +
+                    DbSyntax.QuoteIdentifier("NewEmail") + " = @NewEmail, " +
+                    DbSyntax.QuoteIdentifier("Email2") + " = @Email2, " +
+                    DbSyntax.QuoteIdentifier("Gender") + " = @Gender, " +
+                    DbSyntax.QuoteIdentifier("NameSuffix") + " = @NameSuffix, " +
+                    DbSyntax.QuoteIdentifier("MobileNumber") + " = @MobileNumber, " +
+                    DbSyntax.QuoteIdentifier("TelephoneNumber") + " = @TelephoneNumber, " +
+                    DbSyntax.QuoteIdentifier("LastLogin") + " = @LastLogin, " +
+                    DbSyntax.QuoteIdentifier("StatusText") + " = @StatusText, " +
+                    DbSyntax.QuoteIdentifier("PasswordExpiryDate") + " = @PasswordExpiryDate, " +
+                    DbSyntax.QuoteIdentifier("PhotoPath") + " = @PhotoPath, " +
+                    DbSyntax.QuoteIdentifier("ProviderId") + " = @ProviderId, " +
+                    DbSyntax.QuoteIdentifier("Status") + " = @Status, " +
+                    DbSyntax.QuoteIdentifier("MaritalStatusId") + " = @MaritalStatusId, " +
+                    DbSyntax.QuoteIdentifier("LastLoginFailureDate") + " = @LastLoginFailureDate, " +
+                    DbSyntax.QuoteIdentifier("LoginFailureCount") + " = @LoginFailureCount" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UserName", item.UserName),
+                    DbHelper.CreateParameter("@Password", encryptedPwd),
+                    DbHelper.CreateParameter("@FirstName", item.FirstName),
+                    DbHelper.CreateParameter("@MiddleName", item.MiddleName),
+                    DbHelper.CreateParameter("@LastName", item.LastName),
+                    DbHelper.CreateParameter("@Email", item.Email),
+                    DbHelper.CreateParameter("@ActivationKey", item.ActivationKey),
+                    DbHelper.CreateParameter("@LastUpdate", item.LastUpdate),
+                    DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                    DbHelper.CreateParameter("@NewEmail", item.NewEmail),
+                    DbHelper.CreateParameter("@Email2", item.Email2),
+                    DbHelper.CreateParameter("@Gender", item.Gender),
+                    DbHelper.CreateParameter("@NameSuffix", item.NameSuffix),
+                    DbHelper.CreateParameter("@MobileNumber", item.MobileNumber),
+                    DbHelper.CreateParameter("@TelephoneNumber", item.TelephoneNumber),
+                    DbHelper.CreateParameter("@LastLogin", item.LastLogin),
+                    DbHelper.CreateParameter("@StatusText", item.StatusText),
+                    DbHelper.CreateParameter("@PasswordExpiryDate", item.PasswordExpiryDate),
+                    DbHelper.CreateParameter("@PhotoPath", item.PhotoPath),
+                    DbHelper.CreateParameter("@ProviderId", item.ProviderId),
+                    DbHelper.CreateParameter("@Status", item.Status),
+                    DbHelper.CreateParameter("@MaritalStatusId", item.MaritalStatusId),
+                    DbHelper.CreateParameter("@LastLoginFailureDate", item.LastLoginFailureDate),
+                    DbHelper.CreateParameter("@LoginFailureCount", item.LoginFailureCount),
+                    DbHelper.CreateParameter("@UserId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebUser (" +
+                    DbSyntax.QuoteIdentifier("UserName") + ", " +
+                    DbSyntax.QuoteIdentifier("Password") + ", " +
+                    DbSyntax.QuoteIdentifier("FirstName") + ", " +
+                    DbSyntax.QuoteIdentifier("MiddleName") + ", " +
+                    DbSyntax.QuoteIdentifier("LastName") + ", " +
+                    DbSyntax.QuoteIdentifier("Email") + ", " +
+                    DbSyntax.QuoteIdentifier("ActivationKey") + ", " +
+                    DbSyntax.QuoteIdentifier("LastUpdate") + ", " +
+                    DbSyntax.QuoteIdentifier("DateCreated") + ", " +
+                    DbSyntax.QuoteIdentifier("NewEmail") + ", " +
+                    DbSyntax.QuoteIdentifier("Email2") + ", " +
+                    DbSyntax.QuoteIdentifier("Gender") + ", " +
+                    DbSyntax.QuoteIdentifier("NameSuffix") + ", " +
+                    DbSyntax.QuoteIdentifier("MobileNumber") + ", " +
+                    DbSyntax.QuoteIdentifier("TelephoneNumber") + ", " +
+                    DbSyntax.QuoteIdentifier("LastLogin") + ", " +
+                    DbSyntax.QuoteIdentifier("StatusText") + ", " +
+                    DbSyntax.QuoteIdentifier("PasswordExpiryDate") + ", " +
+                    DbSyntax.QuoteIdentifier("PhotoPath") + ", " +
+                    DbSyntax.QuoteIdentifier("ProviderId") + ", " +
+                    DbSyntax.QuoteIdentifier("Status") + ", " +
+                    DbSyntax.QuoteIdentifier("MaritalStatusId") + ", " +
+                    DbSyntax.QuoteIdentifier("LastLoginFailureDate") + ", " +
+                    DbSyntax.QuoteIdentifier("LoginFailureCount") +
+                    ") VALUES (@UserName, @Password, @FirstName, @MiddleName, @LastName, @Email, @ActivationKey, @LastUpdate, @DateCreated, @NewEmail, @Email2, @Gender, @NameSuffix, @MobileNumber, @TelephoneNumber, @LastLogin, @StatusText, @PasswordExpiryDate, @PhotoPath, @ProviderId, @Status, @MaritalStatusId, @LastLoginFailureDate, @LoginFailureCount)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("UserId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UserName", item.UserName),
+                    DbHelper.CreateParameter("@Password", encryptedPwd),
+                    DbHelper.CreateParameter("@FirstName", item.FirstName),
+                    DbHelper.CreateParameter("@MiddleName", item.MiddleName),
+                    DbHelper.CreateParameter("@LastName", item.LastName),
+                    DbHelper.CreateParameter("@Email", item.Email),
+                    DbHelper.CreateParameter("@ActivationKey", item.ActivationKey),
+                    DbHelper.CreateParameter("@LastUpdate", item.LastUpdate),
+                    DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                    DbHelper.CreateParameter("@NewEmail", item.NewEmail),
+                    DbHelper.CreateParameter("@Email2", item.Email2),
+                    DbHelper.CreateParameter("@Gender", item.Gender),
+                    DbHelper.CreateParameter("@NameSuffix", item.NameSuffix),
+                    DbHelper.CreateParameter("@MobileNumber", item.MobileNumber),
+                    DbHelper.CreateParameter("@TelephoneNumber", item.TelephoneNumber),
+                    DbHelper.CreateParameter("@LastLogin", item.LastLogin),
+                    DbHelper.CreateParameter("@StatusText", item.StatusText),
+                    DbHelper.CreateParameter("@PasswordExpiryDate", item.PasswordExpiryDate),
+                    DbHelper.CreateParameter("@PhotoPath", item.PhotoPath),
+                    DbHelper.CreateParameter("@ProviderId", item.ProviderId),
+                    DbHelper.CreateParameter("@Status", item.Status),
+                    DbHelper.CreateParameter("@MaritalStatusId", item.MaritalStatusId),
+                    DbHelper.CreateParameter("@LastLoginFailureDate", item.LastLoginFailureDate),
+                    DbHelper.CreateParameter("@LoginFailureCount", item.LoginFailureCount)
+                };
+                var o = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(o);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int userId)
         {
-            SqlHelper.ExecuteNonQuery("WebUser_Del",
-                new SqlParameter("@UserId", userId)
+            var sql = "DELETE FROM WebUser WHERE " + DbSyntax.QuoteIdentifier("UserId") + " = @UserId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@UserId", userId)
             );
             return true;
         }
 
         public bool Delete(string userName)
         {
-            SqlHelper.ExecuteNonQuery("WebUser_Del",
-                new SqlParameter("@UserName", userName));
+            var sql = "DELETE FROM WebUser WHERE " + DbSyntax.QuoteIdentifier("UserName") + " = @UserName";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@UserName", userName));
             return true;
         }
 

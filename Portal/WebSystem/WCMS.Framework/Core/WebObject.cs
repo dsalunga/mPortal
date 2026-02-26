@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
@@ -282,7 +283,7 @@ namespace WCMS.Framework.Core
         public static bool UpdateLastRecord(WebObject item)
         {
             // Get the last recordId
-            int lastRecordId = DataUtil.GetId(SqlHelper.ExecuteScalar(CommandType.Text,
+            int lastRecordId = DataUtil.GetId(DbHelper.ExecuteScalar(CommandType.Text,
                 string.Format(DataConstants.SELECT_MAX, item.IdentityColumn, item.Name)));
 
             // If no record, assign default value of 0
@@ -314,7 +315,7 @@ namespace WCMS.Framework.Core
 
                 /*
                 // Get the last recordId
-                int lastRecordId = DataHelper.GetId(SqlHelper.ExecuteScalar(CommandType.Text,
+                int lastRecordId = DataHelper.GetId(DbHelper.ExecuteScalar(CommandType.Text,
                     string.Format(DataConstants.SELECT_MAX, item.IdentityColumn, item.Name)));
 
                 // If no record, assign default value of 0
@@ -336,7 +337,7 @@ namespace WCMS.Framework.Core
 
         public static int GetCount(WebObject item)
         {
-            int count = DataUtil.GetInt32(SqlHelper.ExecuteScalar(CommandType.Text,
+            int count = DataUtil.GetInt32(DbHelper.ExecuteScalar(CommandType.Text,
                 string.Format(DataConstants.SELECT_COUNT, item.Name)), 0);
 
             return count;

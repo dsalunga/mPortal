@@ -14,7 +14,7 @@ namespace WCMS.Framework.Core
 
         public int GetCount()
         {
-            var o = SqlHelper.ExecuteScalar(CommandType.Text, string.Format("SELECT COUNT(1) FROM {0}", OBJECT_NAME));
+            var o = DbHelper.ExecuteScalar(CommandType.Text, string.Format("SELECT COUNT(1) FROM {0}", OBJECT_NAME));
             if (o != null)
                 return Convert.ToInt32(o.ToString());
             return -1;

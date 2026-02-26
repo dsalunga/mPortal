@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -24,8 +23,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebObjectHeader Get(int objectHeaderId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObjectHeader_Get",
-                new SqlParameter("@ObjectHeaderId", objectHeaderId)))
+            var sql = "SELECT * FROM WebObjectHeader WHERE " + DbSyntax.QuoteIdentifier("ObjectHeaderId") + " = @ObjectHeaderId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ObjectHeaderId", objectHeaderId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -37,10 +37,11 @@ namespace WCMS.Framework.Core.SqlProvider
         // This can contain multiple items, so this implementation should be changed
         public WebObjectHeader Get(int objectId, int recordId, int textResourceId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObjectHeader_Get",
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@TextResourceId", textResourceId)
+            var sql = "SELECT * FROM WebObjectHeader WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("TextResourceId") + " = @TextResourceId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@TextResourceId", textResourceId)
                 ))
             {
                 if (r.HasRows && r.Read())
@@ -52,20 +53,52 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebObjectHeader item)
         {
-            object o = SqlHelper.ExecuteScalar("WebObjectHeader_Set",
-                new SqlParameter("@ObjectHeaderId", item.Id),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@TextResourceId", item.TextResourceId));
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebObjectHeader SET " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
+                    DbSyntax.QuoteIdentifier("TextResourceId") + " = @TextResourceId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("ObjectHeaderId") + " = @ObjectHeaderId";
+                parms = new[] {
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@TextResourceId", item.TextResourceId),
+                    DbHelper.CreateParameter("@ObjectHeaderId", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebObjectHeader (" +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("TextResourceId") +
+                    ") VALUES (@ObjectId, @RecordId, @TextResourceId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("ObjectHeaderId");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@TextResourceId", item.TextResourceId)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int objectHeaderId)
         {
-            SqlHelper.ExecuteNonQuery("WebObjectHeader_Del",
-                new SqlParameter("@ObjectHeaderId", objectHeaderId));
+            var sql = "DELETE FROM WebObjectHeader WHERE " + DbSyntax.QuoteIdentifier("ObjectHeaderId") + " = @ObjectHeaderId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ObjectHeaderId", objectHeaderId));
 
             return true;
         }
@@ -74,9 +107,10 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebObjectHeader> items = new List<WebObjectHeader>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObjectHeader_Get",
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId)
+            var sql = "SELECT * FROM WebObjectHeader WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId)
                 ))
             {
                 if (r.HasRows)
@@ -91,8 +125,9 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebObjectHeader> items = new List<WebObjectHeader>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObjectHeader_Get",
-                new SqlParameter("@TextResourceId", textResourceId)))
+            var sql = "SELECT * FROM WebObjectHeader WHERE " + DbSyntax.QuoteIdentifier("TextResourceId") + " = @TextResourceId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@TextResourceId", textResourceId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -106,7 +141,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebObjectHeader> items = new List<WebObjectHeader>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader("WebObjectHeader_Get"))
+            var sql = "SELECT * FROM WebObjectHeader";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())

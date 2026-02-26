@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
 
 using WCMS.Common.Utilities;
 
@@ -22,7 +21,7 @@ namespace WCMS.Common.Data
 
     public abstract class SqlDataProviderBase<T> : IDataProvider<T> where T : DataObject
     {
-        protected virtual string ConnectionString { get { return SqlHelper.ConnString; } }
+        protected virtual string ConnectionString { get { return DbHelper.ConnString; } }
         protected abstract string SelectProcedure { get; }
         protected abstract string DeleteProcedure { get; }
         protected virtual string IdParameter { get { return "@Id"; } }
@@ -33,16 +32,16 @@ namespace WCMS.Common.Data
 
         public virtual bool Delete(int id)
         {
-            SqlHelper.ExecuteScalar(ConnectionString, DeleteProcedure,
-                new SqlParameter(IdParameter, id));
+            DbHelper.ExecuteScalar(ConnectionString, DeleteProcedure,
+                DbHelper.CreateParameter(IdParameter, id));
 
             return true;
         }
 
         public virtual T Get(int id)
         {
-            using (IDataReader r = SqlHelper.ExecuteReader(ConnectionString, SelectProcedure,
-                new SqlParameter(IdParameter, id)))
+            using (IDataReader r = DbHelper.ExecuteReader(ConnectionString, SelectProcedure,
+                DbHelper.CreateParameter(IdParameter, id)))
             {
                 if (r.Read())
                     return From(r);
@@ -60,7 +59,7 @@ namespace WCMS.Common.Data
         {
             List<T> items = new List<T>();
 
-            using (IDataReader r = SqlHelper.ExecuteReader(ConnectionString, SelectProcedure))
+            using (IDataReader r = DbHelper.ExecuteReader(ConnectionString, SelectProcedure))
             {
                 while (r.Read())
                     items.Add(From(r));

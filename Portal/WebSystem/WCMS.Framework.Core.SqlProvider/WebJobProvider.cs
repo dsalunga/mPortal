@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 
@@ -17,16 +17,18 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("WebJob_Del",
-                new SqlParameter("@Id", id));
+            var sql = "DELETE FROM WebJob WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
 
         public WebJob Get(int id)
         {
-            using (var r = SqlHelper.ExecuteReader("WebJob_Get",
-                new SqlParameter("@Id", id)))
+            var sql = "SELECT * FROM WebJob WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.Read())
                     return From(r);
@@ -37,8 +39,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebJob Get(string name)
         {
-            using (var r = SqlHelper.ExecuteReader("WebJob_Get",
-                new SqlParameter("@Name", name)))
+            var sql = "SELECT * FROM WebJob WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Name", name)))
             {
                 if (r.Read())
                     return From(r);
@@ -47,7 +50,7 @@ namespace WCMS.Framework.Core.SqlProvider
             return null;
         }
 
-        private WebJob From(SqlDataReader r)
+        private WebJob From(DbDataReader r)
         {
             WebJob item = new WebJob();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
@@ -76,7 +79,8 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebJob> items = new List<WebJob>();
 
-            using (var r = SqlHelper.ExecuteReader("WebJob_Get"))
+            var sql = "SELECT * FROM WebJob";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -97,23 +101,80 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebJob item)
         {
-            object obj = SqlHelper.ExecuteScalar("WebJob_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@RecurrenceId", item.RecurrenceId),
-                new SqlParameter("@Weekdays", item.Weekdays),
-                new SqlParameter("@OccursEvery", item.OccursEvery),
-                new SqlParameter("@ExecutionStartDate", item.ExecutionStartDate),
-                new SqlParameter("@ExecutionEndDate", item.ExecutionEndDate),
-                new SqlParameter("@ExecutionStatus", item.ExecutionStatus),
-                new SqlParameter("@ExecutionMessage", item.ExecutionMessage),
-                new SqlParameter("@Enabled", item.Enabled),
-                new SqlParameter("@TypeName", item.TypeName),
-                new SqlParameter("@StartDate", item.StartDate),
-                new SqlParameter("@Description", item.Description)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebJob SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("RecurrenceId") + " = @RecurrenceId, " +
+                    DbSyntax.QuoteIdentifier("Weekdays") + " = @Weekdays, " +
+                    DbSyntax.QuoteIdentifier("OccursEvery") + " = @OccursEvery, " +
+                    DbSyntax.QuoteIdentifier("ExecutionStartDate") + " = @ExecutionStartDate, " +
+                    DbSyntax.QuoteIdentifier("ExecutionEndDate") + " = @ExecutionEndDate, " +
+                    DbSyntax.QuoteIdentifier("ExecutionStatus") + " = @ExecutionStatus, " +
+                    DbSyntax.QuoteIdentifier("ExecutionMessage") + " = @ExecutionMessage, " +
+                    DbSyntax.QuoteIdentifier("Enabled") + " = @Enabled, " +
+                    DbSyntax.QuoteIdentifier("TypeName") + " = @TypeName, " +
+                    DbSyntax.QuoteIdentifier("StartDate") + " = @StartDate, " +
+                    DbSyntax.QuoteIdentifier("Description") + " = @Description" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@RecurrenceId", item.RecurrenceId),
+                    DbHelper.CreateParameter("@Weekdays", item.Weekdays),
+                    DbHelper.CreateParameter("@OccursEvery", item.OccursEvery),
+                    DbHelper.CreateParameter("@ExecutionStartDate", item.ExecutionStartDate),
+                    DbHelper.CreateParameter("@ExecutionEndDate", item.ExecutionEndDate),
+                    DbHelper.CreateParameter("@ExecutionStatus", item.ExecutionStatus),
+                    DbHelper.CreateParameter("@ExecutionMessage", item.ExecutionMessage),
+                    DbHelper.CreateParameter("@Enabled", item.Enabled),
+                    DbHelper.CreateParameter("@TypeName", item.TypeName),
+                    DbHelper.CreateParameter("@StartDate", item.StartDate),
+                    DbHelper.CreateParameter("@Description", item.Description),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebJob (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("RecurrenceId") + ", " +
+                    DbSyntax.QuoteIdentifier("Weekdays") + ", " +
+                    DbSyntax.QuoteIdentifier("OccursEvery") + ", " +
+                    DbSyntax.QuoteIdentifier("ExecutionStartDate") + ", " +
+                    DbSyntax.QuoteIdentifier("ExecutionEndDate") + ", " +
+                    DbSyntax.QuoteIdentifier("ExecutionStatus") + ", " +
+                    DbSyntax.QuoteIdentifier("ExecutionMessage") + ", " +
+                    DbSyntax.QuoteIdentifier("Enabled") + ", " +
+                    DbSyntax.QuoteIdentifier("TypeName") + ", " +
+                    DbSyntax.QuoteIdentifier("StartDate") + ", " +
+                    DbSyntax.QuoteIdentifier("Description") +
+                    ") VALUES (@Name, @RecurrenceId, @Weekdays, @OccursEvery, @ExecutionStartDate, @ExecutionEndDate, @ExecutionStatus, @ExecutionMessage, @Enabled, @TypeName, @StartDate, @Description)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@RecurrenceId", item.RecurrenceId),
+                    DbHelper.CreateParameter("@Weekdays", item.Weekdays),
+                    DbHelper.CreateParameter("@OccursEvery", item.OccursEvery),
+                    DbHelper.CreateParameter("@ExecutionStartDate", item.ExecutionStartDate),
+                    DbHelper.CreateParameter("@ExecutionEndDate", item.ExecutionEndDate),
+                    DbHelper.CreateParameter("@ExecutionStatus", item.ExecutionStatus),
+                    DbHelper.CreateParameter("@ExecutionMessage", item.ExecutionMessage),
+                    DbHelper.CreateParameter("@Enabled", item.Enabled),
+                    DbHelper.CreateParameter("@TypeName", item.TypeName),
+                    DbHelper.CreateParameter("@StartDate", item.StartDate),
+                    DbHelper.CreateParameter("@Description", item.Description)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 

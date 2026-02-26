@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Reflection;
 
 using WCMS.Common.Utilities;
@@ -93,15 +92,15 @@ namespace WCMS.Framework.Core
             // Include all columns into the SELECT except the last one
             for (int i = 0; i < count - 1; i++)
             {
-                query.AppendFormat("[{0}], ", props.ElementAt(i).Name);
+                query.AppendFormat("{0}, ", DbSyntax.QuoteIdentifier(props.ElementAt(i).Name));
             }
 
             // Finalize query
-            query.AppendFormat("[{0}] FROM {1} WHERE [{2}]=@{2}", props.ElementAt(count - 1).Name, itemType.Name, pk.Name, id);
+            query.AppendFormat("{0} FROM {1} WHERE {2}=@{3}", DbSyntax.QuoteIdentifier(props.ElementAt(count - 1).Name), itemType.Name, DbSyntax.QuoteIdentifier(pk.Name), pk.Name);
 
             // Fetch the record
-            using (DbDataReader r = SqlHelper.ExecuteReader(CommandType.Text, query.ToString(),
-                new SqlParameter("@" + pk.Name, id)
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString(),
+                DbHelper.CreateParameter("@" + pk.Name, id)
             ))
             {
                 if (r.Read())
@@ -148,29 +147,25 @@ namespace WCMS.Framework.Core
 
             for (int i = 0; i < count - 1; i++)
             {
-                query.AppendFormat("[{0}], ", props.ElementAt(i).Name);
+                query.AppendFormat("{0}, ", DbSyntax.QuoteIdentifier(props.ElementAt(i).Name));
             }
 
             query.Append(props.ElementAt(count - 1).Name);
             query.AppendFormat(" FROM {0} WHERE ", t.Name); //{1}=@{1}", t.Name, pk.Name, id);
 
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            List<DbParameter> sqlParams = new List<DbParameter>();
             for (int i = 0; i < filters.Length; i++)
             {
                 QueryFilterElement filter = filters[i];
 
-                sqlParams.Add(new SqlParameter("@" + filter.Name, filter.Value));
-                query.AppendFormat("[{0}]=@{0}", filter.Name);
+                sqlParams.Add(DbHelper.CreateParameter("@" + filter.Name, filter.Value));
+                query.AppendFormat("{0}=@{1}", DbSyntax.QuoteIdentifier(filter.Name), filter.Name);
 
                 if (i < filters.Length - 1)
                     query.Append(" AND ");
             }
 
-            //QueryFilterElement lastFilter = filters[filters.Length];
-            //query.AppendFormat("{0}=@{0}", lastFilter.Name);
-            //sqlParams.Add(new SqlParameter("@" + lastFilter.Name, lastFilter.Value));
-
-            using (DbDataReader r = SqlHelper.ExecuteReader(CommandType.Text, query.ToString(),
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString(),
                 sqlParams.ToArray()
             ))
             {
@@ -218,34 +213,27 @@ namespace WCMS.Framework.Core
 
             for (int i = 0; i < count - 1; i++)
             {
-                query.AppendFormat("[{0}], ", props.ElementAt(i).Name);
+                query.AppendFormat("{0}, ", DbSyntax.QuoteIdentifier(props.ElementAt(i).Name));
             }
 
-            query.AppendFormat("[{0}] FROM {1} WHERE ", props.ElementAt(count - 1).Name, itemType.Name); //{1}=@{1}", t.Name, pk.Name, id);
+            query.AppendFormat("{0} FROM {1} WHERE ", DbSyntax.QuoteIdentifier(props.ElementAt(count - 1).Name), itemType.Name); //{1}=@{1}", t.Name, pk.Name, id);
 
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            List<DbParameter> sqlParams = new List<DbParameter>();
             for (int i = 0; i < filters.Length; i++)
             {
                 QueryFilterElement filter = filters[i];
 
                 if (!filter.IsValueNull())
                 {
-                    sqlParams.Add(new SqlParameter("@" + filter.Name, filter.Value));
-                    query.AppendFormat("[{0}]=@{0} AND ", filter.Name);
+                    sqlParams.Add(DbHelper.CreateParameter("@" + filter.Name, filter.Value));
+                    query.AppendFormat("{0}=@{1} AND ", DbSyntax.QuoteIdentifier(filter.Name), filter.Name);
                 }
             }
 
             query.Remove(query.Length - 5, 5);
 
-            //QueryFilterElement lastFilter = filters[filters.Length - 1];
-            //if (lastFilter.Value != lastFilter.NullValue)
-            //{
-            //    query.AppendFormat("{0}=@{0}", lastFilter.Name);
-            //    sqlParams.Add(new SqlParameter("@" + lastFilter.Name, lastFilter.Value));
-            //}
-
             List<T> items = new List<T>();
-            using (DbDataReader r = SqlHelper.ExecuteReader(CommandType.Text, query.ToString(),
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString(),
                 sqlParams.ToArray()
             ))
             {
@@ -287,11 +275,11 @@ namespace WCMS.Framework.Core
                         .Single(prop => ((ObjectColumnAttribute)prop.GetCustomAttributes(false)[0]).IsPrimaryKey);
 
             // Generate delete SQL
-            query.AppendFormat("DELETE FROM {0} WHERE [{1}]=@{1}", itemType.Name, pk.Name);
+            query.AppendFormat("DELETE FROM {0} WHERE {1}=@{2}", itemType.Name, DbSyntax.QuoteIdentifier(pk.Name), pk.Name);
 
             // Execute delete SQL
-            SqlHelper.ExecuteNonQuery(CommandType.Text, query.ToString(),
-                new SqlParameter("@" + pk.Name, id));
+            DbHelper.ExecuteNonQuery(CommandType.Text, query.ToString(),
+                DbHelper.CreateParameter("@" + pk.Name, id));
 
             return true;
         }
@@ -319,11 +307,11 @@ namespace WCMS.Framework.Core
                 foreach (var prop in props)
                 {
                     if (prop != pk)
-                        query.AppendFormat("[{0}]=@{0},", prop.Name);
+                        query.AppendFormat("{0}=@{1},", DbSyntax.QuoteIdentifier(prop.Name), prop.Name);
                 }
 
                 query.Remove(query.Length - 1, 1); // Remove last comma
-                query.AppendFormat(" WHERE [{0}]=@{0}", pk.Name);
+                query.AppendFormat(" WHERE {0}=@{1}", DbSyntax.QuoteIdentifier(pk.Name), pk.Name);
             }
             else
             {
@@ -335,7 +323,7 @@ namespace WCMS.Framework.Core
 
                 foreach (var prop in props)
                 {
-                    query.AppendFormat("[{0}],", prop.Name);
+                    query.AppendFormat("{0},", DbSyntax.QuoteIdentifier(prop.Name));
                     subQuery.AppendFormat("@{0},", prop.Name);
                 }
 
@@ -353,13 +341,13 @@ namespace WCMS.Framework.Core
             }
 
             // Prepare the select parameters
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            List<DbParameter> sqlParams = new List<DbParameter>();
             foreach (var prop in props)
             {
-                sqlParams.Add(new SqlParameter("@" + prop.Name, prop.GetValue(item, null)));
+                sqlParams.Add(DbHelper.CreateParameter("@" + prop.Name, prop.GetValue(item, null)));
             }
 
-            SqlHelper.ExecuteScalar(CommandType.Text,
+            DbHelper.ExecuteScalar(CommandType.Text,
                 query.ToString(), sqlParams.ToArray());
 
             return pkValue;
@@ -384,14 +372,14 @@ namespace WCMS.Framework.Core
             // Build SELECT for all columns except last one
             for (int i = 0; i < count - 1; i++)
             {
-                query.AppendFormat("[{0}], ", props.ElementAt(i).Name);
+                query.AppendFormat("{0}, ", DbSyntax.QuoteIdentifier(props.ElementAt(i).Name));
             }
 
             // Complete the SQL query
-            query.AppendFormat("[{0}] FROM {1} ", props.ElementAt(count - 1).Name, itemType.Name);
+            query.AppendFormat("{0} FROM {1} ", DbSyntax.QuoteIdentifier(props.ElementAt(count - 1).Name), itemType.Name);
 
             List<T> items = new List<T>();
-            using (DbDataReader r = SqlHelper.ExecuteReader(CommandType.Text, query.ToString()))
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, query.ToString()))
             {
                 while (r.Read())
                 {

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -43,8 +42,10 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
 
         public WebContent Get(int contentId)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader(Enu.SQL_GET,
-                new SqlParameter(AT + WebContentEnum.ContentId, contentId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("WebContent") +
+                " WHERE " + DbSyntax.QuoteIdentifier(Enu.ContentId) + " = @" + Enu.ContentId;
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter(AT + Enu.ContentId, contentId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -55,8 +56,10 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
 
         public WebContent Get(string title)
         {
-            using (DbDataReader r = SqlHelper.ExecuteReader(Enu.SQL_GET,
-                new SqlParameter("@Title", title)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("WebContent") +
+                " WHERE " + DbSyntax.QuoteIdentifier(Enu.Title) + " = @Title";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Title", title)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -68,7 +71,8 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
         public IEnumerable<WebContent> GetList()
         {
             List<WebContent> items = new List<WebContent>();
-            using (DbDataReader r = SqlHelper.ExecuteReader(Enu.SQL_GET))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("WebContent");
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -81,9 +85,10 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
         public IEnumerable<WebContent> GetList(int siteId)
         {
             List<WebContent> items = new List<WebContent>();
-
-            using (DbDataReader r = SqlHelper.ExecuteReader(Enu.SQL_GET,
-                new SqlParameter("@SiteId", siteId)))
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("WebContent") +
+                " WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@SiteId", siteId)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -97,13 +102,35 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
         public IEnumerable<WebContent> GetList(int contentId, int versionOf, int versionNo, int directoryId)
         {
             List<WebContent> items = new List<WebContent>();
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("WebContent");
+            var conditions = new List<string>();
+            var parms = new List<DbParameter>();
 
-            using (DbDataReader r = SqlHelper.ExecuteReader(Enu.SQL_GET,
-                new SqlParameter(AT + Enu.ContentId, contentId),
-                new SqlParameter(AT + WebContentEnum.VersionOf, versionOf),
-                new SqlParameter(AT + WebContentEnum.VersionNo, versionNo),
-                new SqlParameter("@DirectoryId", directoryId)
-                ))
+            if (contentId != -1)
+            {
+                conditions.Add(DbSyntax.QuoteIdentifier(Enu.ContentId) + " = @" + Enu.ContentId);
+                parms.Add(DbHelper.CreateParameter(AT + Enu.ContentId, contentId));
+            }
+            if (versionOf != -1)
+            {
+                conditions.Add(DbSyntax.QuoteIdentifier(Enu.VersionOf) + " = @" + Enu.VersionOf);
+                parms.Add(DbHelper.CreateParameter(AT + Enu.VersionOf, versionOf));
+            }
+            if (versionNo != -1)
+            {
+                conditions.Add(DbSyntax.QuoteIdentifier(Enu.VersionNo) + " = @" + Enu.VersionNo);
+                parms.Add(DbHelper.CreateParameter(AT + Enu.VersionNo, versionNo));
+            }
+            if (directoryId != -1)
+            {
+                conditions.Add(DbSyntax.QuoteIdentifier("DirectoryId") + " = @DirectoryId");
+                parms.Add(DbHelper.CreateParameter("@DirectoryId", directoryId));
+            }
+
+            if (conditions.Count > 0)
+                sql += " WHERE " + string.Join(" AND ", conditions);
+
+            using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql, parms.ToArray()))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -116,27 +143,82 @@ namespace WCMS.WebSystem.WebParts.Content.Providers
 
         public int Update(WebContent item)
         {
-            object o = SqlHelper.ExecuteScalar(WebContentEnum.SQL_SET,
-                new SqlParameter(AT + WebContentEnum.ContentId, item.Id),
-                new SqlParameter(AT + WebContentEnum.Title, item.Title),
-                new SqlParameter(AT + WebContentEnum.Content, item.Content),
-                new SqlParameter(AT + WebContentEnum.VersionNo, item.VersionNo),
-                new SqlParameter(AT + WebContentEnum.VersionOf, item.VersionOf),
-                new SqlParameter("@DirectoryId", item.DirectoryId),
-                new SqlParameter("@Active", item.Active),
-                new SqlParameter("@SiteId", item.SiteId),
-                new SqlParameter("@EditorSensitive", item.EditorSensitive),
-                new SqlParameter("@ActiveContent", item.ActiveContent)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o.ToString());
+            if (item.Id > 0)
+            {
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("WebContent") + " SET " +
+                    DbSyntax.QuoteIdentifier(Enu.Title) + " = @" + Enu.Title + ", " +
+                    DbSyntax.QuoteIdentifier(Enu.Content) + " = @" + Enu.Content + ", " +
+                    DbSyntax.QuoteIdentifier(Enu.VersionNo) + " = @" + Enu.VersionNo + ", " +
+                    DbSyntax.QuoteIdentifier(Enu.VersionOf) + " = @" + Enu.VersionOf + ", " +
+                    DbSyntax.QuoteIdentifier("DirectoryId") + " = @DirectoryId, " +
+                    DbSyntax.QuoteIdentifier("Active") + " = @Active, " +
+                    DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId, " +
+                    DbSyntax.QuoteIdentifier("EditorSensitive") + " = @EditorSensitive, " +
+                    DbSyntax.QuoteIdentifier("ActiveContent") + " = @ActiveContent, " +
+                    DbSyntax.QuoteIdentifier("DateModified") + " = @DateModified" +
+                    " WHERE " + DbSyntax.QuoteIdentifier(Enu.ContentId) + " = @" + Enu.ContentId;
+                parms = new[] {
+                    DbHelper.CreateParameter(AT + Enu.Title, item.Title),
+                    DbHelper.CreateParameter(AT + Enu.Content, item.Content),
+                    DbHelper.CreateParameter(AT + Enu.VersionNo, item.VersionNo),
+                    DbHelper.CreateParameter(AT + Enu.VersionOf, item.VersionOf),
+                    DbHelper.CreateParameter("@DirectoryId", item.DirectoryId),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@EditorSensitive", item.EditorSensitive),
+                    DbHelper.CreateParameter("@ActiveContent", item.ActiveContent),
+                    DbHelper.CreateParameter("@DateModified", DateTime.Now),
+                    DbHelper.CreateParameter(AT + Enu.ContentId, item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("WebContent") + " (" +
+                    DbSyntax.QuoteIdentifier(Enu.Title) + ", " +
+                    DbSyntax.QuoteIdentifier(Enu.Content) + ", " +
+                    DbSyntax.QuoteIdentifier(Enu.VersionNo) + ", " +
+                    DbSyntax.QuoteIdentifier(Enu.VersionOf) + ", " +
+                    DbSyntax.QuoteIdentifier("DirectoryId") + ", " +
+                    DbSyntax.QuoteIdentifier("Active") + ", " +
+                    DbSyntax.QuoteIdentifier("SiteId") + ", " +
+                    DbSyntax.QuoteIdentifier("EditorSensitive") + ", " +
+                    DbSyntax.QuoteIdentifier("ActiveContent") + ", " +
+                    DbSyntax.QuoteIdentifier("DateModified") +
+                    ") VALUES (@" + Enu.Title + ", @" + Enu.Content + ", @" + Enu.VersionNo +
+                    ", @" + Enu.VersionOf + ", @DirectoryId, @Active, @SiteId, @EditorSensitive, @ActiveContent, @DateModified)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier(Enu.ContentId);
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter(AT + Enu.Title, item.Title),
+                    DbHelper.CreateParameter(AT + Enu.Content, item.Content),
+                    DbHelper.CreateParameter(AT + Enu.VersionNo, item.VersionNo),
+                    DbHelper.CreateParameter(AT + Enu.VersionOf, item.VersionOf),
+                    DbHelper.CreateParameter("@DirectoryId", item.DirectoryId),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@SiteId", item.SiteId),
+                    DbHelper.CreateParameter("@EditorSensitive", item.EditorSensitive),
+                    DbHelper.CreateParameter("@ActiveContent", item.ActiveContent),
+                    DbHelper.CreateParameter("@DateModified", DateTime.Now)
+                };
+                var o = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(o);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int contentId)
         {
-            SqlHelper.ExecuteNonQuery(WebContentEnum.SQL_DEL,
-                new SqlParameter(AT + WebContentEnum.ContentId, contentId));
+            var sql = "DELETE FROM " + DbSyntax.QuoteIdentifier("WebContent") +
+                " WHERE " + DbSyntax.QuoteIdentifier(Enu.ContentId) + " = @" + Enu.ContentId;
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter(AT + Enu.ContentId, contentId));
 
             return true;
         }

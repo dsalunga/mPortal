@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
-
+using System.Data.Common;
 using WCMS.Common.Utilities;
 
 using WCMS.Framework.Core;
@@ -13,6 +12,11 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebCommentProvider : GenericSqlDataProviderBase<WebComment>, IWebCommentProvider
     {
+        protected override string TableName { get { return "WebComment"; } }
+
+        protected override string IdColumn { get { return "Id"; } }
+
+
         protected override string SelectProcedure { get { return "WebComment_Get"; } }
         protected override string DeleteProcedure { get { return "WebComment_Del"; } }
 
@@ -34,19 +38,64 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public override int Update(WebComment item)
         {
-            var obj = SqlHelper.ExecuteScalar("WebComment_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Content", item.Content),
-                new SqlParameter("@UserId", item.UserId),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@DateCreated", item.DateCreated),
-                new SqlParameter("@ParentId", item.ParentId),
-                new SqlParameter("@UserName", item.UserName),
-                new SqlParameter("@UserEmail", item.UserEmail)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebComment SET " +
+                    DbSyntax.QuoteIdentifier("Content") + " = @Content" + ", " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId" + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId" + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId" + ", " +
+                    DbSyntax.QuoteIdentifier("DateCreated") + " = @DateCreated" + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId" + ", " +
+                    DbSyntax.QuoteIdentifier("UserName") + " = @UserName" + ", " +
+                    DbSyntax.QuoteIdentifier("UserEmail") + " = @UserEmail" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@UserName", item.UserName),
+                    DbHelper.CreateParameter("@UserEmail", item.UserEmail),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebComment (" +
+                    DbSyntax.QuoteIdentifier("Content") + ", " +
+                    DbSyntax.QuoteIdentifier("UserId") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("DateCreated") + ", " +
+                    DbSyntax.QuoteIdentifier("ParentId") + ", " +
+                    DbSyntax.QuoteIdentifier("UserName") + ", " +
+                    DbSyntax.QuoteIdentifier("UserEmail") +
+                    ") VALUES (@Content, @UserId, @ObjectId, @RecordId, @DateCreated, @ParentId, @UserName, @UserEmail)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Content", item.Content),
+                    DbHelper.CreateParameter("@UserId", item.UserId),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                    DbHelper.CreateParameter("@ParentId", item.ParentId),
+                    DbHelper.CreateParameter("@UserName", item.UserName),
+                    DbHelper.CreateParameter("@UserEmail", item.UserEmail)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
@@ -56,11 +105,16 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebComment> items = new List<WebComment>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@UserId", userId),
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ParentId", parentId)))
+            var sql = "SELECT * FROM WebComment WHERE " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId AND " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " +
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+                using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@UserId", userId),
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ParentId", parentId)))
             {
                 while (r.Read())
                     items.Add(From(r));

@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
-
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
@@ -15,8 +13,9 @@ namespace WCMS.Framework.Core.SqlProvider
     {
         public WebUserGroup Get(int userRoleId)
         {
-            using (var r = SqlHelper.ExecuteReader("WebUserGroup_Get",
-                new SqlParameter("@Id", userRoleId)))
+            var sql = "SELECT * FROM WebUserGroup WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", userRoleId)))
             {
                 if (r.HasRows && r.Read())
                     return this.From(r);
@@ -27,10 +26,11 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebUserGroup Get(int roleId, int id, bool isGroup = false)
         {
-            using (var r = SqlHelper.ExecuteReader("WebUserGroup_Get",
-                new SqlParameter("@RecordId", id),
-                new SqlParameter("@ObjectId", isGroup ? WebObjects.WebGroup : WebObjects.WebUser),
-                new SqlParameter("@GroupId", roleId)
+            var sql = "SELECT * FROM WebUserGroup WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@RecordId", id),
+                DbHelper.CreateParameter("@ObjectId", isGroup ? WebObjects.WebGroup : WebObjects.WebUser),
+                DbHelper.CreateParameter("@GroupId", roleId)
                 ))
             {
                 if (r.HasRows && r.Read())
@@ -43,7 +43,8 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebUserGroup> GetList()
         {
             var items = new List<WebUserGroup>();
-            using (var r = SqlHelper.ExecuteReader("WebUserGroup_Get"))
+            var sql = "SELECT * FROM WebUserGroup";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
                 {
@@ -58,8 +59,9 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebUserGroup> GetList(int active)
         {
             var items = new List<WebUserGroup>();
-            using (var r = SqlHelper.ExecuteReader("WebUserGroup_Get",
-                new SqlParameter("@Active", active)))
+            var sql = "SELECT * FROM WebUserGroup WHERE " + DbSyntax.QuoteIdentifier("Active") + " = @Active";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Active", active)))
             {
                 if (r.HasRows)
                     while (r.Read())
@@ -72,10 +74,11 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebUserGroup> GetByUserId(int userId, int active)
         {
             var items = new List<WebUserGroup>();
-            using (var r = SqlHelper.ExecuteReader("WebUserGroup_Get",
-                new SqlParameter("@RecordId", userId),
-                new SqlParameter("@ObjectId", WebObjects.WebUser),
-                new SqlParameter("@Active", active)
+            var sql = "SELECT * FROM WebUserGroup WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("Active") + " = @Active";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@RecordId", userId),
+                DbHelper.CreateParameter("@ObjectId", WebObjects.WebUser),
+                DbHelper.CreateParameter("@Active", active)
                 ))
             {
                 if (r.HasRows)
@@ -89,9 +92,10 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebUserGroup> GetByGroupId(int groupId, int active)
         {
             var items = new List<WebUserGroup>();
-            using (var r = SqlHelper.ExecuteReader("WebUserGroup_Get",
-                new SqlParameter("@GroupId", groupId),
-                new SqlParameter("@Active", active)
+            var sql = "SELECT * FROM WebUserGroup WHERE " + DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId AND " + DbSyntax.QuoteIdentifier("Active") + " = @Active";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@GroupId", groupId),
+                DbHelper.CreateParameter("@Active", active)
                 ))
             {
                 if (r.HasRows)
@@ -105,10 +109,11 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebUserGroup> GetByCreatedById(int groupId, int createdById, int active)
         {
             var items = new List<WebUserGroup>();
-            using (var r = SqlHelper.ExecuteReader("WebUserGroup_Get",
-                new SqlParameter("@GroupId", groupId),
-                new SqlParameter("@Active", active),
-                new SqlParameter("@CreatedById", createdById)
+            var sql = "SELECT * FROM WebUserGroup WHERE " + DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId AND " + DbSyntax.QuoteIdentifier("Active") + " = @Active AND " + DbSyntax.QuoteIdentifier("CreatedById") + " = @CreatedById";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@GroupId", groupId),
+                DbHelper.CreateParameter("@Active", active),
+                DbHelper.CreateParameter("@CreatedById", createdById)
                 ))
             {
                 if (r.HasRows)
@@ -121,26 +126,72 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int Update(WebUserGroup item)
         {
-            object o = SqlHelper.ExecuteScalar("WebUserGroup_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@UserId", -1),
-                new SqlParameter("@GroupId", item.GroupId),
-                new SqlParameter("@Active", item.Active),
-                new SqlParameter("@DateJoined", item.DateJoined),
-                new SqlParameter("@ObjectId", item.ObjectId),
-                new SqlParameter("@RecordId", item.RecordId),
-                new SqlParameter("@Remarks", item.Remarks),
-                new SqlParameter("@CreatedById", item.CreatedById)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(o);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE WebUserGroup SET " +
+                    DbSyntax.QuoteIdentifier("UserId") + " = @UserId, " +
+                    DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId, " +
+                    DbSyntax.QuoteIdentifier("Active") + " = @Active, " +
+                    DbSyntax.QuoteIdentifier("DateJoined") + " = @DateJoined, " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
+                    DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
+                    DbSyntax.QuoteIdentifier("Remarks") + " = @Remarks, " +
+                    DbSyntax.QuoteIdentifier("CreatedById") + " = @CreatedById" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UserId", -1),
+                    DbHelper.CreateParameter("@GroupId", item.GroupId),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@DateJoined", item.DateJoined),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Remarks", item.Remarks),
+                    DbHelper.CreateParameter("@CreatedById", item.CreatedById),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO WebUserGroup (" +
+                    DbSyntax.QuoteIdentifier("UserId") + ", " +
+                    DbSyntax.QuoteIdentifier("GroupId") + ", " +
+                    DbSyntax.QuoteIdentifier("Active") + ", " +
+                    DbSyntax.QuoteIdentifier("DateJoined") + ", " +
+                    DbSyntax.QuoteIdentifier("ObjectId") + ", " +
+                    DbSyntax.QuoteIdentifier("RecordId") + ", " +
+                    DbSyntax.QuoteIdentifier("Remarks") + ", " +
+                    DbSyntax.QuoteIdentifier("CreatedById") +
+                    ") VALUES (@UserId, @GroupId, @Active, @DateJoined, @ObjectId, @RecordId, @Remarks, @CreatedById)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@UserId", -1),
+                    DbHelper.CreateParameter("@GroupId", item.GroupId),
+                    DbHelper.CreateParameter("@Active", item.Active),
+                    DbHelper.CreateParameter("@DateJoined", item.DateJoined),
+                    DbHelper.CreateParameter("@ObjectId", item.ObjectId),
+                    DbHelper.CreateParameter("@RecordId", item.RecordId),
+                    DbHelper.CreateParameter("@Remarks", item.Remarks),
+                    DbHelper.CreateParameter("@CreatedById", item.CreatedById)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 
         public bool Delete(int userRoleId)
         {
-            SqlHelper.ExecuteNonQuery("WebUserGroup_Del",
-                new SqlParameter("@Id", userRoleId)
+            var sql = "DELETE FROM WebUserGroup WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", userRoleId)
             );
 
             return true;
@@ -148,10 +199,11 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int userId, int groupId)
         {
-            SqlHelper.ExecuteNonQuery("WebUserGroup_Del",
-                new SqlParameter("@RecordId", userId),
-                new SqlParameter("@ObjectId", WebObjects.WebUser),
-                new SqlParameter("@GroupId", groupId)
+            var sql = "DELETE FROM WebUserGroup WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@RecordId", userId),
+                DbHelper.CreateParameter("@ObjectId", WebObjects.WebUser),
+                DbHelper.CreateParameter("@GroupId", groupId)
             );
 
             return true;
@@ -159,10 +211,11 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int groupId, int objectId, int recordId)
         {
-            SqlHelper.ExecuteNonQuery("WebUserGroup_Del",
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@ObjectId", objectId),
-                new SqlParameter("@GroupId", groupId)
+            var sql = "DELETE FROM WebUserGroup WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@RecordId", recordId),
+                DbHelper.CreateParameter("@ObjectId", objectId),
+                DbHelper.CreateParameter("@GroupId", groupId)
             );
 
             return true;
