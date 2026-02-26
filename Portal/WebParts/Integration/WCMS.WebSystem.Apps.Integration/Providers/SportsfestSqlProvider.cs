@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -23,16 +23,18 @@ namespace WCMS.WebSystem.Apps.Integration
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("Sportsfest_Del",
-                new SqlParameter("@Id", id));
+            var sql = "DELETE FROM Sportsfest WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
 
         public Sportsfest Get(int id)
         {
-            using (var r = SqlHelper.ExecuteReader("Sportsfest_Get",
-                new SqlParameter("@Id", id)))
+            var sql = "SELECT * FROM Sportsfest WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.Read())
                     return From(r);
@@ -43,8 +45,9 @@ namespace WCMS.WebSystem.Apps.Integration
 
         public Sportsfest Get(string name)
         {
-            using (var r = SqlHelper.ExecuteReader("Sportsfest_Get",
-                new SqlParameter("@Name", name)))
+            var sql = "SELECT * FROM Sportsfest WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Name", name)))
             {
                 if (r.Read())
                     return From(r);
@@ -53,7 +56,7 @@ namespace WCMS.WebSystem.Apps.Integration
             return null;
         }
 
-        private Sportsfest From(SqlDataReader r)
+        private Sportsfest From(IDataReader r)
         {
             Sportsfest item = new Sportsfest();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
@@ -81,7 +84,8 @@ namespace WCMS.WebSystem.Apps.Integration
         {
             List<Sportsfest> items = new List<Sportsfest>();
 
-            using (var r = SqlHelper.ExecuteReader("Sportsfest_Get"))
+            var sql = "SELECT * FROM Sportsfest";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -102,22 +106,76 @@ namespace WCMS.WebSystem.Apps.Integration
 
         public int Update(Sportsfest item)
         {
-            var obj = SqlHelper.ExecuteScalar("Sportsfest_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@MemberId", item.MemberId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@GroupColor", item.GroupColor),
-                new SqlParameter("@Age", item.Age),
-                new SqlParameter("@ShirtSize", item.ShirtSize),
-                new SqlParameter("@Mobile", item.Mobile),
-                new SqlParameter("@EntryDate", item.EntryDate),
-                new SqlParameter("@Sports", item.Sports),
-                new SqlParameter("@Locale", item.Locale),
-                new SqlParameter("@CountryCode", item.CountryCode),
-                new SqlParameter("@Suggestion", item.Suggestion)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE Sportsfest SET " +
+                    DbSyntax.QuoteIdentifier("MemberId") + " = @MemberId, " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("GroupColor") + " = @GroupColor, " +
+                    DbSyntax.QuoteIdentifier("Age") + " = @Age, " +
+                    DbSyntax.QuoteIdentifier("ShirtSize") + " = @ShirtSize, " +
+                    DbSyntax.QuoteIdentifier("Mobile") + " = @Mobile, " +
+                    DbSyntax.QuoteIdentifier("EntryDate") + " = @EntryDate, " +
+                    DbSyntax.QuoteIdentifier("Sports") + " = @Sports, " +
+                    DbSyntax.QuoteIdentifier("Locale") + " = @Locale, " +
+                    DbSyntax.QuoteIdentifier("CountryCode") + " = @CountryCode, " +
+                    DbSyntax.QuoteIdentifier("Suggestion") + " = @Suggestion" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@MemberId", item.MemberId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@GroupColor", item.GroupColor),
+                    DbHelper.CreateParameter("@Age", item.Age),
+                    DbHelper.CreateParameter("@ShirtSize", item.ShirtSize),
+                    DbHelper.CreateParameter("@Mobile", item.Mobile),
+                    DbHelper.CreateParameter("@EntryDate", item.EntryDate),
+                    DbHelper.CreateParameter("@Sports", item.Sports),
+                    DbHelper.CreateParameter("@Locale", item.Locale),
+                    DbHelper.CreateParameter("@CountryCode", item.CountryCode),
+                    DbHelper.CreateParameter("@Suggestion", item.Suggestion),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO Sportsfest (" +
+                    DbSyntax.QuoteIdentifier("MemberId") + ", " +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("GroupColor") + ", " +
+                    DbSyntax.QuoteIdentifier("Age") + ", " +
+                    DbSyntax.QuoteIdentifier("ShirtSize") + ", " +
+                    DbSyntax.QuoteIdentifier("Mobile") + ", " +
+                    DbSyntax.QuoteIdentifier("EntryDate") + ", " +
+                    DbSyntax.QuoteIdentifier("Sports") + ", " +
+                    DbSyntax.QuoteIdentifier("Locale") + ", " +
+                    DbSyntax.QuoteIdentifier("CountryCode") + ", " +
+                    DbSyntax.QuoteIdentifier("Suggestion") +
+                    ") VALUES (@MemberId, @Name, @GroupColor, @Age, @ShirtSize, @Mobile, @EntryDate, @Sports, @Locale, @CountryCode, @Suggestion)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@MemberId", item.MemberId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@GroupColor", item.GroupColor),
+                    DbHelper.CreateParameter("@Age", item.Age),
+                    DbHelper.CreateParameter("@ShirtSize", item.ShirtSize),
+                    DbHelper.CreateParameter("@Mobile", item.Mobile),
+                    DbHelper.CreateParameter("@EntryDate", item.EntryDate),
+                    DbHelper.CreateParameter("@Sports", item.Sports),
+                    DbHelper.CreateParameter("@Locale", item.Locale),
+                    DbHelper.CreateParameter("@CountryCode", item.CountryCode),
+                    DbHelper.CreateParameter("@Suggestion", item.Suggestion)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
+
             return item.Id;
         }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using WCMS.Common.Utilities;
@@ -38,19 +38,65 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public override int Update(MCCompetition item)
         {
-            var obj = SqlHelper.ExecuteScalar("MusicCompetition_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@Judges", item.Judges),
-                new SqlParameter("@ScoreLocked", item.ScoreLocked),
-                new SqlParameter("@CompetitionDate", item.CompetitionDate),
-                new SqlParameter("@VoteLocked", item.VoteLocked),
-                new SqlParameter("@VoteMasked", item.VoteMasked),
-                new SqlParameter("@BestInterpreterId", item.BestInterpreterId),
-                new SqlParameter("@PeoplesChoiceId", item.PeoplesChoiceId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            return UpdatePostProcess(item, obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE MusicCompetition SET " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("Judges") + " = @Judges, " +
+                    DbSyntax.QuoteIdentifier("ScoreLocked") + " = @ScoreLocked, " +
+                    DbSyntax.QuoteIdentifier("CompetitionDate") + " = @CompetitionDate, " +
+                    DbSyntax.QuoteIdentifier("VoteLocked") + " = @VoteLocked, " +
+                    DbSyntax.QuoteIdentifier("VoteMasked") + " = @VoteMasked, " +
+                    DbSyntax.QuoteIdentifier("BestInterpreterId") + " = @BestInterpreterId, " +
+                    DbSyntax.QuoteIdentifier("PeoplesChoiceId") + " = @PeoplesChoiceId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Judges", item.Judges),
+                    DbHelper.CreateParameter("@ScoreLocked", item.ScoreLocked),
+                    DbHelper.CreateParameter("@CompetitionDate", item.CompetitionDate),
+                    DbHelper.CreateParameter("@VoteLocked", item.VoteLocked),
+                    DbHelper.CreateParameter("@VoteMasked", item.VoteMasked),
+                    DbHelper.CreateParameter("@BestInterpreterId", item.BestInterpreterId),
+                    DbHelper.CreateParameter("@PeoplesChoiceId", item.PeoplesChoiceId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO MusicCompetition (" +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("Judges") + ", " +
+                    DbSyntax.QuoteIdentifier("ScoreLocked") + ", " +
+                    DbSyntax.QuoteIdentifier("CompetitionDate") + ", " +
+                    DbSyntax.QuoteIdentifier("VoteLocked") + ", " +
+                    DbSyntax.QuoteIdentifier("VoteMasked") + ", " +
+                    DbSyntax.QuoteIdentifier("BestInterpreterId") + ", " +
+                    DbSyntax.QuoteIdentifier("PeoplesChoiceId") +
+                    ") VALUES (@Name, @Judges, @ScoreLocked, @CompetitionDate, @VoteLocked, @VoteMasked, @BestInterpreterId, @PeoplesChoiceId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@Judges", item.Judges),
+                    DbHelper.CreateParameter("@ScoreLocked", item.ScoreLocked),
+                    DbHelper.CreateParameter("@CompetitionDate", item.CompetitionDate),
+                    DbHelper.CreateParameter("@VoteLocked", item.VoteLocked),
+                    DbHelper.CreateParameter("@VoteMasked", item.VoteMasked),
+                    DbHelper.CreateParameter("@BestInterpreterId", item.BestInterpreterId),
+                    DbHelper.CreateParameter("@PeoplesChoiceId", item.PeoplesChoiceId)
+                };
+                var o = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                return UpdatePostProcess(item, o);
+            }
+
+            return UpdatePostProcess(item, item.Id);
         }
     }
 }

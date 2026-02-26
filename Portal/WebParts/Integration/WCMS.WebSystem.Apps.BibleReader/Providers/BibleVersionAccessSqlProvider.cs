@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -40,23 +40,62 @@ namespace WCMS.WebSystem.WebParts.BibleReader.Providers
 
         public override int Update(BibleVersionAccess item)
         {
-            var obj = SqlHelper.ExecuteScalar("BibleReaderVersionAccess_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@BibleAccessId", item.BibleAccessId),
-                new SqlParameter("@BibleVersionId", item.BibleVersionId),
-                new SqlParameter("@BibleVersionName", item.BibleVersionName),
-                new SqlParameter("@VersionAccessCount", item.VersionAccessCount),
-                new SqlParameter("@LastAccessed", item.LastAccessed));
+            string sql;
+            DbParameter[] parms;
 
-            return UpdatePostProcess(item, obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE BibleReaderVersionAccess SET " +
+                    DbSyntax.QuoteIdentifier("BibleAccessId") + " = @BibleAccessId, " +
+                    DbSyntax.QuoteIdentifier("BibleVersionId") + " = @BibleVersionId, " +
+                    DbSyntax.QuoteIdentifier("BibleVersionName") + " = @BibleVersionName, " +
+                    DbSyntax.QuoteIdentifier("VersionAccessCount") + " = @VersionAccessCount, " +
+                    DbSyntax.QuoteIdentifier("LastAccessed") + " = @LastAccessed" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@BibleAccessId", item.BibleAccessId),
+                    DbHelper.CreateParameter("@BibleVersionId", item.BibleVersionId),
+                    DbHelper.CreateParameter("@BibleVersionName", item.BibleVersionName),
+                    DbHelper.CreateParameter("@VersionAccessCount", item.VersionAccessCount),
+                    DbHelper.CreateParameter("@LastAccessed", item.LastAccessed),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO BibleReaderVersionAccess (" +
+                    DbSyntax.QuoteIdentifier("BibleAccessId") + ", " +
+                    DbSyntax.QuoteIdentifier("BibleVersionId") + ", " +
+                    DbSyntax.QuoteIdentifier("BibleVersionName") + ", " +
+                    DbSyntax.QuoteIdentifier("VersionAccessCount") + ", " +
+                    DbSyntax.QuoteIdentifier("LastAccessed") +
+                    ") VALUES (@BibleAccessId, @BibleVersionId, @BibleVersionName, @VersionAccessCount, @LastAccessed)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@BibleAccessId", item.BibleAccessId),
+                    DbHelper.CreateParameter("@BibleVersionId", item.BibleVersionId),
+                    DbHelper.CreateParameter("@BibleVersionName", item.BibleVersionName),
+                    DbHelper.CreateParameter("@VersionAccessCount", item.VersionAccessCount),
+                    DbHelper.CreateParameter("@LastAccessed", item.LastAccessed)
+                };
+                var o = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                return UpdatePostProcess(item, o);
+            }
+
+            return UpdatePostProcess(item, item.Id);
         }
 
         public IEnumerable<BibleVersionAccess> GetList(int accessId)
         {
             List<BibleVersionAccess> items = new List<BibleVersionAccess>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@BibleAccessId", accessId)))
+            var sql = "SELECT * FROM BibleReaderVersionAccess WHERE " + DbSyntax.QuoteIdentifier("BibleAccessId") + " = @BibleAccessId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@BibleAccessId", accessId)))
             {
                 while (r.Read())
                     items.Add(From(r));

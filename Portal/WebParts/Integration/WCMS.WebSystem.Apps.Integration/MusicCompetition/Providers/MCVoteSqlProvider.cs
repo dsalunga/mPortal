@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -53,31 +53,90 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public override int Update(MCVote item)
         {
-            var obj = SqlHelper.ExecuteScalar("MCVote_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@Code", item.Code),
-                new SqlParameter("@FirstName", item.FirstName),
-                new SqlParameter("@LastName", item.LastName),
-                new SqlParameter("@MobileNumber", item.MobileNumber),
-                new SqlParameter("@Email", item.Email),
-                new SqlParameter("@CandidateId", item.CandidateId),
-                new SqlParameter("@DateVoted", item.DateVoted),
-                new SqlParameter("@UserName", item.UserName),
-                new SqlParameter("@Status", item.Status),
-                new SqlParameter("@CompetitionId", item.CompetitionId),
-                new SqlParameter("@IPAddress", item.IPAddress),
-                new SqlParameter("@Spam", item.Spam)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            return UpdatePostProcess(item, obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE MCVote SET " +
+                    DbSyntax.QuoteIdentifier("Code") + " = @Code, " +
+                    DbSyntax.QuoteIdentifier("FirstName") + " = @FirstName, " +
+                    DbSyntax.QuoteIdentifier("LastName") + " = @LastName, " +
+                    DbSyntax.QuoteIdentifier("MobileNumber") + " = @MobileNumber, " +
+                    DbSyntax.QuoteIdentifier("Email") + " = @Email, " +
+                    DbSyntax.QuoteIdentifier("CandidateId") + " = @CandidateId, " +
+                    DbSyntax.QuoteIdentifier("DateVoted") + " = @DateVoted, " +
+                    DbSyntax.QuoteIdentifier("UserName") + " = @UserName, " +
+                    DbSyntax.QuoteIdentifier("Status") + " = @Status, " +
+                    DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId, " +
+                    DbSyntax.QuoteIdentifier("IPAddress") + " = @IPAddress, " +
+                    DbSyntax.QuoteIdentifier("Spam") + " = @Spam" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Code", item.Code),
+                    DbHelper.CreateParameter("@FirstName", item.FirstName),
+                    DbHelper.CreateParameter("@LastName", item.LastName),
+                    DbHelper.CreateParameter("@MobileNumber", item.MobileNumber),
+                    DbHelper.CreateParameter("@Email", item.Email),
+                    DbHelper.CreateParameter("@CandidateId", item.CandidateId),
+                    DbHelper.CreateParameter("@DateVoted", item.DateVoted),
+                    DbHelper.CreateParameter("@UserName", item.UserName),
+                    DbHelper.CreateParameter("@Status", item.Status),
+                    DbHelper.CreateParameter("@CompetitionId", item.CompetitionId),
+                    DbHelper.CreateParameter("@IPAddress", item.IPAddress),
+                    DbHelper.CreateParameter("@Spam", item.Spam),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO MCVote (" +
+                    DbSyntax.QuoteIdentifier("Code") + ", " +
+                    DbSyntax.QuoteIdentifier("FirstName") + ", " +
+                    DbSyntax.QuoteIdentifier("LastName") + ", " +
+                    DbSyntax.QuoteIdentifier("MobileNumber") + ", " +
+                    DbSyntax.QuoteIdentifier("Email") + ", " +
+                    DbSyntax.QuoteIdentifier("CandidateId") + ", " +
+                    DbSyntax.QuoteIdentifier("DateVoted") + ", " +
+                    DbSyntax.QuoteIdentifier("UserName") + ", " +
+                    DbSyntax.QuoteIdentifier("Status") + ", " +
+                    DbSyntax.QuoteIdentifier("CompetitionId") + ", " +
+                    DbSyntax.QuoteIdentifier("IPAddress") + ", " +
+                    DbSyntax.QuoteIdentifier("Spam") +
+                    ") VALUES (@Code, @FirstName, @LastName, @MobileNumber, @Email, @CandidateId, @DateVoted, @UserName, @Status, @CompetitionId, @IPAddress, @Spam)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@Code", item.Code),
+                    DbHelper.CreateParameter("@FirstName", item.FirstName),
+                    DbHelper.CreateParameter("@LastName", item.LastName),
+                    DbHelper.CreateParameter("@MobileNumber", item.MobileNumber),
+                    DbHelper.CreateParameter("@Email", item.Email),
+                    DbHelper.CreateParameter("@CandidateId", item.CandidateId),
+                    DbHelper.CreateParameter("@DateVoted", item.DateVoted),
+                    DbHelper.CreateParameter("@UserName", item.UserName),
+                    DbHelper.CreateParameter("@Status", item.Status),
+                    DbHelper.CreateParameter("@CompetitionId", item.CompetitionId),
+                    DbHelper.CreateParameter("@IPAddress", item.IPAddress),
+                    DbHelper.CreateParameter("@Spam", item.Spam)
+                };
+                var o = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                return UpdatePostProcess(item, o);
+            }
+
+            return UpdatePostProcess(item, item.Id);
         }
 
         public MCVote Get(string code)
         {
             MCVote item = null;
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@Code", code)))
+            var sql = "SELECT * FROM MCVote WHERE " + DbSyntax.QuoteIdentifier("Code") + " = @Code";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Code", code)))
             {
                 if (r.Read())
                     return From(r);
@@ -90,10 +149,12 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             List<MCVote> items = new List<MCVote>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@CandidateId", candidateId),
-                new SqlParameter("@CompetitionId", competitionId)
-                ))
+            var sql = "SELECT * FROM MCVote WHERE " +
+                "(@CandidateId = -2 OR " + DbSyntax.QuoteIdentifier("CandidateId") + " = @CandidateId) AND " +
+                "(@CompetitionId = -2 OR " + DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId)";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@CandidateId", candidateId),
+                DbHelper.CreateParameter("@CompetitionId", competitionId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -106,9 +167,12 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             MCVote item = null;
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@UserName", userName),
-                new SqlParameter("@CompetitionId", competitionId)))
+            var sql = "SELECT * FROM MCVote WHERE " +
+                DbSyntax.QuoteIdentifier("UserName") + " = @UserName AND " +
+                DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@UserName", userName),
+                DbHelper.CreateParameter("@CompetitionId", competitionId)))
             {
                 if (r.Read())
                     return From(r);
@@ -121,10 +185,14 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             MCVote item = null;
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@Email", email),
-                new SqlParameter("@Status", status),
-                new SqlParameter("@CompetitionId", competitionId)))
+            var sql = "SELECT * FROM MCVote WHERE " +
+                DbSyntax.QuoteIdentifier("Email") + " = @Email AND " +
+                "(@Status = -1 OR " + DbSyntax.QuoteIdentifier("Status") + " = @Status) AND " +
+                DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Email", email),
+                DbHelper.CreateParameter("@Status", status),
+                DbHelper.CreateParameter("@CompetitionId", competitionId)))
             {
                 if (r.Read())
                     return From(r);

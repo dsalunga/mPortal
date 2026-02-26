@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using WCMS.Common.Utilities;
@@ -37,29 +37,75 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public override int Update(MCSongScore item)
         {
-            var obj = SqlHelper.ExecuteScalar("MCSongScore_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@JudgeId", item.JudgeId),
-                new SqlParameter("@Musicality", item.Musicality),
-                new SqlParameter("@LyricsMessage", item.LyricsMessage),
-                new SqlParameter("@OverallImpact", item.OverallImpact),
-                new SqlParameter("@DateModified", item.DateModified),
-                new SqlParameter("@CandidateId", item.CandidateId),
-                new SqlParameter("@CompetitionId", item.CompetitionId)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            return UpdatePostProcess(item, obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE MCSongScore SET " +
+                    DbSyntax.QuoteIdentifier("JudgeId") + " = @JudgeId, " +
+                    DbSyntax.QuoteIdentifier("Musicality") + " = @Musicality, " +
+                    DbSyntax.QuoteIdentifier("LyricsMessage") + " = @LyricsMessage, " +
+                    DbSyntax.QuoteIdentifier("OverallImpact") + " = @OverallImpact, " +
+                    DbSyntax.QuoteIdentifier("DateModified") + " = @DateModified, " +
+                    DbSyntax.QuoteIdentifier("CandidateId") + " = @CandidateId, " +
+                    DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@JudgeId", item.JudgeId),
+                    DbHelper.CreateParameter("@Musicality", item.Musicality),
+                    DbHelper.CreateParameter("@LyricsMessage", item.LyricsMessage),
+                    DbHelper.CreateParameter("@OverallImpact", item.OverallImpact),
+                    DbHelper.CreateParameter("@DateModified", item.DateModified),
+                    DbHelper.CreateParameter("@CandidateId", item.CandidateId),
+                    DbHelper.CreateParameter("@CompetitionId", item.CompetitionId),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO MCSongScore (" +
+                    DbSyntax.QuoteIdentifier("JudgeId") + ", " +
+                    DbSyntax.QuoteIdentifier("Musicality") + ", " +
+                    DbSyntax.QuoteIdentifier("LyricsMessage") + ", " +
+                    DbSyntax.QuoteIdentifier("OverallImpact") + ", " +
+                    DbSyntax.QuoteIdentifier("DateModified") + ", " +
+                    DbSyntax.QuoteIdentifier("CandidateId") + ", " +
+                    DbSyntax.QuoteIdentifier("CompetitionId") +
+                    ") VALUES (@JudgeId, @Musicality, @LyricsMessage, @OverallImpact, @DateModified, @CandidateId, @CompetitionId)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@JudgeId", item.JudgeId),
+                    DbHelper.CreateParameter("@Musicality", item.Musicality),
+                    DbHelper.CreateParameter("@LyricsMessage", item.LyricsMessage),
+                    DbHelper.CreateParameter("@OverallImpact", item.OverallImpact),
+                    DbHelper.CreateParameter("@DateModified", item.DateModified),
+                    DbHelper.CreateParameter("@CandidateId", item.CandidateId),
+                    DbHelper.CreateParameter("@CompetitionId", item.CompetitionId)
+                };
+                var o = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                return UpdatePostProcess(item, o);
+            }
+
+            return UpdatePostProcess(item, item.Id);
         }
 
         public IEnumerable<MCSongScore> GetList(int competitionId = -2, int candidateId = -2, int judgeId = -2)
         {
             List<MCSongScore> items = new List<MCSongScore>();
 
-            using (var r = SqlHelper.ExecuteReader(SelectProcedure,
-                new SqlParameter("@CandidateId", candidateId),
-                new SqlParameter("@JudgeId", judgeId),
-                new SqlParameter("@CompetitionId", competitionId)
-            ))
+            var sql = "SELECT * FROM MCSongScore WHERE " +
+                "(@CandidateId = -2 OR " + DbSyntax.QuoteIdentifier("CandidateId") + " = @CandidateId) AND " +
+                "(@JudgeId = -2 OR " + DbSyntax.QuoteIdentifier("JudgeId") + " = @JudgeId) AND " +
+                "(@CompetitionId = -2 OR " + DbSyntax.QuoteIdentifier("CompetitionId") + " = @CompetitionId)";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@CandidateId", candidateId),
+                DbHelper.CreateParameter("@JudgeId", judgeId),
+                DbHelper.CreateParameter("@CompetitionId", competitionId)))
             {
                 while (r.Read())
                     items.Add(From(r));

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 using WCMS.Common.Utilities;
 
@@ -22,8 +22,9 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             List<MemberVisit> items = new List<MemberVisit>();
 
-            using (var r = SqlHelper.ExecuteReader("ODKVisit_Get",
-                new SqlParameter("@GroupId", groupId)))
+            var sql = "SELECT * FROM ODKVisit WHERE " + DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@GroupId", groupId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -45,10 +46,14 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
             List<MemberVisit> items = new List<MemberVisit>();
 
-            using (var r = SqlHelper.ExecuteReader("ODKVisit_Get",
-                new SqlParameter("@GroupId", groupId),
-                new SqlParameter("@UserId", userId),
-                new SqlParameter("@Tag", tag)))
+            var sql = "SELECT * FROM ODKVisit WHERE " +
+                "(@GroupId = -1 OR " + DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId) AND " +
+                "(@UserId = -2 OR " + DbSyntax.QuoteIdentifier("CreatedUserId") + " = @UserId) AND " +
+                "(@Tag IS NULL OR " + DbSyntax.QuoteIdentifier("Tags") + " = @Tag)";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@GroupId", groupId),
+                DbHelper.CreateParameter("@UserId", userId),
+                DbHelper.CreateParameter("@Tag", (object)tag ?? DBNull.Value)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -61,8 +66,10 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             List<MemberVisit> items = new List<MemberVisit>();
 
-            using (var r = SqlHelper.ExecuteReader("ODKVisit_Get",
-                new SqlParameter("@UserId", userId)))
+            var sql = "SELECT * FROM ODKVisit WHERE " +
+                "(@UserId = -2 OR " + DbSyntax.QuoteIdentifier("CreatedUserId") + " = @UserId)";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@UserId", userId)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -71,7 +78,7 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
             return items;
         }
 
-        private MemberVisit From(SqlDataReader r)
+        private MemberVisit From(IDataReader r)
         {
             MemberVisit item = new MemberVisit();
             item.Id = DataUtil.GetId(r, WebColumns.Id);
@@ -99,16 +106,18 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public bool Delete(int id)
         {
-            SqlHelper.ExecuteNonQuery("ODKVisit_Del",
-                new SqlParameter("@Id", id));
+            var sql = "DELETE FROM ODKVisit WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            DbHelper.ExecuteNonQuery(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id));
 
             return true;
         }
 
         public MemberVisit Get(int id)
         {
-            using (var r = SqlHelper.ExecuteReader("ODKVisit_Get",
-                new SqlParameter("@Id", id)))
+            var sql = "SELECT * FROM ODKVisit WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Id", id)))
             {
                 if (r.Read())
                     return From(r);
@@ -126,7 +135,8 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             List<MemberVisit> items = new List<MemberVisit>();
 
-            using (var r = SqlHelper.ExecuteReader("ODKVisit_Get"))
+            var sql = "SELECT * FROM ODKVisit";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -139,8 +149,9 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
         {
             List<MemberVisit> items = new List<MemberVisit>();
 
-            using (var r = SqlHelper.ExecuteReader("ODKVisit_Get",
-                new SqlParameter("@Tag", tag)))
+            var sql = "SELECT * FROM ODKVisit WHERE " + DbSyntax.QuoteIdentifier("Tags") + " = @Tag";
+            using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
+                DbHelper.CreateParameter("@Tag", tag)))
             {
                 while (r.Read())
                     items.Add(From(r));
@@ -161,25 +172,87 @@ namespace WCMS.WebSystem.Apps.Integration.Providers
 
         public int Update(MemberVisit item)
         {
-            var obj = SqlHelper.ExecuteScalar("ODKVisit_Set",
-                new SqlParameter("@Id", item.Id),
-                new SqlParameter("@CreatedUserId", item.CreatedUserId),
-                new SqlParameter("@DateCreated", item.DateCreated),
-                new SqlParameter("@ActualReport", item.ActualReport),
-                new SqlParameter("@Status", item.Status),
-                new SqlParameter("@GroupId", item.GroupId),
-                new SqlParameter("@Name", item.Name),
-                new SqlParameter("@VisitedUserId", item.VisitedUserId),
-                new SqlParameter("@DateVisited", item.DateVisited),
-                new SqlParameter("@ActionTaken", item.ActionTaken),
-                new SqlParameter("@ContactNo", item.ContactNo),
-                new SqlParameter("@TimesVisited", item.TimesVisited),
-                new SqlParameter("@Address", item.Address),
-                new SqlParameter("@MembershipDate", item.MembershipDate),
-                new SqlParameter("@Tags", item.Tags)
-            );
+            string sql;
+            DbParameter[] parms;
 
-            item.Id = DataUtil.GetId(obj);
+            if (item.Id > 0)
+            {
+                sql = "UPDATE ODKVisit SET " +
+                    DbSyntax.QuoteIdentifier("CreatedUserId") + " = @CreatedUserId, " +
+                    DbSyntax.QuoteIdentifier("DateCreated") + " = @DateCreated, " +
+                    DbSyntax.QuoteIdentifier("ActualReport") + " = @ActualReport, " +
+                    DbSyntax.QuoteIdentifier("Status") + " = @Status, " +
+                    DbSyntax.QuoteIdentifier("GroupId") + " = @GroupId, " +
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
+                    DbSyntax.QuoteIdentifier("VisitedUserId") + " = @VisitedUserId, " +
+                    DbSyntax.QuoteIdentifier("DateVisited") + " = @DateVisited, " +
+                    DbSyntax.QuoteIdentifier("ActionTaken") + " = @ActionTaken, " +
+                    DbSyntax.QuoteIdentifier("ContactNo") + " = @ContactNo, " +
+                    DbSyntax.QuoteIdentifier("TimesVisited") + " = @TimesVisited, " +
+                    DbSyntax.QuoteIdentifier("Address") + " = @Address, " +
+                    DbSyntax.QuoteIdentifier("MembershipDate") + " = @MembershipDate, " +
+                    DbSyntax.QuoteIdentifier("Tags") + " = @Tags" +
+                    " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+                parms = new[] {
+                    DbHelper.CreateParameter("@CreatedUserId", item.CreatedUserId),
+                    DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                    DbHelper.CreateParameter("@ActualReport", item.ActualReport),
+                    DbHelper.CreateParameter("@Status", item.Status),
+                    DbHelper.CreateParameter("@GroupId", item.GroupId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@VisitedUserId", item.VisitedUserId),
+                    DbHelper.CreateParameter("@DateVisited", item.DateVisited),
+                    DbHelper.CreateParameter("@ActionTaken", item.ActionTaken),
+                    DbHelper.CreateParameter("@ContactNo", item.ContactNo),
+                    DbHelper.CreateParameter("@TimesVisited", item.TimesVisited),
+                    DbHelper.CreateParameter("@Address", item.Address),
+                    DbHelper.CreateParameter("@MembershipDate", item.MembershipDate),
+                    DbHelper.CreateParameter("@Tags", item.Tags),
+                    DbHelper.CreateParameter("@Id", item.Id)
+                };
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+            }
+            else
+            {
+                sql = "INSERT INTO ODKVisit (" +
+                    DbSyntax.QuoteIdentifier("CreatedUserId") + ", " +
+                    DbSyntax.QuoteIdentifier("DateCreated") + ", " +
+                    DbSyntax.QuoteIdentifier("ActualReport") + ", " +
+                    DbSyntax.QuoteIdentifier("Status") + ", " +
+                    DbSyntax.QuoteIdentifier("GroupId") + ", " +
+                    DbSyntax.QuoteIdentifier("Name") + ", " +
+                    DbSyntax.QuoteIdentifier("VisitedUserId") + ", " +
+                    DbSyntax.QuoteIdentifier("DateVisited") + ", " +
+                    DbSyntax.QuoteIdentifier("ActionTaken") + ", " +
+                    DbSyntax.QuoteIdentifier("ContactNo") + ", " +
+                    DbSyntax.QuoteIdentifier("TimesVisited") + ", " +
+                    DbSyntax.QuoteIdentifier("Address") + ", " +
+                    DbSyntax.QuoteIdentifier("MembershipDate") + ", " +
+                    DbSyntax.QuoteIdentifier("Tags") +
+                    ") VALUES (@CreatedUserId, @DateCreated, @ActualReport, @Status, @GroupId, @Name, @VisitedUserId, @DateVisited, @ActionTaken, @ContactNo, @TimesVisited, @Address, @MembershipDate, @Tags)";
+                if (DbHelper.Provider == DatabaseProvider.PostgreSql)
+                    sql += " RETURNING " + DbSyntax.QuoteIdentifier("Id");
+                else
+                    sql += "; SELECT SCOPE_IDENTITY()";
+                parms = new[] {
+                    DbHelper.CreateParameter("@CreatedUserId", item.CreatedUserId),
+                    DbHelper.CreateParameter("@DateCreated", item.DateCreated),
+                    DbHelper.CreateParameter("@ActualReport", item.ActualReport),
+                    DbHelper.CreateParameter("@Status", item.Status),
+                    DbHelper.CreateParameter("@GroupId", item.GroupId),
+                    DbHelper.CreateParameter("@Name", item.Name),
+                    DbHelper.CreateParameter("@VisitedUserId", item.VisitedUserId),
+                    DbHelper.CreateParameter("@DateVisited", item.DateVisited),
+                    DbHelper.CreateParameter("@ActionTaken", item.ActionTaken),
+                    DbHelper.CreateParameter("@ContactNo", item.ContactNo),
+                    DbHelper.CreateParameter("@TimesVisited", item.TimesVisited),
+                    DbHelper.CreateParameter("@Address", item.Address),
+                    DbHelper.CreateParameter("@MembershipDate", item.MembershipDate),
+                    DbHelper.CreateParameter("@Tags", item.Tags)
+                };
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                item.Id = DataUtil.GetId(obj);
+            }
 
             return item.Id;
         }
