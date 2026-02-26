@@ -45,6 +45,8 @@ Suggested owners:
   Implemented by `LessonReviewer/LessonReviewer/Api/LegacyAjaxHandlerController.cs` (Status + KeepAlive contract parity).
 - [x] Rank 8 (`MAP-009`) - `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/MusicCompetition/ASOP-WS.asmx`  
   Implemented by `Portal/WebParts/Integration/IntegrationParts/Api/LegacyAsopWebServiceController.cs` (ASMX-style `{ d: ... }` methods for HelloWorld, GetCandidate, IsEmailNotTaken, Vote).
+- [x] Rank 9 (`MAP-149`) - `Portal/WebSystem/WebSystem-MVC/Content/Handlers/AjaxHandler.ashx`  
+  Implemented by `Portal/WebSystem/WebSystem-MVC/Api/LegacyWebSystemAjaxHandlerController.cs` (SetDesignPanel, GetText, Status/KeepAlive, SessionValid contract parity).
 
 ## Top 30 (ranked)
 
