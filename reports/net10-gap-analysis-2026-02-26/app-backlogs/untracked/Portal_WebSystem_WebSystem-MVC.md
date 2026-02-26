@@ -1,0 +1,191 @@
+# Untracked Migration Backlog - Portal/WebSystem/WebSystem-MVC
+
+Date: 2026-02-27
+
+Source: `REMAINING_EXECUTION_CHECKLIST.md` entries with `source=Untracked`.
+
+## Summary
+
+- Total: **171**
+- P0: **3**
+- P1: **168**
+
+## Checklist
+
+### P0 (3)
+
+- [ ] GAP-0260 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Handlers/DataSync.svc` | type=svc | replacement=`(none)`
+- [ ] GAP-0261 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Handlers/Resource.ashx` | type=ashx | replacement=`(none)`
+- [ ] GAP-0398 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Common/User.svc` | type=svc | replacement=`(none)`
+
+### P1 (168)
+
+- [ ] GAP-0250 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Admin/Default.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0251 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Admin/UserProfile.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0252 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Admin/Utilities/FileManager.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0253 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Admin/Utilities/QueryAnalyzer.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0254 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Admin/Utilities/TextEditor.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0255 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Admin/WebObjectPermissions.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0256 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Controls/Breadcrumb.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0257 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Controls/TabControl.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0258 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Controls/TextEditor.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0259 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Executor.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0262 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Agent/Dashboard.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0263 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Agent/TaskEditor.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0264 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Agent/TaskView.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0265 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Breadcrumb.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0266 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/DesignMode.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0267 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/ElementDesigner.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0268 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/ManagementSecurityOption.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0269 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/PanelDesigner.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0270 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/SaveInFolder.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0271 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebGroupTab.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0272 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebMasterPageTab.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0273 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebPagePanelTab.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0274 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebPageTab.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0275 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebPagesControl.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0276 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebPartControlTab.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0277 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebPartControlTemplateTab.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0278 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebPartTab.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0279 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebRoleTab.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0280 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebSiteElementSelector.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0281 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebSiteTab.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0282 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebSitesControl.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0283 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebTemplateHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0284 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebThemeHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0285 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Controls/WebUserTab.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0286 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Dashboard.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0287 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Default.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0288 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/HeaderNavbar.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0289 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/HeaderPanel.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0290 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Manager/Home.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0291 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/SubscriptionManager.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0292 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebAddress.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0293 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebAddresses.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0294 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebOffice.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0295 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebOfficeHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0296 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebOfficeTree.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0297 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebOffices.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0298 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebParameter.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0299 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebParameterSet.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0300 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebParameterSetHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0301 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebParameterSets.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0302 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebParameters.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0303 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebParametersXml.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0304 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebResource.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0305 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Misc/WebResources.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0306 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/ChangePassword.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0307 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/CreateUser.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0308 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/UserProfile.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0309 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebGlobalPolicy.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0310 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebGlobalPolicyHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0311 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebGroup.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0312 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebGroupHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0313 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebGroupTree.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0314 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebGroupUsers.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0315 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebGroups.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0316 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebObjectPermissions.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0317 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebPermissions.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0318 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebRoleHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0319 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebRoles.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0320 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebSecurity.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0321 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebSecurityTree.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0322 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebUserGroups.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0323 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebUserHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0324 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebUserPermissions.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0325 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebUserRoles.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0326 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Security/WebUsers.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0327 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/SideBar.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0328 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/SiteMap.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0329 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebSkin.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0330 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebSkinHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0331 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebSkins.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0332 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebTemplate.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0333 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebTemplateEditor.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0334 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebTemplateHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0335 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebTemplatePanel.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0336 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebTemplatePanels.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0337 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebTemplateVersions.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0338 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebTemplates.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0339 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebTheme.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0340 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebThemeHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0341 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Template/WebThemes.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0342 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/DataStoreManager.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0343 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/DataSyncDashboard.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0344 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/DataSyncManager.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0345 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/EventLogManager.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0346 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/PerformanceLogManager.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0347 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/QueryAnalyzer.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0348 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/ShortUrlManager.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0349 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/UserSessionManager.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0350 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/WebFolder.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0351 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/WebFolderTree.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0352 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/WebObjectEdit.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0353 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/WebRegistry.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0354 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/WebRegistryEntry.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0355 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Tools/WebRegistryTree.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0356 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPart.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0357 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartAdmin.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0358 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartAdminEntry.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0359 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartAdminHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0360 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartAdminMgmt.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0361 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartConfig.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0362 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartConfigEntry.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0363 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartControl.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0364 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartControlHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0365 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartControlTemplate.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0366 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartControlTemplateHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0367 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartControlTemplates.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0368 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartControls.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0369 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0370 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartTemplatePanel.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0371 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartTemplatePanels.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0372 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebPartTree.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0373 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPart/WebParts.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0374 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebPartPreview.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0375 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebChildSites.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0376 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebIdentities.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0377 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebLinkedParts.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0378 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebMasterPage.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0379 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebMasterPageHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0380 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebMasterPages.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0381 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebPage.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0382 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebPageElement.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0383 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebPageElementHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0384 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebPageElements.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0385 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebPageHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0386 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebPagePanel.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0387 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebPagePanelHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0388 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebPagePanels.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0389 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebPages.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0390 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebSite.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0391 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebSiteHome.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0392 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebSiteTree.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0393 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites/WebSites.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0394 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Common/Comments.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0395 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Common/Login.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0396 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Common/MessageBoard.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0397 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Common/TriggerTask.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0399 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Common/UserPhotoUpload.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0400 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Test/ListPart.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0401 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Test/TemplateFormEditor.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0402 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Parts/Test/WebUserControl1.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0403 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/filemanager/connectors/aspx/config.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0404 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/filemanager/connectors/aspx/upload.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0405 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Setup.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0406 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Test.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0407 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Test02.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0408 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/Basic/Basic.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0409 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/Central/Basic.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0410 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/Central/Responsive.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0411 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/Central/ResponsiveWithSidebar.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0412 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/Default/Default.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0413 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/Default/ForAjaxControlToolkit.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0414 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/bootstrap3/navbar-fixed-top.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0415 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/test/Parts/Article/Default/Article.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0416 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/test/Parts/Contact/Contact/ContactUs.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0417 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/test/StandAloneTemplate.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0418 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Themes/test/test.ascx` | type=ascx | replacement=`(none)`
+- [ ] GAP-0419 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Windows/Upload.aspx` | type=aspx | replacement=`(none)`
+- [ ] GAP-0420 | Untracked-MappingGap | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Default.aspx` | type=aspx | replacement=`(none)`
+
