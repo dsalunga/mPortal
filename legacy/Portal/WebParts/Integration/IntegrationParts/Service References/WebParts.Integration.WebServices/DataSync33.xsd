@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://someorg.org/Content/Parts/Registration/DataSync.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCMS.WebSystem.Apps.Integration" />
+  <xs:element name="DoWork">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DoWorkResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMemberLinkList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMemberLinkListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCMS.WebSystem.Apps.Integration" minOccurs="0" name="GetMemberLinkListResult" nillable="true" type="q1:ArrayOfMemberLinkContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMemberLinkComplete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMemberLinkCompleteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCMS.WebSystem.Apps.Integration" minOccurs="0" name="GetMemberLinkCompleteResult" nillable="true" type="q2:MemberLinkContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetMemberLinkComplete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCMS.WebSystem.Apps.Integration" minOccurs="0" name="container" nillable="true" type="q3:MemberLinkContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetMemberLinkCompleteResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

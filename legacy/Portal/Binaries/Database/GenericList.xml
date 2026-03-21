@@ -1,0 +1,61 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="GenericList">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="Title">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="255" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Description" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="IsActive" type="xs:int" />
+                <xs:element name="EndingText" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ShowPageCaption" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//GenericList" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <GenericList>
+    <Id>1</Id>
+    <Title>Test List</Title>
+    <Description>&lt;p&gt;Test List&lt;/p&gt;</Description>
+    <IsActive>0</IsActive>
+    <EndingText>&lt;p&gt;Complete! Thank you.&lt;/p&gt;</EndingText>
+    <ShowPageCaption>1</ShowPageCaption>
+  </GenericList>
+  <GenericList>
+    <Id>2</Id>
+    <Title>Migration Test List</Title>
+    <Description>&lt;p&gt;test welcome&lt;/p&gt;</Description>
+    <IsActive>1</IsActive>
+    <EndingText>&lt;p&gt;test ending&lt;/p&gt;</EndingText>
+    <ShowPageCaption>1</ShowPageCaption>
+  </GenericList>
+</mPortal>

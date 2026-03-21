@@ -1,0 +1,2923 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Country">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CountryCode" type="xs:int" />
+                <xs:element name="CountryName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="RegionCode" type="xs:int" />
+                <xs:element name="Description">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ISOCode">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DialingCode" type="xs:int" />
+                <xs:element name="MaxPhoneDigit" type="xs:int" />
+                <xs:element name="ISOCode3">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ShortName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ISONumeric">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Country" />
+        <xs:field xpath="CountryCode" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <Country>
+    <CountryCode>229</CountryCode>
+    <CountryName>Afghanistan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>230</CountryCode>
+    <CountryName>Albania</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>231</CountryCode>
+    <CountryName>Algeria</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>232</CountryCode>
+    <CountryName>American Samoa</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>233</CountryCode>
+    <CountryName>Andorra</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>234</CountryCode>
+    <CountryName>Anguilla</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>235</CountryCode>
+    <CountryName>Antarctica</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>236</CountryCode>
+    <CountryName>Antigua And Barbuda</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>237</CountryCode>
+    <CountryName>Argentina</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>238</CountryCode>
+    <CountryName>Armenia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>239</CountryCode>
+    <CountryName>Aruba</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>240</CountryCode>
+    <CountryName>Australia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>241</CountryCode>
+    <CountryName>Austria</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>242</CountryCode>
+    <CountryName>Azerbaijan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>243</CountryCode>
+    <CountryName>Bahamas</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>244</CountryCode>
+    <CountryName>Bahrain</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>245</CountryCode>
+    <CountryName>Bangladesh</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>246</CountryCode>
+    <CountryName>Barbados</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>247</CountryCode>
+    <CountryName>Belarus</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>248</CountryCode>
+    <CountryName>Belgium</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>249</CountryCode>
+    <CountryName>Belize</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>250</CountryCode>
+    <CountryName>Benin</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>251</CountryCode>
+    <CountryName>Bermuda</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>252</CountryCode>
+    <CountryName>Bhutan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>253</CountryCode>
+    <CountryName>Bolivia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>254</CountryCode>
+    <CountryName>Bosnia and Herzegovina</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>255</CountryCode>
+    <CountryName>Botswana</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>256</CountryCode>
+    <CountryName>Bouvet Island</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>257</CountryCode>
+    <CountryName>Brazil</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>258</CountryCode>
+    <CountryName>British Indian Ocean Territory</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>259</CountryCode>
+    <CountryName>Brunei Darussalam</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>260</CountryCode>
+    <CountryName>Bulgaria</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>261</CountryCode>
+    <CountryName>Burkina Faso</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>262</CountryCode>
+    <CountryName>Burundi</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>263</CountryCode>
+    <CountryName>Cambodia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>264</CountryCode>
+    <CountryName>Cameroon</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>265</CountryCode>
+    <CountryName>Canada</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>266</CountryCode>
+    <CountryName>Cape Verde</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>267</CountryCode>
+    <CountryName>Cayman Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>268</CountryCode>
+    <CountryName>Central African Republic</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>269</CountryCode>
+    <CountryName>Chad</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>270</CountryCode>
+    <CountryName>Chile</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>271</CountryCode>
+    <CountryName>China</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>272</CountryCode>
+    <CountryName>Christmas Island</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>273</CountryCode>
+    <CountryName>Cocos (Keeling) Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>274</CountryCode>
+    <CountryName>Colombia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>275</CountryCode>
+    <CountryName>Comoros</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>276</CountryCode>
+    <CountryName>Congo</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>277</CountryCode>
+    <CountryName>Congo</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>278</CountryCode>
+    <CountryName>Cook Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>279</CountryCode>
+    <CountryName>Costa Rica</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>280</CountryCode>
+    <CountryName>Cote d'Ivoire</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>281</CountryCode>
+    <CountryName>Croatia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>282</CountryCode>
+    <CountryName>Cyprus</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>283</CountryCode>
+    <CountryName>Czech Republic</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>284</CountryCode>
+    <CountryName>Denmark</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>285</CountryCode>
+    <CountryName>Djibouti</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>286</CountryCode>
+    <CountryName>Dominica</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>287</CountryCode>
+    <CountryName>Dominican Republic</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>288</CountryCode>
+    <CountryName>East Timor</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>289</CountryCode>
+    <CountryName>Ecuador</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>290</CountryCode>
+    <CountryName>Egypt</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>291</CountryCode>
+    <CountryName>El Salvador</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>292</CountryCode>
+    <CountryName>England</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>293</CountryCode>
+    <CountryName>Equatorial Guinea</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>294</CountryCode>
+    <CountryName>Eritrea</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>295</CountryCode>
+    <CountryName>Espana</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>296</CountryCode>
+    <CountryName>Estonia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>297</CountryCode>
+    <CountryName>Ethiopia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>298</CountryCode>
+    <CountryName>Falkland Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>299</CountryCode>
+    <CountryName>Faroe Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>300</CountryCode>
+    <CountryName>Fiji</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>301</CountryCode>
+    <CountryName>Finland</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>302</CountryCode>
+    <CountryName>France</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>303</CountryCode>
+    <CountryName>French Guiana</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>304</CountryCode>
+    <CountryName>French Polynesia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>305</CountryCode>
+    <CountryName>French Southern Territories</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>306</CountryCode>
+    <CountryName>Gabon</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>307</CountryCode>
+    <CountryName>Gambia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>308</CountryCode>
+    <CountryName>Georgia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>309</CountryCode>
+    <CountryName>Germany</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>310</CountryCode>
+    <CountryName>Ghana</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>311</CountryCode>
+    <CountryName>Gibraltar</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>312</CountryCode>
+    <CountryName>Great Britain</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>313</CountryCode>
+    <CountryName>Greece</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>314</CountryCode>
+    <CountryName>Greenland</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>315</CountryCode>
+    <CountryName>Grenada</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>316</CountryCode>
+    <CountryName>Guadeloupe</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>317</CountryCode>
+    <CountryName>Guam</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>318</CountryCode>
+    <CountryName>Guatemala</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>319</CountryCode>
+    <CountryName>Guinea</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>320</CountryCode>
+    <CountryName>Guinea-Bissau</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>321</CountryCode>
+    <CountryName>Guyana</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>322</CountryCode>
+    <CountryName>Haiti</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>323</CountryCode>
+    <CountryName>Heard and Mc Donald Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>324</CountryCode>
+    <CountryName>Honduras</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>325</CountryCode>
+    <CountryName>Hong Kong</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>326</CountryCode>
+    <CountryName>Hungary</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>327</CountryCode>
+    <CountryName>Iceland</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>328</CountryCode>
+    <CountryName>India</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>329</CountryCode>
+    <CountryName>Indonesia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>330</CountryCode>
+    <CountryName>Ireland</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>331</CountryCode>
+    <CountryName>Israel</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>332</CountryCode>
+    <CountryName>Italy</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>333</CountryCode>
+    <CountryName>Jamaica</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>334</CountryCode>
+    <CountryName>Japan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode>JP</ISOCode>
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>335</CountryCode>
+    <CountryName>Jordan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>336</CountryCode>
+    <CountryName>Kazakhstan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>337</CountryCode>
+    <CountryName>Kenya</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>338</CountryCode>
+    <CountryName>Kiribati</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>339</CountryCode>
+    <CountryName>Korea (South)</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>340</CountryCode>
+    <CountryName>Korea</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>341</CountryCode>
+    <CountryName>Kuwait</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>342</CountryCode>
+    <CountryName>Kyrgyzstan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>343</CountryCode>
+    <CountryName>Lao People's Democratic Republic</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>344</CountryCode>
+    <CountryName>Latvia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>345</CountryCode>
+    <CountryName>Lebanon</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>346</CountryCode>
+    <CountryName>Lesotho</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>347</CountryCode>
+    <CountryName>Liberia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>348</CountryCode>
+    <CountryName>Liechtenstein</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>349</CountryCode>
+    <CountryName>Lithuania</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>350</CountryCode>
+    <CountryName>Luxembourg</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>351</CountryCode>
+    <CountryName>Macau</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>352</CountryCode>
+    <CountryName>Macedonia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>353</CountryCode>
+    <CountryName>Madagascar</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>354</CountryCode>
+    <CountryName>Malawi</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>355</CountryCode>
+    <CountryName>Malaysia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>356</CountryCode>
+    <CountryName>Maldives</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>357</CountryCode>
+    <CountryName>Mali</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>358</CountryCode>
+    <CountryName>Malta</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>359</CountryCode>
+    <CountryName>Marshall Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>360</CountryCode>
+    <CountryName>Martinique</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>361</CountryCode>
+    <CountryName>Mauritania</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>362</CountryCode>
+    <CountryName>Mauritius</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>363</CountryCode>
+    <CountryName>Mayotte</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>364</CountryCode>
+    <CountryName>Mexico</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>365</CountryCode>
+    <CountryName>Micronesia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>366</CountryCode>
+    <CountryName>Moldova</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>367</CountryCode>
+    <CountryName>Monaco</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>368</CountryCode>
+    <CountryName>Mongolia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>369</CountryCode>
+    <CountryName>Montserrat</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>370</CountryCode>
+    <CountryName>Morocco</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>371</CountryCode>
+    <CountryName>Mozambique</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>372</CountryCode>
+    <CountryName>Namibia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>373</CountryCode>
+    <CountryName>Nauru</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>374</CountryCode>
+    <CountryName>Nepal</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>375</CountryCode>
+    <CountryName>Netherlands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>376</CountryCode>
+    <CountryName>Netherlands Antilles</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>377</CountryCode>
+    <CountryName>New Caledonia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>378</CountryCode>
+    <CountryName>New Zealand</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>379</CountryCode>
+    <CountryName>Nicaragua</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>380</CountryCode>
+    <CountryName>Niger</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>381</CountryCode>
+    <CountryName>Nigeria</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>382</CountryCode>
+    <CountryName>Niue</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>383</CountryCode>
+    <CountryName>Norfolk Island</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>384</CountryCode>
+    <CountryName>Northern Ireland</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>385</CountryCode>
+    <CountryName>Northern Mariana Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>386</CountryCode>
+    <CountryName>Norway</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>387</CountryCode>
+    <CountryName>Oman</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>388</CountryCode>
+    <CountryName>Pakistan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>389</CountryCode>
+    <CountryName>Palau</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>390</CountryCode>
+    <CountryName>Panama</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>391</CountryCode>
+    <CountryName>Papua New Guinea</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>392</CountryCode>
+    <CountryName>Paraguay</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>393</CountryCode>
+    <CountryName>Peru</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>394</CountryCode>
+    <CountryName>Philippines</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode>PH</ISOCode>
+    <DialingCode>63</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>395</CountryCode>
+    <CountryName>Pitcairn</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>396</CountryCode>
+    <CountryName>Poland</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>397</CountryCode>
+    <CountryName>Portugal</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>398</CountryCode>
+    <CountryName>Puerto Rico</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>399</CountryCode>
+    <CountryName>Qatar</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>400</CountryCode>
+    <CountryName>Reunion</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>401</CountryCode>
+    <CountryName>Romania</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>402</CountryCode>
+    <CountryName>Russia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>403</CountryCode>
+    <CountryName>Russian Federation</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>404</CountryCode>
+    <CountryName>Rwanda</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>405</CountryCode>
+    <CountryName>Saint Kitts and Nevis</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>406</CountryCode>
+    <CountryName>Saint Lucia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>407</CountryCode>
+    <CountryName>Saint Vincent and the Grenadines</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>408</CountryCode>
+    <CountryName>Samoa (Independent)</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>409</CountryCode>
+    <CountryName>San Marino</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>410</CountryCode>
+    <CountryName>Sao Tome and Principe</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>411</CountryCode>
+    <CountryName>Saudi Arabia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>412</CountryCode>
+    <CountryName>Scotland</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>413</CountryCode>
+    <CountryName>Senegal</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>414</CountryCode>
+    <CountryName>Seychelles</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>415</CountryCode>
+    <CountryName>Sierra Leone</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>416</CountryCode>
+    <CountryName>Singapore</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode>SG</ISOCode>
+    <DialingCode>65</DialingCode>
+    <MaxPhoneDigit>8</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>417</CountryCode>
+    <CountryName>Slovakia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>418</CountryCode>
+    <CountryName>Slovenia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>419</CountryCode>
+    <CountryName>Solomon Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>420</CountryCode>
+    <CountryName>Somalia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>421</CountryCode>
+    <CountryName>South Africa</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>422</CountryCode>
+    <CountryName>South Korea</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode>KR</ISOCode>
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>423</CountryCode>
+    <CountryName>Spain</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>424</CountryCode>
+    <CountryName>Sri Lanka</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>425</CountryCode>
+    <CountryName>St. Helena</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>426</CountryCode>
+    <CountryName>St. Pierre and Miquelon</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>427</CountryCode>
+    <CountryName>Suriname</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>428</CountryCode>
+    <CountryName>Svalbard and Jan Mayen Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>429</CountryCode>
+    <CountryName>Swaziland</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>430</CountryCode>
+    <CountryName>Sweden</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>431</CountryCode>
+    <CountryName>Switzerland</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>432</CountryCode>
+    <CountryName>Taiwan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode>TW</ISOCode>
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>433</CountryCode>
+    <CountryName>Tajikistan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>434</CountryCode>
+    <CountryName>Tanzania</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>435</CountryCode>
+    <CountryName>Thailand</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>436</CountryCode>
+    <CountryName>Togo</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>437</CountryCode>
+    <CountryName>Tokelau</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>438</CountryCode>
+    <CountryName>Tonga</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>439</CountryCode>
+    <CountryName>Trinidad</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>440</CountryCode>
+    <CountryName>Trinidad and Tobago</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>441</CountryCode>
+    <CountryName>Tunisia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>442</CountryCode>
+    <CountryName>Turkey</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>443</CountryCode>
+    <CountryName>Turkmenistan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>444</CountryCode>
+    <CountryName>Turks and Caicos Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>445</CountryCode>
+    <CountryName>Tuvalu</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>446</CountryCode>
+    <CountryName>United States of America</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>447</CountryCode>
+    <CountryName>Uganda</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>448</CountryCode>
+    <CountryName>Ukraine</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>449</CountryCode>
+    <CountryName>United Arab Emirates</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode>AE</ISOCode>
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>450</CountryCode>
+    <CountryName>United Kingdom</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode>GB</ISOCode>
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>451</CountryCode>
+    <CountryName>United States of America</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode>US</ISOCode>
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>452</CountryCode>
+    <CountryName>Uruguay</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>453</CountryCode>
+    <CountryName>Uzbekistan</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>454</CountryCode>
+    <CountryName>Vanuatu</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>455</CountryCode>
+    <CountryName>Vatican City State (Holy See)</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>456</CountryCode>
+    <CountryName>Venezuela</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>457</CountryCode>
+    <CountryName>Viet Nam</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>458</CountryCode>
+    <CountryName>Virgin Islands (British)</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>459</CountryCode>
+    <CountryName>Virgin Islands (U.S.)</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>460</CountryCode>
+    <CountryName>Wales</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>461</CountryCode>
+    <CountryName>Wallis and Futuna Islands</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>462</CountryCode>
+    <CountryName>Western Sahara</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>463</CountryCode>
+    <CountryName>Yemen</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>464</CountryCode>
+    <CountryName>Yugoslavia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>465</CountryCode>
+    <CountryName>Zambia</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+  <Country>
+    <CountryCode>466</CountryCode>
+    <CountryName>Zimbabwe</CountryName>
+    <RegionCode>-1</RegionCode>
+    <Description />
+    <ISOCode />
+    <DialingCode>-1</DialingCode>
+    <MaxPhoneDigit>-1</MaxPhoneDigit>
+    <ISOCode3 />
+    <ShortName />
+    <ISONumeric />
+  </Country>
+</mPortal>

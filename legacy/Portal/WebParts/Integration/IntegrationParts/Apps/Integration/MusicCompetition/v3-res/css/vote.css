@@ -1,0 +1,444 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+
+
+#logo {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+    #logo img {
+        margin-top: -350px;
+        opacity: 0;
+    }
+
+#logoimages2 {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    z-index: -1;
+    margin-left: -250px;
+}
+
+#logoimage {
+    margin-left: 120px;
+}
+
+#container {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+#loginboard {
+    width: 352px;
+    height: auto;
+    min-height: 90px;
+    margin: 0 auto;
+    padding: 30px;
+    opacity: 0;
+    z-index: 2;
+}
+
+#signup {
+    width: 352px;
+    height: auto;
+    min-height: 200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+#confirmation, #afterVoteInfo, #afterVoteInfoConfirm {
+    width: 452px;
+    height: 230px;
+    margin: 0 auto;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+#afterVoteInfoConfirm {
+    height: 340px;
+}
+
+#done_buttons, #done_buttons_confirm {
+    margin-left: 90px;
+}
+
+#exitvote, .exitvote {
+    text-align: center;
+    padding: 0 10px;
+    font-size: 16px;
+    margin-right: 9px;
+    cursor: pointer;
+    float: left;
+}
+
+    #exitvote span, .exitvote span {
+        margin-top: -10px;
+        display: inline-table;
+    }
+
+    #exitvote img, .exitvote img {
+        margin-right: 6px;
+    }
+
+#signup_buttons {
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+    #signup_buttons span {
+        margin-top: -10px;
+        display: inline-table;
+    }
+
+    #signup_buttons div {
+        margin-bottom: 10px;
+    }
+
+#b_signup, #b_cancel, #audioControl {
+    text-align: center;
+}
+
+
+#signup label {
+    width: 90px;
+    display: inline-block;
+}
+
+#signup input {
+    width: 230px;
+}
+
+#loginboard label {
+    width: 90px;
+    display: inline-block;
+}
+
+#loginboard input {
+    width: 230px;
+}
+
+#logbuttons {
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+    #logbuttons span {
+        margin-top: -10px;
+        display: inline-table;
+    }
+
+    #logbuttons img {
+        margin-right: 6px;
+    }
+
+    #logbuttons div {
+        padding: 0 10px;
+        font-size: 16px;
+        float: left;
+        margin-right: 9px;
+    }
+
+#b1_login {
+    width: 61px;
+}
+
+#b2_results {
+    width: 117px;
+}
+
+#b3_signup {
+    width: 75px;
+}
+
+#voteagain, #panelVoteAgain {
+    width: 135px;
+    padding: 0 10px;
+    font-size: 16px;
+    margin-right: 9px;
+    cursor: pointer;
+    text-align: center;
+}
+
+    #voteagain span, #panelVoteAgain span {
+        margin-top: -10px;
+        display: inline-table;
+    }
+
+    #voteagain img, #panelVoteAgain img {
+        margin-right: 6px;
+    }
+
+#viewresults {
+    padding: 30px;
+}
+
+h1 {
+    background-color: #bab11a;
+    text-align: center;
+}
+
+.loginpad {
+    background: #002924;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzAwMjkyNCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjIxJSIgc3RvcC1jb2xvcj0iIzAwYTY2ZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjczJSIgc3RvcC1jb2xvcj0iIzAwNzQ2YyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDI5MjQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #002924 1%, #00a66f 21%, #00746c 73%, #002924 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#002924), color-stop(21%,#00a66f), color-stop(73%,#00746c), color-stop(100%,#002924));
+    background: -webkit-linear-gradient(top, #002924 1%,#00a66f 21%,#00746c 73%,#002924 100%);
+    background: -o-linear-gradient(top, #002924 1%,#00a66f 21%,#00746c 73%,#002924 100%);
+    background: -ms-linear-gradient(top, #002924 1%,#00a66f 21%,#00746c 73%,#002924 100%);
+    background: linear-gradient(to bottom, #002924 1%,#00a66f 21%,#00746c 73%,#002924 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002924', endColorstr='#002924',GradientType=0 );
+}
+
+.gradient2 {
+    background: #ebe9f9;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ViZTlmOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2Q4ZDBlZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2NlYzdlYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjMWJmZWEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #ebe9f9 0%, #d8d0ef 50%, #cec7ec 51%, #c1bfea 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebe9f9), color-stop(50%,#d8d0ef), color-stop(51%,#cec7ec), color-stop(100%,#c1bfea));
+    background: -webkit-linear-gradient(top, #ebe9f9 0%,#d8d0ef 50%,#cec7ec 51%,#c1bfea 100%);
+    background: -o-linear-gradient(top, #ebe9f9 0%,#d8d0ef 50%,#cec7ec 51%,#c1bfea 100%);
+    background: -ms-linear-gradient(top, #ebe9f9 0%,#d8d0ef 50%,#cec7ec 51%,#c1bfea 100%);
+    background: linear-gradient(to bottom, #ebe9f9 0%,#d8d0ef 50%,#cec7ec 51%,#c1bfea 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebe9f9', endColorstr='#c1bfea',GradientType=0 );
+}
+
+.gradient3 {
+    background: #e2d922; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxNyUiIHN0b3AtY29sb3I9IiNlMmQ5MjIiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDE1NjQxIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+    background: -moz-linear-gradient(top, #e2d922 17%, #015641 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(17%,#e2d922), color-stop(100%,#015641)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #e2d922 17%,#015641 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #e2d922 17%,#015641 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #e2d922 17%,#015641 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #e2d922 17%,#015641 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2d922', endColorstr='#015641',GradientType=0 ); /* IE6-8 */
+}
+
+.gradient4 {
+    background: #f1e767;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YxZTc2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWI2NDUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #f1e767 0%, #feb645 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1e767), color-stop(100%,#feb645));
+    background: -webkit-linear-gradient(top, #f1e767 0%,#feb645 100%);
+    background: -o-linear-gradient(top, #f1e767 0%,#feb645 100%);
+    background: -ms-linear-gradient(top, #f1e767 0%,#feb645 100%);
+    background: linear-gradient(to bottom, #f1e767 0%,#feb645 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645',GradientType=0 );
+}
+
+.roundcorner1 {
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px; /* future proofing */
+    -khtml-border-radius: 30px; /* for old Konqueror browsers */
+}
+
+.roundcorner2 {
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px; /* future proofing */
+    -khtml-border-radius: 15px; /* for old Konqueror browsers */
+}
+
+.border1 {
+    border: 2px #024347 solid;
+}
+
+.shadow1 {
+    -webkit-box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, .23);
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, .23);
+}
+
+.shadow2 {
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(255, 255, 255, .23);
+    box-shadow: 1px 1px 1px 0px rgba(255, 255, 255, .23);
+}
+
+.textshadow1 {
+    text-shadow: 1px 1px 1px #000;
+    filter: dropshadow(color=#000, offx=1, offy=1);
+}
+
+#viewresults .category {
+    font-size: 14px;
+    float: left;
+}
+
+    #viewresults .category .entrylist {
+        height: 250px;
+        color: black;
+        margin-top: 15px;
+        background-color: #fff;
+    }
+
+        #viewresults .category .entrylist div:nth-child(even) {
+            background-color: #ccc;
+        }
+
+#categories {
+    height: 300px;
+}
+
+#song_entry, .song_entry {
+    width: 30%;
+}
+
+    #song_entry div, .song_entry div {
+        width: 273px;
+    }
+
+#composer_entry, .composer_entry {
+    width: 40%;
+}
+
+    #composer_entry div, .composer_entry div {
+        width: 369px;
+    }
+
+#totalvotes_entry, .totalvotes_entry {
+    width: 15%;
+}
+
+    #totalvotes_entry div, .totalvotes_entry div {
+        width: 129px;
+    }
+
+#officialvotes_entry, .officialvotes_entry {
+    width: 15%;
+}
+
+    #officialvotes_entry div, .officialvotes_entry div {
+        width: 129px;
+    }
+
+
+.song_entry2 {
+    width: 50%;
+}
+
+    .song_entry2 div {
+        width: 470px;
+    }
+
+#totalvotes_entry2, .totalvotes_entry2 {
+    width: 25%;
+}
+
+    #totalvotes_entry2 div, .totalvotes_entry2 div {
+        width: 230px;
+    }
+
+.officialvotes_entry2 {
+    width: 25%;
+}
+
+    .officialvotes_entry2 div {
+        width: 230px;
+    }
+
+#entrylists {
+    height: auto;
+    min-height: 1460px;
+    padding: 30px;
+}
+
+#entries_images p {
+    text-align: center;
+    color: #333;
+}
+
+#entries_images div {
+    width: 245px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+#viewresults, #entrylists, #signup, #confirmation, #afterVoteInfo, #afterVoteInfoConfirm {
+    display: none;
+}
+
+#darkcover {
+    width: 3000px;
+    height: 3000px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: .8;
+    display: none;
+}
+
+#entrydetails {
+    height: auto;
+    min-height: 1100px;
+    display: none;
+    position: absolute;
+    z-index: 2;
+    width: 600px;
+    top: 30px;
+    padding: 30px;
+    left: 50%;
+    margin-left: -300px;
+}
+
+    #entrydetails .detailimage {
+        margin-left: 100px;
+    }
+
+h4 {
+    text-align: center;
+}
+
+#votenow {
+    text-align: center;
+    padding: 0 10px;
+    font-size: 16px;
+    margin-right: 9px;
+    cursor: pointer;
+    width: 20%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+    #votenow span {
+        margin-top: -10px;
+        display: inline-table;
+    }
+
+    #votenow img {
+        margin-right: 6px;
+    }
+
+#closethis {
+    text-align: center;
+    padding: 0 10px;
+    font-size: 16px;
+    margin-right: 9px;
+    cursor: pointer;
+    width: 20%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+    #closethis span {
+        margin-top: -10px;
+        display: inline-table;
+    }
+
+    #closethis img {
+        margin-right: 6px;
+    }
+
+/*
+#entries_images div:nth-child(1){
+	margin-left:200px;
+}
+
+#entries_images div:nth-child(9){
+	margin-left:200px;
+}*/

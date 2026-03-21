@@ -1,0 +1,46 @@
+/* TYPOGRAPHY */
+/* ----------------------------------------- */
+
+/* Typography (basic) */
+body, p, li, label, input, select, textarea { font:11px/18px 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif; color:#474747 }
+h1, h2, h3 {font-family: Helvetica, Arial, Verdana, sans-serif; font-weight: normal;color: #4b4740; margin: 0 0 1em 0; line-height:normal;}
+h3, h4, h5, h6 {font-family: georgia, serif;  font-weight: normal;color: #4b4740; font-size:1.3em;}
+
+h1 { font-size: 185%; }
+h2 { font-size: 170%; }
+h3 { font-size: 165%; }
+h4 { font-size: 137%; }
+
+
+p{ font-size:12px; line-height:20px }
+p, .post ul, .post ol { margin:0 0 20px 0 }
+a { color:#A4A13F; text-decoration:none }
+
+input { color:#000 }
+
+
+
+h1.logo a { display:block; width:334px; height:140px; background:url(../images/mcgisg_logo.png) no-repeat; position:absolute; top:0; left:-10px; text-indent:-9999px; }
+
+div.projectItem h3, div.projectItem-last h3 { font-size:1.2em; color:#386166; font-family: georgia, serif; margin-bottom:10px; }  
+div.main-container-home h2, div.single-page-content-container h2 { font-size:2.4em }
+div.col-one h3, div.col-two h3, div.col-three h3  { font-size:1.3em; margin-bottom:5px; }
+div.side-bar h3 { font-size:2em ; border-bottom: 2px solid #dbd3d0; padding-bottom:5px; color:#918987; } 
+h3.projects { border-bottom: 1px dotted #999999; font-size:1.6em; font-family: Helvetica, Arial, Verdana, sans-serif; font-weight: normal;color: #4b4740; margin: 0 0 1em 0;  display:block; padding:0 0 3px 5px;}
+h4.poposed-project-title a { color:#bb4c4c; font-weight:bold; }
+h4.poposed-project-title { margin-bottom:3px; }
+
+em.sub_title { font-weight:normal; font-family: georgia, serif;  font-weight: normal; color:#bb4c4c; font-size:1.5em; }
+abbr.published { color:#999999; font-size:1em; }
+
+/* added 2010-05-04 */
+p.list-blurb, a.list-blurb p, div.list-blurb p { margin:0 0 3px 0 }
+h3.list-title { margin-bottom: 3px; }
+div.sub-head h3 { font-size:1.9em ; margin-bottom: 1px; color:#918987; } 
+
+/* Integration Portal specific */
+.table-pager { font-size: 11px/18px; padding: 2px; font-weight: bold; }
+.table-pager a {color: #A4A13F !important; }
+select, textarea { color: #000;}
+
+.single-page-content-container em div, .main-container-home em div {font-style:normal}

@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WCMS.WebSystem.Apps.Integration.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Music">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="LanguageCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FolderName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Tags" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsOriginal" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="Composer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DateComposed" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MusicEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusicId" Type="int" Nullable="false" />
+          <Property Name="EntryTypeId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Tags" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="FileSize" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="WCMSWebSystemWebPartsIntegrationStoreContainer">
+          <EntitySet Name="Music" EntityType="Self.Music" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusicEntry" EntityType="Self.MusicEntry" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WCMS.WebSystem.Apps.Integration" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MusicEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Musics" EntityType="WCMS.WebSystem.Apps.Integration.Music" />
+          <EntitySet Name="MusicEntries" EntityType="WCMS.WebSystem.Apps.Integration.MusicEntry" />
+          <AssociationSet Name="FK_MusicEntry_Music" Association="WCMS.WebSystem.Apps.Integration.FK_MusicEntry_Music">
+            <End Role="Music" EntitySet="Musics" />
+            <End Role="MusicEntry" EntitySet="MusicEntries" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Music">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="LanguageCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FolderName" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Tags" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="IsOriginal" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Composer" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="DateComposed" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MusicEntries" Relationship="WCMS.WebSystem.Apps.Integration.FK_MusicEntry_Music" FromRole="Music" ToRole="MusicEntry" />
+        </EntityType>
+        <EntityType Name="MusicEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="MusicId" Type="Int32" Nullable="false" />
+          <Property Name="EntryTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Tags" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FileSize" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Music" Relationship="WCMS.WebSystem.Apps.Integration.FK_MusicEntry_Music" FromRole="MusicEntry" ToRole="Music" />
+        </EntityType>
+        <Association Name="FK_MusicEntry_Music">
+          <End Type="WCMS.WebSystem.Apps.Integration.Music" Role="Music" Multiplicity="1" />
+          <End Type="WCMS.WebSystem.Apps.Integration.MusicEntry" Role="MusicEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Music">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MusicEntry">
+              <PropertyRef Name="MusicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WCMSWebSystemWebPartsIntegrationStoreContainer" CdmEntityContainer="MusicEntities">
+          <EntitySetMapping Name="Musics">
+            <EntityTypeMapping TypeName="WCMS.WebSystem.Apps.Integration.Music">
+              <MappingFragment StoreEntitySet="Music">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="FolderName" ColumnName="FolderName" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="IsOriginal" ColumnName="IsOriginal" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="Composer" ColumnName="Composer" />
+                <ScalarProperty Name="DateComposed" ColumnName="DateComposed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusicEntries">
+            <EntityTypeMapping TypeName="WCMS.WebSystem.Apps.Integration.MusicEntry">
+              <MappingFragment StoreEntitySet="MusicEntry">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MusicId" ColumnName="MusicId" />
+                <ScalarProperty Name="EntryTypeId" ColumnName="EntryTypeId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

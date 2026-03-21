@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Download">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="DownloadID" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="Name" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="255" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Description" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FileDate" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="Filename" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="255" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DateModified" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="Rank" type="xs:int" minOccurs="0" />
+                <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Download" />
+        <xs:field xpath="DownloadID" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+</mPortal>

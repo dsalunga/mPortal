@@ -1,0 +1,75 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="ContactLink">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="RecordId" type="xs:int" />
+                <xs:element name="ObjectId" type="xs:int" />
+                <xs:element name="ContactId" type="xs:int" />
+                <xs:element name="Mode" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//ContactLink" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <ContactLink>
+    <Id>1</Id>
+    <RecordId>23</RecordId>
+    <ObjectId>3</ObjectId>
+    <ContactId>-1</ContactId>
+    <Mode>0</Mode>
+  </ContactLink>
+  <ContactLink>
+    <Id>2</Id>
+    <RecordId>40</RecordId>
+    <ObjectId>3</ObjectId>
+    <ContactId>1</ContactId>
+    <Mode>0</Mode>
+  </ContactLink>
+  <ContactLink>
+    <Id>3</Id>
+    <RecordId>335</RecordId>
+    <ObjectId>3</ObjectId>
+    <ContactId>1</ContactId>
+    <Mode>1</Mode>
+  </ContactLink>
+  <ContactLink>
+    <Id>4</Id>
+    <RecordId>448</RecordId>
+    <ObjectId>3</ObjectId>
+    <ContactId>-1</ContactId>
+    <Mode>-1</Mode>
+  </ContactLink>
+  <ContactLink>
+    <Id>5</Id>
+    <RecordId>455</RecordId>
+    <ObjectId>3</ObjectId>
+    <ContactId>-1</ContactId>
+    <Mode>1</Mode>
+  </ContactLink>
+  <ContactLink>
+    <Id>6</Id>
+    <RecordId>469</RecordId>
+    <ObjectId>3</ObjectId>
+    <ContactId>-1</ContactId>
+    <Mode>1</Mode>
+  </ContactLink>
+  <ContactLink>
+    <Id>7</Id>
+    <RecordId>483</RecordId>
+    <ObjectId>3</ObjectId>
+    <ContactId>-1</ContactId>
+    <Mode>1</Mode>
+  </ContactLink>
+</mPortal>

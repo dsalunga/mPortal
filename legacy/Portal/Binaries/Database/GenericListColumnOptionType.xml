@@ -1,0 +1,81 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="GenericListColumnOptionType">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Label">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="255" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Template" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//GenericListColumnOptionType" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <GenericListColumnOptionType>
+    <Id>1</Id>
+    <Label>Text Field</Label>
+    <Template>&lt;tr&gt;&lt;td align="left"&gt;&lt;input type="text" name="__ANSWER{QID}" size="35"&gt;&lt;/td&gt;&lt;/tr&gt;</Template>
+  </GenericListColumnOptionType>
+  <GenericListColumnOptionType>
+    <Id>2</Id>
+    <Label>Multiline Text Field</Label>
+    <Template>&lt;tr&gt;&lt;td align="left"&gt;&lt;textarea name="__ANSWER{QID}" cols="35" rows="5"&gt;&lt;/textarea&gt;&lt;/td&gt;&lt;/tr&gt;</Template>
+  </GenericListColumnOptionType>
+  <GenericListColumnOptionType>
+    <Id>3</Id>
+    <Label>Check Box</Label>
+    <Template>&lt;tr&gt;&lt;td align="left"&gt;&lt;input type="checkbox" name="__ANSWER{QID}" value="{CAPTION}"&gt;{CAPTION}&lt;/td&gt;&lt;/tr&gt;</Template>
+  </GenericListColumnOptionType>
+  <GenericListColumnOptionType>
+    <Id>4</Id>
+    <Label>Check Box + Text Field</Label>
+    <Template>&lt;tr&gt;&lt;td align="left"&gt;&lt;input type="checkbox" name="__ANSWER{QID}" value="{CAPTION}"&gt;{CAPTION}&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type="text" name="__ANSWER{QID}" size="30"&gt;&lt;/td&gt;&lt;/tr&gt;</Template>
+  </GenericListColumnOptionType>
+  <GenericListColumnOptionType>
+    <Id>5</Id>
+    <Label>Radio Button</Label>
+    <Template>&lt;tr&gt;&lt;td align="left"&gt;&lt;input type="radio" name="__ANSWER{QID}" value="{CAPTION}"&gt;{CAPTION}&lt;/td&gt;&lt;/tr&gt;</Template>
+  </GenericListColumnOptionType>
+  <GenericListColumnOptionType>
+    <Id>6</Id>
+    <Label>Radio Button + Text Field</Label>
+    <Template>&lt;tr&gt;&lt;td align="left"&gt;&lt;input type="radio" name="__ANSWER{QID}" value="{CAPTION}"&gt;{CAPTION}&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type="text" name="__ANSWER{QID}" size="30"&gt;&lt;/td&gt;&lt;/tr&gt;</Template>
+  </GenericListColumnOptionType>
+  <GenericListColumnOptionType>
+    <Id>7</Id>
+    <Label>Radio Button + Multiline Text Field</Label>
+    <Template>&lt;tr&gt;&lt;td align="left"&gt;&lt;input type="radio" name="__ANSWER{QID}" value="{CAPTION}"&gt;{CAPTION}&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;textarea name="__ANSWER{QID}" cols="30" rows="2"&gt;&lt;/textarea&gt;&lt;/td&gt;&lt;/tr&gt;</Template>
+  </GenericListColumnOptionType>
+  <GenericListColumnOptionType>
+    <Id>8</Id>
+    <Label>Check Box + Multiline Text Field</Label>
+    <Template>&lt;tr&gt;&lt;td align="left"&gt;&lt;input type="checkbox" name="__ANSWER{QID}" value="{CAPTION}"&gt;{CAPTION}&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;textarea name="__ANSWER{QID}" cols="30" rows="2"&gt;&lt;/textarea&gt;&lt;/td&gt;&lt;/tr&gt;</Template>
+  </GenericListColumnOptionType>
+  <GenericListColumnOptionType>
+    <Id>9</Id>
+    <Label>Selection Box</Label>
+    <Template>&lt;option&gt;{CAPTION}&lt;/option&gt;</Template>
+  </GenericListColumnOptionType>
+</mPortal>

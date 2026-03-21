@@ -1,0 +1,97 @@
+﻿<style type="text/css">
+    body, table {
+        font-family: Segoe UI, Tahoma, Arial, Times New Roman;
+        font-size: 14px;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+
+    .info-col-title {
+        width: 130px;
+    }
+
+    .info-col-value {
+        width: 201px;
+    }
+
+    .info-col-sep {
+        width: 7px;
+    }
+</style>
+The Integration Portal requires your approval to activate this newly created
+account before the user can access the Portal.<br />
+Please verify the Personal Information carefully before approving the account:<br />
+<br />
+<br />
+<table border="0" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+            <td colspan="2" style="background-color: rgb(204, 204, 204);">
+                <b>
+                    Personal
+                    Information
+                </b>
+            </td>
+        </tr>
+        <tr><td colspan="2"><img width="375" alt="Member Photo" border="1" src="$(PHOTO_URL)" /></td></tr>
+        <tr>
+            <td class="info-col-title">Group ID: </td>
+            <td class="info-col-value">$(CHURCH_ID_NO)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">First Name: </td>
+            <td>$(FIRST_NAME)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Last Name: </td>
+            <td>$(LAST_NAME)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Gender: </td>
+            <td>$(GENDER)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Mobile No.: </td>
+            <td>$(MOBILE)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Email: </td>
+            <td class="info-col-value">$(EMAIL)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Country: </td>
+            <td>$(COUNTRY)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Date of Membership: </td>
+            <td>$(MEMBERSHIP_DATE)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Group Locale: </td>
+            <td>$(LOCALE)</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Login: </td>
+            <td>$(USER_NAME)</td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<br />
+Click on the link below and login to Integration Portal to approve or reject the newly
+created account.
+<br />
+<br />
+<p>
+    <a title="Click here to Login to Integration Portal" href="$(APPROVAL_URL)">$(APPROVAL_URL)</a><br />
+    <br />
+    <br />
+    <b>Thanks be to God!</b><br />
+    Integration Portal<br />
+    <a href="javascript:location.href='mailto:portal@someorg.org.sg?subject=Integration%20Portal%20Registration'">portal@someorg.org.sg</a>
+</p>

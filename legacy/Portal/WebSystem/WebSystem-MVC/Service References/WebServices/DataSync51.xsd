@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCMS.Framework.Net" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCMS.Framework.Net" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfFileSyncInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FileSyncInfo" nillable="true" type="tns:FileSyncInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFileSyncInfo" nillable="true" type="tns:ArrayOfFileSyncInfo" />
+  <xs:complexType name="FileSyncInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateModified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RelativePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Size" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileSyncInfo" nillable="true" type="tns:FileSyncInfo" />
+</xs:schema>

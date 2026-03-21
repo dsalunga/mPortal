@@ -1,0 +1,205 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebConstant">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ConstantId" type="xs:int" />
+                <xs:element name="Value">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Rank" type="xs:int" />
+                <xs:element name="Category">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Text">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ObjectId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebConstant" />
+        <xs:field xpath="ConstantId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebConstant>
+    <ConstantId>1</ConstantId>
+    <Value>text/css</Value>
+    <Rank>1</Rank>
+    <Category>MIME</Category>
+    <Text>Cascading Style Sheets (CSS)</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>2</ConstantId>
+    <Value>application/javascript</Value>
+    <Rank>2</Rank>
+    <Category>MIME</Category>
+    <Text>JavaScript</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>3</ConstantId>
+    <Value>text/xml</Value>
+    <Rank>3</Rank>
+    <Category>MIME</Category>
+    <Text>Extensible Markup Language (XML)</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>4</ConstantId>
+    <Value>text/plain</Value>
+    <Rank>4</Rank>
+    <Category>MIME</Category>
+    <Text>Text data</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>5</ConstantId>
+    <Value>text/html</Value>
+    <Rank>9</Rank>
+    <Category>MIME</Category>
+    <Text>HTML</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>6</ConstantId>
+    <Value>application/xhtml+xml</Value>
+    <Rank>6</Rank>
+    <Category>MIME</Category>
+    <Text>XHTML</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>7</ConstantId>
+    <Value>1</Value>
+    <Rank>1</Rank>
+    <Category>AuthenticationType</Category>
+    <Text>Anonymous Access</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>8</ConstantId>
+    <Value>2</Value>
+    <Rank>2</Rank>
+    <Category>AuthenticationType</Category>
+    <Text>Account Authentication</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>9</ConstantId>
+    <Value>4</Value>
+    <Rank>3</Rank>
+    <Category>AuthenticationType</Category>
+    <Text>IP Authentication</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>10</ConstantId>
+    <Value>8</Value>
+    <Rank>4</Rank>
+    <Category>AuthenticationType</Category>
+    <Text>Account OR IP Authentication</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>11</ConstantId>
+    <Value>16</Value>
+    <Rank>5</Rank>
+    <Category>AuthenticationType</Category>
+    <Text>Account AND IP Authentication</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>12</ConstantId>
+    <Value>32</Value>
+    <Rank>6</Rank>
+    <Category>AuthenticationType</Category>
+    <Text>All IP Except Entries</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>13</ConstantId>
+    <Value>64</Value>
+    <Rank>7</Rank>
+    <Category>AuthenticationType</Category>
+    <Text>All Accounts Except Entries</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>14</ConstantId>
+    <Value>0</Value>
+    <Rank>1</Rank>
+    <Category>ObjectCategory</Category>
+    <Text>Public</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>15</ConstantId>
+    <Value>1</Value>
+    <Rank>2</Rank>
+    <Category>ObjectCategory</Category>
+    <Text>Web Part Administration</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>16</ConstantId>
+    <Value>_blank</Value>
+    <Rank>1</Rank>
+    <Category>LinkTargets</Category>
+    <Text>New Window</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>17</ConstantId>
+    <Value>_parent</Value>
+    <Rank>2</Rank>
+    <Category>LinkTargets</Category>
+    <Text>Parent Window</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>18</ConstantId>
+    <Value>_self</Value>
+    <Rank>3</Rank>
+    <Category>LinkTargets</Category>
+    <Text>Current Window</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>19</ConstantId>
+    <Value>_top</Value>
+    <Rank>4</Rank>
+    <Category>LinkTargets</Category>
+    <Text>Browser Window</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+  <WebConstant>
+    <ConstantId>20</ConstantId>
+    <Value>_search</Value>
+    <Rank>5</Rank>
+    <Category>LinkTargets</Category>
+    <Text>Search</Text>
+    <ObjectId>-1</ObjectId>
+  </WebConstant>
+</mPortal>

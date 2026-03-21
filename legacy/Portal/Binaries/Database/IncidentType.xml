@@ -1,0 +1,67 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="IncidentType">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FollowStdSLA" type="xs:int" />
+                <xs:element name="Rank" type="xs:int" />
+                <xs:element name="InstanceId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//IncidentType" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <IncidentType>
+    <Id>1</Id>
+    <Name>General Request</Name>
+    <FollowStdSLA>1</FollowStdSLA>
+    <Rank>1</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentType>
+  <IncidentType>
+    <Id>2</Id>
+    <Name>Issue, Bug, Error, Problem</Name>
+    <FollowStdSLA>1</FollowStdSLA>
+    <Rank>5</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentType>
+  <IncidentType>
+    <Id>3</Id>
+    <Name>Feature Request, Development, Project</Name>
+    <FollowStdSLA>0</FollowStdSLA>
+    <Rank>10</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentType>
+  <IncidentType>
+    <Id>4</Id>
+    <Name>Comment, Suggestion, Improvement</Name>
+    <FollowStdSLA>0</FollowStdSLA>
+    <Rank>15</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentType>
+  <IncidentType>
+    <Id>5</Id>
+    <Name>Account, Permissions</Name>
+    <FollowStdSLA>1</FollowStdSLA>
+    <Rank>20</Rank>
+    <InstanceId>-1</InstanceId>
+  </IncidentType>
+</mPortal>

@@ -1,0 +1,1 @@
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="WCMS.WebSystem.WebParts.Article._Sections_P_RSS" Codebehind="RSS.aspx.cs" %>

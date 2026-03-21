@@ -1,0 +1,567 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.Integration
+@{
+    WebUser user = null;
+    var context = new WContext(this);
+    var site = context.Site;
+    var portalSite = WSite.Provider.Get("Portal");
+
+    var wsession = WSession.Current;
+    var isMember = false;
+    var isSG = false;
+    var sessionId = string.Empty;
+    var portalSessionId = string.Empty;
+    if (wsession.IsLoggedIn)
+    {
+        user = wsession.User;
+        isMember = user.IsMemberOf(IntegrationConstants.MEMBERS_GROUP_NAME);
+        isSG = user.IsMemberOf("Singapore");
+        var userSession = wsession.UserSession;
+        if (userSession != null)
+        {
+            sessionId = "?SessionId=" + userSession.SessionId;
+            if (site.Id != portalSite.Id)
+            {
+                portalSessionId = sessionId;
+            }
+        }
+    }
+
+    var request = context.Context.Request;
+    var portalHomeUrl = portalSite.BuildAbsoluteUrl();
+    var portalRootUrl = portalHomeUrl;
+}
+
+@*<h1 class="page-header">Apps, Websites &amp; Services</h1>
+    <p class="lead">Here is a list of apps and links available to members.</p>
+*@
+
+<style type="text/css">
+    /*h1.page-header {margin-top: 70px;}*/
+    h1.page-header {
+        margin-top: 0;
+    }
+
+    .app-category {
+        margin-bottom: 50px;
+    }
+
+        .app-category .media .media-body {
+            /*font-size: 13px;*/
+            color: #999; /*707070*/
+            padding-top: 4px;
+        }
+
+    .media a {
+        color: #333;
+    }
+
+    .app-category .media, .media .media {
+        margin-top: 0;
+        margin-bottom: 30px;
+        min-height: 64px;
+    }
+
+        .app-category .media:first-child {
+            margin-top: 0;
+        }
+
+    .flag-shadow {
+        /*box-shadow: 1px 1px #ddd;*/
+        border: 1px solid #eee;
+    }
+
+    .app-icon {
+        width: 64px;
+    }
+
+    .glyphicon-icon {
+        font-size: 46px;
+        width: 64px;
+        /*color: #EDA912;*/
+        color: #777;
+        padding-top: 4px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1>Discover</h1>
+                <p>Discover and explore our apps, sites and services.</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3" id="sidebar" role="navigation">
+            <div class="list-group">
+                <a href="#" class="list-group-item active"><strong>Discover &amp; Explore</strong></a>
+                @*<a href="#favs" class="list-group-item">My Favourites</a>*@
+                <a href="#apps" class="list-group-item">Apps &amp; Services</a>
+                @if (isMember)
+                {
+                <a href="#ministries" class="list-group-item">Groups &amp; Communities</a>
+                }
+                <a href="#locales" class="list-group-item">Official Websites</a>
+                <a href="#social" class="list-group-item">Social Media</a>
+                @*<a href="#social" class="list-group-item">Social Media</a>*@
+            </div>
+            <br />
+        </div>
+        <div class="col-xs-12 col-md-9">
+            <div class="row app-category">
+                <div class="col-md-12">
+                    <h1 id="apps" class="page-header">Apps &amp; Services</h1>
+                </div>
+                @if (isMember)
+                {
+                    <div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="@portalRootUrl/chapters">
+                            <span class="glyphicon glyphicon-map-marker glyphicon-icon">&nbsp;</span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="@portalRootUrl/chapters">Chapters</a></h4>
+                            Search for Integration chapter info
+                        </div>
+                    </div>
+                    <div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="https://musicministry.someorg.org/Files/@sessionId">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mm_logo.jpg">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="/musicportal/Files/@sessionId">Files</a></h4>
+                            Collection of Files
+                        </div>
+                    </div>
+                    @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="https://teatrokristiano.someorg.org/Files/@sessionId">
+                            <img class="media-object" width="64" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="https://teatrokristiano.someorg.org/Files/@sessionId">TK Library</a></h4>
+                            TK Video Library &amp; Materials
+                        </div>
+                    </div>*@
+                    <div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="@portalRootUrl/BibleReader">
+                            <img class="media-object" width="64" src="/Content/Parts/Integration/Assets/images/timthumb2.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="@portalRootUrl/BibleReader">Bible Reader</a></h4>
+                            Online Bible in various translations and languages
+                        </div>
+                    </div>
+                    <div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="@portalRootUrl/LiveStream/@portalSessionId">
+                            <span class="glyphicon glyphicon-film glyphicon-icon">&nbsp;</span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="@portalRootUrl/LiveStream/@portalSessionId">Live Stream</a></h4>
+                            Live video streaming service for members
+                        </div>
+                    </div>
+                    @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="https://external.someorg.org/" target="_blank">
+                            <span class="glyphicon glyphicon-user glyphicon-icon">&nbsp;</span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="https://external.someorg.org/" target="_blank">Integration External</a></h4>
+                            Integration Attendance Monitoring System
+                        </div>
+                    </div>*@
+                    @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="http://link.someorg.org/" target="_blank">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/link_logo.jpg">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://link.someorg.org/" target="_blank">Integration Link</a></h4>
+                            Official streaming service for monitoring live gatherings
+                        </div>
+                    </div>*@
+                    @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="http://one.someorg.org/" target="_blank" style="text-align: center; width: 64px;">
+                            <img class="app-icon" style="width: 55px;" src="/Content/Parts/Integration/Assets/images/icon_one.jpg">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://one.someorg.org/" target="_blank">Integration Ext</a></h4>
+                            Integration Members unified account
+                        </div>
+                    </div>*@
+                    @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="http://link.someorg.org/" target="_blank">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/zimbra-logo.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="https://mail.someorg.org.sg/" target="_blank">SG Mail</a></h4>
+                            Integration Singapore Email service
+                        </div>
+                    </div>*@
+                    @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="/Apps/">
+                            <img class="pull-left app-icon" src="/Content/Parts/Integration/Assets/images/mcgi-broadcast-app.jpg">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="/Apps/">Mobile Apps</a></h4>
+                            Available in Apple App Store and Google Play Store
+                        </div>
+                    </div>*@
+                    @*<div class="media col-sm-6 col-lg-4">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi-app.jpg" class="pull-left">
+                            <div class="media-body">
+                                <h4 class="media-heading">Integration App</h4>
+                                Search in App Store or Play Store to install the app
+                            </div>
+                        </div>
+                        <div class="media col-sm-6 col-lg-4">
+                            <img class="pull-left" width="64" src="/Content/Parts/Integration/Assets/images/mcgi-broadcast-app.jpg">
+                            <div class="media-body">
+                                <h4 class="media-heading">Integration Broadcast</h4>
+                                Search in App Store or Play Store to install the app
+                            </div>
+                        </div>
+                        <div class="media col-sm-6 col-lg-4">
+                            <img class="pull-left" width="64" src="/Content/Parts/Integration/Assets/images/untv-app.jpg">
+                            <div class="media-body">
+                                <h4 class="media-heading">UNTV Mobile App</h4>
+                                Search in App Store or Play Store to install the app
+                            </div>
+                        </div>*@
+                    @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="http://www.someorg.org/community-prayer/" target="_blank">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/cp.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://www.someorg.org/community-prayer/" target="_blank">24/7 Community Prayer</a></h4>
+                            “Pray without ceasing,” says I Thessalonians 5:17
+                        </div>
+                    </div>
+                    <div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="http://www.someorg.org/mcgi-calendar/" target="_blank">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi-calendar.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://www.someorg.org/mcgi-calendar/" target="_blank">Integration Calendar</a></h4>
+                            Calendar of Events &amp; Gatherings
+                        </div>
+                    </div>*@
+                }
+                else
+                {
+                    // Public apps and services
+                    <div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="@portalRootUrl/chapters">
+                            <span class="glyphicon glyphicon-map-marker glyphicon-icon">&nbsp;</span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="@portalRootUrl/chapters">Chapters</a></h4>
+                            Search for Integration chapter info
+                        </div>
+                    </div>
+                    <div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="/Apps/">
+                            <span class="glyphicon glyphicon-phone glyphicon-icon">&nbsp;</span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="/Apps/">Mobile &nbsp; Web Apps</a></h4>
+                            Available in Apple App Store and Google Play Store
+                        </div>
+                    </div>
+                    <div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="@portalRootUrl/BibleReader">
+                            <img class="media-object" width="64" src="/Content/Parts/Integration/Assets/images/timthumb2.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="@portalRootUrl/BibleReader">Bible Reader</a></h4>
+                            Online Bible in various translations and languages
+                        </div>
+                    </div>
+                    @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="http://www.someorg.org/community-prayer/" target="_blank">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/cp.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://www.someorg.org/community-prayer/" target="_blank">24/7 Community Prayer</a></h4>
+                            "Pray without ceasing," says I Thessalonians 5:17
+                        </div>
+                    </div>*@
+                    @*<div class="media col-sm-6 col-lg-4">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi-app.jpg" class="pull-left">
+                            <div class="media-body">
+                                <h4 class="media-heading">Integration App</h4>
+                                Search in App Store or Play Store to install the app
+                            </div>
+                        </div>
+                        <div class="media col-sm-6 col-lg-4">
+                            <img class="pull-left" width="64" src="/Content/Parts/Integration/Assets/images/mcgi-broadcast-app.jpg">
+                            <div class="media-body">
+                                <h4 class="media-heading">Integration Broadcast</h4>
+                                Search in App Store or Play Store to install the app
+                            </div>
+                        </div>*@
+                    @*<div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="http://www.someorg.org/mcgi-calendar/" target="_blank">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi-calendar.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://www.someorg.org/mcgi-calendar/" target="_blank">Integration Calendar</a></h4>
+                            Calendar of Events &amp; Gatherings
+                        </div>
+                    </div>*@
+                    <div class="media col-sm-6 col-lg-4">
+                        <a class="pull-left" href="@portalRootUrl/help-feedback">
+                            <span class="glyphicon glyphicon-question-sign glyphicon-icon">&nbsp;</span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="@portalRootUrl/help-feedback">Help & Feedback</a></h4>
+                            Find help information and to contact support.
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (isMember)
+            {
+            <div class="row app-category">
+                <div class="col-md-12">
+                    <h1 id="ministries" class="page-header">Groups &amp; Communities</h1>
+                </div>
+                @*@if (isSG)
+            {*@
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="/SingaporeV2/@sessionId">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="/SingaporeV2/@sessionId">Singapore Portal</a></h4>
+                        Content and updates exclusive to SG group members
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="/Singapore/@sessionId">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="/Singapore/@sessionId">Singapore Portal (V1)</a></h4>
+                        Content and updates exclusive to SG group members
+                    </div>
+                </div>
+                @*}*@
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="/musicportal/@sessionId">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mm_logo.jpg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="/musicportal/@sessionId">Music Portal</a></h4>
+                        Music Portal-related content and updates
+                    </div>
+                </div>
+                @*<div class="media col-sm-6 col-lg-4">
+                <a class="pull-left" href="https://teatrokristiano.someorg.org/@sessionId">
+                    <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="https://teatrokristiano.someorg.org/@sessionId">Teatro Kristiano</a></h4>
+                    Teatro Kristiano-related content and updates
+                </div>
+                </div>*@
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="/musicportal/music-competition/asia-oceania/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/MusicCompetition/v3-res/images/logosmall.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="/musicportal/music-competition/asia-oceania/" target="_blank">Music Competition Asia Oceania</a></h4>
+                        Music Competition Festival
+                    </div>
+                </div>
+            </div>
+            }
+            <div class="row app-category">
+                <div class="col-md-12">
+                    <h1 id="locales" class="page-header">Official Websites</h1>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="/en-SG/" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/sg.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="/en-SG/" target="_blank">Singapore Group</a></h4>
+                        The official website of Singapore Group
+                    </div>
+                </div>
+                @*<div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://mcgisfbay.jimdo.com/" target="_blank">
+                        <img class="app-icon" src="/Content/Assets/images/flags/usa.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://mcgisfbay.jimdo.com/" target="_blank">Integration SF Bay Area</a></h4>
+                        The official website of Integration San Francisco Bay Area
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://mcgijapan.wordpress.com/" target="_blank">
+                        <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/jp.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://mcgijapan.wordpress.com/" target="_blank">Integration Japan</a></h4>
+                        The official website of Integration Japan chapter
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://someorg.org.au/" target="_blank">
+                        <img class="app-icon" src="/Content/Assets/images/flags/au.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://someorg.org.au/" target="_blank">Integration Australia</a></h4>
+                        The official website of Integration Australia chapter
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://someorg.org.nz/" target="_blank">
+                        <img class="app-icon" src="/Content/Assets/images/flags/nz.svg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://someorg.org.nz/" target="_blank">Integration New Zealand</a></h4>
+                        The official website of Integration New Zealand chapter
+                    </div>
+                </div>*@
+            </div>
+            @*<div class="row app-category">
+                <div class="col-md-12">
+                    <h1 id="social" class="page-header">Social Media</h1>
+                </div>*@
+                @*<div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://www.angdatingdaan.org/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/angdatingdaan.com_.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://www.angdatingdaan.org/" target="_blank">Ang Dating Daan</a></h4>
+                        Ang Dating Daan TV Official Website
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://www.theoldpath.tv/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/theoldpath.tv_.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://www.theoldpath.tv/" target="_blank">The Old Path</a></h4>
+                        The Old Path TV Official Website
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://ocaminhoantigo.tv/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/oca.jpg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://ocaminhoantigo.tv/" target="_blank">O Caminho Antigo</a></h4>
+                        O Caminho Antigo TV Official Website
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://elcaminoantiguo.com/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/lbr.jpg">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://elcaminoantiguo.com/" target="_blank">El Camino Antiguo</a></h4>
+                        El Camino Antiguo TV Official Website
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://www.someorg.org/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://www.someorg.org/" target="_blank">Integration.org</a></h4>
+                        "Cleave to What is Good"
+                    </div>
+                </div>*@
+                @*<div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://www.elisoriano.com/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/timthumb2.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://www.elisoriano.com/" target="_blank">Bro Eliseo Soriano</a></h4>
+                        The Official Website | The Truth Caster
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://www.danielrazon.com/" target="_blank" style="width: 64px; text-align: center">
+                        <img class="app-icon" style="width: 50px;" src="/Content/Parts/Integration/Assets/images/dsr_logo2.gif">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://www.danielrazon.com/" target="_blank">Daniel Razon</a></h4>
+                        The Official Website
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://www.untvweb.com/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/untv-logo2.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://www.untvweb.com/" target="_blank">UNTVweb.com</a></h4>
+                        UNTV Official Website
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://www.untvradio.com/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/untvradio-logo.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://www.untvradio.com/" target="_blank">UNTV RADIO</a></h4>
+                        LA VERDAD 1350 kHz &raquo;
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://www.asoptv.com/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/asop-logo2.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://www.asoptv.com/" target="_blank">ASOP TV</a></h4>
+                        A Song of Praise Music Festival
+                    </div>
+                </div>
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://www.kamanggagawa.org/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/kfi-logo2.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://www.kamanggagawa.org/" target="_blank">Kamanggagawa Foundation, Inc.</a></h4>
+                        A Manila-based non-profit organization which seeks to improve the quality of life...
+                    </div>
+                </div>*@
+            @*</div>*@
+            <div class="row app-category">
+                <div class="col-md-12">
+                    <h1 id="social" class="page-header">Social Media</h1>
+                </div>
+                @*<div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="http://esoriano.wordpress.com/" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/webawards.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="http://esoriano.wordpress.com/" target="_blank">The Truth Blog</a></h4>
+                        esoriano.wordpress.com
+                    </div>
+                </div>*@
+                <div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://twitter.com/dsalunga" target="_blank">
+                        <span class="glyphicon glyphicon-comment glyphicon-icon">&nbsp;</span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://twitter.com/BroEliSoriano" target="_blank">@@dsalunga</a></h4>
+                        @@dsalunga on Twitter
+                    </div>
+                </div>
+                @*<div class="media col-sm-6 col-lg-4">
+                    <a class="pull-left" href="https://www.facebook.com/Integration.org" target="_blank">
+                        <img class="app-icon" src="/Content/Parts/Integration/Assets/images/Integration-fb.png">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="https://www.facebook.com/Integration.org" target="_blank">IntegrationMCGI.org</a></h4>
+                        Integration Official Facebook
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>

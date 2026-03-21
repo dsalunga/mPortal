@@ -1,0 +1,175 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.Integration
+@{
+    WebUser user = null;
+    var context = new WContext(this);
+    var site = context.Site;
+    var portalSite = WSite.Provider.Get("Portal");
+
+    var wsession = WSession.Current;
+    var isMember = false;
+    var isSG = false;
+    var sessionId = string.Empty;
+    var portalSessionId = string.Empty;
+    if (wsession.IsLoggedIn)
+    {
+        user = wsession.User;
+        isMember = user.IsMemberOf(IntegrationConstants.MEMBERS_GROUP_NAME);
+        isSG = user.IsMemberOf("Singapore");
+        var userSession = wsession.UserSession;
+        if (userSession != null)
+        {
+            sessionId = "?SessionId=" + userSession.SessionId;
+            if (site.Id != portalSite.Id)
+            {
+                portalSessionId = sessionId;
+            }
+        }
+    }
+
+    var request = context.Context.Request;
+    var portalHomeUrl = portalSite.BuildAbsoluteUrl();
+    var portalRootUrl = portalHomeUrl;
+}
+
+@*<h1 class="page-header">Apps, Websites &amp; Services</h1>
+    <p class="lead">Here is a list of apps and links available to members.</p>
+*@
+
+<style>
+    /*h1.page-header {margin-top: 70px;}*/
+    h1.page-header {
+        margin-top: 0;
+    }
+
+    .app-category {
+        margin-bottom: 50px;
+    }
+
+    .media a {
+        color: #333;
+    }
+
+    .media, .media .media {
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+
+        .media:first-child {
+            margin-top: 0;
+        }
+
+    .flag-shadow {
+        box-shadow: 1px 1px #ddd;
+    }
+
+    .app-icon {
+        max-height: 175px;
+    }
+
+    .store-icon {
+        height: 40px;
+    }
+
+    .app-blurb {
+        max-height:;
+    }
+
+    .glyphicon-icon {
+        font-size: 50px;
+        width: 64px;
+        /*color: #EDA912;*/
+        color: #333;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .jumbotron {
+        text-align: center;
+        background-color: transparent;
+    }
+
+        .jumbotron .btn {
+            padding: 14px 24px;
+            font-size: 21px;
+        }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1>Mobile &amp; Web Apps</h1>
+                <p>Discover our tablet &amp; phone apps for Android &amp; iOS.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 app-category">
+            <a href="https://wikitruth.net" target="_blank">
+                <img src="https://wikitruth.net/img/logo.png" class="img-responsive app-icon" />
+            </a>
+            <h2>Wikitruth Project</h2>
+            <div class="broadcast app-blurb">
+                <p>A systematic discourse and knowledge contribution using dialectics and vetting to verify knowledge that is true or false, right or wrong, and good or bad.</p>
+                @*<p>This app aims to provide a 24/7 programming of The Old Path broadcast in the following language formats: English, Portuguese, Spanish and Tagalog.</p>*@
+                <!--<p>The Old Path is hosted by Bro. Eliseo F. Soriano and has started in the Philippines in 1980.--> @*Its question-and-answer segment "Ask Soriano" has catapulted the program to its phenomenal rise as an award-winning informative religious show.*@<!--</p>-->
+            </div>
+            @*<p><a class="btn btn-default" href="https://play.google.com/store/apps/details?id=org.mcgi.mcgiapp" target="_blank" role="button" title="Download on Google Play">Google Play »</a> <a class="btn btn-default" href="https://itunes.apple.com/ph/app/mcgi-mobile-app/id598700107" target="_blank" role="button" title="Download on the App Store on iTunes">App Store »</a></p>*@
+            <p><a href="#" target="_blank" role="button"><img src="/Content/Assets/Images/google-play.png" class="store-icon" title="Download on Google Play" /></a> <a href="#" target="_blank" role="button"><img src="/Content/Assets/Images/app-store.png" class="store-icon" title="Download on the App Store on iTunes" /></a></p>
+        </div>
+        <div class="col-md-4 app-category">
+            <a href="https://fixthephilippines.org/" target="_blank">
+                <img src="https://fixthephilippines.org/img/fixtheph/logo.png" class="img-responsive app-icon" />
+            </a>
+            <h2>Fix The Philippines</h2>
+            <div class="mcgi app-blurb">
+                <p>
+                    A system to promote transparency and accountability, help citizens identify, raise and fix issues in the Philippine society and government.
+                </p>
+                @*<p>Tags: Integration, Member, Christianity, Truth, Salvation, Jesus, God, Bible, Group of God, Members Group of God International, Community Prayer</p>*@
+            </div>
+            @*<p><a class="btn btn-default" href="https://play.google.com/store/apps/details?id=org.mcgi.mcgiapp" target="_blank" role="button" title="Download on Google Play">Google Play »</a> <a class="btn btn-default" href="https://itunes.apple.com/ph/app/mcgi-mobile-app/id598700107" target="_blank" role="button" title="Download on the App Store on iTunes">App Store »</a></p>*@
+            <p><a href="#" target="_blank" role="button"><img src="/Content/Assets/Images/google-play.png" class="store-icon" title="Download on Google Play" /></a> <a href="#" target="_blank" role="button"><img src="/Content/Assets/Images/app-store.png" class="store-icon" title="Download on the App Store on iTunes" /></a></p>
+        </div>
+
+        <!--
+        <div class="col-md-4 app-category">
+            <img src="/Content/Parts/Integration/Assets/images/untv-app2.png" class="img-responsive app-icon" />
+            <h2>UNTV App</h2>
+            <div class="untv app-blurb">
+                <p>Whether it's watching your favorite public service program on UNTV, or listening @*to a*@ live on La Verdad Radio, the UNTV app has it all on your mobile device for you.</p>
+                <p>Get live updates from UNTV's Twitter accounts, or hear the latest life-saving effort of the network's News & Rescue Team and more in real time. @*With the UNTV app, the home of public service in the Philippines is well within your reach.*@</p>
+                @*<p>Tags: UNTV, News, Radio, TV, Philippines, Radyo Laverdad, Public Service, Mobile, Television, Broadcast, Live, Webcast, Streaming, Medical Mission, Tulong Muna Bago Balita, Good Morning Kuya, Get it Straight, Kasambahay</p>*@
+            </div>
+            @*<p><a class="btn btn-default" href="https://play.google.com/store/apps/details?id=org.mcgi.mcgiapp" target="_blank" role="button" title="Download on Google Play">Google Play »</a> <a class="btn btn-default" href="https://itunes.apple.com/ph/app/mcgi-mobile-app/id598700107" target="_blank" role="button" title="Download on the App Store on iTunes">App Store »</a></p>*@
+            <p><a href="https://play.google.com/store/apps/details?id=com.untvweb.untvapp" target="_blank" role="button"><img src="/Content/Assets/Images/google-play.png" class="store-icon" title="Download on Google Play" /></a> <a href="https://itunes.apple.com/ph/app/untv-mobile-app/id598724077" target="_blank" role="button"><img src="/Content/Assets/Images/app-store.png" class="store-icon" title="Download on the App Store on iTunes" /></a></p>
+        </div>-->
+    </div>
+</div>
+@*<script type="text/javascript" src="/Content/plugins/readmore.js/readmore.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.broadcast').readmore({
+                speed: 75,
+                maxHeight: 100,
+                moreLink: '<p><a class="btn btn-default" href="#" role="button">More &raquo;</a></p>',
+                lessLink: '<p><a class="btn btn-default" href="#" role="button">Less &laquo;</a></p>'
+            });
+
+            $('.untv').readmore({
+                speed: 75,
+                maxHeight: 100,
+                moreLink: '<p><a class="btn btn-default" href="#" role="button">More &raquo;</a></p>',
+                lessLink: '<p><a class="btn btn-default" href="#" role="button">Less &laquo;</a></p>'
+            });
+
+            $('.mcgi').readmore({
+                speed: 75,
+                maxHeight: 100,
+                moreLink: '<p><a class="btn btn-default" href="#" role="button">More &raquo;</a></p>',
+                lessLink: '<p><a class="btn btn-default" href="#" role="button">Less &laquo;</a></p>'
+            });
+        });
+    </script>*@

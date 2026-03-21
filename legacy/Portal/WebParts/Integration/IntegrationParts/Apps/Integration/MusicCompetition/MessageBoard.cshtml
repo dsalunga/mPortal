@@ -1,0 +1,59 @@
+﻿@using WCMS.Common.Utilities;
+@using WCMS.Framework;
+@using WCMS.Framework.Core;
+@using WCMS.Framework.Utilities;
+@{
+    //Layout = null;
+    if (!IsPost)
+    {
+        var user = WSession.Current.User;
+        if (user != null)
+        {
+            //txtName.Text = AccountHelper.GetPrefixedName(user);
+            //txtEmail.Text = user.Email;
+
+            //txtName.ReadOnly = true;
+            //txtEmail.ReadOnly = true;
+        }
+
+        //var context = new WContext(this);
+        //var element = context.Element;
+
+        //hObjectId.Value = element.OBJECT_ID.ToString();
+        //hRecordId.Value = element.Id.ToString();
+    }
+}
+
+<div class="comments">
+    <p class="name_class">Name</p>
+    <p class="message_class">Comments: Known as the "melting pot of Asia," Singapore's populace is a diversity of cultures. The four major races inhabiting the country include the majority of Chinese, Malay, Indian and Eurasian. Each race offers a distinct colour in the collage of Singapore's culture, religion, food and language.</p>
+</div>
+<div class="comments">
+    <p class="name_class">Name</p>
+    <p class="message_class">Comments: Known as the "melting pot of Asia," Singapore's populace is a diversity of cultures. The four major races inhabiting the country include the majority of Chinese, Malay, Indian and Eurasian. Each race offers a distinct colour in the collage of Singapore's culture, religion, food and language.</p>
+</div>
+<div class="comments">
+    <p class="name_class">Name</p>
+    <p class="message_class">Comments: Known as the "melting pot of Asia," Singapore's populace is a diversity of cultures. The four major races inhabiting the country include the majority of Chinese, Malay, Indian and Eurasian. Each race offers a distinct colour in the collage of Singapore's culture, religion, food and language.</p>
+</div>
+<div class="comments">
+    <p class="name_class">Name</p>
+    <p class="message_class">Comments: Known as the "melting pot of Asia," Singapore's populace is a diversity of cultures. The four major races inhabiting the country include the majority of Chinese, Malay, Indian and Eurasian. Each race offers a distinct colour in the collage of Singapore's culture, religion, food and language.</p>
+</div>
+<form class="form_class" action="#" method="post">
+    <p>
+        <label>Name</label><br />
+        <input class="input_text rounded_corner" type="text" value="Name" name="comment_name" />
+    </p>
+    <p>
+        <label>Email Address</label><br />
+        <input class="input_text rounded_corner" type="text" value="Email Address" name="comment_eadd" />
+    </p>
+    <p>
+        <label>Message</label><br />
+        <textarea class="input_textarea">Message</textarea>
+    </p>
+
+    <input class="submit_class " type="submit" value="Submit" />
+
+</form>

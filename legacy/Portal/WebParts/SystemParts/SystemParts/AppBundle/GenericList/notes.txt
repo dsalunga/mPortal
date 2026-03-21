@@ -1,0 +1,10 @@
+#not registered
+
+#Surveys = List (DataSet)
+#SurveyQuestions = ListColumn
+#Options = ListColumnOption
+#OptionTypes = ListColumnOptionType
+#SurveyPages = ListPartion
+
+#Responses = ListRow
+#ResponseItems = ListField

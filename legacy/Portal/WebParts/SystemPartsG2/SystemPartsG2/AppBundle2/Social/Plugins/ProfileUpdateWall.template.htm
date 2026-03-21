@@ -1,0 +1,18 @@
+﻿<div class="panelWallPost" id="wallPost$(POST_ID)" data-post='{"id":$(POST_ID),"oid": $(POST_OBJECT_ID), "rid":$(POST_RECORD_ID)}'>
+    <a href="{WALL_URL}?UserId=$(POSTER_USER_ID)" style="float: left; margin-right: 8px;">
+        <img src="$(POSTER_IMAGE_URL)" style="width: 50px;" alt="" />
+    </a>
+    <div class="mainWrapper">
+        $(DELETE_PANEL)
+        <div class="postHeading">
+            <a href="{WALL_URL}.aspx?UserId=$(POSTER_USER_ID)" style="color: #3B5998; font-weight: bold;">$(POSTER_NAME)</a>&nbsp;updated&nbsp;$(GENDER_ADDRESS)&nbsp;<a href="{WALL_URL}?UserId=$(POSTER_USER_ID)" style="color: #3B5998;">profile</a>.
+        </div>
+        <div class="postActions">
+            <a class="commentAction" style="color: #6B84B4">Comment</a>&nbsp;&middot;&nbsp;<span
+                style="color: #999">$(DATE_POSTED)</span>
+        </div>
+        $(COMMENTS_CONTROL)
+    </div>
+</div>
+<div>
+    &nbsp;</div>

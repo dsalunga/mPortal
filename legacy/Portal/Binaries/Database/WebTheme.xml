@@ -1,0 +1,159 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebTheme">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="TemplateId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ParentId" type="xs:int" />
+                <xs:element name="Identity">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="SkinId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebTheme" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebTheme>
+    <Id>1</Id>
+    <TemplateId>2</TemplateId>
+    <Name>Test Theme</Name>
+    <ParentId>-1</ParentId>
+    <Identity />
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>2</Id>
+    <TemplateId>61</TemplateId>
+    <Name>X-TECH Green</Name>
+    <ParentId>-1</ParentId>
+    <Identity>xtech</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>8</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>MCGI Official Template</Name>
+    <ParentId>-1</ParentId>
+    <Identity>mcgi_website</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>9</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>area51</Name>
+    <ParentId>-1</ParentId>
+    <Identity>area51</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>10</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>ASOP</Name>
+    <ParentId>-1</ParentId>
+    <Identity>ASOP</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>11</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>mcgi_mockup</Name>
+    <ParentId>-1</ParentId>
+    <Identity>mockup</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>12</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>arclite</Name>
+    <ParentId>-1</ParentId>
+    <Identity>arclite</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>13</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>Apple Web</Name>
+    <ParentId>-1</ParentId>
+    <Identity>AppleWeb</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>14</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>Central Administration</Name>
+    <ParentId>-1</ParentId>
+    <Identity>Central</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>15</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>Basic</Name>
+    <ParentId>-1</ParentId>
+    <Identity>Basic</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>16</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>mcgisg</Name>
+    <ParentId>-1</ParentId>
+    <Identity>mcgisg</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>17</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>Ang Dating Daan</Name>
+    <ParentId>-1</ParentId>
+    <Identity>ADD</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>18</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>Razor Demo Theme</Name>
+    <ParentId>-1</ParentId>
+    <Identity>demo-razor</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>19</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>Twitter Bootstrap</Name>
+    <ParentId>-1</ParentId>
+    <Identity>bootstrap</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+  <WebTheme>
+    <Id>20</Id>
+    <TemplateId>-1</TemplateId>
+    <Name>Bootstrap 3</Name>
+    <ParentId>-1</ParentId>
+    <Identity>bootstrap3</Identity>
+    <SkinId>-1</SkinId>
+  </WebTheme>
+</mPortal>

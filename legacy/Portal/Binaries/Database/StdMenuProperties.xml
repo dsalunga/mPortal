@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="StdMenuProperties">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ListingPagePropertyID" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="PageType" type="xs:int" minOccurs="0" />
+                <xs:element name="SitePageItemID" type="xs:int" minOccurs="0" />
+                <xs:element name="RepeatColumns" type="xs:int" minOccurs="0" />
+                <xs:element name="HeaderText" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ParentID" type="xs:int" minOccurs="0" />
+                <xs:element name="ListingType" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="64" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="CellPadding" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//StdMenuProperties" />
+        <xs:field xpath="ListingPagePropertyID" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+</mPortal>

@@ -1,0 +1,1318 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebRegistry">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="RegistryId" type="xs:int" />
+                <xs:element name="Key">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="255" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Value" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ParentId" type="xs:int" />
+                <xs:element name="StageId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebRegistry" />
+        <xs:field xpath="RegistryId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebRegistry>
+    <RegistryId>19</RegistryId>
+    <Key>Apps</Key>
+    <Value />
+    <ParentId>-1</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>20</RegistryId>
+    <Key>EventCalendar</Key>
+    <Value />
+    <ParentId>19</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>21</RegistryId>
+    <Key>DefaultReminderToEmail</Key>
+    <Value>daniel.salunga@someorg.org.sg</Value>
+    <ParentId>20</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>22</RegistryId>
+    <Key>System</Key>
+    <Value />
+    <ParentId>-1</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>23</RegistryId>
+    <Key>Security</Key>
+    <Value />
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>24</RegistryId>
+    <Key>PublicKey</Key>
+    <Value>&lt;BitStrength&gt;1024&lt;/BitStrength&gt;&lt;RSAKeyValue&gt;&lt;Modulus&gt;shPhGGIW6ZmBsWhZfqQyzQ/knAgekRnXmGIvIJU4mFrlCqVSo76QReQBFu/pLvb2tVkAQ5CyPdLgXcPtha2aBUaVOjO+MJFjkTVtUIxhsQSGSSc7vxUWLmu1g13YTBKVj0WvLPb8lyvicOiSXEZP8zsaZEFkpT9driNMGziGbl0=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;/RSAKeyValue&gt;</Value>
+    <ParentId>23</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>25</RegistryId>
+    <Key>PrivateKey</Key>
+    <Value>&lt;BitStrength&gt;1024&lt;/BitStrength&gt;&lt;RSAKeyValue&gt;&lt;Modulus&gt;shPhGGIW6ZmBsWhZfqQyzQ/knAgekRnXmGIvIJU4mFrlCqVSo76QReQBFu/pLvb2tVkAQ5CyPdLgXcPtha2aBUaVOjO+MJFjkTVtUIxhsQSGSSc7vxUWLmu1g13YTBKVj0WvLPb8lyvicOiSXEZP8zsaZEFkpT9driNMGziGbl0=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;+P7xrAuriSAYFq1I9FYM4DzkSyBQEC1CdJ7GJazkqr8GMoocb+69G21GKM5+Km5vzjA3SzBybVqbA1nC+D7WpQ==&lt;/P&gt;&lt;Q&gt;txY+IMgJfzblgfaJmBxe16zciM6gyxGmeS8IoLhYhgGTfe54espfxF1GBn68OI8r5HcvCkzwl9iCelH04zxjWQ==&lt;/Q&gt;&lt;DP&gt;YUM1I/9rAiWHQ1RtKwRyAyXGB5KXs7n6O5PJ0u22ZPw5b4SDlzWqqQwGW+pNXkXFZsVu0/AYwp6h7q0he9cQAQ==&lt;/DP&gt;&lt;DQ&gt;seS8zSFQiPkQGy0vGEtIpArj5VHPzkACHvFiUreL2/kgFFZnXffRAX0XkywFOndyUHS1ki6b/w5yCOQlK737UQ==&lt;/DQ&gt;&lt;InverseQ&gt;RBP8CJhly8PEVpRpy3Z7gKIEj1siYLp6grmEyjiNURgj045gK4XInKtyAPKLQW/oAWafsxMX7U3ujxzCTUl7Ag==&lt;/InverseQ&gt;&lt;D&gt;HKJJrYwINyOx0P8AdPaeHI8TqWs8zwQiwKP5A/o6kXT8I0wWD7JSrIpPCoslKaIYZWycOEEKCBribPFWPgp+G1mV2RZXWendlda+J36B0NjSyrDqRrbSQKBQI5++poP1pE+L6cL/DqkxpluMHDjbQqv0IZRPKT0FHyEiuxd498E=&lt;/D&gt;&lt;/RSAKeyValue&gt;</Value>
+    <ParentId>23</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>26</RegistryId>
+    <Key>Debugging</Key>
+    <Value />
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>28</RegistryId>
+    <Key>Agent</Key>
+    <Value />
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>29</RegistryId>
+    <Key>ThreadCount</Key>
+    <Value>1</Value>
+    <ParentId>28</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>30</RegistryId>
+    <Key>DayFormat</Key>
+    <Value>&lt;div&gt;&lt;a href="{0}" title="{1}"&gt;{2}&lt;/a&gt;&lt;/div&gt;</Value>
+    <ParentId>20</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>31</RegistryId>
+    <Key>DayFormatSelected</Key>
+    <Value>&lt;div&gt;&lt;a href="{0}" title="{1}"&gt;{2}&lt;/a&gt;&amp;nbsp;&lt;a href="{3}" title="New Event"&gt;New Event&lt;/a&gt;&lt;/div&gt;</Value>
+    <ParentId>20</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>32</RegistryId>
+    <Key>EventListItemFormat</Key>
+    <Value>&lt;div class="Event-List-Item" style="color: {3}; background-color: {4}"&gt;{0}&amp;nbsp;&lt;a href="{2}" title="{1}" style="color: {3}"&gt;{1}&lt;/a&gt;&lt;/div&gt;</Value>
+    <ParentId>20</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>33</RegistryId>
+    <Key>Reminder.SeekIntervalSeconds</Key>
+    <Value>30</Value>
+    <ParentId>20</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>34</RegistryId>
+    <Key>Reminder.MaxMinutes</Key>
+    <Value>30240</Value>
+    <ParentId>20</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>35</RegistryId>
+    <Key>Title</Key>
+    <Value>Web Content Management System</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>36</RegistryId>
+    <Key>Reminder.Active</Key>
+    <Value>1</Value>
+    <ParentId>20</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>37</RegistryId>
+    <Key>Name</Key>
+    <Value>Integration :: Task Scheduler Agent</Value>
+    <ParentId>28</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>38</RegistryId>
+    <Key>SMTP</Key>
+    <Value />
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>40</RegistryId>
+    <Key>_From</Key>
+    <Value>portal@someorg.org.sg</Value>
+    <ParentId>38</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>44</RegistryId>
+    <Key>JobTimerInterval</Key>
+    <Value>30</Value>
+    <ParentId>28</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>45</RegistryId>
+    <Key>Reminder.FromEmail</Key>
+    <Value>portal@someorg.org.sg</Value>
+    <ParentId>20</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>46</RegistryId>
+    <Key>Content</Key>
+    <Value />
+    <ParentId>19</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>47</RegistryId>
+    <Key>MaxHistory</Key>
+    <Value>5</Value>
+    <ParentId>46</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>48</RegistryId>
+    <Key>Templates</Key>
+    <Value />
+    <ParentId>20</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>49</RegistryId>
+    <Key>green_email_template</Key>
+    <Value>&lt;html&gt;
+&lt;head&gt;
+    &lt;style type="text/css"&gt;
+        &lt;!-- 
+        div
+        {
+            margin: 0px;
+        }
+        --&gt;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div style="font-family: verdana,helvetica,sans-serif; font-size: 12pt"&gt;
+        &lt;table width="100%" cellspacing="0" cellpadding="0" align="center"&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;td height="75" bgcolor="#AEC76C" style="background-image: url(/WebParts/EventCalendar/Templates/green_email_template/earth_greener_bg_head.jpg)"
+                        align="right"&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td width="100%" height="100%" bgcolor="#AEC76C" valign="top"&gt;
+                        &lt;table width="100%" height="100%" style="table-layout: fixed;" cellspacing="0" cellpadding="0"
+                            align="center"&gt;
+                            &lt;tbody&gt;
+                                &lt;tr&gt;
+                                    &lt;td width="10"&gt;
+                                    &lt;/td&gt;
+                                    &lt;td valign="top" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"&gt;
+                                        &lt;table width="100%" style="white-space: normal;" cellspacing="0" cellpadding="0"&gt;
+                                            &lt;tbody&gt;
+                                                &lt;tr&gt;
+                                                    &lt;td height="10"&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                                &lt;tr&gt;
+                                                    &lt;td&gt;
+                                                        &lt;font face="arial, helvetica, sans-serif" size="3" color="#000000" style="font-family: arial, helvetica, sans-serif;
+                                                            font-size: 10pt; color: #000000;"&gt;
+                                                            &lt;div style="text-align: undefined;"&gt;
+                                                                &lt;div&gt;
+                                                                    &lt;font&gt;&lt;font style="font-family: verdana,helvetica,sans-serif; font-size: 10pt; color: rgb(0, 0, 0);"
+                                                                        color="#000000" face="verdana, helvetica, sans-serif" size="3"&gt;
+                                                                        &lt;div&gt;
+                                                                            &lt;font&gt;&lt;font style="font-family: verdana,helvetica,sans-serif; font-size: 12pt; color: rgb(55, 30, 13);"
+                                                                                color="#371e0d" face="verdana, helvetica, sans-serif" size="3"&gt;
+                                                                                &lt;div&gt;
+                                                                                    &lt;font style="font-family: verdana,helvetica,sans-serif; font-size: 12pt; color: rgb(55, 30, 13);"
+                                                                                        color="#371e0d" face="verdana, helvetica, sans-serif" size="3"&gt;&lt;font style="font-family: Verdana,Arial,sans-serif;
+                                                                                            font-size: 13px; color: rgb(123, 0, 153);" color="#7b0099" face="Verdana,Arial,sans-serif"
+                                                                                            size="2"&gt;
+                                                                                            &lt;div&gt;
+                                                                                                &lt;div&gt;
+                                                                                                    &lt;font style="font-family: Verdana,Arial,sans-serif; font-size: 13px; color: rgb(123, 0, 153);"
+                                                                                                        color="#7b0099" face="Verdana,Arial,sans-serif" size="2"&gt;&lt;font style="font-family: verdana,helvetica,sans-serif;
+                                                                                                            font-size: 12pt; color: rgb(55, 30, 13);" color="#371e0d" size="3"&gt;&lt;font style="font-family: verdana,helvetica,sans-serif;
+                                                                                                                font-size: 10pt; color: rgb(255, 255, 255);" color="#ffffff" face="verdana,  helvetica, sans-serif"
+                                                                                                                size="3"&gt;&lt;font style="font-family: arial,helvetica,sans-serif; font-size: 10pt; color: rgb(0, 0, 0);"
+                                                                                                                    face="arial, helvetica, sans-serif" size="3"&gt;&lt;font style="font-family: verdana,helvetica,sans-serif;
+                                                                                                                        font-size: 10pt; color: rgb(122, 95, 167);" face="verdana, helvetica, sans-serif"
+                                                                                                                        size="3"&gt;&lt;span style="color: rgb(127, 63, 0);"&gt;Dear Members,&lt;/span&gt;&lt;br style="color: rgb(127, 63, 0);" /&gt;
+                                                                                                                        &lt;br style="color: rgb(127, 63, 0);" /&gt;
+                                                                                                                        &lt;span style="color: rgb(127, 63, 0);"&gt;This is a reminder for &lt;strong&gt;{Event:Subject}&lt;/strong&gt;
+                                                                                                                            to be held on &lt;strong&gt;{Event:Date}&lt;/strong&gt; at the &lt;strong&gt;{Event:Location}&lt;/strong&gt;
+                                                                                                                            at &lt;strong&gt;{Event:Time}&lt;/strong&gt;.&lt;br /&gt;
+                                                                                                                            &lt;br /&gt;
+                                                                                                                            {Event:Description}
+                                                                                                                            &lt;br /&gt;
+                                                                                                                            Please do not miss this important event.
+                                                                                                                            &lt;br /&gt;
+                                                                                                                            &lt;br /&gt;
+                                                                                                                            &lt;br /&gt;
+                                                                                                                        &lt;/span&gt;&lt;font style="font-family: verdana,helvetica,sans-serif; font-size: 10pt; color: rgb(122, 95, 167);"
+                                                                                                                            face="verdana, helvetica, sans-serif" size="3"&gt;&lt;span style="color: rgb(127, 63, 0);"&gt;
+                                                                                                                                From,&lt;/span&gt;&lt;br style="color: rgb(127, 63, 0);" /&gt;
+                                                                                                                            &lt;span style="color: rgb(230, 230, 230);"&gt;&lt;span style="color: rgb(127, 63, 0);"&gt;Locale
+                                                                                                                                Calendar&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;
+                                                                                                                        &lt;br /&gt;
+                                                                                                                        &lt;font style="color: rgb(191, 95, 0); font-family: verdana,helvetica,sans-serif; text-decoration: underline;"&gt;
+                                                                                                                            &lt;a target="_blank" href="http://www.someorg.org.sg/events"&gt;http://www.someorg.org.sg/events&lt;/a&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;
+                                                                                                            &lt;/font&gt;&lt;/font&gt;&lt;/font&gt;
+                                                                                                &lt;/div&gt;
+                                                                                            &lt;/div&gt;
+                                                                                        &lt;/font&gt;&lt;/font&gt;
+                                                                                &lt;/div&gt;
+                                                                            &lt;/font&gt;
+                                                                        &lt;/div&gt;
+                                                                    &lt;/font&gt;
+                                                                &lt;/div&gt;
+                                                            &lt;/div&gt;
+                                                        &lt;/font&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                                &lt;tr&gt;
+                                                    &lt;td height="10"&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/tbody&gt;
+                                        &lt;/table&gt;
+                                    &lt;/td&gt;
+                                    &lt;td width="10"&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                            &lt;/tbody&gt;
+                        &lt;/table&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td height="160" bgcolor="#AEC76C" style="background-image: url(/WebParts/EventCalendar/Templates/green_email_template/earth_greener_bg_body.jpg);"
+                        align="right"&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;br /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;!--
+{0} - Event
+{1} - Date (April 23, 2009 (Thursday))
+{2} - Location
+{3} - Time
+--&gt;</Value>
+    <ParentId>48</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>50</RegistryId>
+    <Key>LocalPath</Key>
+    <Value>C:\Workspace\github.com\dsalunga\mPortal\Portal\WebSystem</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>51</RegistryId>
+    <Key>Name</Key>
+    <Value>Web System</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>52</RegistryId>
+    <Key>ShowOrphan</Key>
+    <Value>true</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>53</RegistryId>
+    <Key>TreeViewServerMode</Key>
+    <Value>false</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>54</RegistryId>
+    <Key>ShowSiteSecurity</Key>
+    <Value>true</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>55</RegistryId>
+    <Key>DefaultSite</Key>
+    <Value>25</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>56</RegistryId>
+    <Key>IPGrantedByDefault</Key>
+    <Value>true</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>57</RegistryId>
+    <Key>Contact</Key>
+    <Value />
+    <ParentId>19</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>58</RegistryId>
+    <Key>ThankYouMsg</Key>
+    <Value>&lt;h3&gt;Thank you for reaching us. We will get back to you regarding your enquiry as soon as possible. &lt;br /&gt;
+&lt;!--
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;a alt="Go to Home Page" href="/en-SG/Home.aspx"&gt;Home&lt;/a&gt;--&gt;&lt;/h3&gt;</Value>
+    <ParentId>57</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>59</RegistryId>
+    <Key>Central.AdminSiteId</Key>
+    <Value>9</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>60</RegistryId>
+    <Key>DefaultLoginPage2</Key>
+    <Value>/central/security/Login/</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>61</RegistryId>
+    <Key>DefaultDataProvider</Key>
+    <Value>WCMS.Framework.Core.SqlProvider</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>62</RegistryId>
+    <Key>LoginUserName</Key>
+    <Value>admin</Value>
+    <ParentId>26</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>64</RegistryId>
+    <Key>AutoLogin</Key>
+    <Value>0</Value>
+    <ParentId>26</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>65</RegistryId>
+    <Key>Test</Key>
+    <Value>&lt;p&gt;test123&lt;/p&gt;</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>66</RegistryId>
+    <Key>Central.EnableInlineEditor</Key>
+    <Value>0</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>67</RegistryId>
+    <Key>DefaultLoginPage</Key>
+    <Value>/static/Login/</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>72</RegistryId>
+    <Key>Default</Key>
+    <Value>LocalSmtp</Value>
+    <ParentId>38</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>73</RegistryId>
+    <Key>Host</Key>
+    <Value>smtp.gmail.com</Value>
+    <ParentId>72</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>74</RegistryId>
+    <Key>Port</Key>
+    <Value>587</Value>
+    <ParentId>72</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>75</RegistryId>
+    <Key>From</Key>
+    <Value>mportal@gmail.com</Value>
+    <ParentId>72</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>76</RegistryId>
+    <Key>UserName</Key>
+    <Value>mportal@gmail.com</Value>
+    <ParentId>72</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>77</RegistryId>
+    <Key>Password</Key>
+    <Value>ugbriuatvpkwsbgg</Value>
+    <ParentId>72</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>78</RegistryId>
+    <Key>SecurityEnabled</Key>
+    <Value>true</Value>
+    <ParentId>72</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>79</RegistryId>
+    <Key>External</Key>
+    <Value />
+    <ParentId>193</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>80</RegistryId>
+    <Key>BaseUrl</Key>
+    <Value>https://external.someorg.org</Value>
+    <ParentId>79</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>82</RegistryId>
+    <Key>PhotoPath</Key>
+    <Value>/images/uploads/members/photos/</Value>
+    <ParentId>79</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>87</RegistryId>
+    <Key>NoPhotoPath</Key>
+    <Value>/Content/Assets/Images/nophoto.png</Value>
+    <ParentId>79</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>88</RegistryId>
+    <Key>WebServiceUrl</Key>
+    <Value>https://external.someorg.org/webservices/member.asmx</Value>
+    <ParentId>79</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>91</RegistryId>
+    <Key>Profile</Key>
+    <Value />
+    <ParentId>193</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>92</RegistryId>
+    <Key>UserInfoPageFormat</Key>
+    <Value>/Account/?UserId={0}</Value>
+    <ParentId>91</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>93</RegistryId>
+    <Key>Office</Key>
+    <Value />
+    <ParentId>19</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>94</RegistryId>
+    <Key>DetailsPageFormat</Key>
+    <Value>/Singapore/Locale-Details.aspx?OfficeId={0}</Value>
+    <ParentId>93</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>95</RegistryId>
+    <Key>DefaultInquiryRecipient</Key>
+    <Value>daniel.salunga@someorg.org.sg</Value>
+    <ParentId>57</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>96</RegistryId>
+    <Key>EmailSubject</Key>
+    <Value>Integration Portal Enquiry</Value>
+    <ParentId>57</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>98</RegistryId>
+    <Key>LocaleGroupPath</Key>
+    <Value>/Integration/Chapters/Singapore/Locale Groups</Value>
+    <ParentId>91</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>99</RegistryId>
+    <Key>MinistriesDefaultPath</Key>
+    <Value>/Integration/Chapters/Singapore/Ministries</Value>
+    <ParentId>91</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>100</RegistryId>
+    <Key>Search-External</Key>
+    <Value>1</Value>
+    <ParentId>79</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>103</RegistryId>
+    <Key>__DefaultInquiryRecipient</Key>
+    <Value>dsalunga@live.com; so.anderson@gmail.com</Value>
+    <ParentId>57</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>104</RegistryId>
+    <Key>AttendanceItemFormat</Key>
+    <Value>&lt;div class="Event-List-Item" style="color: {2}; background-color: {3}"&gt;{0}&amp;nbsp;&lt;a href="{5}" title="{4}" style="color: {2};"&gt;{1}&lt;/a&gt;&lt;/div&gt;</Value>
+    <ParentId>91</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>105</RegistryId>
+    <Key>DayFormat</Key>
+    <Value>&lt;div&gt;&lt;a href="#"&gt;{0}&lt;/a&gt;&lt;/div&gt;</Value>
+    <ParentId>91</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>106</RegistryId>
+    <Key>GroupApprovalLink</Key>
+    <Value>/Singapore/My-Profile/All-Requests.aspx</Value>
+    <ParentId>91</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>108</RegistryId>
+    <Key>FromDisplayName</Key>
+    <Value>Integration Portal</Value>
+    <ParentId>72</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>109</RegistryId>
+    <Key>LocalSmtp</Key>
+    <Value>LocalSmtp</Value>
+    <ParentId>38</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>110</RegistryId>
+    <Key>From</Key>
+    <Value>dev@localhost.someorg.org</Value>
+    <ParentId>109</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>111</RegistryId>
+    <Key>FromDisplayName</Key>
+    <Value>Integration Portal</Value>
+    <ParentId>109</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>112</RegistryId>
+    <Key>Host</Key>
+    <Value>localhost.someorg.org</Value>
+    <ParentId>109</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>114</RegistryId>
+    <Key>MonitorBCC</Key>
+    <Value>daniel.salunga@someorg.org.sg</Value>
+    <ParentId>38</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>115</RegistryId>
+    <Key>MaxRecipients</Key>
+    <Value>2</Value>
+    <ParentId>38</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>116</RegistryId>
+    <Key>SubjectPrefix</Key>
+    <Value>Integration Portal: </Value>
+    <ParentId>38</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>117</RegistryId>
+    <Key>ReplyTo</Key>
+    <Value>daniel.salunga@someorg.org.sg</Value>
+    <ParentId>38</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>118</RegistryId>
+    <Key>Jobs</Key>
+    <Value />
+    <ParentId>28</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>119</RegistryId>
+    <Key>EventCalendar</Key>
+    <Value>WCMS.WebSystem.WebParts.EventCalendar, WCMS.Framework.WebParts.EventCalendar.EventReminderSender</Value>
+    <ParentId>118</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>120</RegistryId>
+    <Key>Templates</Key>
+    <Value />
+    <ParentId>-1</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>121</RegistryId>
+    <Key>Hyperlink</Key>
+    <Value>&lt;a href="$(Href)" title="$(Title)" target="$(Target)"&gt;$(Content)&lt;/a&gt;</Value>
+    <ParentId>120</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>123</RegistryId>
+    <Key>Basic</Key>
+    <Value>&lt;a href="$(Href)" title="$(Title)"&gt;$(Content)&lt;/a&gt;</Value>
+    <ParentId>121</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>124</RegistryId>
+    <Key>NotifyEmail</Key>
+    <Value>daniel.salunga@someorg.org.sg</Value>
+    <ParentId>26</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>125</RegistryId>
+    <Key>SendEmail</Key>
+    <Value>0</Value>
+    <ParentId>26</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>126</RegistryId>
+    <Key>BaseAddress</Key>
+    <Value>https://dev.bengswi.com/</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>127</RegistryId>
+    <Key>RemoteIndexer</Key>
+    <Value>WCMS.WebSystem.WebParts.RemoteIndexer, WCMS.WebSystem.WebParts.RemoteIndexer.RemoteIndexerTask</Value>
+    <ParentId>118</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>128</RegistryId>
+    <Key>Spammer</Key>
+    <Value>WCMS.WebSystem.Utilities, WCMS.WebSystem.Utilities.Spammer.SenderTask</Value>
+    <ParentId>118</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>129</RegistryId>
+    <Key>SourceXmlFile</Key>
+    <Value>C:\Daniel\Test\temp\Email IntegrationSG.xml</Value>
+    <ParentId>128</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>130</RegistryId>
+    <Key>MessageTemplate</Key>
+    <Value>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;
+        Hello,&lt;br /&gt;
+        &lt;br /&gt;
+        Below are information regarding your Integration Singapore Email.&lt;br /&gt;
+        &lt;br /&gt;
+        URL: &lt;a href="http://mail.someorg.org.sg" target="_blank"&gt;http://mail.someorg.org.sg&lt;/a&gt;&lt;br /&gt;
+        Email: &lt;strong&gt;$(NewEmail)&lt;/strong&gt;&lt;br /&gt;
+        Pass: &lt;strong&gt;$(Password)&lt;/strong&gt;&lt;br /&gt;
+        &lt;br /&gt;
+        Note: It is a requirement to change your password in the 1st login.&lt;br /&gt;
+        &lt;br /&gt;
+        Any questions feel free to email me at &lt;a href="mailto:anderson.so@someorg.org.sg"&gt;anderson.so@someorg.org.sg&lt;/a&gt;&lt;br /&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        In Christ,&lt;br /&gt;
+        Bro. Anderson&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</Value>
+    <ParentId>128</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>131</RegistryId>
+    <Key>SourceXPath</Key>
+    <Value>/EmailAccounts/Account</Value>
+    <ParentId>128</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>132</RegistryId>
+    <Key>ValueKeys</Key>
+    <Value>NewEmail,Password</Value>
+    <ParentId>128</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>133</RegistryId>
+    <Key>RecipientEmailKey</Key>
+    <Value>OldEmail</Value>
+    <ParentId>128</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>134</RegistryId>
+    <Key>Integration-Smtp</Key>
+    <Value>Integration Singapore Smtp (Integration-Smtp)</Value>
+    <ParentId>38</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>135</RegistryId>
+    <Key>From</Key>
+    <Value>portal@someorg.org.sg</Value>
+    <ParentId>134</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>136</RegistryId>
+    <Key>FromDisplayName</Key>
+    <Value>Integration Portal</Value>
+    <ParentId>134</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>137</RegistryId>
+    <Key>Host</Key>
+    <Value>mail.someorg.org.sg</Value>
+    <ParentId>134</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>138</RegistryId>
+    <Key>Password</Key>
+    <Value>qwerty12345</Value>
+    <ParentId>134</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>139</RegistryId>
+    <Key>Port</Key>
+    <Value>587</Value>
+    <ParentId>134</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>140</RegistryId>
+    <Key>SecurityEnabled</Key>
+    <Value>true</Value>
+    <ParentId>134</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>141</RegistryId>
+    <Key>UserName</Key>
+    <Value>portal@someorg.org.sg</Value>
+    <ParentId>134</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>142</RegistryId>
+    <Key>SendInterval</Key>
+    <Value>1000</Value>
+    <ParentId>128</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>143</RegistryId>
+    <Key>ReplyTo</Key>
+    <Value>anderson.so@someorg.org.sg</Value>
+    <ParentId>128</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>144</RegistryId>
+    <Key>Subject</Key>
+    <Value>Integration SG Email: Account Information</Value>
+    <ParentId>38</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>145</RegistryId>
+    <Key>Subject</Key>
+    <Value>Integration SG Email: Account Information</Value>
+    <ParentId>128</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>146</RegistryId>
+    <Key>SpecialGroupsPath</Key>
+    <Value>/Integration/Chapters/Singapore/Special Groups</Value>
+    <ParentId>91</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>147</RegistryId>
+    <Key>Enabled</Key>
+    <Value>false</Value>
+    <ParentId>128</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>148</RegistryId>
+    <Key>Enabled</Key>
+    <Value>false</Value>
+    <ParentId>127</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>149</RegistryId>
+    <Key>Enabled</Key>
+    <Value>false</Value>
+    <ParentId>119</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>150</RegistryId>
+    <Key>EmailUpdater</Key>
+    <Value>WCMS.WebSystem.Utilities, WCMS.WebSystem.Utilities.EmailUpdater.EmailUpdaterTask</Value>
+    <ParentId>118</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>151</RegistryId>
+    <Key>Enabled</Key>
+    <Value>false</Value>
+    <ParentId>150</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>152</RegistryId>
+    <Key>SourceXmlFile</Key>
+    <Value>C:\Daniel\Test\svn\temp\Email IntegrationSG.xml</Value>
+    <ParentId>150</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>153</RegistryId>
+    <Key>SourceXPath</Key>
+    <Value>/EmailAccounts/Account</Value>
+    <ParentId>150</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>154</RegistryId>
+    <Key>Designer.PanelExpanded</Key>
+    <Value>false</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>155</RegistryId>
+    <Key>JobCacheRefreshInterval</Key>
+    <Value>300</Value>
+    <ParentId>28</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>156</RegistryId>
+    <Key>ExecutablePath</Key>
+    <Value>~\..\WCMS.Framewok.Agent\bin\Debug\WCMS.Framework.Agent.exe</Value>
+    <ParentId>28</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>157</RegistryId>
+    <Key>ProcessName</Key>
+    <Value>WCMS.Framework.Agent</Value>
+    <ParentId>28</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>158</RegistryId>
+    <Key>EnableLogging</Key>
+    <Value>0</Value>
+    <ParentId>26</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>159</RegistryId>
+    <Key>Parameter-Schema</Key>
+    <Value />
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>160</RegistryId>
+    <Key>WebPage</Key>
+    <Value>&lt;Parameters&gt;
+  &lt;Parameter Name="FormatString"&gt;
+    &lt;Value&gt;
+      &lt;![CDATA[&lt;h4 class="heading colr"&gt;$(Page:Title)&lt;/h4&gt;
+&lt;h2&gt;$(Page:Title)&lt;/h2&gt;
+$(Content)]]&gt;
+    &lt;/Value&gt;
+  &lt;/Parameter&gt;
+  &lt;Parameter Name="AllowAuthBySessionId" Value="true" /&gt;
+  &lt;Parameter Name="ParameterSet" Value="" /&gt;
+  &lt;Parameter Name="AccessDeniedUrl" Value="/" /&gt;
+  &lt;Parameter Name="ConfigXml"&gt;
+    &lt;Value&gt;
+      &lt;![CDATA[&lt;Config&gt;&lt;/Config&gt;]]&gt;
+    &lt;/Value&gt;
+  &lt;/Parameter&gt;
+&lt;/Parameters&gt;</Value>
+    <ParentId>159</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>161</RegistryId>
+    <Key>WebPartControl</Key>
+    <Value>&lt;Parameters&gt;
+  &lt;Parameter Name="Parameter-Schema"&gt;
+    &lt;Value&gt;
+      &lt;![CDATA[&lt;Parameters&gt;
+  &lt;Parameter Name="" Value="" /&gt;
+  &lt;Parameter Name=""&gt;
+    &lt;Value&gt;&lt;![CDATA[ ]] &gt;&lt;/Value&gt;
+  &lt;/Parameter&gt;
+&lt;/Parameters&gt;]]&gt;
+    &lt;/Value&gt;
+  &lt;/Parameter&gt;
+&lt;/Parameters&gt;</Value>
+    <ParentId>159</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>162</RegistryId>
+    <Key>WebPageElement</Key>
+    <Value>&lt;Parameters&gt;
+  &lt;Parameter Name="FormatString"&gt;
+    &lt;Value&gt;
+      &lt;![CDATA[&lt;h2&gt;$(Page:Title)&lt;/h2&gt;
+$(Content)]]&gt;
+    &lt;/Value&gt;
+  &lt;/Parameter&gt;
+  &lt;Parameter Name="ParameterSet" Value="" /&gt;
+  &lt;Parameter Name="ConfigXml"&gt;
+    &lt;Value&gt;
+      &lt;![CDATA[&lt;Config&gt;&lt;/Config&gt;]]&gt;
+    &lt;/Value&gt;
+  &lt;/Parameter&gt;
+&lt;/Parameters&gt;</Value>
+    <ParentId>159</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>163</RegistryId>
+    <Key>WebSite</Key>
+    <Value>&lt;Parameters&gt;
+  &lt;Parameter Name="AccessDeniedUrl" Value="/Singapore/Public/Access-Denied/" /&gt;
+  &lt;Parameter Name="LoginHomeUrl" Value="/Singapore/" /&gt;
+  &lt;Parameter Name="ShortName" Value="" /&gt;
+  &lt;Parameter Name="Article.EmailTemplateFile" Value="~/Content/Assets/Html/Article/" /&gt;
+  &lt;Parameter Name="WCMS.UserPhotoPath" Value="/Content/Assets/User-Photos" /&gt;
+  &lt;Parameter Name="ConfigXml"&gt;
+    &lt;Value&gt;
+      &lt;![CDATA[&lt;Config&gt;&lt;/Config&gt;]]&gt;
+    &lt;/Value&gt;
+  &lt;/Parameter&gt;
+&lt;/Parameters&gt;</Value>
+    <ParentId>159</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>164</RegistryId>
+    <Key>LinkedParts</Key>
+    <Value>&lt;LinkedParts&gt;
+  &lt;LinkedPart PartConfigId="84" LinkedPartControlId="-1" TargetObjectId="3" /&gt;
+&lt;/LinkedParts&gt;</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>165</RegistryId>
+    <Key>OtpEmailTemplate</Key>
+    <Value>&lt;p&gt;&lt;span style="font-family: Tahoma; font-size: 12px"&gt;&lt;strong&gt;Hi $(NAME),&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+Your One-Time PIN: $(PIN)&lt;br /&gt;
+&lt;br /&gt;
+It will expire after $(EXPIRY).&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Thanks be to GOD!&lt;br /&gt;
+&lt;strong&gt;Integration Portal&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;</Value>
+    <ParentId>23</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>166</RegistryId>
+    <Key>OtpExpiry</Key>
+    <Value>5</Value>
+    <ParentId>23</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>167</RegistryId>
+    <Key>OtpSmsTemplate</Key>
+    <Value>Hi $(NAME), your One-Time PIN is $(PIN). It will expire after $(EXPIRY). (From: Integration Portal)</Value>
+    <ParentId>23</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>168</RegistryId>
+    <Key>ForceExit</Key>
+    <Value>0</Value>
+    <ParentId>28</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>169</RegistryId>
+    <Key>_HttpSmsUrl</Key>
+    <Value>http://sms-gateway.local/send?user={SMS_USER}&amp;password={SMS_PASSWORD}&amp;phonenumber={0}&amp;text={1}</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>171</RegistryId>
+    <Key>AttendanceGridItemFormat</Key>
+    <Value>&lt;div style="color: {1}; background-color: {2}"&gt;&lt;a href="{4}" title="{3}" style="color: {1}; margin-left: 4px"&gt;{0}&lt;/a&gt;&lt;/div&gt;</Value>
+    <ParentId>91</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>172</RegistryId>
+    <Key>Resources.ExternalMode</Key>
+    <Value>true</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>173</RegistryId>
+    <Key>Integration-Email-UNIX</Key>
+    <Value>&lt;Email-Unix-Info&gt;
+  &lt;Server&gt;70.38.59.61&lt;/Server&gt;
+  &lt;Username&gt;aspuser&lt;/Username&gt;
+  &lt;Command&gt;sudo /usr/local/scripts/zmPassChange.sh $(Email) '$(Password)'&lt;/Command&gt;
+  &lt;PrivateKeyPath&gt;~\..\Resources\resources\rsa-key-20110427-OpenSSH.ppk&lt;/PrivateKeyPath&gt;
+&lt;/Email-Unix-Info&gt;</Value>
+    <ParentId>91</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>175</RegistryId>
+    <Key>GroupsToAdd</Key>
+    <Value>Singapore;Members</Value>
+    <ParentId>79</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>176</RegistryId>
+    <Key>AttachmentBasePath</Key>
+    <Value>~/Content/Assets/Attachments/</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>177</RegistryId>
+    <Key>AllowCache</Key>
+    <Value>true</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>178</RegistryId>
+    <Key>Enabled</Key>
+    <Value>true</Value>
+    <ParentId>38</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>179</RegistryId>
+    <Key>SMSConfig</Key>
+    <Value>&lt;SMSConfig IsFilterBlock="true" RecipientFilter="" /&gt;</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>180</RegistryId>
+    <Key>EnablePerfLogging</Key>
+    <Value>0</Value>
+    <ParentId>26</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>181</RegistryId>
+    <Key>PartDataManagers</Key>
+    <Value>&lt;PartDataManagers&gt;
+  &lt;Item PartId="1" PartControlId="-1" TypeName="WCMS.WebSystem.WebParts,WCMS.WebSystem.WebParts.Content.ContentPartDataManager" /&gt;
+  &lt;Item PartId="6" PartControlId="-1" TypeName="WCMS.WebSystem.WebParts,WCMS.WebSystem.WebParts.Menu.Managers.MenuPartDataManager" /&gt;
+  &lt;Item PartId="64" PartControlId="145" TypeName="WCMS.WebSystem.WebParts.Article,WCMS.WebSystem.WebParts.Article.Managers.ArticlePartDataManager" /&gt;
+  &lt;Item PartId="60" PartControlId="-1" TypeName="WCMS.WebSystem.WebParts.Contact,WCMS.WebSystem.WebParts.Contact.ContactPartDataManager" /&gt;
+&lt;/PartDataManagers&gt;</Value>
+    <ParentId>22</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>182</RegistryId>
+    <Key>BibleReader</Key>
+    <Value />
+    <ParentId>19</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>183</RegistryId>
+    <Key>DefaultAppDownloadCount</Key>
+    <Value>5</Value>
+    <ParentId>182</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>184</RegistryId>
+    <Key>DefaultVersionDownloadCount</Key>
+    <Value>3</Value>
+    <ParentId>182</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>185</RegistryId>
+    <Key>DebugPageUrl</Key>
+    <Value>/Playground/</Value>
+    <ParentId>26</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>186</RegistryId>
+    <Key>Content</Key>
+    <Value />
+    <ParentId>-1</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>187</RegistryId>
+    <Key>Templates</Key>
+    <Value />
+    <ParentId>186</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>188</RegistryId>
+    <Key>Hyperlink</Key>
+    <Value>&lt;a href="$(Href)" title="$(Title)" target="$(Target)"&gt;$(Content)&lt;/a&gt;</Value>
+    <ParentId>187</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>189</RegistryId>
+    <Key>Basic</Key>
+    <Value>&lt;a href="$(Href)" title="$(Title)"&gt;$(Content)&lt;/a&gt;</Value>
+    <ParentId>188</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>190</RegistryId>
+    <Key>WebTemplate</Key>
+    <Value>&lt;Parameters&gt;
+  &lt;Parameter Name="ParameterSet" Value="" /&gt;
+  &lt;Parameter Name="ConfigXml"&gt;
+    &lt;Value&gt;
+      &lt;![CDATA[&lt;Config&gt;&lt;/Config&gt;]]&gt;
+    &lt;/Value&gt;
+  &lt;/Parameter&gt;
+&lt;/Parameters&gt;</Value>
+    <ParentId>159</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>191</RegistryId>
+    <Key>UserName</Key>
+    <Value>dev@localhost.someorg.org</Value>
+    <ParentId>109</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>192</RegistryId>
+    <Key>Password</Key>
+    <Value>dcs4319</Value>
+    <ParentId>109</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+  <WebRegistry>
+    <RegistryId>193</RegistryId>
+    <Key>Integration</Key>
+    <Value />
+    <ParentId>19</ParentId>
+    <StageId>-1</StageId>
+  </WebRegistry>
+</mPortal>

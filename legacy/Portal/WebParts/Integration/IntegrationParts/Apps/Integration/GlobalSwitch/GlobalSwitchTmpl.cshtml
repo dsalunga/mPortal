@@ -1,0 +1,262 @@
+﻿@using System.Web
+@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.WebParts.Menu
+@using WCMS.WebSystem.Apps.Integration
+@{
+    //var ctxModel = Model == null ? this : Model;
+    WebUser user = null;
+    var context = WContext.GetInstance(Model != null && Model.Context != null ? Model.Context : this);
+    WSite site = context.Site;
+    var siteRootUrl = site.BuildAbsoluteUrl();
+    var portalSite = WSite.Provider.Get("Portal");
+    var portalRootUrl = portalSite.BuildAbsoluteUrl(); //WConfig.GetEnvValue("//someorg.org", "//localhost:9000"); //ao.BuildAbsoluteUrl();
+    var siteLogoCss = "portal-logo";
+    if (site.Identity.Equals("musicportal", StringComparison.InvariantCultureIgnoreCase))
+    {
+        siteLogoCss = "mm-logo";
+    }
+
+    var wsession = WSession.Current;
+    var isMember = false;
+    var isSG = false;
+    var sessionId = string.Empty;
+    var portalSessionId = string.Empty;
+    if (wsession.IsLoggedIn)
+    {
+        user = wsession.User;
+        isMember = user.IsMemberOf(IntegrationConstants.MEMBERS_GROUP_NAME);
+        isSG = user.IsMemberOf("Singapore");
+        var userSession = wsession.UserSession;
+        if (userSession != null)
+        {
+            sessionId = "?SessionId=" + userSession.SessionId;
+            if (site.Id != portalSite.Id)
+            {
+                portalSessionId = sessionId;
+            }
+        }
+    }
+
+    var request = context.Context.Request;
+    var rawUrl = request.RawUrl;
+    var absUrl = site.Id == portalSite.Id || siteRootUrl.StartsWith(portalRootUrl, StringComparison.InvariantCultureIgnoreCase) ? rawUrl : WebHelper.CombineAddress(siteRootUrl, rawUrl);
+
+    var element = context.Element;
+    var menuId = element != null ? DataHelper.GetInt32(element.GetParameterValue("MenuId"), -1) : -1;
+    if (menuId == -1)
+    {
+        menuId = DataHelper.GetInt32(site.GetParameterValue("MenuId"), -1);
+    }
+}
+
+<link href="@WebUtil.Version("~/Content/Parts/Integration/Assets/css/global-switch.min.css")" type="text/css" rel="stylesheet" />
+<div class="portal-navbar navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container1">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @if (isMember)
+            {
+                <span class="account-trigger btn btn-default nav-element dropdown-toggle navbar-toggle" style="padding: 0; margin: 8px 9px 9px 5px; min-height:30px">
+                    <img src='@user.GetPhotoPath("64x64")' alt="" style="border-radius: 2px; height: 32px" />@*<span class="caret"></span>*@
+                </span>
+            }
+            else
+            {
+                <span class="navbar-toggle-basic"><a class="btn btn-primary navbar-login" role="button" href="@portalRootUrl/public/Login/?@WQuery.SourceKey=@absUrl">Sign In</a></span>
+            }
+            <span class="btn btn-default nav-element navbar-toggle switcher-trigger" style="padding: 6px 12px;"><span class="glyphicon glyphicon-th-large"></span></span>
+            <a class="navbar-brand @siteLogoCss" href="@portalRootUrl/@portalSessionId"><span>@site.Name</span></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            @if (menuId > 0)
+            {
+                <ul class="nav navbar-nav">
+                    @{
+                var menu = new MenuModel();
+                menu.RootItemNoChildrenTemplate = "<li><a href='$(Url)'>$(Text)</a></li>";
+                menu.SelectedRootItemTemplate = "<li class='active'><a href='$(Url)'>$(Text)</a></li>";
+                menu.SelectedParentItemTemplate = "<li class='dropdown active'><a href='$(Url)' class='dropdown-toggle' data-toggle='dropdown'>$(Text) <b class='caret'></b></a><ul class='dropdown-menu'>$(Children)</ul></li>";
+                menu.RootItemTemplate = "<li class='dropdown'><a href='$(Url)' class='dropdown-toggle' data-toggle='dropdown'>$(Text) <b class='caret'></b></a><ul class='dropdown-menu'>$(Children)</ul></li>";
+                menu.ItemTemplate = "<li><a href='$(Url)'>$(Text)</a></li>";
+                menu.SeparatorItemTemplate = "<li role='presentation' class='divider'></li>";
+                menu.HeaderItemTemplate = "<li role='presentation' class='dropdown-header'>$(Text)</li>";
+                menu.BuildItems(menuId, rawUrl);
+                //menu.RenderAsText();
+                    }
+                    @Html.Raw(menu.RenderAsText())
+                </ul>
+            }
+            <ul class="nav navbar-nav navbar-right hidden-xs">
+                <li>
+                    <span class="btn btn-default nav-element switcher-trigger" style="margin: 8px 6px"><span class="glyphicon glyphicon-th-large"></span></span>
+                </li>
+                <li>
+                    @if (isMember)
+                    {
+                        <span class="account-trigger btn btn-default nav-element dropdown-toggle" style="padding: 0; margin: 8px 9px 6px 5px; min-height:30px" role="button" data-toggle="dropdown">
+                            <img src='@user.GetPhotoPath("64x64")' alt="" style="border-radius: 2px; height: 32px" />@*<span class="caret"></span>*@
+                        </span>
+                    }
+                    else
+                    {
+                        var requestUrl = request[WQuery.SourceKey];
+                        var signInUrl = portalRootUrl + (string.IsNullOrEmpty(requestUrl) ? string.Format("/public/Login/?{0}={1}", WQuery.SourceKey, absUrl) : absUrl);
+                        <a class="btn btn-primary btn-sm" id="btnLogin" role="button" href="@signInUrl">Sign In</a>
+                    }
+                </li>
+            </ul>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.switcher-trigger').popover({
+                        placement: 'auto',
+                        title: 'Apps &amp; Services',
+                        html: true,
+                        content: $('#portalLinks').html(),
+                        container: 'body',
+                        template: '<div class="portal-popover popover"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+                    });
+
+                    @if (isMember)
+                    {
+                        <text>
+                        $('.account-trigger').popover({
+                            placement: 'auto',
+                            title: '@user.FirstAndLastName<div>@user.Email</div>',
+                            html: true,
+                            content: $('#profilePopover').html(),
+                            container: 'body',
+                            template: '<div class="portal-popover popover popover-account"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+                        });
+
+                        $('.switcher-trigger').on('show.bs.popover', function () {
+                            $('.account-trigger').popover('hide');
+                        });
+
+                        $('.account-trigger').on('show.bs.popover', function () {
+                            $('.switcher-trigger').popover('hide');
+                        });
+
+                        </text>
+                    }
+                });
+            </script>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+<div id="portalLinks" class="hide popup-marker">
+    <div class="navbar-right">
+        @*<h3 class="popover-title">Portal Websites</h3>*@
+        <ul class="bs-glyphicons">
+            <li><a href="https://wikitruth.net/" target="_blank"><img class="img-icon" src="https://wikitruth.net/img/logo-64x64.png" />Wikitruth</a></li>
+            <li><a href="https://fixthephilippines.org/" target="_blank"><img class="img-icon" src="https://fixthephilippines.org/img/fixtheph/logo-64x64.png" />fixtheph</a></li>
+            <li><a href="https://portal.bengswi.com:44310/" target="_blank"><img class="img-icon" src="https://portal.bengswi.com/content/assets/images/logos/visualvid.jpg" style="padding-top: 14px; padding-bottom: 15px" />VisualVid</a></li>
+            <li><a href="https://portal.bengswi.com:44320/" target="_blank"><img class="img-icon" src="https://portal.bengswi.com/content/assets/images/logos/bbscoreboard.png" style="padding-top: 17px; padding-bottom: 18px" />BBScoreboard</a></li>
+            <li><a href="@portalRootUrl/BibleReader"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/timthumb2.png" style="padding-top: 8px; padding-bottom: 7px" />Bible Reader</a></li>
+            @if (isMember)
+            {
+                <li><a href="@portalRootUrl/chapters/@portalSessionId"><span class="glyphicon glyphicon-map-marker nav-icon"></span>Chapters</a></li>
+                <li><a href="/musicportal/Files/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mm_logo.jpg" />Files</a></li>
+                <li><a href="@portalRootUrl/LiveStream/@portalSessionId"><span class="glyphicon glyphicon-film nav-icon"></span>Live Stream</a></li>
+                @*<li><a href="https://teatrokristiano.someorg.org/Files/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />TK Library</a></li>*@
+                @*<li><a href="https://external.someorg.org" target="_blank"><span class="glyphicon glyphicon-user nav-icon"></span>Integration External</a></li>*@
+                if (wsession.IsSiteManager)
+                {
+                    <li><a href="@portalRootUrl/settings/@portalSessionId"><span class="glyphicon glyphicon-cog nav-icon"></span>Settings</a></li>
+                }
+                @*else
+            {
+                <li><a href="https://mail.someorg.org.sg/" target="_blank"><img style="margin-top: 26px; margin-bottom" class="img-icon" src="/Content/Parts/Integration/Assets/images/zimbra-logo.png" />SG Mail</a></li>
+            }*@
+                @*<li><a href="http://link.someorg.org" target="_blank"><img style="margin-top: 26px; margin-bottom: 10px" class="img-icon" src="/Content/Parts/Integration/Assets/images/link_logo.jpg" />Integration Link</a></li>*@
+            }
+            else
+            {
+                @*<li><a href="@portalRootUrl/Apps/"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi-broadcast-app.jpg" />Integration &amp; UNTV Apps</a></li>*@
+                <li><a href="@portalRootUrl/chapters"><span class="glyphicon glyphicon-map-marker nav-icon"></span>Chapters</a></li>
+                @*<li><a href="http://www.someorg.org/community-prayer/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/cp.png" />Community Prayer</a></li>*@
+                @*<li><a href="http://www.someorg.org/mcgi-calendar/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi-calendar.png" />Integration Calendar</a></li>*@
+                <li><a href="@portalRootUrl/help-feedback"><span class="glyphicon glyphicon-question-sign nav-icon"></span>Help &amp; Feedback</a></li>
+            }
+        </ul>
+        @if (isMember)
+        {
+            //var isSitePortal = portalSite.Id == site.Id;
+    <h3 class="popover-title" style="padding-top: 10px">Groups &amp; Communities</h3>
+    <ul class="bs-glyphicons">
+        @if (isSG)
+        {
+            <li><a href="/SingaporeV2/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Singapore Portal</a></li>
+            <li><a href="/Singapore/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Singapore Portal (V1)</a></li>
+        }
+        <li><a href="/musicportal/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mm_logo.jpg" />Music Portal</a></li>
+        @*<li><a href="https://teatrokristiano.someorg.org/@sessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Teatro Kristiano</a></li>*@
+
+        @*@if (!isSitePortal)
+        {
+            <li><a href="@portalRootUrl/@portalSessionId"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png" />Integration Portal</a></li>
+        }*@
+    </ul>
+        }
+        else
+        {
+            <h3 class="popover-title" style="padding-top: 10px">Social Media</h3>
+            <ul class="bs-glyphicons">
+                @*<li><a href="http://esoriano.wordpress.com/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/webawards.png">Bro Eli's Blog</a></li>*@
+                <li><a href="https://twitter.com/dsalunga" target="_blank"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>@@dsalunga's Twitter</a></li>
+                @*<li><a href="https://www.facebook.com/Integration.org" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/Integration-fb.png">MCGI.org FB</a></li>*@
+            </ul>
+        }
+        <h3 class="popover-title" style="padding-top: 10px">Official Websites</h3>
+        <ul class="bs-glyphicons">
+            <li><a href="/en-SG/" target="_blank"><img class="img-icon flag-shadow" src="/Content/Assets/images/flags/sg.png">Singapore Group</a></li>
+            @*<li><a href="http://www.untvweb.com/" target="_blank"><img class="img-icon" style="padding-top: 12px; padding-bottom: 10px" src="/Content/Parts/Integration/Assets/images/untv-logo2.png">UNTVweb.com</a></li>
+            <li><a href="http://www.untvweb.com/" target="_blank"><img class="img-icon" src="/Content/Parts/Integration/Assets/images/angdatingdaan.com_.png">Ang Dating Daan</a></li>*@
+        </ul>
+        <div style="background-color: #f5f5f5;" class="text-center more-apps">
+            <a href="@portalRootUrl/Explore/@portalSessionId" @*target="_blank"*@ style="color: #333; padding: 10px; text-decoration: none; display: block; margin-top: 10px">Explore more...</a>
+        </div>
+    </div>
+
+</div>
+@if (isMember)
+{
+    <div id="profilePopover" class="hide popup-marker">
+        <ul class="dropdown-menu-acct">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="@portalRootUrl/Account/@portalSessionId" style="text-align: center"><img src='@user.GetPhotoPath("200x200")' alt="" style="width: 160px; border-radius: 5px; margin-bottom: 5px; margin-top: 10px;" /></a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="@portalRootUrl/Account/@portalSessionId"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;My Account</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;My Locale</a></li>
+            @*@if (isSG)
+                {
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://portal.someorg.org.sg/My-Profile/Update-My-Groups/@sessionId">My Groups</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://portal.someorg.org.sg/My-Profile/My-Attendance/@sessionId">My Attendance</a></li>
+
+                    var isSGOfficer = user.IsMemberOf("SG Officers");
+                    if (isSGOfficer)
+                    {
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://portal.someorg.org.sg/My-Profile/My-Preferences/@sessionId">My Group's Preferences</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://portal.someorg.org.sg/My-Profile/All-Requests/@sessionId">Pending Requests</a></li>
+                    }
+                }*@
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="@portalRootUrl/public/Login/?Mode=LogOff&@(!string.IsNullOrEmpty(portalSessionId) ? portalSessionId.TrimStart('?') + "&" : "")@WQuery.SourceKey=@absUrl"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Sign out</a>
+            </li>
+            <li role="presentation" class="divider"></li>
+            @*@if (wsession.IsSiteManager)
+            {
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="@portalRootUrl/Settings/@portalSessionId"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Settings</a></li>
+            }*@
+            @if (wsession.IsAdministrator)
+            {
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="@portalRootUrl/Central/@portalSessionId"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Administration</a></li>
+            }
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="@portalRootUrl/help-feedback/@portalSessionId"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>&nbsp;Help &amp; Feedback</a></li>
+        </ul>
+    </div>
+}

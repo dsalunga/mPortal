@@ -1,0 +1,131 @@
+﻿#panelWall
+{
+    font-family: 'lucida grande' , tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+}
+
+#panelWall textarea
+{
+    display: inline-block;
+    background-color: #fff;
+    background-image: none;
+    border-style: none;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    font-size: 11px;
+}
+
+#panelNewWallPost
+{
+    margin-bottom: 10px;
+}
+
+#panelNewWallPost textarea
+{
+    height: 16px;
+    width: 98%;
+    font-size: 13px;
+}
+
+#panelNewWallPost div.uiPostControlContainer
+{
+    text-align: right;
+    display: none;
+    background-color: #F2F2F2;
+    padding: 3px;
+    border-top: 1px solid #E6E6E6;
+}
+
+#panelNewWallPost .uiPostControlContainer input[type="submit"]
+{
+    padding: 4px;
+    margin-left: 10px;
+}
+
+#panelNewWallPost .uiPostControlContainer input[type="checkbox"]
+{
+    padding: 2px;
+}
+
+#panelWallUpdates div.postActions
+{
+    padding-top: 5px;
+}
+
+#panelWallUpdates div.postHeading
+{
+    padding-bottom: 3px;
+}
+
+#panelWallUpdates div.postHeading a, #panelWallUpdates div.commentItem a.comment-user
+{
+    text-decoration: none;
+}
+
+#panelWallUpdates div.postHeading a:hover, #panelWallUpdates div.commentItem a.comment-user:hover
+{
+    text-decoration: underline;
+}
+
+#panelWallUpdates div.panelWallPost a.postDeleteButton, div.commentItem a.commentDeleteButton
+{
+    background-image: url("/Images/Common/fb-close.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    display: block;
+    width: 15px;
+    height: 14px;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+div.panelWallPost div.mainWrapper
+{
+    padding-left: 58px;
+}
+
+div.panelComments
+{
+    background-color: #EDEFF4;
+    padding: 5px 5px 14px 5px;
+    margin-top: 5px;
+    display: none;
+}
+
+a.commentAction
+{
+    cursor: pointer;
+}
+
+pre.commentMessage, pre.postMessage
+{
+    display: inline;
+    font-family: 'lucida grande' , tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+}
+
+.newComment .comment-button
+{
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .35);
+    min-width: 32px;
+    color: white;
+    background: -webkit-gradient( linear, left top, left bottom, from(#647AAB), to(#2C467E) );
+    border: solid 1px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .17), 0 1px 0 rgba(0, 11, 42, .12);
+    -webkit-background-clip: padding-box;
+    border: solid 1px;
+    -webkit-border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 27px;
+    overflow: hidden;
+    padding: 0 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0;
+    -webkit-appearance: button;
+}

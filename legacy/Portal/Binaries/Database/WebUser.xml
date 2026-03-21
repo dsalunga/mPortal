@@ -1,0 +1,333 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebUser">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UserId" type="xs:int" />
+                <xs:element name="UserName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Password">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FirstName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="MiddleName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="LastName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Email">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="LastUpdate" type="xs:dateTime" />
+                <xs:element name="Active" type="xs:int" />
+                <xs:element name="ActivationKey">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DateCreated" type="xs:dateTime" />
+                <xs:element name="NewEmail">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Email2">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Gender">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="NameSuffix">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="MobileNumber">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="TelephoneNumber">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="LastLogin" type="xs:dateTime" />
+                <xs:element name="StatusText">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="PasswordExpiryDate" type="xs:dateTime" />
+                <xs:element name="PhotoPath">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ProviderId" type="xs:int" />
+                <xs:element name="Status" type="xs:int" />
+                <xs:element name="MaritalStatusId" type="xs:int" />
+                <xs:element name="LastLoginFailureDate" type="xs:dateTime" />
+                <xs:element name="LoginFailureCount" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebUser" />
+        <xs:field xpath="UserId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebUser>
+    <UserId>3</UserId>
+    <UserName>admin</UserName>
+    <Password>NwykM5LQ4cBbLy3i68O12QcgxK95Ipb74SZESCgUYUxZ4iPLizaqO1G1YDtHaFRt00x9//OwgvAXPJR9WUGyzd3fF5eVBqqS3SSwqbJNVjb8HW4dprntXPQbFU5XIsGddgWNK6WsW9YacgdAO5Cohf+WbTICqV/i1RHoyxI2LHs=</Password>
+    <FirstName>Portal</FirstName>
+    <MiddleName />
+    <LastName>Administrator</LastName>
+    <Email>dsalunga@live.com</Email>
+    <LastUpdate>2014-04-15T04:14:21.117+08:00</LastUpdate>
+    <Active>1</Active>
+    <ActivationKey>92433d71ffe644b1819b2daad93e1d1f|</ActivationKey>
+    <DateCreated>2010-06-29T15:13:06.763+08:00</DateCreated>
+    <NewEmail>dsalunga@outlook.com|</NewEmail>
+    <Email2>daniel.salunga@mcgi.org.sg</Email2>
+    <Gender>M</Gender>
+    <NameSuffix />
+    <MobileNumber>+6583871509</MobileNumber>
+    <TelephoneNumber>83871509</TelephoneNumber>
+    <LastLogin>2012-10-10T12:48:36.53+08:00</LastLogin>
+    <StatusText />
+    <PasswordExpiryDate>1800-01-01T00:00:00+08:00</PasswordExpiryDate>
+    <PhotoPath>/Content/Assets/User-Photos/U3.jpg</PhotoPath>
+    <ProviderId>-1</ProviderId>
+    <Status>1</Status>
+    <MaritalStatusId>2</MaritalStatusId>
+    <LastLoginFailureDate>1800-01-01T00:00:00+08:00</LastLoginFailureDate>
+    <LoginFailureCount>0</LoginFailureCount>
+  </WebUser>
+  <WebUser>
+    <UserId>20</UserId>
+    <UserName>ANONYMOUS</UserName>
+    <Password />
+    <FirstName>Anonymous</FirstName>
+    <MiddleName>A.</MiddleName>
+    <LastName>User</LastName>
+    <Email>anonymous@mcgisg.org</Email>
+    <LastUpdate>2010-02-12T23:08:38.58+08:00</LastUpdate>
+    <Active>0</Active>
+    <ActivationKey />
+    <DateCreated>2010-06-29T15:13:06.763+08:00</DateCreated>
+    <NewEmail />
+    <Email2 />
+    <Gender>U</Gender>
+    <NameSuffix />
+    <MobileNumber>83871509</MobileNumber>
+    <TelephoneNumber />
+    <LastLogin>2011-02-14T14:37:22.793+08:00</LastLogin>
+    <StatusText />
+    <PasswordExpiryDate>1799-12-31T21:30:00+08:00</PasswordExpiryDate>
+    <PhotoPath />
+    <ProviderId>-1</ProviderId>
+    <Status>0</Status>
+    <MaritalStatusId>-1</MaritalStatusId>
+    <LastLoginFailureDate>1800-01-01T00:00:00+08:00</LastLoginFailureDate>
+    <LoginFailureCount>0</LoginFailureCount>
+  </WebUser>
+  <WebUser>
+    <UserId>237</UserId>
+    <UserName>regular-portal-user</UserName>
+    <Password>KMdOFB6bup507j3HSUcy9PRXKqPcegU+zAmECVENUlYrY97Ru9K66fBWYLfzTFgOml0VpQ1YuOsIPSNuVgW5m8bgXVml5Wa1KQ+xQI8RFA1CsRwoGhtZGTG9IDwF8u5iir7XkZJCrXcEPJCx/7gxApsWPeupybeOKcKkhy6UowA=</Password>
+    <FirstName>Regular</FirstName>
+    <MiddleName>Portal</MiddleName>
+    <LastName>User</LastName>
+    <Email>daniel.salunga@mcgi.org.sg</Email>
+    <LastUpdate>1799-12-31T21:30:00+08:00</LastUpdate>
+    <Active>1</Active>
+    <ActivationKey />
+    <DateCreated>2012-02-02T15:02:51.15+08:00</DateCreated>
+    <NewEmail />
+    <Email2 />
+    <Gender>M</Gender>
+    <NameSuffix />
+    <MobileNumber />
+    <TelephoneNumber />
+    <LastLogin>2012-02-02T16:06:38.087+08:00</LastLogin>
+    <StatusText />
+    <PasswordExpiryDate>1799-12-31T21:30:00+08:00</PasswordExpiryDate>
+    <PhotoPath>https://ams.mcgi.church/images/uploads/brethren/photos/684.jpg</PhotoPath>
+    <ProviderId>-1</ProviderId>
+    <Status>1</Status>
+    <MaritalStatusId>-1</MaritalStatusId>
+    <LastLoginFailureDate>1800-01-01T00:00:00+08:00</LastLoginFailureDate>
+    <LoginFailureCount>0</LoginFailureCount>
+  </WebUser>
+  <WebUser>
+    <UserId>264</UserId>
+    <UserName>guest</UserName>
+    <Password>2ThsN+NticR1Kf6xxmuFZ0wszgbTQDAL6v0IOj88KknJ4/7IGvyqB6xKoQJU5XeYNoknG1Dn+7Y+b0sCZgAZNUsYJGzDw5vlv+J593bxlLzGCWO86w0pH9c6q3shwDHoBCiX7uhldKacVoBQUvymEi8DbicxQe4oRS9odhcnhIc=</Password>
+    <FirstName>guest</FirstName>
+    <MiddleName />
+    <LastName>guest</LastName>
+    <Email>dcsalunga@yahoo.com</Email>
+    <LastUpdate>2010-05-16T12:16:55.313+08:00</LastUpdate>
+    <Active>0</Active>
+    <ActivationKey />
+    <DateCreated>2012-09-03T13:59:44.527+08:00</DateCreated>
+    <NewEmail />
+    <Email2 />
+    <Gender>U</Gender>
+    <NameSuffix />
+    <MobileNumber />
+    <TelephoneNumber />
+    <LastLogin>2011-03-02T12:57:05.25+08:00</LastLogin>
+    <StatusText />
+    <PasswordExpiryDate>1799-12-31T21:30:00+08:00</PasswordExpiryDate>
+    <PhotoPath />
+    <ProviderId>-1</ProviderId>
+    <Status>0</Status>
+    <MaritalStatusId>-1</MaritalStatusId>
+    <LastLoginFailureDate>1800-01-01T00:00:00+08:00</LastLoginFailureDate>
+    <LoginFailureCount>0</LoginFailureCount>
+  </WebUser>
+  <WebUser>
+    <UserId>272</UserId>
+    <UserName>demo-regular</UserName>
+    <Password>cvhfV3JtzW5TI46oAd6xMOYKw7ftQkjJu6ZNFsc6AqkxGH2JiYnqLwdNfSPNHndwMEzyDPNL7mL8zIlhtUoe5LlGWStodHzLiOQlCqIie1R8WniyEmi8xJTOY+i3XUqFfsF0YzcgGFMhVttiVggPiMOnamGTZ2ZZ9zncWw3tX2A=</Password>
+    <FirstName>Demo</FirstName>
+    <MiddleName />
+    <LastName>Regular</LastName>
+    <Email>dcsalunga@gmail.com</Email>
+    <LastUpdate>1800-01-01T00:00:00+08:00</LastUpdate>
+    <Active>1</Active>
+    <ActivationKey />
+    <DateCreated>2012-12-12T18:05:45.113+08:00</DateCreated>
+    <NewEmail />
+    <Email2 />
+    <Gender>M</Gender>
+    <NameSuffix />
+    <MobileNumber />
+    <TelephoneNumber />
+    <LastLogin>2012-12-12T18:11:12.467+08:00</LastLogin>
+    <StatusText />
+    <PasswordExpiryDate>1800-01-01T00:00:00+08:00</PasswordExpiryDate>
+    <PhotoPath />
+    <ProviderId>-1</ProviderId>
+    <Status>1</Status>
+    <MaritalStatusId>-1</MaritalStatusId>
+    <LastLoginFailureDate>1800-01-01T00:00:00+08:00</LastLoginFailureDate>
+    <LoginFailureCount>0</LoginFailureCount>
+  </WebUser>
+  <WebUser>
+    <UserId>273</UserId>
+    <UserName>sitemanager-demo</UserName>
+    <Password>kEcqmTe//zI8K1ab59bjWJ1ioCoqeMWaODGvRHxtPcHV1TI8VAeQVCNdBd3etq9oifgwB8pEYCPVQrfhY704MljMsqM7lMIjYPriB5rxj8uqZEM/vAuPDqlY/2OqClABpNHkO6lypBPeseMqFkdJB0Jgl9Y4JVFU+elox/pnfRE=</Password>
+    <FirstName>Demo</FirstName>
+    <MiddleName />
+    <LastName>Site Manager</LastName>
+    <Email>dcsalunga@gmail.com</Email>
+    <LastUpdate>1800-01-01T00:00:00+08:00</LastUpdate>
+    <Active>1</Active>
+    <ActivationKey />
+    <DateCreated>2012-12-12T18:10:19.237+08:00</DateCreated>
+    <NewEmail />
+    <Email2 />
+    <Gender>U</Gender>
+    <NameSuffix />
+    <MobileNumber />
+    <TelephoneNumber />
+    <LastLogin>2012-12-12T18:17:07.29+08:00</LastLogin>
+    <StatusText />
+    <PasswordExpiryDate>1800-01-01T00:00:00+08:00</PasswordExpiryDate>
+    <PhotoPath />
+    <ProviderId>-1</ProviderId>
+    <Status>1</Status>
+    <MaritalStatusId>-1</MaritalStatusId>
+    <LastLoginFailureDate>1800-01-01T00:00:00+08:00</LastLoginFailureDate>
+    <LoginFailureCount>0</LoginFailureCount>
+  </WebUser>
+  <WebUser>
+    <UserId>275</UserId>
+    <UserName>MAG00049</UserName>
+    <Password>Z8QHUY1Bpum1mRvvxiMA5sNNnMidW1FvOaD0s0TL97JNFNiKlRMEiFH2ZXEFSv6IEVxBwZ/zB1FWS6dVT4hlN7dyOlZDAiAedqn2g1IMCz1bph61cG3ZPl+Xyyu1z5fRBT0DFm2vbbmILPdXFujpTlFL8qdYETaQitxJZlNaMIc=V5zlU/RsieEPW1AzjA08HUcKvLQS9KqHQtfiDnDUVfQ5cirbjkGQno53090xhfC/n/noRJ7grnTa9NdnFkahoXWUZNAqeodgq8aZfwOMeJt6ce6zRdXOkJCvnbl3ZdBIqZAUEi/f4Pk0yqUTxMYMZdA5GW2zi2aI2udFN7UcbHU=</Password>
+    <FirstName>DANIEL</FirstName>
+    <MiddleName />
+    <LastName>Salunga</LastName>
+    <Email>dsalunga@live.com</Email>
+    <LastUpdate>2013-01-14T10:37:37.093+08:00</LastUpdate>
+    <Active>1</Active>
+    <ActivationKey />
+    <DateCreated>2013-01-13T23:06:47.497+08:00</DateCreated>
+    <NewEmail />
+    <Email2 />
+    <Gender>M</Gender>
+    <NameSuffix />
+    <MobileNumber>+6583871509</MobileNumber>
+    <TelephoneNumber />
+    <LastLogin>2013-01-13T23:10:21.92+08:00</LastLogin>
+    <StatusText />
+    <PasswordExpiryDate>1800-01-01T00:00:00+08:00</PasswordExpiryDate>
+    <PhotoPath>/Content/Assets/User-Photos/U275.jpg</PhotoPath>
+    <ProviderId>1</ProviderId>
+    <Status>1</Status>
+    <MaritalStatusId>-1</MaritalStatusId>
+    <LastLoginFailureDate>1800-01-01T00:00:00+08:00</LastLoginFailureDate>
+    <LoginFailureCount>0</LoginFailureCount>
+  </WebUser>
+</mPortal>

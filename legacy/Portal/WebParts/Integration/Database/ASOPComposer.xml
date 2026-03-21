@@ -1,0 +1,121 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="MCComposer">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Entry">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Locale">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Work">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Description">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="PhotoFile">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="NickName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Active" type="xs:int" />
+                <xs:element name="CompetitionId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//MCComposer" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <MCComposer>
+    <Id>1</Id>
+    <Name>Sis. Ana Marie "Mayet"  Natividad</Name>
+    <Entry>Your Servant's Prayer</Entry>
+    <Locale>Singapore</Locale>
+    <Work />
+    <Description>&lt;p&gt;This loving and caring mother &amp;amp; wife works as an architectural assistant in a Singapore local firm for 5 years now. With God's help, she still manages to cope with her hectic schedule and fulfill her duties as an assistant conductor for the Singapore Locale Choir and assistant treasurer to her locale group. As music has really been her passion ever since, she joined ASOP and poured her overwhelming thankfulness to God for all the wisdom &amp;amp; blessings He continually gives to her and her  family in her song.&lt;/p&gt;</Description>
+    <PhotoFile>ANA MARIE_SINGAPORE.jpg</PhotoFile>
+    <NickName />
+    <Active>1</Active>
+    <CompetitionId>1</CompetitionId>
+  </MCComposer>
+  <MCComposer>
+    <Id>2</Id>
+    <Name>Bro. Jude Abarca</Name>
+    <Entry>Malayo Ma'y Mararating Rin and Sa Puso Ko</Entry>
+    <Locale>Singapore</Locale>
+    <Work />
+    <Description>This former member of the Singapore Locale Choir has written five songs for ASOP already, three of which bagged the grand prize in the (?). With God's words and wisdom as his inspiration for another song, he tries his luck again this year at ASOP. Bro Jude joined to express his heartfelt gratitude for God's constant blessing to him and his loved ones. He currently works in Singapore as a Senior Design Engineer.</Description>
+    <PhotoFile>JUDE_SINGAPORE.jpg</PhotoFile>
+    <NickName />
+    <Active>1</Active>
+    <CompetitionId>1</CompetitionId>
+  </MCComposer>
+  <MCComposer>
+    <Id>3</Id>
+    <Name>Bro. Fernando Alba</Name>
+    <Entry>Dakila Ka Aming Ama</Entry>
+    <Locale>Sydney, Australia</Locale>
+    <Work />
+    <Description>Bro. Fernando Alba currently works as Telecommunications contractor in Sydney, Australia. Bro. Fernando or 'Fernan' also stands as Sydney Locale Coordinator for a number of years now.</Description>
+    <PhotoFile>FERNANDO_SYDNEY AUS.jpg</PhotoFile>
+    <NickName>Bro. Fernan</NickName>
+    <Active>1</Active>
+    <CompetitionId>1</CompetitionId>
+  </MCComposer>
+  <MCComposer>
+    <Id>4</Id>
+    <Name>Bro. Allan Masa</Name>
+    <Entry>1</Entry>
+    <Locale>Sydney, Australia</Locale>
+    <Work />
+    <Description>Bro. Allan Masa is an active member of MCGI in Sydney, Australia. At present he is working as a Dental Assistant in a local clinic in Sydney.</Description>
+    <PhotoFile>WILFREDO_PERTH AUS.jpg</PhotoFile>
+    <NickName />
+    <Active>1</Active>
+    <CompetitionId>1</CompetitionId>
+  </MCComposer>
+</mPortal>

@@ -1,0 +1,603 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="LessonReviewerSession">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="ServiceScheduleID" type="xs:int" />
+                <xs:element name="ServiceStartDate" type="xs:dateTime" />
+                <xs:element name="ServiceName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="150" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DateStarted" type="xs:dateTime" />
+                <xs:element name="DateCompleted" type="xs:dateTime" />
+                <xs:element name="MemberId" type="xs:int" />
+                <xs:element name="AbsentReason">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="WorkerNotes">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="WorkerUserId" type="xs:int" />
+                <xs:element name="Status" type="xs:int" />
+                <xs:element name="DateApproved" type="xs:dateTime" />
+                <xs:element name="AdditionalNotes">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="AttendanceType" type="xs:int" />
+                <xs:element name="PageId" type="xs:int" />
+                <xs:element name="Extra">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//LessonReviewerSession" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <LessonReviewerSession>
+    <Id>2</Id>
+    <ServiceScheduleID>692</ServiceScheduleID>
+    <ServiceStartDate>2010-12-29T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-03-14T16:54:38.047+08:00</DateStarted>
+    <DateCompleted>2011-03-14T16:54:48.797+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>test</AbsentReason>
+    <WorkerNotes>invalid reason</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes />
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>3</Id>
+    <ServiceScheduleID>765</ServiceScheduleID>
+    <ServiceStartDate>2011-03-16T16:45:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-03-30T15:18:49.763+08:00</DateStarted>
+    <DateCompleted>2011-03-30T15:31:55.813+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>asdfadsf</AbsentReason>
+    <WorkerNotes />
+    <WorkerUserId>115</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>asdfasdf</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>4</Id>
+    <ServiceScheduleID>765</ServiceScheduleID>
+    <ServiceStartDate>2011-03-16T16:45:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-03-31T15:18:15.487+08:00</DateStarted>
+    <DateCompleted>2011-03-31T15:18:49.83+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>test reason</AbsentReason>
+    <WorkerNotes>i am disapproving because you are stubborn</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes />
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>5</Id>
+    <ServiceScheduleID>765</ServiceScheduleID>
+    <ServiceStartDate>2011-03-16T16:45:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-04-01T16:36:57.6+08:00</DateStarted>
+    <DateCompleted>2011-04-01T16:37:06.287+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>i am so lazy</AbsentReason>
+    <WorkerNotes>you are so lazy! you are absent!</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>5 mins late only po</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>6</Id>
+    <ServiceScheduleID>765</ServiceScheduleID>
+    <ServiceStartDate>2011-03-16T16:45:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-04-01T16:53:01.117+08:00</DateStarted>
+    <DateCompleted>2011-04-01T16:53:11.1+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>lazy</AbsentReason>
+    <WorkerNotes>you are so lazy</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>I have attended the 1st half, this is for the 2nd half</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>7</Id>
+    <ServiceScheduleID>765</ServiceScheduleID>
+    <ServiceStartDate>2011-03-16T16:45:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-04-01T16:53:28.443+08:00</DateStarted>
+    <DateCompleted>2011-04-01T16:53:40.067+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>so so lazy</AbsentReason>
+    <WorkerNotes>you are so lazy</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>I have attended the 2nd half, this is for the 1st half</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>8</Id>
+    <ServiceScheduleID>765</ServiceScheduleID>
+    <ServiceStartDate>2011-03-16T16:45:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-04-02T11:27:03.797+08:00</DateStarted>
+    <DateCompleted>2011-04-02T11:27:39.29+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>tamad ako kc</AbsentReason>
+    <WorkerNotes>masyado kang tamad. magdusa ka</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes />
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>9</Id>
+    <ServiceScheduleID>765</ServiceScheduleID>
+    <ServiceStartDate>2011-03-16T16:45:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-04-02T19:41:35.593+08:00</DateStarted>
+    <DateCompleted>2011-04-02T19:41:59.473+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>tinatamad po kasi ako</AbsentReason>
+    <WorkerNotes />
+    <WorkerUserId>115</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>sige na po i-approve nyo na</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>10</Id>
+    <ServiceScheduleID>767</ServiceScheduleID>
+    <ServiceStartDate>2011-03-19T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2011-04-13T22:30:19.03+08:00</DateStarted>
+    <DateCompleted>2011-04-13T22:32:30.97+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>OT po</AbsentReason>
+    <WorkerNotes>invalid reason</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes />
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>11</Id>
+    <ServiceScheduleID>767</ServiceScheduleID>
+    <ServiceStartDate>2011-03-19T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2011-04-13T23:55:30.47+08:00</DateStarted>
+    <DateCompleted>2011-04-13T23:56:06.577+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>tinatamad pong pumunta sa lokal.</AbsentReason>
+    <WorkerNotes />
+    <WorkerUserId>115</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>I have attended the 1st half, this is for the 2nd half</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>12</Id>
+    <ServiceScheduleID>767</ServiceScheduleID>
+    <ServiceStartDate>2011-03-19T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2011-04-14T00:24:55.453+08:00</DateStarted>
+    <DateCompleted>2011-04-14T00:25:06.03+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>tamad po</AbsentReason>
+    <WorkerNotes>Rejected by Bro. Daniel on 14-Apr 02:58: Message by Bro. Daniel on 14-Apr 02:55: wag kang tamad!wag ka!</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>I have attended the 1st half, this is for the 2nd half</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>13</Id>
+    <ServiceScheduleID>767</ServiceScheduleID>
+    <ServiceStartDate>2011-03-19T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2011-04-14T10:43:32.067+08:00</DateStarted>
+    <DateCompleted>2011-04-14T10:52:31.87+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>tinatamad po</AbsentReason>
+    <WorkerNotes>&lt;strong&gt;"bad yan"&lt;/strong&gt; on 14-Apr 13:24&lt;br/&gt;&lt;strong&gt;"punta ka dito..."&lt;/strong&gt; on 14-Apr 13:23&lt;br/&gt;</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>I have attended the 1st half, this is for the 2nd half</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>14</Id>
+    <ServiceScheduleID>767</ServiceScheduleID>
+    <ServiceStartDate>2011-03-19T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2011-04-14T11:01:02.66+08:00</DateStarted>
+    <DateCompleted>2011-04-14T11:01:09.35+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>asd safasdfasdfsdf</AbsentReason>
+    <WorkerNotes>&lt;strong&gt;"next time magsipag kana"&lt;/strong&gt; on 14-Apr 13:31&lt;br/&gt;</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>as fadfas dfasdf</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>15</Id>
+    <ServiceScheduleID>767</ServiceScheduleID>
+    <ServiceStartDate>2011-03-19T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2011-04-14T11:03:26.993+08:00</DateStarted>
+    <DateCompleted>2011-04-14T11:03:33.743+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>as fsdfasdf</AbsentReason>
+    <WorkerNotes>&lt;strong&gt;"asdhghhhhhhhh"&lt;/strong&gt; on 14-Apr 13:56&lt;br/&gt;&lt;strong&gt;"3456"&lt;/strong&gt; on 14-Apr 13:55&lt;br/&gt;&lt;strong&gt;"1234"&lt;/strong&gt; on 14-Apr 13:43&lt;br/&gt;&lt;strong&gt;"test"&lt;/strong&gt; on 14-Apr 13:41&lt;br/&gt;&lt;strong&gt;"fasdfasdf"&lt;/strong&gt; on 14-Apr 13:37&lt;br/&gt;&lt;strong&gt;"hello"&lt;/strong&gt; on 14-Apr 13:35&lt;br/&gt;</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>I have attended the 1st half, this is for the 2nd half</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>16</Id>
+    <ServiceScheduleID>767</ServiceScheduleID>
+    <ServiceStartDate>2011-03-19T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2011-04-14T11:26:39.22+08:00</DateStarted>
+    <DateCompleted>2011-04-14T11:26:48.233+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>aaaaaa</AbsentReason>
+    <WorkerNotes>&lt;strong&gt;""&lt;/strong&gt; on 14-Apr 13:57&lt;br/&gt;</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>I have attended the 1st half, this is for the 2nd half</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>17</Id>
+    <ServiceScheduleID>767</ServiceScheduleID>
+    <ServiceStartDate>2011-03-19T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2011-04-14T11:28:43.433+08:00</DateStarted>
+    <DateCompleted>2011-04-14T11:28:52.653+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>dd</AbsentReason>
+    <WorkerNotes />
+    <WorkerUserId>115</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>I have attended the 1st half, this is for the 2nd half</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>18</Id>
+    <ServiceScheduleID>767</ServiceScheduleID>
+    <ServiceStartDate>2011-03-19T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2011-04-14T11:29:34.777+08:00</DateStarted>
+    <DateCompleted>2011-04-14T11:29:56.34+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>qqqqq</AbsentReason>
+    <WorkerNotes>&lt;strong&gt;"magsipag kana next time ha"&lt;/strong&gt; on 14-Apr 14:00&lt;br/&gt;</WorkerNotes>
+    <WorkerUserId>115</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>I have attended the 1st half, this is for the 2nd half</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>19</Id>
+    <ServiceScheduleID>692</ServiceScheduleID>
+    <ServiceStartDate>2010-12-29T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-05-13T10:57:53.99+08:00</DateStarted>
+    <DateCompleted>2011-05-13T10:58:04.443+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>eeee</AbsentReason>
+    <WorkerNotes />
+    <WorkerUserId>3</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>custom note</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>20</Id>
+    <ServiceScheduleID>692</ServiceScheduleID>
+    <ServiceStartDate>2010-12-29T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-05-13T15:12:11.553+08:00</DateStarted>
+    <DateCompleted>2011-05-13T15:16:45.647+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>test 12 3</AbsentReason>
+    <WorkerNotes>&lt;strong&gt;"ccc"&lt;/strong&gt; on 14-May 23:19&lt;br/&gt;&lt;strong&gt;"aaa"&lt;/strong&gt; on 14-May 23:19&lt;br/&gt;&lt;strong&gt;"ddd"&lt;/strong&gt; on 14-May 23:17&lt;br/&gt;&lt;strong&gt;"asdf asd fa sdfasdf"&lt;/strong&gt; on 14-May 23:12&lt;br/&gt;&lt;strong&gt;"hello pogi"&lt;/strong&gt; on 14-May 23:10&lt;br/&gt;</WorkerNotes>
+    <WorkerUserId>3</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes />
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>21</Id>
+    <ServiceScheduleID>692</ServiceScheduleID>
+    <ServiceStartDate>2010-12-29T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-05-14T19:48:55.473+08:00</DateStarted>
+    <DateCompleted>2011-05-14T20:01:06.3+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>test</AbsentReason>
+    <WorkerNotes />
+    <WorkerUserId>3</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes />
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>22</Id>
+    <ServiceScheduleID>692</ServiceScheduleID>
+    <ServiceStartDate>2010-12-29T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-05-14T20:25:09.487+08:00</DateStarted>
+    <DateCompleted>2011-05-14T20:53:46.587+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>asdfasdf</AbsentReason>
+    <WorkerNotes />
+    <WorkerUserId>3</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>adfasdf</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>23</Id>
+    <ServiceScheduleID>692</ServiceScheduleID>
+    <ServiceStartDate>2010-12-29T16:00:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-05-14T20:54:43.83+08:00</DateStarted>
+    <DateCompleted>2011-05-14T20:56:49.767+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>test po sana ok na</AbsentReason>
+    <WorkerNotes />
+    <WorkerUserId>3</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes />
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>24</Id>
+    <ServiceScheduleID>765</ServiceScheduleID>
+    <ServiceStartDate>2011-03-16T16:45:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-06-27T21:39:37.68+08:00</DateStarted>
+    <DateCompleted>2011-06-27T21:40:05.62+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>dddd</AbsentReason>
+    <WorkerNotes>&lt;strong&gt;"test 123"&lt;/strong&gt; on 28-Jun 00:11&lt;br/&gt;</WorkerNotes>
+    <WorkerUserId>3</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes />
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>25</Id>
+    <ServiceScheduleID>765</ServiceScheduleID>
+    <ServiceStartDate>2011-03-16T16:45:00+08:00</ServiceStartDate>
+    <ServiceName>PM - Prayer Meeting</ServiceName>
+    <DateStarted>2011-09-08T22:25:46.93+08:00</DateStarted>
+    <DateCompleted>2011-09-08T22:25:55.52+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>test</AbsentReason>
+    <WorkerNotes>&lt;strong&gt;"abc"&lt;/strong&gt; on 28-May 18:29&lt;br/&gt;</WorkerNotes>
+    <WorkerUserId>3</WorkerUserId>
+    <Status>2</Status>
+    <DateApproved>1799-12-31T21:30:00+08:00</DateApproved>
+    <AdditionalNotes>I have attended the 1st half, this is for the 2nd half</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>26</Id>
+    <ServiceScheduleID>12017</ServiceScheduleID>
+    <ServiceStartDate>2014-05-03T12:30:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2014-06-02T15:16:06.72+08:00</DateStarted>
+    <DateCompleted>2014-06-02T15:16:06.72+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason>wala lang</AbsentReason>
+    <WorkerNotes />
+    <WorkerUserId>3</WorkerUserId>
+    <Status>1</Status>
+    <DateApproved>1800-01-01T00:00:00+08:00</DateApproved>
+    <AdditionalNotes />
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>27</Id>
+    <ServiceScheduleID>12017</ServiceScheduleID>
+    <ServiceStartDate>2014-05-03T12:30:00+08:00</ServiceStartDate>
+    <ServiceName>WS - Worship Service</ServiceName>
+    <DateStarted>2014-06-06T12:20:07.49+08:00</DateStarted>
+    <DateCompleted>2014-06-06T12:20:07.49+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason />
+    <WorkerNotes />
+    <WorkerUserId>-1</WorkerUserId>
+    <Status>3</Status>
+    <DateApproved>1800-01-01T00:00:00+08:00</DateApproved>
+    <AdditionalNotes>216.6534161|Gotye_-_Somebody_That_I_Used_To_Know_feat._Kimbra_02.mp4</AdditionalNotes>
+    <AttendanceType>1</AttendanceType>
+    <PageId>-1</PageId>
+    <Extra />
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>29</Id>
+    <ServiceScheduleID>15475</ServiceScheduleID>
+    <ServiceStartDate>2015-05-27T02:45:00+08:00</ServiceStartDate>
+    <ServiceName />
+    <DateStarted>2015-06-10T18:53:42.11+08:00</DateStarted>
+    <DateCompleted>2015-06-10T18:53:42.11+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason />
+    <WorkerNotes />
+    <WorkerUserId>-1</WorkerUserId>
+    <Status>0</Status>
+    <DateApproved>1800-01-01T00:00:00+08:00</DateApproved>
+    <AdditionalNotes>wala lang</AdditionalNotes>
+    <AttendanceType>0</AttendanceType>
+    <PageId>560</PageId>
+    <Extra>{
+  "coAttendees": [
+    {
+      "id": "mag00049",
+      "userId": 275,
+      "memberId": 197,
+      "status": 0,
+      "name": "Bro. DANIEL Salunga"
+    }
+  ]
+}</Extra>
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>30</Id>
+    <ServiceScheduleID>15858</ServiceScheduleID>
+    <ServiceStartDate>2015-05-27T02:45:00+08:00</ServiceStartDate>
+    <ServiceName>PM</ServiceName>
+    <DateStarted>2015-06-27T23:15:12.003+08:00</DateStarted>
+    <DateCompleted>2015-06-27T23:15:12.003+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason />
+    <WorkerNotes>&lt;strong&gt;"bb"&lt;/strong&gt; on 27-Jun 23:33&lt;br/&gt;&lt;strong&gt;"a"&lt;/strong&gt; on 27-Jun 23:26&lt;br/&gt;</WorkerNotes>
+    <WorkerUserId>3</WorkerUserId>
+    <Status>0</Status>
+    <DateApproved>1800-01-01T00:00:00+08:00</DateApproved>
+    <AdditionalNotes>after delete</AdditionalNotes>
+    <AttendanceType>0</AttendanceType>
+    <PageId>560</PageId>
+    <Extra>{
+  "coAttendees": []
+}</Extra>
+  </LessonReviewerSession>
+  <LessonReviewerSession>
+    <Id>31</Id>
+    <ServiceScheduleID>15996</ServiceScheduleID>
+    <ServiceStartDate>2015-05-27T02:45:00+08:00</ServiceStartDate>
+    <ServiceName>WS</ServiceName>
+    <DateStarted>2015-06-28T14:49:52.3+08:00</DateStarted>
+    <DateCompleted>2015-06-28T14:49:52.3+08:00</DateCompleted>
+    <MemberId>197</MemberId>
+    <AbsentReason />
+    <WorkerNotes />
+    <WorkerUserId>3</WorkerUserId>
+    <Status>0</Status>
+    <DateApproved>1800-01-01T00:00:00+08:00</DateApproved>
+    <AdditionalNotes />
+    <AttendanceType>0</AttendanceType>
+    <PageId>560</PageId>
+    <Extra>{
+  "coAttendees": []
+}</Extra>
+  </LessonReviewerSession>
+</mPortal>

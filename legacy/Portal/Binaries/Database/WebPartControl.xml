@@ -1,0 +1,2617 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebPartControl">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PartControlId" type="xs:int" />
+                <xs:element name="PartId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Identity">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ConfigFileName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="PartAdminId" type="xs:int" />
+                <xs:element name="EntryPoint" type="xs:int" />
+                <xs:element name="ParentId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebPartControl" />
+        <xs:field xpath="PartControlId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebPartControl>
+    <PartControlId>1</PartControlId>
+    <PartId>1</PartId>
+    <Name>Content</Name>
+    <Identity>Content</Identity>
+    <ConfigFileName>ConfigContent.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>7</PartControlId>
+    <PartId>6</PartId>
+    <Name>Cascading Menu</Name>
+    <Identity>Menu</Identity>
+    <ConfigFileName>ConfigDynamicMenu01.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>22</PartControlId>
+    <PartId>13</PartId>
+    <Name>Site Menu</Name>
+    <Identity>1</Identity>
+    <ConfigFileName>-1</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>32</PartControlId>
+    <PartId>19</PartId>
+    <Name>Site Ad</Name>
+    <Identity>1</Identity>
+    <ConfigFileName>-1</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>112</PartControlId>
+    <PartId>13</PartId>
+    <Name>Site List</Name>
+    <Identity>2</Identity>
+    <ConfigFileName>-1</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>124</PartControlId>
+    <PartId>59</PartId>
+    <Name>Media Gallery Main</Name>
+    <Identity>2</Identity>
+    <ConfigFileName>1</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>125</PartControlId>
+    <PartId>59</PartId>
+    <Name>Media Gallery Home</Name>
+    <Identity>1</Identity>
+    <ConfigFileName>1</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>127</PartControlId>
+    <PartId>60</PartId>
+    <Name>Contact Us</Name>
+    <Identity>Contact</Identity>
+    <ConfigFileName>ConfigInquiriesList.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>130</PartControlId>
+    <PartId>58</PartId>
+    <Name>Picture Gallery Categories</Name>
+    <Identity>1</Identity>
+    <ConfigFileName>1</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>131</PartControlId>
+    <PartId>58</PartId>
+    <Name>Thumbnail View</Name>
+    <Identity>2</Identity>
+    <ConfigFileName>2</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>139</PartControlId>
+    <PartId>58</PartId>
+    <Name>Full View</Name>
+    <Identity>3</Identity>
+    <ConfigFileName>2</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>140</PartControlId>
+    <PartId>63</PartId>
+    <Name>Search</Name>
+    <Identity>1</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>141</PartControlId>
+    <PartId>63</PartId>
+    <Name>Search Result</Name>
+    <Identity>2</Identity>
+    <ConfigFileName>-1</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>145</PartControlId>
+    <PartId>64</PartId>
+    <Name>Publication</Name>
+    <Identity>Default</Identity>
+    <ConfigFileName>ConfigPublication.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>146</PartControlId>
+    <PartId>58</PartId>
+    <Name>Picture Gallery</Name>
+    <Identity>Photo</Identity>
+    <ConfigFileName>CMS_Category.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>147</PartControlId>
+    <PartId>13</PartId>
+    <Name>Listing Page</Name>
+    <Identity>3</Identity>
+    <ConfigFileName>1</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>162</PartControlId>
+    <PartId>72</PartId>
+    <Name>Site Section</Name>
+    <Identity>1</Identity>
+    <ConfigFileName>-1</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>167</PartControlId>
+    <PartId>75</PartId>
+    <Name>Downloads</Name>
+    <Identity>1</Identity>
+    <ConfigFileName>3</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>168</PartControlId>
+    <PartId>78</PartId>
+    <Name>Tree Panel</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>169</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Controls</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>170</PartControlId>
+    <PartId>78</PartId>
+    <Name>Breadcrumb</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>171</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Configuration</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>172</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Configuration Entry</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>173</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Control</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>174</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>175</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Parts</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>176</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>177</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Administration</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>178</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Administration Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>179</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Administration Entry</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>180</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Templates</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>181</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Template</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>183</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Parameters</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>184</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Parameter</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>185</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Control Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>186</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Resources</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>187</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Resource</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>188</PartControlId>
+    <PartId>78</PartId>
+    <Name>Data Store Editor</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>189</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web System Dashboard</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>190</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Roles</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>191</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Users</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>192</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Permissions</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>193</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Groups</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>194</PartControlId>
+    <PartId>79</PartId>
+    <Name>Flash Banner</Name>
+    <Identity>FlashBanner</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>195</PartControlId>
+    <PartId>80</PartId>
+    <Name>Category</Name>
+    <Identity>Category</Identity>
+    <ConfigFileName />
+    <PartAdminId>219</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>196</PartControlId>
+    <PartId>80</PartId>
+    <Name>List</Name>
+    <Identity>List</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>197</PartControlId>
+    <PartId>80</PartId>
+    <Name>Details</Name>
+    <Identity>Test</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>198</PartControlId>
+    <PartId>81</PartId>
+    <Name>Basic List</Name>
+    <Identity>BasicList</Identity>
+    <ConfigFileName>CMS_01_BasicList.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>199</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Template Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>200</PartControlId>
+    <PartId>82</PartId>
+    <Name>List End</Name>
+    <Identity>Finish</Identity>
+    <ConfigFileName>SM_Surveys.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>201</PartControlId>
+    <PartId>82</PartId>
+    <Name>Generic Lists</Name>
+    <Identity>List</Identity>
+    <ConfigFileName>SM_Surveys.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>202</PartControlId>
+    <PartId>82</PartId>
+    <Name>Survey Page</Name>
+    <Identity>ListItem</Identity>
+    <ConfigFileName>SM_Surveys.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>203</PartControlId>
+    <PartId>82</PartId>
+    <Name>List Welcome</Name>
+    <Identity>Welcome</Identity>
+    <ConfigFileName>SM_Surveys.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>204</PartControlId>
+    <PartId>83</PartId>
+    <Name>Breadcrumb</Name>
+    <Identity>Navigation</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>205</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Security</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>206</PartControlId>
+    <PartId>78</PartId>
+    <Name>WebTemplate</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>207</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Template Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>208</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Template Panel</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>209</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Template Panels</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>210</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Templates</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>211</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Template Versions</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>212</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Registry</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>213</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Registry Entry</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>214</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Open</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>215</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Preview</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>216</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Site Identity</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>217</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Site Identities</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>218</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Child Pages</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>219</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Child Sites</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>220</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Master Page</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>221</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Master Page Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>222</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Master Pages</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>223</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Page</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>224</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Page Element</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>225</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Page Element Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>226</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Page Elements</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>227</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Page Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>228</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Page Panel</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>229</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Page Panels</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>230</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Pages</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>231</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Site</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>232</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Site Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>233</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Sites</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>234</PartControlId>
+    <PartId>84</PartId>
+    <Name>ASP.NET Ajax Script Manager</Name>
+    <Identity>Ajax</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>235</PartControlId>
+    <PartId>78</PartId>
+    <Name>User Profile</Name>
+    <Identity>UserEdit</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>236</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web User Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>237</PartControlId>
+    <PartId>78</PartId>
+    <Name>Create User</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>238</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web User Groups</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>239</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Resource Manager</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>240</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Group Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>241</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Group</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>242</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Group Users</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>243</PartControlId>
+    <PartId>78</PartId>
+    <Name>Login</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>244</PartControlId>
+    <PartId>51</PartId>
+    <Name>File Manager</Name>
+    <Identity>FileManager</Identity>
+    <ConfigFileName>ConfigFileManager.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>245</PartControlId>
+    <PartId>78</PartId>
+    <Name>Query Analyzer</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>246</PartControlId>
+    <PartId>51</PartId>
+    <Name>Text Editor</Name>
+    <Identity>FileManager</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>0</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>247</PartControlId>
+    <PartId>6</PartId>
+    <Name>Generic Menu</Name>
+    <Identity>Menu</Identity>
+    <ConfigFileName>ConfigDynamicMenu01.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>248</PartControlId>
+    <PartId>85</PartId>
+    <Name>Registration</Name>
+    <Identity>Registration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>249</PartControlId>
+    <PartId>85</PartId>
+    <Name>Login</Name>
+    <Identity>Login</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>251</PartControlId>
+    <PartId>82</PartId>
+    <Name>Data List</Name>
+    <Identity>GenericForm</Identity>
+    <ConfigFileName>SM_Surveys.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>252</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Role Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>253</PartControlId>
+    <PartId>78</PartId>
+    <Name>Smtp Diagnostics</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>254</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Page Panel Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>255</PartControlId>
+    <PartId>78</PartId>
+    <Name>Change Password</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>256</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Global Policy</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>257</PartControlId>
+    <PartId>86</PartId>
+    <Name>Profile Update</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>258</PartControlId>
+    <PartId>85</PartId>
+    <Name>Activate Account</Name>
+    <Identity>Activate Account</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>259</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Global Policy Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>260</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Registry Tree</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>261</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Group Tree</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>262</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Data Explorer</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>263</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Folder</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>264</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Folder Tree</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>265</PartControlId>
+    <PartId>78</PartId>
+    <Name>Subscription Manager</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>266</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Part Tree</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>267</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Site Tree</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>268</PartControlId>
+    <PartId>64</PartId>
+    <Name>Article Dashboard</Name>
+    <Identity>Article</Identity>
+    <ConfigFileName>ConfigDashboard.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>269</PartControlId>
+    <PartId>86</PartId>
+    <Name>Address Book Browser</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName>WebGroupUsers.ascx</ConfigFileName>
+    <PartAdminId>221</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>271</PartControlId>
+    <PartId>86</PartId>
+    <Name>Account Info</Name>
+    <Identity>UserProfile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>272</PartControlId>
+    <PartId>87</PartId>
+    <Name>Office Browser</Name>
+    <Identity>Office</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>273</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Office</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>274</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Office Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>275</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Offices</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>276</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Office Tree</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>277</PartControlId>
+    <PartId>87</PartId>
+    <Name>Office Details</Name>
+    <Identity>Office</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>0</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>278</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Parameter Sets</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>279</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Parameter Set Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>280</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Parameter Set</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>281</PartControlId>
+    <PartId>85</PartId>
+    <Name>Group List</Name>
+    <Identity>Registration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>282</PartControlId>
+    <PartId>64</PartId>
+    <Name>Tags</Name>
+    <Identity>Article</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>283</PartControlId>
+    <PartId>51</PartId>
+    <Name>Create Folder</Name>
+    <Identity>Create-folder</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>0</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>284</PartControlId>
+    <PartId>51</PartId>
+    <Name>Upload Files</Name>
+    <Identity>Add-files</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>0</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>285</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Tools Tree</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>286</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Security Tree</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>287</PartControlId>
+    <PartId>86</PartId>
+    <Name>My Attendance</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>220</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>288</PartControlId>
+    <PartId>86</PartId>
+    <Name>Request Manager</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>289</PartControlId>
+    <PartId>86</PartId>
+    <Name>My Preferences</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>290</PartControlId>
+    <PartId>86</PartId>
+    <Name>Update My Groups</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>291</PartControlId>
+    <PartId>86</PartId>
+    <Name>Change Password</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>292</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Data Rows</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>293</PartControlId>
+    <PartId>88</PartId>
+    <Name>Send Email</Name>
+    <Identity>Messaging</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>294</PartControlId>
+    <PartId>85</PartId>
+    <Name>ODK Visit List</Name>
+    <Identity>Visit-List</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>295</PartControlId>
+    <PartId>85</PartId>
+    <Name>ODK Visit Entry</Name>
+    <Identity>Visit-Entry</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>296</PartControlId>
+    <PartId>77</PartId>
+    <Name>Event Calendar</Name>
+    <Identity>EventCalendar</Identity>
+    <ConfigFileName>AdminCalendar.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>297</PartControlId>
+    <PartId>77</PartId>
+    <Name>Calendar Event View</Name>
+    <Identity>Event</Identity>
+    <ConfigFileName>AdminCalendar.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>298</PartControlId>
+    <PartId>51</PartId>
+    <Name>View File</Name>
+    <Identity>View-file</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>0</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>299</PartControlId>
+    <PartId>51</PartId>
+    <Name>Index Library Browser</Name>
+    <Identity>LibrariesView</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>300</PartControlId>
+    <PartId>51</PartId>
+    <Name>Index Details</Name>
+    <Identity>Item</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>0</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>301</PartControlId>
+    <PartId>90</PartId>
+    <Name>Weekly Scheduler</Name>
+    <Identity>WeeklyScheduler</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>302</PartControlId>
+    <PartId>91</PartId>
+    <Name>Twitter</Name>
+    <Identity>Twitter</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>303</PartControlId>
+    <PartId>51</PartId>
+    <Name>File Editor</Name>
+    <Identity>Edit-file</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>0</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>304</PartControlId>
+    <PartId>51</PartId>
+    <Name>Rename File or Folder</Name>
+    <Identity>Rename</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>0</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>305</PartControlId>
+    <PartId>78</PartId>
+    <Name>Site Map</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>306</PartControlId>
+    <PartId>86</PartId>
+    <Name>Sportsfest</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName>SportsfestManager.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>307</PartControlId>
+    <PartId>80</PartId>
+    <Name>WebUserControl1 - from separate web app</Name>
+    <Identity>Test</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>308</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Addresses</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>309</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Address</Name>
+    <Identity>Web-Address</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>310</PartControlId>
+    <PartId>78</PartId>
+    <Name>Linked Parts</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>311</PartControlId>
+    <PartId>86</PartId>
+    <Name>Make-Up Playback</Name>
+    <Identity>MakeUp</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>312</PartControlId>
+    <PartId>86</PartId>
+    <Name>Make-Up News</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>313</PartControlId>
+    <PartId>86</PartId>
+    <Name>Make-Up Attendance</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>314</PartControlId>
+    <PartId>86</PartId>
+    <Name>Reviewer Session Start</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>315</PartControlId>
+    <PartId>86</PartId>
+    <Name>Make-Up Attendance Requests</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>316</PartControlId>
+    <PartId>86</PartId>
+    <Name>Make-Up Attendance Request</Name>
+    <Identity>MU-Session</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>317</PartControlId>
+    <PartId>77</PartId>
+    <Name>Upcoming Events - Mini Calendar</Name>
+    <Identity>EventCalendar</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>318</PartControlId>
+    <PartId>86</PartId>
+    <Name>Forgot Password</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>319</PartControlId>
+    <PartId>86</PartId>
+    <Name>Zimbra Preauth</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>320</PartControlId>
+    <PartId>86</PartId>
+    <Name>Service Video Duration Input</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>321</PartControlId>
+    <PartId>92</PartId>
+    <Name>Ticket Manager</Name>
+    <Identity>Incident</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>322</PartControlId>
+    <PartId>92</PartId>
+    <Name>Ticket Entry</Name>
+    <Identity>Incident</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>0</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>323</PartControlId>
+    <PartId>78</PartId>
+    <Name>WebObject Edit</Name>
+    <Identity>WebObjectEdit</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>324</PartControlId>
+    <PartId>93</PartId>
+    <Name>BibleReader Auth Module</Name>
+    <Identity>BibleReader</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>325</PartControlId>
+    <PartId>78</PartId>
+    <Name>Header Panel</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>326</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Themes</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>327</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Theme</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>328</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Theme Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>329</PartControlId>
+    <PartId>6</PartId>
+    <Name>Menu Breadcrumb</Name>
+    <Identity>Menu</Identity>
+    <ConfigFileName />
+    <PartAdminId>194</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>330</PartControlId>
+    <PartId>86</PartId>
+    <Name>Address Book Mini</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName>WebGroupUsers.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>332</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Template Editor</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>333</PartControlId>
+    <PartId>94</PartId>
+    <Name>Wall Updates</Name>
+    <Identity>Social</Identity>
+    <ConfigFileName />
+    <PartAdminId>198</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>334</PartControlId>
+    <PartId>85</PartId>
+    <Name>Convention Registration</Name>
+    <Identity>Registration</Identity>
+    <ConfigFileName />
+    <PartAdminId>197</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>335</PartControlId>
+    <PartId>95</PartId>
+    <Name>Jobs Search</Name>
+    <Identity>Jobs</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>336</PartControlId>
+    <PartId>86</PartId>
+    <Name>External Auth Initiator</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>337</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP People's Choice Nomination</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>338</PartControlId>
+    <PartId>78</PartId>
+    <Name>Short URL Manager</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>339</PartControlId>
+    <PartId>78</PartId>
+    <Name>Short URL Editor</Name>
+    <Identity>ShortUrlEdit</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>340</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP Judges Scoring Page</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>341</PartControlId>
+    <PartId>94</PartId>
+    <Name>Mobile Wall</Name>
+    <Identity>Social</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>342</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP People's Choice Results</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>343</PartControlId>
+    <PartId>85</PartId>
+    <Name>Registration V2</Name>
+    <Identity>Registration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>344</PartControlId>
+    <PartId>86</PartId>
+    <Name>Registration Manager</Name>
+    <Identity>Profile</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>345</PartControlId>
+    <PartId>51</PartId>
+    <Name>Index Download</Name>
+    <Identity>Download</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>346</PartControlId>
+    <PartId>58</PartId>
+    <Name>Animated Banners</Name>
+    <Identity>Photo</Identity>
+    <ConfigFileName />
+    <PartAdminId>206</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>347</PartControlId>
+    <PartId>97</PartId>
+    <Name>User Profile Photo Update</Name>
+    <Identity>Common</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>348</PartControlId>
+    <PartId>97</PartId>
+    <Name>Login</Name>
+    <Identity>Common</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>349</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP Vote</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>351</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP Judges Score V2</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>352</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP Judges Tabulation</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>353</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP People's Choice Vote Confirm</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>354</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP Talk</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>213</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>355</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP Finalists</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>356</PartControlId>
+    <PartId>97</PartId>
+    <Name>Trigger Task</Name>
+    <Identity>Common</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>357</PartControlId>
+    <PartId>60</PartId>
+    <Name>Contact Us V2</Name>
+    <Identity>Contact</Identity>
+    <ConfigFileName>ConfigInquiriesList.ascx</ConfigFileName>
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>358</PartControlId>
+    <PartId>97</PartId>
+    <Name>Message Board</Name>
+    <Identity>Common</Identity>
+    <ConfigFileName />
+    <PartAdminId>212</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>359</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Skins</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>360</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Skin Home</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>361</PartControlId>
+    <PartId>78</PartId>
+    <Name>Web Skin</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>362</PartControlId>
+    <PartId>78</PartId>
+    <Name>Header Navbar</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>363</PartControlId>
+    <PartId>98</PartId>
+    <Name>Master List - Group Manager</Name>
+    <Identity>Groups</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>364</PartControlId>
+    <PartId>98</PartId>
+    <Name>Master List - Users Manager</Name>
+    <Identity>Members</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>365</PartControlId>
+    <PartId>98</PartId>
+    <Name>Master List - Group Edit</Name>
+    <Identity>GroupEdit</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>366</PartControlId>
+    <PartId>98</PartId>
+    <Name>Master List - Member Edit</Name>
+    <Identity>MemberEdit</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>367</PartControlId>
+    <PartId>98</PartId>
+    <Name>Master List - Group Overview</Name>
+    <Identity>GroupOverview</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>370</PartControlId>
+    <PartId>78</PartId>
+    <Name>WebPart Template Panels</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>371</PartControlId>
+    <PartId>78</PartId>
+    <Name>WebPart Template Panel</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>372</PartControlId>
+    <PartId>98</PartId>
+    <Name>ASOP Talk V2 (Message Board)</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>373</PartControlId>
+    <PartId>53</PartId>
+    <Name>Newsletter</Name>
+    <Identity>Newsletter</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>374</PartControlId>
+    <PartId>98</PartId>
+    <Name>Bible Browser</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>375</PartControlId>
+    <PartId>78</PartId>
+    <Name>WebPart Management</Name>
+    <Identity>Central</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>376</PartControlId>
+    <PartId>96</PartId>
+    <Name>Instagram Gallery</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>377</PartControlId>
+    <PartId>58</PartId>
+    <Name>Instagram Gallery</Name>
+    <Identity>Photo</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>378</PartControlId>
+    <PartId>51</PartId>
+    <Name>Indexer - Recent Updates</Name>
+    <Identity>FileManager</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>379</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP Finalist V2</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>380</PartControlId>
+    <PartId>98</PartId>
+    <Name>Streaming - User Manager</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>381</PartControlId>
+    <PartId>98</PartId>
+    <Name>Streaming - Console</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>382</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP Results V4</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>383</PartControlId>
+    <PartId>96</PartId>
+    <Name>ASOP Winners</Name>
+    <Identity>ASOP</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>384</PartControlId>
+    <PartId>98</PartId>
+    <Name>Streaming Service - Access Request</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>385</PartControlId>
+    <PartId>98</PartId>
+    <Name>Master List - Access</Name>
+    <Identity>Access</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>386</PartControlId>
+    <PartId>80</PartId>
+    <Name>Razor Standalone</Name>
+    <Identity>Test</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>387</PartControlId>
+    <PartId>80</PartId>
+    <Name>Razor Demo</Name>
+    <Identity>Test</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>388</PartControlId>
+    <PartId>99</PartId>
+    <Name>Dashboard</Name>
+    <Identity>Dashboard</Identity>
+    <ConfigFileName />
+    <PartAdminId>215</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>389</PartControlId>
+    <PartId>99</PartId>
+    <Name>Chapter Browser</Name>
+    <Identity>Browse</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>390</PartControlId>
+    <PartId>99</PartId>
+    <Name>Chapter Details</Name>
+    <Identity>Details</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>391</PartControlId>
+    <PartId>98</PartId>
+    <Name>Global Switch</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>392</PartControlId>
+    <PartId>98</PartId>
+    <Name>Global Switch - WebApps Directory</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>393</PartControlId>
+    <PartId>98</PartId>
+    <Name>Global Switch - Dashboard</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>394</PartControlId>
+    <PartId>99</PartId>
+    <Name>Search</Name>
+    <Identity>Search</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>395</PartControlId>
+    <PartId>98</PartId>
+    <Name>Global Switch - NativeApps Directory</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>396</PartControlId>
+    <PartId>98</PartId>
+    <Name>Global Switch - Help &amp; Feedback</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>397</PartControlId>
+    <PartId>98</PartId>
+    <Name>Login, Forgot, Register</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>398</PartControlId>
+    <PartId>98</PartId>
+    <Name>Account: Get Access</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>399</PartControlId>
+    <PartId>98</PartId>
+    <Name>Register SG</Name>
+    <Identity>SG</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>400</PartControlId>
+    <PartId>98</PartId>
+    <Name>Register V2</Name>
+    <Identity>Register</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>401</PartControlId>
+    <PartId>98</PartId>
+    <Name>Account: Login</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>402</PartControlId>
+    <PartId>98</PartId>
+    <Name>Global Switch - Social Campaigns</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>403</PartControlId>
+    <PartId>98</PartId>
+    <Name>Global Switch - Video Streaming</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>404</PartControlId>
+    <PartId>98</PartId>
+    <Name>Global Settings</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>405</PartControlId>
+    <PartId>98</PartId>
+    <Name>Account: My Approval Status</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>406</PartControlId>
+    <PartId>98</PartId>
+    <Name>Event Register: Attendees</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>407</PartControlId>
+    <PartId>98</PartId>
+    <Name>Event Register: Attendee Entry</Name>
+    <Identity>Attendee</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>408</PartControlId>
+    <PartId>98</PartId>
+    <Name>Event Register: Dashboard</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>412</PartControlId>
+    <PartId>78</PartId>
+    <Name>User Activities</Name>
+    <Identity>User-Activities</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>413</PartControlId>
+    <PartId>98</PartId>
+    <Name>QR Code Attendance</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>414</PartControlId>
+    <PartId>98</PartId>
+    <Name>Attendance Request</Name>
+    <Identity>Attendance-Request</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>415</PartControlId>
+    <PartId>98</PartId>
+    <Name>Locale Announcements - Full Screen</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+  <WebPartControl>
+    <PartControlId>416</PartControlId>
+    <PartId>98</PartId>
+    <Name>Locale Announcements</Name>
+    <Identity>Integration</Identity>
+    <ConfigFileName />
+    <PartAdminId>-1</PartAdminId>
+    <EntryPoint>1</EntryPoint>
+    <ParentId>-1</ParentId>
+  </WebPartControl>
+</mPortal>

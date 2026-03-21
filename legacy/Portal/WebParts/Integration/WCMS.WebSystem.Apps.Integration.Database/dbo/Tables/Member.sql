@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[Member] (
+    [MemberID]      BIGINT         NOT NULL,
+    [ExternalIDNo]    VARCHAR (20)   NULL,
+    [TemporaryIDNo] VARCHAR (20)   NULL,
+    [FirstName]     VARCHAR (30)   NOT NULL,
+    [MiddleName]    VARCHAR (30)   NOT NULL,
+    [LastName]      VARCHAR (30)   NOT NULL,
+    [BirthDate]     DATETIME       NULL,
+    [BirthPlace]    VARCHAR (200)  NULL,
+    [Gender]        CHAR (1)       NULL,
+    [BloodType]     VARCHAR (3)    NULL,
+    [CivilStatusID] INT            NULL,
+    [CitizenshipID] INT            NULL,
+    [RaceID]        INT            NULL,
+    [Phone]         VARCHAR (20)   NULL,
+    [Mobile]        VARCHAR (20)   NULL,
+    [Email]         VARCHAR (100)  NULL,
+    [IsActive]      INT            NULL,
+    [Flag]          CHAR (1)       COLLATE Latin1_General_CI_AI CONSTRAINT [DF_Member_Flag] DEFAULT ('M') NOT NULL,
+    [NickName]      NVARCHAR (250) COLLATE Latin1_General_CI_AI NULL,
+    [DateCreated]   DATETIME       NULL,
+    [DateUpdated]   DATETIME       NULL,
+    [MembershipDate]   DATETIME       CONSTRAINT [DF_Member_MembershipDate] DEFAULT (getdate()) NOT NULL,
+    CONSTRAINT [PK_Member] PRIMARY KEY CLUSTERED ([MemberID] ASC)
+);
+

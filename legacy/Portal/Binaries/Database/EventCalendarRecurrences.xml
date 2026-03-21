@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="EventCalendarRecurrences">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="RecurrenceId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Rank" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//EventCalendarRecurrences" />
+        <xs:field xpath="RecurrenceId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <EventCalendarRecurrences>
+    <RecurrenceId>-1</RecurrenceId>
+    <Name>Not repeating</Name>
+    <Rank>-1</Rank>
+  </EventCalendarRecurrences>
+  <EventCalendarRecurrences>
+    <RecurrenceId>1</RecurrenceId>
+    <Name>Daily</Name>
+    <Rank>1</Rank>
+  </EventCalendarRecurrences>
+  <EventCalendarRecurrences>
+    <RecurrenceId>2</RecurrenceId>
+    <Name>Weekly</Name>
+    <Rank>2</Rank>
+  </EventCalendarRecurrences>
+  <EventCalendarRecurrences>
+    <RecurrenceId>4</RecurrenceId>
+    <Name>Monthly</Name>
+    <Rank>4</Rank>
+  </EventCalendarRecurrences>
+  <EventCalendarRecurrences>
+    <RecurrenceId>6</RecurrenceId>
+    <Name>Yearly</Name>
+    <Rank>6</Rank>
+  </EventCalendarRecurrences>
+</mPortal>

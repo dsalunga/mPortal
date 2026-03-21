@@ -1,0 +1,3 @@
+﻿
+Commandline Parameters:
+WCMS.Framework.Agent.exe /mode:runonce /task:Spammer

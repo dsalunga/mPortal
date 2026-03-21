@@ -1,0 +1,499 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="EventCalendarTemplates">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="TemplateId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ReminderHtml">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ForeColor">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="10" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="BackColor">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="10" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="SmsContent">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//EventCalendarTemplates" />
+        <xs:field xpath="TemplateId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <EventCalendarTemplates>
+    <TemplateId>1</TemplateId>
+    <Name>Basic Template</Name>
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
+&lt;style type="text/css"&gt;
+h3
+        {
+            font-size: 150%;
+        }
+        
+        input, select, textarea
+        {
+            font: 11px/18px 'Lucida Grande' , 'Lucida Sans Unicode' ,Verdana,Arial,Helvetica,sans-serif;
+        }
+        
+        body, p, li, dt, dd, label
+        {
+            color: #000000;
+            font-family: 'Lucida Sans' , 'Lucida Grande' , 'Lucida Sans Unicode' ,sans-serif;
+            font-size: 12px;
+        }
+    
+div.wp-Event-Manager div.field
+    {
+        margin-bottom: 15px;
+        clear: both;
+    }
+    
+    div.wp-Event-Manager div.field.inline
+    {
+        float: left;
+        clear: right;
+        margin-right: 20%;
+    }
+    
+    div.wp-Event-Manager div.return-link
+    {
+        margin-top: 50px;
+    }
+&lt;/style&gt;
+&lt;div class="wp-Event-Manager"&gt;
+&lt;div class="field"&gt;
+&lt;h2 style="padding: 3px; display: inline; color:$(ForeColor); background-color:$(BackColor);"&gt;$(Subject)&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Date&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Date)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Time&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Time)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Location&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Location)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Description)&lt;/div&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;em&gt;For more information, visit the $(CalendarName) page:&lt;/em&gt;&lt;br /&gt;
+&lt;a href="$(CalendarUrl)"&gt;$(CalendarUrl)&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</ReminderHtml>
+    <ForeColor>000000</ForeColor>
+    <BackColor>ffff00</BackColor>
+    <SmsContent>EVENT REMINDER:
+WHAT: $(Subject)
+WHEN: $(Date) @ $(Time)
+WHERE: $(Location)</SmsContent>
+  </EventCalendarTemplates>
+  <EventCalendarTemplates>
+    <TemplateId>2</TemplateId>
+    <Name>Green Template</Name>
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
+&lt;style type="text/css"&gt;
+h3
+        {
+            font-size: 150%;
+        }
+        
+        input, select, textarea
+        {
+            font: 11px/18px 'Lucida Grande' , 'Lucida Sans Unicode' ,Verdana,Arial,Helvetica,sans-serif;
+        }
+        
+        body, p, li, dt, dd, label
+        {
+            color: #000000;
+            font-family: 'Lucida Sans' , 'Lucida Grande' , 'Lucida Sans Unicode' ,sans-serif;
+            font-size: 12px;
+        }
+    
+div.wp-Event-Manager div.field
+    {
+        margin-bottom: 15px;
+        clear: both;
+    }
+    
+    div.wp-Event-Manager div.field.inline
+    {
+        float: left;
+        clear: right;
+        margin-right: 20%;
+    }
+    
+    div.wp-Event-Manager div.return-link
+    {
+        margin-top: 50px;
+    }
+&lt;/style&gt;
+&lt;div class="wp-Event-Manager"&gt;
+&lt;div class="field"&gt;
+&lt;h2 style="padding: 3px; display: inline; color:$(ForeColor); background-color:$(BackColor);"&gt;$(Subject)&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Date&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Date)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Time&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Time)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Location&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Location)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Description)&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</ReminderHtml>
+    <ForeColor>000000</ForeColor>
+    <BackColor>33FF00</BackColor>
+    <SmsContent>EVENT REMINDER:
+WHAT: $(Subject)
+WHEN: $(Date) @ $(Time)
+WHERE: $(Location)</SmsContent>
+  </EventCalendarTemplates>
+  <EventCalendarTemplates>
+    <TemplateId>3</TemplateId>
+    <Name>Pink Template</Name>
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
+&lt;style type="text/css"&gt;
+h3
+        {
+            font-size: 150%;
+        }
+        
+        input, select, textarea
+        {
+            font: 11px/18px 'Lucida Grande' , 'Lucida Sans Unicode' ,Verdana,Arial,Helvetica,sans-serif;
+        }
+        
+        body, p, li, dt, dd, label
+        {
+            color: #000000;
+            font-family: 'Lucida Sans' , 'Lucida Grande' , 'Lucida Sans Unicode' ,sans-serif;
+            font-size: 12px;
+        }
+    
+div.wp-Event-Manager div.field
+    {
+        margin-bottom: 15px;
+        clear: both;
+    }
+    
+    div.wp-Event-Manager div.field.inline
+    {
+        float: left;
+        clear: right;
+        margin-right: 20%;
+    }
+    
+    div.wp-Event-Manager div.return-link
+    {
+        margin-top: 50px;
+    }
+&lt;/style&gt;
+&lt;div class="wp-Event-Manager"&gt;
+&lt;div class="field"&gt;
+&lt;h2 style="padding: 3px; display: inline; color:$(ForeColor); background-color:$(BackColor);"&gt;$(Subject)&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Date&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Date)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Time&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Time)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Location&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Location)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Description)&lt;/div&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;em&gt;For more information, visit the $(CalendarName) page:&lt;/em&gt;&lt;br /&gt;
+&lt;a href="$(CalendarUrl)"&gt;$(CalendarUrl)&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;</ReminderHtml>
+    <ForeColor>000000</ForeColor>
+    <BackColor>CC66FF</BackColor>
+    <SmsContent>EVENT REMINDER
+WHAT: $(Subject)
+WHEN: $(Date) @ $(Time)
+WHERE: $(Location)</SmsContent>
+  </EventCalendarTemplates>
+  <EventCalendarTemplates>
+    <TemplateId>4</TemplateId>
+    <Name>Orange Template</Name>
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
+&lt;style type="text/css"&gt;
+h3
+        {
+            font-size: 150%;
+        }
+        
+        input, select, textarea
+        {
+            font: 11px/18px 'Lucida Grande' , 'Lucida Sans Unicode' ,Verdana,Arial,Helvetica,sans-serif;
+        }
+        
+        body, p, li, dt, dd, label
+        {
+            color: #000000;
+            font-family: 'Lucida Sans' , 'Lucida Grande' , 'Lucida Sans Unicode' ,sans-serif;
+            font-size: 12px;
+        }
+    
+div.wp-Event-Manager div.field
+    {
+        margin-bottom: 15px;
+        clear: both;
+    }
+    
+    div.wp-Event-Manager div.field.inline
+    {
+        float: left;
+        clear: right;
+        margin-right: 20%;
+    }
+    
+    div.wp-Event-Manager div.return-link
+    {
+        margin-top: 50px;
+    }
+&lt;/style&gt;
+&lt;div class="wp-Event-Manager"&gt;
+&lt;div class="field"&gt;
+&lt;h2 style="padding: 3px; display: inline; color:$(ForeColor); background-color:$(BackColor);"&gt;$(Subject)&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Date&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Date)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Time&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Time)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Location&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Location)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Description)&lt;/div&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;em&gt;For more information, visit the $(CalendarName) page:&lt;/em&gt;&lt;br /&gt;
+&lt;a href="$(CalendarUrl)"&gt;$(CalendarUrl)&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;</ReminderHtml>
+    <ForeColor>000000</ForeColor>
+    <BackColor>FF6600</BackColor>
+    <SmsContent>EVENT REMINDER
+WHAT: $(Subject)
+WHEN: $(Date) @ $(Time)
+WHERE: $(Location)</SmsContent>
+  </EventCalendarTemplates>
+  <EventCalendarTemplates>
+    <TemplateId>5</TemplateId>
+    <Name>Yellow Template</Name>
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
+&lt;style type="text/css"&gt;
+h3
+        {
+            font-size: 150%;
+        }
+        
+        input, select, textarea
+        {
+            font: 11px/18px 'Lucida Grande' , 'Lucida Sans Unicode' ,Verdana,Arial,Helvetica,sans-serif;
+        }
+        
+        body, p, li, dt, dd, label
+        {
+            color: #000000;
+            font-family: 'Lucida Sans' , 'Lucida Grande' , 'Lucida Sans Unicode' ,sans-serif;
+            font-size: 12px;
+        }
+    
+div.wp-Event-Manager div.field
+    {
+        margin-bottom: 15px;
+        clear: both;
+    }
+    
+    div.wp-Event-Manager div.field.inline
+    {
+        float: left;
+        clear: right;
+        margin-right: 20%;
+    }
+    
+    div.wp-Event-Manager div.return-link
+    {
+        margin-top: 50px;
+    }
+&lt;/style&gt;
+&lt;div class="wp-Event-Manager"&gt;
+&lt;div class="field"&gt;
+&lt;h2 style="padding: 3px; display: inline; color:$(ForeColor); background-color:$(BackColor);"&gt;$(Subject)&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Date&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Date)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Time&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Time)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Location&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Location)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Description)&lt;/div&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;em&gt;For more information, visit the $(CalendarName) page:&lt;/em&gt;&lt;br /&gt;
+&lt;a href="$(CalendarUrl)"&gt;$(CalendarUrl)&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;</ReminderHtml>
+    <ForeColor>000000</ForeColor>
+    <BackColor>FFFF00</BackColor>
+    <SmsContent>EVENT REMINDER
+WHAT: $(Subject)
+WHEN: $(Date) @ $(Time)
+WHERE: $(Location)</SmsContent>
+  </EventCalendarTemplates>
+  <EventCalendarTemplates>
+    <TemplateId>6</TemplateId>
+    <Name>Blue Template</Name>
+    <ReminderHtml>&lt;div&gt;
+&lt;h1&gt;Logo&lt;/h1&gt;
+&lt;br /&gt;
+&lt;style type="text/css"&gt;
+h3
+        {
+            font-size: 150%;
+        }
+        
+        input, select, textarea
+        {
+            font: 11px/18px 'Lucida Grande' , 'Lucida Sans Unicode' ,Verdana,Arial,Helvetica,sans-serif;
+        }
+        
+        body, p, li, dt, dd, label
+        {
+            color: #000000;
+            font-family: 'Lucida Sans' , 'Lucida Grande' , 'Lucida Sans Unicode' ,sans-serif;
+            font-size: 12px;
+        }
+    
+div.wp-Event-Manager div.field
+    {
+        margin-bottom: 15px;
+        clear: both;
+    }
+    
+    div.wp-Event-Manager div.field.inline
+    {
+        float: left;
+        clear: right;
+        margin-right: 20%;
+    }
+    
+    div.wp-Event-Manager div.return-link
+    {
+        margin-top: 50px;
+    }
+&lt;/style&gt;
+&lt;div class="wp-Event-Manager"&gt;
+&lt;div class="field"&gt;
+&lt;h2 style="padding: 3px; display: inline; color:$(ForeColor); background-color:$(BackColor);"&gt;$(Subject)&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Date&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Date)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field inline"&gt;
+&lt;div&gt;&lt;strong&gt;Time&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Time)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Location&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Location)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="field"&gt;
+&lt;div&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;$(Description)&lt;/div&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;em&gt;For more information, visit the $(CalendarName) page:&lt;/em&gt;&lt;br /&gt;
+&lt;a href="$(CalendarUrl)"&gt;$(CalendarUrl)&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;</ReminderHtml>
+    <ForeColor>000000</ForeColor>
+    <BackColor>3366FF</BackColor>
+    <SmsContent>EVENT REMINDER
+WHAT: $(Subject)
+WHEN: $(Date) @ $(Time)
+WHERE: $(Location)</SmsContent>
+  </EventCalendarTemplates>
+</mPortal>

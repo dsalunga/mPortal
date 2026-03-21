@@ -1,0 +1,28 @@
+
+-- Procedure WebGroup_Del
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[WebGroup_Del]
+	(
+		@Id int
+	)
+AS
+	SET NOCOUNT ON
+	
+	IF(@Id > 0)
+		BEGIN
+			DELETE FROM WebGroup
+			WHERE Id=@Id
+		END
+	
+	RETURN
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+

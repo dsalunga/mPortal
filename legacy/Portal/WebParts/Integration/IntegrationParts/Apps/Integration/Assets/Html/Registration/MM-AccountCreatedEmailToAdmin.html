@@ -1,0 +1,100 @@
+﻿<style type="text/css">
+    body, table {
+        font-family: Segoe UI, Tahoma, Arial, Times New Roman;
+        font-size: 14px;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+
+    .info-col-title {
+        width: 130px;
+    }
+
+    .info-col-value {
+        width: 201px;
+    }
+
+    .info-col-sep {
+        width: 7px;
+    }
+</style>
+<strong>IMPORTANT:</strong> YOUR REVIEW IS REQUIRED!                                    
+<br />
+<br />
+The Integration Portal requires your approval to activate this newly created
+account before
+the user can access the Portal.<br />
+Please verify the Personal Information carefully before approving the account:<br />
+<br />
+<br />
+<table border="0" cellspacing="0" cellpadding="0" style="width: 100%">
+    <tbody>
+        <tr>
+            <td colspan="3" style="background-color: rgb(204, 204, 204);"><b>Personal
+                Information</b></td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Group ID No.</td>
+            <td class="info-col-value">$(CHURCH_ID_NO)</td>
+            <td rowspan="15">
+                <img width="200" alt="Member Photo" border="1" src="$(PHOTO_URL)" />
+            </td>
+        </tr>
+        <tr>
+            <td class="info-col-title">First Name</td>
+            <td style="width: 201px;">$(FIRST_NAME)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Last Name</td>
+            <td style="width: 201px;">$(LAST_NAME)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Gender</td>
+            <td style="width: 201px;">$(GENDER)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Mobile No.</td>
+            <td style="width: 201px;">$(MOBILE)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Email</td>
+            <td class="info-col-value">$(EMAIL)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Country</td>
+            <td style="width: 201px;">$(COUNTRY)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Date of Membership</td>
+            <td style="width: 201px;">$(MEMBERSHIP_DATE)</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">Group Locale</td>
+            <td style="width: 201px;">$(LOCALE)</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="info-col-title">User Name (Login)</td>
+            <td style="width: 201px;">$(USER_NAME)</td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<br />
+Click on the link below and login to Integration Portal to approve or reject the newly
+created account.                                    
+<br />
+<br />
+<p>
+    <a title="Click here to Login to Integration Portal" href="$(APPROVAL_URL)">$(APPROVAL_URL)</a><br />
+    <br />
+    <br />
+    <b>Thanks be to God!</b><br />
+    Integration Portal<br />
+    <a href="javascript:location.href='mailto:addmusicministry@gmail.com?subject=Music%20Ministry%20Portal%20Registration'">addmusicministry@gmail.com</a><br />
+    <a href="javascript:location.href='mailto:addmusicministry@yahoo.com?subject=Music%20Ministry%20Portal%20Registration'">addmusicministry@yahoo.com</a>
+</p>

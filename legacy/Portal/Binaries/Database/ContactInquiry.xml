@@ -1,0 +1,235 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="ContactInquiry">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="InquiryId" type="xs:int" />
+                <xs:element name="SenderName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Subject">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Message">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1073741823" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Email">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Address1">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Address2" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="City" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="CountryCode" type="xs:int" minOccurs="0" />
+                <xs:element name="StateCode" type="xs:int" minOccurs="0" />
+                <xs:element name="ZipCode" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="63" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Phone" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Fax" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="SendTo" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="InqDateTime" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="IsActive" type="xs:int" minOccurs="0" />
+                <xs:element name="SendToEmail" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="InquiryType" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="RecordId" type="xs:int" minOccurs="0" />
+                <xs:element name="ObjectId" type="xs:int" minOccurs="0" />
+                <xs:element name="UserId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//ContactInquiry" />
+        <xs:field xpath="InquiryId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <ContactInquiry>
+    <InquiryId>1</InquiryId>
+    <SenderName>sdf</SenderName>
+    <Subject>asdfadsf</Subject>
+    <Message>adsfasdf</Message>
+    <Email>adsf@asd.asd</Email>
+    <Address1>asdf</Address1>
+    <Address2>adsf</Address2>
+    <City>adsf</City>
+    <CountryCode>231</CountryCode>
+    <StateCode>5</StateCode>
+    <ZipCode>ads</ZipCode>
+    <Phone />
+    <Fax />
+    <SendTo />
+    <InqDateTime>2009-05-19T08:15:07.023+08:00</InqDateTime>
+    <IsActive>1</IsActive>
+    <SendToEmail />
+    <InquiryType>Feedback</InquiryType>
+    <RecordId>21</RecordId>
+    <ObjectId>2</ObjectId>
+    <UserId>-1</UserId>
+  </ContactInquiry>
+  <ContactInquiry>
+    <InquiryId>5</InquiryId>
+    <SenderName>asdf</SenderName>
+    <Subject>asdf</Subject>
+    <Message>asdf</Message>
+    <Email>adsf@asd.asd</Email>
+    <Address1>adsf</Address1>
+    <Address2>asdf</Address2>
+    <City>asdf</City>
+    <CountryCode>251</CountryCode>
+    <StateCode>31</StateCode>
+    <ZipCode>asdf</ZipCode>
+    <Phone>asdf</Phone>
+    <Fax>asdf</Fax>
+    <SendTo />
+    <InqDateTime>2009-05-19T08:21:37.517+08:00</InqDateTime>
+    <IsActive>0</IsActive>
+    <SendToEmail />
+    <InquiryType>Feedback</InquiryType>
+    <RecordId>21</RecordId>
+    <ObjectId>2</ObjectId>
+    <UserId>-1</UserId>
+  </ContactInquiry>
+  <ContactInquiry>
+    <InquiryId>6</InquiryId>
+    <SenderName>asdf</SenderName>
+    <Subject>asdf</Subject>
+    <Message>asdf</Message>
+    <Email>adsf@asd.asd</Email>
+    <Address1 />
+    <Address2 />
+    <City />
+    <CountryCode>254</CountryCode>
+    <StateCode>30</StateCode>
+    <ZipCode />
+    <Phone />
+    <Fax />
+    <SendTo />
+    <InqDateTime>2009-05-19T08:24:00.587+08:00</InqDateTime>
+    <IsActive>0</IsActive>
+    <SendToEmail />
+    <InquiryType>Feedback</InquiryType>
+    <RecordId>21</RecordId>
+    <ObjectId>2</ObjectId>
+    <UserId>-1</UserId>
+  </ContactInquiry>
+  <ContactInquiry>
+    <InquiryId>7</InquiryId>
+    <SenderName>asdf</SenderName>
+    <Subject>asdf</Subject>
+    <Message>asdf</Message>
+    <Email>adsf@asd.asd</Email>
+    <Address1>asdf</Address1>
+    <Address2>asdf</Address2>
+    <City>asdf</City>
+    <CountryCode>254</CountryCode>
+    <StateCode>28</StateCode>
+    <ZipCode>asdf</ZipCode>
+    <Phone>asdf</Phone>
+    <Fax>adsf</Fax>
+    <SendTo />
+    <InqDateTime>2009-05-19T08:38:09.173+08:00</InqDateTime>
+    <IsActive>0</IsActive>
+    <SendToEmail />
+    <InquiryType>Feedback</InquiryType>
+    <RecordId>21</RecordId>
+    <ObjectId>2</ObjectId>
+    <UserId>-1</UserId>
+  </ContactInquiry>
+  <ContactInquiry>
+    <InquiryId>8</InquiryId>
+    <SenderName>sadf</SenderName>
+    <Subject>adsf</Subject>
+    <Message>adsf</Message>
+    <Email>adsf@asd.asd</Email>
+    <Address1>adsf</Address1>
+    <Address2>adf</Address2>
+    <City>adsf</City>
+    <CountryCode>252</CountryCode>
+    <StateCode>29</StateCode>
+    <ZipCode>adsf</ZipCode>
+    <Phone>asdf</Phone>
+    <Fax>asdf</Fax>
+    <SendTo />
+    <InqDateTime>2009-05-19T08:51:16.283+08:00</InqDateTime>
+    <IsActive>0</IsActive>
+    <SendToEmail />
+    <InquiryType>Feedback</InquiryType>
+    <RecordId>21</RecordId>
+    <ObjectId>2</ObjectId>
+    <UserId>-1</UserId>
+  </ContactInquiry>
+</mPortal>

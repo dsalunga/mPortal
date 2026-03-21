@@ -1,0 +1,18 @@
+#backgroundPopup {
+	Z-INDEX: 1; BORDER-BOTTOM: #cecece 1px solid; POSITION: fixed; BORDER-LEFT: #cecece 1px solid; WIDTH: 100%; DISPLAY: none; BACKGROUND: #000000; HEIGHT: 100%; BORDER-TOP: #cecece 1px solid; TOP: 0px; BORDER-RIGHT: #cecece 1px solid; LEFT: 0px; _position: absolute; _background: none; _border: none
+}
+#popupContact {
+	Z-INDEX: 2; BORDER-BOTTOM: #cecece 1px solid; POSITION: fixed; BORDER-LEFT: #cecece 1px solid; PADDING-BOTTOM: 12px; PADDING-LEFT: 12px; WIDTH: 365px; PADDING-RIGHT: 12px; DISPLAY: none; BACKGROUND: #fff; HEIGHT: auto; FONT-SIZE: 13px; BORDER-TOP: #cecece 1px solid; BORDER-RIGHT: #cecece 1px solid; PADDING-TOP: 12px; _position: absolute
+}
+popupContact OBJECT {
+	BACKGROUND: url(../mass-indoc-preview.jpg) #000 no-repeat
+}
+#popupContact H1 {
+	BORDER-BOTTOM: #d3d3d3 1px dotted; TEXT-ALIGN: left; PADDING-BOTTOM: 2px; MARGIN-BOTTOM: 20px; COLOR: #6fa5fd; FONT-SIZE: 22px; FONT-WEIGHT: 700
+}
+#popupContactClose {
+	POSITION: absolute; LINE-HEIGHT: 14px; DISPLAY: block; COLOR: #6fa5fd; FONT-SIZE: 14px; TOP: 4px; CURSOR: pointer; RIGHT: 6px; FONT-WEIGHT: 700
+}
+#button {
+	TEXT-ALIGN: center; MARGIN: 0px auto; CURSOR: pointer
+}

@@ -1,0 +1,150 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="RemoteLibrary">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="300" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="SourceTypeId" type="xs:int" />
+                <xs:element name="BaseAddress">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="UserName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Password">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="LastIndexDate" type="xs:dateTime" />
+                <xs:element name="Active" type="xs:int" />
+                <xs:element name="DisplayBaseAddress">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DownloadCountSince" type="xs:dateTime" />
+                <xs:element name="FileCacheEnabled" type="xs:int" />
+                <xs:element name="FileCacheFolder">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FileCacheMinDownloadCount" type="xs:int" />
+                <xs:element name="FileCacheCeilingSize" type="xs:int" />
+                <xs:element name="FileCacheMaxSize" type="xs:int" />
+                <xs:element name="FileCacheMinDiskFreeMB" type="xs:int" />
+                <xs:element name="Size" type="xs:long" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//RemoteLibrary" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <RemoteLibrary>
+    <Id>2</Id>
+    <Name>Music Ministry</Name>
+    <SourceTypeId>0</SourceTypeId>
+    <BaseAddress>ftp://tunes.mcgi.org/MUSIC_MINISTRY/FILES</BaseAddress>
+    <UserName>portal</UserName>
+    <Password>hzMt_ouT3i</Password>
+    <LastIndexDate>2014-11-20T01:39:57.677+08:00</LastIndexDate>
+    <Active>0</Active>
+    <DisplayBaseAddress />
+    <DownloadCountSince>2013-03-24T10:34:32.463+08:00</DownloadCountSince>
+    <FileCacheEnabled>0</FileCacheEnabled>
+    <FileCacheFolder />
+    <FileCacheMinDownloadCount>0</FileCacheMinDownloadCount>
+    <FileCacheCeilingSize>-1</FileCacheCeilingSize>
+    <FileCacheMaxSize>0</FileCacheMaxSize>
+    <FileCacheMinDiskFreeMB>-1</FileCacheMinDiskFreeMB>
+    <Size>0</Size>
+  </RemoteLibrary>
+  <RemoteLibrary>
+    <Id>3</Id>
+    <Name>Local FTP</Name>
+    <SourceTypeId>0</SourceTypeId>
+    <BaseAddress>ftp://localhost/</BaseAddress>
+    <UserName>admin</UserName>
+    <Password>dev123</Password>
+    <LastIndexDate>2014-11-20T01:40:03.7+08:00</LastIndexDate>
+    <Active>0</Active>
+    <DisplayBaseAddress />
+    <DownloadCountSince>2013-03-24T10:34:32.463+08:00</DownloadCountSince>
+    <FileCacheEnabled>0</FileCacheEnabled>
+    <FileCacheFolder />
+    <FileCacheMinDownloadCount>0</FileCacheMinDownloadCount>
+    <FileCacheCeilingSize>-1</FileCacheCeilingSize>
+    <FileCacheMaxSize>0</FileCacheMaxSize>
+    <FileCacheMinDiskFreeMB>-1</FileCacheMinDiskFreeMB>
+    <Size>0</Size>
+  </RemoteLibrary>
+  <RemoteLibrary>
+    <Id>4</Id>
+    <Name>Windows Share</Name>
+    <SourceTypeId>2</SourceTypeId>
+    <BaseAddress>\\L-SIN-0035551X\ftproot</BaseAddress>
+    <UserName>CORP\dcsalunga</UserName>
+    <Password>1Dcs911(!!</Password>
+    <LastIndexDate>2012-07-20T00:19:55.38+08:00</LastIndexDate>
+    <Active>0</Active>
+    <DisplayBaseAddress />
+    <DownloadCountSince>2013-03-24T10:34:32.463+08:00</DownloadCountSince>
+    <FileCacheEnabled>0</FileCacheEnabled>
+    <FileCacheFolder />
+    <FileCacheMinDownloadCount>0</FileCacheMinDownloadCount>
+    <FileCacheCeilingSize>-1</FileCacheCeilingSize>
+    <FileCacheMaxSize>0</FileCacheMaxSize>
+    <FileCacheMinDiskFreeMB>-1</FileCacheMinDiskFreeMB>
+    <Size>0</Size>
+  </RemoteLibrary>
+  <RemoteLibrary>
+    <Id>5</Id>
+    <Name>Daniel's Photos</Name>
+    <SourceTypeId>0</SourceTypeId>
+    <BaseAddress>ftp://naswi/Daniel/My Photos/</BaseAddress>
+    <UserName>daniel</UserName>
+    <Password>Dcs431900</Password>
+    <LastIndexDate>2021-09-14T06:39:33.29+08:00</LastIndexDate>
+    <Active>1</Active>
+    <DisplayBaseAddress />
+    <DownloadCountSince>2019-07-26T02:10:47.86+08:00</DownloadCountSince>
+    <FileCacheEnabled>0</FileCacheEnabled>
+    <FileCacheFolder />
+    <FileCacheMinDownloadCount>-1</FileCacheMinDownloadCount>
+    <FileCacheCeilingSize>-1</FileCacheCeilingSize>
+    <FileCacheMaxSize>-1</FileCacheMaxSize>
+    <FileCacheMinDiskFreeMB>-1</FileCacheMinDiskFreeMB>
+    <Size>638925301339</Size>
+  </RemoteLibrary>
+</mPortal>

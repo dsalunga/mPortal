@@ -1,0 +1,250 @@
+﻿/*
+.portal-navbar {
+    background-color: #1c1c1c #4c66a4;
+}
+
+.portal-navbar.navbar-default .navbar-nav>li>a, .portal-navbar.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.portal-navbar.navbar-default .navbar-nav>li.active>a, .portal-navbar.navbar-default .navbar-nav>li.active>a:hover {
+    color: #555;
+}
+
+.portal-navbar.navbar-default .navbar-nav>li>a:hover, .portal-navbar.navbar-default .navbar-brand:hover {
+    color: #ccc;
+}
+
+.portal-navbar.navbar-default .navbar-toggle {
+    background-color: #fff;
+}
+*/
+
+.portal-popover, .portal-navbar, .portal-popover a {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.bs-glyphicons {
+    padding-left: 0;
+    /*padding-bottom: 1px;*/
+    /*margin-bottom: 20px;*/
+    margin: 5px;
+    list-style: none;
+    overflow: hidden;
+}
+
+    .bs-glyphicons li {
+        float: left;
+        width: 80px; /*25%*/
+        min-height: 75px;
+        margin: 4px 3px 4px 3px; /*10px*/
+        padding: 0;
+        font-size: 12px;
+        line-height: 1.4;
+        text-align: center;
+        box-sizing: content-box;
+        /*border: 1px solid #ddd;*/
+    }
+
+        .bs-glyphicons li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 12px;
+            /*font-weight: bold;*/
+        }
+
+    .bs-glyphicons .glyphicon {
+        display: block;
+        margin: 5px auto 10px;
+        /*margin-top: 5px;
+            margin-bottom: 10px;*/
+        font-size: 34px;
+    }
+
+    .bs-glyphicons .glyphicon-class {
+        display: block;
+        text-align: center;
+    }
+
+    .bs-glyphicons li:hover {
+        background-color: rgba(86,61,124,.1);
+    }
+
+.popover-content {
+    padding: 0;
+    /*padding: 9px 14px;*/
+}
+
+.popover-title {
+    font-size: 17px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    /*border-bottom: none;*/ /* ??? need to test if ok */
+}
+
+.popover.bottom {
+    margin-top: 13px;
+}
+
+.nav-element {
+    margin-right: 5px;
+}
+
+.navbar ul.nav li > a.btn {
+    line-height: 1.5;
+    padding: 5px 10px;
+    color: #fff;
+    margin: 9px;
+}
+
+.navbar li > a.btn-primary:hover {
+    color: #fff;
+    background-color: #3276b1;
+    border-color: #285e8e;
+}
+
+.dropdown-menu-acct {
+    display: block;
+    margin: 2px 0 0;
+    font-size: 14px;
+    list-style: none;
+    padding: 5px 3px 5px 3px;
+}
+
+    .dropdown-menu-acct > li > a {
+        display: block;
+        padding: 3px 10px;
+        margin: 2px 0 0;
+        clear: both;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #333;
+        white-space: nowrap;
+    }
+
+    .dropdown-menu-acct .divider {
+        height: 1px;
+        margin: 9px 0;
+        overflow: hidden;
+        background-color: #e5e5e5;
+    }
+
+    .dropdown-menu-acct > li > a:hover, .dropdown-menu-acct > li > a:focus {
+        color: #262626;
+        text-decoration: none;
+        background-color: #f5f5f5;
+    }
+
+    .dropdown-menu-acct > .active > a, .dropdown-menu-acct > .active > a:hover, .dropdown-menu-acct > .active > a:focus {
+        color: #fff;
+        text-decoration: none;
+        background-color: #428bca;
+        outline: 0;
+    }
+
+.navbar-inverse .navbar-toggle.switcher-trigger, .switcher-trigger {
+    /*border-color: #ddd;*/
+    border-color: #444;
+    background-color: transparent;
+    color: #fff;
+}
+
+    .navbar-inverse .navbar-toggle.switcher-trigger:hover, .switcher-trigger:hover {
+        background-color: #333;
+        border-color: #444;
+        color: #fff;
+    }
+
+.account-trigger {
+    min-width: 30px;
+    background-color: #333;
+    border-color: #555;
+}
+
+.popover-account .popover-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+    .popover-account .popover-title div {
+        font-weight: normal;
+        font-size: 12px;
+    }
+
+div.more-apps a {
+    font-size: 14px;
+}
+
+    div.more-apps a:hover {
+        background-color: rgba(86,61,124,.1);
+    }
+
+.navbar-inverse .navbar-brand {
+    margin-left: 9px;
+}
+
+@media(max-width:420px) {
+    .navbar-inverse .navbar-brand span {
+        display: none;
+        /*text-overflow: ellipsis;
+        max-width: 130px;
+        white-space: nowrap;
+        overflow: hidden;*/
+    }
+}
+
+.navbar-toggle-basic {
+    position: relative;
+    float: right;
+}
+
+.navbar-login {
+    padding: 6px 5px;
+    margin-top: 8px;
+    margin-right: 6px;
+    margin-bottom: 8px;
+}
+
+@media (min-width: 768px) {
+    .navbar-toggle-basic {
+        display: none;
+    }
+}
+
+.img-icon {
+    display: block;
+    width: 50px;
+    max-height: 50px;
+    margin-bottom: 2px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+.nav-icon {
+    /*color: #EDA912;*/
+    color: #777;
+    padding-top: 8px;
+}
+
+/* Override for someorg.org.sg */
+.portal-navbar ul.nav {
+    position: inherit;
+}
+
+.portal-navbar ul.navbar-nav > li {
+    border-left: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.portal-navbar .portal-logo {
+    padding-left: 48px;
+    background: url(/Content/Parts/Integration/Assets/images/mcgi-portal.png) no-repeat -5px center;
+    background-size: 50px;
+}
+
+.portal-navbar .mm-logo {
+    padding-left: 48px;
+    background: url(/Content/Parts/Integration/Assets/images/mm_logo_s.png) no-repeat 3% center;
+}

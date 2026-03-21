@@ -1,0 +1,2773 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebPartControlTemplate">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PartControlTemplateId" type="xs:int" />
+                <xs:element name="PartControlId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FileName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Identity">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Path">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Standalone" type="xs:int" />
+                <xs:element name="TemplateEngineId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebPartControlTemplate" />
+        <xs:field xpath="PartControlTemplateId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>1</PartControlTemplateId>
+    <PartControlId>1</PartControlId>
+    <Name>Content</Name>
+    <FileName>Content.ascx</FileName>
+    <Identity>Content</Identity>
+    <Path>~/Content/Parts/AppBundle/Content/Content.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>35</PartControlTemplateId>
+    <PartControlId>22</PartControlId>
+    <Name>Simple Horizontal</Name>
+    <FileName>ListSimpleHoriz1.ascx</FileName>
+    <Identity>1</Identity>
+    <Path />
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>36</PartControlTemplateId>
+    <PartControlId>22</PartControlId>
+    <Name>Simple Vertical</Name>
+    <FileName>ListSimpleVert1.ascx</FileName>
+    <Identity>1</Identity>
+    <Path />
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>52</PartControlTemplateId>
+    <PartControlId>32</PartControlId>
+    <Name>Basic Ad</Name>
+    <FileName>Ad.ascx</FileName>
+    <Identity>Ad.ascx</Identity>
+    <Path />
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>185</PartControlTemplateId>
+    <PartControlId>13</PartControlId>
+    <Name>Standard, Horizontal w/ Home (No Separator)</Name>
+    <FileName>STDHH_NS.ascx</FileName>
+    <Identity>1</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/STDHH_NS.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>186</PartControlTemplateId>
+    <PartControlId>13</PartControlId>
+    <Name>Standard, Horizontal w/ Home</Name>
+    <FileName>STDHH.ascx</FileName>
+    <Identity>1</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/STDHH.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>241</PartControlTemplateId>
+    <PartControlId>125</PartControlId>
+    <Name>Media Gallery Home</Name>
+    <FileName>MediaHome.ascx</FileName>
+    <Identity>MG1</Identity>
+    <Path />
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>251</PartControlTemplateId>
+    <PartControlId>127</PartControlId>
+    <Name>Contact Us</Name>
+    <FileName>ContactUs.ascx</FileName>
+    <Identity>CONTACT</Identity>
+    <Path>~/Content/Parts/AppBundle/Contact/ContactUs.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>335</PartControlTemplateId>
+    <PartControlId>143</PartControlId>
+    <Name>Standard Cascading Menu</Name>
+    <FileName>StdCascadeMenu.ascx</FileName>
+    <Identity>1</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/StdCascadeMenu.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>337</PartControlTemplateId>
+    <PartControlId>145</PartControlId>
+    <Name>Article</Name>
+    <FileName>Article.ascx</FileName>
+    <Identity>Article</Identity>
+    <Path>~/Content/Parts/AppBundle/Article/Article.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>339</PartControlTemplateId>
+    <PartControlId>146</PartControlId>
+    <Name>Picture Gallery</Name>
+    <FileName>PictureGallery.ascx</FileName>
+    <Identity>Photo</Identity>
+    <Path>~/Content/Parts/AppBundle/Photo/PictureGallery.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>340</PartControlTemplateId>
+    <PartControlId>7</PartControlId>
+    <Name>Cascading Menu</Name>
+    <FileName>CascadeMenu.ascx</FileName>
+    <Identity>MENU</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/CascadeMenu.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>341</PartControlTemplateId>
+    <PartControlId>147</PartControlId>
+    <Name>Listing Page</Name>
+    <FileName>ListingPage.ascx</FileName>
+    <Identity>SITELIST</Identity>
+    <Path />
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>342</PartControlTemplateId>
+    <PartControlId>148</PartControlId>
+    <Name>Listing Page</Name>
+    <FileName>LinearMenu.ascx</FileName>
+    <Identity>STDMENU</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/LinearMenu.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>358</PartControlTemplateId>
+    <PartControlId>148</PartControlId>
+    <Name>DropDown Alternate Listing</Name>
+    <FileName>DropAlternateMenu.ascx</FileName>
+    <Identity>DAM</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/DropAlternateMenu.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>359</PartControlTemplateId>
+    <PartControlId>162</PartControlId>
+    <Name>Name</Name>
+    <FileName>SiteSection.ascx</FileName>
+    <Identity>TITLE</Identity>
+    <Path />
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>360</PartControlTemplateId>
+    <PartControlId>13</PartControlId>
+    <Name>Highlight Menu</Name>
+    <FileName>DropHighlightMenu.ascx</FileName>
+    <Identity>1</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/DropHighlightMenu.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>368</PartControlTemplateId>
+    <PartControlId>140</PartControlId>
+    <Name>Generic Search</Name>
+    <FileName>Search.ascx</FileName>
+    <Identity>Search</Identity>
+    <Path />
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>369</PartControlTemplateId>
+    <PartControlId>141</PartControlId>
+    <Name>Generic Search Results</Name>
+    <FileName>SearchResults.ascx</FileName>
+    <Identity>Search</Identity>
+    <Path />
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>371</PartControlTemplateId>
+    <PartControlId>167</PartControlId>
+    <Name>Downloads</Name>
+    <FileName>Downloads.ascx</FileName>
+    <Identity>Download</Identity>
+    <Path />
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>377</PartControlTemplateId>
+    <PartControlId>13</PartControlId>
+    <Name>Arrow Bullets - Blue</Name>
+    <FileName>Bullet_Arrow_Blue.ascx</FileName>
+    <Identity>STDMenu</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/Bullet_Arrow_Blue.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>398</PartControlTemplateId>
+    <PartControlId>13</PartControlId>
+    <Name>Basic Vertical</Name>
+    <FileName>BasicVerticalLinear.ascx</FileName>
+    <Identity>StdMenu</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/BasicVerticalLinear.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>400</PartControlTemplateId>
+    <PartControlId>140</PartControlId>
+    <Name>ROG Search</Name>
+    <FileName>Search_ROG.ascx</FileName>
+    <Identity>Search</Identity>
+    <Path />
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>401</PartControlTemplateId>
+    <PartControlId>168</PartControlId>
+    <Name>Tree Panel</Name>
+    <FileName>TreePanel.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/TreePanel.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>402</PartControlTemplateId>
+    <PartControlId>169</PartControlId>
+    <Name>Web Part Controls</Name>
+    <FileName>WebPartControls.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartControls.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>403</PartControlTemplateId>
+    <PartControlId>170</PartControlId>
+    <Name>Breadcrumb</Name>
+    <FileName>Breadcrumb.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Breadcrumb.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>404</PartControlTemplateId>
+    <PartControlId>171</PartControlId>
+    <Name>Web Part Configuration</Name>
+    <FileName>WebPartConfig.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartConfig.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>405</PartControlTemplateId>
+    <PartControlId>172</PartControlId>
+    <Name>Web Part Configuration Entry</Name>
+    <FileName>WebPartConfigEntry.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartConfigEntry.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>406</PartControlTemplateId>
+    <PartControlId>173</PartControlId>
+    <Name>Web Part Control</Name>
+    <FileName>WebPartControl.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartControl.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>407</PartControlTemplateId>
+    <PartControlId>174</PartControlId>
+    <Name>Web Part Home</Name>
+    <FileName>WebPartHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>408</PartControlTemplateId>
+    <PartControlId>175</PartControlId>
+    <Name>Web Parts</Name>
+    <FileName>WebParts.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebParts.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>409</PartControlTemplateId>
+    <PartControlId>176</PartControlId>
+    <Name>Web Part</Name>
+    <FileName>WebPart.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPart.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>410</PartControlTemplateId>
+    <PartControlId>177</PartControlId>
+    <Name>Web Part Administration</Name>
+    <FileName>WebPartAdmin.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartAdmin.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>411</PartControlTemplateId>
+    <PartControlId>178</PartControlId>
+    <Name>Web Part Administration Home</Name>
+    <FileName>WebPartAdminHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartAdminHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>412</PartControlTemplateId>
+    <PartControlId>179</PartControlId>
+    <Name>Web Part Administration Entry</Name>
+    <FileName>WebPartAdminEntry.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartAdminEntry.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>413</PartControlTemplateId>
+    <PartControlId>180</PartControlId>
+    <Name>Web Part Templates</Name>
+    <FileName>WebPartControlTemplates.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartControlTemplates.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>414</PartControlTemplateId>
+    <PartControlId>181</PartControlId>
+    <Name>Web Part Template</Name>
+    <FileName>WebPartControlTemplate.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartControlTemplate.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>415</PartControlTemplateId>
+    <PartControlId>183</PartControlId>
+    <Name>Web Parameters</Name>
+    <FileName>WebParameters.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebParameters.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>416</PartControlTemplateId>
+    <PartControlId>184</PartControlId>
+    <Name>Web Parameter</Name>
+    <FileName>WebParameter.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebParameter.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>417</PartControlTemplateId>
+    <PartControlId>185</PartControlId>
+    <Name>Web Part Control Home</Name>
+    <FileName>WebPartControlHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartControlHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>418</PartControlTemplateId>
+    <PartControlId>186</PartControlId>
+    <Name>Web Resources</Name>
+    <FileName>WebResources.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebResources.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>419</PartControlTemplateId>
+    <PartControlId>187</PartControlId>
+    <Name>Web Resource</Name>
+    <FileName>WebResource.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebResource.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>420</PartControlTemplateId>
+    <PartControlId>188</PartControlId>
+    <Name>Data Store Editor</Name>
+    <FileName>DataStoreManager.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/DataStoreManager.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>421</PartControlTemplateId>
+    <PartControlId>189</PartControlId>
+    <Name>Web System Console</Name>
+    <FileName>Dashboard.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Dashboard.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>422</PartControlTemplateId>
+    <PartControlId>190</PartControlId>
+    <Name>Web Roles</Name>
+    <FileName>WebRoles.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebRoles.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>423</PartControlTemplateId>
+    <PartControlId>191</PartControlId>
+    <Name>Web Users</Name>
+    <FileName>WebUsers.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebUsers.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>424</PartControlTemplateId>
+    <PartControlId>192</PartControlId>
+    <Name>Web Permissions</Name>
+    <FileName>WebPermissions.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebPermissions.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>425</PartControlTemplateId>
+    <PartControlId>193</PartControlId>
+    <Name>Web Groups</Name>
+    <FileName>WebGroups.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebGroups.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>426</PartControlTemplateId>
+    <PartControlId>194</PartControlId>
+    <Name>Flash Banner</Name>
+    <FileName>Renderer.ascx</FileName>
+    <Identity>FlashBanner</Identity>
+    <Path>~/Content/Parts/AppBundle2/FlashBanner/Renderer.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>427</PartControlTemplateId>
+    <PartControlId>195</PartControlId>
+    <Name>Category</Name>
+    <FileName>CategoryPart.ascx</FileName>
+    <Identity>Default</Identity>
+    <Path>~/Content/Parts/Test/CategoryPart.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>428</PartControlTemplateId>
+    <PartControlId>196</PartControlId>
+    <Name>List</Name>
+    <FileName>ListPart.ascx</FileName>
+    <Identity>Default</Identity>
+    <Path>~/Content/Parts/Test/ListPart.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>429</PartControlTemplateId>
+    <PartControlId>197</PartControlId>
+    <Name>Details</Name>
+    <FileName>DetailsPart.ascx</FileName>
+    <Identity>Default</Identity>
+    <Path>~/Content/Parts/Test/DetailsPart.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>430</PartControlTemplateId>
+    <PartControlId>198</PartControlId>
+    <Name>Basic List</Name>
+    <FileName>BasicList.ascx</FileName>
+    <Identity>BasicList</Identity>
+    <Path>~/Content/Parts/AppBundle2/BasicList/BasicList.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>431</PartControlTemplateId>
+    <PartControlId>199</PartControlId>
+    <Name>Web Part Template Home</Name>
+    <FileName>WebPartControlTemplateHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartControlTemplateHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>432</PartControlTemplateId>
+    <PartControlId>200</PartControlId>
+    <Name>Survey End</Name>
+    <FileName>SurveyFinish.ascx</FileName>
+    <Identity>GenericForm</Identity>
+    <Path>~/Content/Parts/AppBundle/GenericList/SurveyFinish.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>433</PartControlTemplateId>
+    <PartControlId>201</PartControlId>
+    <Name>Survey List</Name>
+    <FileName>SurveyStart.ascx</FileName>
+    <Identity>GenericForm</Identity>
+    <Path>~/Content/Parts/AppBundle/GenericList/SurveyStart.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>434</PartControlTemplateId>
+    <PartControlId>202</PartControlId>
+    <Name>Survey Page</Name>
+    <FileName>Survey.ascx</FileName>
+    <Identity>GenericForm</Identity>
+    <Path>~/Content/Parts/AppBundle/GenericList/Survey.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>435</PartControlTemplateId>
+    <PartControlId>203</PartControlId>
+    <Name>Survey Welcome</Name>
+    <FileName>SurveyWelcome.ascx</FileName>
+    <Identity>GenericForm</Identity>
+    <Path>~/Content/Parts/AppBundle/GenericList/SurveyWelcome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>436</PartControlTemplateId>
+    <PartControlId>204</PartControlId>
+    <Name>Breadcrumb</Name>
+    <FileName>Breadcrumb.ascx</FileName>
+    <Identity>Basic</Identity>
+    <Path>~/Content/Parts/AppBundle/Navigation/Breadcrumb.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>437</PartControlTemplateId>
+    <PartControlId>205</PartControlId>
+    <Name>Web Security</Name>
+    <FileName>WebSecurity.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebSecurity.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>438</PartControlTemplateId>
+    <PartControlId>206</PartControlId>
+    <Name>WebTemplate</Name>
+    <FileName>WebTemplate.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebTemplate.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>439</PartControlTemplateId>
+    <PartControlId>207</PartControlId>
+    <Name>Web Template Home</Name>
+    <FileName>WebTemplateHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebTemplateHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>440</PartControlTemplateId>
+    <PartControlId>208</PartControlId>
+    <Name>Web Template Panel</Name>
+    <FileName>WebTemplatePanel.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebTemplatePanel.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>441</PartControlTemplateId>
+    <PartControlId>209</PartControlId>
+    <Name>Web Template Panels</Name>
+    <FileName>WebTemplatePanels.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebTemplatePanels.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>442</PartControlTemplateId>
+    <PartControlId>210</PartControlId>
+    <Name>Web Templates</Name>
+    <FileName>WebTemplates.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebTemplates.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>443</PartControlTemplateId>
+    <PartControlId>211</PartControlId>
+    <Name>Web Template Versions</Name>
+    <FileName>WebTemplateVersions.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebTemplateVersions.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>444</PartControlTemplateId>
+    <PartControlId>212</PartControlId>
+    <Name>Web Registry</Name>
+    <FileName>WebRegistry.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/WebRegistry.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>445</PartControlTemplateId>
+    <PartControlId>213</PartControlId>
+    <Name>Web Registry Entry</Name>
+    <FileName>WebRegistryEntry.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/WebRegistryEntry.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>446</PartControlTemplateId>
+    <PartControlId>214</PartControlId>
+    <Name>Web Open</Name>
+    <FileName>WebOpen.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebOpen.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>447</PartControlTemplateId>
+    <PartControlId>215</PartControlId>
+    <Name>Web Part Preview</Name>
+    <FileName>WebPartPreview.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPartPreview.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>448</PartControlTemplateId>
+    <PartControlId>216</PartControlId>
+    <Name>Web Site Identity</Name>
+    <FileName>WebIdentity.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebIdentity.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>449</PartControlTemplateId>
+    <PartControlId>217</PartControlId>
+    <Name>Web Site Identities</Name>
+    <FileName>WebIdentities.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebIdentities.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>450</PartControlTemplateId>
+    <PartControlId>218</PartControlId>
+    <Name>Web Child Pages</Name>
+    <FileName>WebChildPages.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebChildPages.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>451</PartControlTemplateId>
+    <PartControlId>219</PartControlId>
+    <Name>Web Child Sites</Name>
+    <FileName>WebChildSites.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebChildSites.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>452</PartControlTemplateId>
+    <PartControlId>220</PartControlId>
+    <Name>Web Master Page</Name>
+    <FileName>WebMasterPage.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebMasterPage.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>453</PartControlTemplateId>
+    <PartControlId>221</PartControlId>
+    <Name>Web Master Page Home</Name>
+    <FileName>WebMasterPageHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebMasterPageHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>454</PartControlTemplateId>
+    <PartControlId>222</PartControlId>
+    <Name>Web Master Pages</Name>
+    <FileName>WebMasterPages.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebMasterPages.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>455</PartControlTemplateId>
+    <PartControlId>223</PartControlId>
+    <Name>Web Page</Name>
+    <FileName>WebPage.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebPage.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>456</PartControlTemplateId>
+    <PartControlId>224</PartControlId>
+    <Name>Web Page Element</Name>
+    <FileName>WebPageElement.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebPageElement.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>457</PartControlTemplateId>
+    <PartControlId>225</PartControlId>
+    <Name>Web Page Element Home</Name>
+    <FileName>WebPageElementHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebPageElementHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>458</PartControlTemplateId>
+    <PartControlId>226</PartControlId>
+    <Name>Web Page Elements</Name>
+    <FileName>WebPageElements.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebPageElements.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>459</PartControlTemplateId>
+    <PartControlId>227</PartControlId>
+    <Name>Web Page Home</Name>
+    <FileName>WebPageHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebPageHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>460</PartControlTemplateId>
+    <PartControlId>228</PartControlId>
+    <Name>Web Page Panel</Name>
+    <FileName>WebPagePanel.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebPagePanel.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>461</PartControlTemplateId>
+    <PartControlId>229</PartControlId>
+    <Name>Web Page Panels</Name>
+    <FileName>WebPagePanels.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebPagePanels.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>462</PartControlTemplateId>
+    <PartControlId>230</PartControlId>
+    <Name>Web Pages</Name>
+    <FileName>WebPages.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebPages.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>463</PartControlTemplateId>
+    <PartControlId>231</PartControlId>
+    <Name>Web Site</Name>
+    <FileName>WebSite.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebSite.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>464</PartControlTemplateId>
+    <PartControlId>232</PartControlId>
+    <Name>Web Site Home</Name>
+    <FileName>WebSiteHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebSiteHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>465</PartControlTemplateId>
+    <PartControlId>233</PartControlId>
+    <Name>Web Sites</Name>
+    <FileName>WebSites.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebSites.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>466</PartControlTemplateId>
+    <PartControlId>234</PartControlId>
+    <Name>ASP.NET Ajax Script Manager</Name>
+    <FileName>AjaxScriptManager.ascx</FileName>
+    <Identity>Ajax</Identity>
+    <Path>~/Content/Parts/AppBundle2/Ajax/AjaxScriptManager.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>467</PartControlTemplateId>
+    <PartControlId>235</PartControlId>
+    <Name>User Profile</Name>
+    <FileName>UserProfile.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/UserProfile.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>468</PartControlTemplateId>
+    <PartControlId>236</PartControlId>
+    <Name>Web User Home</Name>
+    <FileName>WebUserHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebUserHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>469</PartControlTemplateId>
+    <PartControlId>237</PartControlId>
+    <Name>Create User</Name>
+    <FileName>CreateUser.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/CreateUser.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>470</PartControlTemplateId>
+    <PartControlId>238</PartControlId>
+    <Name>Web User Groups</Name>
+    <FileName>WebUserGroups.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebUserGroups.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>471</PartControlTemplateId>
+    <PartControlId>239</PartControlId>
+    <Name>Web Resource Manager</Name>
+    <FileName>WebResourceManager.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebResourceManager.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>472</PartControlTemplateId>
+    <PartControlId>240</PartControlId>
+    <Name>Web Group Home</Name>
+    <FileName>WebGroupHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebGroupHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>473</PartControlTemplateId>
+    <PartControlId>241</PartControlId>
+    <Name>Web Group</Name>
+    <FileName>WebGroup.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebGroup.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>474</PartControlTemplateId>
+    <PartControlId>242</PartControlId>
+    <Name>Web Group Users</Name>
+    <FileName>WebGroupUsers.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebGroupUsers.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>475</PartControlTemplateId>
+    <PartControlId>243</PartControlId>
+    <Name>Login</Name>
+    <FileName>Login.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/Login.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>476</PartControlTemplateId>
+    <PartControlId>244</PartControlId>
+    <Name>File Manager</Name>
+    <FileName>FileManager.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/FileManager.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>477</PartControlTemplateId>
+    <PartControlId>245</PartControlId>
+    <Name>Query Analyzer</Name>
+    <FileName>QueryAnalyzer.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/QueryAnalyzer.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>478</PartControlTemplateId>
+    <PartControlId>246</PartControlId>
+    <Name>Text Editor</Name>
+    <FileName>TextEditor.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/TextEditor.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>479</PartControlTemplateId>
+    <PartControlId>247</PartControlId>
+    <Name>Generic Menu</Name>
+    <FileName>GenericMenu.ascx</FileName>
+    <Identity>Menu</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/GenericMenu.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>480</PartControlTemplateId>
+    <PartControlId>248</PartControlId>
+    <Name>Registration</Name>
+    <FileName>RegisterSG.ascx</FileName>
+    <Identity>Registration</Identity>
+    <Path>~/Content/Parts/Integration/Account/RegisterSG.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>481</PartControlTemplateId>
+    <PartControlId>249</PartControlId>
+    <Name>Login</Name>
+    <FileName>Login.ascx</FileName>
+    <Identity>Login</Identity>
+    <Path>~/Content/Parts/Integration/Registration/Login.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>483</PartControlTemplateId>
+    <PartControlId>251</PartControlId>
+    <Name>Data List</Name>
+    <FileName>ListData.ascx</FileName>
+    <Identity>GenericForm</Identity>
+    <Path>~/Content/Parts/AppBundle/GenericList/ListData.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>484</PartControlTemplateId>
+    <PartControlId>252</PartControlId>
+    <Name>Web Role Home</Name>
+    <FileName>WebRoleHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebRoleHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>485</PartControlTemplateId>
+    <PartControlId>253</PartControlId>
+    <Name>Smtp Diagnostics</Name>
+    <FileName>SmtpAnalyzer.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/SmtpAnalyzer.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>486</PartControlTemplateId>
+    <PartControlId>254</PartControlId>
+    <Name>Web Page Panel Home</Name>
+    <FileName>WebPagePanelHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebPagePanelHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>487</PartControlTemplateId>
+    <PartControlId>255</PartControlId>
+    <Name>Change Password</Name>
+    <FileName>ChangePassword.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/ChangePassword.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>488</PartControlTemplateId>
+    <PartControlId>256</PartControlId>
+    <Name>Web Global Policy</Name>
+    <FileName>WebGlobalPolicy.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebGlobalPolicy.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>489</PartControlTemplateId>
+    <PartControlId>257</PartControlId>
+    <Name>Profile Update</Name>
+    <FileName>ProfileUpdate.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/ProfileUpdate.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>490</PartControlTemplateId>
+    <PartControlId>258</PartControlId>
+    <Name>Activate Account</Name>
+    <FileName>ActivateAccount.ascx</FileName>
+    <Identity>Activate Account</Identity>
+    <Path>~/Content/Parts/Integration/Registration/ActivateAccount.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>491</PartControlTemplateId>
+    <PartControlId>259</PartControlId>
+    <Name>Web Global Policy Home</Name>
+    <FileName>WebGlobalPolicyHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebGlobalPolicyHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>492</PartControlTemplateId>
+    <PartControlId>260</PartControlId>
+    <Name>Web Registry Tree</Name>
+    <FileName>WebRegistryTree.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/WebRegistryTree.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>493</PartControlTemplateId>
+    <PartControlId>261</PartControlId>
+    <Name>Web Group Tree</Name>
+    <FileName>WebGroupTree.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebGroupTree.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>494</PartControlTemplateId>
+    <PartControlId>262</PartControlId>
+    <Name>Web Data Explorer</Name>
+    <FileName>WebDataExplorer.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/WebDataExplorer.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>495</PartControlTemplateId>
+    <PartControlId>263</PartControlId>
+    <Name>Web Folder</Name>
+    <FileName>WebFolder.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/WebFolder.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>496</PartControlTemplateId>
+    <PartControlId>264</PartControlId>
+    <Name>Web Folder Tree</Name>
+    <FileName>WebFolderTree.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/WebFolderTree.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>497</PartControlTemplateId>
+    <PartControlId>265</PartControlId>
+    <Name>Subscription Manager</Name>
+    <FileName>SubscriptionManager.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/SubscriptionManager.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>498</PartControlTemplateId>
+    <PartControlId>266</PartControlId>
+    <Name>Web Part Tree</Name>
+    <FileName>WebPartTree.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartTree.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>499</PartControlTemplateId>
+    <PartControlId>267</PartControlId>
+    <Name>Web Site Tree</Name>
+    <FileName>WebSiteTree.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebSiteTree.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>500</PartControlTemplateId>
+    <PartControlId>268</PartControlId>
+    <Name>Article Dashboard</Name>
+    <FileName>ArticleDashboard.ascx</FileName>
+    <Identity>Article</Identity>
+    <Path>~/Content/Parts/AppBundle/Article/ArticleDashboard.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>501</PartControlTemplateId>
+    <PartControlId>269</PartControlId>
+    <Name>Address Book Browser</Name>
+    <FileName>AddressBookBrowser.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/AddressBookBrowser.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>502</PartControlTemplateId>
+    <PartControlId>271</PartControlId>
+    <Name>User Profile Details</Name>
+    <FileName>UserProfileDetails.ascx</FileName>
+    <Identity>UserProfile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/UserProfileDetails.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>503</PartControlTemplateId>
+    <PartControlId>272</PartControlId>
+    <Name>Office Browser</Name>
+    <FileName>OfficeBrowser.ascx</FileName>
+    <Identity>Office</Identity>
+    <Path>~/Content/Parts/AppBundle/Office/OfficeBrowser.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>504</PartControlTemplateId>
+    <PartControlId>273</PartControlId>
+    <Name>Web Office</Name>
+    <FileName>WebOffice.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebOffice.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>505</PartControlTemplateId>
+    <PartControlId>274</PartControlId>
+    <Name>Web Office Home</Name>
+    <FileName>WebOfficeHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebOfficeHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>506</PartControlTemplateId>
+    <PartControlId>275</PartControlId>
+    <Name>Web Offices</Name>
+    <FileName>WebOffices.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebOffices.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>507</PartControlTemplateId>
+    <PartControlId>276</PartControlId>
+    <Name>Web Office Tree</Name>
+    <FileName>WebOfficeTree.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebOfficeTree.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>508</PartControlTemplateId>
+    <PartControlId>277</PartControlId>
+    <Name>Office Details</Name>
+    <FileName>OfficeDetails.ascx</FileName>
+    <Identity>Office</Identity>
+    <Path>~/Content/Parts/AppBundle/Office/OfficeDetails.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>509</PartControlTemplateId>
+    <PartControlId>278</PartControlId>
+    <Name>Web Parameter Sets</Name>
+    <FileName>WebParameterSets.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebParameterSets.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>510</PartControlTemplateId>
+    <PartControlId>279</PartControlId>
+    <Name>Web Parameter Set Home</Name>
+    <FileName>WebParameterSetHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebParameterSetHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>511</PartControlTemplateId>
+    <PartControlId>280</PartControlId>
+    <Name>Web Parameter Set</Name>
+    <FileName>WebParameterSet.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebParameterSet.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>512</PartControlTemplateId>
+    <PartControlId>281</PartControlId>
+    <Name>Group List</Name>
+    <FileName>WebGroupList.ascx</FileName>
+    <Identity>Registration</Identity>
+    <Path>~/Content/Parts/Integration/Registration/WebGroupList.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>513</PartControlTemplateId>
+    <PartControlId>282</PartControlId>
+    <Name>Tags</Name>
+    <FileName>ArticleTagView.ascx</FileName>
+    <Identity>Article</Identity>
+    <Path>~/Content/Parts/AppBundle/Article/ArticleTagView.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>514</PartControlTemplateId>
+    <PartControlId>283</PartControlId>
+    <Name>Create Folder</Name>
+    <FileName>CreateFolder.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/CreateFolder.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>515</PartControlTemplateId>
+    <PartControlId>284</PartControlId>
+    <Name>Upload Files</Name>
+    <FileName>UploadFiles.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/UploadFiles.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>516</PartControlTemplateId>
+    <PartControlId>285</PartControlId>
+    <Name>Web Tools Tree</Name>
+    <FileName>WebToolsTree.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/WebToolsTree.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>517</PartControlTemplateId>
+    <PartControlId>286</PartControlId>
+    <Name>Web Security Tree</Name>
+    <FileName>WebSecurityTree.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Security/WebSecurityTree.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>518</PartControlTemplateId>
+    <PartControlId>287</PartControlId>
+    <Name>My Attendance</Name>
+    <FileName>MyAttendance.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/MyAttendance.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>519</PartControlTemplateId>
+    <PartControlId>288</PartControlId>
+    <Name>Request Manager</Name>
+    <FileName>RequestManager.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/RequestManager.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>520</PartControlTemplateId>
+    <PartControlId>289</PartControlId>
+    <Name>My Preferences</Name>
+    <FileName>MyPreferences.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/MyPreferences.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>521</PartControlTemplateId>
+    <PartControlId>290</PartControlId>
+    <Name>Update My Groups</Name>
+    <FileName>UpdateMyGroups.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/UpdateMyGroups.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>522</PartControlTemplateId>
+    <PartControlId>291</PartControlId>
+    <Name>Change Password</Name>
+    <FileName>ChangePassword.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/ChangePassword.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>523</PartControlTemplateId>
+    <PartControlId>292</PartControlId>
+    <Name>Web Data Rows</Name>
+    <FileName>WebDataRows.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/WebDataRows.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>524</PartControlTemplateId>
+    <PartControlId>293</PartControlId>
+    <Name>Send Email</Name>
+    <FileName>SendEmail.ascx</FileName>
+    <Identity>Messaging</Identity>
+    <Path>~/Content/Parts/AppBundle/Messaging/SendEmail.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>525</PartControlTemplateId>
+    <PartControlId>294</PartControlId>
+    <Name>ODK Visit List</Name>
+    <FileName>ODKVisitView.ascx</FileName>
+    <Identity>Visit-List</Identity>
+    <Path>~/Content/Parts/Integration/Registration/ODKVisitView.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>526</PartControlTemplateId>
+    <PartControlId>295</PartControlId>
+    <Name>ODK Visit Entry</Name>
+    <FileName>ODKVisitEntry.ascx</FileName>
+    <Identity>Visit-Entry</Identity>
+    <Path>~/Content/Parts/Integration/Registration/ODKVisitEntry.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>527</PartControlTemplateId>
+    <PartControlId>296</PartControlId>
+    <Name>Event Calendar</Name>
+    <FileName>CalendarView.ascx</FileName>
+    <Identity>Event</Identity>
+    <Path>~/Content/Parts/AppBundle/EventCalendar/CalendarView.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>529</PartControlTemplateId>
+    <PartControlId>297</PartControlId>
+    <Name>Calendar Event View - Basic</Name>
+    <FileName>EventViewBasic.ascx</FileName>
+    <Identity>Event</Identity>
+    <Path>~/Content/Parts/AppBundle/EventCalendar/EventViewBasic.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>530</PartControlTemplateId>
+    <PartControlId>298</PartControlId>
+    <Name>View File</Name>
+    <FileName>FileView.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/FileView.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>531</PartControlTemplateId>
+    <PartControlId>299</PartControlId>
+    <Name>Library Browser</Name>
+    <FileName>RemoteLibraryView.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/RemoteLibraryView.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>532</PartControlTemplateId>
+    <PartControlId>300</PartControlId>
+    <Name>Index Details</Name>
+    <FileName>RemoteIndexView.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/RemoteIndexView.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>533</PartControlTemplateId>
+    <PartControlId>301</PartControlId>
+    <Name>Weekly Scheduler</Name>
+    <FileName>WeeklyScheduler.ascx</FileName>
+    <Identity>WeeklyScheduler</Identity>
+    <Path>~/Content/Parts/AppBundle/WeeklyScheduler/WeeklyScheduler.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>534</PartControlTemplateId>
+    <PartControlId>302</PartControlId>
+    <Name>Twitter</Name>
+    <FileName>TwitterHelper.ascx</FileName>
+    <Identity>Twitter</Identity>
+    <Path>~/Content/Parts/Twitter/TwitterHelper.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>535</PartControlTemplateId>
+    <PartControlId>303</PartControlId>
+    <Name>File Editor</Name>
+    <FileName>FileEditor.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/FileEditor.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>536</PartControlTemplateId>
+    <PartControlId>304</PartControlId>
+    <Name>Rename File or Folder</Name>
+    <FileName>RenameFile.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/RenameFile.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>537</PartControlTemplateId>
+    <PartControlId>305</PartControlId>
+    <Name>Site Map</Name>
+    <FileName>SiteMap.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/SiteMap.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>538</PartControlTemplateId>
+    <PartControlId>306</PartControlId>
+    <Name>Sportsfest Registration</Name>
+    <FileName>Sportsfest.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/Sportsfest.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>539</PartControlTemplateId>
+    <PartControlId>307</PartControlId>
+    <Name>WebUserControl1 - from separate web app</Name>
+    <FileName>WebUserControl1.ascx</FileName>
+    <Identity>Test</Identity>
+    <Path>~/Content/Parts/Test/WebUserControl1.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>540</PartControlTemplateId>
+    <PartControlId>308</PartControlId>
+    <Name>Web Addresses</Name>
+    <FileName>WebAddresses.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebAddresses.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>541</PartControlTemplateId>
+    <PartControlId>309</PartControlId>
+    <Name>Web Address</Name>
+    <FileName>WebAddress.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Misc/WebAddress.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>542</PartControlTemplateId>
+    <PartControlId>310</PartControlId>
+    <Name>Linked Parts</Name>
+    <FileName>WebLinkedParts.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebSites/WebLinkedParts.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>543</PartControlTemplateId>
+    <PartControlId>311</PartControlId>
+    <Name>Playback</Name>
+    <FileName>Playback.ascx</FileName>
+    <Identity>Playback</Identity>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/Playback.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>544</PartControlTemplateId>
+    <PartControlId>312</PartControlId>
+    <Name>Make-Up News</Name>
+    <FileName>NewsDashboard.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/NewsDashboard.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>545</PartControlTemplateId>
+    <PartControlId>313</PartControlId>
+    <Name>Make-Up Attendance</Name>
+    <FileName>LogAttendance.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/LogAttendance.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>546</PartControlTemplateId>
+    <PartControlId>314</PartControlId>
+    <Name>Session Start</Name>
+    <FileName>SessionStart.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/SessionStart.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>547</PartControlTemplateId>
+    <PartControlId>315</PartControlId>
+    <Name>Make-Up Attendance Requests</Name>
+    <FileName>ConfigAttendanceRequests.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/ConfigAttendanceRequests.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>548</PartControlTemplateId>
+    <PartControlId>316</PartControlId>
+    <Name>Make-Up Attendance Request</Name>
+    <FileName>ConfigAttendanceRequest.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/ConfigAttendanceRequest.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>549</PartControlTemplateId>
+    <PartControlId>317</PartControlId>
+    <Name>Upcoming Events - Mini Calendar</Name>
+    <FileName>CalendarMiniView.ascx</FileName>
+    <Identity>EventCalendar</Identity>
+    <Path>~/Content/Parts/AppBundle/EventCalendar/CalendarMiniView.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>550</PartControlTemplateId>
+    <PartControlId>318</PartControlId>
+    <Name>Forgot Password</Name>
+    <FileName>ForgotPassword.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/ForgotPassword.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>551</PartControlTemplateId>
+    <PartControlId>319</PartControlId>
+    <Name>Zimbra Preauth</Name>
+    <FileName>ZimbraPreauth.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/ZimbraPreauth.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>552</PartControlTemplateId>
+    <PartControlId>320</PartControlId>
+    <Name>Service Video Duration Input</Name>
+    <FileName>ServiceVideoDurationInput.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/LessonReviewer/ServiceVideoDurationInput.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>553</PartControlTemplateId>
+    <PartControlId>321</PartControlId>
+    <Name>Ticket Manager</Name>
+    <FileName>TicketManagerView.ascx</FileName>
+    <Identity>Incident</Identity>
+    <Path>~/Content/Parts/AppBundle3/Incident/TicketManagerView.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>554</PartControlTemplateId>
+    <PartControlId>322</PartControlId>
+    <Name>Ticket Entry</Name>
+    <FileName>TicketView.ascx</FileName>
+    <Identity>Ticket</Identity>
+    <Path>~/Content/Parts/AppBundle3/Incident/TicketView.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>555</PartControlTemplateId>
+    <PartControlId>323</PartControlId>
+    <Name>WebObject Edit</Name>
+    <FileName>WebObjectEdit.ascx</FileName>
+    <Identity>WebObjectEdit</Identity>
+    <Path>~/Content/Parts/Central/Tools/WebObjectEdit.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>556</PartControlTemplateId>
+    <PartControlId>324</PartControlId>
+    <Name>BibleReader Auth Module</Name>
+    <FileName>BibleAuth.ascx</FileName>
+    <Identity>BibleReader</Identity>
+    <Path>~/Content/Parts/BibleReader/BibleAuth.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>557</PartControlTemplateId>
+    <PartControlId>325</PartControlId>
+    <Name>Header Panel</Name>
+    <FileName>HeaderPanel.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/HeaderPanel.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>558</PartControlTemplateId>
+    <PartControlId>326</PartControlId>
+    <Name>Web Themes</Name>
+    <FileName>WebThemes.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebThemes.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>559</PartControlTemplateId>
+    <PartControlId>327</PartControlId>
+    <Name>Web Theme</Name>
+    <FileName>WebTheme.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebTheme.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>560</PartControlTemplateId>
+    <PartControlId>328</PartControlId>
+    <Name>Web Theme Home</Name>
+    <FileName>WebThemeHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebThemeHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>561</PartControlTemplateId>
+    <PartControlId>329</PartControlId>
+    <Name>Menu Breadcrumb</Name>
+    <FileName>Breadcrumb.ascx</FileName>
+    <Identity>Menu</Identity>
+    <Path>~/Content/Parts/AppBundle/Menu/Breadcrumb.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>562</PartControlTemplateId>
+    <PartControlId>330</PartControlId>
+    <Name>Address Book Mini</Name>
+    <FileName>AddressBookMini.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/AddressBookMini.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>563</PartControlTemplateId>
+    <PartControlId>332</PartControlId>
+    <Name>Web Template Editor</Name>
+    <FileName>WebTemplateEditor.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebTemplateEditor.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>564</PartControlTemplateId>
+    <PartControlId>333</PartControlId>
+    <Name>Wall Updates</Name>
+    <FileName>Wall.ascx</FileName>
+    <Identity>Social</Identity>
+    <Path>~/Content/Parts/AppBundle2/Social/Wall.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>565</PartControlTemplateId>
+    <PartControlId>334</PartControlId>
+    <Name>Convention Registration</Name>
+    <FileName>ConventionRegistration.ascx</FileName>
+    <Identity>Registration</Identity>
+    <Path>~/Content/Parts/Integration/Registration/ConventionRegistration.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>566</PartControlTemplateId>
+    <PartControlId>335</PartControlId>
+    <Name>Jobs Search</Name>
+    <FileName>JobSearch.ascx</FileName>
+    <Identity>Jobs</Identity>
+    <Path>~/Content/Parts/AppBundle3/Jobs/JobSearch.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>567</PartControlTemplateId>
+    <PartControlId>336</PartControlId>
+    <Name>AMS Auth Initiator</Name>
+    <FileName>AMSAuth.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/AMSAuth.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>568</PartControlTemplateId>
+    <PartControlId>337</PartControlId>
+    <Name>ASOP People's Choice Nomination</Name>
+    <FileName>ASOPMobile.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/ASOPMobile.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>569</PartControlTemplateId>
+    <PartControlId>338</PartControlId>
+    <Name>Short URL Manager</Name>
+    <FileName>ShortUrlManager.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/ShortUrlManager.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>570</PartControlTemplateId>
+    <PartControlId>339</PartControlId>
+    <Name>Short URL Editor</Name>
+    <FileName>ShortUrlEdit.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Tools/ShortUrlEdit.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>571</PartControlTemplateId>
+    <PartControlId>340</PartControlId>
+    <Name>ASOP Judges Scoring Page</Name>
+    <FileName>MCJudges.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCJudges.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>572</PartControlTemplateId>
+    <PartControlId>341</PartControlId>
+    <Name>Mobile Wall</Name>
+    <FileName>MobileWall.ascx</FileName>
+    <Identity>Social</Identity>
+    <Path>~/Content/Parts/AppBundle2/Social/MobileWall.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>573</PartControlTemplateId>
+    <PartControlId>342</PartControlId>
+    <Name>ASOP People's Choice Results</Name>
+    <FileName>MCVoteResult.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCVoteResult.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>574</PartControlTemplateId>
+    <PartControlId>343</PartControlId>
+    <Name>Registration V2</Name>
+    <FileName>RegistrationV2.ascx</FileName>
+    <Identity>Registration</Identity>
+    <Path>~/Content/Parts/Integration/Registration/RegistrationV2.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>575</PartControlTemplateId>
+    <PartControlId>344</PartControlId>
+    <Name>Registration Manager</Name>
+    <FileName>RequestManagerRegister.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Profile/RequestManagerRegister.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>576</PartControlTemplateId>
+    <PartControlId>345</PartControlId>
+    <Name>Index Download</Name>
+    <FileName>RemoteIndexerDownload.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/RemoteIndexerDownload.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>577</PartControlTemplateId>
+    <PartControlId>346</PartControlId>
+    <Name>Animated Banners</Name>
+    <FileName>AnimatedBanner.ascx</FileName>
+    <Identity>Photo</Identity>
+    <Path>~/Content/Parts/AppBundle/Photo/AnimatedBanner.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>578</PartControlTemplateId>
+    <PartControlId>347</PartControlId>
+    <Name>User Profile Photo Update</Name>
+    <FileName>UserPhotoUpload.ascx</FileName>
+    <Identity>Common</Identity>
+    <Path>~/Content/Parts/Common/UserPhotoUpload.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>579</PartControlTemplateId>
+    <PartControlId>348</PartControlId>
+    <Name>Login</Name>
+    <FileName>Login.ascx</FileName>
+    <Identity>Common</Identity>
+    <Path>~/Content/Parts/Common/Login.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>580</PartControlTemplateId>
+    <PartControlId>349</PartControlId>
+    <Name>ASOP Vote V2</Name>
+    <FileName>MCVoteV2.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCVoteV2.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>582</PartControlTemplateId>
+    <PartControlId>351</PartControlId>
+    <Name>ASOP Judge Score V2</Name>
+    <FileName>MCJudgeV2.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCJudgeV2.ascx</Path>
+    <Standalone>1</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>583</PartControlTemplateId>
+    <PartControlId>349</PartControlId>
+    <Name>ASOP Vote V3</Name>
+    <FileName>MCVoteV3.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCVoteV3.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>584</PartControlTemplateId>
+    <PartControlId>352</PartControlId>
+    <Name>ASOP Judges Tabulation</Name>
+    <FileName>MCJudgesMaster.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCJudgesMaster.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>585</PartControlTemplateId>
+    <PartControlId>342</PartControlId>
+    <Name>ASOP People's Choice Results V3</Name>
+    <FileName>MCVoteResultV3.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCVoteResultV3.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>586</PartControlTemplateId>
+    <PartControlId>353</PartControlId>
+    <Name>ASOP People's Choice Vote Confirm</Name>
+    <FileName>MCConfirmVote.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCConfirmVote.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>587</PartControlTemplateId>
+    <PartControlId>354</PartControlId>
+    <Name>ASOP Talk</Name>
+    <FileName>MessageBoard.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MessageBoard.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>588</PartControlTemplateId>
+    <PartControlId>355</PartControlId>
+    <Name>ASOP Finalists</Name>
+    <FileName>MCFinalistsV2.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCFinalistsV2.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>589</PartControlTemplateId>
+    <PartControlId>356</PartControlId>
+    <Name>Trigger Task</Name>
+    <FileName>TriggerTask.ascx</FileName>
+    <Identity>Common</Identity>
+    <Path>~/Content/Parts/Common/TriggerTask.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>590</PartControlTemplateId>
+    <PartControlId>357</PartControlId>
+    <Name>Contact Us V2</Name>
+    <FileName>ContactUsV2.ascx</FileName>
+    <Identity>Contact</Identity>
+    <Path>~/Content/Parts/AppBundle/Contact/ContactUsV2.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>591</PartControlTemplateId>
+    <PartControlId>358</PartControlId>
+    <Name>Message Board</Name>
+    <FileName>MessageBoard.ascx</FileName>
+    <Identity>Common</Identity>
+    <Path>~/Content/Parts/Common/MessageBoard.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>592</PartControlTemplateId>
+    <PartControlId>359</PartControlId>
+    <Name>Web Skins</Name>
+    <FileName>WebSkins.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebSkins.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>593</PartControlTemplateId>
+    <PartControlId>360</PartControlId>
+    <Name>Web Skin Home</Name>
+    <FileName>WebSkinHome.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebSkinHome.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>594</PartControlTemplateId>
+    <PartControlId>361</PartControlId>
+    <Name>Web Skin</Name>
+    <FileName>WebSkin.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/Template/WebSkin.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>595</PartControlTemplateId>
+    <PartControlId>362</PartControlId>
+    <Name>Header Navbar</Name>
+    <FileName>HeaderNavbar.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/HeaderNavbar.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>596</PartControlTemplateId>
+    <PartControlId>363</PartControlId>
+    <Name>Master List - Group Manager</Name>
+    <FileName>GroupManager.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/MusicMinistry/MasterList/GroupManager.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>597</PartControlTemplateId>
+    <PartControlId>364</PartControlId>
+    <Name>Master List - Users Manager</Name>
+    <FileName>MemberManager.ascx</FileName>
+    <Identity>Members</Identity>
+    <Path>~/Content/Parts/Integration/MusicMinistry/MasterList/MemberManager.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>598</PartControlTemplateId>
+    <PartControlId>365</PartControlId>
+    <Name>Master List - Group Edit</Name>
+    <FileName>GroupEdit.ascx</FileName>
+    <Identity>GroupEdit</Identity>
+    <Path>~/Content/Parts/Integration/MusicMinistry/MasterList/GroupEdit.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>599</PartControlTemplateId>
+    <PartControlId>366</PartControlId>
+    <Name>Master List - Member Edit</Name>
+    <FileName>MemberEdit.ascx</FileName>
+    <Identity>MemberEdit</Identity>
+    <Path>~/Content/Parts/Integration/MusicMinistry/MasterList/MemberEdit.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>600</PartControlTemplateId>
+    <PartControlId>367</PartControlId>
+    <Name>Master List - Group Overview</Name>
+    <FileName>GroupOverview.ascx</FileName>
+    <Identity>GroupOverview</Identity>
+    <Path>~/Content/Parts/Integration/MusicMinistry/MasterList/GroupOverview.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>605</PartControlTemplateId>
+    <PartControlId>370</PartControlId>
+    <Name>WebPart Template Panels</Name>
+    <FileName>WebPartTemplatePanels.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartTemplatePanels.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>606</PartControlTemplateId>
+    <PartControlId>371</PartControlId>
+    <Name>WebPart Template Panel</Name>
+    <FileName>WebPartTemplatePanel.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartTemplatePanel.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>607</PartControlTemplateId>
+    <PartControlId>1</PartControlId>
+    <Name>Content (Razor)</Name>
+    <FileName>Content.cshtml</FileName>
+    <Identity>Content</Identity>
+    <Path>~/Content/Parts/AppBundle/Content/Content.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>608</PartControlTemplateId>
+    <PartControlId>372</PartControlId>
+    <Name>ASOP Talk V2 (Message Board)</Name>
+    <FileName>MessageBoardV2.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/MusicMinistry/ASOP/MessageBoardV2.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>609</PartControlTemplateId>
+    <PartControlId>373</PartControlId>
+    <Name>Newsletter</Name>
+    <FileName>Newsletter.ascx</FileName>
+    <Identity>Newsletter</Identity>
+    <Path>~/Content/Parts/AppBundle2/Newsletter/Newsletter.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>610</PartControlTemplateId>
+    <PartControlId>374</PartControlId>
+    <Name>Bible Browser</Name>
+    <FileName>BibleBrowser.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/BibleReader/BibleBrowser.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>611</PartControlTemplateId>
+    <PartControlId>375</PartControlId>
+    <Name>WebPart Management</Name>
+    <FileName>WebPartAdminMgmt.ascx</FileName>
+    <Identity>Central</Identity>
+    <Path>~/Content/Parts/Central/WebPart/WebPartAdminMgmt.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>612</PartControlTemplateId>
+    <PartControlId>376</PartControlId>
+    <Name>Instagram Gallery</Name>
+    <FileName>InstagramGallery.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/InstagramGallery.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>613</PartControlTemplateId>
+    <PartControlId>377</PartControlId>
+    <Name>Instagram Gallery</Name>
+    <FileName>InstagramGallery.ascx</FileName>
+    <Identity>Photo</Identity>
+    <Path>~/Content/Parts/AppBundle/Photo/InstagramGallery.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>614</PartControlTemplateId>
+    <PartControlId>378</PartControlId>
+    <Name>Indexer - Recent Updates</Name>
+    <FileName>RemoteIndexRecentUpdates.ascx</FileName>
+    <Identity>FileManager</Identity>
+    <Path>~/Content/Parts/AppBundle/FileManager/RemoteIndexRecentUpdates.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>615</PartControlTemplateId>
+    <PartControlId>379</PartControlId>
+    <Name>ASOP Finalist V2</Name>
+    <FileName>MCFinalistsV2.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCFinalistsV2.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>616</PartControlTemplateId>
+    <PartControlId>380</PartControlId>
+    <Name>Streaming - User Manager</Name>
+    <FileName>UserManager.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/Streaming/UserManager.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>617</PartControlTemplateId>
+    <PartControlId>381</PartControlId>
+    <Name>Streaming - Console</Name>
+    <FileName>StreamingConsole.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/Streaming/StreamingConsole.ascx</Path>
+    <Standalone>1</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>618</PartControlTemplateId>
+    <PartControlId>382</PartControlId>
+    <Name>ASOP Results V4</Name>
+    <FileName>MCVoteResultV4.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/MCVoteResultV4.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>619</PartControlTemplateId>
+    <PartControlId>383</PartControlId>
+    <Name>ASOP Winners</Name>
+    <FileName>ASOPWinners.ascx</FileName>
+    <Identity>ASOP</Identity>
+    <Path>~/Content/Parts/Integration/MusicCompetition/ASOPWinners.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>620</PartControlTemplateId>
+    <PartControlId>384</PartControlId>
+    <Name>Streaming Service - Access Request</Name>
+    <FileName>AccessRequest.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/Streaming/AccessRequest.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>621</PartControlTemplateId>
+    <PartControlId>385</PartControlId>
+    <Name>MasterList - Access</Name>
+    <FileName>MemberAccess.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/MusicMinistry/MasterList/MemberAccess.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>622</PartControlTemplateId>
+    <PartControlId>386</PartControlId>
+    <Name>Razor Standalone</Name>
+    <FileName>PageStandalone.cshtml</FileName>
+    <Identity>Test</Identity>
+    <Path>~/Content/Parts/Test/Razor/PageStandalone.cshtml</Path>
+    <Standalone>1</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>623</PartControlTemplateId>
+    <PartControlId>387</PartControlId>
+    <Name>Razor Demo</Name>
+    <FileName>PageDemo.cshtml</FileName>
+    <Identity>Test</Identity>
+    <Path>~/Content/Parts/Test/Razor/PageDemo.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>624</PartControlTemplateId>
+    <PartControlId>388</PartControlId>
+    <Name>Dashboard</Name>
+    <FileName>_Dashboard.cshtml</FileName>
+    <Identity>BranchLocator</Identity>
+    <Path>~/Content/Parts/BranchLocator/_Dashboard.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>625</PartControlTemplateId>
+    <PartControlId>389</PartControlId>
+    <Name>Chapter Browser</Name>
+    <FileName>_ChapterBrowser.cshtml</FileName>
+    <Identity>BranchLocator</Identity>
+    <Path>~/Content/Parts/BranchLocator/_ChapterBrowser.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>626</PartControlTemplateId>
+    <PartControlId>390</PartControlId>
+    <Name>Chapter Details</Name>
+    <FileName>_ChapterDetails.cshtml</FileName>
+    <Identity>BranchLocator</Identity>
+    <Path>~/Content/Parts/BranchLocator/_ChapterDetails.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>627</PartControlTemplateId>
+    <PartControlId>391</PartControlId>
+    <Name>Global Switch</Name>
+    <FileName>GlobalSwitch.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/GlobalSwitch/GlobalSwitch.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>628</PartControlTemplateId>
+    <PartControlId>391</PartControlId>
+    <Name>Global Switch</Name>
+    <FileName>GlobalSwitch.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/GlobalSwitch/GlobalSwitch.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>629</PartControlTemplateId>
+    <PartControlId>271</PartControlId>
+    <Name>Account Info</Name>
+    <FileName>AccountInfo.ascx</FileName>
+    <Identity>UserProfile</Identity>
+    <Path>~/Content/Parts/Integration/Account/AccountInfo.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>630</PartControlTemplateId>
+    <PartControlId>257</PartControlId>
+    <Name>Profile Update V2</Name>
+    <FileName>ProfileUpdate.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Account/ProfileUpdate.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>631</PartControlTemplateId>
+    <PartControlId>291</PartControlId>
+    <Name>Change Password V2</Name>
+    <FileName>ChangePasswordV2.ascx</FileName>
+    <Identity>Profile</Identity>
+    <Path>~/Content/Parts/Integration/Account/ChangePasswordV2.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>632</PartControlTemplateId>
+    <PartControlId>392</PartControlId>
+    <Name>Global Switch - WebApps Directory</Name>
+    <FileName>WebApps.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/GlobalSwitch/WebApps.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>633</PartControlTemplateId>
+    <PartControlId>393</PartControlId>
+    <Name>Global Switch - Dashboard</Name>
+    <FileName>Dashboard.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/GlobalSwitch/Dashboard.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>634</PartControlTemplateId>
+    <PartControlId>394</PartControlId>
+    <Name>Search</Name>
+    <FileName>_SearchResults.cshtml</FileName>
+    <Identity>BranchLocator</Identity>
+    <Path>~/Content/Parts/BranchLocator/_SearchResults.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>635</PartControlTemplateId>
+    <PartControlId>348</PartControlId>
+    <Name>Login V2</Name>
+    <FileName>LoginV2.ascx</FileName>
+    <Identity>Common</Identity>
+    <Path>~/Content/Parts/Common/LoginV2.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>636</PartControlTemplateId>
+    <PartControlId>395</PartControlId>
+    <Name>Global Switch - NativeApps Directory</Name>
+    <FileName>NativeApps.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/GlobalSwitch/NativeApps.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>637</PartControlTemplateId>
+    <PartControlId>396</PartControlId>
+    <Name>Global Switch - Help &amp; Feedback</Name>
+    <FileName>HelpFeedback.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/GlobalSwitch/HelpFeedback.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>638</PartControlTemplateId>
+    <PartControlId>397</PartControlId>
+    <Name>Login, Forgot, Register</Name>
+    <FileName>LoginForgotRegister.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/LoginForgotRegister.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>639</PartControlTemplateId>
+    <PartControlId>398</PartControlId>
+    <Name>Account: Get Access</Name>
+    <FileName>GetAccess.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/Account/GetAccess.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>640</PartControlTemplateId>
+    <PartControlId>399</PartControlId>
+    <Name>Register SG</Name>
+    <FileName>RegisterSG.ascx</FileName>
+    <Identity>SG</Identity>
+    <Path>~/Content/Parts/Integration/Account/RegisterSG.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>641</PartControlTemplateId>
+    <PartControlId>400</PartControlId>
+    <Name>Register V2</Name>
+    <FileName>RegisterV2.ascx</FileName>
+    <Identity>Register</Identity>
+    <Path>~/Content/Parts/Integration/Account/RegisterV2.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>642</PartControlTemplateId>
+    <PartControlId>401</PartControlId>
+    <Name>Account: Login</Name>
+    <FileName>Login.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/Account/Login.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>643</PartControlTemplateId>
+    <PartControlId>402</PartControlId>
+    <Name>Global Switch - Social Campaigns</Name>
+    <FileName>Social.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/GlobalSwitch/Social.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>644</PartControlTemplateId>
+    <PartControlId>403</PartControlId>
+    <Name>Global Switch - Video Streaming</Name>
+    <FileName>VideoStream.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/GlobalSwitch/VideoStream.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>645</PartControlTemplateId>
+    <PartControlId>-1</PartControlId>
+    <Name>Demo</Name>
+    <FileName>Demo.cshtml</FileName>
+    <Identity>Central</Identity>
+    <Path>Demo.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>646</PartControlTemplateId>
+    <PartControlId>381</PartControlId>
+    <Name>Streaming - Console</Name>
+    <FileName>LiveStreaming.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/Streaming/LiveStreaming.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>647</PartControlTemplateId>
+    <PartControlId>404</PartControlId>
+    <Name>Global Settings</Name>
+    <FileName>Settings.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>Settings.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>648</PartControlTemplateId>
+    <PartControlId>405</PartControlId>
+    <Name>Account: My Approval Status</Name>
+    <FileName>MyApprovalStatus.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>Account/Approval/MyApprovalStatus.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>649</PartControlTemplateId>
+    <PartControlId>406</PartControlId>
+    <Name>Event Register: Attendees</Name>
+    <FileName>Attendees.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/Integration/EventRegister/Attendees.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>650</PartControlTemplateId>
+    <PartControlId>407</PartControlId>
+    <Name>Event Register: Attendee Entry</Name>
+    <FileName>Attendee.ascx</FileName>
+    <Identity>Attendee</Identity>
+    <Path>~/Content/Parts/Integration/EventRegister/Attendee.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>651</PartControlTemplateId>
+    <PartControlId>408</PartControlId>
+    <Name>Event Register: Dashboard</Name>
+    <FileName>Dashboard.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>EventRegister/Dashboard.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>655</PartControlTemplateId>
+    <PartControlId>412</PartControlId>
+    <Name>User Activities</Name>
+    <FileName>UserActivities.ascx</FileName>
+    <Identity>User-Activities</Identity>
+    <Path>Security/UserActivities.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>656</PartControlTemplateId>
+    <PartControlId>413</PartControlId>
+    <Name>QR Code Attendance</Name>
+    <FileName>QRCodeAttendance.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>Account/QRCodeAttendance.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>657</PartControlTemplateId>
+    <PartControlId>414</PartControlId>
+    <Name>Attendance Request</Name>
+    <FileName>AttendanceRequest.ascx</FileName>
+    <Identity>Integration</Identity>
+    <Path>MakeUp/AttendanceRequest.ascx</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>1</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>658</PartControlTemplateId>
+    <PartControlId>415</PartControlId>
+    <Name>Locale Announcements - Full Screen</Name>
+    <FileName>Announcements-Fullscreen.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/BranchLocator/Announcements-Fullscreen.cshtml</Path>
+    <Standalone>1</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+  <WebPartControlTemplate>
+    <PartControlTemplateId>659</PartControlTemplateId>
+    <PartControlId>416</PartControlId>
+    <Name>Locale Announcements</Name>
+    <FileName>Announcements.cshtml</FileName>
+    <Identity>Integration</Identity>
+    <Path>~/Content/Parts/BranchLocator/Announcements.cshtml</Path>
+    <Standalone>0</Standalone>
+    <TemplateEngineId>2</TemplateEngineId>
+  </WebPartControlTemplate>
+</mPortal>

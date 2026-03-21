@@ -1,0 +1,119 @@
+﻿@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.BranchLocator
+@using Newtonsoft.Json.Linq
+@{
+    MChapter item = null;
+    MChapterAnnouncement announcement = new MChapterAnnouncement();
+    bool updateSuccess = false;
+    var locationUrl = "";
+    var chapterUrl = "";
+    
+    var query = new WQuery(this);
+    var id = query.GetId(WebColumns.Id);
+    var q = query.Clone();
+    query.BasePath = CentralPages.LoaderMain;
+
+    if (id > 0 && (item = MChapter.Provider.Get(id)) != null)
+    {
+        if (IsPost)
+        {
+            var slides = Request.Unvalidated().Form["extra"];
+            var enabled = Request.Form["enabled"] == "enabled";
+
+            var extra = item.GetExtra();
+            announcement = extra.Announcement;
+            announcement.LastUpdate = DateTime.Now;
+            announcement.Slides = slides;
+            announcement.Enabled = enabled;
+            
+            item.Extra = extra.ToString();
+            item.LastUpdate = DateTime.Now;
+            item.Update();
+            updateSuccess = true;
+        }
+        else
+        {
+            if (item.HasExtra)
+            {
+                var extra = item.GetExtra();
+                announcement = extra.Announcement;
+            }
+        }
+
+        query.SetLoad("FindALocale/Admin/Chapter");
+        chapterUrl = query.BuildQuery();
+
+        q.SetLoad("FindALocale/Admin/SetLocation");
+        locationUrl = q.BuildQuery();
+    }
+
+    query.Remove(WConstants.Load);
+    query.Remove(WebColumns.Id);
+}
+
+<style type="text/css">
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+</script>
+
+<div id="content" class="container-fluid" style="padding: 0">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>@item.Name</h3>
+        </div>
+    </div>
+    <div role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation"><a href="@query.BuildQuery()" role="tab">Chapters</a></li>
+            <li role="presentation"><a href="@chapterUrl" role="tab" data-toggle1="tab">Chapter</a></li>
+            <li role="presentation"><a href="@locationUrl" role="tab" data-toggle1="tab">Location</a></li>
+            <li role="presentation" class="active"><a href="#" role="tab" aria-controls="announcements">Announcements</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="announcements">
+                <br />
+                <form class="form-horizontal" method="post">
+                    @if (item.LocaleId > 0)
+                    {
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                Permalink: <a href="/chapters/ads?id=@item.LocaleId" target="_blank">@item.Name <span class="glyphicon glyphicon-new-window"></span></a>
+                                <br />
+                                Asset Upload: <a href="@(CentralPages.FileManager)?Path=~/Content/Assets/Uploads/" target="_blank">File Manager <span class="glyphicon glyphicon-new-window"></span></a>
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <textarea class="form-control" placeholder="Announcements Code" rows="20" name="extra" id="extra">@announcement.Slides</textarea>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="enabled" value="enabled" @(announcement.Enabled ? "checked=\"checked\"" : "") type="checkbox"> Enabled
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" id="btnAccept" class="btn btn-primary" value="Update" />
+                            <a href="@query.BuildQuery()" class="btn btn-default">Cancel</a>&nbsp;
+                            @if (updateSuccess)
+                            {
+                                <span class="label label-warning">Update success!</span>
+                            }
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br />
+    </div>
+</div>

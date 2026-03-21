@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebGlobalPolicy">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="GlobalPolicyId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebGlobalPolicy" />
+        <xs:field xpath="GlobalPolicyId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebGlobalPolicy>
+    <GlobalPolicyId>1</GlobalPolicyId>
+    <Name>WebSite Management</Name>
+  </WebGlobalPolicy>
+  <WebGlobalPolicy>
+    <GlobalPolicyId>2</GlobalPolicyId>
+    <Name>Administration</Name>
+  </WebGlobalPolicy>
+  <WebGlobalPolicy>
+    <GlobalPolicyId>3</GlobalPolicyId>
+    <Name>WebPart Management</Name>
+  </WebGlobalPolicy>
+</mPortal>

@@ -1,0 +1,451 @@
+﻿@using WCMS.Framework
+@using WCMS.WebSystem.Apps.Integration
+@{
+    WebUser user = null;
+    UserSession userSession = null;
+    var context = new WContext(this);
+    var site = context.Site;
+    var portalSite = WSite.Provider.Get("Portal");
+
+    var wsession = WSession.Current;
+    var isMember = false;
+    var isSG = false;
+    var sessionId = string.Empty;
+    var portalSessionId = string.Empty;
+    if (wsession.IsLoggedIn)
+    {
+        user = wsession.User;
+        isMember = user.IsMemberOf(IntegrationConstants.MEMBERS_GROUP_NAME);
+        isSG = user.IsMemberOf("Singapore");
+        userSession = wsession.UserSession;
+        if (userSession != null)
+        {
+            sessionId = "?SessionId=" + userSession.SessionId;
+            if (site.Id != portalSite.Id)
+            {
+                portalSessionId = sessionId;
+            }
+        }
+    }
+
+    var request = context.Context.Request;
+    var portalHomeUrl = portalSite.BuildAbsoluteUrl();
+    var portalRootUrl = portalHomeUrl;
+}
+
+<style type="text/css">
+    .carousel-inner > .item {
+        background-color: #333;
+        /* FIXME: dimensions when item image is empty */
+        width: 851px;
+        height: 315px;
+    }
+
+        .carousel-inner > .item .carousel-caption {
+            text-shadow: 2px 2px 12px #444;
+        }
+
+    .media a, .grey-link {
+        color: #333;
+    }
+
+    .app-category .media, .media .media {
+        /*margin-top: 0;*/
+        margin-bottom: 30px;
+        min-height: 64px;
+    }
+
+    .app-icon {
+        width: 64px;
+        /* FIXME: height when icon image is empty */
+        height: 64px;
+    }
+
+    .glyphicon-icon {
+        font-size: 46px;
+        width: 64px;
+        /*color: #EDA912;*/
+        color: #333;
+        padding-top: 4px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .app-category .media .media-body {
+        /*font-size: 13px;*/
+        color: #999; /*707070*/
+        padding-top: 4px;
+    }
+
+    .app-category .section-header {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 9px;
+        margin: 20px 0 20px;
+    }
+
+    .explore-more {
+        font-size: 14px;
+    }
+
+    .flag-shadow {
+        /*box-shadow: 1px 1px #ddd;*/
+        border: 1px solid #eee;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9">
+            @*<div class="jumbotron">
+                    <h1>Hello, world!</h1>
+                    <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+                </div>*@
+            @if (false && wsession.IsLoggedIn)
+            {
+                @RenderPage("../FindALocale/Announcements.cshtml")
+            }
+            else {
+            <div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
+                @*<ol class="carousel-indicators">
+                        <li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-captions" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-captions" data-slide-to="2"></li>
+                        <li data-target="#carousel-example-captions" data-slide-to="3"></li>
+                    </ol>*@
+                <div class="carousel-inner">
+                    @*<div class="item active">
+                            <img src="/Content/Themes/Integration/area51/images/banners/banner1.jpg" alt="">
+                            <div class="carousel-caption">
+                                <h3>First slide label</h3>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </div>
+                        </div>*@
+                    @*<div class="item">
+                            <img src="/Content/Themes/Integration/area51/images/banners/banner2.jpg" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="/Content/Themes/Integration/area51/images/banners/banner3.jpg" alt="">
+                        </div>*@
+                    <div class="item active">
+                        <a href="https://www.facebook.com/AngDatingDaanTV" target="_blank">
+                            <img src="/Content/Parts/Integration/Assets/images/banners/Happy34YearsADD.png" alt="#Happy34YearsADD">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="https://twitter.com/BroEliSoriano" target="_blank">
+                            <img src="/Content/Parts/Integration/Assets/images/banners/BEat50.png" alt="">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="https://www.facebook.com/Integration.org" target="_blank">
+                            <img src="/Content/Parts/Integration/Assets/images/banners/SA-cover.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#" target="_blank">
+                            <img src="/Content/Parts/Integration/Assets/images/banners/Integration-fb.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <img src="/Content/Parts/Integration/Assets/images/banners/TOP-fb.jpg" alt="">
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#carousel-example-captions" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-captions" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+            }
+            @if (isMember)
+            {
+        <div class="row app-category">
+            <div class="col-md-12">
+                <h1 id="ministries" class="page-header">Groups &amp; Communities</h1>
+            </div>
+            <div class="media col-sm-6 col-lg-4">
+                <a class="pull-left" href="/SingaporeV2/@sessionId">
+                    <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="/SingaporeV2/@sessionId">Singapore Portal</a></h4>
+                    Content and updates exclusive to SG members
+                </div>
+            </div>
+            <div class="media col-sm-6 col-lg-4">
+                <a class="pull-left" href="/Singapore/@sessionId">
+                    <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="/Singapore/@sessionId">Singapore Portal (V1)</a></h4>
+                    Content and updates exclusive to SG members
+                </div>
+            </div>
+            <div class="media col-sm-6 col-lg-4">
+                <a class="pull-left" href="/musicportal/@sessionId">
+                    <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mm_logo.jpg">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="/musicportal/@sessionId">Music Portal</a></h4>
+                    Music Portal-related content and updates
+                </div>
+            </div>
+            @*<div class="media col-sm-6 col-lg-4">
+            <a class="pull-left" href="https://teatrokristiano.someorg.org/@sessionId">
+                <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="https://teatrokristiano.someorg.org/@sessionId">Teatro Kristiano</a></h4>
+                Teatro Kristiano-related content and updates
+            </div>
+        </div>*@
+            <div class="media col-sm-6 col-lg-4">
+                <a class="pull-left" href="/musicportal/music-competition/asia-oceania/" target="_blank">
+                    <img class="app-icon" src="/Content/Parts/Integration/MusicCompetition/v3-res/images/logosmall.png">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="/musicportal/music-competition/asia-oceania/" target="_blank">Music Competition Asia Oceania</a></h4>
+                    Music Festival
+                </div>
+            </div>
+        </div>
+            }
+            <div class="row app-category">
+                <div class="col-sm-6 col-lg-4">
+                    <h2 class="section-header">Apps &amp; Services</h2>
+                    @*<p>These are web apps for various services of the members.</p>*@
+                    @*<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>*@
+                    @if (isMember)
+                    {
+                        <div class="media">
+                            <a class="pull-left" href="@portalRootUrl/chapters/@portalSessionId">
+                                <span class="glyphicon glyphicon-map-marker glyphicon-icon">&nbsp;</span>
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="@portalRootUrl/chapters/@portalSessionId">Chapters</a></h4>
+                                Search for Integration locale chapter information
+                            </div>
+                        </div>
+                        <div class="media">
+                            <a class="pull-left" href="@portalRootUrl/BibleReader">
+                                <img class="media-object" width="64" src="/Content/Parts/Integration/Assets/images/timthumb2.png">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="@portalRootUrl/BibleReader">Bible Reader</a></h4>
+                                Online Bible in various translations and languages
+                            </div>
+                        </div>
+                        <div class="media">
+                            <a class="pull-left" href="/musicportal/Files/@sessionId">
+                                <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mm_logo.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="/musicportal/Files/@sessionId">Files</a></h4>
+                                Collection of Files
+                            </div>
+                        </div>
+                        <div class="media">
+                            <a class="pull-left" href="/LiveStream/">
+                                @*<img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">*@
+                                <span class="glyphicon glyphicon-film glyphicon-icon">&nbsp;</span>
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="/LiveStream/">Live Stream</a></h4>
+                                Live video streaming service
+                            </div>
+                        </div>
+                        @*<div class="media">
+                <a class="pull-left" href="https://musicministry.someorg.org/Files/@sessionId">
+                    <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="https://musicministry.someorg.org/Files/@sessionId">TK Library</a></h4>
+                    Collection of TK practice materials &amp; files
+                </div>
+            </div>*@
+                    }
+                    else
+                    {
+                        @*<div class="media">
+                <a class="pull-left" href="/Apps/">
+                    <img class="pull-left app-icon" src="/Content/Parts/Integration/Assets/images/mcgi-broadcast-app.jpg">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="/Apps/">Integration &amp; UNTV Apps</a></h4>
+                    Available in Apple App Store and Google Play Store
+                </div>
+            </div>*@
+                        <div class="media">
+                            <a class="pull-left" href="@portalRootUrl/chapters">
+                                <span class="glyphicon glyphicon-map-marker glyphicon-icon">&nbsp;</span>
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="@portalRootUrl/chapters">Chapters</a></h4>
+                                Search for Integration locale chapter information
+                            </div>
+                        </div>
+                        @*<div class="media">
+                <a class="pull-left" href="http://www.someorg.org/community-prayer/" target="_blank">
+                    <img class="app-icon" src="/Content/Parts/Integration/Assets/images/cp.png">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="http://www.someorg.org/community-prayer/" target="_blank">Community Prayer</a></h4>
+                    "Pray without ceasing," says I Thessalonians 5:17
+                </div>
+            </div>
+            <div class="media">
+                <a class="pull-left" href="http://www.someorg.org/mcgi-calendar/" target="_blank">
+                    <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi-calendar.png">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="http://www.someorg.org/mcgi-calendar/" target="_blank">Integration Calendar</a></h4>
+                    Calendar of Events &amp; Gatherings
+                </div>
+            </div>*@
+                    }
+                </div><!--/span-->
+                <div class="col-sm-6 col-lg-4">
+                    <h2 class="section-header">Social Media</h2>
+                    <div class="media">
+                        <a class="pull-left" href="https://twitter.com/dsalunga" target="_blank">
+                            <span class="glyphicon glyphicon-comment glyphicon-icon">&nbsp;</span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="https://twitter.com/dsalunga" target="_blank">@@dsalunga</a></h4>
+                            @@dsalunga on Twitter
+                        </div>
+                    </div>
+                    @*<p>Public websites available to all web users including non-members.</p>*@
+                    @*<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>*@
+                    @*
+                    @if (isMember)
+                    {
+                        <div class="media">
+                            <a class="pull-left" href="http://www.controversyextraordinary.com/" target="_blank">
+                                <img class="app-icon" src="/Content/Parts/Integration/Assets/images/controversy-xo.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="http://www.controversyextraordinary.com/" target="_blank">Controversy eXtraordinary</a></h4>
+                                Official Blog Site
+                            </div>
+                        </div>
+                    }
+                    <div class="media">
+                        <a class="pull-left" href="http://esoriano.wordpress.com/" target="_blank">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/webawards.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://esoriano.wordpress.com/" target="_blank">The Truth Blog</a></h4>
+                            esoriano.wordpress.com
+                        </div>
+                    </div>
+                    <div class="media">
+                        <a class="pull-left" href="https://twitter.com/BroEliSoriano" target="_blank">
+                            <img class="media-object" width="64" src="/Content/Parts/Integration/Assets/images/BroEliSorianoTwitter.jpg">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="https://twitter.com/BroEliSoriano" target="_blank">@@BroEliSoriano</a></h4>
+                            Brother Eli Soriano on Twitter
+                        </div>
+                    </div>
+                    <div class="media">
+                        <a class="pull-left" href="https://www.facebook.com/Integration.org" target="_blank">
+                            <img width="64" src="/Content/Parts/Integration/Assets/images/MCGI-fb.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="https://www.facebook.com/Integration.org" target="_blank">Integration.org</a></h4>
+                            Official Facebook Page
+                        </div>
+                    </div>*@
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <h2 class="section-header">Official Websites</h2>
+                    <div class="media">
+                        <a class="pull-left" href="/en-SG/" target="_blank">
+                            <img class="app-icon flag-shadow" src="/Content/Assets/images/flags/sg.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="/en-SG/" target="_blank">Singapore Group</a></h4>
+                            The official website of Singapore Group
+                        </div>
+                    </div>
+                    @*<div class="media">
+                        <a class="pull-left" href="http://www.someorg.org/" target="_blank">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/mcgi_logo.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://www.someorg.org/" target="_blank">Integration.org</a></h4>
+                            "Cleave to What is Great"
+                        </div>
+                    </div>
+                    <div class="media">
+                        <a class="pull-left" href="http://www.untvweb.com/" target="_blank">
+                            <img width="64" src="/Content/Parts/Integration/Assets/images/untv-logo2.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://www.untvweb.com/" target="_blank">UNTVweb.com</a></h4>
+                            UNTV Official Website
+                        </div>
+                    </div>
+                    <div class="media">
+                        <a class="pull-left" href="http://www.angdatingdaan.org/" target="_blank">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/angdatingdaan.com_.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://www.angdatingdaan.org/" target="_blank">Ang Dating Daan</a></h4>
+                            Ang Dating Daan TV Official Website
+                        </div>
+                    </div>
+                    <div class="media">
+                        <a class="pull-left" href="http://www.theoldpath.tv/" target="_blank">
+                            <img class="app-icon" src="/Content/Parts/Integration/Assets/images/theoldpath.tv_.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="http://www.theoldpath.tv/" target="_blank">The Old Path</a></h4>
+                            Place description here
+                        </div>
+                    </div>*@
+                </div><!--/span-->
+            </div><!--/row-->
+            <div class="row">
+                <div class="col-sm-6 col-lg-4">
+                    <p><a class="btn btn-default btn-sm btn-info explore-more" href="/Explore/" role="button">Explore more &raquo;</a></p>
+                </div>
+            </div>
+        </div><!--/span-->
+
+        <div class="col-xs-11 col-sm-3" id="sidebar" role="navigation">
+            <div id="twitterFeed" @*style="visibility: hidden"*@>
+                <a class="twitter-timeline" data-chrome="noborders transparent" href="https://twitter.com/dsalunga" data-widget-id="387175672344358912">@*Tweets by @@dsalunga*@</a>
+                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+            </div>
+            @if (wsession.IsLoggedIn)
+            {
+                <br />
+                @RenderPage("../Chat/ChatLobby.cshtml", new { SessionId = userSession.SessionId.ToString(), Room = "Integration Portal", MinHeight = "350" })
+            }
+        </div><!--/span-->
+    </div><!--/row-->
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                var itwt = setInterval(function () {
+                    //console.log('running timer...');
+                    if ($('#twitter-widget-0').length > 0) {
+                        //console.log('executing...');
+                        setTimeout(function () {
+                            $('#twitter-widget-0').ready(function () {
+                                //console.log('twitter frame ready, executing...');
+                                $('#twitter-widget-0').contents().find('.customisable-border').css('border', 'none');
+                                $('#twitterFeed').css('visibility', 'visible');
+                            });
+                        }, 250);
+
+                        clearInterval(itwt);
+                    } else {
+                        //console.log('not yet ready');
+                    }
+                }, 500);
+            });
+        </script>*@
+</div>

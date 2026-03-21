@@ -1,0 +1,279 @@
+BODY {
+	SCROLLBAR-ARROW-COLOR: #000000; SCROLLBAR-FACE-COLOR: #eeeee6; MARGIN: 0px; SCROLLBAR-BASE-COLOR: #eeeee6; FONT-FAMILY: Georgia, "Times New Roman", Times, serif; SCROLLBAR-HIGHLIGHT-COLOR: #000000; SCROLLBAR-SHADOW-COLOR: #eeeee6; scrollbar-dark-shadow-color: #EEEEE6; scrollbar-3d-light-color: #000000
+}
+A:link {
+	COLOR: #336699; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #336699; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #336699; FONT-WEIGHT: bold
+}
+A:hover {
+	COLOR: #d95852; FONT-WEIGHT: bold; TEXT-DECORATION: underline
+}
+A.rbullet:link {
+	BACKGROUND-IMAGE: url(/images/rbullet.gif); PADDING-LEFT: 20px; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: left 50%; COLOR: #000066; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+A.rbullet:visited {
+	BACKGROUND-IMAGE: url(/images/rbullet.gif); PADDING-LEFT: 20px; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: left 50%; COLOR: #000066; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+A.rbullet:active {
+	BACKGROUND-IMAGE: url(/images/rbullet.gif); PADDING-LEFT: 20px; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: left 50%; COLOR: #000066
+}
+A.rbullet:hover {
+	PADDING-LEFT: 20px; BACKGROUND: url(/images/rbullet.gif) #ede3d6 no-repeat left 50%; COLOR: #af3016
+}
+#related_to {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; PADDING-TOP: 10px
+}
+#bg {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 5px; BACKGROUND: #f9f7f0; COLOR: #666666; FONT-SIZE: 12pt; FONT-WEIGHT: bold; PADDING-TOP: 5px
+}
+#bg_b {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 10px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; PADDING-TOP: 5px
+}
+#mid {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; PADDING-TOP: 5px
+}
+#left_table {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 5px; PADDING-LEFT: 8px; PADDING-RIGHT: 5px; PADDING-TOP: 5px
+}
+#top_left_table {
+	TEXT-ALIGN: left; BORDER-LEFT: #bbcbda 8px solid; PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; PADDING-TOP: 1px
+}
+#linkage {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; FONT-FAMILY: arial; BACKGROUND: #f8f8f8; COLOR: #333333; FONT-SIZE: 70%; FONT-WEIGHT: bold; PADDING-TOP: 5px
+}
+#sublink {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 20px; PADDING-RIGHT: 5px; FONT-FAMILY: arial; BACKGROUND: #fdfcf9; COLOR: #333333; FONT-SIZE: 70%; PADDING-TOP: 5px
+}
+#contact_table {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; PADDING-TOP: 5px
+}
+#segments P.title {
+	MARGIN: 0px
+}
+#segments IMG {
+	MARGIN: 0px 10px; FLOAT: left
+}
+#segments .segment {
+	PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #f8f8f8; MARGIN: 0px 10px 10px 15px; PADDING-LEFT: 5px; WIDTH: 750px; PADDING-RIGHT: 5px; FLOAT: left; HEIGHT: 100%; PADDING-TOP: 10px
+}
+#segments P.desc {
+	MARGIN: 10px 0px 0px
+}
+#bibrefer IMG {
+	MARGIN: 0px 10px; FLOAT: left
+}
+#bibrefer {
+	PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #faf9f5; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 10px
+}
+#bibrefer P.title {
+	MARGIN: 0px; FONT-SIZE: 16px; FONT-WEIGHT: bold
+}
+#bibrefer P.desc {
+	MARGIN: 10px 0px 0px 150px; FONT-SIZE: 12px
+}
+#media P {
+	MARGIN: 0px 0px 0px 290px; FONT-SIZE: 14px
+}
+#media .medias IMG {
+	MARGIN: 0px 10px 0px 0px; FLOAT: left
+}
+#media .medias {
+	PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #f8f8f8; MARGIN: 0px 10px 20px; PADDING-LEFT: 5px; WIDTH: 755px; PADDING-RIGHT: 5px; FLOAT: right; HEIGHT: 100%; PADDING-TOP: 5px
+}
+#media P.title {
+	FONT-WEIGHT: bold
+}
+#mainndx {
+	TEXT-ALIGN: left; WIDTH: 776px; FLOAT: right
+}
+#mainindex {
+	
+}
+#mainindex .yappie {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #f9f9f9; MARGIN: 0px 10px 0px 15px; PADDING-LEFT: 5px; WIDTH: 750px; PADDING-RIGHT: 5px; FLOAT: right; HEIGHT: 100%; PADDING-TOP: 5px
+}
+#mainindex .yappie P {
+	MARGIN: 0px 0px 10px 8px
+}
+#mainindex H3 {
+	MARGIN: 10px 0px 10px 8px; COLOR: #990000; FONT-SIZE: 18px
+}
+#mainindex P.title {
+	MARGIN: 0px; FONT-WEIGHT: bold
+}
+#mainindex P.title {
+	MARGIN-LEFT: 305px; FONT-SIZE: 13px
+}
+P.desc {
+	MARGIN-LEFT: 305px; FONT-SIZE: 13px
+}
+#mainindex .medias P.desc {
+	MARGIN-TOP: 5px
+}
+#mainindex IMG.banner {
+	MARGIN: 0px 10px 0px 5px; FLOAT: left
+}
+#mainindex .medias {
+	PADDING-BOTTOM: 20px; BACKGROUND-COLOR: #f4f4f4; MARGIN: 0px 10px 10px 15px; PADDING-LEFT: 5px; WIDTH: 750px; PADDING-RIGHT: 5px; FLOAT: right; HEIGHT: 100%; PADDING-TOP: 10px
+}
+#dotorg {
+	TEXT-ALIGN: left; WIDTH: 776px; FLOAT: right
+}
+#left_dot {
+	BACKGROUND-COLOR: #f9f9f9; MARGIN: 0px 0px 0px 8px; WIDTH: 500px; FLOAT: left
+}
+HTML > BODY #left_dot {
+	WIDTH: 508px
+}
+#left_dot SPAN {
+	DISPLAY: block; FONT-SIZE: 13px; FONT-WEIGHT: normal
+}
+#left_dot H3 {
+	BACKGROUND-COLOR: #f2f2f2; MARGIN: 0px
+}
+#left_dot P {
+	PADDING-BOTTOM: 10px; MARGIN: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 10px
+}
+#left-dot {
+	BORDER-BOTTOM: #fff 10px solid; WIDTH: 490px; FLOAT: left; MARGIN-LEFT: 8px
+}
+HTML > BODY #left-dot {
+	WIDTH: 498px
+}
+#left-dot .feat2 {
+	BACKGROUND-COLOR: #f9f9f9; DISPLAY: block; FONT-SIZE: 13px; FONT-WEIGHT: normal
+}
+#left-dot .feat {
+	PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #fff; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: block; FONT-SIZE: 13px; FONT-WEIGHT: normal; PADDING-TOP: 10px
+}
+#left-dot .reltop {
+	FONT-SIZE: 8pt
+}
+#left-dot H3 {
+	PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #f2f2f2; MARGIN: 0px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; PADDING-TOP: 5px
+}
+#left-dot P {
+	PADDING-BOTTOM: 10px; MARGIN: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 10px
+}
+#right_dot {
+	MARGIN: 0px 5px 0px 0px; WIDTH: 250px; FLOAT: right
+}
+HTML > BODY #right_dot {
+	MARGIN: 0px 10px 0px 0px
+}
+#right_dot .topsched {
+	PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #f9f7f0; PADDING-LEFT: 10px; WIDTH: 230px; PADDING-RIGHT: 0px; DISPLAY: block; FONT-FAMILY: verdana; FLOAT: right; FONT-SIZE: 7pt; FONT-WEIGHT: normal; PADDING-TOP: 10px
+}
+HTML > BODY #right_dot .topsched {
+	WIDTH: 230px
+}
+#right-dot {
+	WIDTH: 260px; FONT-FAMILY: verdana; FLOAT: right; FONT-SIZE: 7pt
+}
+#right-dot .progsched {
+	PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #f9f7f0; PADDING-LEFT: 10px; WIDTH: 230px; PADDING-RIGHT: 10px; DISPLAY: block; HEIGHT: 888px; PADDING-TOP: 10px; _height: 765px
+}
+#right-dot .eventsched {
+	PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #f9f7f0; PADDING-LEFT: 10px; WIDTH: 230px; PADDING-RIGHT: 10px; DISPLAY: block; HEIGHT: 260px !important; FONT-SIZE: 7pt; PADDING-TOP: 10px
+}
+#right-dot .eventsched LI {
+	POSITION: relative; LINE-HEIGHT: 1.8em !important; LIST-STYLE-IMAGE: url(../images/date.png); LEFT: -15px
+}
+#feat_site {
+	MARGIN: 10px 0px; WIDTH: 776px; FLOAT: left; FONT-SIZE: 12px
+}
+HTML > BODY #feat_site {
+	TEXT-ALIGN: left; PADDING-LEFT: 5px
+}
+#feat_site H3 {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #f9f7f0; MARGIN: 0px 10px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; PADDING-TOP: 0px
+}
+HTML > BODY #feat_site H3 {
+	MARGIN: 0px 13px 0px 10px
+}
+#feat_site SPAN {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; WIDTH: 250px; PADDING-RIGHT: 5px; DISPLAY: block; FLOAT: left; PADDING-TOP: 5px
+}
+HTML > BODY #feat_site SPAN {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; WIDTH: 240px; PADDING-RIGHT: 5px; FONT-WEIGHT: normal; PADDING-TOP: 5px
+}
+#feat_site P {
+	MARGIN: 5px 0px 10px; COLOR: #666666; FONT-SIZE: 16px; FONT-WEIGHT: bold
+}
+#feat {
+	TEXT-ALIGN: left; BACKGROUND-COLOR: #fdfcf9; FLOAT: left; MARGIN-LEFT: 8px; PADDING-TOP: 10px
+}
+#feat SPAN {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; WIDTH: 240px; PADDING-RIGHT: 5px; FONT-WEIGHT: normal; PADDING-TOP: 5px
+}
+HTML > BODY #feat {
+	MARGIN-LEFT: 12px
+}
+#topnews {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 5px; PADDING-LEFT: 20px; PADDING-RIGHT: 40px; FONT-FAMILY: Georgia, "Times New Roman", Times, serif; COLOR: #000033; FONT-SIZE: 11px; PADDING-TOP: 8px
+}
+#form {
+	BORDER-BOTTOM: #666666 1px solid; BORDER-LEFT: #666666 1px solid; BACKGROUND-COLOR: #ffffff; FLOAT: right; BORDER-TOP: #666666 1px solid; BORDER-RIGHT: #666666 1px solid
+}
+#top {
+	BACKGROUND: url(../images/top_bg.gif) repeat-x
+}
+#topside {
+	BACKGROUND-IMAGE: url(../images/top_bglr.gif); BACKGROUND-REPEAT: repeat-x
+}
+#bleft {
+	BACKGROUND-IMAGE: url(../images/b_left.gif); BACKGROUND-REPEAT: repeat-y; BACKGROUND-POSITION: right 50%
+}
+#bright {
+	BACKGROUND-IMAGE: url(../images/b_right.gif); BACKGROUND-REPEAT: repeat-y
+}
+#bar {
+	BACKGROUND-IMAGE: url(../images/bar.gif); BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: center 50%
+}
+#mbar {
+	BACKGROUND-IMAGE: url(../images/margin_bar.gif); BACKGROUND-REPEAT: repeat-y
+}
+#divider {
+	BACKGROUND-IMAGE: url(../images/rowdivider.gif); BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: center 50%
+}
+#nmenu {
+	BACKGROUND-IMAGE: url(../images/n_menu_bg.jpg); MARGIN-TOP: 5px; WIDTH: 775px; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: center 50%; MARGIN-BOTTOM: 10px; HEIGHT: 50px
+}
+#nmenu .menu_mcgi {
+	POSITION: relative; TOP: 13px; LEFT: 38px
+}
+#trail {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 3px; PADDING-LEFT: 20px; FONT-FAMILY: tahoma; COLOR: #000033; FONT-SIZE: 11px; FONT-WEIGHT: normal; PADDING-TOP: 2px
+}
+#up_footer {
+	TEXT-ALIGN: center; BORDER-LEFT: #ffffff 8px solid; PADDING-BOTTOM: 10px; FONT-FAMILY: tahoma; BACKGROUND: #f9f7f0; COLOR: #000033; FONT-SIZE: 11px; BORDER-TOP: #ffffff 5px solid; BORDER-RIGHT: #ffffff 8px solid; PADDING-TOP: 5px
+}
+#footer {
+	TEXT-ALIGN: right; PADDING-LEFT: 8px; FONT-FAMILY: tahoma; COLOR: #000000; FONT-SIZE: 10px
+}
+#youtubelist {
+	PADDING-BOTTOM: 5px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; DISPLAY: block; CLEAR: both; LIST-STYLE-IMAGE: none; PADDING-TOP: 5px
+}
+#youtubebox {
+	PADDING-BOTTOM: 0px; MARGIN: 2px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: inline; CLEAR: right; PADDING-TOP: 0px
+}
+#youtubethumb {
+	BORDER-BOTTOM: #333 4px solid; BORDER-LEFT: #333 4px solid; WIDTH: 130px; MARGIN-BOTTOM: 5px; HEIGHT: 97px; BORDER-TOP: #333 4px solid; BORDER-RIGHT: #333 4px solid
+}
+#youtubecontent {
+	POSITION: absolute; WIDTH: 430px; HEIGHT: 520px; MARGIN-LEFT: -430px; TOP: -220px; LEFT: 50%
+}
+#youtubeoverlay {
+	POSITION: absolute; BACKGROUND-COLOR: #fff; WIDTH: 100%; HEIGHT: 1px; OVERFLOW: visible; TOP: 50%
+}
+.labelfield {
+	COLOR: gray; FONT-SIZE: 90%
+}
+.datefield {
+	COLOR: gray; FONT-SIZE: 90%
+}

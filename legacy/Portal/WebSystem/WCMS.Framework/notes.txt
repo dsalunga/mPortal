@@ -1,0 +1,92 @@
+System Settings:
+
+System.SETTINGS
+System.ShowOrphan
+System.ShowSiteSecurity
+
+
+Fixes and Features:
+
+Control Preview image upload
+Page name, must validate: no spaces etc
+
+Personalization -> by default, the web system is complete and functional, has default templates etc
+aspnet_Membership
+put action controls in upper left
+password complexity
+
+session namespace eg: CMS.UserID
+
+
+LATEST UPDATES:
+	SELECT_CommonSectionItemTemplates
+	UPDATE_CommonSectionItemTemplates
+	
+aspnet_regsql.exe -S PELEUS -U sa -P sa -ed -d Aboitiz3 -et -t CMS.Sites
+
+
+roles:
+
+Administrators
+Content Managers
+Guests 	Manage
+Site Owners
+Users
+
+SELECT IDENT_CURRENT('WebTemplatePanels')
+
+http://www.codeplex.com/jaws/
+http://templates.n2cms.com/
+
+
+http://localhost:30968/admin/WebMasterPageItem.aspx?SiteId=1&MasterPageId=1&PlaceHolderID=67
+
+Objects:
+
+
+
+
+SET @PageId = (SELECT LastRecordId + 1 FROM WebObjects 
+					WHERE ObjectName='WebPages')
+								
+UPDATE WebObjects SET LastRecordId=@PageId
+	WHERE ObjectName='WebPages'
+	
+	
+http://www.freewebsitetemplates.com/
+
+
+Site/Page/PageItem/MasterPage/MasterPageItem:
+- AccessType: Local/Local&Public/Local&IP/Local&IPDeny/Local&Public&IP/Local&Public&IPDeny
+
+WebObjectTypes:
+- Registration of record types like Content, Article, Photo, Video, Custom List, etc.
+- To be categorized by WebDirectories
+
+
+
+Error occurred while decoding OAEP padding.
+
+
+Please visit the following official websites: 
+http://angdatingdaan.org 
+http://theoldpath.tv 
+http://truthcaster.com 
+http://esoriano.wordpress.com 
+http://elisoriano.com 
+http://danielrazon.com 
+http://kaanib.net
+
+DECLARE @Str NVARCHAR(MAX)
+SELECT @Str =  COALESCE(@Str + ' | ','') + Title FROM Articles
+SELECT @Str;
+
+SELECT COALESCE(null, 20, null) 
+
+
+admin
+add!@#$
+
+
+Issues:
+- Be sure to reference the Core.XmlProvider in WebSystem project

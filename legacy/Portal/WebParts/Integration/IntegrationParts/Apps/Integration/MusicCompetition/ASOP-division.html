@@ -1,0 +1,88 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name = "viewport" content = "width = 800"/>
+
+<title>ASOP Division Official Page</title>
+<script src="/Content/Assets/Scripts/jquery-1.8.2.min.js"></script>
+<script src="/Content/Parts/MusicCompetition/v3-res/js/website.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.menuselect').hover(function () {
+            $(this).find('.buttondown').fadeIn('fast');
+            $(this).find('.buttontext').text('soon...');
+
+        },
+            function () {
+                temp = $(this).attr('data-btntext');
+                $(this).find('.buttontext').text(temp);
+                $(this).find('.buttondown').fadeOut('fast');
+            }
+        )
+    });
+</script>
+<link rel='stylesheet' media='screen and (max-width: 800px)' href='/Content/Parts/MusicCompetition/v3-res/css/narrow.css' />
+<link rel='stylesheet' media='screen and (min-width: 801px)' href='/Content/Parts/MusicCompetition/v3-res/css/medium.css' />
+<style type="text/css">
+	.menuselect{width:130px; height:31px; background-image:url(/Content/Parts/MusicCompetition/v3-res/images/buttonup.png); background-size:130px, 31px; float:right; margin-left:-20px; cursor:pointer;
+		filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Parts/MusicCompetition/v3-res/images/buttonup.png', sizingMethod='scale');
+		-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Parts/MusicCompetition/v3-res/images/buttonup.png', sizingMethod='scale')";
+	}
+	#bg{ background-image:url(/Content/Parts/MusicCompetition/v3-res/images/bg.jpg); background-size:100%, 100%; height:100%; width:100%; background-repeat:no-repeat; min-height:600px;
+		filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Parts/MusicCompetition/v3-res/images/bg.jpg', sizingMethod='scale');
+		-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Parts/MusicCompetition/v3-res/images/bg.jpg', sizingMethod='scale')";
+	  }
+</style>
+</head>
+
+<body>
+<div id="bg"></div>
+<div id="menu">
+	<div id="selectcontain">
+    <div class="menuselect" data-btntext="vote"><img class="buttondown" src="/Content/Parts/MusicCompetition/v3-res/images/buttondown.png" width="130"/><div  class="buttontext" style="padding-left:30px;">vote</div></div>
+    <div class="menuselect" data-btntext="about"><img class="buttondown" src="/Content/Parts/MusicCompetition/v3-res/images/buttondown.png" width="130"/><div  class="buttontext" style="padding-left:33px;">about</div></div>
+	<div class="menuselect" data-btntext="videos"><img class="buttondown" src="/Content/Parts/MusicCompetition/v3-res/images/buttondown.png" width="130"/><div  class="buttontext">videos</div></div>
+    <div class="menuselect" data-btntext="photos"><img class="buttondown" src="/Content/Parts/MusicCompetition/v3-res/images/buttondown.png" width="130"/><div  class="buttontext">photos</div></div>
+    <div class="menuselect" data-btntext="the show"><img class="buttondown" src="/Content/Parts/MusicCompetition/v3-res/images/buttondown.png" width="130"/><div class="buttontext" style="padding-left:33px;">the show</div></div>
+    <div class="menuselect" data-btntext="asop winner"><img class="buttondown" src="/Content/Parts/MusicCompetition/v3-res/images/buttondown.png" width="130"/><div class="buttontext" style="padding-left:20px;">asop winner</div></div>
+    <div class="menuselect" data-btntext="finalists"><img class="buttondown" src="/Content/Parts/MusicCompetition/v3-res/images/buttondown.png" width="130"/><div  class="buttontext">finalists</div></div>
+    </div>
+</div>
+<div id="contents">
+	<div class="wrapper">
+    	<img class="asoplogo" src="/Content/Parts/MusicCompetition/v3-res/images/largelogo.png" width="239"/>
+        <img class="asoplogo2" src="/Content/Parts/MusicCompetition/v3-res/images/largelogo.png"/>
+        <div class="textcontain1">
+            <h4>Host City:<br/> <span class="textcolor1">Singapore</span></h4>
+            <h4>Date & Time:<br/><span class="textcolor1"> October 21, 2012 - 7pm SGT</span></h4>
+            <h4>For inquiries please contact:<br/> <a href="mailto:asopasiaoceania@me.com">asopasiaoceania@me.com</a></h4>
+        </div>
+        <div id="asop_slideshow">
+        	<div class="asop_pic"><img class="border1" src="/Content/Parts/MusicCompetition/v3-res/images/slide1.jpg" width="700" height="320"/></div>
+            <div class="asop_pic"><img class="border1" src="/Content/Parts/MusicCompetition/v3-res/images/slide2.jpg" width="700"  height="320"/></div>
+            <div class="asop_pic"><img class="border1" src="/Content/Parts/MusicCompetition/v3-res/images/slide3.jpg" width="700"  height="320"/></div>
+            <div class="asop_pic"><img class="border1" src="/Content/Parts/MusicCompetition/v3-res/images/slide4.jpg" width="700" height="320"/></div>
+            <div class="asop_pic"><img class="border1" src="/Content/Parts/MusicCompetition/v3-res/images/slide5.jpg" width="700" height="320"/></div>
+            <div class="asop_pic"><img class="border1" src="/Content/Parts/MusicCompetition/v3-res/images/slide6.jpg" width="700" height="320"/></div>
+        </div>
+        <div id="bottombar">A Song Of Praise 2012 All Rights Reserved</div>
+	</div>
+</div>
+
+    <script type="text/javascript">
+        clearInterval(ruark);
+        jQuery("#asop_slideshow > .asop_pic:gt(0)").hide();
+        var ruark = setInterval(function () {
+            jQuery('#asop_slideshow > .asop_pic:first')
+              .fadeOut(500)
+              .next()
+              .fadeIn(500)
+              .end()
+              .appendTo('#asop_slideshow');
+        }, 6000);
+    </script>
+
+
+</body>
+</html>

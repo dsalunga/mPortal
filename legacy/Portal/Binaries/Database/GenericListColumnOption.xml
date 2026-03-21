@@ -1,0 +1,89 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="GenericListColumnOption">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="ColumnId" type="xs:int" />
+                <xs:element name="OptionTypeId" type="xs:int" />
+                <xs:element name="Rank" type="xs:int" />
+                <xs:element name="Caption" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DefaultValue" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//GenericListColumnOption" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <GenericListColumnOption>
+    <Id>1</Id>
+    <ColumnId>1</ColumnId>
+    <OptionTypeId>1</OptionTypeId>
+    <Rank>0</Rank>
+    <Caption />
+    <DefaultValue>0</DefaultValue>
+  </GenericListColumnOption>
+  <GenericListColumnOption>
+    <Id>2</Id>
+    <ColumnId>2</ColumnId>
+    <OptionTypeId>1</OptionTypeId>
+    <Rank>0</Rank>
+    <Caption />
+    <DefaultValue>0</DefaultValue>
+  </GenericListColumnOption>
+  <GenericListColumnOption>
+    <Id>3</Id>
+    <ColumnId>3</ColumnId>
+    <OptionTypeId>2</OptionTypeId>
+    <Rank>0</Rank>
+    <Caption />
+    <DefaultValue>0</DefaultValue>
+  </GenericListColumnOption>
+  <GenericListColumnOption>
+    <Id>4</Id>
+    <ColumnId>4</ColumnId>
+    <OptionTypeId>9</OptionTypeId>
+    <Rank>0</Rank>
+    <Caption>Pending</Caption>
+    <DefaultValue>0</DefaultValue>
+  </GenericListColumnOption>
+  <GenericListColumnOption>
+    <Id>5</Id>
+    <ColumnId>4</ColumnId>
+    <OptionTypeId>9</OptionTypeId>
+    <Rank>1</Rank>
+    <Caption>Verified</Caption>
+    <DefaultValue>0</DefaultValue>
+  </GenericListColumnOption>
+  <GenericListColumnOption>
+    <Id>6</Id>
+    <ColumnId>5</ColumnId>
+    <OptionTypeId>8</OptionTypeId>
+    <Rank>4</Rank>
+    <Caption>asdfsadf</Caption>
+    <DefaultValue>0</DefaultValue>
+  </GenericListColumnOption>
+  <GenericListColumnOption>
+    <Id>7</Id>
+    <ColumnId>7</ColumnId>
+    <OptionTypeId>1</OptionTypeId>
+    <Rank>0</Rank>
+    <Caption />
+    <DefaultValue>0</DefaultValue>
+  </GenericListColumnOption>
+</mPortal>

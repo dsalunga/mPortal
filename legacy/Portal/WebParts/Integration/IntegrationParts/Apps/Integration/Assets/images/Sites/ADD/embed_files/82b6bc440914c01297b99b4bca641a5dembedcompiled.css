@@ -1,0 +1,846 @@
+HTML > BODY .goog-inline-block {
+	DISPLAY: inline-block
+}
+.goog-inline-block {
+	POSITION: relative; DISPLAY: inline-block
+}
+* HTML .goog-inline-block {
+	DISPLAY: inline
+}
+*:first-child + HTML .goog-inline-block {
+	DISPLAY: inline
+}
+.t1 {
+	LINE-HEIGHT: 1px; MARGIN: 0px 2px; HEIGHT: 1px; FONT-SIZE: 1px; OVERFLOW: hidden
+}
+.t2 {
+	LINE-HEIGHT: 1px; MARGIN: 0px 1px; HEIGHT: 1px; FONT-SIZE: 1px; OVERFLOW: hidden
+}
+.calendar-list INPUT {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: inline; MARGIN-BOTTOM: 1px; PADDING-TOP: 0px
+}
+.calendar-list SPAN {
+	COLOR: #0f0; FONT-WEIGHT: bold
+}
+.calendar-list LABEL {
+	CURSOR: pointer
+}
+.chip {
+	POSITION: absolute; COLOR: #fff; OVERFLOW: hidden; CURSOR: default; -moz-user-select: none
+}
+.ie6 .chip {
+	PADDING-RIGHT: 2px
+}
+.chip DL {
+	BORDER-BOTTOM: 0px solid; BORDER-LEFT: 1px solid; PADDING-BOTTOM: 1px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; OVERFLOW: hidden; BORDER-TOP: 0px solid; BORDER-RIGHT: 1px solid; PADDING-TOP: 0px
+}
+.chip DT {
+	TEXT-ALIGN: left; MARGIN-TOP: -1px; PADDING-LEFT: 1px; FONT: bold 80% Verdana,Sans-serif; WHITE-SPACE: nowrap; OVERFLOW: hidden
+}
+.ie6 .chip DL {
+	WIDTH: 100%; ZOOM: 1
+}
+.ie6 .chip DT {
+	ZOOM: 1
+}
+.ie6 .chip DD {
+	ZOOM: 1
+}
+.chip DD {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; FONT: 100%/1.3em Verdana,Sans-serif; WORD-WRAP: break-word; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+.cbrd {
+	BORDER-BOTTOM: 1px solid; BORDER-LEFT: 1px solid; BORDER-TOP: 1px solid; BORDER-RIGHT: 1px solid; -moz-border-radius: 3px; -webkit-border-radius: 3px
+}
+.cbrd DL {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+.cbrd DT {
+	MARGIN-TOP: 0px
+}
+.ct {
+	BORDER-BOTTOM: transparent 2px solid; BORDER-LEFT: transparent 2px solid; HEIGHT: 0px; OVERFLOW: hidden; BORDER-TOP: transparent 0px solid; BORDER-RIGHT: transparent 2px solid
+}
+.ie6 .ct {
+	BORDER-BOTTOM-STYLE: solid; BORDER-RIGHT-STYLE: dotted; BORDER-TOP-STYLE: solid; BORDER-LEFT-STYLE: dotted
+}
+.cb1 {
+	BORDER-BOTTOM-STYLE: solid; BORDER-RIGHT-STYLE: solid; BORDER-TOP-STYLE: solid; BORDER-LEFT-STYLE: solid
+}
+.cb2 {
+	BORDER-BOTTOM-STYLE: solid; BORDER-RIGHT-STYLE: solid; BORDER-TOP-STYLE: solid; BORDER-LEFT-STYLE: solid
+}
+.cb1 {
+	LINE-HEIGHT: 1px; BORDER-RIGHT-WIDTH: 1px; MARGIN: 0px 1px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 1px; FONT-SIZE: 1px; BORDER-LEFT-WIDTH: 1px
+}
+.cb2 {
+	LINE-HEIGHT: 0; BORDER-RIGHT-WIDTH: 0px; MARGIN: 0px 2px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 1px; HEIGHT: 0px; FONT-SIZE: 0px; BORDER-LEFT-WIDTH: 0px
+}
+.ie6 .ct {
+	MARGIN-RIGHT: -2px
+}
+.ie6 .cb1 {
+	MARGIN-RIGHT: -1px
+}
+.ie6 .cb2 {
+	MARGIN-RIGHT: 0px
+}
+.cro DL {
+	PADDING-LEFT: 1px
+}
+.cro DT {
+	MARGIN-TOP: 1px
+}
+.chip A:link {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+.chip A:visited {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+.chip A:active {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+.cic {
+	BACKGROUND-IMAGE: url(//calendar.google.com/googlecalendar/images/combined_v6.gif); LINE-HEIGHT: 7px; WIDTH: 9px; DISPLAY: inline-block; BACKGROUND-REPEAT: no-repeat; HEIGHT: 7px; MARGIN-LEFT: 2px
+}
+.ff2 .cic {
+	POSITION: relative; VERTICAL-ALIGN: bottom; TOP: -2px
+}
+.cic-ques {
+	LINE-HEIGHT: 9px; WIDTH: 9px; BACKGROUND-POSITION: -56px -50px; HEIGHT: 9px; MARGIN-LEFT: 0px; MARGIN-RIGHT: 2px
+}
+.cic-prsn {
+	BACKGROUND-POSITION: -28px -50px
+}
+.cic-noprs {
+	BACKGROUND-POSITION: -46px -50px
+}
+.cic-tmr {
+	BACKGROUND-POSITION: -28px -57px
+}
+.cic-rcr {
+	BACKGROUND-POSITION: -37px -50px
+}
+.cic-spcl {
+	BACKGROUND-POSITION: -37px -57px
+}
+.cic-priv {
+	BACKGROUND-POSITION: -11px -64px
+}
+.chip .location {
+	FONT-STYLE: normal; DISPLAY: block
+}
+.resizer {
+	POSITION: absolute; LINE-HEIGHT: 7px; WIDTH: 100%; BOTTOM: 0px; HEIGHT: 7px; CURSOR: s-resize
+}
+.rszr_icon {
+	LINE-HEIGHT: 0; WIDTH: 10px; HEIGHT: 0px; MARGIN-LEFT: auto; FONT-SIZE: 0px; BORDER-TOP: white 3px double; MARGIN-RIGHT: auto
+}
+.calendar-container {
+	POSITION: relative; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px; font-size-adjust: none
+}
+.view-cap {
+	BACKGROUND-COLOR: #c3d9ff
+}
+.view-container-border {
+	BACKGROUND-COLOR: #c3d9ff
+}
+.view-container {
+	POSITION: relative; OVERFLOW: hidden
+}
+.view-container-border {
+	POSITION: relative; PADDING-BOTTOM: 0px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; ZOOM: 1; PADDING-TOP: 0px
+}
+.loading {
+	Z-INDEX: 25000001; POSITION: absolute; PADDING-BOTTOM: 2px; BACKGROUND-COLOR: #cc4444; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; DISPLAY: none; WHITE-SPACE: nowrap; COLOR: white; TOP: 0px; RIGHT: 2px; PADDING-TOP: 2px
+}
+.detail-item {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.event-details-label {
+	PADDING-BOTTOM: 3px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 7em; PADDING-RIGHT: 0px; DISPLAY: block; FLOAT: left; COLOR: #4e4e4e; CLEAR: left; FONT-SIZE: 100%; FONT-WEIGHT: bold; PADDING-TOP: 3px
+}
+.event-when {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: block; MARGIN-LEFT: 7em; PADDING-TOP: 3px
+}
+.event-where {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: block; MARGIN-LEFT: 7em; PADDING-TOP: 3px
+}
+.event-description {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: block; MARGIN-LEFT: 7em; PADDING-TOP: 3px
+}
+.event-who {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: block; MARGIN-LEFT: 7em; PADDING-TOP: 3px
+}
+.event-going {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: block; MARGIN-LEFT: 7em; PADDING-TOP: 3px
+}
+.detail-content {
+	PADDING-BOTTOM: 1em; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 1em
+}
+.bubble .details .title {
+	FONT-SIZE: medium; FONT-WEIGHT: bold
+}
+.bubble .detail-content {
+	PADDING-BOTTOM: 0px
+}
+.bubble .separator {
+	LINE-HEIGHT: 0; MARGIN-TOP: 10px; WIDTH: 100%; MARGIN-BOTTOM: 5px; HEIGHT: 1px; FONT-SIZE: 0px
+}
+* HTML .event-detail-item {
+	MARGIN-RIGHT: -3px
+}
+* HTML .event-when {
+	MARGIN: 0px; HEIGHT: 1%
+}
+* HTML .event-where {
+	MARGIN: 0px; HEIGHT: 1%
+}
+* HTML .event-description {
+	MARGIN: 0px; HEIGHT: 1%
+}
+* HTML .event-who {
+	MARGIN: 0px; HEIGHT: 1%
+}
+* HTML .event-going {
+	MARGIN: 0px; HEIGHT: 1%
+}
+.cc {
+	BORDER-BOTTOM: gray 1px solid; POSITION: absolute; BORDER-LEFT: gray 1px solid; BACKGROUND-COLOR: white; FONT: 11px Arial,sans-serif; VISIBILITY: hidden; BORDER-TOP: gray 1px solid; BORDER-RIGHT: gray 1px solid
+}
+.cc-titlebar {
+	BACKGROUND-COLOR: #e8eef7
+}
+.cc-close {
+	POSITION: absolute; MARGIN: 2px 2px 0px 0px; WIDTH: 15px; BACKGROUND: url(//calendar.google.com/googlecalendar/images/combined_v6.gif) 0px -50px; HEIGHT: 15px; CURSOR: pointer; RIGHT: 0px
+}
+.cc-title {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; FONT-WEIGHT: bold; PADDING-TOP: 2px
+}
+.wc-root {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; WIDTH: 100%; HEIGHT: 100%; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}
+.calendar-container {
+	FONT-FAMILY: Arial,sans-serif; FONT-SIZE: small
+}
+.footer {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 85%; TEXT-DECORATION: none; PADDING-TOP: 4px
+}
+.subscribe-image {
+	CURSOR: pointer
+}
+.menu-arrow {
+	VERTICAL-ALIGN: bottom; CURSOR: pointer
+}
+.header {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 0px
+}
+.header IMG {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; VERTICAL-ALIGN: middle; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}
+.nav-table {
+	WHITE-SPACE: nowrap; CURSOR: pointer
+}
+.nav-table TR {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.nav-table TD {
+	VERTICAL-ALIGN: middle
+}
+.navSpacer {
+	WIDTH: 100%; CURSOR: default
+}
+.legend-bullet {
+	BORDER-BOTTOM: grey 0.05em solid; BORDER-LEFT: grey 0.05em solid; PADDING-BOTTOM: 0px; MARGIN: 0.2em; PADDING-LEFT: 0px; WIDTH: 0.9em; PADDING-RIGHT: 0px; HEIGHT: 0.9em; VERTICAL-ALIGN: text-bottom; OVERFLOW: hidden; BORDER-TOP: grey 0.05em solid; BORDER-RIGHT: grey 0.05em solid; PADDING-TOP: 0px
+}
+.date-buttons IMG {
+	VERTICAL-ALIGN: middle
+}
+.arrowImg {
+	MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px
+}
+.date-picker-on {
+	BORDER-BOTTOM: #808080 1px solid; BORDER-LEFT: #808080 1px solid; BORDER-TOP: #808080 1px solid; BORDER-RIGHT: #808080 1px solid
+}
+.date-picker-off {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; PADDING-TOP: 1px
+}
+.date-picker-arrow-on {
+	BACKGROUND-COLOR: #c3d9ff
+}
+.date-top {
+	PADDING-LEFT: 0.3em; PADDING-RIGHT: 0.3em; WHITE-SPACE: nowrap; FONT-WEIGHT: bold; PADDING-TOP: 1px
+}
+.date-top-on {
+	PADDING-LEFT: 0.3em; PADDING-RIGHT: 0.3em; WHITE-SPACE: nowrap; FONT-WEIGHT: bold; PADDING-TOP: 1px
+}
+.date-top-over {
+	PADDING-LEFT: 0.3em; PADDING-RIGHT: 0.3em; WHITE-SPACE: nowrap; FONT-WEIGHT: bold; PADDING-TOP: 1px
+}
+.date-top-over {
+	TEXT-DECORATION: underline
+}
+.cal-menu {
+	Z-INDEX: 100001; BORDER-BOTTOM: #808080 1px solid; POSITION: absolute; BORDER-LEFT: #808080 1px solid; BORDER-TOP: #808080 1px solid; TOP: 37px; BORDER-RIGHT: #808080 1px solid; LEFT: 11px
+}
+.calendar-list {
+	BORDER-BOTTOM: gray 1px solid; BORDER-LEFT: gray 1px solid; PADDING-BOTTOM: 2px; BACKGROUND-COLOR: white; PADDING-LEFT: 2px; WIDTH: 14em; PADDING-RIGHT: 2px; FONT-FAMILY: Arial,sans-serif; FONT-SIZE: 9pt; BORDER-TOP: gray 1px solid; BORDER-RIGHT: gray 1px solid; PADDING-TOP: 2px
+}
+.calendar-nav IMG {
+	WIDTH: 15px; HEIGHT: 14px
+}
+.calendar-list .subscribeButton {
+	MARGIN: 2px 0px 0px; WIDTH: 100%
+}
+.calendar-list IMG {
+	MARGIN-LEFT: 3px; CURSOR: pointer
+}
+.today-button {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; FONT-SIZE: 85%; VERTICAL-ALIGN: middle; PADDING-TOP: 0px
+}
+.navbutton {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-LEFT: 2px; WIDTH: 29px; PADDING-RIGHT: 2px; HEIGHT: 17px; VERTICAL-ALIGN: middle; BORDER-TOP: 0px; CURSOR: pointer; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.navBack {
+	BACKGROUND-IMAGE: url(//calendar.google.com/googlecalendar/images/combined_v6.gif); BACKGROUND-POSITION: -148px -17px
+}
+.navForward {
+	BACKGROUND-IMAGE: url(//calendar.google.com/googlecalendar/images/combined_v6.gif); BACKGROUND-POSITION: -148px 0px
+}
+BODY.rtl .navBack {
+	BACKGROUND-POSITION: -148px 0px
+}
+BODY.rtl .navForward {
+	BACKGROUND-POSITION: -148px -17px
+}
+.view-tab {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; VERTICAL-ALIGN: bottom; CURSOR: pointer; PADDING-TOP: 0px
+}
+.view-tab-unselected {
+	BACKGROUND-COLOR: #e8eef7
+}
+.view-tab-selected {
+	BACKGROUND-COLOR: #c3d9ff
+}
+.tab-name {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; WHITE-SPACE: nowrap; PADDING-TOP: 4px
+}
+.tab-spacer {
+	WIDTH: 3px; CURSOR: default
+}
+.bubble {
+	POSITION: absolute; VISIBILITY: hidden; FONT-SIZE: 9pt; TOP: 0px; LEFT: 0px
+}
+.bubble-table {
+	WIDTH: 100%; TABLE-LAYOUT: fixed
+}
+.bubble-cell-side {
+	WIDTH: 25px
+}
+.bubble-cell-main {
+	WIDTH: 100%
+}
+.bubble-sprite {
+	BACKGROUND-IMAGE: url(//calendar.google.com/googlecalendar/images/bubble_combined.png); POSITION: absolute; WIDTH: 148px; HEIGHT: 96px
+}
+.ie6 .bubble-sprite {
+	FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="crop",src="//calendar.google.com/googlecalendar/images/bubble_combined.png"); BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.bubble-corner {
+	POSITION: relative; WIDTH: 25px; HEIGHT: 25px; OVERFLOW: hidden
+}
+.bubble-tl {
+	LEFT: 0px
+}
+.bubble-tr {
+	LEFT: -25px
+}
+.bubble-bl {
+	TOP: -25px; LEFT: 0px
+}
+.bubble-br {
+	TOP: -25px; LEFT: -25px
+}
+.bubble-closebutton {
+	POSITION: absolute; WIDTH: 15px; BACKGROUND: url(//calendar.google.com/googlecalendar/images/combined_v6.gif) 0px -50px; HEIGHT: 15px; TOP: 10px; CURSOR: pointer; RIGHT: 10px
+}
+.bubble-top {
+	BACKGROUND: #fff; HEIGHT: 24px
+}
+.bubble-bottom {
+	BACKGROUND: #fff; HEIGHT: 24px
+}
+.bubble-top {
+	BORDER-TOP: #ababab 1px solid
+}
+.bubble-bottom {
+	BORDER-BOTTOM: #ababab 1px solid
+}
+.bubble-mid {
+	BORDER-LEFT: #ababab 1px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; BACKGROUND: #fff; BORDER-RIGHT: #ababab 1px solid; PADDING-TOP: 0px
+}
+.prong {
+	POSITION: relative; WIDTH: 98px; MARGIN-BOTTOM: -72px; HEIGHT: 72px; OVERFLOW: hidden; TOP: -1px
+}
+.prong .bubble-sprite {
+	TOP: -24px; LEFT: -50px
+}
+.te {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; ZOOM: 1; WHITE-SPACE: nowrap; OVERFLOW: hidden; PADDING-TOP: 1px
+}
+.te-t {
+	LINE-HEIGHT: 1.2; FONT-FAMILY: Arial,sans-serif; WHITE-SPACE: nowrap; FONT-SIZE: 91%; FONT-WEIGHT: bold
+}
+.te-rev {
+	WIDTH: 100%
+}
+.te-rev-s {
+	WIDTH: 100%; WHITE-SPACE: nowrap; VERTICAL-ALIGN: bottom
+}
+.te-rev-spos {
+	POSITION: relative; ZOOM: 1
+}
+.te-rev-scont {
+	POSITION: absolute; TEXT-ALIGN: left; WIDTH: 100%; OVERFLOW: hidden; TOP: 0px; LEFT: 0px
+}
+.rb-n {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 3px; PADDING-RIGHT: 1px; WHITE-SPACE: nowrap; COLOR: white; OVERFLOW: hidden; CURSOR: pointer; PADDING-TOP: 1px; -moz-border-radius: 3px; -webkit-border-radius: 3px
+}
+.rb-o {
+	BORDER-BOTTOM: 1px solid; BORDER-LEFT: 0px solid; MARGIN: 0px 1px; BORDER-TOP: 1px solid; CURSOR: pointer; BORDER-RIGHT: 0px solid
+}
+.rb-m {
+	BORDER-BOTTOM: 0px solid; BORDER-LEFT: 1px solid; MARGIN: 0px -1px; PADDING-LEFT: 3px; ZOOM: 1; BORDER-TOP: 0px solid; BORDER-RIGHT: 1px solid
+}
+.rb-i {
+	WIDTH: 100%; WHITE-SPACE: nowrap; COLOR: white; OVERFLOW: hidden
+}
+.st-bg-table {
+	POSITION: absolute; WIDTH: 100%; TABLE-LAYOUT: fixed; HEIGHT: 100%; TOP: 0px; LEFT: 0px
+}
+.st-bg {
+	BORDER-LEFT: #c3d9ff 1px solid
+}
+.st-bg-today {
+	BACKGROUND-COLOR: #ffc
+}
+.bg-exists .st-bg-today {
+	BORDER-BOTTOM: #579 1px solid; BORDER-LEFT: #579 1px solid; BACKGROUND-COLOR: #eee; BORDER-TOP: #579 1px solid; BORDER-RIGHT: #579 1px solid; opacity: 0.8
+}
+.st-grid {
+	POSITION: relative; WIDTH: 100%; TABLE-LAYOUT: fixed
+}
+.st-c {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 2px; PADDING-RIGHT: 1px; FONT-FAMILY: Verdana,sans-serif; VERTICAL-ALIGN: top; PADDING-TOP: 1px
+}
+.st-s {
+	PADDING-BOTTOM: 2px; CURSOR: default
+}
+.st-dtitle {
+	TEXT-ALIGN: right; BORDER-LEFT: #c3d9ff 1px solid; LINE-HEIGHT: 16px; BACKGROUND-COLOR: #e8eef7; PADDING-RIGHT: 2px; COLOR: #444; OVERFLOW: hidden; BORDER-TOP: #c3d9ff 1px solid
+}
+.bg-exists .st-dtitle {
+	FILTER: alpha(opacity=80); opacity: 0.8
+}
+.st-dtitle-nonmonth {
+	BACKGROUND-COLOR: #eee; COLOR: #777
+}
+.st-dtitle-today {
+	BACKGROUND-COLOR: #bcd
+}
+.st-wc {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 16px; PADDING-RIGHT: 0px; FLOAT: left; HEIGHT: 16px; VERTICAL-ALIGN: bottom; PADDING-TOP: 0px
+}
+.st-wc-click {
+	CURSOR: pointer
+}
+.st-c .te {
+	CURSOR: pointer
+}
+.bg-exists .te {
+	BACKGROUND-COLOR: white; PADDING-LEFT: 2px; -moz-border-radius: 3px; -webkit-border-radius: 3px
+}
+.st-ad-ml {
+	BORDER-BOTTOM: transparent 4px solid; POSITION: relative; LINE-HEIGHT: 0; WIDTH: 0px; MARGIN-BOTTOM: -8px; HEIGHT: 0px; FONT-SIZE: 0px; BORDER-TOP: transparent 4px solid; TOP: 2px
+}
+.st-ad-mr {
+	BORDER-BOTTOM: transparent 4px solid; POSITION: relative; LINE-HEIGHT: 0; WIDTH: 0px; MARGIN-BOTTOM: -8px; HEIGHT: 0px; FONT-SIZE: 0px; BORDER-TOP: transparent 4px solid; TOP: 2px
+}
+.st-ad-mpad {
+	PADDING-LEFT: 10px
+}
+.st-ad-ml {
+	MARGIN-LEFT: -7px; MARGIN-RIGHT: auto; BORDER-RIGHT: white 4px solid
+}
+.st-ad-mr {
+	BORDER-LEFT: white 4px solid; MARGIN-LEFT: auto; MARGIN-RIGHT: 3px
+}
+.st-more {
+	TEXT-ALIGN: center; FONT-FAMILY: Arial,sans-serif; COLOR: #112abb; CURSOR: pointer
+}
+.st-moreul {
+	TEXT-DECORATION: underline
+}
+.st-moreicon {
+	TEXT-ALIGN: right; BACKGROUND-COLOR: #d0d6de; MARGIN: 1px; PADDING-RIGHT: 5px; COLOR: #627487; FONT-SIZE: 85%
+}
+.drag-lasso-container {
+	POSITION: absolute; WIDTH: 0px; HEIGHT: 0px; TOP: 0px; LEFT: 0px
+}
+.drag-lasso {
+	POSITION: absolute; FILTER: alpha(opacity=50); LINE-HEIGHT: 0; BACKGROUND-COLOR: #c3d9ff; FONT-SIZE: 0px; opacity: 0.5; -moz-opacity: 0.5; -khtml-opacity: 0.5
+}
+.drag-event {
+	Z-INDEX: 1000; POSITION: absolute; FONT-FAMILY: Verdana,sans-serif; CURSOR: pointer
+}
+.agenda {
+	BACKGROUND: white
+}
+.agenda-padding {
+	LINE-HEIGHT: 1px; HEIGHT: 6px; FONT-SIZE: 1px
+}
+.agenda .scrollbox {
+	BORDER-BOTTOM: #fff 1px solid; BORDER-LEFT: #a2bbdd 1px solid; OVERFLOW-X: hidden; OVERFLOW-Y: auto; BACKGROUND-COLOR: white; MARGIN-TOP: 6px; OVERFLOW: auto; BORDER-TOP: #a2bbdd 1px solid
+}
+.agenda-scrollboxBoundary {
+	BACKGROUND-COLOR: #c3d9ff
+}
+.agenda .event {
+	MARGIN: 0px; CLEAR: both; BORDER-TOP: #cde 1px solid; CURSOR: pointer
+}
+.agenda .day {
+	BORDER-BOTTOM: #cde 1px solid
+}
+.agenda .event-summary {
+	WHITE-SPACE: nowrap
+}
+.agenda .event-summary-expanded {
+	WHITE-SPACE: nowrap
+}
+.agenda .event-details {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: block; FLOAT: none; CLEAR: both; CURSOR: default; PADDING-TOP: 0px
+}
+.agenda .event-details-inner {
+	PADDING-BOTTOM: 0.3em; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.agenda .event-details {
+	MARGIN: 0.3em 1em
+}
+.agenda .event-summary {
+	MARGIN: 0.3em 1em
+}
+.agenda .event-summary-expanded {
+	MARGIN: 0.3em 1em
+}
+.agenda .add-icon {
+	PADDING-LEFT: 1em; DISPLAY: block; FLOAT: right
+}
+.agenda .event-time {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 2.5em; PADDING-RIGHT: 0px; DISPLAY: block; FLOAT: left; PADDING-TOP: 0px
+}
+.agenda .all-day .event-time {
+	DISPLAY: none
+}
+.agenda .event-title {
+	MARGIN: 0px; DISPLAY: block; WHITE-SPACE: nowrap; CLEAR: none; OVERFLOW: hidden
+}
+.agenda .title-wrapper {
+	PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 2.5em; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: block; PADDING-TOP: 0px
+}
+.agenda .all-day .title-wrapper {
+	MARGIN-LEFT: 0px
+}
+.agenda .event-reply-status {
+	PADDING-BOTTOM: 0px; BORDER-RIGHT-WIDTH: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 2em; PADDING-RIGHT: 0px; DISPLAY: block; FLOAT: left; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; PADDING-TOP: 0px
+}
+.agenda .event-reply-status IMG {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+.agenda .all-day .event-reply-status {
+	WIDTH: 0px
+}
+.agenda .event-summary-expanded {
+	FONT-WEIGHT: bold
+}
+.agenda .attendee-no {
+	COLOR: gray
+}
+.agenda .attendee-maybe {
+	COLOR: gray
+}
+.agenda .attendee-yes {
+	COLOR: black
+}
+.agenda .date-label {
+	POSITION: relative; BACKGROUND: #e5ecf9; FONT-WEIGHT: bold
+}
+.agenda .date-label {
+	PADDING-BOTTOM: 0.2em; PADDING-LEFT: 1em; PADDING-RIGHT: 1em; PADDING-TOP: 0.2em
+}
+.agenda .underflow-bot {
+	PADDING-BOTTOM: 0.2em; PADDING-LEFT: 1em; PADDING-RIGHT: 1em; PADDING-TOP: 0.2em
+}
+.agenda .underflow-top {
+	PADDING-BOTTOM: 0.2em; PADDING-LEFT: 1em; PADDING-RIGHT: 1em; PADDING-TOP: 0.2em
+}
+.agenda .underflow-top {
+	BORDER-BOTTOM: #cde 1px solid
+}
+IMG.agenda-web-content {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; WIDTH: 16px; HEIGHT: 16px; VERTICAL-ALIGN: top; BORDER-TOP: 0px; CURSOR: pointer; BORDER-RIGHT: 0px
+}
+.agenda-wc {
+	MARGIN-BOTTOM: -3px
+}
+.agenda-more {
+	WHITE-SPACE: nowrap; COLOR: #112abb; CURSOR: pointer; TEXT-DECORATION: underline
+}
+.agenda .underflow-bot {
+	FONT-STYLE: italic; COLOR: #666
+}
+.agenda .underflow-top {
+	FONT-STYLE: italic; COLOR: #666
+}
+.ie6 .agenda .event-time {
+	MARGIN-RIGHT: -3px
+}
+.ie6 .agenda .event-title {
+	OVERFLOW-X: hidden; OVERFLOW-Y: visible; MARGIN: 0px; HEIGHT: 1%
+}
+.agenda .event-links {
+	MARGIN-LEFT: 7em
+}
+.wk-table {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.wk-weektop {
+	LINE-HEIGHT: 14px; BACKGROUND-COLOR: #c3d9ff; WIDTH: 100%; TABLE-LAYOUT: fixed; FONT-SIZE: 11px; OVERFLOW: hidden
+}
+.wk-dayname {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; COLOR: #112abb; MARGIN-LEFT: 4px; FONT-WEIGHT: normal; PADDING-TOP: 2px
+}
+.wk-today {
+	BORDER-BOTTOM: #ace 1px solid; BORDER-LEFT: #6786a7 1px solid; PADDING-BOTTOM: 1px; BACKGROUND-COLOR: #8ac; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; COLOR: #fff; BORDER-TOP: #6786a7 1px solid; FONT-WEIGHT: bold; BORDER-RIGHT: #ace 1px solid; PADDING-TOP: 1px
+}
+.wk-dummyth {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #c3d9ff; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; VERTICAL-ALIGN: top; PADDING-TOP: 0px
+}
+.wk-allday {
+	BORDER-BOTTOM: #fff 1px solid; BORDER-LEFT: #a2bbdd 1px solid; LINE-HEIGHT: 14px; BACKGROUND-COLOR: #e8eef7; FONT-SIZE: 11px; BORDER-TOP: #a2bbdd 1px solid; BORDER-RIGHT: #fff 1px solid
+}
+.wk-allday .st-c {
+	BORDER-LEFT: #ddd 3px double; PADDING-LEFT: 0px; PADDING-RIGHT: 0px
+}
+.wk-webcontent-td {
+	PADDING-LEFT: 2px; HEIGHT: 5px; FONT-SIZE: 0px
+}
+.wk-scrolltimedevents {
+	BORDER-BOTTOM: #fff 1px solid; POSITION: relative; BORDER-LEFT: #a2bbdd 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: normal; OVERFLOW-X: hidden; OVERFLOW-Y: scroll; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 11px; BORDER-TOP: #a2bbdd 1px solid; PADDING-TOP: 0px
+}
+.tg-timedevents {
+	BACKGROUND-COLOR: #fff; MARGIN-TOP: -1px; WIDTH: 100%; TABLE-LAYOUT: fixed
+}
+.bg-exists .tg-timedevents {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.bg-exists .tg-times {
+	FILTER: alpha(opacity=90); opacity: 0.9
+}
+.bg-exists .chip {
+	FILTER: alpha(opacity=90); opacity: 0.9
+}
+.tg-times {
+	TEXT-ALIGN: right; PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #e8eef7; PADDING-LEFT: 0px; PADDING-RIGHT: 1px; COLOR: #468; VERTICAL-ALIGN: top; OVERFLOW: hidden; PADDING-TOP: 1px
+}
+.tg-time {
+	BORDER-BOTTOM: #ddd 1px solid; PADDING-RIGHT: 2px
+}
+.tg-timesnotlast {
+	BORDER-RIGHT: #ddd 1px solid
+}
+.tg-col {
+	BORDER-LEFT: #ddd 3px double; VERTICAL-ALIGN: top; OVERFLOW: hidden
+}
+.tg-colwrapper {
+	POSITION: relative; CURSOR: default; MARGIN-RIGHT: 2px
+}
+.tg-today {
+	BACKGROUND-COLOR: #ffc
+}
+.bg-exists .tg-today {
+	FILTER: alpha(opacity=50); BACKGROUND-COLOR: #eee; opacity: 0.5
+}
+.tg-hourmarkerwrapper {
+	POSITION: relative; HEIGHT: 1px; TOP: 1px
+}
+.tg-hourmarkers {
+	POSITION: absolute; WIDTH: 100%
+}
+.tg-dualmarker {
+	BORDER-BOTTOM: #ddd 1px dotted; LINE-HEIGHT: 1em; MARGIN-BOTTOM: 1em; HEIGHT: 1em; BORDER-TOP: #ddd 1px solid
+}
+.tg-nowmarker {
+	POSITION: relative; FILTER: alpha(opacity=40); LINE-HEIGHT: 0; HEIGHT: 0px; BORDER-TOP: red 2px solid; opacity: 0.4
+}
+.tg-nowptr {
+	BACKGROUND-IMAGE: url(//calendar.google.com/googlecalendar/images/combined_v6.gif); POSITION: absolute; WIDTH: 5px; BACKGROUND-POSITION: -60px -68px; HEIGHT: 9px
+}
+.rtl .tg-nowptr {
+	BACKGROUND-POSITION: -67px -68px
+}
+.wk-tzlabel {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 2px; COLOR: #446688; VERTICAL-ALIGN: bottom; OVERFLOW: hidden
+}
+.wk-moreevents {
+	PADDING-BOTTOM: 8px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 8px
+}
+.wk-moreevents .st-c {
+	BORDER-BOTTOM-STYLE: none; PADDING-BOTTOM: 0px; BORDER-RIGHT-STYLE: none; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; PADDING-TOP: 1px
+}
+.wk-sideevents {
+	WIDTH: 20%; FONT-FAMILY: Verdana,sans-serif; VERTICAL-ALIGN: top; PADDING-TOP: 1px
+}
+.wk-more-prealign {
+	TEXT-ALIGN: right
+}
+.wk-sarr {
+	WIDTH: 15px; BACKGROUND: url(//calendar.google.com/googlecalendar/images/combined_v6.gif) no-repeat; FLOAT: right; HEIGHT: 13px; CURSOR: pointer
+}
+.wk-sarr-no {
+	VISIBILITY: hidden
+}
+.wk-sarr-u {
+	BACKGROUND-POSITION: -182px 0px
+}
+.wk-sarr-d {
+	BACKGROUND-POSITION: -182px -11px
+}
+.wk-sarr-ud {
+	BACKGROUND-POSITION: -182px -22px
+}
+.today .wk-sarr-u {
+	BACKGROUND-POSITION: -199px 0px
+}
+.today .wk-sarr-d {
+	BACKGROUND-POSITION: -199px -11px
+}
+.today .wk-sarr-ud {
+	BACKGROUND-POSITION: -199px -22px
+}
+.wk-disclose {
+	POSITION: absolute; TOP: 2em
+}
+.wk-zip {
+	BACKGROUND-IMAGE: url(//calendar.google.com/googlecalendar/images/combined_v6.gif); WIDTH: 11px; BACKGROUND-POSITION: -37px -64px; HEIGHT: 11px; OVERFLOW: hidden; CURSOR: pointer
+}
+.goog-zippy-collapsed .wk-zip {
+	BACKGROUND-POSITION: -15px -103px
+}
+.rtl .goog-zippy-collapsed .wk-zip {
+	BACKGROUND-POSITION: -49px -67px
+}
+.mv-container {
+	POSITION: relative; WHITE-SPACE: nowrap; HEIGHT: 100%
+}
+.bg-exists .mv-container {
+	BACKGROUND-COLOR: transparent
+}
+.st-contents {
+	LINE-HEIGHT: 14px; FONT-SIZE: 11px
+}
+.mv-container {
+	LINE-HEIGHT: 14px; FONT-SIZE: 11px
+}
+.mv-daynames-table {
+	POSITION: absolute; WIDTH: 100%; BACKGROUND: #c3d9ff; TABLE-LAYOUT: fixed; COLOR: #112abb; TOP: 0px; LEFT: 0px
+}
+.mv-dayname {
+	FONT-WEIGHT: normal
+}
+.mv-event-container {
+	POSITION: absolute; WIDTH: 100%; BOTTOM: 0px; BACKGROUND: white; OVERFLOW: hidden; TOP: 14px; LEFT: 0px
+}
+.month-row {
+	POSITION: absolute; WIDTH: 100%; OVERFLOW: hidden; LEFT: 0px
+}
+.bg-exists .month-row {
+	FILTER: alpha(opacity=90); opacity: 0.9
+}
+.extraevents {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 0px; PADDING-RIGHT: 1px; PADDING-TOP: 1px
+}
+.dp-popup {
+	Z-INDEX: 25000003; BORDER-BOTTOM: black 1px solid; POSITION: absolute; BORDER-LEFT: black 1px solid; LINE-HEIGHT: 1em; WIDTH: 170px; BACKGROUND: #c3d9ff; FONT-SIZE: 9pt; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid
+}
+.dp-dayh {
+	FONT-SIZE: 78%
+}
+.dp-monthtable {
+	BORDER-BOTTOM: #a2bbdd 1px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 0px; -webkit-user-select: none; -khtml-user-select: none
+}
+.ie .dp-monthtable {
+	TABLE-LAYOUT: fixed
+}
+.dp-cell {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; FONT-FAMILY: Verdana,sans-serif; FONT-SIZE: 85%; PADDING-TOP: 2px
+}
+.dp-heading {
+	COLOR: #112abb; VERTICAL-ALIGN: middle; FONT-WEIGHT: bold
+}
+.dp-cur {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 4px; WHITE-SPACE: nowrap; FONT-SIZE: 100%; FONT-WEIGHT: bold
+}
+.dp-prev {
+	PADDING-BOTTOM: 6px; FONT-SIZE: 100%; CURSOR: pointer
+}
+.dp-next {
+	PADDING-BOTTOM: 6px; FONT-SIZE: 100%; CURSOR: pointer
+}
+.dp-prev {
+	TEXT-ALIGN: right
+}
+.dp-next {
+	TEXT-ALIGN: left
+}
+.dp-weekday {
+	BACKGROUND: #fff
+}
+.dp-weekday-selected {
+	BACKGROUND: #ace
+}
+.dp-weekend {
+	BACKGROUND: #eee
+}
+.dp-weekend-selected {
+	BACKGROUND: #9bd
+}
+.dp-with-events {
+	FONT-WEIGHT: bold !important
+}
+.dp-offmonth {
+	COLOR: #888
+}
+.dp-day-left {
+	BORDER-LEFT: #a2bbdd 1px solid
+}
+.dp-day-right {
+	BORDER-RIGHT: #a2bbdd 1px solid
+}
+.dp-dayh {
+	BORDER-BOTTOM: #a2bbdd 1px solid
+}
+.dp-today {
+	BORDER-BOTTOM: 1px solid; BORDER-LEFT: 1px solid; PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; COLOR: #fff; BORDER-TOP: 1px solid; BORDER-RIGHT: 1px solid; PADDING-TOP: 1px
+}
+.dp-today-selected {
+	BORDER-BOTTOM: 1px solid; BORDER-LEFT: 1px solid; PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; COLOR: #fff; BORDER-TOP: 1px solid; BORDER-RIGHT: 1px solid; PADDING-TOP: 1px
+}
+.dp-today {
+	BORDER-BOTTOM-COLOR: #abc; BORDER-TOP-COLOR: #567; BACKGROUND: #9ab; BORDER-RIGHT-COLOR: #abc; BORDER-LEFT-COLOR: #567
+}
+.dp-today-selected {
+	BORDER-BOTTOM-COLOR: #9bd; BORDER-TOP-COLOR: #246; BACKGROUND: #579; BORDER-RIGHT-COLOR: #9bd; BORDER-LEFT-COLOR: #246
+}
+.dp-onhover {
+	BACKGROUND-COLOR: #def; COLOR: black
+}

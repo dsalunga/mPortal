@@ -1,0 +1,106 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="WCMS.WebSystem.WUserControl" ClientIDMode="Static" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width = 800" />
+
+    <title><%= GetValue("Title") %></title>
+    <script src="/Content/Themes/Integration/MusicCompetition/v2/js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript"></script>
+
+    <!--<link rel='stylesheet' media='screen and (max-width: 800px)' href='/Content/Themes/Integration/MusicCompetition/v2/css/narrow.css' />-->
+    <link rel='stylesheet' media='screen and (min-width: 1px)' href='/Content/Themes/Integration/MusicCompetition/v2/css/medium.css' />
+    <style type="text/css">
+        #bg2 {
+            z-index: 2;
+            background-image: url(/Content/Themes/Integration/MusicCompetition/v2/images/bg.jpeg);
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            background-repeat: no-repeat;
+            min-height: 575px;
+            max-height: 600px;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Themes/Integration/MusicCompetition/v2/images/bg2.jpg', sizingMethod='scale');
+            -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Themes/Integration/MusicCompetition/v2/images/bg2.jpg', sizingMethod='scale')";
+        }
+
+        .footer {
+            background-image: url(/Content/Themes/Integration/MusicCompetition/v2/images/bg.jpeg);
+            background-position: left;
+            height: 100px;
+            width: 100%;
+            background-repeat: no-repeat;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Themes/Integration/MusicCompetition/v2/images/bg2.jpg', sizingMethod='scale');
+            -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Themes/Integration/MusicCompetition/v2/images/bg2.jpg', sizingMethod='scale')";
+        }
+    </style>
+</head>
+
+<body>
+    <form runat="server">
+        <div id="bg2">
+        </div>
+        <div id="contents" class="header" runat="server">
+            <a href="index.html">
+                <img class="logo" src="/Content/Themes/Integration/MusicCompetition/v2/images/logosmall.png" alt="Asop Logo" /></a>
+            <ul>
+                <li class="textshadow1 menu_list"><a href="show.html">The Show</a>
+                    <!--<ul>
+            	<li>Host City</li>
+                <li>Finalists</li>
+            </ul>-->
+                </li>
+                <li class="textshadow1 menu_list"><a href="#">Gallery</a></li>
+                <li class="textshadow1 menu_list"><a href="talk/">Talk</a></li>
+                <li class="textshadow1 menu_list"><a href="#">Vote</a></li>
+                <li class="textshadow1 menu_list"><a href="about.html">About</a></li>
+                <li class="social_icons menu_list"><a>
+                    <img src="/Content/Themes/Integration/MusicCompetition/v2/images/twitter.png" alt="" /></a></li>
+                <li class="social_icons menu_list"><a>
+                    <img src="/Content/Themes/Integration/MusicCompetition/v2/images/rss.png" alt="" /></a></li>
+                <li class="social_icons menu_list"><a>
+                    <img src="/Content/Themes/Integration/MusicCompetition/v2/images/facebook.png" alt="" /></a></li>
+
+            </ul>
+            <img class="headerimage" src="/Content/Themes/Integration/MusicCompetition/v2/images/headerimage.jpg" alt="" />
+            <p class="textshadow1">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Quisque sed tortor a est molestie elementum nec convallis quam. </p>
+        </div>
+        <div id="content" class="content_section_holder gradient_section">
+            <div class="content_wrap" runat="server" id="icons">
+                <div class="content_section">
+                    <img src="/Content/Themes/Integration/MusicCompetition/v2/images/note.png" alt="" width="100" />
+                    <h3>District 1</h3>
+                    <p class="textshadow1">Curabitur hendrerit libero sit amet erat mollis dapibus a ut elit.</p>
+                    <a>Visit Website</a>
+                </div>
+                <div class="content_section">
+                    <img src="/Content/Themes/Integration/MusicCompetition/v2/images/note.png" alt="" width="100" />
+                    <h3>District 2</h3>
+                    <p class="textshadow1">Curabitur hendrerit libero sit amet erat mollis dapibus a ut elit.</p>
+                    <a>Visit Website</a>
+                </div>
+                <div class="content_section">
+                    <img src="/Content/Themes/Integration/MusicCompetition/v2/images/note.png" alt="" width="100" />
+                    <h3>District 3</h3>
+                    <p class="textshadow1">Curabitur hendrerit libero sit amet erat mollis dapibus a ut elit.</p>
+                    <a>Visit Website</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer_divider"></div>
+        <div id="footer" class="footer" runat="server">
+            <ul>
+                <li class="textshadow1"><a href="show.html">The Show</a></li>
+                <li class="textshadow1"><a href="#">Gallery</a></li>
+                <li class="textshadow1"><a href="talk.html">Talk</a></li>
+                <li class="textshadow1"><a href="#">Vote</a></li>
+                <li class="textshadow1"><a href="about.html">About</a></li>
+            </ul>
+            <p>copyright © 2013 A Song Of Praise Music Festival</p>
+        </div>
+    </form>
+</body>
+</html>

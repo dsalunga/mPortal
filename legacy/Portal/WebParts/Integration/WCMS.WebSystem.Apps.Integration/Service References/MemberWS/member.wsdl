@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost/ams/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://localhost/ams/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost/ams/">
+      <s:element name="GetProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="externalIdNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="membershipDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProfileResult" type="tns:Member" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Member">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="IDNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocaleIDNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BirthDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="BirthPlace" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BloodType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CivilStatusID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CitizenshipID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RaceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMembershipStatuses">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMembershipStatusesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMembershipStatusesResult" type="tns:ArrayOfMemberStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMemberStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MemberStatus" nillable="true" type="tns:MemberStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MemberStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MemberStatusID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberTypeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MembershipStatusID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocaleStatusID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocaleID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommitteeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MembershipDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="MembershipPlace" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrientedByID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="OnboardedByID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousOrganizationID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="WithID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDefaultAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDefaultAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDefaultAddressResult" type="tns:MemberAddress" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MemberAddress">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MemberAddressID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CityID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StateID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CountryID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetActiveLocaleGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveLocaleGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetActiveLocaleGroupResult" type="tns:MemberLocaleGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MemberLocaleGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MemberLocaleGroupID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocaleGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateJoined" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLocaleGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeGroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocaleGroupResult" type="tns:LocaleGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LocaleGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LocaleGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocaleID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocaleGroupName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLocaleGroupCouncillor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeGroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleGroupCouncillorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocaleGroupCouncillorResult" type="tns:Member" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleGroupServant">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeGroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleGroupServantResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocaleGroupServantResult" type="tns:Member" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleAsstGroupServant">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeGroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocaleAsstGroupServantResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocaleAsstGroupServantResult" type="tns:Member" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPhoto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPhotoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPhotoResult" type="tns:ArrayOfMemberPhoto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMemberPhoto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MemberPhoto" nillable="true" type="tns:MemberPhoto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MemberPhoto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MemberPhotoID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoFileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SignFileName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProfile" />
+  </wsdl:message>
+  <wsdl:message name="GetProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMembershipStatuses" />
+  </wsdl:message>
+  <wsdl:message name="GetMembershipStatusesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMembershipStatusesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDefaultAddress" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDefaultAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveLocaleGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActiveLocaleGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveLocaleGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActiveLocaleGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupCouncillorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupCouncillor" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupCouncillorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupCouncillorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupServantSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupServant" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleGroupServantSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocaleGroupServantResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleAsstGroupServantSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocaleAsstGroupServant" />
+  </wsdl:message>
+  <wsdl:message name="GetLocaleAsstGroupServantSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocaleAsstGroupServantResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPhotoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPhoto" />
+  </wsdl:message>
+  <wsdl:message name="GetPhotoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPhotoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MemberSoap">
+    <wsdl:operation name="GetProfile">
+      <wsdl:input message="tns:GetProfileSoapIn" />
+      <wsdl:output message="tns:GetProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatuses">
+      <wsdl:input message="tns:GetMembershipStatusesSoapIn" />
+      <wsdl:output message="tns:GetMembershipStatusesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAddress">
+      <wsdl:input message="tns:GetDefaultAddressSoapIn" />
+      <wsdl:output message="tns:GetDefaultAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveLocaleGroup">
+      <wsdl:input message="tns:GetActiveLocaleGroupSoapIn" />
+      <wsdl:output message="tns:GetActiveLocaleGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroup">
+      <wsdl:input message="tns:GetLocaleGroupSoapIn" />
+      <wsdl:output message="tns:GetLocaleGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupCouncillor">
+      <wsdl:input message="tns:GetLocaleGroupCouncillorSoapIn" />
+      <wsdl:output message="tns:GetLocaleGroupCouncillorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupServant">
+      <wsdl:input message="tns:GetLocaleGroupServantSoapIn" />
+      <wsdl:output message="tns:GetLocaleGroupServantSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleAsstGroupServant">
+      <wsdl:input message="tns:GetLocaleAsstGroupServantSoapIn" />
+      <wsdl:output message="tns:GetLocaleAsstGroupServantSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoto">
+      <wsdl:input message="tns:GetPhotoSoapIn" />
+      <wsdl:output message="tns:GetPhotoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MemberSoap" type="tns:MemberSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProfile">
+      <soap:operation soapAction="http://localhost/ams/GetProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatuses">
+      <soap:operation soapAction="http://localhost/ams/GetMembershipStatuses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAddress">
+      <soap:operation soapAction="http://localhost/ams/GetDefaultAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveLocaleGroup">
+      <soap:operation soapAction="http://localhost/ams/GetActiveLocaleGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroup">
+      <soap:operation soapAction="http://localhost/ams/GetLocaleGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupCouncillor">
+      <soap:operation soapAction="http://localhost/ams/GetLocaleGroupCouncillor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupServant">
+      <soap:operation soapAction="http://localhost/ams/GetLocaleGroupServant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleAsstGroupServant">
+      <soap:operation soapAction="http://localhost/ams/GetLocaleAsstGroupServant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoto">
+      <soap:operation soapAction="http://localhost/ams/GetPhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MemberSoap12" type="tns:MemberSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProfile">
+      <soap12:operation soapAction="http://localhost/ams/GetProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipStatuses">
+      <soap12:operation soapAction="http://localhost/ams/GetMembershipStatuses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAddress">
+      <soap12:operation soapAction="http://localhost/ams/GetDefaultAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveLocaleGroup">
+      <soap12:operation soapAction="http://localhost/ams/GetActiveLocaleGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroup">
+      <soap12:operation soapAction="http://localhost/ams/GetLocaleGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupCouncillor">
+      <soap12:operation soapAction="http://localhost/ams/GetLocaleGroupCouncillor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleGroupServant">
+      <soap12:operation soapAction="http://localhost/ams/GetLocaleGroupServant" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocaleAsstGroupServant">
+      <soap12:operation soapAction="http://localhost/ams/GetLocaleAsstGroupServant" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoto">
+      <soap12:operation soapAction="http://localhost/ams/GetPhoto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Member">
+    <wsdl:port name="MemberSoap" binding="tns:MemberSoap">
+      <soap:address location="http://202.128.194.210/amswebservices/member.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MemberSoap12" binding="tns:MemberSoap12">
+      <soap12:address location="http://202.128.194.210/amswebservices/member.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

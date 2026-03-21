@@ -1,0 +1,225 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="MemberLink">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="MemberLinkId" type="xs:int" />
+                <xs:element name="UserId" type="xs:int" />
+                <xs:element name="MemberId" type="xs:int" />
+                <xs:element name="ExternalIdNo">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="HomeAddressLine1">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="HomeAddressStateCode" type="xs:int" />
+                <xs:element name="HomeAddressCountryCode" type="xs:int" />
+                <xs:element name="HomeAddressZipCode">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="MobileNumber">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="HomePhone">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="WorkAddressLine1">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="WorkAddressStateCode" type="xs:int" />
+                <xs:element name="WorkAddressCountryCode" type="xs:int" />
+                <xs:element name="WorkAddressZipCode">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="WorkDesignation">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="WorkPhone">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Nickname">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="LastUpdate" type="xs:dateTime" />
+                <xs:element name="PhotoPath">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="MembershipDate" type="xs:dateTime" />
+                <xs:element name="Approved" type="xs:int" />
+                <xs:element name="Locale">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="HomeAddressLine2">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="WorkAddressLine2">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Private" type="xs:int" />
+                <xs:element name="AdditionalInfo">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="4000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="LocaleId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//MemberLink" />
+        <xs:field xpath="MemberLinkId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <MemberLink>
+    <MemberLinkId>1</MemberLinkId>
+    <UserId>3</UserId>
+    <MemberId>197</MemberId>
+    <ExternalIdNo>MAG000491</ExternalIdNo>
+    <HomeAddressLine1>211 Henderson road</HomeAddressLine1>
+    <HomeAddressStateCode>-1</HomeAddressStateCode>
+    <HomeAddressCountryCode>416</HomeAddressCountryCode>
+    <HomeAddressZipCode>345344</HomeAddressZipCode>
+    <MobileNumber>83871509</MobileNumber>
+    <HomePhone>82064002</HomePhone>
+    <WorkAddressLine1>211 Henderson road</WorkAddressLine1>
+    <WorkAddressStateCode>-1</WorkAddressStateCode>
+    <WorkAddressCountryCode>416</WorkAddressCountryCode>
+    <WorkAddressZipCode>12323</WorkAddressZipCode>
+    <WorkDesignation>janitorial architect</WorkDesignation>
+    <WorkPhone>123456</WorkPhone>
+    <Nickname>Cute Administrator</Nickname>
+    <LastUpdate>2021-09-23T03:59:25.363+08:00</LastUpdate>
+    <PhotoPath>/Content/Assets/User-Photos/U3.jpg</PhotoPath>
+    <MembershipDate>2002-02-14T00:00:00+08:00</MembershipDate>
+    <Approved>1</Approved>
+    <Locale>Singapore</Locale>
+    <HomeAddressLine2 />
+    <WorkAddressLine2 />
+    <Private>0</Private>
+    <AdditionalInfo>Isa kang badush!!! Over!!!</AdditionalInfo>
+    <LocaleId>1442</LocaleId>
+  </MemberLink>
+  <MemberLink>
+    <MemberLinkId>203</MemberLinkId>
+    <UserId>237</UserId>
+    <MemberId>684</MemberId>
+    <ExternalIdNo>ORN00054</ExternalIdNo>
+    <HomeAddressLine1 />
+    <HomeAddressStateCode>-1</HomeAddressStateCode>
+    <HomeAddressCountryCode>-1</HomeAddressCountryCode>
+    <HomeAddressZipCode />
+    <MobileNumber />
+    <HomePhone />
+    <WorkAddressLine1 />
+    <WorkAddressStateCode>-1</WorkAddressStateCode>
+    <WorkAddressCountryCode>-1</WorkAddressCountryCode>
+    <WorkAddressZipCode />
+    <WorkDesignation />
+    <WorkPhone />
+    <Nickname />
+    <LastUpdate>2011-04-03T21:26:34.83+08:00</LastUpdate>
+    <PhotoPath>https://ams.mcgi.church/images/uploads/brethren/photos/684.jpg</PhotoPath>
+    <MembershipDate>1800-01-01T00:00:00+08:00</MembershipDate>
+    <Approved>1</Approved>
+    <Locale />
+    <HomeAddressLine2 />
+    <WorkAddressLine2 />
+    <Private>0</Private>
+    <AdditionalInfo />
+    <LocaleId>-1</LocaleId>
+  </MemberLink>
+  <MemberLink>
+    <MemberLinkId>227</MemberLinkId>
+    <UserId>275</UserId>
+    <MemberId>-1</MemberId>
+    <ExternalIdNo>MAG00049</ExternalIdNo>
+    <HomeAddressLine1 />
+    <HomeAddressStateCode>-1</HomeAddressStateCode>
+    <HomeAddressCountryCode>416</HomeAddressCountryCode>
+    <HomeAddressZipCode />
+    <MobileNumber />
+    <HomePhone />
+    <WorkAddressLine1 />
+    <WorkAddressStateCode>-1</WorkAddressStateCode>
+    <WorkAddressCountryCode>-1</WorkAddressCountryCode>
+    <WorkAddressZipCode />
+    <WorkDesignation />
+    <WorkPhone />
+    <Nickname />
+    <LastUpdate>2013-01-14T10:37:37.08+08:00</LastUpdate>
+    <PhotoPath>/Content/Assets/User-Photos/U275.jpg</PhotoPath>
+    <MembershipDate>2002-02-15T00:00:00+08:00</MembershipDate>
+    <Approved>1</Approved>
+    <Locale>Singapore</Locale>
+    <HomeAddressLine2 />
+    <WorkAddressLine2 />
+    <Private>1</Private>
+    <AdditionalInfo />
+    <LocaleId>-1</LocaleId>
+  </MemberLink>
+</mPortal>

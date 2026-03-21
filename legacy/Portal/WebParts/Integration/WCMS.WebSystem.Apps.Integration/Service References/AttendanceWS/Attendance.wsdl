@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="http://tempuri.org/AbstractTypes" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Insert2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="externalIdNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceScheduleID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="weekNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTimeIn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceLateTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="isLowerVersionIE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert2Result" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Insert3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceScheduleID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="weekNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTimeIn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceLateTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="overWriteAttendance" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert3Result" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTimeIn2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="attendanceID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceScheduleID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="weekNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTimeIn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceLateTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTimeIn2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateTimeIn2Result" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTimeOut2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="externalIdNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceScheduleID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="weekNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTimeOut" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="isLowerVersionIE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTimeOut2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateTimeOut2Result" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveMemberInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="externalIdNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="isLowerVersionIE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveMemberInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveMemberInfoResult" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveAtt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceDateTime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveAttResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveAttResult" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertMP3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="localeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceScheduleIDs" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertMP3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertMP3Result" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMP3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="memberID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceScheduleID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMP3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteMP3Result" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="externalIdNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceScheduleID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTimeIn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="createdByUserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTimeIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="attendanceID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTimeIn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="updatedByUserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTimeInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateTimeInResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTimeOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="externalIdNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="serviceScheduleID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTimeOut" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="updatedByUserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTimeOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateTimeOutResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfAnyType" nillable="true" type="tns:ArrayOfAnyType" />
+      <s:element name="boolean" type="s:boolean" />
+    </s:schema>
+    <s:schema targetNamespace="http://tempuri.org/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Insert2SoapIn">
+    <wsdl:part name="parameters" element="tns:Insert2" />
+  </wsdl:message>
+  <wsdl:message name="Insert2SoapOut">
+    <wsdl:part name="parameters" element="tns:Insert2Response" />
+  </wsdl:message>
+  <wsdl:message name="Insert3SoapIn">
+    <wsdl:part name="parameters" element="tns:Insert3" />
+  </wsdl:message>
+  <wsdl:message name="Insert3SoapOut">
+    <wsdl:part name="parameters" element="tns:Insert3Response" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeIn2SoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTimeIn2" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeIn2SoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTimeIn2Response" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOut2SoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTimeOut2" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOut2SoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTimeOut2Response" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMemberInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveMemberInfo" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMemberInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveMemberInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveAttSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveAtt" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveAttSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveAttResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertMP3SoapIn">
+    <wsdl:part name="parameters" element="tns:InsertMP3" />
+  </wsdl:message>
+  <wsdl:message name="InsertMP3SoapOut">
+    <wsdl:part name="parameters" element="tns:InsertMP3Response" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMP3SoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteMP3" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMP3SoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteMP3Response" />
+  </wsdl:message>
+  <wsdl:message name="InsertSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert" />
+  </wsdl:message>
+  <wsdl:message name="InsertSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeInSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTimeIn" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeInSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTimeInResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOutSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTimeOut" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOutSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTimeOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert2HttpGetIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="serviceID" type="s:string" />
+    <wsdl:part name="weekNo" type="s:string" />
+    <wsdl:part name="dateTimeIn" type="s:string" />
+    <wsdl:part name="serviceLateTime" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="isLowerVersionIE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert2HttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAnyType" />
+  </wsdl:message>
+  <wsdl:message name="Insert3HttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="serviceID" type="s:string" />
+    <wsdl:part name="weekNo" type="s:string" />
+    <wsdl:part name="dateTimeIn" type="s:string" />
+    <wsdl:part name="serviceLateTime" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="overWriteAttendance" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert3HttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeIn2HttpGetIn">
+    <wsdl:part name="attendanceID" type="s:string" />
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="serviceID" type="s:string" />
+    <wsdl:part name="weekNo" type="s:string" />
+    <wsdl:part name="dateTimeIn" type="s:string" />
+    <wsdl:part name="serviceLateTime" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeIn2HttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAnyType" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOut2HttpGetIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="serviceID" type="s:string" />
+    <wsdl:part name="weekNo" type="s:string" />
+    <wsdl:part name="dateTimeOut" type="s:string" />
+    <wsdl:part name="isLowerVersionIE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOut2HttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAnyType" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMemberInfoHttpGetIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="isLowerVersionIE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMemberInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAnyType" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveAttHttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="serviceDateTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveAttHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAnyType" />
+  </wsdl:message>
+  <wsdl:message name="InsertMP3HttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceScheduleIDs" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="InsertMP3HttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMP3HttpGetIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMP3HttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertHttpGetIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="dateTimeIn" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="createdByUserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeInHttpGetIn">
+    <wsdl:part name="attendanceID" type="s:string" />
+    <wsdl:part name="dateTimeIn" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="updatedByUserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeInHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOutHttpGetIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="dateTimeOut" type="s:string" />
+    <wsdl:part name="updatedByUserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOutHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="Insert2HttpPostIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="serviceID" type="s:string" />
+    <wsdl:part name="weekNo" type="s:string" />
+    <wsdl:part name="dateTimeIn" type="s:string" />
+    <wsdl:part name="serviceLateTime" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="isLowerVersionIE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert2HttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAnyType" />
+  </wsdl:message>
+  <wsdl:message name="Insert3HttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="serviceID" type="s:string" />
+    <wsdl:part name="weekNo" type="s:string" />
+    <wsdl:part name="dateTimeIn" type="s:string" />
+    <wsdl:part name="serviceLateTime" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="overWriteAttendance" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert3HttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeIn2HttpPostIn">
+    <wsdl:part name="attendanceID" type="s:string" />
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="serviceID" type="s:string" />
+    <wsdl:part name="weekNo" type="s:string" />
+    <wsdl:part name="dateTimeIn" type="s:string" />
+    <wsdl:part name="serviceLateTime" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeIn2HttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAnyType" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOut2HttpPostIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="serviceID" type="s:string" />
+    <wsdl:part name="weekNo" type="s:string" />
+    <wsdl:part name="dateTimeOut" type="s:string" />
+    <wsdl:part name="isLowerVersionIE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOut2HttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAnyType" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMemberInfoHttpPostIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="isLowerVersionIE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMemberInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAnyType" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveAttHttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="serviceDateTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveAttHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAnyType" />
+  </wsdl:message>
+  <wsdl:message name="InsertMP3HttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="localeID" type="s:string" />
+    <wsdl:part name="serviceScheduleIDs" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="InsertMP3HttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMP3HttpPostIn">
+    <wsdl:part name="memberID" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMP3HttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertHttpPostIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="dateTimeIn" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="createdByUserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeInHttpPostIn">
+    <wsdl:part name="attendanceID" type="s:string" />
+    <wsdl:part name="dateTimeIn" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="updatedByUserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeInHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOutHttpPostIn">
+    <wsdl:part name="externalIdNo" type="s:string" />
+    <wsdl:part name="serviceScheduleID" type="s:string" />
+    <wsdl:part name="dateTimeOut" type="s:string" />
+    <wsdl:part name="updatedByUserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTimeOutHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:portType name="AttendanceSoap">
+    <wsdl:operation name="Insert2">
+      <wsdl:input message="tns:Insert2SoapIn" />
+      <wsdl:output message="tns:Insert2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert3">
+      <wsdl:input message="tns:Insert3SoapIn" />
+      <wsdl:output message="tns:Insert3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn2">
+      <wsdl:input message="tns:UpdateTimeIn2SoapIn" />
+      <wsdl:output message="tns:UpdateTimeIn2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut2">
+      <wsdl:input message="tns:UpdateTimeOut2SoapIn" />
+      <wsdl:output message="tns:UpdateTimeOut2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMemberInfo">
+      <wsdl:input message="tns:RetrieveMemberInfoSoapIn" />
+      <wsdl:output message="tns:RetrieveMemberInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAtt">
+      <wsdl:input message="tns:RetrieveAttSoapIn" />
+      <wsdl:output message="tns:RetrieveAttSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertMP3">
+      <wsdl:input message="tns:InsertMP3SoapIn" />
+      <wsdl:output message="tns:InsertMP3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMP3">
+      <wsdl:input message="tns:DeleteMP3SoapIn" />
+      <wsdl:output message="tns:DeleteMP3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <wsdl:input message="tns:InsertSoapIn" />
+      <wsdl:output message="tns:InsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn">
+      <wsdl:input message="tns:UpdateTimeInSoapIn" />
+      <wsdl:output message="tns:UpdateTimeInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut">
+      <wsdl:input message="tns:UpdateTimeOutSoapIn" />
+      <wsdl:output message="tns:UpdateTimeOutSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AttendanceHttpGet">
+    <wsdl:operation name="Insert2">
+      <wsdl:input message="tns:Insert2HttpGetIn" />
+      <wsdl:output message="tns:Insert2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert3">
+      <wsdl:input message="tns:Insert3HttpGetIn" />
+      <wsdl:output message="tns:Insert3HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn2">
+      <wsdl:input message="tns:UpdateTimeIn2HttpGetIn" />
+      <wsdl:output message="tns:UpdateTimeIn2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut2">
+      <wsdl:input message="tns:UpdateTimeOut2HttpGetIn" />
+      <wsdl:output message="tns:UpdateTimeOut2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMemberInfo">
+      <wsdl:input message="tns:RetrieveMemberInfoHttpGetIn" />
+      <wsdl:output message="tns:RetrieveMemberInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAtt">
+      <wsdl:input message="tns:RetrieveAttHttpGetIn" />
+      <wsdl:output message="tns:RetrieveAttHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertMP3">
+      <wsdl:input message="tns:InsertMP3HttpGetIn" />
+      <wsdl:output message="tns:InsertMP3HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMP3">
+      <wsdl:input message="tns:DeleteMP3HttpGetIn" />
+      <wsdl:output message="tns:DeleteMP3HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <wsdl:input message="tns:InsertHttpGetIn" />
+      <wsdl:output message="tns:InsertHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn">
+      <wsdl:input message="tns:UpdateTimeInHttpGetIn" />
+      <wsdl:output message="tns:UpdateTimeInHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut">
+      <wsdl:input message="tns:UpdateTimeOutHttpGetIn" />
+      <wsdl:output message="tns:UpdateTimeOutHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AttendanceHttpPost">
+    <wsdl:operation name="Insert2">
+      <wsdl:input message="tns:Insert2HttpPostIn" />
+      <wsdl:output message="tns:Insert2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert3">
+      <wsdl:input message="tns:Insert3HttpPostIn" />
+      <wsdl:output message="tns:Insert3HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn2">
+      <wsdl:input message="tns:UpdateTimeIn2HttpPostIn" />
+      <wsdl:output message="tns:UpdateTimeIn2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut2">
+      <wsdl:input message="tns:UpdateTimeOut2HttpPostIn" />
+      <wsdl:output message="tns:UpdateTimeOut2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMemberInfo">
+      <wsdl:input message="tns:RetrieveMemberInfoHttpPostIn" />
+      <wsdl:output message="tns:RetrieveMemberInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAtt">
+      <wsdl:input message="tns:RetrieveAttHttpPostIn" />
+      <wsdl:output message="tns:RetrieveAttHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertMP3">
+      <wsdl:input message="tns:InsertMP3HttpPostIn" />
+      <wsdl:output message="tns:InsertMP3HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMP3">
+      <wsdl:input message="tns:DeleteMP3HttpPostIn" />
+      <wsdl:output message="tns:DeleteMP3HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <wsdl:input message="tns:InsertHttpPostIn" />
+      <wsdl:output message="tns:InsertHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn">
+      <wsdl:input message="tns:UpdateTimeInHttpPostIn" />
+      <wsdl:output message="tns:UpdateTimeInHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut">
+      <wsdl:input message="tns:UpdateTimeOutHttpPostIn" />
+      <wsdl:output message="tns:UpdateTimeOutHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AttendanceSoap" type="tns:AttendanceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Insert2">
+      <soap:operation soapAction="http://tempuri.org/Insert2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert3">
+      <soap:operation soapAction="http://tempuri.org/Insert3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn2">
+      <soap:operation soapAction="http://tempuri.org/UpdateTimeIn2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut2">
+      <soap:operation soapAction="http://tempuri.org/UpdateTimeOut2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMemberInfo">
+      <soap:operation soapAction="http://tempuri.org/RetrieveMemberInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAtt">
+      <soap:operation soapAction="http://tempuri.org/RetrieveAtt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertMP3">
+      <soap:operation soapAction="http://tempuri.org/InsertMP3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMP3">
+      <soap:operation soapAction="http://tempuri.org/DeleteMP3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <soap:operation soapAction="http://tempuri.org/Insert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn">
+      <soap:operation soapAction="http://tempuri.org/UpdateTimeIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut">
+      <soap:operation soapAction="http://tempuri.org/UpdateTimeOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AttendanceSoap12" type="tns:AttendanceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Insert2">
+      <soap12:operation soapAction="http://tempuri.org/Insert2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert3">
+      <soap12:operation soapAction="http://tempuri.org/Insert3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn2">
+      <soap12:operation soapAction="http://tempuri.org/UpdateTimeIn2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut2">
+      <soap12:operation soapAction="http://tempuri.org/UpdateTimeOut2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMemberInfo">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveMemberInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAtt">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveAtt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertMP3">
+      <soap12:operation soapAction="http://tempuri.org/InsertMP3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMP3">
+      <soap12:operation soapAction="http://tempuri.org/DeleteMP3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <soap12:operation soapAction="http://tempuri.org/Insert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn">
+      <soap12:operation soapAction="http://tempuri.org/UpdateTimeIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut">
+      <soap12:operation soapAction="http://tempuri.org/UpdateTimeOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AttendanceHttpGet" type="tns:AttendanceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Insert2">
+      <http:operation location="/Insert2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert3">
+      <http:operation location="/Insert3" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn2">
+      <http:operation location="/UpdateTimeIn2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut2">
+      <http:operation location="/UpdateTimeOut2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMemberInfo">
+      <http:operation location="/RetrieveMemberInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAtt">
+      <http:operation location="/RetrieveAtt" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertMP3">
+      <http:operation location="/InsertMP3" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMP3">
+      <http:operation location="/DeleteMP3" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <http:operation location="/Insert" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn">
+      <http:operation location="/UpdateTimeIn" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut">
+      <http:operation location="/UpdateTimeOut" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AttendanceHttpPost" type="tns:AttendanceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Insert2">
+      <http:operation location="/Insert2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert3">
+      <http:operation location="/Insert3" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn2">
+      <http:operation location="/UpdateTimeIn2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut2">
+      <http:operation location="/UpdateTimeOut2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMemberInfo">
+      <http:operation location="/RetrieveMemberInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAtt">
+      <http:operation location="/RetrieveAtt" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertMP3">
+      <http:operation location="/InsertMP3" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMP3">
+      <http:operation location="/DeleteMP3" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <http:operation location="/Insert" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeIn">
+      <http:operation location="/UpdateTimeIn" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTimeOut">
+      <http:operation location="/UpdateTimeOut" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Attendance">
+    <wsdl:port name="AttendanceSoap" binding="tns:AttendanceSoap">
+      <soap:address location="https://external.someorg.org/webservices/Attendance.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AttendanceSoap12" binding="tns:AttendanceSoap12">
+      <soap12:address location="https://external.someorg.org/webservices/Attendance.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AttendanceHttpGet" binding="tns:AttendanceHttpGet">
+      <http:address location="https://external.someorg.org/webservices/Attendance.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AttendanceHttpPost" binding="tns:AttendanceHttpPost">
+      <http:address location="https://external.someorg.org/webservices/Attendance.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

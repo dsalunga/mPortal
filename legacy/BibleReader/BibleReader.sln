@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibleReader.WebApp", "BibleReader\BibleReader.WebApp.csproj", "{CE3DC2C3-FD74-4A31-942C-3EB5FC61793D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibleReader.Core", "BibleReader.Core\BibleReader.Core.csproj", "{16ADB616-1A5B-48DF-A44E-782478E21754}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE3DC2C3-FD74-4A31-942C-3EB5FC61793D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE3DC2C3-FD74-4A31-942C-3EB5FC61793D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE3DC2C3-FD74-4A31-942C-3EB5FC61793D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE3DC2C3-FD74-4A31-942C-3EB5FC61793D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16ADB616-1A5B-48DF-A44E-782478E21754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16ADB616-1A5B-48DF-A44E-782478E21754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16ADB616-1A5B-48DF-A44E-782478E21754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16ADB616-1A5B-48DF-A44E-782478E21754}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F697A7A0-9E67-4B84-B910-BF347EED2399}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,70 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Contact">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ContactId" type="xs:int" />
+                <xs:element name="Name" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Email" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Details" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="1500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Rank" type="xs:int" minOccurs="0" />
+                <xs:element name="IsActive" type="xs:int" minOccurs="0" />
+                <xs:element name="Subject" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Contact" />
+        <xs:field xpath="ContactId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <Contact>
+    <ContactId>1</ContactId>
+    <Name>Site Administrator</Name>
+    <Email>adsf1@sadf.com</Email>
+    <Details>&lt;p&gt;adsf&lt;/p&gt;</Details>
+    <Rank>4</Rank>
+    <IsActive>1</IsActive>
+    <Subject>adsf</Subject>
+  </Contact>
+  <Contact>
+    <ContactId>2</ContactId>
+    <Name>Content Manager</Name>
+    <Email>ggggg@gggg.gg</Email>
+    <Details>&lt;p&gt;ggggggg&lt;/p&gt;</Details>
+    <Rank>56</Rank>
+    <IsActive>1</IsActive>
+    <Subject>ggggggggggg</Subject>
+  </Contact>
+</mPortal>

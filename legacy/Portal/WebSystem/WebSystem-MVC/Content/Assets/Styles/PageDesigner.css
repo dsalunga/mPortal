@@ -1,0 +1,106 @@
+﻿.element-designer-head {
+    background-color: #edeff5;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.designer-page, .panel-add {
+    background-color: #ffffcc; /*#FFC6E2; */
+}
+
+.designer-element-page-owned, .panel-override {
+    background-color: #FFCD9B;
+}
+
+.designer-element-master-owned, .panel-inherit {
+    background-color: #B9FFB9;
+}
+
+.WebPageName {
+    font-size: 12px;
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+    color: #000099;
+    font-weight: bold;
+    padding: 0px;
+}
+
+.Element {
+    border: 1px dashed #FF9175;
+    padding: 1px;
+}
+
+.ElementName {
+    font-size: 12px;
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+    color: Navy;
+    padding: 0px;
+}
+
+.ElementName_Inactive {
+    font-size: 11px;
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+    padding: 0px;
+}
+
+TD.ElementName_Inactive {
+    color: gray;
+    padding: 0px;
+}
+
+.ElementTools {
+    padding: 0px;
+    font-size: 11px;
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+div.Panel {
+    border: 2px dashed #EBEBEB;
+}
+
+
+td.PanelName {
+    /* background-color: #ffffcc; */
+    color: Black;
+    font-size: 12px;
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+    padding: 2px;
+}
+
+td.PanelNameDefault {
+    background-color: #FFD119;
+    color: Black;
+    font-size: 12pt;
+    padding: 2px;
+    font-weight: bold;
+}
+
+td.PanelControls {
+    background-color: #1e90ff;
+    width: 16px;
+    font-size: 12px;
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+    border: #ffff00 1px dotted;
+    padding: 1px;
+    cursor: pointer;
+}
+
+td.ElementControls {
+    width: 16px;
+    margin: 1px;
+    padding: 1px;
+    font-size: 11px;
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+table.panel-toolbox {
+    padding: 1px;
+    font-size: 12px;
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+.drop_shadow {
+    filter: progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#A7A596,strength=3);
+}

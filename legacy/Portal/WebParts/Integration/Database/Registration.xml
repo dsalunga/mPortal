@@ -1,0 +1,249 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Registration">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="EntryDate" type="xs:dateTime" />
+                <xs:element name="Country">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Locale">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ExternalId">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="100" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Designation">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ArrivalDate" type="xs:dateTime" />
+                <xs:element name="Airline">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FlightNo">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DepartureDate" type="xs:dateTime" />
+                <xs:element name="Address">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Age" type="xs:int" />
+                <xs:element name="Gender">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="PlaceType">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Registration" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <Registration>
+    <Id>1</Id>
+    <EntryDate>2011-12-22T20:46:18.14+08:00</EntryDate>
+    <Country>Hongkong</Country>
+    <Locale>SINGAPORE</Locale>
+    <ExternalId>XXXXXXXXX</ExternalId>
+    <Name>DANIEL SALUNGA</Name>
+    <Designation>MEMBER</Designation>
+    <ArrivalDate>1909-12-31T21:30:00+08:00</ArrivalDate>
+    <Airline>TIGER</Airline>
+    <FlightNo>XXXXXX</FlightNo>
+    <DepartureDate>2011-07-11T21:30:00+08:00</DepartureDate>
+    <Address>AT HOME</Address>
+    <Age>-1</Age>
+    <Gender />
+    <PlaceType />
+  </Registration>
+  <Registration>
+    <Id>2</Id>
+    <EntryDate>2011-12-22T20:58:45.76+08:00</EntryDate>
+    <Country>Indonesia</Country>
+    <Locale>SINGAPORE</Locale>
+    <ExternalId>XXXXXXXXX</ExternalId>
+    <Name>DANIEL SALUNGA</Name>
+    <Designation>MEMBER</Designation>
+    <ArrivalDate>1909-12-31T21:30:00+08:00</ArrivalDate>
+    <Airline>TIGER</Airline>
+    <FlightNo>XXXXXX</FlightNo>
+    <DepartureDate>2011-07-11T21:30:00+08:00</DepartureDate>
+    <Address />
+    <Age>-1</Age>
+    <Gender />
+    <PlaceType />
+  </Registration>
+  <Registration>
+    <Id>3</Id>
+    <EntryDate>2011-12-23T07:20:04.2+08:00</EntryDate>
+    <Country>Australia</Country>
+    <Locale>SINGAPORE</Locale>
+    <ExternalId>XXXXXXXXX</ExternalId>
+    <Name>DANIEL SALUNGA</Name>
+    <Designation>MEMBER</Designation>
+    <ArrivalDate>1909-12-31T21:30:00+08:00</ArrivalDate>
+    <Airline>TIGER</Airline>
+    <FlightNo>XXXXXX</FlightNo>
+    <DepartureDate>2011-07-11T21:30:00+08:00</DepartureDate>
+    <Address>AT HOME</Address>
+    <Age>-1</Age>
+    <Gender />
+    <PlaceType />
+  </Registration>
+  <Registration>
+    <Id>4</Id>
+    <EntryDate>2011-12-23T07:21:21.767+08:00</EntryDate>
+    <Country>Australia</Country>
+    <Locale>SINGAPORE</Locale>
+    <ExternalId>XXXXXXXXX</ExternalId>
+    <Name>DANIEL SALUNGA</Name>
+    <Designation>MEMBER</Designation>
+    <ArrivalDate>1909-12-31T21:30:00+08:00</ArrivalDate>
+    <Airline>TIGER</Airline>
+    <FlightNo>XXXXXX</FlightNo>
+    <DepartureDate>2011-07-11T21:30:00+08:00</DepartureDate>
+    <Address>AT HOME</Address>
+    <Age>-1</Age>
+    <Gender />
+    <PlaceType />
+  </Registration>
+  <Registration>
+    <Id>5</Id>
+    <EntryDate>2011-12-23T14:35:54.593+08:00</EntryDate>
+    <Country>Australia</Country>
+    <Locale>SINGAPORE</Locale>
+    <ExternalId>XXXXXXXXX</ExternalId>
+    <Name>DANIEL SALUNGA</Name>
+    <Designation>MEMBER</Designation>
+    <ArrivalDate>2011-12-19T21:30:00+08:00</ArrivalDate>
+    <Airline>TIGER</Airline>
+    <FlightNo>XXXXXX</FlightNo>
+    <DepartureDate>2011-12-06T21:30:00+08:00</DepartureDate>
+    <Address>AT HOME</Address>
+    <Age>-1</Age>
+    <Gender />
+    <PlaceType />
+  </Registration>
+  <Registration>
+    <Id>6</Id>
+    <EntryDate>2011-12-23T17:21:03.1+08:00</EntryDate>
+    <Country>Hongkong</Country>
+    <Locale>SINGAPORE</Locale>
+    <ExternalId>XXXXXXXXX</ExternalId>
+    <Name>DANIEL SALUNGA</Name>
+    <Designation>MEMBER</Designation>
+    <ArrivalDate>1909-12-31T21:30:00+08:00</ArrivalDate>
+    <Airline>TIGER</Airline>
+    <FlightNo>XXXXXX</FlightNo>
+    <DepartureDate>2011-12-06T21:30:00+08:00</DepartureDate>
+    <Address>AT HOME</Address>
+    <Age>-1</Age>
+    <Gender />
+    <PlaceType />
+  </Registration>
+  <Registration>
+    <Id>7</Id>
+    <EntryDate>2011-12-24T00:14:32.797+08:00</EntryDate>
+    <Country>Australia</Country>
+    <Locale>SINGAPORE</Locale>
+    <ExternalId>XXXXXXXXX</ExternalId>
+    <Name>DANIEL SALUNGA</Name>
+    <Designation>MEMBER</Designation>
+    <ArrivalDate>2011-12-11T22:03:00+08:00</ArrivalDate>
+    <Airline>TIGER</Airline>
+    <FlightNo>XXXXXX</FlightNo>
+    <DepartureDate>2011-12-06T21:30:00+08:00</DepartureDate>
+    <Address>AT HOME</Address>
+    <Age>-1</Age>
+    <Gender />
+    <PlaceType />
+  </Registration>
+  <Registration>
+    <Id>8</Id>
+    <EntryDate>2011-12-24T00:16:08.837+08:00</EntryDate>
+    <Country>Australia</Country>
+    <Locale>SINGAPORE</Locale>
+    <ExternalId>XXXXXXXXX</ExternalId>
+    <Name>DANIEL SALUNGA</Name>
+    <Designation>MEMBER</Designation>
+    <ArrivalDate>2011-12-11T22:03:00+08:00</ArrivalDate>
+    <Airline>TIGER</Airline>
+    <FlightNo>XXXXXX</FlightNo>
+    <DepartureDate>2011-12-06T21:30:00+08:00</DepartureDate>
+    <Address>AT HOME</Address>
+    <Age>16</Age>
+    <Gender />
+    <PlaceType>HOME</PlaceType>
+  </Registration>
+  <Registration>
+    <Id>9</Id>
+    <EntryDate>2011-12-24T00:22:57.79+08:00</EntryDate>
+    <Country>Guam</Country>
+    <Locale>SINGAPORE</Locale>
+    <ExternalId>XXXXXXXXX</ExternalId>
+    <Name>DANIEL SALUNGA</Name>
+    <Designation>MEMBER</Designation>
+    <ArrivalDate>2011-12-11T22:03:00+08:00</ArrivalDate>
+    <Airline>TIGER</Airline>
+    <FlightNo>XXXXXX</FlightNo>
+    <DepartureDate>2011-12-06T21:30:00+08:00</DepartureDate>
+    <Address />
+    <Age>23</Age>
+    <Gender>M</Gender>
+    <PlaceType />
+  </Registration>
+</mPortal>

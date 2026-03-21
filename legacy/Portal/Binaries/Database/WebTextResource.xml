@@ -1,0 +1,5997 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebTextResource">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="TextResourceId" type="xs:int" />
+                <xs:element name="ContentTypeId" type="xs:int" />
+                <xs:element name="Title">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Content">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DirectoryId" type="xs:int" />
+                <xs:element name="Rank" type="xs:int" />
+                <xs:element name="DateModified" type="xs:dateTime" />
+                <xs:element name="OwnerObjectId" type="xs:int" />
+                <xs:element name="OwnerRecordId" type="xs:int" />
+                <xs:element name="DatePersisted" type="xs:dateTime" />
+                <xs:element name="PhysicalPath">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebTextResource" />
+        <xs:field xpath="TextResourceId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebTextResource>
+    <TextResourceId>1</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>mcgi.css</Title>
+    <Content>BODY
+{
+	scrollbar-face-color: #eeeee6;
+	margin: 0px;
+	scrollbar-highlight-color: #000000;
+	scrollbar-shadow-color: #eeeee6;
+	scrollbar-arrow-color: #000000;
+	font-family: Georgia, "Times New Roman" , Times, serif;
+	scrollbar-base-color: #eeeee6;
+	scrollbar-dark-shadow-color: #EEEEE6;
+	scrollbar-3d-light-color: #000000;
+}
+A:link
+{
+	font-weight: bold;
+	color: #336699;
+	text-decoration: none;
+}
+A:visited
+{
+	font-weight: bold;
+	color: #336699;
+	text-decoration: none;
+}
+A:active
+{
+	font-weight: bold;
+	color: #336699;
+}
+A:hover
+{
+	font-weight: bold;
+	color: #d95852;
+	text-decoration: underline;
+}
+A.rbullet:link
+{
+	background-position: left 50%;
+	padding-left: 20px;
+	font-weight: normal;
+	background-image: url(/Content/Assets/Images/WebSites/ADD/rbullet.gif);
+	color: #000066;
+	background-repeat: no-repeat;
+	text-decoration: none;
+}
+A.rbullet:visited
+{
+	background-position: left 50%;
+	padding-left: 20px;
+	font-weight: normal;
+	background-image: url(/Content/Assets/Images/WebSites/ADD/rbullet.gif);
+	color: #000066;
+	background-repeat: no-repeat;
+	text-decoration: none;
+}
+A.rbullet:active
+{
+	background-position: left 50%;
+	padding-left: 20px;
+	background-image: url(/Content/Assets/Images/WebSites/ADD/rbullet.gif);
+	color: #000066;
+	background-repeat: no-repeat;
+}
+A.rbullet:hover
+{
+	padding-left: 20px;
+	background: url(/Content/Assets/Images/WebSites/ADD/rbullet.gif) #ede3d6 no-repeat left 50%;
+	color: #af3016;
+}
+#related_to
+{
+	padding-right: 0px;
+	padding-left: 10px;
+	padding-bottom: 3px;
+	padding-top: 10px;
+}
+#bg
+{
+	padding-right: 5px;
+	padding-left: 10px;
+	font-weight: bold;
+	font-size: 12pt;
+	background: #f9f7f0;
+	padding-bottom: 5px;
+	color: #666666;
+	padding-top: 5px;
+}
+#bg_b
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 10px;
+	padding-top: 5px;
+	text-align: center;
+}
+#mid
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	text-align: left;
+}
+#left_table
+{
+	padding-right: 5px;
+	padding-left: 8px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	text-align: left;
+}
+#top_left_table
+{
+	padding-right: 1px;
+	padding-left: 1px;
+	padding-bottom: 1px;
+	border-left: #bbcbda 8px solid;
+	padding-top: 1px;
+	text-align: left;
+}
+#linkage
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	font-weight: bold;
+	font-size: 70%;
+	background: #f8f8f8;
+	padding-bottom: 5px;
+	color: #333333;
+	padding-top: 5px;
+	font-family: arial;
+}
+#sublink
+{
+	padding-right: 5px;
+	padding-left: 20px;
+	font-size: 70%;
+	background: #fdfcf9;
+	padding-bottom: 5px;
+	color: #333333;
+	padding-top: 5px;
+	font-family: arial;
+}
+#contact_table
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	text-align: left;
+}
+#segments P.title
+{
+	margin: 0px;
+}
+#segments IMG
+{
+	float: left;
+	margin: 0px 10px;
+}
+#segments .segment
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	float: left;
+	padding-bottom: 10px;
+	margin: 0px 10px 10px 15px;
+	width: 750px;
+	padding-top: 10px;
+	height: 100%;
+	background-color: #f8f8f8;
+}
+#segments P.desc
+{
+	margin: 10px 0px 0px;
+}
+#bibrefer IMG
+{
+	float: left;
+	margin: 0px 10px;
+}
+#bibrefer
+{
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	background-color: #faf9f5;
+}
+#bibrefer P.title
+{
+	font-weight: bold;
+	font-size: 16px;
+	margin: 0px;
+}
+#bibrefer P.desc
+{
+	font-size: 12px;
+	margin: 10px 0px 0px 150px;
+}
+#media P
+{
+	font-size: 14px;
+	margin: 0px 0px 0px 290px;
+}
+#media .medias IMG
+{
+	float: left;
+	margin: 0px 10px 0px 0px;
+}
+#media .medias
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	float: right;
+	padding-bottom: 5px;
+	margin: 0px 10px 20px;
+	width: 755px;
+	padding-top: 5px;
+	height: 100%;
+	background-color: #f8f8f8;
+}
+#media P.title
+{
+	font-weight: bold;
+}
+#mainndx
+{
+	float: right;
+	width: 776px;
+	text-align: left;
+}
+#mainindex
+{
+}
+#mainindex .yappie
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	float: right;
+	padding-bottom: 0px;
+	margin: 0px 10px 0px 15px;
+	width: 750px;
+	padding-top: 5px;
+	height: 100%;
+	background-color: #f9f9f9;
+}
+#mainindex .yappie P
+{
+	margin: 0px 0px 10px 8px;
+}
+#mainindex H3
+{
+	font-size: 18px;
+	margin: 10px 0px 10px 8px;
+	color: #990000;
+}
+#mainindex P.title
+{
+	font-weight: bold;
+	margin: 0px;
+}
+#mainindex P.title
+{
+	font-size: 13px;
+	margin-left: 305px;
+}
+P.desc
+{
+	font-size: 13px;
+	margin-left: 305px;
+}
+#mainindex .medias P.desc
+{
+	margin-top: 5px;
+}
+#mainindex IMG.banner
+{
+	float: left;
+	margin: 0px 10px 0px 5px;
+}
+#mainindex .medias
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	float: right;
+	padding-bottom: 20px;
+	margin: 0px 10px 10px 15px;
+	width: 750px;
+	padding-top: 10px;
+	height: 100%;
+	background-color: #f4f4f4;
+}
+#dotorg
+{
+	float: right;
+	width: 776px;
+	text-align: left;
+}
+#left_dot
+{
+	float: left;
+	margin: 0px 0px 0px 8px;
+	width: 500px;
+	background-color: #f9f9f9;
+}
+UNKNOWN
+{
+	width: 508px;
+}
+#left_dot SPAN
+{
+	display: block;
+	font-weight: normal;
+	font-size: 13px;
+}
+#left_dot H3
+{
+	margin: 0px;
+	background-color: #f2f2f2;
+}
+#left_dot P
+{
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	margin: 0px;
+	padding-top: 10px;
+}
+#left-dot
+{
+	float: left;
+	margin-left: 8px;
+	width: 490px;
+	border-bottom: #fff 10px solid;
+}
+UNKNOWN
+{
+	width: 498px;
+}
+#left-dot .feat2
+{
+	display: block;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #f9f9f9;
+}
+#left-dot .feat
+{
+	display: block;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #fff;
+}
+#left-dot .reltop
+{
+	font-size: 8pt;
+}
+#left-dot H3
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	margin: 0px;
+	padding-top: 5px;
+	background-color: #f2f2f2;
+}
+#left-dot P
+{
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	margin: 0px;
+	padding-top: 10px;
+}
+#right_dot
+{
+	float: right;
+	margin: 0px 5px 0px 0px;
+	width: 250px;
+}
+UNKNOWN
+{
+	margin: 0px 10px 0px 0px;
+}
+#right_dot .topsched
+{
+	padding-right: 0px;
+	display: block;
+	padding-left: 10px;
+	font-weight: normal;
+	font-size: 7pt;
+	float: right;
+	padding-bottom: 10px;
+	width: 230px;
+	padding-top: 10px;
+	font-family: verdana;
+	background-color: #f9f7f0;
+}
+UNKNOWN
+{
+	width: 230px;
+}
+#right-dot
+{
+	font-size: 7pt;
+	float: right;
+	width: 260px;
+	font-family: verdana;
+}
+#right-dot .progsched
+{
+	padding-right: 10px;
+	display: block;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	width: 230px;
+	padding-top: 10px;
+	height: 685px;
+	background-color: #f9f7f0;
+}
+#right-dot .eventsched
+{
+	padding-right: 10px;
+	display: block;
+	padding-left: 10px;
+	font-size: 7pt;
+	padding-bottom: 10px;
+	width: 230px;
+	padding-top: 10px;
+	height: 435px;
+	background-color: #f9f7f0;
+}
+#right-dot .eventsched LI
+{
+	left: -15px;
+	list-style-image: url(/Content/Assets/Images/WebSites/ADD/date.png);
+	line-height: 2em;
+	position: relative;
+}
+#feat_site
+{
+	font-size: 12px;
+	float: left;
+	margin: 10px 0px;
+	width: 776px;
+}
+UNKNOWN
+{
+	padding-left: 5px;
+	text-align: left;
+}
+#feat_site H3
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 0px;
+	margin: 0px 10px;
+	padding-top: 0px;
+	background-color: #f9f7f0;
+}
+UNKNOWN
+{
+	margin: 0px 13px 0px 10px;
+}
+#feat_site SPAN
+{
+	padding-right: 5px;
+	display: block;
+	padding-left: 5px;
+	float: left;
+	padding-bottom: 5px;
+	width: 250px;
+	padding-top: 5px;
+}
+UNKNOWN
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	font-weight: normal;
+	padding-bottom: 5px;
+	width: 240px;
+	padding-top: 5px;
+}
+#feat_site P
+{
+	font-weight: bold;
+	font-size: 16px;
+	margin: 5px 0px 10px;
+	color: #666666;
+}
+#feat
+{
+	float: left;
+	margin-left: 8px;
+	padding-top: 10px;
+	background-color: #fdfcf9;
+	text-align: left;
+}
+#feat SPAN
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	font-weight: normal;
+	padding-bottom: 5px;
+	width: 240px;
+	padding-top: 5px;
+}
+UNKNOWN
+{
+	margin-left: 12px;
+}
+#topnews
+{
+	padding-right: 40px;
+	padding-left: 20px;
+	font-size: 11px;
+	padding-bottom: 5px;
+	color: #000033;
+	padding-top: 8px;
+	font-family: Georgia, "Times New Roman" , Times, serif;
+	text-align: left;
+}
+#form
+{
+	border-right: #666666 1px solid;
+	border-top: #666666 1px solid;
+	float: right;
+	border-left: #666666 1px solid;
+	border-bottom: #666666 1px solid;
+	background-color: #ffffff;
+}
+#top
+{
+	background: url(/Content/Assets/Images/WebSites/ADD/top_bg.gif) repeat-x;
+}
+#topside
+{
+	background-image: url(/Content/Assets/Images/WebSites/ADD/top_bglr.gif);
+	background-repeat: repeat-x;
+}
+#bleft
+{
+	background-position: right 50%;
+	background-image: url(/Content/Assets/Images/WebSites/ADD/b_left.gif);
+	background-repeat: repeat-y;
+}
+#bright
+{
+	background-image: url(/Content/Assets/Images/WebSites/ADD/b_right.gif);
+	background-repeat: repeat-y;
+}
+#bar
+{
+	background-position: center 50%;
+	background-image: url(/Content/Assets/Images/WebSites/ADD/bar.gif);
+	background-repeat: no-repeat;
+}
+#mbar
+{
+	background-image: url(/Content/Assets/Images/WebSites/ADD/margin_bar.gif);
+	background-repeat: repeat-y;
+}
+#divider
+{
+	background-position: center 50%;
+	background-image: url(/Content/Assets/Images/WebSites/ADD/rowdivider.gif);
+	background-repeat: no-repeat;
+}
+#nmenu
+{
+	background-position: center 50%;
+	margin-top: 5px;
+	background-image: url(/Content/Assets/Images/WebSites/ADD/n_menu_bg.jpg);
+	margin-bottom: 10px;
+	width: 775px;
+	background-repeat: no-repeat;
+	height: 50px;
+}
+#nmenu .menu_mcgi
+{
+	left: 38px;
+	position: relative;
+	top: 13px;
+}
+#trail
+{
+	padding-left: 20px;
+	font-weight: normal;
+	font-size: 11px;
+	padding-bottom: 3px;
+	color: #000033;
+	padding-top: 2px;
+	font-family: tahoma;
+	text-align: left;
+}
+#up_footer
+{
+	border-right: #ffffff 8px solid;
+	border-top: #ffffff 5px solid;
+	font-size: 11px;
+	background: #f9f7f0;
+	padding-bottom: 10px;
+	border-left: #ffffff 8px solid;
+	color: #000033;
+	padding-top: 5px;
+	font-family: tahoma;
+	text-align: center;
+}
+#footer
+{
+	padding-left: 8px;
+	font-size: 10px;
+	color: #000000;
+	font-family: tahoma;
+	text-align: right;
+}
+#youtubelist
+{
+	clear: both;
+	padding-right: 5px;
+	display: block;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	margin: 0px;
+	padding-top: 5px;
+	list-style-type: none;
+}
+#youtubebox
+{
+	clear: right;
+	padding-right: 0px;
+	display: inline;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	margin: 2px;
+	padding-top: 0px;
+}
+#youtubethumb
+{
+	border-right: #333 4px solid;
+	border-top: #333 4px solid;
+	margin-bottom: 5px;
+	border-left: #333 4px solid;
+	width: 130px;
+	border-bottom: #333 4px solid;
+	height: 97px;
+}
+#youtubecontent
+{
+	left: 50%;
+	margin-left: -430px;
+	width: 430px;
+	position: absolute;
+	top: -220px;
+	height: 520px;
+}
+#youtubeoverlay
+{
+	overflow: visible;
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	height: 1px;
+	background-color: #fff;
+}
+.labelfield
+{
+	font-size: 90%;
+	color: gray;
+}
+.datefield
+{
+	font-size: 90%;
+	color: gray;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.83+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.83+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>2</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>gfeedfetcher.js</Title>
+    <Content>// -------------------------------------------------------------------
+// gAjax RSS Feeds Displayer- By Dynamic Drive, available at: http://www.dynamicdrive.com
+// Created: July 17th, 2007 Updated: n/a
+// -------------------------------------------------------------------
+
+var gfeedfetcher_loading_image="/Content/Assets/Images/loading.gif" //Full URL to "loading" image. No need to config after this line!!
+
+google.load("feeds", "1") //Load Google Ajax Feed API (version 1)
+
+function gfeedfetcher(divid, divClass, linktarget){
+	this.linktarget=linktarget || "" //link target of RSS entries
+	this.feedlabels=[] //array holding lables for each RSS feed
+	this.feedurls=[]
+	this.feeds=[] //array holding combined RSS feeds' entries from Feed API (result.feed.entries)
+	this.feedsfetched=0 //number of feeds fetched
+	this.feedlimit=5
+	this.showoptions="" //Optional components of RSS entry to show (none by default)
+	this.sortstring="date" //sort by "date" by default
+	document.write('&lt;div id="'+divid+'" class="'+divClass+'"&gt;&lt;/div&gt;') //output div to contain RSS entries
+	this.feedcontainer=document.getElementById(divid)
+	this.itemcontainer="&lt;li&gt;" //default element wrapping around each RSS entry item
+}
+
+gfeedfetcher.prototype.addFeed=function(label, url){
+	this.feedlabels[this.feedlabels.length]=label
+	this.feedurls[this.feedurls.length]=url
+}
+
+gfeedfetcher.prototype.filterfeed=function(feedlimit, sortstr){
+	this.feedlimit=feedlimit
+	if (typeof sortstr!="undefined")
+	this.sortstring=sortstr
+}
+
+gfeedfetcher.prototype.displayoptions=function(parts){
+	this.showoptions=parts //set RSS entry options to show ("date, datetime, time, snippet, label, description")
+}
+
+gfeedfetcher.prototype.setentrycontainer=function(containerstr){  //set element that should wrap around each RSS entry item
+this.itemcontainer="&lt;"+containerstr.toLowerCase()+"&gt;"
+}
+
+gfeedfetcher.prototype.init=function(){
+	this.feedsfetched=0 //reset number of feeds fetched to 0 (in case init() is called more than once)
+	this.feeds=[] //reset feeds[] array to empty (in case init() is called more than once)
+	this.feedcontainer.innerHTML='&lt;img src="'+gfeedfetcher_loading_image+'" /&gt; Retrieving RSS feed(s)'
+	var displayer=this
+	for (var i=0; i&lt;this.feedurls.length; i++){ //loop through the specified RSS feeds' URLs
+		var feedpointer=new google.feeds.Feed(this.feedurls[i]) //create new instance of Google Ajax Feed API
+		var items_to_show=(this.feedlimit&lt;=this.feedurls.length)? 1 : Math.floor(this.feedlimit/this.feedurls.length) //Calculate # of entries to show for each RSS feed
+		if (this.feedlimit%this.feedurls.length&gt;0 &amp;&amp; this.feedlimit&gt;this.feedurls.length &amp;&amp; i==this.feedurls.length-1) //If this is the last RSS feed, and feedlimit/feedurls.length yields a remainder
+			items_to_show+=(this.feedlimit%this.feedurls.length) //Add that remainder to the number of entries to show for last RSS feed
+		feedpointer.setNumEntries(items_to_show) //set number of items to display
+		feedpointer.load(function(r){displayer._fetch_data_as_array(r)}) //call Feed.load() to retrieve and output RSS feed
+	}
+}
+
+
+gfeedfetcher._formatdate=function(datestr, showoptions){
+	var itemdate=new Date(datestr)
+	var parseddate=(showoptions.indexOf("datetime")!=-1)? itemdate.toLocaleString() : (showoptions.indexOf("date")!=-1)? itemdate.toLocaleDateString() : (showoptions.indexOf("time")!=-1)? itemdate.toLocaleTimeString() : ""
+	return "&lt;span class='datefield'&gt;"+parseddate+"&lt;/span&gt;"
+}
+
+gfeedfetcher._sortarray=function(arr, sortstr){
+	var sortstr=(sortstr=="label")? "ddlabel" : sortstr //change "label" string (if entered) to "ddlabel" instead, for internal use
+	if (sortstr=="title" || sortstr=="ddlabel"){ //sort array by "title" or "ddlabel" property of RSS feed entries[]
+		arr.sort(function(a,b){
+		var fielda=a[sortstr].toLowerCase()
+		var fieldb=b[sortstr].toLowerCase()
+		return (fielda&lt;fieldb)? -1 : (fielda&gt;fieldb)? 1 : 0
+		})
+	}
+	else{ //else, sort by "publishedDate" property (using error handling, as "publishedDate" may not be a valid date str if an error has occured while getting feed
+		try{
+			arr.sort(function(a,b){return new Date(b.publishedDate)-new Date(a.publishedDate)})
+		}
+		catch(err){}
+	}
+}
+
+gfeedfetcher.prototype._fetch_data_as_array=function(result){
+	var thisfeed=(!result.error)? result.feed.entries : "" //get all feed entries as a JSON array or "" if failed
+	if (thisfeed=="") //if error has occured fetching feed
+		alert("Google Feed API Error: "+result.error.message)
+	for (var i=0; i&lt;thisfeed.length; i++) //For each entry within feed
+		result.feed.entries[i].ddlabel=this.feedlabels[this.feedsfetched] //extend it with a "ddlabel" property
+	this.feeds=this.feeds.concat(thisfeed) //add entry to array holding all feed entries
+	this._signaldownloadcomplete() //signal the retrieval of this feed as complete (and move on to next one if defined)
+}
+
+gfeedfetcher.prototype._signaldownloadcomplete=function(){
+	this.feedsfetched+=1
+	if (this.feedsfetched==this.feedurls.length) //if all feeds fetched
+		this._displayresult(this.feeds) //display results
+}
+
+
+gfeedfetcher.prototype._displayresult=function(feeds){
+	var rssoutput=(this.itemcontainer=="&lt;li&gt;")? "&lt;ul&gt;\n" : ""
+	gfeedfetcher._sortarray(feeds, this.sortstring)
+	for (var i=0; i&lt;feeds.length; i++){
+		var itemtitle="&lt;a href=\"" + feeds[i].link + "\" target=\"" + this.linktarget + "\" class=\"titlefield\"&gt;" + feeds[i].title + "&lt;/a&gt;"
+		var itemlabel=/label/i.test(this.showoptions)? '&lt;span class="labelfield"&gt;'+this.feeds[i].ddlabel+'&lt;/span&gt;' : " "
+		var itemdate=gfeedfetcher._formatdate(feeds[i].publishedDate, this.showoptions)
+		var itemdescription=/description/i.test(this.showoptions)? "&lt;br /&gt;"+feeds[i].content : /snippet/i.test(this.showoptions)? "&lt;br /&gt;"+feeds[i].contentSnippet  : ""
+		rssoutput+=this.itemcontainer + itemtitle + " " + itemlabel + " " + itemdate + "\n" + itemdescription + this.itemcontainer.replace("&lt;", "&lt;/") + "\n\n"
+	}
+	rssoutput+=(this.itemcontainer=="&lt;li&gt;")? "&lt;/ul&gt;" : ""
+	this.feedcontainer.innerHTML=rssoutput
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.84+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.833+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>3</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>newadd.js</Title>
+    <Content>function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&amp;&amp;i&lt;a.length&amp;&amp;(x=a[i])&amp;&amp;x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))&gt;0&amp;&amp;parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&amp;&amp;d.all) x=d.all[n]; for (i=0;!x&amp;&amp;i&lt;d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&amp;&amp;d.layers&amp;&amp;i&lt;d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x &amp;&amp; d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i&lt;a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i&lt;(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+
+function select_Local()
+{
+	document.form3.search_by[0].checked = true
+	document.form3.search_address.value = ""
+}
+
+function select_Address()
+{
+	document.form3.search_by[1].checked = true
+	document.form3.search_local.value = ""
+}
+
+function frameBooker_hp(){
+	var is_4up = parseInt(navigator.appVersion);
+	var is_mac   = navigator.userAgent.toLowerCase().indexOf("mac")!=-1;
+	var is_ie   = navigator.userAgent.toLowerCase().indexOf("msie")!=-1;
+	var thePage = location.href;
+	if (thePage.lastIndexOf('#')!=-1)
+		thePage = thePage.substring(0,thePage.lastIndexOf('#'));
+	if (is_ie &amp;&amp; is_4up &amp;&amp; !is_mac) 
+		window.external.AddFavorite(thePage,document.title);
+	else if (is_ie || document.images)
+		booker_hp = window.open(thePage,'booker_','menubar,width=325,height=100,left=140,top=60');
+	booker_hp.focus();
+	}
+
+function Page_Load()
+{
+MM_preloadImages('/Content/Assets/Images/WebSites/ADD/n_home_o.gif','/Content/Assets/Images/WebSites/ADD/n_about_o.gif','/Content/Assets/Images/WebSites/ADD/n_btopics_o.gif','/Content/Assets/Images/WebSites/ADD/n_programs_o.gif','/Content/Assets/Images/WebSites/ADD/n_ask_o.gif','/Content/Assets/Images/WebSites/ADD/n_pub_o.gif','/Content/Assets/Images/WebSites/ADD/n_media_o.gif','/Content/Assets/Images/WebSites/ADD/n_gallery_o.gif');
+}
+
+WCMS.Dom.AddEvent(window, "load", Page_Load);</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.85+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.843+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>4</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>youtube.js</Title>
+    <Content>&lt;!--
+var cleanReturn = 1; //do you want a full youtube return, or just an image list
+var inlineVideo = 1; //do you want to redirect to youtube, or play inlinevideo
+
+var timer;
+var i =0;
+var youtubediv = new Array();
+
+function clearList(ul){
+	var list = document.getElementById(ul);
+	while (list.firstChild) 
+	 {
+	    list.removeChild(list.firstChild);
+	 }		
+}
+
+function hideOverlay(){
+
+	var overlay = document.getElementById('youtubeoverlay');
+	overlay.style.display = 'none';
+	overlay.innerHTML = "";
+}
+
+function videoOverlay(id){
+	var objBody = document.getElementsByTagName("body").item(0);
+	if(objBody){
+    var video = document.createElement('div');
+	video.setAttribute('id', 'youtubeoverlay');
+	video.innerHTML = '&lt;div id="youtubecontent"&gt;&lt;a href="javascript:hideOverlay()" id="close"&gt;Close&lt;/a&gt;&lt;br /&gt;&lt;object width="510" height="420"&gt;&lt;param name="movie" value="http://www.youtube.com/v/'+id+'"&gt;&lt;/param&gt;&lt;param name="autoplay" value="1"&gt;&lt;param name="wmode" value="transparent"&gt;&lt;/param&gt;&lt;embed src="http://www.youtube.com/v/'+id+'&amp;autoplay=1" type="application/x-shockwave-flash" wmode="transparent" width="510" height="420"&gt;&lt;/embed&gt;&lt;/object&gt;&lt;/div&gt;';
+	objBody.insertBefore(video, objBody.firstChild);
+	}else{
+		alert('no body element. please add');
+	}
+
+}
+
+function mousOverImage(name,id,nr){
+
+	if(name)
+		imname = name;
+	//make border orange
+	imname.style.border = 	'4px solid #F88017';
+
+	imname.src = "http://img.youtube.com/vi/"+id+"/"+nr+".jpg";
+	nr++;
+	if(nr &gt; 3)
+		nr = 1;
+	timer =  setTimeout("mousOverImage(false,'"+id+"',"+nr+");",1000);
+
+}
+
+
+function mouseOutImage(name){
+
+	if(name)
+		imname = name;
+	//make border back to greyish
+	imname.style.border = 	'4px solid #333333';
+	if(timer)
+		clearTimeout(timer)
+
+}
+
+function getVideoId(url){
+
+    var match = url.lastIndexOf('=');
+    if (match) {
+      id = url.substring(match+1);
+      return id;
+    }
+}
+
+function getId(string){
+
+    var match = string.lastIndexOf("'s Videos");
+    if (match != -1) {
+      id = string.substring(0,match);
+      return id.toLowerCase();
+    }
+
+    var match = string.lastIndexOf("query");
+    if (match != -1) {
+      id = string.substring(match+7);
+      return id.toLowerCase();
+    }
+
+}
+function listVideos(json,divid) {
+  if(divid == null) return; // D: added validation
+
+  divid.innerHTML = '';
+  var ul = document.createElement('ul');
+  ul.setAttribute('id', 'youtubelist');
+  if(json.feed.entry){
+	  for (var i = 0; i &lt; json.feed.entry.length; i++) {
+	    var entry = json.feed.entry[i];
+	
+	    for (var k = 0; k &lt; entry.link.length; k++) {
+	      if (entry.link[k].rel == 'alternate') {
+	        url = entry.link[k].href;
+	        break;
+	      }
+	    }
+   	
+
+   	var thumb = entry['media$group']['media$thumbnail'][1].url;
+
+
+    var li = document.createElement('li');
+
+    li.setAttribute('id', 'youtubebox');
+    if(cleanReturn == 1){
+
+		if(inlineVideo == 1){
+        	li.innerHTML = '&lt;a href="javascript:videoOverlay(\''+getVideoId(url)+'\');"&gt;&lt;img src="'+thumb+'" id="youtubethumb" alt="'+entry.title.$t+'" onmouseout="clearTimeout(timer)" onmouseover="mousOverImage(this,\''+getVideoId(url)+'\',2)"&gt;&lt;/a&gt;';
+
+		}else{
+
+        	li.innerHTML = '&lt;a href="'+url+'" title="'+entry.title.$t+'"&gt;&lt;img src="'+thumb+'" id="youtubethumb" alt="'+entry.title.$t+'" title="'+entry.title.$t+'" onmouseout="mouseOutImage(this)" onmouseover="mousOverImage(this,\''+getVideoId(url)+'\',2)"&gt;&lt;/a&gt;' ;
+			
+		}
+    }else{
+        li.innerHTML = entry.content.$t;
+    }
+
+    ul.appendChild(li);
+	}
+  }else{
+  	divid.innerHTML = 'No Results Found';
+
+  }
+
+  document.getElementById(divid).appendChild(ul);
+}
+
+function youtubeInit(root) {
+  //this hacks the layer for mutiple json queries
+  id = getId(root.feed.title.$t);
+  listVideos(root, youtubediv[id]);
+
+}
+
+
+function insertVideos(div,typ,q,results,overlay){
+  inlineVideo = overlay;
+  youtubediv[q.toLowerCase()] = div;
+
+  var script = document.createElement('script');
+  if(typ == "search")
+  	script.setAttribute('src', 'http://gdata.youtube.com/feeds/videos?vq='+q+'&amp;max-results='+results+'&amp;alt=json-in-script&amp;callback=youtubeInit');
+
+  if(typ == "user")
+  	script.setAttribute('src', 'http://gdata.youtube.com/feeds/users/'+q+'/uploads?max-results='+results+'&amp;alt=json-in-script&amp;callback=youtubeInit');
+
+  if(typ == "playlist"){
+	//doesn't function
+	alert('oops.. working on it');
+  	script.setAttribute('src', 'http://gdata.youtube.com/feeds/playlists/'+q+'?max-results='+results+'&amp;alt=json-in-script&amp;callback=youtubeInit');
+  }
+
+  script.setAttribute('id', 'jsonScript');
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
+}
+
+//--&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.86+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.85+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>5</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>Inline.js</Title>
+    <Content>var timeoutID = null;
+
+/* Must pass in the "anchors" ID so that Lytebox can call the correct "onclick" handler... */
+function loadLytebox(id) {
+    if (typeof myLytebox != 'undefined') {
+        // if the myLytebox object exists, start it up!
+        myLytebox.start(document.getElementById(id));
+    } else {
+        // wait 1/10th of a second and attempt loading again...
+        if (timeoutID) { clearTimeout(timeoutID); }
+        timeoutID = setTimeout('loadLytebox("'+id+'")', 100);
+    }
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.863+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.863+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>6</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>lytebox.css</Title>
+    <Content>#lbOverlay { position: fixed; top: 0; left: 0; z-index: 99998; width: 100%; height: 500px; }
+	#lbOverlay.grey { background-color: #000000; }
+	#lbOverlay.red { background-color: #330000; }
+	#lbOverlay.green { background-color: #003300; }
+	#lbOverlay.blue { background-color: #011D50; }
+	#lbOverlay.gold { background-color: #666600; }
+
+#lbMain { position: absolute; left: 0; width: 100%; z-index: 99999; text-align: center; line-height: 0; }
+#lbMain a img { border: none; }
+
+#lbOuterContainer { position: relative; background-color: #fff; width: 200px; height: 200px; margin: 0 auto; }
+	#lbOuterContainer.grey { border: 3px solid #888888; }
+	#lbOuterContainer.red { border: 3px solid #DD0000; }
+	#lbOuterContainer.green { border: 3px solid #00B000; }
+	#lbOuterContainer.blue { border: 3px solid #5F89D8; }
+	#lbOuterContainer.gold { border: 3px solid #B0B000; }
+
+#lbDetailsContainer {	font: 10px Verdana, Helvetica, sans-serif; background-color: #fff; width: 100%; line-height: 1.4em;	overflow: auto; margin: 0 auto; }
+	#lbDetailsContainer.grey { border: 3px solid #888888; border-top: none; }
+	#lbDetailsContainer.red { border: 3px solid #DD0000; border-top: none; }
+	#lbDetailsContainer.green { border: 3px solid #00B000; border-top: none; }
+	#lbDetailsContainer.blue { border: 3px solid #5F89D8; border-top: none; }
+	#lbDetailsContainer.gold { border: 3px solid #B0B000; border-top: none; }
+
+#lbImageContainer, #lbIframeContainer { padding: 10px; }
+#lbLoading {
+	position: absolute; top: 45%; left: 0%; height: 32px; width: 100%; text-align: center; line-height: 0; background: url(/Content/Assets/Images/WebSites/ADD/loading.gif) center no-repeat;
+}
+
+#lbHoverNav { position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 10; }
+#lbImageContainer&gt;#lbHoverNav { left: 0; }
+#lbHoverNav a { outline: none; }
+
+#lbPrev { width: 49%; height: 100%; background: transparent url(/Content/Assets/Images/WebSites/ADD/blank.gif) no-repeat; display: block; left: 0; float: left; }
+	#lbPrev.grey:hover, #lbPrev.grey:visited:hover { background: url(/Content/Assets/Images/WebSites/ADD/prev_grey.gif) left 15% no-repeat; }
+	#lbPrev.red:hover, #lbPrev.red:visited:hover { background: url(/Content/Assets/Images/WebSites/ADD/prev_red.gif) left 15% no-repeat; }
+	#lbPrev.green:hover, #lbPrev.green:visited:hover { background: url(/Content/Assets/Images/WebSites/ADD/prev_green.gif) left 15% no-repeat; }
+	#lbPrev.blue:hover, #lbPrev.blue:visited:hover { background: url(/Content/Assets/Images/WebSites/ADD/prev_blue.gif) left 15% no-repeat; }
+	#lbPrev.gold:hover, #lbPrev.gold:visited:hover { background: url(/Content/Assets/Images/WebSites/ADD/prev_gold.gif) left 15% no-repeat; }
+	
+#lbNext { width: 49%; height: 100%; background: transparent url(/Content/Assets/Images/WebSites/ADD/blank.gif) no-repeat; display: block; right: 0; float: right; }
+	#lbNext.grey:hover, #lbNext.grey:visited:hover { background: url(/Content/Assets/Images/WebSites/ADD/next_grey.gif) right 15% no-repeat; }
+	#lbNext.red:hover, #lbNext.red:visited:hover { background: url(/Content/Assets/Images/WebSites/ADD/next_red.gif) right 15% no-repeat; }
+	#lbNext.green:hover, #lbNext.green:visited:hover { background: url(/Content/Assets/Images/WebSites/ADD/next_green.gif) right 15% no-repeat; }
+	#lbNext.blue:hover, #lbNext.blue:visited:hover { background: url(/Content/Assets/Images/WebSites/ADD/next_blue.gif) right 15% no-repeat; }
+	#lbNext.gold:hover, #lbNext.gold:visited:hover { background: url(/Content/Assets/Images/WebSites/ADD/next_gold.gif) right 15% no-repeat; }
+
+#lbPrev2, #lbNext2 { text-decoration: none; font-weight: bold; }
+	#lbPrev2.grey, #lbNext2.grey, #lbSpacer.grey { color: #333333; }
+	#lbPrev2.red, #lbNext2.red, #lbSpacer.red { color: #620000; }
+	#lbPrev2.green, #lbNext2.green, #lbSpacer.green { color: #003300; }
+	#lbPrev2.blue, #lbNext2.blue, #lbSpacer.blue { color: #01379E; }
+	#lbPrev2.gold, #lbNext2.gold, #lbSpacer.gold { color: #666600; }
+	
+#lbPrev2_Off, #lbNext2_Off { font-weight: bold; }
+	#lbPrev2_Off.grey, #lbNext2_Off.grey { color: #CCCCCC; }
+	#lbPrev2_Off.red, #lbNext2_Off.red { color: #FFCCCC; }
+	#lbPrev2_Off.green, #lbNext2_Off.green { color: #82FF82; }
+	#lbPrev2_Off.blue, #lbNext2_Off.blue { color: #B7CAEE; }
+	#lbPrev2_Off.gold, #lbNext2_Off.gold { color: #E1E100; }
+	
+#lbDetailsData { padding: 0 10px; }
+	#lbDetailsData.grey { color: #333333; }
+	#lbDetailsData.red { color: #620000; }
+	#lbDetailsData.green { color: #003300; }
+	#lbDetailsData.blue { color: #01379E; }
+	#lbDetailsData.gold { color: #666600; }
+
+#lbDetails { width: 60%; float: left; text-align: left; }
+#lbCaption { display: block; font-weight: bold; }
+#lbNumberDisplay { float: left; display: block; padding-bottom: 1.0em; }
+#lbNavDisplay { float: left; display: block; padding-bottom: 1.0em; }
+
+#lbClose { width: 64px; height: 28px; float: right; margin-bottom: 1px; }
+	#lbClose.grey { background: url(/Content/Assets/Images/WebSites/ADD/close_grey.png) no-repeat; }
+	#lbClose.red { background: url(/Content/Assets/Images/WebSites/ADD/close_red.png) no-repeat; }
+	#lbClose.green { background: url(/Content/Assets/Images/WebSites/ADD/close_green.png) no-repeat; }
+	#lbClose.blue { background: url(/Content/Assets/Images/WebSites/ADD/close_blue.png) no-repeat; }
+	#lbClose.gold { background: url(/Content/Assets/Images/WebSites/ADD/close_gold.png) no-repeat; }
+
+#lbPlay { width: 64px; height: 28px; float: right; margin-bottom: 1px; }
+	#lbPlay.grey { background: url(/Content/Assets/Images/WebSites/ADD/play_grey.png) no-repeat; }
+	#lbPlay.red { background: url(/Content/Assets/Images/WebSites/ADD/play_red.png) no-repeat; }
+	#lbPlay.green { background: url(/Content/Assets/Images/WebSites/ADD/play_green.png) no-repeat; }
+	#lbPlay.blue { background: url(/Content/Assets/Images/WebSites/ADD/play_blue.png) no-repeat; }
+	#lbPlay.gold { background: url(/Content/Assets/Images/WebSites/ADD/play_gold.png) no-repeat; }
+	
+#lbPause { width: 64px; height: 28px; float: right; margin-bottom: 1px; }
+	#lbPause.grey { background: url(/Content/Assets/Images/WebSites/ADD/pause_grey.png) no-repeat; }
+	#lbPause.red { background: url(/Content/Assets/Images/WebSites/ADD/pause_red.png) no-repeat; }
+	#lbPause.green { background: url(/Content/Assets/Images/WebSites/ADD/pause_green.png) no-repeat; }
+	#lbPause.blue { background: url(/Content/Assets/Images/WebSites/ADD/pause_blue.png) no-repeat; }
+	#lbPause.gold { background: url(/Content/Assets/Images/WebSites/ADD/pause_gold.png) no-repeat; }</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.87+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.867+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>7</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>lytebox.js</Title>
+    <Content>//***********************************************************************************************************************************/
+//	LyteBox v3.22
+//
+//	 Author: Markus F. Hay
+//  Website: http://www.dolem.com/lytebox
+//	   Date: October 2, 2007
+//	License: Creative Commons Attribution 3.0 License (http://creativecommons.org/licenses/by/3.0/)
+// Browsers: Tested successfully on WinXP with the following browsers (using no DOCTYPE and Strict/Transitional/Loose DOCTYPES):
+//				* Firefox: 2.0.0.7, 1.5.0.12
+//				* Internet Explorer: 7.0, 6.0 SP2, 5.5 SP2
+//				* Opera: 9.23
+//
+// Releases: For up-to-date and complete release information, visit http://www.dolem.com/forum/showthread.php?tid=62
+//				* v3.22 (10/02/07)
+//				* v3.21 (09/30/07)
+//				* v3.20 (07/12/07)
+//				* v3.10 (05/28/07)
+//				* v3.00 (05/15/07)
+//				* v2.02 (11/13/06)
+//
+//   Credit: LyteBox was originally derived from the Lightbox class (v2.02) that was written by Lokesh Dhakar. For more
+//			 information please visit http://huddletogether.com/projects/lightbox2/
+//***********************************************************************************************************************************/
+Array.prototype.removeDuplicates = function () { for (var i = 1; i &lt; this.length; i++) { if (this[i][0] == this[i-1][0]) { this.splice(i,1); } } }
+Array.prototype.empty = function () { for (var i = 0; i &lt;= this.length; i++) { this.shift(); } }
+String.prototype.trim = function () { return this.replace(/^\s+|\s+$/g, ''); }
+
+function LyteBox() {
+	/*** Start Global Configuration ***/
+		this.theme				= 'grey';	// themes: grey (default), red, green, blue, gold
+		this.hideFlash			= true;		// controls whether or not Flash objects should be hidden
+		this.outerBorder		= true;		// controls whether to show the outer grey (or theme) border
+		this.resizeSpeed		= 8;		// controls the speed of the image resizing (1=slowest and 10=fastest)
+		this.maxOpacity			= 80;		// higher opacity = darker overlay, lower opacity = lighter overlay
+		this.navType			= 1;		// 1 = "Prev/Next" buttons on top left and left (default), 2 = "&lt;&lt; prev | next &gt;&gt;" links next to image number
+		this.autoResize			= true;		// controls whether or not images should be resized if larger than the browser window dimensions
+		this.doAnimations		= true;		// controls whether or not "animate" Lytebox, i.e. resize transition between images, fade in/out effects, etc.
+		
+		this.borderSize			= 12;		// if you adjust the padding in the CSS, you will need to update this variable -- otherwise, leave this alone...
+	/*** End Global Configuration ***/
+	
+	/*** Configure Slideshow Options ***/
+		this.slideInterval		= 4000;		// Change value (milliseconds) to increase/decrease the time between "slides" (10000 = 10 seconds)
+		this.showNavigation		= true;		// true to display Next/Prev buttons/text during slideshow, false to hide
+		this.showClose			= true;		// true to display the Close button, false to hide
+		this.showDetails		= true;		// true to display image details (caption, count), false to hide
+		this.showPlayPause		= true;		// true to display pause/play buttons next to close button, false to hide
+		this.autoEnd			= true;		// true to automatically close Lytebox after the last image is reached, false to keep open
+		this.pauseOnNextClick	= false;	// true to pause the slideshow when the "Next" button is clicked
+        this.pauseOnPrevClick 	= true;		// true to pause the slideshow when the "Prev" button is clicked
+	/*** End Slideshow Configuration ***/
+	
+	if(this.resizeSpeed &gt; 10) { this.resizeSpeed = 10; }
+	if(this.resizeSpeed &lt; 1) { resizeSpeed = 1; }
+	this.resizeDuration = (11 - this.resizeSpeed) * 0.15;
+	this.resizeWTimerArray		= new Array();
+	this.resizeWTimerCount		= 0;
+	this.resizeHTimerArray		= new Array();
+	this.resizeHTimerCount		= 0;
+	this.showContentTimerArray	= new Array();
+	this.showContentTimerCount	= 0;
+	this.overlayTimerArray		= new Array();
+	this.overlayTimerCount		= 0;
+	this.imageTimerArray		= new Array();
+	this.imageTimerCount		= 0;
+	this.timerIDArray			= new Array();
+	this.timerIDCount			= 0;
+	this.slideshowIDArray		= new Array();
+	this.slideshowIDCount		= 0;
+	this.imageArray	 = new Array();
+	this.activeImage = null;
+	this.slideArray	 = new Array();
+	this.activeSlide = null;
+	this.frameArray	 = new Array();
+	this.activeFrame = null;
+	this.checkFrame();
+	this.isSlideshow = false;
+	this.isLyteframe = false;
+	/*@cc_on
+		/*@if (@_jscript)
+			this.ie = (document.all &amp;&amp; !window.opera) ? true : false;
+		/*@else @*/
+			this.ie = false;
+		/*@end
+	@*/
+	this.ie7 = (this.ie &amp;&amp; window.XMLHttpRequest);	
+	this.initialize();
+}
+LyteBox.prototype.initialize = function() {
+	this.updateLyteboxItems();
+	var objBody = this.doc.getElementsByTagName("body").item(0);	
+	if (this.doc.getElementById('lbOverlay')) {
+		objBody.removeChild(this.doc.getElementById("lbOverlay"));
+		objBody.removeChild(this.doc.getElementById("lbMain"));
+	}
+	var objOverlay = this.doc.createElement("div");
+		objOverlay.setAttribute('id','lbOverlay');
+		objOverlay.setAttribute((this.ie ? 'className' : 'class'), this.theme);
+		if ((this.ie &amp;&amp; !this.ie7) || (this.ie7 &amp;&amp; this.doc.compatMode == 'BackCompat')) {
+			objOverlay.style.position = 'absolute';
+		}
+		objOverlay.style.display = 'none';
+		objBody.appendChild(objOverlay);
+	var objLytebox = this.doc.createElement("div");
+		objLytebox.setAttribute('id','lbMain');
+		objLytebox.style.display = 'none';
+		objBody.appendChild(objLytebox);
+	var objOuterContainer = this.doc.createElement("div");
+		objOuterContainer.setAttribute('id','lbOuterContainer');
+		objOuterContainer.setAttribute((this.ie ? 'className' : 'class'), this.theme);
+		objLytebox.appendChild(objOuterContainer);
+	var objIframeContainer = this.doc.createElement("div");
+		objIframeContainer.setAttribute('id','lbIframeContainer');
+		objIframeContainer.style.display = 'none';
+		objOuterContainer.appendChild(objIframeContainer);
+	var objIframe = this.doc.createElement("iframe");
+		objIframe.setAttribute('id','lbIframe');
+		objIframe.setAttribute('name','lbIframe');
+		objIframe.style.display = 'none';
+		objIframeContainer.appendChild(objIframe);
+	var objImageContainer = this.doc.createElement("div");
+		objImageContainer.setAttribute('id','lbImageContainer');
+		objOuterContainer.appendChild(objImageContainer);
+	var objLyteboxImage = this.doc.createElement("img");
+		objLyteboxImage.setAttribute('id','lbImage');
+		objImageContainer.appendChild(objLyteboxImage);
+	var objLoading = this.doc.createElement("div");
+		objLoading.setAttribute('id','lbLoading');
+		objOuterContainer.appendChild(objLoading);
+	var objDetailsContainer = this.doc.createElement("div");
+		objDetailsContainer.setAttribute('id','lbDetailsContainer');
+		objDetailsContainer.setAttribute((this.ie ? 'className' : 'class'), this.theme);
+		objLytebox.appendChild(objDetailsContainer);
+	var objDetailsData =this.doc.createElement("div");
+		objDetailsData.setAttribute('id','lbDetailsData');
+		objDetailsData.setAttribute((this.ie ? 'className' : 'class'), this.theme);
+		objDetailsContainer.appendChild(objDetailsData);
+	var objDetails = this.doc.createElement("div");
+		objDetails.setAttribute('id','lbDetails');
+		objDetailsData.appendChild(objDetails);
+	var objCaption = this.doc.createElement("span");
+		objCaption.setAttribute('id','lbCaption');
+		objDetails.appendChild(objCaption);
+	var objHoverNav = this.doc.createElement("div");
+		objHoverNav.setAttribute('id','lbHoverNav');
+		objImageContainer.appendChild(objHoverNav);
+	var objBottomNav = this.doc.createElement("div");
+		objBottomNav.setAttribute('id','lbBottomNav');
+		objDetailsData.appendChild(objBottomNav);
+	var objPrev = this.doc.createElement("a");
+		objPrev.setAttribute('id','lbPrev');
+		objPrev.setAttribute((this.ie ? 'className' : 'class'), this.theme);
+		objPrev.setAttribute('href','#');
+		objHoverNav.appendChild(objPrev);
+	var objNext = this.doc.createElement("a");
+		objNext.setAttribute('id','lbNext');
+		objNext.setAttribute((this.ie ? 'className' : 'class'), this.theme);
+		objNext.setAttribute('href','#');
+		objHoverNav.appendChild(objNext);
+	var objNumberDisplay = this.doc.createElement("span");
+		objNumberDisplay.setAttribute('id','lbNumberDisplay');
+		objDetails.appendChild(objNumberDisplay);
+	var objNavDisplay = this.doc.createElement("span");
+		objNavDisplay.setAttribute('id','lbNavDisplay');
+		objNavDisplay.style.display = 'none';
+		objDetails.appendChild(objNavDisplay);
+	var objClose = this.doc.createElement("a");
+		objClose.setAttribute('id','lbClose');
+		objClose.setAttribute((this.ie ? 'className' : 'class'), this.theme);
+		objClose.setAttribute('href','#');
+		objBottomNav.appendChild(objClose);
+	var objPause = this.doc.createElement("a");
+		objPause.setAttribute('id','lbPause');
+		objPause.setAttribute((this.ie ? 'className' : 'class'), this.theme);
+		objPause.setAttribute('href','#');
+		objPause.style.display = 'none';
+		objBottomNav.appendChild(objPause);
+	var objPlay = this.doc.createElement("a");
+		objPlay.setAttribute('id','lbPlay');
+		objPlay.setAttribute((this.ie ? 'className' : 'class'), this.theme);
+		objPlay.setAttribute('href','#');
+		objPlay.style.display = 'none';
+		objBottomNav.appendChild(objPlay);
+};
+LyteBox.prototype.updateLyteboxItems = function() {	
+	var anchors = (this.isFrame) ? window.parent.frames[window.name].document.getElementsByTagName('a') : document.getElementsByTagName('a');
+	for (var i = 0; i &lt; anchors.length; i++) {
+		var anchor = anchors[i];
+		var relAttribute = String(anchor.getAttribute('rel'));
+		if (anchor.getAttribute('href')) {
+			if (relAttribute.toLowerCase().match('lytebox')) {
+				anchor.onclick = function () { myLytebox.start(this, false, false); return false; }
+			} else if (relAttribute.toLowerCase().match('lyteshow')) {
+				anchor.onclick = function () { myLytebox.start(this, true, false); return false; }
+			} else if (relAttribute.toLowerCase().match('lyteframe')) {
+				anchor.onclick = function () { myLytebox.start(this, false, true); return false; }
+			}
+		}
+	}
+};
+LyteBox.prototype.start = function(imageLink, doSlide, doFrame) {
+	if (this.ie &amp;&amp; !this.ie7) {	this.toggleSelects('hide');	}
+	if (this.hideFlash) { this.toggleFlash('hide'); }
+	this.isLyteframe = (doFrame ? true : false);
+	var pageSize	= this.getPageSize();
+	var objOverlay	= this.doc.getElementById('lbOverlay');
+	var objBody		= this.doc.getElementsByTagName("body").item(0);
+	objOverlay.style.height = pageSize[1] + "px";
+	objOverlay.style.display = '';
+	this.appear('lbOverlay', (this.doAnimations ? 0 : this.maxOpacity));
+	var anchors = (this.isFrame) ? window.parent.frames[window.name].document.getElementsByTagName('a') : document.getElementsByTagName('a');
+	if (this.isLyteframe) {
+		this.frameArray = [];
+		this.frameNum = 0;
+		if ((imageLink.getAttribute('rel') == 'lyteframe')) {
+			var rev = imageLink.getAttribute('rev');
+			this.frameArray.push(new Array(imageLink.getAttribute('href'), imageLink.getAttribute('title'), (rev == null || rev == '' ? 'width: 400px; height: 400px; scrolling: auto;' : rev)));
+		} else {
+			if (imageLink.getAttribute('rel').indexOf('lyteframe') != -1) {
+				for (var i = 0; i &lt; anchors.length; i++) {
+					var anchor = anchors[i];
+					if (anchor.getAttribute('href') &amp;&amp; (anchor.getAttribute('rel') == imageLink.getAttribute('rel'))) {
+						var rev = anchor.getAttribute('rev');
+						this.frameArray.push(new Array(anchor.getAttribute('href'), anchor.getAttribute('title'), (rev == null || rev == '' ? 'width: 400px; height: 400px; scrolling: auto;' : rev)));
+					}
+				}
+				this.frameArray.removeDuplicates();
+				while(this.frameArray[this.frameNum][0] != imageLink.getAttribute('href')) { this.frameNum++; }
+			}
+		}
+	} else {
+		this.imageArray = [];
+		this.imageNum = 0;
+		this.slideArray = [];
+		this.slideNum = 0;
+		if ((imageLink.getAttribute('rel') == 'lytebox')) {
+			this.imageArray.push(new Array(imageLink.getAttribute('href'), imageLink.getAttribute('title')));
+		} else {
+			if (imageLink.getAttribute('rel').indexOf('lytebox') != -1) {
+				for (var i = 0; i &lt; anchors.length; i++) {
+					var anchor = anchors[i];
+					if (anchor.getAttribute('href') &amp;&amp; (anchor.getAttribute('rel') == imageLink.getAttribute('rel'))) {
+						this.imageArray.push(new Array(anchor.getAttribute('href'), anchor.getAttribute('title')));
+					}
+				}
+				this.imageArray.removeDuplicates();
+				while(this.imageArray[this.imageNum][0] != imageLink.getAttribute('href')) { this.imageNum++; }
+			}
+			if (imageLink.getAttribute('rel').indexOf('lyteshow') != -1) {
+				for (var i = 0; i &lt; anchors.length; i++) {
+					var anchor = anchors[i];
+					if (anchor.getAttribute('href') &amp;&amp; (anchor.getAttribute('rel') == imageLink.getAttribute('rel'))) {
+						this.slideArray.push(new Array(anchor.getAttribute('href'), anchor.getAttribute('title')));
+					}
+				}
+				this.slideArray.removeDuplicates();
+				while(this.slideArray[this.slideNum][0] != imageLink.getAttribute('href')) { this.slideNum++; }
+			}
+		}
+	}
+	var object = this.doc.getElementById('lbMain');
+		object.style.top = (this.getPageScroll() + (pageSize[3] / 15)) + "px";
+		object.style.display = '';
+	if (!this.outerBorder) {
+		this.doc.getElementById('lbOuterContainer').style.border = 'none';
+		this.doc.getElementById('lbDetailsContainer').style.border = 'none';
+	} else {
+		this.doc.getElementById('lbOuterContainer').style.borderBottom = '';
+		this.doc.getElementById('lbOuterContainer').setAttribute((this.ie ? 'className' : 'class'), this.theme);
+	}
+	this.doc.getElementById('lbOverlay').onclick = function() { myLytebox.end(); return false; }
+	this.doc.getElementById('lbMain').onclick = function(e) {
+		var e = e;
+		if (!e) {
+			if (window.parent.frames[window.name] &amp;&amp; (parent.document.getElementsByTagName('frameset').length &lt;= 0)) {
+				e = window.parent.window.event;
+			} else {
+				e = window.event;
+			}
+		}
+		var id = (e.target ? e.target.id : e.srcElement.id);
+		if (id == 'lbMain') { myLytebox.end(); return false; }
+	}
+	this.doc.getElementById('lbClose').onclick = function() { myLytebox.end(); return false; }
+	this.doc.getElementById('lbPause').onclick = function() { myLytebox.togglePlayPause("lbPause", "lbPlay"); return false; }
+	this.doc.getElementById('lbPlay').onclick = function() { myLytebox.togglePlayPause("lbPlay", "lbPause"); return false; }	
+	this.isSlideshow = doSlide;
+	this.isPaused = (this.slideNum != 0 ? true : false);
+	if (this.isSlideshow &amp;&amp; this.showPlayPause &amp;&amp; this.isPaused) {
+		this.doc.getElementById('lbPlay').style.display = '';
+		this.doc.getElementById('lbPause').style.display = 'none';
+	}
+	if (this.isLyteframe) {
+		this.changeContent(this.frameNum);
+	} else {
+		if (this.isSlideshow) {
+			this.changeContent(this.slideNum);
+		} else {
+			this.changeContent(this.imageNum);
+		}
+	}
+};
+LyteBox.prototype.changeContent = function(imageNum) {
+	if (this.isSlideshow) {
+		for (var i = 0; i &lt; this.slideshowIDCount; i++) { window.clearTimeout(this.slideshowIDArray[i]); }
+	}
+	this.activeImage = this.activeSlide = this.activeFrame = imageNum;
+	if (!this.outerBorder) {
+		this.doc.getElementById('lbOuterContainer').style.border = 'none';
+		this.doc.getElementById('lbDetailsContainer').style.border = 'none';
+	} else {
+		this.doc.getElementById('lbOuterContainer').style.borderBottom = '';
+		this.doc.getElementById('lbOuterContainer').setAttribute((this.ie ? 'className' : 'class'), this.theme);
+	}
+	this.doc.getElementById('lbLoading').style.display = '';
+	this.doc.getElementById('lbImage').style.display = 'none';
+	this.doc.getElementById('lbIframe').style.display = 'none';
+	this.doc.getElementById('lbPrev').style.display = 'none';
+	this.doc.getElementById('lbNext').style.display = 'none';
+	this.doc.getElementById('lbIframeContainer').style.display = 'none';
+	this.doc.getElementById('lbDetailsContainer').style.display = 'none';
+	this.doc.getElementById('lbNumberDisplay').style.display = 'none';
+	if (this.navType == 2 || this.isLyteframe) {
+		object = this.doc.getElementById('lbNavDisplay');
+		object.innerHTML = '&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span id="lbPrev2_Off" style="display: none;" class="' + this.theme + '"&gt;&amp;laquo; prev&lt;/span&gt;&lt;a href="#" id="lbPrev2" class="' + this.theme + '" style="display: none;"&gt;&amp;laquo; prev&lt;/a&gt; &lt;b id="lbSpacer" class="' + this.theme + '"&gt;||&lt;/b&gt; &lt;span id="lbNext2_Off" style="display: none;" class="' + this.theme + '"&gt;next &amp;raquo;&lt;/span&gt;&lt;a href="#" id="lbNext2" class="' + this.theme + '" style="display: none;"&gt;next &amp;raquo;&lt;/a&gt;';
+		object.style.display = 'none';
+	}
+	if (this.isLyteframe) {
+		var iframe = myLytebox.doc.getElementById('lbIframe');
+		var styles = this.frameArray[this.activeFrame][2];
+		var aStyles = styles.split(';');
+		for (var i = 0; i &lt; aStyles.length; i++) {
+			if (aStyles[i].indexOf('width:') &gt;= 0) {
+				var w = aStyles[i].replace('width:', '');
+				iframe.width = w.trim();
+			} else if (aStyles[i].indexOf('height:') &gt;= 0) {
+				var h = aStyles[i].replace('height:', '');
+				iframe.height = h.trim();
+			} else if (aStyles[i].indexOf('scrolling:') &gt;= 0) {
+				var s = aStyles[i].replace('scrolling:', '');
+				iframe.scrolling = s.trim();
+			} else if (aStyles[i].indexOf('border:') &gt;= 0) {
+				// Not implemented yet, as there are cross-platform issues with setting the border (from a GUI standpoint)
+				//var b = aStyles[i].replace('border:', '');
+				//iframe.style.border = b.trim();
+			}
+		}
+		iframe.src = this.frameArray[this.activeFrame][0];		
+		this.resizeContainer(parseInt(iframe.width), parseInt(iframe.height));
+	} else {
+		imgPreloader = new Image();
+		imgPreloader.onload = function() {
+			var imageWidth = imgPreloader.width;
+			var imageHeight = imgPreloader.height;
+			if (myLytebox.autoResize) {
+				var pagesize = myLytebox.getPageSize();
+				var x = pagesize[2] - 150;
+				var y = pagesize[3] - 150;
+				if (imageWidth &gt; x) {
+					imageHeight = Math.round(imageHeight * (x / imageWidth));
+					imageWidth = x; 
+					if (imageHeight &gt; y) { 
+						imageWidth = Math.round(imageWidth * (y / imageHeight));
+						imageHeight = y; 
+					}
+				} else if (imageHeight &gt; y) { 
+					imageWidth = Math.round(imageWidth * (y / imageHeight));
+					imageHeight = y; 
+					if (imageWidth &gt; x) {
+						imageHeight = Math.round(imageHeight * (x / imageWidth));
+						imageWidth = x;
+					}
+				}
+			}
+			var lbImage = myLytebox.doc.getElementById('lbImage')
+			lbImage.src = (myLytebox.isSlideshow ? myLytebox.slideArray[myLytebox.activeSlide][0] : myLytebox.imageArray[myLytebox.activeImage][0]);
+			lbImage.width = imageWidth;
+			lbImage.height = imageHeight;
+			myLytebox.resizeContainer(imageWidth, imageHeight);
+			imgPreloader.onload = function() {};
+		}
+		imgPreloader.src = (this.isSlideshow ? this.slideArray[this.activeSlide][0] : this.imageArray[this.activeImage][0]);
+	}
+};
+LyteBox.prototype.resizeContainer = function(imgWidth, imgHeight) {
+	this.wCur = this.doc.getElementById('lbOuterContainer').offsetWidth;
+	this.hCur = this.doc.getElementById('lbOuterContainer').offsetHeight;
+	this.xScale = ((imgWidth  + (this.borderSize * 2)) / this.wCur) * 100;
+	this.yScale = ((imgHeight  + (this.borderSize * 2)) / this.hCur) * 100;
+	var wDiff = (this.wCur - this.borderSize * 2) - imgWidth;
+	var hDiff = (this.hCur - this.borderSize * 2) - imgHeight;
+	if (!(hDiff == 0)) {
+		this.hDone = false;
+		this.resizeH('lbOuterContainer', this.hCur, imgHeight + this.borderSize*2, this.getPixelRate(this.hCur, imgHeight));
+	} else {
+		this.hDone = true;
+	}
+	if (!(wDiff == 0)) {
+		this.wDone = false;
+		this.resizeW('lbOuterContainer', this.wCur, imgWidth + this.borderSize*2, this.getPixelRate(this.wCur, imgWidth));
+	} else {
+		this.wDone = true;
+	}
+	if ((hDiff == 0) &amp;&amp; (wDiff == 0)) {
+		if (this.ie){ this.pause(250); } else { this.pause(100); } 
+	}
+	this.doc.getElementById('lbPrev').style.height = imgHeight + "px";
+	this.doc.getElementById('lbNext').style.height = imgHeight + "px";
+	this.doc.getElementById('lbDetailsContainer').style.width = (imgWidth + (this.borderSize * 2) + (this.ie &amp;&amp; this.doc.compatMode == "BackCompat" &amp;&amp; this.outerBorder ? 2 : 0)) + "px";
+	this.showContent();
+};
+LyteBox.prototype.showContent = function() {
+	if (this.wDone &amp;&amp; this.hDone) {
+		for (var i = 0; i &lt; this.showContentTimerCount; i++) { window.clearTimeout(this.showContentTimerArray[i]); }
+		if (this.outerBorder) {
+			this.doc.getElementById('lbOuterContainer').style.borderBottom = 'none';
+		}
+		this.doc.getElementById('lbLoading').style.display = 'none';
+		if (this.isLyteframe) {
+			this.doc.getElementById('lbIframe').style.display = '';
+			this.appear('lbIframe', (this.doAnimations ? 0 : 100));
+		} else {
+			this.doc.getElementById('lbImage').style.display = '';
+			this.appear('lbImage', (this.doAnimations ? 0 : 100));
+			this.preloadNeighborImages();
+		}
+		if (this.isSlideshow) {
+			if(this.activeSlide == (this.slideArray.length - 1)) {
+				if (this.autoEnd) {
+					this.slideshowIDArray[this.slideshowIDCount++] = setTimeout("myLytebox.end('slideshow')", this.slideInterval);
+				}
+			} else {
+				if (!this.isPaused) {
+					this.slideshowIDArray[this.slideshowIDCount++] = setTimeout("myLytebox.changeContent("+(this.activeSlide+1)+")", this.slideInterval);
+				}
+			}
+			this.doc.getElementById('lbHoverNav').style.display = (this.showNavigation &amp;&amp; this.navType == 1 ? '' : 'none');
+			this.doc.getElementById('lbClose').style.display = (this.showClose ? '' : 'none');
+			this.doc.getElementById('lbDetails').style.display = (this.showDetails ? '' : 'none');
+			this.doc.getElementById('lbPause').style.display = (this.showPlayPause &amp;&amp; !this.isPaused ? '' : 'none');
+			this.doc.getElementById('lbPlay').style.display = (this.showPlayPause &amp;&amp; !this.isPaused ? 'none' : '');
+			this.doc.getElementById('lbNavDisplay').style.display = (this.showNavigation &amp;&amp; this.navType == 2 ? '' : 'none');
+		} else {
+			this.doc.getElementById('lbHoverNav').style.display = (this.navType == 1 &amp;&amp; !this.isLyteframe ? '' : 'none');
+			if ((this.navType == 2 &amp;&amp; !this.isLyteframe &amp;&amp; this.imageArray.length &gt; 1) || (this.frameArray.length &gt; 1 &amp;&amp; this.isLyteframe)) {
+				this.doc.getElementById('lbNavDisplay').style.display = '';
+			} else {
+				this.doc.getElementById('lbNavDisplay').style.display = 'none';
+			}
+			this.doc.getElementById('lbClose').style.display = '';
+			this.doc.getElementById('lbDetails').style.display = '';
+			this.doc.getElementById('lbPause').style.display = 'none';
+			this.doc.getElementById('lbPlay').style.display = 'none';
+		}
+		this.doc.getElementById('lbImageContainer').style.display = (this.isLyteframe ? 'none' : '');
+		this.doc.getElementById('lbIframeContainer').style.display = (this.isLyteframe ? '' : 'none');
+		try {
+			this.doc.getElementById('lbIframe').src = this.frameArray[this.activeFrame][0];
+		} catch(e) { }
+	} else {
+		this.showContentTimerArray[this.showContentTimerCount++] = setTimeout("myLytebox.showContent()", 200);
+	}
+};
+LyteBox.prototype.updateDetails = function() {
+	var object = this.doc.getElementById('lbCaption');
+	var sTitle = (this.isSlideshow ? this.slideArray[this.activeSlide][1] : (this.isLyteframe ? this.frameArray[this.activeFrame][1] : this.imageArray[this.activeImage][1]));
+	object.style.display = '';
+	object.innerHTML = (sTitle == null ? '' : sTitle);
+	this.updateNav();
+	this.doc.getElementById('lbDetailsContainer').style.display = '';
+	object = this.doc.getElementById('lbNumberDisplay');
+	if (this.isSlideshow &amp;&amp; this.slideArray.length &gt; 1) {
+		object.style.display = '';
+		object.innerHTML = "Image " + eval(this.activeSlide + 1) + " of " + this.slideArray.length;
+		this.doc.getElementById('lbNavDisplay').style.display = (this.navType == 2 &amp;&amp; this.showNavigation ? '' : 'none');
+	} else if (this.imageArray.length &gt; 1 &amp;&amp; !this.isLyteframe) {
+		object.style.display = '';
+		object.innerHTML = "Image " + eval(this.activeImage + 1) + " of " + this.imageArray.length;
+		this.doc.getElementById('lbNavDisplay').style.display = (this.navType == 2 ? '' : 'none');
+	} else if (this.frameArray.length &gt; 1 &amp;&amp; this.isLyteframe) {
+		object.style.display = '';
+		object.innerHTML = "Page " + eval(this.activeFrame + 1) + " of " + this.frameArray.length;
+		this.doc.getElementById('lbNavDisplay').style.display = '';
+	} else {
+		this.doc.getElementById('lbNavDisplay').style.display = 'none';
+	}
+	this.appear('lbDetailsContainer', (this.doAnimations ? 0 : 100));
+};
+LyteBox.prototype.updateNav = function() {
+	if (this.isSlideshow) {
+		if (this.activeSlide != 0) {
+			var object = (this.navType == 2 ? this.doc.getElementById('lbPrev2') : this.doc.getElementById('lbPrev'));
+				object.style.display = '';
+				object.onclick = function() {
+					if (myLytebox.pauseOnPrevClick) { myLytebox.togglePlayPause("lbPause", "lbPlay"); }
+					myLytebox.changeContent(myLytebox.activeSlide - 1); return false;
+				}
+		} else {
+			if (this.navType == 2) { this.doc.getElementById('lbPrev2_Off').style.display = ''; }
+		}
+		if (this.activeSlide != (this.slideArray.length - 1)) {
+			var object = (this.navType == 2 ? this.doc.getElementById('lbNext2') : this.doc.getElementById('lbNext'));
+				object.style.display = '';
+				object.onclick = function() {
+					if (myLytebox.pauseOnNextClick) { myLytebox.togglePlayPause("lbPause", "lbPlay"); }
+					myLytebox.changeContent(myLytebox.activeSlide + 1); return false;
+				}
+		} else {
+			if (this.navType == 2) { this.doc.getElementById('lbNext2_Off').style.display = ''; }
+		}
+	} else if (this.isLyteframe) {
+		if(this.activeFrame != 0) {
+			var object = this.doc.getElementById('lbPrev2');
+				object.style.display = '';
+				object.onclick = function() {
+					myLytebox.changeContent(myLytebox.activeFrame - 1); return false;
+				}
+		} else {
+			this.doc.getElementById('lbPrev2_Off').style.display = '';
+		}
+		if(this.activeFrame != (this.frameArray.length - 1)) {
+			var object = this.doc.getElementById('lbNext2');
+				object.style.display = '';
+				object.onclick = function() {
+					myLytebox.changeContent(myLytebox.activeFrame + 1); return false;
+				}
+		} else {
+			this.doc.getElementById('lbNext2_Off').style.display = '';
+		}		
+	} else {
+		if(this.activeImage != 0) {
+			var object = (this.navType == 2 ? this.doc.getElementById('lbPrev2') : this.doc.getElementById('lbPrev'));
+				object.style.display = '';
+				object.onclick = function() {
+					myLytebox.changeContent(myLytebox.activeImage - 1); return false;
+				}
+		} else {
+			if (this.navType == 2) { this.doc.getElementById('lbPrev2_Off').style.display = ''; }
+		}
+		if(this.activeImage != (this.imageArray.length - 1)) {
+			var object = (this.navType == 2 ? this.doc.getElementById('lbNext2') : this.doc.getElementById('lbNext'));
+				object.style.display = '';
+				object.onclick = function() {
+					myLytebox.changeContent(myLytebox.activeImage + 1); return false;
+				}
+		} else {
+			if (this.navType == 2) { this.doc.getElementById('lbNext2_Off').style.display = ''; }
+		}
+	}
+	this.enableKeyboardNav();
+};
+LyteBox.prototype.enableKeyboardNav = function() { document.onkeydown = this.keyboardAction; };
+LyteBox.prototype.disableKeyboardNav = function() { document.onkeydown = ''; };
+LyteBox.prototype.keyboardAction = function(e) {
+	var keycode = key = escape = null;
+	keycode	= (e == null) ? event.keyCode : e.which;
+	key		= String.fromCharCode(keycode).toLowerCase();
+	escape  = (e == null) ? 27 : e.DOM_VK_ESCAPE;
+	if ((key == 'x') || (key == 'c') || (keycode == escape)) {
+		myLytebox.end();
+	} else if ((key == 'p') || (keycode == 37)) {
+		if (myLytebox.isSlideshow) {
+			if(myLytebox.activeSlide != 0) {
+				myLytebox.disableKeyboardNav();
+				myLytebox.changeContent(myLytebox.activeSlide - 1);
+			}
+		} else if (myLytebox.isLyteframe) {
+			if(myLytebox.activeFrame != 0) {
+				myLytebox.disableKeyboardNav();
+				myLytebox.changeContent(myLytebox.activeFrame - 1);
+			}
+		} else {
+			if(myLytebox.activeImage != 0) {
+				myLytebox.disableKeyboardNav();
+				myLytebox.changeContent(myLytebox.activeImage - 1);
+			}
+		}
+	} else if ((key == 'n') || (keycode == 39)) {
+		if (myLytebox.isSlideshow) {
+			if(myLytebox.activeSlide != (myLytebox.slideArray.length - 1)) {
+				myLytebox.disableKeyboardNav();
+				myLytebox.changeContent(myLytebox.activeSlide + 1);
+			}
+		} else if (myLytebox.isLyteframe) {
+			if(myLytebox.activeFrame != (myLytebox.frameArray.length - 1)) {
+				myLytebox.disableKeyboardNav();
+				myLytebox.changeContent(myLytebox.activeFrame + 1);
+			}
+		} else {
+			if(myLytebox.activeImage != (myLytebox.imageArray.length - 1)) {
+				myLytebox.disableKeyboardNav();
+				myLytebox.changeContent(myLytebox.activeImage + 1);
+			}
+		}
+	}
+};
+LyteBox.prototype.preloadNeighborImages = function() {
+	if (this.isSlideshow) {
+		if ((this.slideArray.length - 1) &gt; this.activeSlide) {
+			preloadNextImage = new Image();
+			preloadNextImage.src = this.slideArray[this.activeSlide + 1][0];
+		}
+		if(this.activeSlide &gt; 0) {
+			preloadPrevImage = new Image();
+			preloadPrevImage.src = this.slideArray[this.activeSlide - 1][0];
+		}
+	} else {
+		if ((this.imageArray.length - 1) &gt; this.activeImage) {
+			preloadNextImage = new Image();
+			preloadNextImage.src = this.imageArray[this.activeImage + 1][0];
+		}
+		if(this.activeImage &gt; 0) {
+			preloadPrevImage = new Image();
+			preloadPrevImage.src = this.imageArray[this.activeImage - 1][0];
+		}
+	}
+};
+LyteBox.prototype.togglePlayPause = function(hideID, showID) {
+	if (this.isSlideshow &amp;&amp; hideID == "lbPause") {
+		for (var i = 0; i &lt; this.slideshowIDCount; i++) { window.clearTimeout(this.slideshowIDArray[i]); }
+	}
+	this.doc.getElementById(hideID).style.display = 'none';
+	this.doc.getElementById(showID).style.display = '';
+	if (hideID == "lbPlay") {
+		this.isPaused = false;
+		if (this.activeSlide == (this.slideArray.length - 1)) {
+			this.end();
+		} else {
+			this.changeContent(this.activeSlide + 1);
+		}
+	} else {
+		this.isPaused = true;
+	}
+};
+LyteBox.prototype.end = function(caller) {
+	var closeClick = (caller == 'slideshow' ? false : true);
+	if (this.isSlideshow &amp;&amp; this.isPaused &amp;&amp; !closeClick) { return; }
+	this.disableKeyboardNav();
+	this.doc.getElementById('lbMain').style.display = 'none';
+	this.fade('lbOverlay', (this.doAnimations ? this.maxOpacity : 0));
+	this.toggleSelects('visible');
+	if (this.hideFlash) { this.toggleFlash('visible'); }
+	if (this.isSlideshow) {
+		for (var i = 0; i &lt; this.slideshowIDCount; i++) { window.clearTimeout(this.slideshowIDArray[i]); }
+	}
+	if (this.isLyteframe) {
+		 this.initialize();
+	}
+};
+LyteBox.prototype.checkFrame = function() {
+	if (window.parent.frames[window.name] &amp;&amp; (parent.document.getElementsByTagName('frameset').length &lt;= 0)) {
+		this.isFrame = true;
+		this.lytebox = "window.parent." + window.name + ".myLytebox";
+		this.doc = parent.document;
+	} else {
+		this.isFrame = false;
+		this.lytebox = "myLytebox";
+		this.doc = document;
+	}
+};
+LyteBox.prototype.getPixelRate = function(cur, img) {
+	var diff = (img &gt; cur) ? img - cur : cur - img;
+	if (diff &gt;= 0 &amp;&amp; diff &lt;= 100) { return 10; }
+	if (diff &gt; 100 &amp;&amp; diff &lt;= 200) { return 15; }
+	if (diff &gt; 200 &amp;&amp; diff &lt;= 300) { return 20; }
+	if (diff &gt; 300 &amp;&amp; diff &lt;= 400) { return 25; }
+	if (diff &gt; 400 &amp;&amp; diff &lt;= 500) { return 30; }
+	if (diff &gt; 500 &amp;&amp; diff &lt;= 600) { return 35; }
+	if (diff &gt; 600 &amp;&amp; diff &lt;= 700) { return 40; }
+	if (diff &gt; 700) { return 45; }
+};
+LyteBox.prototype.appear = function(id, opacity) {
+	var object = this.doc.getElementById(id).style;
+	object.opacity = (opacity / 100);
+	object.MozOpacity = (opacity / 100);
+	object.KhtmlOpacity = (opacity / 100);
+	object.filter = "alpha(opacity=" + (opacity + 10) + ")";
+	if (opacity == 100 &amp;&amp; (id == 'lbImage' || id == 'lbIframe')) {
+		try { object.removeAttribute("filter"); } catch(e) {}	/* Fix added for IE Alpha Opacity Filter bug. */
+		this.updateDetails();
+	} else if (opacity &gt;= this.maxOpacity &amp;&amp; id == 'lbOverlay') {
+		for (var i = 0; i &lt; this.overlayTimerCount; i++) { window.clearTimeout(this.overlayTimerArray[i]); }
+		return;
+	} else if (opacity &gt;= 100 &amp;&amp; id == 'lbDetailsContainer') {
+		try { object.removeAttribute("filter"); } catch(e) {}	/* Fix added for IE Alpha Opacity Filter bug. */
+		for (var i = 0; i &lt; this.imageTimerCount; i++) { window.clearTimeout(this.imageTimerArray[i]); }
+		this.doc.getElementById('lbOverlay').style.height = this.getPageSize()[1] + "px";
+	} else {
+		if (id == 'lbOverlay') {
+			this.overlayTimerArray[this.overlayTimerCount++] = setTimeout("myLytebox.appear('" + id + "', " + (opacity+20) + ")", 1);
+		} else {
+			this.imageTimerArray[this.imageTimerCount++] = setTimeout("myLytebox.appear('" + id + "', " + (opacity+10) + ")", 1);
+		}
+	}
+};
+LyteBox.prototype.fade = function(id, opacity) {
+	var object = this.doc.getElementById(id).style;
+	object.opacity = (opacity / 100);
+	object.MozOpacity = (opacity / 100);
+	object.KhtmlOpacity = (opacity / 100);
+	object.filter = "alpha(opacity=" + opacity + ")";
+	if (opacity &lt;= 0) {
+		try {
+			object.display = 'none';
+		} catch(err) { }
+	} else if (id == 'lbOverlay') {
+		this.overlayTimerArray[this.overlayTimerCount++] = setTimeout("myLytebox.fade('" + id + "', " + (opacity-20) + ")", 1);
+	} else {
+		this.timerIDArray[this.timerIDCount++] = setTimeout("myLytebox.fade('" + id + "', " + (opacity-10) + ")", 1);
+	}
+};
+LyteBox.prototype.resizeW = function(id, curW, maxW, pixelrate, speed) {
+	if (!this.hDone) {
+		this.resizeWTimerArray[this.resizeWTimerCount++] = setTimeout("myLytebox.resizeW('" + id + "', " + curW + ", " + maxW + ", " + pixelrate + ")", 100);
+		return;
+	}
+	var object = this.doc.getElementById(id);
+	var timer = speed ? speed : (this.resizeDuration/2);
+	var newW = (this.doAnimations ? curW : maxW);
+	object.style.width = (newW) + "px";
+	if (newW &lt; maxW) {
+		newW += (newW + pixelrate &gt;= maxW) ? (maxW - newW) : pixelrate;
+	} else if (newW &gt; maxW) {
+		newW -= (newW - pixelrate &lt;= maxW) ? (newW - maxW) : pixelrate;
+	}
+	this.resizeWTimerArray[this.resizeWTimerCount++] = setTimeout("myLytebox.resizeW('" + id + "', " + newW + ", " + maxW + ", " + pixelrate + ", " + (timer+0.02) + ")", timer+0.02);
+	if (parseInt(object.style.width) == maxW) {
+		this.wDone = true;
+		for (var i = 0; i &lt; this.resizeWTimerCount; i++) { window.clearTimeout(this.resizeWTimerArray[i]); }
+	}
+};
+LyteBox.prototype.resizeH = function(id, curH, maxH, pixelrate, speed) {
+	var timer = speed ? speed : (this.resizeDuration/2);
+	var object = this.doc.getElementById(id);
+	var newH = (this.doAnimations ? curH : maxH);
+	object.style.height = (newH) + "px";
+	if (newH &lt; maxH) {
+		newH += (newH + pixelrate &gt;= maxH) ? (maxH - newH) : pixelrate;
+	} else if (newH &gt; maxH) {
+		newH -= (newH - pixelrate &lt;= maxH) ? (newH - maxH) : pixelrate;
+	}
+	this.resizeHTimerArray[this.resizeHTimerCount++] = setTimeout("myLytebox.resizeH('" + id + "', " + newH + ", " + maxH + ", " + pixelrate + ", " + (timer+.02) + ")", timer+.02);
+	if (parseInt(object.style.height) == maxH) {
+		this.hDone = true;
+		for (var i = 0; i &lt; this.resizeHTimerCount; i++) { window.clearTimeout(this.resizeHTimerArray[i]); }
+	}
+};
+LyteBox.prototype.getPageScroll = function() {
+	if (self.pageYOffset) {
+		return this.isFrame ? parent.pageYOffset : self.pageYOffset;
+	} else if (this.doc.documentElement &amp;&amp; this.doc.documentElement.scrollTop){
+		return this.doc.documentElement.scrollTop;
+	} else if (document.body) {
+		return this.doc.body.scrollTop;
+	}
+};
+LyteBox.prototype.getPageSize = function() {	
+	var xScroll, yScroll, windowWidth, windowHeight;
+	if (window.innerHeight &amp;&amp; window.scrollMaxY) {
+		xScroll = this.doc.scrollWidth;
+		yScroll = (this.isFrame ? parent.innerHeight : self.innerHeight) + (this.isFrame ? parent.scrollMaxY : self.scrollMaxY);
+	} else if (this.doc.body.scrollHeight &gt; this.doc.body.offsetHeight){
+		xScroll = this.doc.body.scrollWidth;
+		yScroll = this.doc.body.scrollHeight;
+	} else {
+		xScroll = this.doc.getElementsByTagName("html").item(0).offsetWidth;
+		yScroll = this.doc.getElementsByTagName("html").item(0).offsetHeight;
+		xScroll = (xScroll &lt; this.doc.body.offsetWidth) ? this.doc.body.offsetWidth : xScroll;
+		yScroll = (yScroll &lt; this.doc.body.offsetHeight) ? this.doc.body.offsetHeight : yScroll;
+	}
+	if (self.innerHeight) {
+		windowWidth = (this.isFrame) ? parent.innerWidth : self.innerWidth;
+		windowHeight = (this.isFrame) ? parent.innerHeight : self.innerHeight;
+	} else if (document.documentElement &amp;&amp; document.documentElement.clientHeight) {
+		windowWidth = this.doc.documentElement.clientWidth;
+		windowHeight = this.doc.documentElement.clientHeight;
+	} else if (document.body) {
+		windowWidth = this.doc.getElementsByTagName("html").item(0).clientWidth;
+		windowHeight = this.doc.getElementsByTagName("html").item(0).clientHeight;
+		windowWidth = (windowWidth == 0) ? this.doc.body.clientWidth : windowWidth;
+		windowHeight = (windowHeight == 0) ? this.doc.body.clientHeight : windowHeight;
+	}
+	var pageHeight = (yScroll &lt; windowHeight) ? windowHeight : yScroll;
+	var pageWidth = (xScroll &lt; windowWidth) ? windowWidth : xScroll;
+	return new Array(pageWidth, pageHeight, windowWidth, windowHeight);
+};
+LyteBox.prototype.toggleFlash = function(state) {
+	var objects = this.doc.getElementsByTagName("object");
+	for (var i = 0; i &lt; objects.length; i++) {
+		objects[i].style.visibility = (state == "hide") ? 'hidden' : 'visible';
+	}
+	var embeds = this.doc.getElementsByTagName("embed");
+	for (var i = 0; i &lt; embeds.length; i++) {
+		embeds[i].style.visibility = (state == "hide") ? 'hidden' : 'visible';
+	}
+	if (this.isFrame) {
+		for (var i = 0; i &lt; parent.frames.length; i++) {
+			try {
+				objects = parent.frames[i].window.document.getElementsByTagName("object");
+				for (var j = 0; j &lt; objects.length; j++) {
+					objects[j].style.visibility = (state == "hide") ? 'hidden' : 'visible';
+				}
+			} catch(e) { }
+			try {
+				embeds = parent.frames[i].window.document.getElementsByTagName("embed");
+				for (var j = 0; j &lt; embeds.length; j++) {
+					embeds[j].style.visibility = (state == "hide") ? 'hidden' : 'visible';
+				}
+			} catch(e) { }
+		}
+	}
+};
+LyteBox.prototype.toggleSelects = function(state) {
+	var selects = this.doc.getElementsByTagName("select");
+	for (var i = 0; i &lt; selects.length; i++ ) {
+		selects[i].style.visibility = (state == "hide") ? 'hidden' : 'visible';
+	}
+	if (this.isFrame) {
+		for (var i = 0; i &lt; parent.frames.length; i++) {
+			try {
+				selects = parent.frames[i].window.document.getElementsByTagName("select");
+				for (var j = 0; j &lt; selects.length; j++) {
+					selects[j].style.visibility = (state == "hide") ? 'hidden' : 'visible';
+				}
+			} catch(e) { }
+		}
+	}
+};
+LyteBox.prototype.pause = function(numberMillis) {
+	var now = new Date();
+	var exitTime = now.getTime() + numberMillis;
+	while (true) {
+		now = new Date();
+		if (now.getTime() &gt; exitTime) { return; }
+	}
+};
+if (window.addEventListener) {
+	window.addEventListener("load",initLytebox,false);
+} else if (window.attachEvent) {
+	window.attachEvent("onload",initLytebox);
+} else {
+	window.onload = function() {initLytebox();}
+}
+function initLytebox() { myLytebox = new LyteBox(); }</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.887+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.873+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>8</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>mcgi_Home.css</Title>
+    <Content>#indexr1c1
+        {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 950px;
+            height: 289px;
+            z-index: -1;
+            visibility: visible;
+            background-image: url(/Content/Parts/Integration/Assets/images/Sites/mcgisg/index_head_01.jpg);
+        }
+        #indexr2c2
+        {
+            position: absolute;
+            left: 50px;
+            top: 289px;
+            width: 381px;
+            height: 136px;
+            z-index: 2;
+            visibility: visible;
+            background-image: url(/Content/Parts/Integration/Assets/images/Sites/mcgisg/index_r2_c2.jpg);
+        }
+        #indexr2c3
+        {
+            position: absolute;
+            left: 431px;
+            top: 289px;
+            width: 268px;
+            height: 97px;
+            z-index: 3;
+            visibility: visible;
+            background-image: url(/Content/Parts/Integration/Assets/images/Sites/mcgisg/index_r2_c3.jpg);
+        }
+        #indexr2c7
+        {
+            position: absolute;
+            left: 699px;
+            top: 289px;
+            width: 177px;
+            height: 97px;
+            z-index: 4;
+            visibility: visible;
+            background-image: url(/Content/Parts/Integration/Assets/images/Sites/mcgisg/index_r2_c7.jpg);
+        }
+        #indexr3c3
+        {
+            position: absolute;
+            left: 431px;
+            top: 385px;
+            width: 83px;
+            height: 39px;
+            z-index: 5;
+            visibility: visible;
+        }
+        #indexr3c4
+        {
+            position: absolute;
+            left: 513px;
+            top: 385px;
+            width: 76px;
+            height: 39px;
+            z-index: 6;
+            visibility: visible;
+        }
+        #indexr3c5
+        {
+            position: absolute;
+            left: 589px;
+            top: 385px;
+            width: 78px;
+            height: 39px;
+            z-index: 7;
+            visibility: visible;
+        }
+        #indexr3c6
+        {
+            position: absolute;
+            left: 667px;
+            top: 385px;
+            width: 61px;
+            height: 39px;
+            z-index: 8;
+            visibility: visible;
+        }
+        #indexr3c8
+        {
+            position: absolute;
+            left: 728px;
+            top: 385px;
+            width: 64px;
+            height: 39px;
+            z-index: 9;
+            visibility: visible;
+        }
+        #indexr3c9
+        {
+            position: absolute;
+            left: 792px;
+            top: 385px;
+            width: 83px;
+            height: 39px;
+            z-index: 10;
+            visibility: visible;
+        }
+        #indexr4c1
+        {
+            position: absolute;
+            left: 0px;
+            top: 425px;
+            width: 729px;
+            height: 53px;
+            z-index: 11;
+            visibility: visible;
+            background-image: url(/Content/Parts/Integration/Assets/images/Sites/mcgisg/index_r4_c1.jpg);
+        }
+        #indexr5c2
+        {
+            position: absolute;
+            left: 50px;
+            top: 479px;
+            width: 344px;
+            height: 179px;
+            z-index: 12;
+            visibility: visible;
+        }
+        #indexr5c3
+        {
+            position: absolute;
+            left: 431px;
+            top: 479px;
+            width: 445px;
+            height: 179px;
+            z-index: 13;
+            visibility: visible;
+        }
+        #indexr6c3
+        {
+            position: absolute;
+            left: 431px;
+            width: 445px;
+            height: 55px;
+            z-index: 14;
+            visibility: visible;
+            margin-bottom: 0px;
+            margin-top: auto;
+        }
+        body
+        {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            background-image: url();
+            background-color: #ffffff;
+        }
+        .phPage
+        {
+            position: relative;
+            top: 0px;
+            width: 950px;
+            height: 348px;
+            z-index: 1;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #apDiv2
+        {
+            position: fixed;
+            left: 0px;
+            width: 100%;
+            height: 210px;
+            z-index: 2;
+            bottom: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            visibility: visible;
+        }</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.893+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.89+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/8_mcgi_Home.css</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>9</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>MM.js</Title>
+    <Content>function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i&lt;a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&amp;&amp;i&lt;a.length&amp;&amp;(x=a[i])&amp;&amp;x.oSrc;i++) x.src=x.oSrc;
+}
+ 
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))&gt;0&amp;&amp;parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&amp;&amp;d.all) x=d.all[n]; for (i=0;!x&amp;&amp;i&lt;d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&amp;&amp;d.layers&amp;&amp;i&lt;d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x &amp;&amp; d.getElementById) x=d.getElementById(n); return x;
+}
+ 
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i&lt;(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.9+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.893+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>10</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>sing.css</Title>
+    <Content>/* CSS Document */
+
+a:link
+{
+	color: #993333;
+}
+a:visited
+{
+	color: #996633;
+}
+a:hover
+{
+	color: #CC6600;
+}
+a:active
+{
+	color: #993333;
+}
+
+
+.bgcolor
+{
+	bg-color: #CC6600;
+}
+.title
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #D7893F;
+	font-family: "Times New Roman" , Times, serif;
+	text-align: left;
+}
+.sub_title
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: #996666;
+	font-family: "Times New Roman" , Times, serif, Times, serif;
+}
+.sub_title_active
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: #990000;
+	font-family: "Times New Roman" , Times, serif, Times, serif;
+}
+.text_normal
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333333;
+	text-align: justify;
+}
+.text_read
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #990000;
+	text-align: right;
+}
+.text_link
+{
+	color: #CC6600;
+}
+.text_small
+{
+	font-size: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #333333;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.903+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.9+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>11</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>Page.js</Title>
+    <Content>window.attachEvent("onload", Page_Load);
+
+    function Page_Load()
+    {
+        MM_preloadImages('/Content/Parts/Integration/Assets/images/Sites/mcgisg/Sites/mcgisg/bttn_home.gif',
+            '/Content/Parts/Integration/Assets/images/Sites/mcgisg/bttn_events.gif',
+            '/Content/Parts/Integration/Assets/images/Sites/mcgisg/bttn_gallery.gif',
+            '/Content/Parts/Integration/Assets/images/Sites/mcgisg/bttn_news.gif',
+            '/Content/Parts/Integration/Assets/images/Sites/mcgisg/bttn_about.gif',
+            '/Content/Parts/Integration/Assets/images/Sites/mcgisg/bttn_contact.gif'
+        );
+    }</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.907+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.903+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>12</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>InsideMaster.css</Title>
+    <Content>#eventsr1c1
+        {
+            z-index: -1;
+            position: absolute;
+            width: 950px;
+            height: 29px;
+            visibility: visible;
+            top: 0px;
+            left: 0px;
+        }
+        #eventsr2c2
+        {
+            z-index: -2;
+            position: absolute;
+            width: 382px;
+            height: 134px;
+            visibility: visible;
+            top: 29px;
+            left: 49px;
+        }
+        #eventsr2c3
+        {
+            z-index: 3;
+            position: absolute;
+            width: 445px;
+            height: 97px;
+            visibility: visible;
+            top: 29px;
+            left: 431px;
+        }
+        #eventsr3c3
+        {
+            z-index: 4;
+            position: absolute;
+            width: 82px;
+            height: 40px;
+            visibility: visible;
+            top: 126px;
+            left: 431px;
+        }
+        #eventsr3c4
+        {
+            z-index: 5;
+            position: absolute;
+            width: 77px;
+            height: 40px;
+            visibility: visible;
+            top: 126px;
+            left: 513px;
+        }
+        #eventsr3c5
+        {
+            z-index: 6;
+            position: absolute;
+            width: 76px;
+            height: 40px;
+            visibility: visible;
+            top: 126px;
+            left: 590px;
+        }
+        #eventsr3c6
+        {
+            z-index: 7;
+            position: absolute;
+            width: 64px;
+            height: 40px;
+            visibility: visible;
+            top: 126px;
+            left: 666px;
+        }
+        #eventsr3c7
+        {
+            z-index: 8;
+            position: absolute;
+            width: 62px;
+            height: 40px;
+            visibility: visible;
+            top: 126px;
+            left: 730px;
+        }
+        #eventsr3c8
+        {
+            z-index: 9;
+            position: absolute;
+            width: 84px;
+            height: 40px;
+            visibility: visible;
+            top: 126px;
+            left: 792px;
+        }
+        #eventsr4c1
+        {
+            z-index: 10;
+            position: absolute;
+            width: 730px;
+            height: 55px;
+            visibility: visible;
+            top: 166px;
+            left: 0px;
+        }
+.contentLeft
+        {
+            /*
+            z-index: 11;
+            
+            visibility: visible;
+            */
+            position: relative;
+            width: 543px; /*height: 326px;*/
+            top: 190px;
+            left: 48px;
+        }
+        .contentRight
+        {
+            z-index: 12;
+            position: absolute;
+            width: 256px;
+            height: 326px;
+            top: 220px;
+            left: 620px;
+        }
+        #apDiv1
+        {
+            z-index: 0;
+            position: relative;
+            width: 950px;
+            height: 348px;
+            margin-left: auto;
+            top: 0px;
+            margin-right: auto;
+        }
+        BODY
+        {
+            margin: 0px;
+        }
+        #apDiv2
+        {
+            z-index: 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0px;
+            height: 210px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0px;
+        }</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.91+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.91+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>13</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>Home.css</Title>
+    <Content>#indexr1c1
+        {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 950px;
+            height: 289px;
+            z-index: -1;
+            visibility: visible;
+            background-image: url(/Content/Parts/Integration/Assets/images/Sites/mcgisg/index_head_01.jpg);
+        }
+        #indexr2c2
+        {
+            position: absolute;
+            left: 50px;
+            top: 289px;
+            width: 381px;
+            height: 136px;
+            z-index: 2;
+            visibility: visible;
+            background-image: url(/Content/Parts/Integration/Assets/images/Sites/mcgisg/index_r2_c2.jpg);
+        }
+        #indexr2c3
+        {
+            position: absolute;
+            left: 431px;
+            top: 289px;
+            width: 268px;
+            height: 97px;
+            z-index: 3;
+            visibility: visible;
+            background-image: url(/Content/Parts/Integration/Assets/images/Sites/mcgisg/index_r2_c3.jpg);
+        }
+        #indexr2c7
+        {
+            position: absolute;
+            left: 699px;
+            top: 289px;
+            width: 177px;
+            height: 97px;
+            z-index: 4;
+            visibility: visible;
+            background-image: url(/Content/Parts/Integration/Assets/images/Sites/mcgisg/index_r2_c7.jpg);
+        }
+        #indexr3c3
+        {
+            position: absolute;
+            left: 431px;
+            top: 385px;
+            width: 83px;
+            height: 39px;
+            z-index: 5;
+            visibility: visible;
+        }
+        #indexr3c4
+        {
+            position: absolute;
+            left: 513px;
+            top: 385px;
+            width: 76px;
+            height: 39px;
+            z-index: 6;
+            visibility: visible;
+        }
+        #indexr3c5
+        {
+            position: absolute;
+            left: 589px;
+            top: 385px;
+            width: 78px;
+            height: 39px;
+            z-index: 7;
+            visibility: visible;
+        }
+        #indexr3c6
+        {
+            position: absolute;
+            left: 667px;
+            top: 385px;
+            width: 61px;
+            height: 39px;
+            z-index: 8;
+            visibility: visible;
+        }
+        #indexr3c8
+        {
+            position: absolute;
+            left: 728px;
+            top: 385px;
+            width: 64px;
+            height: 39px;
+            z-index: 9;
+            visibility: visible;
+        }
+        #indexr3c9
+        {
+            position: absolute;
+            left: 792px;
+            top: 385px;
+            width: 83px;
+            height: 39px;
+            z-index: 10;
+            visibility: visible;
+        }
+        #indexr4c1
+        {
+            position: absolute;
+            left: 0px;
+            top: 425px;
+            width: 729px;
+            height: 53px;
+            z-index: 11;
+            visibility: visible;
+            background-image: url(/Content/Parts/Integration/Assets/images/Sites/mcgisg/index_r4_c1.jpg);
+        }
+        .indexr5c2
+        {
+            position: absolute;
+            left: 50px;
+            top: 479px;
+            width: 344px;
+            height: 179px;
+            z-index: 12;
+            visibility: visible;
+        }
+        .indexr5c3
+        {
+            position: absolute;
+            left: 431px;
+            top: 479px;
+            width: 445px;
+            height: 179px;
+            z-index: 13;
+            visibility: visible;
+        }
+        #indexr6c3
+        {
+            position: absolute;
+            left: 431px;
+            width: 445px;
+            height: 55px;
+            z-index: 14;
+            visibility: visible;
+            margin-bottom: 0px;
+            margin-top: auto;
+        }
+        body
+        {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            background-image: url();
+            background-color: #ffffff;
+        }
+        .phPage
+        {
+            position: relative;
+            top: 0px;
+            width: 950px;
+            height: 348px;
+            z-index: 1;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #apDiv2
+        {
+            position: fixed;
+            left: 0px;
+            width: 100%;
+            height: 210px;
+            z-index: 2;
+            bottom: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            visibility: visible;
+        }</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.917+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.913+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>14</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>Home.js</Title>
+    <Content>function Page_Load()
+    {
+        MM_preloadImages('/Content/Parts/Integration/Assets/images/Sites/mcgisg/Sites/mcgisg/bttn_home.gif',
+            '/Content/Parts/Integration/Assets/images/Sites/mcgisg/bttn_events.gif',
+            '/Content/Parts/Integration/Assets/images/Sites/mcgisg/bttn_gallery.gif',
+            '/Content/Parts/Integration/Assets/images/Sites/mcgisg/bttn_news.gif',
+            '/Content/Parts/Integration/Assets/images/Sites/mcgisg/bttn_about.gif',
+            '/Content/Parts/Integration/Assets/images/Sites/mcgisg/bttn_contact.gif'
+        );
+    }
+    
+WCMS.Dom.AddEvent(window, "load", Page_Load);</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.92+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.92+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>15</TextResourceId>
+    <ContentTypeId>4</ContentTypeId>
+    <Title>Header Includes</Title>
+    <Content>&lt;script type="text/javascript" src="http://www.google.com/jsapi?key=REPLACE_WITH_GOOGLE_JS_API_KEY"&gt;&lt;/script&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>-10</Rank>
+    <DateModified>2019-07-19T22:48:56.81+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.79+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>16</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>WebSystem.Admin.css</Title>
+    <Content>/*
+@font-face{
+    font-family: 'Segoe UI';
+    src: url('/Content/Assets/Fonts/Segoe-UI/segoeui.eot'); /* For IE *
+    src: local('Segoe UI'), url('/Content/Assets/Fonts/Segoe-UI/segoeui.ttf') format('truetype'); /* For non-IE *
+}
+
+@font-face{
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    src: url('/Content/Assets/Fonts/Segoe-UI/segoeuib.eot'); /* For IE *
+    src: local('Segoe UI'), url('/Content/Assets/Fonts/Segoe-UI/segoeuib.ttf') format('truetype'); /* For non-IE *
+}
+*/
+
+body {
+    /*margin: 0px;*/
+    background-image: url(/Content/Assets/Uploads/Image/HeaderBackground.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom right;
+    /*
+    font-family: 'Segoe UI', 'Lucida Grande' , 'Lucida Sans Unicode' , Tahoma, sans-serif, Verdana, Arial;
+    font-size: 13px;*/
+}
+
+
+/* Web Administration -- Start */
+
+IMG.TaskListIcon {
+    width: 32px;
+}
+
+img.icon {
+    border: 0px;
+}
+
+.BlueLink, A.BlueLink:hover {
+    color: #0066ff;
+    text-decoration: underline;
+}
+
+/* Web Administration -- End */
+
+/*
+input[type=submit], input[type=button]
+{
+    height: 24px;
+}*/
+
+
+input.Command {
+    height: 30px;
+    font-weight: bold;
+}
+
+/*
+h1
+{
+    font-size: 16pt;
+    font-style: normal;
+    color: #0066FF;
+    font-family: 'Segoe UI', 'Palatino Linotype' , Arial, Helvetica, sans-serif;
+}
+*/
+
+.imagelink {
+    border: 0px;
+    cursor: hand;
+}
+
+.Breadcrumb {
+    margin: 5px;
+}
+
+.ActionBarButton {
+    height: 45px;
+}
+
+.resources li {
+    display: inline-block; /* float: left; */
+    margin-bottom: 10px; /* margin-left: 15px; */
+    list-style-type: none;
+}
+
+
+/* BEGIN: NEW */
+
+.Header {
+    font: 24px 'Segoe UI', Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+td.Header {
+    font: bold 16px 'Segoe UI', Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+/*
+legend
+{
+    color: #0066ff;
+}
+*/
+
+.welcome {
+    font: bold 20px 'Segoe UI', Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+/* END: NEW */
+
+.left_panel {
+    background-color: #fafafa;
+}
+
+SELECT.combo_nav {
+    font-family: 'Segoe UI', Arial, Tahoma, Verdana;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.login_input {
+    font-family: Verdana, Arial;
+    font-size: 13px; /* color: #333333; */
+    width: 200px;
+}
+
+/*
+TD, DIV, select, INPUT, TEXTAREA
+{
+    font-family: 'Segoe UI', "Lucida Grande" , "Lucida Sans Unicode" , Tahoma, sans-serif, Verdana, Arial;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+*/
+
+.cms_header {
+    font-size: 16pt;
+    color: #ff0003;
+    font-family: 'Segoe UI', Trebuchet MS, Verdana;
+    font-weight: bold;
+}
+
+.help_link {
+    cursor: help;
+}
+
+.drop_shadow {
+    filter: progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#A7A596,strength=5);
+}
+
+.grid_header {
+    background-color: #1374c3; /* #009e8f /* #0eafa7; */
+    color: #ffffff;
+}
+
+.grid_pager {
+    background-color: #fafafa; /*#ffffff; /* #0eafa7; */
+    color: #000000;
+    font-weight: bold;
+}
+
+    .grid_pager a {
+        background-color: #fafafa; /* #ffffff; /* #0eafa7; */
+        color: #000000;
+        font-weight: normal;
+    }
+
+.panel_bar {
+    background-color: #0eafa7;
+}
+
+.panel_bar_strong {
+    background-color: #1374c3; /* #cc0066; */
+}
+
+
+A.module_treenode {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+    A.module_treenode:hover {
+        text-decoration: underline;
+    }
+
+
+.callOutStyle {
+    background-color: #6699CC;
+    font-family: tahoma;
+    font-size: 10pt;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+.callOutHeaderStyle {
+    background-color: #6699CC;
+    padding-left: 7px;
+    font-family: tahoma;
+    font-size: 0.9em;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+
+#cms_path_separator, .cms_path_separator {
+    color: #23c754;
+}
+
+.breadcrumb &gt; li {
+    margin-right: 4px;
+}
+
+h1.central.page-header {
+    font-weight: normal;
+    margin-bottom: 5px;
+    margin-top: 30px;
+}
+</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>1</Rank>
+    <DateModified>2019-07-19T22:48:57.09+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2018-01-02T15:08:17+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Styles/WebSystem.Admin.css</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>17</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>TreePanel.aspx.css</Title>
+    <Content>body
+{
+    background: #f0f0f0;
+}
+a:hover
+{
+    text-decoration: none;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>2</Rank>
+    <DateModified>2019-07-19T22:48:57.09+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.09+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>18</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>TreePanel.aspx.js</Title>
+    <Content>if (top.location.pathname.toLowerCase() == "/central/treepanel/") {
+    top.location.href = "Default.aspx";
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>3</Rank>
+    <DateModified>2019-07-19T22:48:57.1+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.1+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>19</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>Main.aspx.js</Title>
+    <Content>// this page should never load inside of another frame
+function OpenClosePanel() {
+    var fsSubMain = des.Dom.Get("framesetSubMain");
+    var fsMain = des.Dom.Get("framesetMain");
+
+    if (fsSubMain.cols == "0,100%" || fsSubMain.cols == "0,*") {
+        fsSubMain.cols = "250,*";
+        fsMain.rows = "50,*";
+    }
+    else {
+        fsSubMain.cols = "0,*";
+        fsMain.rows = "0,*";
+    }
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>1</Rank>
+    <DateModified>2019-07-19T22:48:57.083+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.08+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>20</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>WebSystem.Admin.js</Title>
+    <Content>function ShowDelete() {
+    return confirm('Are sure you want to delete?');
+}
+
+function ViewTemplate(partControlId, hTemplateId) {
+    window.open("/Central/Part/WebPartPreview/?PartControlTemplateId=" + partControlId, "iframePreview");
+    WCMS.Dom.Get(hTemplateId).value = partControlId;
+    return false;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>2</Rank>
+    <DateModified>2019-07-19T22:48:57.097+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2018-01-02T15:08:16+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Scripts/WebSystem.Admin.js</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>28</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>contact.js</Title>
+    <Content>alert('contact us');</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.933+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.927+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>29</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>style.css</Title>
+    <Content>/* CSS Document */
+body
+{
+    padding: 0;
+    margin: 0;
+}
+div, p, h1, h2, h3, ul, img
+{
+    padding: 0;
+    margin: 0;
+}
+ul
+{
+    list-style-type: none;
+}
+.balnk
+{
+    font-size: 0px;
+    line-height: 0px;
+    clear: both;
+}
+/*--------------------------------header-------------------*/
+#main_header
+{
+    width: 100%;
+    margin: 0 auto;
+    background: url(/Content/Themes/AppleWeb/images/bg.gif) repeat-x #0a2b43;
+    color: #FFFFFF;
+    height: 216px;
+}
+#main_header #header
+{
+    width: 764px;
+    margin: 0 auto;
+    background: url(/Content/Themes/AppleWeb/images/header_pic.gif) no-repeat #fff6d8;
+    color: #FFFFFF;
+    height: 216px;
+    position: relative;
+}
+#main_header #header ul
+{
+    background: url(/Content/Themes/AppleWeb/images/search_bg.gif) no-repeat #09283f;
+    color: #FFFFFF;
+    display: block;
+    position: absolute;
+    height: 22px;
+    width: 123px;
+    margin: 0;
+    padding: 6px 0 0 26px;
+    top: 10px;
+    left: 0px;
+}
+#main_header #header ul li
+{
+    float: left;
+    display: block;
+    margin: 0 23px 0 0;
+}
+#main_header #header ul li a
+{
+    height: 15px;
+    text-decoration: none;
+    text-indent: -2000px;
+    display: block;
+    width: 20px;
+}
+#main_header #header ul li a.home
+{
+    background: url(/Content/Themes/AppleWeb/images/home.gif) no-repeat 0 0;
+    width: 16px;
+    height: 16px;
+}
+#main_header #header ul li a.home:hover
+{
+    background: url(/Content/Themes/AppleWeb/images/home_h.gif) no-repeat 0 0;
+    width: 16px;
+    height: 16px;
+}
+#main_header #header ul li a.user
+{
+    background: url(/Content/Themes/AppleWeb/images/user.gif) no-repeat 0 0;
+    width: 16px;
+    height: 16px;
+}
+#main_header #header ul li a.user:hover
+{
+    background: url(/Content/Themes/AppleWeb/images/user_h.gif) no-repeat 0 0;
+    width: 16px;
+    height: 16px;
+}
+#main_header #header ul li a.contact
+{
+    background: url(/Content/Themes/AppleWeb/images/contact.gif) no-repeat 0 0;
+    width: 19px;
+    height: 16px;
+}
+#main_header #header ul li a.contact:hover
+{
+    background: url(/Content/Themes/AppleWeb/images/contact_h.gif) no-repeat 0 0;
+    width: 19px;
+    height: 16px;
+}
+#main_header #header ul.free
+{
+    background: url(/Content/Themes/AppleWeb/images/toll_free-1.gif) no-repeat #09283f;
+    color: #5d5024;
+    display: block;
+    height: 28px;
+    width: 140px;
+    padding: 7px 0 0 43px;
+    position: absolute;
+    top: 2px;
+    left: 580px;
+    margin: 0;
+}
+#main_header #header ul.free li
+{
+    float: left;
+    display: block;
+    font: 10px/12px 'Trebuchet MS' , Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #5D5024;
+    margin: 0px 0px 0 0;
+    padding: 0 0 0 0;
+    text-transform: uppercase;
+    font-weight: normal;
+    background-color: #FFF6D8;
+}
+#main_header #header ul.free li span
+{
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    font-weight: bold;
+    background-color: #ff0033;
+    width: 63px;
+    height: 16px;
+}
+#main_header #header ul.free li a.call
+{
+    color: #e5f4ff;
+    font-size: 11px;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-indent: 0px;
+    width: 72px;
+    margin: 0 0 0 0px;
+    padding: 0 0 0 5px;
+    background-color: #09283f;
+}
+#main_header #header img
+{
+    position: absolute;
+    left: 40px;
+    top: 74px;
+    display: block;
+}
+#main_header #header ul.navi
+{
+    width: 491px;
+    display: block;
+    position: absolute;
+    top: 189px;
+    left: 131px;
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+#main_header #header ul.navi li
+{
+    background: url(/Content/Themes/AppleWeb/images/saparation.gif) no-repeat right;
+    height: 22px;
+    padding: 0 14px 0 5px;
+    margin: 0;
+    display: block;
+    float: left;
+}
+#main_header #header ul.navi li.li1
+{
+    background: none;
+    height: 22px;
+    padding: 0 14px 0 5px;
+    margin: 0;
+    display: block;
+    float: left;
+}
+#main_header #header ul.navi li a
+{
+    font: 12px/21px "Trebuchet MS" , Arial, Helvetica, sans-serif;
+    color: #847543;
+    text-decoration: none;
+    text-indent: 0px;
+    padding: 0 0 0 15px;
+    font-weight: bold;
+    margin: 0;
+    width: inherit;
+    background-color: #fff6d8;
+}
+#main_header #header ul.navi li a:hover
+{
+    background: url(/Content/Themes/AppleWeb/images/navi_h.gif) no-repeat 0 2px;
+}
+/*------------------------------------body-------------------------*/
+#main_body
+{
+    width: 100%;
+    background-color: #0a2b43;
+    color: #fff6d8;
+}
+#body
+{
+    width: 764px;
+    margin: 0 auto 0 auto;
+    padding: 17px 0 0 0;
+}
+#body h2
+{
+    font: 28px/24px 'Trebuchet MS' , Arial, Helvetica, sans-serif;
+    color: #fff6d9;
+    margin: 0 0 15px 40px;
+    font-weight: normal;
+    background-color: #0a2b43;
+    display: block;
+}
+#body p.main
+{
+    background: url(/Content/Themes/AppleWeb/images/welcome_pic.gif) no-repeat #0a2b43;
+    color: #799fbb;
+    padding: 0 0 0 114px;
+    margin: 0 0 0 40px;
+    width: 598px;
+    display: block;
+    font: 13px/17px Verdana, Arial, Helvetica, sans-serif;
+}
+
+#body p
+{
+    color: #799fbb;
+    display: block;
+    margin: 0 0 10px 0;
+    font: 13px/17px Verdana, Arial, Helvetica, sans-serif;
+}
+
+#body p span
+{
+    color: #fff6d8;
+    background-color: #0a2b43;
+}
+#body p span.bg
+{
+    color: #799fbb;
+    background-color: #041929;
+}
+#body p a
+{
+    width: 56px;
+    height: 12px;
+    display: block;
+    background: url(/Content/Themes/AppleWeb/images/more_bg.gif) no-repeat #0a2b43;
+    margin: 3px 0 42px 526px;
+    font: 11px/12px Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding: 0 0 0 5px;
+    text-decoration: none;
+}
+#body p a:hover
+{
+    background: url(/Content/Themes/AppleWeb/images/more_bg_h.gif) no-repeat #0a2b43;
+    color: #ff0033;
+}
+#event
+{
+    width: 215px;
+    padding: 0 0 0 40px;
+    float: left;
+    display: block;
+}
+#event h2
+{
+    background: url(/Content/Themes/AppleWeb/images/event_bg.gif) no-repeat;
+    font: 24px/31px "Trebuchet MS" , Arial, Helvetica, sans-serif;
+    width: 142px;
+    height: 45px;
+    padding: 5px 20px 0 54px;
+    margin: 0;
+    font-weight: normal;
+    display: block;
+}
+#event h2 span
+{
+    color: #847543;
+    font: 11px/12px Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #fff6d8;
+    display: block;
+}
+#event p
+{
+    width: 191px;
+    display: block;
+    font: 13px Verdana, Arial, Helvetica, sans-serif;
+    color: #799fbb;
+    background-color: #0a2b43;
+    margin: 19px 0 0 23px;
+    background: none;
+    padding: 0;
+}
+#event h3
+{
+    color: #fff6d8;
+    font-weight: bold;
+    font: 14px Verdana, Arial, Helvetica, sans-serif;
+    width: 191px;
+    display: block;
+    margin: 19px 0 0 23px;
+    padding: 0;
+    background-color: #0a2b43;
+}
+#event h3 a
+{
+    width: 171px;
+    height: 17px;
+    display: block;
+    background: url(/Content/Themes/AppleWeb/images/arrow.gif) no-repeat 160px 6px #051b2b;
+    padding: 0 0 0 7px;
+    margin: 4px 0 0px 0;
+    font: 11px/15px Verdana, Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+}
+#event h3 a:hover
+{
+    background: none;
+    color: #FFFFFF;
+    background-color: #0a2b43;
+}
+#event p a.more
+{
+    width: 56px;
+    height: 12px;
+    display: block;
+    background: url(/Content/Themes/AppleWeb/images/more_bg.gif) no-repeat #0a2b43;
+    margin: 22px 0 37px 118px;
+    font: 11px/11px Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding: 0 0 0 5px;
+    text-decoration: none;
+}
+#event p a.more:hover
+{
+    background: url(/Content/Themes/AppleWeb/images/more_bg_h.gif) no-repeat #0a2b43;
+    color: #ff0033;
+}
+/*------------------------support-------------*/
+#support
+{
+    width: 215px;
+    padding: 0 0 0 25px;
+    float: left;
+    display: block;
+}
+#support h2
+{
+    background: url(/Content/Themes/AppleWeb/images/support.gif) no-repeat;
+    font: 24px/31px 'Trebuchet MS' , Arial, Helvetica, sans-serif;
+    width: 126px;
+    height: 45px;
+    padding: 5px 20px 0 71px;
+    margin: 0;
+    font-weight: normal;
+    display: block;
+}
+#support h2 span
+{
+    color: #847543;
+    font: 11px/12px Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #fff6d8;
+    display: block;
+}
+#support p
+{
+    width: 191px;
+    display: block;
+    font: 13px Verdana, Arial, Helvetica, sans-serif;
+    color: #799fbb;
+    background-color: #0a2b43;
+    margin: 19px 0 19px 16px;
+    background: none;
+    padding: 0;
+}
+#support ul
+{
+    width: 191px;
+    display: block;
+    margin: 0px 0 0px 16px;
+    padding: 0;
+}
+#support ul li
+{
+    font: 12px/15px Verdana, Arial, Helvetica, sans-serif;
+    color: #fff6d8;
+    background-color: #0a2b43;
+    width: 191px;
+    display: block;
+    padding: 0 0 0 0;
+}
+#support ul li a
+{
+    font: 12px/17px Verdana, Arial, Helvetica, sans-serif;
+    color: #799fbb;
+    background-color: #0a2b43;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0 5px 0;
+    margin: 0;
+}
+#support a.online
+{
+    width: 146px;
+    height: 57px;
+    border: #486d88 1px solid;
+    display: block;
+    margin: 20px 0 0 16px;
+    background-color: #051b2b;
+    color: #fff6d8;
+    padding: 10px 18px 0 16px;
+    font: 22px/28px Verdana, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+#support a.online span
+{
+    color: #799fbb;
+    font-size: 18px;
+    line-height: 18px;
+    padding: 0 0 0 8px;
+    background-color: #051b2b;
+    display: block;
+}
+#support a.online:hover
+{
+    background-color: #1c4f75;
+    color: #fff6d8;
+}
+/*--------------------------------services-------------------*/
+#services
+{
+    width: 215px;
+    padding: 0 0 0 28px;
+    float: left;
+    display: block;
+}
+#services h2
+{
+    background: url(/Content/Themes/AppleWeb/images/services.gif) no-repeat;
+    font: 24px/31px 'Trebuchet MS' , Arial, Helvetica, sans-serif;
+    width: 140px;
+    height: 45px;
+    padding: 5px 20px 0 53px;
+    margin: 0;
+    font-weight: normal;
+    display: block;
+}
+#services h2 span
+{
+    color: #847543;
+    font: 11px/12px Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #fff6d8;
+    display: block;
+}
+#services p
+{
+    width: 191px;
+    display: block;
+    font: 13px Verdana, Arial, Helvetica, sans-serif;
+    color: #799fbb;
+    background-color: #0a2b43;
+    margin: 19px 0 0 16px;
+    background: none;
+    padding: 0;
+}
+#services h3
+{
+    color: #fff6d8;
+    font: 14px Verdana, Arial, Helvetica, sans-serif;
+    width: 190px;
+    display: block;
+    margin: 19px 0 0 16px;
+    padding: 0;
+    font-weight: bold;
+    background-color: #0a2b43;
+}
+#services ul
+{
+    width: 191px;
+    display: block;
+    margin: 5px 0 0 16px;
+}
+#services ul li
+{
+    background: url(/Content/Themes/AppleWeb/images/arrow1.gif) no-repeat 0 12px;
+    display: block;
+    padding: 0 0 0 14px;
+}
+#services ul li a
+{
+    font: 14px/24px Verdana, Arial, Helvetica, sans-serif;
+    color: #799fbb;
+    text-decoration: underline;
+    background-color: #0a2b43;
+}
+#services ul li a:hover
+{
+    text-decoration: none;
+}
+#services a.more1
+{
+    width: 56px;
+    height: 12px;
+    display: block;
+    background: url(/Content/Themes/AppleWeb/images/more_bg.gif) no-repeat #0a2b43;
+    margin: 39px 0 0 121px;
+    font: 11px/12px Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding: 0 0 0 5px;
+    text-decoration: none;
+}
+#services a.more1:hover
+{
+    background: url(/Content/Themes/AppleWeb/images/more_bg_h.gif) no-repeat #0a2b43;
+    color: #ff0033;
+}
+/*---------------------------------footer-----------------*/
+#main_footer
+{
+    width: 100%;
+    float: left;
+    background: url(/Content/Themes/AppleWeb/images/footer_bg.gif) repeat-x #0c1d2a;
+    color: #ffffff;
+    border-top: #ffffff 1px solid;
+    margin: 0px;
+    padding: 0px;
+}
+#footer
+{
+    width: 530px;
+    height: 187px;
+    margin: 0 auto 0 auto;
+}
+#footer ul
+{
+    width: 500px;
+    display: block;
+    list-style-type: none;
+    margin: 46px 0 0 40px;
+    position: absolute;
+}
+#footer ul li
+{
+    display: block;
+    float: left;
+}
+#footer ul li a
+{
+    font: 14px/12px 'Trebuchet MS' , Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    background-color: #09161f;
+    text-decoration: none;
+    margin: 0 16px 0 16px;
+}
+#footer ul li a.mg
+{
+    font: 12px/11px Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    background-color: #09161f;
+    text-decoration: none;
+    margin: 0 11px 0 0px;
+}
+#footer ul li a.mg:hover
+{
+    text-decoration: underline;
+}
+#footer ul li a:hover
+{
+    text-decoration: underline;
+}
+#footer ul.ad
+{
+    width: 323px;
+    display: block;
+    list-style-type: none;
+    margin: 77px 0 0 90px;
+}
+#footer ul.ad li
+{
+    height: 40px;
+    width: 96px;
+    display: block;
+    border-right: #FFFFFF 1px dashed;
+}
+#footer ul.ad li.nobor
+{
+    height: 40px;
+    width: 96px;
+    display: block;
+    margin-left: 10px;
+    border-right: none;
+}
+#footer ul.ad li.nobor1
+{
+    height: 40px;
+    width: 96px;
+    display: block;
+    float: left;
+    margin-left: 10px;
+    border-right: #FFFFFF 1px dashed;
+}
+#footer ul.ad li a
+{
+    font: 10px/12px Tahoma, Arial, Helvetica, sans-serif;
+    color: #d1bd86;
+    background-color: #0c1c27;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 0 0 0;
+    display: block;
+}
+#footer ul.ad li a span
+{
+    color: #ff0033;
+    background-color: #0b1a24;
+    text-transform: uppercase;
+    margin: 0 10px 0 0;
+    display: block;
+}
+#footer ul.css
+{
+    width: 100px;
+    display: block;
+    margin: 75px 0 0 211px;
+    font-size: 0px;
+    padding: 0px;
+}
+#footer p
+{
+    padding: 135px 0 0 165px;
+    font: 11px/16px Tahoma, Arial, Helvetica, sans-serif;
+    color: #FAFAFA;
+    background: url(/Content/Themes/AppleWeb/images/footer_bg.gif) repeat-x #0c1d29;
+    font-weight: normal;
+    height: 14px;
+    margin: 0;
+}
+#footer p.de
+{
+    padding: 0 0 0 165px;
+    margin: 0;
+    line-height: 12px;
+    width: 160px;
+    text-align: center;
+    background-color: #0c1d2a;
+    color: #fff;
+    background: none;
+}
+#footer p.de a
+{
+    color: #fff;
+    background-color: #0c1d2a;
+    text-decoration: underline;
+}
+#footer p.de a:hover
+{
+    color: #fff;
+    background-color: #0a5083;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.937+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.937+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>34</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>Central.css</Title>
+    <Content>#Body
+{
+ padding: 5px;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.94+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.94+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>35</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>FileManager.css</Title>
+    <Content>.callOutStyle
+{
+	background-color: #6699CC;
+	font-family: tahoma;
+	font-size: 10pt;
+	color: white;
+	font-weight: bold;
+	line-height: 150%;
+}
+
+.callOutHeaderStyle
+{
+	background-color: #6699CC;
+	padding-left: 7;
+	font-family: tahoma;
+	font-size: 0.9em;
+	color: white;
+	font-weight: bold;
+	line-height: 150%;
+}
+
+/* # custom styles # */
+
+#location a, #location span.separator
+{
+font-family: "Segoe UI", Tahoma, Verdana, Arial;
+}
+
+#location a
+{
+text-decoration: none;
+color: #e4532c;
+font-weight: bold;
+}
+
+#location a:hover
+{
+text-decoration: underline;
+}
+
+
+.separator
+{
+color: #23c754;
+}
+
+input._FileManager_Button
+{
+    padding: 1px;
+}
+
+.fileUploadBox {
+display:block;
+margin-bottom:0.96em;
+width: 500px;
+}
+
+.newFolderBox
+{
+width: 325px;
+}
+
+.wp-FileManager .field-label {
+display:block;
+float:left;
+min-width:12em;
+}
+
+.wp-FileManager .field-row, .wp-FileManager .field-line {
+clear:both;
+margin-bottom:3px;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.947+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.943+08:00</DatePersisted>
+    <PhysicalPath>~\Content\Assets\Resources\35_FileManager.css</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>36</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>QueryAnalyzer.css</Title>
+    <Content>body
+{
+    padding: 3px;
+}
+
+/* BEGIN: NEW */
+
+.linkw, a.linkw:link
+{
+    font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    text-decoration: none;
+}
+a.linkw:hover
+{
+    font: bold 13px Verdana, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.content
+{
+    font: 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #000000;
+    text-decoration: none;
+}
+.contentw
+{
+    font: 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.contentb
+{
+    font: bold 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #000000;
+    text-decoration: none;
+}
+.contentwb
+{
+    font: bold 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    text-decoration: none;
+}
+.linkcontent, a.linkcontent:link, a.linkcontent:active
+{
+    font: 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #0072bc;
+    text-decoration: none;
+}
+a.linkcontent:hover
+{
+    font: 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #0072bc;
+    text-decoration: underline;
+}
+.bullets
+{
+    list-style-image: url(/Content/Assets/Images/Common/bullet.gif);
+}
+
+.header
+{
+    font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+TD.header
+{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.welcome
+{
+    font: bold 20px Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+/* END: NEW */
+
+
+.flat_table
+{
+    position: relative;
+    top: -2px;
+    left: 4px;
+    padding: 0px 0px 0px 0px;
+}
+
+.flat_table td
+{
+    padding: 1px 0px 1px 0px;
+}
+
+.left_panel
+{
+    background-color: #fafafa;
+}
+
+SELECT.combo_nav
+{
+    font-family: Arial, Tahoma, Verdana;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+input, textarea
+{
+    font-family: Verdana, Arial;
+    font-size: 12px; /* color: #333333; */ /* filter: alpha(opacity=50); */
+}
+
+.login_input
+{
+    font-family: Verdana, Arial;
+    font-size: 13px; /* color: #333333; */
+}
+
+td, div, select
+{
+    font-family: Verdana, Tahoma, Arial;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.menubackgr
+{
+    background: #F1F3F5;
+    border-bottom: 1px solid #cccccc;
+}
+
+a.header_link:active, a.header_link:visited, a.header_link:link
+{
+    font-weight: bold;
+    font-size: 9pt;
+    color: brown;
+    font-family: Tahoma, Verdana, Arial, Trebuchet MS;
+    text-decoration: none;
+}
+
+a.header_link:hover
+{
+    font-weight: bold;
+    font-size: 9pt;
+    color: brown;
+    font-family: Tahoma, Verdana, Arial;
+    text-decoration: underline;
+}
+
+.section_link, a.section_link:active, a.section_link:visited, a.section_link:link
+{
+    font-weight: bold;
+    font-size: 12px;
+    color: #ffffff;
+    font-family: Verdana;
+    text-decoration: none;
+}
+
+a.section_link:hover
+{
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a.section_item_link:active, a.section_item_link:visited, a.section_item_link:link
+{
+    font-family: Verdana;
+    font-size: 11px;
+    color: #026db5;
+    text-decoration: none;
+}
+
+a.section_item_link:hover
+{
+    font-family: Verdana;
+    font-size: 11px;
+    color: #026db5;
+    text-decoration: underline;
+}
+
+a:hover
+{
+    /* color: #0000aa; */
+    text-decoration: underline;
+}
+
+.cms_header
+{
+    font-size: 16pt;
+    color: #ff0003;
+    font-family: Trebuchet MS, Verdana;
+    font-weight: bold;
+}
+
+.help_link
+{
+    cursor: help;
+}
+
+.drop_shadow
+{
+    filter: progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#A7A596,strength=5);
+}
+
+.grid_header
+{
+    background-color: #1374c3; /* #009e8f /* #0eafa7; */
+    color: #ffffff;
+}
+
+.grid_pager
+{
+    background-color: #fafafa; /*#ffffff; /* #0eafa7; */
+    color: #000000;
+    font-weight: bold;
+}
+
+.grid_pager a
+{
+    background-color: #fafafa; /* #ffffff; /* #0eafa7; */
+    color: #000000;
+    font-weight: normal;
+}
+
+.panel_bar
+{
+    background-color: #0eafa7;
+}
+
+.panel_bar_strong
+{
+    background-color: #1374c3; /* #cc0066; */
+}
+
+TD.control_box
+{
+    padding: 5px;
+    background-image: url(/Content/Assets/Images/Common/backyellow.gif); /* height: 30px; */
+}
+
+TD.ControlBoxRed
+{
+    padding: 5px;
+    background-image: url(/Content/Assets/Images/Common/backred.gif); /* height: 30px; */
+}
+
+.ControlBox
+{
+    padding: 5px;
+    background-image: url(/Content/Assets/Images/Common/backyellow.gif); /* height: 30px; */
+}
+
+.ControlBox_Flat
+{
+    background-image: url(/Content/Assets/Images/Common/backyellow.gif);
+}
+
+.ControlBoxRed
+{
+    padding: 5px;
+    background-image: url(/Content/Assets/Images/Common/backred.gif); /* height: 30px; */
+}
+
+
+DIV.tab_button, DIV.tab_button A
+{
+    width: 120px;
+    background-color: #3366cc;
+    font-weight: bold;
+    color: White;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+}
+
+DIV.tab_button_blur, DIV.tab_button_blur A
+{
+    width: 120px;
+    background-color: #1145ae;
+    font-weight: bold;
+    color: gray;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+}
+
+DIV.tab_bar
+{
+    background-color: #3366cc;
+    height: 5px;
+}
+
+A.module_treenode
+{
+    color: #3366cc;
+    text-decoration: none;
+}
+
+A.module_treenode:hover
+{
+    text-decoration: underline;
+}
+
+
+.callOutStyle
+{
+    background-color: #6699CC;
+    font-family: tahoma;
+    font-size: 10pt;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+.callOutHeaderStyle
+{
+    background-color: #6699CC;
+    padding-left: 7;
+    font-family: tahoma;
+    font-size: 0.9em;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.95+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.947+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/36_QueryAnalyzer.css</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>37</TextResourceId>
+    <ContentTypeId>4</ContentTypeId>
+    <Title>arclite-index-default-headers</Title>
+    <Content>&lt;style type="text/css"&gt;
+        @import "/Content/Themes/arclite/style.css";
+/*
+        @import "/Content/Themes/arclite/options/header-default.css";
+        @import "/Content/Themes/arclite/options/content-default.css";
+        @import "/Content/Themes/arclite/options/side-default.css";
+        @import "/Content/Themes/arclite/options/style-imageless.css";
+        @import "/Content/Themes/arclite/options/content-grunge.css";
+   */     
+        @import "/Content/Themes/arclite/options/header-field.css";
+        @import "/Content/Themes/arclite/options/side-green.css";
+
+    &lt;/style&gt;
+    &lt;!--[if lte IE 6]&gt;
+        &lt;style type="text/css" media="all"&gt;@import "/Content/Themes/arclite/ie6.css";&lt;/style&gt;
+    &lt;![endif]--&gt;
+
+    &lt;script src="/Content/Themes/arclite/js/jquery.js" type="text/javascript"&gt;&lt;/script&gt;
+
+    &lt;script src="/Content/Themes/arclite/js/jquery.arclite.js" type="text/javascript"&gt;&lt;/script&gt;
+
+    &lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.953+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.953+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>38</TextResourceId>
+    <ContentTypeId>4</ContentTypeId>
+    <Title>mcgi_mockup_header</Title>
+    <Content>&lt;!--[if IE 5]&gt;
+&lt;style type="text/css"&gt; 
+/* place css box model fixes for IE 5* in this conditional comment */
+#sidebar1 { width: 220px; }
+&lt;/style&gt;
+&lt;![endif]--&gt;
+    &lt;!--[if IE]&gt;
+&lt;style type="text/css"&gt; 
+/* place css fixes for all versions of IE in this conditional comment */
+#mainContent { zoom: 1; }
+/* the above proprietary zoom property gives IE the hasLayout it needs to avoid several bugs */
+&lt;/style&gt;
+&lt;![endif]--&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.957+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.957+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>39</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>mcgi_mockup_style.css</Title>
+    <Content>body
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background: #FFFFFF;
+    background: url(/Content/Themes/mockup/images/bg.jpg) repeat;
+    margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+    padding: 10;
+    color: #000000;
+}
+
+h1, h2
+{
+    color: #4372AA;
+    text-decoration: none;
+}
+#container
+{
+    width: 900px; /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+    background: #FFFFFF;
+    margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+}
+#header
+{
+    background: #FFFFFF;
+    width: 900px;
+    height: 170px;
+}
+#header .headerBackground
+{
+    width: 900px;
+    height: 120px;
+    background: url(/Content/Themes/mockup/images/headerBackground.jpg) no-repeat left top;
+}
+#header h1
+{
+    margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
+    padding: 200px 40px 0 0; /* using padding instead of margin will allow you to keep the element away from the edges of the div */
+    color: #FFFFFF;
+    text-align: right;
+    font-size: 15px;
+}
+#sidebar1
+{
+    float: right; /* since this element is floated, a width must be given */
+    width: 200px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
+    background: #ffffff; /* the background color will be displayed for the length of the content in the column, but no further */
+    margin: 20px 40px 20px 0;
+}
+#sidebar1 a, #mainContent a
+{
+    color: #626161;
+    font-weight: bold;
+}
+#mainContent
+{
+    margin: 20px 280px 20px 40px; /* the right margin on this div element creates the column down the right side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+}
+.productPic
+{
+    float: left;
+    margin: 0 20px 15px 0;
+}
+#footer
+{
+    height: 90px; /* background:url(/Content/Themes/mockup/images/footerBackground.jpg) repeat-x left top; */
+}
+.rss
+{
+    float: right;
+    width: 212px;
+    margin: 16px 0 0 20px;
+}
+#footer p
+{
+    padding-top: 10px;
+    margin: 0 0px 0 0;
+    text-align: center;
+    font-size: 10px;
+    font-face: verdana;
+}
+.footerLink
+{
+    color: #292b25;
+    text-decoration: underline;
+}
+.clearfloat
+{
+    /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+    clear: both;
+    height: 0;
+    font-size: 1px;
+    line-height: 0px;
+}
+/*begin main menu*/
+#navcontainer
+{
+    margin: auto 0;
+    text-align: center;
+}
+#navcontainer ul
+{
+    padding: 10;
+    margin: auto 0;
+    background: url(/Content/Themes/mockup/images/n_menu_bg.jpg) no-repeat;
+    height: 40px;
+    width: 790px;
+    float: left;
+}
+#navcontainer ul li
+{
+    display: inline;
+}
+#navcontainer ul li a
+{
+    color: #626161;
+    text-decoration: none;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    float: left;
+    border-right: 1px solid #fff;
+    font-size: 13px;
+    padding: 15px 25px;
+    margin:
+}
+#navcontainer ul li a:hover
+{
+    /* background: url(/Content/Themes/mockup/images/menuBackgroundActive.gif) repeat-x left top; */
+    color: gray;
+}
+#navcontainer ul li #current
+{
+    /* background: url(/Content/Themes/mockup/images/menuBackgroundActive.gif) repeat-x left top; */
+    color: #fff;
+}
+
+/*end main menu*/
+/* begin border corners*/
+.t
+{
+    background: #ffffff url(/Content/Themes/mockup/images/dot.gif) 0 0 repeat-x;
+    padding-bottom: 20px;
+}
+.b
+{
+    background: url(/Content/Themes/mockup/images/dot.gif) 0 100% repeat-x;
+}
+.l
+{
+    background: url(/Content/Themes/mockup/images/dot.gif) 0 0 repeat-y;
+}
+.r
+{
+    background: url(/Content/Themes/mockup/images/dot.gif) 100% 0 repeat-y;
+}
+.bl
+{
+    background: url(/Content/Themes/mockup/images/bl.gif) 0 100% no-repeat;
+}
+.br
+{
+    background: url(/Content/Themes/mockup/images/br.gif) 100% 100% no-repeat;
+}
+.tl
+{
+    background: url(/Content/Themes/mockup/images/tl.gif) 0 0 no-repeat;
+}
+.tr
+{
+    background: url(/Content/Themes/mockup/images/tr.gif) 100% 0 no-repeat;
+    padding: 1px 20px;
+}
+/* end border corners*/
+/* begin news border corners*/
+.n_t
+{
+    background: #eeeeee url(/Content/Themes/mockup/images/n_dot.gif) 0 0 repeat-x;
+    padding-bottom: 20px;
+}
+.n_b
+{
+    background: url(/Content/Themes/mockup/images/n_dot.gif) 0 100% repeat-x;
+}
+.n_l
+{
+    background: url(/Content/Themes/mockup/images/n_dot.gif) 0 0 repeat-y;
+}
+.n_r
+{
+    background: url(/Content/Themes/mockup/images/n_dot.gif) 100% 0 repeat-y;
+}
+.n_bl
+{
+    background: url(/Content/Themes/mockup/images/n_bl.gif) 0 100% no-repeat;
+}
+.n_br
+{
+    background: url(/Content/Themes/mockup/images/n_br.gif) 100% 100% no-repeat;
+}
+.n_tl
+{
+    background: url(/Content/Themes/mockup/images/n_tl.gif) 0 0 no-repeat;
+}
+.n_tr
+{
+    background: url(/Content/Themes/mockup/images/n_tr.gif) 100% 0 no-repeat;
+    padding: 1px 20px;
+}
+/* end news border corners*/</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.963+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.96+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>40</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>Profile.ProfileUpdate.css</Title>
+    <Content>.FieldLabel {
+display: block;
+width: 9.5em;
+float: left;
+}
+
+.FieldLine{margin-bottom: 5px; clear: both;}
+.link-page {font-size: 1.1em;}
+a.link-page {text-decoration: underline;}
+
+.websys.phone-number.country-code {border: solid 1px #A0A0A0; padding: 3px}
+.websys.phone-number.number-input{width: 8em;}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.967+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.963+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/40_Profile.ProfileUpdate.css</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>41</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>jsddm.js</Title>
+    <Content>var timeout = 500;
+            var closetimer = 0;
+            var ddmenuitem = 0;
+
+            function jsddm_open() {
+                jsddm_canceltimer();
+                jsddm_close();
+                ddmenuitem = $(this).find('ul').eq(0).css('visibility', 'visible');
+            }
+
+            function jsddm_close()
+            { if (ddmenuitem) ddmenuitem.css('visibility', 'hidden'); }
+
+            function jsddm_timer()
+            { closetimer = window.setTimeout(jsddm_close, timeout); }
+
+            function jsddm_canceltimer() {
+                if (closetimer) {
+                    window.clearTimeout(closetimer);
+                    closetimer = null;
+                } 
+            }
+
+            $(document).ready(function() {
+                $('#jsddm &gt; li').bind('mouseover', jsddm_open);
+                $('#jsddm &gt; li').bind('mouseout', jsddm_timer);
+            });
+
+            document.onclick = jsddm_close;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.97+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.97+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>42</TextResourceId>
+    <ContentTypeId>2</ContentTypeId>
+    <Title>jsddm.js</Title>
+    <Content>var timeout = 500;
+            var closetimer = 0;
+            var ddmenuitem = 0;
+
+            function jsddm_open() {
+                jsddm_canceltimer();
+                jsddm_close();
+                ddmenuitem = $(this).find('ul').eq(0).css('visibility', 'visible');
+            }
+
+            function jsddm_close()
+            { if (ddmenuitem) ddmenuitem.css('visibility', 'hidden'); }
+
+            function jsddm_timer()
+            { closetimer = window.setTimeout(jsddm_close, timeout); }
+
+            function jsddm_canceltimer() {
+                if (closetimer) {
+                    window.clearTimeout(closetimer);
+                    closetimer = null;
+                } 
+            }
+
+            $(document).ready(function() {
+                $('#jsddm &gt; li').bind('mouseover', jsddm_open);
+                $('#jsddm &gt; li').bind('mouseout', jsddm_timer);
+            });
+
+            document.onclick = jsddm_close;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.973+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.973+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>43</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>jsddm.css</Title>
+    <Content>/* menu styles */
+            #jsddm
+            {
+                margin: 0;
+                padding: 0;
+            }
+            #jsddm li
+            {
+                float: left;
+                list-style: none;
+                font: 12px Tahoma, Arial;
+            }
+            #jsddm li a
+            {
+                display: block;
+                background: #324143;
+                padding: 5px 12px;
+                text-decoration: none;
+                border-right: 1px solid white;
+                width: 70px;
+                color: #EAFFED;
+                white-space: nowrap;
+            }
+            #jsddm li a:hover
+            {
+                background: #24313C;
+            }
+            #jsddm li ul
+            {
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                visibility: hidden;
+                border-top: 1px solid white;
+            }
+            #jsddm li ul li
+            {
+                float: none;
+                display: inline;
+            }
+            #jsddm li ul li a
+            {
+                width: auto;
+                background: #A9C251;
+                color: #24313C;
+            }
+            #jsddm li ul li a:hover
+            {
+                background: #8EA344;
+            }</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.977+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.977+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>44</TextResourceId>
+    <ContentTypeId>4</ContentTypeId>
+    <Title>mcgi website headers</Title>
+    <Content>&lt;link rel="stylesheet" type="text/css" href="/Content/Themes/Integration/mcgi_website/assets/style.css" /&gt;
+&lt;!--[if lte IE 7]&gt;
+&lt;link rel="stylesheet" type="text/css" media="all" href="/Content/Themes/Integration/mcgi_website/assets/style/css/ie.css" /&gt;
+&lt;![endif]--&gt;
+&lt;!--[if lte IE 6]&gt;
+&lt;link rel="stylesheet" type="text/css" media="all" href="/Content/Themes/Integration/mcgi_website/assets/style/css/ie6.css" /&gt;
+&lt;![endif]--&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.98+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.98+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>45</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>WebPart-Contact-Us.css</Title>
+    <Content>.Contact-Us table tr td { padding: 0px 0px 3px 0px; }
+.Contact-Us table tr td img { float:left; }
+.Contact-Us table tr td input[type="submit"] { margin-top:10px; }</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.987+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.983+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/45_WebPart-Contact-Us.css</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>46</TextResourceId>
+    <ContentTypeId>4</ContentTypeId>
+    <Title>Photo-Gallery-Headers</Title>
+    <Content>&lt;script type="text/javascript" src="/Content/Plugins/fancybox/jquery.mousewheel-3.0.2.pack.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Plugins/fancybox/jquery.fancybox-1.3.1.pack.js"&gt;&lt;/script&gt;
+&lt;!-- &lt;script type="text/javascript" src="/Content/Plugins/fancybox/jquery.easing-1.3.pack.js"&gt;&lt;/script&gt; --&gt;
+&lt;link rel="stylesheet" type="text/css" href="/Content/Plugins/fancybox/jquery.fancybox-1.3.1.css" media="screen" /&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.99+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.99+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>47</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>Basic.css</Title>
+    <Content>html, body {
+	margin: 0;
+	padding: 0;	
+}
+
+body {
+	/* background: #F2F2F2; */
+	font-family: Arial;
+	font-size: 13px;
+	line-height: 1.6;
+	/* color: #444; */
+}
+
+#content {
+	width: 350px;
+	margin: 30px auto;
+	padding: 20px 60px;
+	border: 1px solid #D2D2D2;
+	-moz-box-shadow: 0 0 30px #CCC;
+	-webkit-box-shadow: 0 0 30px #CCC;
+	box-shadow: 0 0 30px #CCC;
+	background: #FFF;
+	background: -webkit-gradient(linear, left top, left 15, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 15px);
+}
+
+h1 {
+	margin: 0;
+	font-size: 30px;
+	font-weight: normal;
+	font-family: "Museo 700", Arial;
+}
+
+h1 em {
+	font-size: 50%;
+	letter-spacing: -0.05em;
+}
+
+h2 {
+	margin: 0;
+}
+
+hr {
+	border: none;
+	height: 1px; line-height: 1px;
+	background: #D8D8D8;
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+p {
+	margin: 0;
+	padding-bottom: 14px;
+}
+
+a {
+	outline: none;	
+}
+
+a img.display-image {
+	border: 1px solid #BBB;
+	padding: 2px;	
+	margin: 10px 30px 10px 0;
+	vertical-align: top;
+}
+
+ul {
+	margin: -7px 0 24px 0;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.993+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.993+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>48</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>MCGI SG WebSite - Outside CSS.css</Title>
+    <Content>.container_12 .header {
+height:35px;
+}
+
+.container_16 .grid_11 {
+width: 860px;
+}
+
+.container_16 .grid_11 table tr td table.login-table {
+margin: auto;
+}
+
+div.single-page-content-container {
+padding-top: 0px;
+}
+
+hr {
+background:none repeat scroll 0 0 #D8D8D8;
+border:medium none;
+height:1px;
+line-height:1px;
+margin-bottom:20px;
+padding:0;
+}
+
+input, select, textarea {
+margin: 2px;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.997+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>49</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>MyAttendance.css</Title>
+    <Content>/* WebPart: EventCalendar -- Start */
+
+.Calendar-Table td, .Calendar-Table th
+{
+padding: 2px;
+}
+
+.EventCalendar-Calendar-Title TR TD
+{
+    font-size: 12pt;
+}
+
+/*table.EventCalendar-Calendar-Title tr td a
+{
+    text-decoration: underline;
+    color: #339 !important;
+}*/
+
+
+.Calendar-Day, .Calendar-Day A
+{
+    height: 75px;
+    vertical-align: top;
+    text-align: left; /* width: 120px; */
+    font-weight: bold;
+    color: Black;
+}
+
+td.Calendar-Day, th.Day-Header
+{
+    border: 1px solid #BBB;
+}
+
+.Selected-Calendar-Day
+{
+    background-color: #333399;
+    color: White;
+}
+
+.Selected-Calendar-Day A
+{
+    color: White;
+    font-weight: bold;
+}
+
+.Day-Header
+{
+    font-size: 9pt;
+    font-weight: bold; /* width: 120px; */
+    text-align: center;
+}
+
+.Today-Day /*, .Today-Day A */
+{
+    background-color: #DDD;
+    color: Black;
+}
+
+.Other-Month-Day, .Other-Month-Day A
+{
+    color: #999999;
+}
+
+DIV.Event-List-Item
+{
+    font-weight: normal; /* background-color: Yellow; */
+    margin-bottom: 4px;
+    margin-top: 2px;
+    padding: 2px;
+    border: 1px solid #CCCCCC;
+}
+
+DIV.Event-List-Item A
+{
+    /* background-color: Yellow; */
+}
+
+.Selected-Calendar-Day DIV.Event-List-Item
+{
+    font-weight: normal;
+    background-color: red;
+    margin-top: 2px;
+    margin-bottom: 4px;
+    padding: 2px;
+}
+
+.Selected-Calendar-Day DIV.Event-List-Item A
+{
+    /* background-color: red; */
+}
+
+
+.Event-List-Item A
+{
+    font-weight: normal;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.Event-List-Item A:hover
+{
+    text-decoration: underline;
+}
+
+/* WebPart: EventCalendar -- End */</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.003+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/49_MyAttendance.css</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>50</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>MCGI-Portal-Inside-HideSidebar.css</Title>
+    <Content>.container_16 .grid_11 {
+width: 920px;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.007+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.007+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>51</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>MemberLinkManager.css</Title>
+    <Content>.FieldLabel {
+display: block;
+width: 12em;
+float: left;
+}
+
+.FieldRow, .FieldLine{margin-bottom: 3px; clear: both;}
+.link-page {font-size: 1.1em;}
+a.link-page {text-decoration: underline;}
+.note {background-color: yellow; padding: 3px;}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.01+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.01+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>52</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>Public-Contact-Us.css</Title>
+    <Content>.Contact-Us td {text-align: left;}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.013+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.013+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>53</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>EventCalendar.css</Title>
+    <Content>/* WebPart: EventCalendar -- Start */
+
+table.EventCalendar-Calendar
+{
+}
+
+table.EventCalendar-Calendar-Title
+{
+    /*border-bottom: 2px solid #AAAAAA;     color: #333399;*/
+}
+
+/*table.EventCalendar-Calendar-Title tr td a
+{
+    text-decoration: underline;
+    color: #339 !important;
+}*/
+
+.EventCalendar-Calendar-Title TR TD
+{
+    font-size: 12pt;
+}
+
+.Calendar-Day, .Calendar-Day A
+{
+    height: 85px;
+    vertical-align: top;
+    text-align: left; /* width: 120px; */
+    font-weight: bold;
+    color: Black;
+}
+
+td.Calendar-Day, th.Day-Header
+{
+    border: 1px solid #999;
+}
+
+.Selected-Calendar-Day
+{
+    background-color: #333399;
+    color: White;
+}
+
+.Selected-Calendar-Day A
+{
+    color: White;
+    font-weight: bold;
+}
+
+.Day-Header
+{
+    font-size: 9pt;
+    font-weight: bold; /* width: 120px; */
+}
+
+.Today-Day /*, .Today-Day A */
+{
+    background-color: #CCCCCC;
+    color: Black;
+}
+
+.Other-Month-Day, .Other-Month-Day A
+{
+    color: #999999;
+}
+
+DIV.Event-List-Item
+{
+    font-weight: normal; /* background-color: Yellow; */
+    margin-bottom: 4px;
+    margin-top: 2px;
+    padding: 2px;
+    border: 1px solid #CCCCCC;
+}
+
+DIV.Event-List-Item A
+{
+    /* background-color: Yellow; */
+}
+
+.Selected-Calendar-Day DIV.Event-List-Item
+{
+    font-weight: normal;
+    background-color: red;
+    margin-top: 2px;
+    margin-bottom: 4px;
+    padding: 2px;
+}
+
+.Selected-Calendar-Day DIV.Event-List-Item A
+{
+    /* background-color: red; */
+}
+
+
+.Event-List-Item A
+{
+    font-weight: normal;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.Event-List-Item A:hover
+{
+    text-decoration: underline;
+}
+
+/* WebPart: EventCalendar -- End */</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.02+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.017+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/53_EventCalendar.css</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>54</TextResourceId>
+    <ContentTypeId>6</ContentTypeId>
+    <Title>X-UA-Compatible</Title>
+    <Content>&lt;meta http-equiv="X-UA-Compatible" content="IE=8" /&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.023+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.02+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>55</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>WebSystem.css</Title>
+    <Content>#photoborder {
+    background: none repeat scroll 0 0 #F7F7F7;
+    border-bottom: 1px solid #BBBBBB;
+    border-top: 1px solid #BBBBBB;
+    padding: 10px 0 10px 0;
+    position: relative;
+    text-align: center;
+    margin: 5px 0 5px 0;
+}
+
+img.image-link {
+    border: 0px;
+}
+
+.clearfix {
+    display: block;
+}
+
+.ShadeOverlay {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%; /*height: 2000px; 150%;*/
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.7;
+    opacity: .70;
+    filter: alpha(opacity=70);
+}
+
+/*
+.NoOverlay {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    padding: 16px;
+    border: 16px solid orange;
+    background-color: white;
+    z-index: 1002;
+    overflow: auto;
+} */
+
+.control-box {
+    min-height: 28px;
+    width: 100%;
+    float: left;
+    clear: both;
+    background: rgb(255,215,97); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZDc2MSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjcwJSIgc3RvcC1jb2xvcj0iI2ZmYzIwYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijg2JSIgc3RvcC1jb2xvcj0iI2ZmYmYwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmJmMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, rgba(255,215,97,1) 0%, rgba(255,194,12,1) 70%, rgba(255,191,0,1) 86%, rgba(255,191,0,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,215,97,1)), color-stop(70%,rgba(255,194,12,1)), color-stop(86%,rgba(255,191,0,1)), color-stop(100%,rgba(255,191,0,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255,215,97,1) 0%,rgba(255,194,12,1) 70%,rgba(255,191,0,1) 86%,rgba(255,191,0,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255,215,97,1) 0%,rgba(255,194,12,1) 70%,rgba(255,191,0,1) 86%,rgba(255,191,0,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(255,215,97,1) 0%,rgba(255,194,12,1) 70%,rgba(255,191,0,1) 86%,rgba(255,191,0,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(255,215,97,1) 0%,rgba(255,194,12,1) 70%,rgba(255,191,0,1) 86%,rgba(255,191,0,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd761', endColorstr='#ffbf00',GradientType=0 ); /* IE6-8 */
+}
+
+    .control-box &gt; div {
+        padding: 5px;
+    }
+
+    .control-box .pull-right {
+        padding-bottom: 5px;
+    }
+
+    .control-box input[type="text"], .control-box select, .control-box input[type="submit"], .control-box input[type="button"] {
+        margin-bottom: 0;
+    }
+
+.control-box-strong {
+    background-image: url(/Content/Assets/Images/Common/backred.gif);
+    font-weight: bold;
+    min-height: 28px;
+    width: 100%;
+    float: left;
+}
+
+    .control-box-strong div {
+        padding: 5px;
+    }
+
+/*
+input.Command {
+    padding: 5px 8px;
+    font-weight: bold;
+} */
+
+.Header {
+    font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+.system-label {
+    font: 10px Verdana, Arial, Helvetica, sans-serif;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+.table, .clear-both {
+    clear: both;
+}
+
+.table-pager table, .pagination table {
+    display: inline-block;
+    *display: inline;
+    margin-bottom: 0;
+    margin-left: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    *zoom: 1;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.table-borderless th, .table-borderless td {
+    border-top: none;
+}
+
+tr.table-pager table td, tr.pagination table td {
+    padding: 0;
+    border-top: none;
+}
+
+.table-pager td &gt; a, .table-pager td &gt; span,
+.pagination td &gt; a, .pagination td &gt; span {
+    float: left;
+    padding: 0 14px;
+    line-height: 38px;
+    text-decoration: none;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-left-width: 0;
+}
+
+    .table-pager td &gt; a:hover,
+    .pagination td &gt; a:hover {
+        background-color: #f5f5f5;
+    }
+
+.table-pager td &gt; span,
+.pagination td &gt; span {
+    color: #999;
+}
+
+.table-pager table td:first-child &gt; a, .table-pager table td:first-child &gt; span,
+.pagination table td:first-child &gt; a, .pagination table td:first-child &gt; span {
+    border-left-width: 1px;
+    -webkit-border-radius: 3px 0 0 3px;
+    -moz-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
+}
+
+.table-pager td:last-child &gt; a, .table-pager td:last-child &gt; span,
+.pagination td:last-child &gt; a, .pagination td:last-child &gt; span {
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.grid-pager table td {
+    padding: 3px;
+}
+
+.no-bottom-margin input[type="text"], .no-bottom-margin select, .no-bottom-margin input[type="submit"], .no-bottom-margin input[type="button"] {
+    margin-bottom: 0 !important;
+}
+
+.min-bottom-margin input[type="text"], .min-bottom-margin select, .min-bottom-margin input[type="submit"], .min-bottom-margin input[type="button"], .min-bottom-margin a.btn, .min-bottom-margin button {
+    margin-bottom: 5px !important;
+}
+
+th.bootstrap-checkbox, td.bootstrap-checkbox {
+    padding-left: 6px;
+    padding-right: 0;
+}
+
+@media (max-width: 480px) {
+    .media .pull-left {
+        float: left;
+    }
+
+    .media .pull-right {
+        float: right;
+    }
+}
+
+.dropdown-backdrop {
+    display: none;
+}
+
+.image-noscale img {
+    max-width: initial;
+}
+
+
+/* bs2 compatibility */
+
+.input, .input-xlarge {
+    min-height: 30px;
+    height: 30px;
+    padding: 3px 6px;
+    margin-bottom: 10px;
+    /*font-size: 14px;
+    line-height: 1.428571429;*/
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+select.input {
+    display: inline-block;
+    min-height: 30px;
+    height: 30px;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555555;
+    vertical-align: middle;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+
+/* bs3 utils */
+.col-np {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+label {
+    font-weight: normal
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.03+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2018-01-02T15:08:17+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Styles/WebSystem.css</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>56</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>WebSystem.Controls.css</Title>
+    <Content>/* @TabControl Start */
+div.tab-control a {
+    white-space: nowrap;
+    line-height: normal;
+}
+
+/* Default Theme */
+
+div.tab-control.default {
+    border: 1px solid #DBDEDF;
+}
+
+    div.tab-control.default div.TabButton, div.tab-control.default div.TabButton a, div.tab-control.default div.TabButton A:visited {
+        background-color: #0081C2;
+        font-weight: bold;
+        color: White;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    div.tab-control.default DIV.TabButtonBlur, div.tab-control.default DIV.TabButtonBlur A, div.tab-control.default DIV.TabButtonBlur A:visited {
+        background-color: #fff;
+        font-weight: bold;
+        color: #3881C2;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+        div.tab-control.default DIV.TabButtonBlur A:hover {
+            color: #FFCC00;
+        }
+
+    div.tab-control.default DIV.TabBar {
+        background-color: #0081C2;
+        height: 5px;
+    }
+
+
+/* Yellow Theme */
+
+div.tab-control.yellow {
+    border: 1px solid #CCCCCC;
+}
+
+    div.tab-control.yellow div.TabButton, div.tab-control.yellow div.TabButton a, div.tab-control.yellow div.TabButton A:visited {
+        background-color: #7B79C7;
+        font-weight: bold;
+        color: #D9D9D5;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    div.tab-control.yellow DIV.TabButtonBlur, div.tab-control.yellow DIV.TabButtonBlur A, div.tab-control.yellow div.TabButtonBlur A:visited {
+        background-color: #fff;
+        font-weight: bold;
+        color: #4E4E9A;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+        div.tab-control.yellow DIV.TabButtonBlur A:hover {
+            color: #4E4E9A;
+        }
+
+    div.tab-control.yellow DIV.TabBar {
+        background-color: #7B79C7;
+        height: 5px;
+    }
+
+/* Green Theme */
+
+div.tab-control.green {
+    border: 1px solid #CCCCCC;
+}
+
+    div.tab-control.green div.TabButton, div.tab-control.green div.TabButton a, div.tab-control.green div.TabButton A:visited {
+        background-color: #33CC33;
+        font-weight: bold;
+        color: #fff;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    div.tab-control.green DIV.TabButtonBlur, div.tab-control.green DIV.TabButtonBlur A, div.tab-control.green div.TabButtonBlur A:visited {
+        background-color: #fff;
+        font-weight: bold;
+        color: #33CC33;
+        padding: 3px 6px 3px 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+        div.tab-control.green div.TabButtonBlur A:hover {
+            color: #33CC33;
+        }
+
+    div.tab-control.green div.TabBar {
+        background-color: #33CC33;
+        height: 5px;
+    }
+
+/* TabControl End@ */
+
+/* WebPart: EventCalendar -- Start */
+
+.EventCalendar-Calendar-Title TR TD {
+    font-size: 12pt;
+}
+
+.Calendar-Day, .Calendar-Day A {
+    height: 85px;
+    vertical-align: top;
+    text-align: left; /* width: 120px; */
+    font-weight: bold;
+    color: Black;
+}
+
+.Selected-Calendar-Day {
+    background-color: #333399;
+    color: White;
+}
+
+    .Selected-Calendar-Day A {
+        color: White;
+        font-weight: bold;
+    }
+
+.Day-Header {
+    font-size: 9pt;
+    font-weight: bold; /* width: 120px; */
+}
+
+.Today-Day /*, .Today-Day A */ {
+    background-color: #CCCCCC;
+    color: Black;
+}
+
+.Other-Month-Day, .Other-Month-Day A {
+    color: #999999;
+}
+
+div.Event-List-Item {
+    font-weight: normal; /* background-color: Yellow; */
+    margin-bottom: 4px;
+    margin-top: 2px;
+    padding: 2px;
+    border: 1px solid #CCCCCC;
+}
+
+    div.Event-List-Item A {
+        /* background-color: Yellow; */
+    }
+
+.Selected-Calendar-Day DIV.Event-List-Item {
+    font-weight: normal;
+    background-color: red;
+    margin-top: 2px;
+    margin-bottom: 4px;
+    padding: 2px;
+}
+
+    .Selected-Calendar-Day DIV.Event-List-Item A {
+        /* background-color: red; */
+    }
+
+
+.Event-List-Item A {
+    font-weight: normal;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    .Event-List-Item A:hover {
+        text-decoration: underline;
+    }
+
+/* WebPart: EventCalendar -- End */
+</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.033+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2018-01-02T15:08:17+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Styles/WebSystem.Controls.css</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>57</TextResourceId>
+    <ContentTypeId>6</ContentTypeId>
+    <Title>X-TECH Main Headers</Title>
+    <Content>&lt;!--[if IE]&gt;
+&lt;script type="text/javascript" src="/Content/Themes/xtech/js/pie.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/xtech/js/pie-config.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;
+&lt;script type="text/javascript" src="/Content/Themes/xtech/js/jquery-workarounds.js"&gt;&lt;/script&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.037+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.037+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/57_X-TECH Main Headers</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>58</TextResourceId>
+    <ContentTypeId>6</ContentTypeId>
+    <Title>X-TECH Green</Title>
+    <Content>&lt;link href="/Content/Themes/xtech/themes/green/css/style.css" rel="stylesheet" type="text/css" /&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.04+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.04+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>59</TextResourceId>
+    <ContentTypeId>6</ContentTypeId>
+    <Title>X-TECH Original</Title>
+    <Content>&lt;link href="/Content/Themes/xtech/themes/original/css/style.css" rel="stylesheet" type="text/css" /&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.047+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.043+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>60</TextResourceId>
+    <ContentTypeId>6</ContentTypeId>
+    <Title>X-TECH Home Headers</Title>
+    <Content>&lt;script type="text/javascript" src="/Content/Themes/xtech/js/jquery.cycle.all.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    /* main page rotator */
+    $('#rotator ul').cycle({
+        fx: 'fade',
+        speed: 300,
+        timeout: 6000,
+        pager: '.controls',
+        prev: '.prev',
+        next: '.next'
+    });
+    // end 
+    /* testimonials rotator */
+    $('#testimonials ul').cycle({
+        fx: 'fade',
+        speed: 300,
+        timeout: 3000
+    });
+    // end 
+&lt;/script&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.05+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.047+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>61</TextResourceId>
+    <ContentTypeId>6</ContentTypeId>
+    <Title>X-TECH GEP Contact Us Map</Title>
+    <Content>&lt;script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/xtech/js/googlemap-config.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    $(document).ready(function(){ initialize();});
+&lt;/script&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.057+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.053+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/61_X-TECH GEP Contact Us Map</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>62</TextResourceId>
+    <ContentTypeId>6</ContentTypeId>
+    <Title>area51-Main.html</Title>
+    <Content>&lt;!-- // Stylesheets // --&gt;
+&lt;link rel="stylesheet" type="text/css" href="/Content/Themes/Integration/area51/css/main_style.css" /&gt;
+&lt;!--&lt;link rel="stylesheet" type="text/css" href="/Content/Themes/Integration/area51/css/ddsmoothmenu.css" /&gt;--&gt;
+&lt;link rel="stylesheet" type="text/css" href="/Content/Themes/Integration/area51/css/contentslider.css" /&gt;
+
+&lt;!--
+&lt;link rel="stylesheet" type="text/css" href="/Content/Themes/Integration/area51/css/jquery.fancybox-1.3.1.css" /&gt;
+--&gt;
+
+&lt;link rel="stylesheet" type="text/css" href="/Content/Themes/Integration/area51/css/slider.css" /&gt;
+
+
+&lt;!-- // Javascripts // --&gt;
+
+&lt;!--
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/jquery.easing.1.2.js"&gt;&lt;/script&gt;
+--&gt;
+
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/jquery.anythingslider.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/anythingslider.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/animatedcollapse.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/collapse.js"&gt;&lt;/script&gt;
+&lt;!--&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/ddsmoothmenu.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/menu.js"&gt;&lt;/script&gt;--&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/contentslider.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/ddaccordion.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/acrodin.js"&gt;&lt;/script&gt;
+
+&lt;!--
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/jquery.fancybox-1.3.1.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/lightbox.js"&gt;&lt;/script&gt;
+--&gt;
+
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/menu-collapsed.js"&gt;&lt;/script&gt;
+
+&lt;!--
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/cufon-yui.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/Trebuchet_MS_400-Trebuchet_MS_700-Trebuchet_MS_italic_700-Trebuchet_MS_italic_400.font.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/cufon.js"&gt;&lt;/script&gt;
+--&gt;
+
+&lt;!--[if lt IE 8]&gt;
+&lt;style type="text/css"&gt;
+li a {display:inline-block;}
+li a {display:block;}
+&lt;/style&gt;
+&lt;![endif]--&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.063+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.06+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/62_area51-Main.html</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>63</TextResourceId>
+    <ContentTypeId>6</ContentTypeId>
+    <Title>area51 Home</Title>
+    <Content>&lt;!-- // Stylesheets // --&gt;
+&lt;link rel="stylesheet" type="text/css" href="/Content/Themes/Integration/area51/css/jquery.fancybox-1.3.1.css" /&gt;
+
+&lt;!-- // Javascripts // --&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/jquery.easing.1.2.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/jquery.fancybox-1.3.1.js"&gt;&lt;/script&gt;
+
+
+&lt;script type="text/javascript" src="/Content/Themes/Integration/area51/js/cont_slide.js"&gt;&lt;/script&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.067+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.067+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/63_area51 Index</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>64</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>area51 Home Overrides</Title>
+    <Content>.blog ul li h2 {
+width: auto;
+height: auto;
+padding:10px 10px 0px 50px;
+border-bottom: #E8E8E8 solid 1px;
+padding-bottom: 10px;
+margin-bottom: 0;
+min-height: 45px;
+line-height: 16px;
+}
+.blog ul li .cont {width: auto; padding-bottom: 10px; padding-top: 10px;}
+.blog ul li {width: 100%; margin-bottom: 5px}
+.blog .blog_links a.continue {margin-top: 0px;}
+a.continue {font-size: smaller;}
+.blog a,.blog_links a {color: #333;}
+.upcoming_events ul li, .location ul li {padding: 0px;}
+
+h4.heading.colr {font-size: 18px; float: left}
+h2.colr {font-size: 14px}
+div.blog h4 {font-size: 14px; font-weight: bold;}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.07+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.07+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/64_area51 Home Overrides</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>65</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>area51 Inside Sidebar Override - Hide</Title>
+    <Content>@media (min-width: 980px) {.col1 {width: 928px;}}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.077+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.073+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/65_area51 Inside Sidebar Override - Hide</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>66</TextResourceId>
+    <ContentTypeId>6</ContentTypeId>
+    <Title>No Cache Headers</Title>
+    <Content>&lt;meta name="robots" content="none,noarchive"/&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:57.08+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:57.077+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/66_No-Cache-Headers.htm</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>67</TextResourceId>
+    <ContentTypeId>6</ContentTypeId>
+    <Title>Bootstrap-CSS-JS.htm</Title>
+    <Content>&lt;link href="/content/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" /&gt;
+&lt;link href="/content/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" /&gt;
+
+&lt;!-- HTML5 shim, for IE6-8 support of HTML5 elements --&gt;
+&lt;!--[if lt IE 9]&gt;
+      &lt;script src="http://html5shim.googlecode.com/svn/trunk/html5.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;
+&lt;script src="/content/plugins/bootstrap/js/bootstrap.min.js"&gt;&lt;/script&gt;</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>-10</Rank>
+    <DateModified>2019-07-19T22:48:56.817+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.813+08:00</DatePersisted>
+    <PhysicalPath>~/Content/Assets/Resources/67_Bootstrap-CSS.htm</PhysicalPath>
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>68</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>division.medium.css</Title>
+    <Content>.gradient_section{
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBmYWNjZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUlIiBzdG9wLWNvbG9yPSIjMDAzMzUwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iOTQlIiBzdG9wLWNvbG9yPSIjMDI0ZTcyIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA1MzYzYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+background: -moz-linear-gradient(top,  #0faccf 0%, #003350 5%, #024e72 94%, #05363b 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0faccf), color-stop(5%,#003350), color-stop(94%,#024e72), color-stop(100%,#05363b)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #0faccf 0%,#003350 5%,#024e72 94%,#05363b 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #0faccf 0%,#003350 5%,#024e72 94%,#05363b 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #0faccf 0%,#003350 5%,#024e72 94%,#05363b 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #0faccf 0%,#003350 5%,#024e72 94%,#05363b 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0faccf', endColorstr='#05363b',GradientType=0 ); /* IE6-8 */
+background-color:#663366; }
+
+        #bg2 {
+            background-image: url(/Content/Themes/Integration/MusicCompetition/v2/division/images/treble_bg2.jpg);
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Themes/Integration/MusicCompetition/v2/division/images/treble_bg2.jpg', sizingMethod='scale');
+            -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Themes/Integration/MusicCompetition/v2/division/images/treble_bg2.jpg', sizingMethod='scale')";
+        }
+
+        .footer {
+            background-image: url(/Content/Themes/Integration/MusicCompetition/v2/division/images/treble_bg2.jpg);
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Themes/Integration/MusicCompetition/v2/division/images/treble_bg2.jpg', sizingMethod='scale');
+            -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/Themes/Integration/MusicCompetition/v2/division/images/treble_bg2.jpg', sizingMethod='scale')";
+        }
+
+body{background:#2f082f;}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.82+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.817+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+  <WebTextResource>
+    <TextResourceId>69</TextResourceId>
+    <ContentTypeId>1</ContentTypeId>
+    <Title>mcgi-css-override.css</Title>
+    <Content>p, div.list-blurb{
+    font-size: 14.5px;
+    font-family: "Times New Roman",serif;
+}
+
+ul.nav li {
+    font-family: "Times New Roman",serif;
+    letter-spacing: 1px;
+}
+
+h1, h2, h3 {
+    /*font-family: "Times New Roman",serif;*/
+    font-family: Georgia,"Times New Roman",Times,Libertine,serif;
+    font-weight: normal;
+}
+
+h1, h2{
+/*text-transform: uppercase;*/
+font-variant:small-caps;
+font-weight: normal;
+}
+
+div.grid_4 h3.list-title{
+font-weight: bold;
+}
+
+.footer p#legal {
+    font-family: Tahoma, sans-serif;
+}
+
+.footer a {
+    text-decoration: underline;
+}</Content>
+    <DirectoryId>-1</DirectoryId>
+    <Rank>0</Rank>
+    <DateModified>2019-07-19T22:48:56.827+08:00</DateModified>
+    <OwnerObjectId>-1</OwnerObjectId>
+    <OwnerRecordId>-1</OwnerRecordId>
+    <DatePersisted>2019-07-19T14:48:56.823+08:00</DatePersisted>
+    <PhysicalPath />
+  </WebTextResource>
+</mPortal>

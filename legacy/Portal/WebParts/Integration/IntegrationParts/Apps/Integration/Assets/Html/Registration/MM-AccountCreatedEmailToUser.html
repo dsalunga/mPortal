@@ -1,0 +1,92 @@
+﻿<style type="text/css">
+    body, table {
+        font-family: Segoe UI, Tahoma, Arial, Times New Roman;
+        font-size: 14px;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+
+    .info-col-title {
+        width: 130px;
+    }
+
+    .info-col-value {
+        width: 201px;
+    }
+
+    .info-col-sep {
+        width: 7px;
+    }
+</style>
+<div>
+    Thank you for registering with Integration Portal. Please verify your personal
+    information listed below:<br />
+    <br />
+    <table border="0" cellspacing="0" cellpadding="0" style="width: 100%">
+        <tbody>
+            <tr>
+                <td colspan="3" style="background-color: rgb(204, 204, 204);"><strong>Personal
+                    Information</strong></td>
+            </tr>
+            <tr>
+                <td class="info-col-title">Group ID No.</td>
+                <td>$(CHURCH_ID_NO)</td>
+                <td rowspan="15">
+                    <img width="200" alt="Member Photo" border="1" src="$(PHOTO_URL)" />
+                </td>
+            </tr>
+            <tr>
+                <td class="info-col-title">First Name</td>
+                <td style="width: 201px;">$(FIRST_NAME)</td>
+            </tr>
+            <tr>
+                <td class="info-col-title">Last Name</td>
+                <td style="width: 201px;">$(LAST_NAME)</td>
+            </tr>
+
+            <tr>
+                <td class="info-col-title">Mobile No.</td>
+                <td style="width: 201px;">$(MOBILE)</td>
+            </tr>
+            <tr>
+                <td class="info-col-title">Email</td>
+                <td class="info-col-value">$(EMAIL)</td>
+            </tr>
+            <tr>
+                <td class="info-col-title">Country</td>
+                <td style="width: 201px;">$(COUNTRY)</td>
+            </tr>
+            <tr>
+                <td class="info-col-title">Date of Membership</td>
+                <td style="width: 201px;">$(MEMBERSHIP_DATE)</td>
+            </tr>
+            <tr>
+                <td class="info-col-title">Group Locale</td>
+                <td style="width: 201px;">$(LOCALE)</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="info-col-title">User Name (Login)</td>
+                <td style="width: 201px;"><strong>$(USER_NAME)</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <br />
+        <br />
+        Your account is still PENDING for APPROVAL from Integration Portal Admin.  You
+        will receive a notification via email when your account has been approved.
+    </p>
+    <p>
+        <br />
+        <br />
+        <b>Thanks be to God!</b><br />
+        Integration Portal<br />
+        <a href="javascript:location.href='mailto:addmusicministry@gmail.com?subject=Music%20Ministry%20Portal%20Registration'">addmusicministry@gmail.com</a><br />
+        <a href="javascript:location.href='mailto:addmusicministry@yahoo.com?subject=Music%20Ministry%20Portal%20Registration'">addmusicministry@yahoo.com</a>
+    </p>
+</div>

@@ -1,0 +1,943 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebPartAdmin">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PartAdminId" type="xs:int" />
+                <xs:element name="PartId" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FileName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ParentId" type="xs:int" />
+                <xs:element name="Active" type="xs:int" />
+                <xs:element name="Visible" type="xs:int" />
+                <xs:element name="InSiteContext" type="xs:int" />
+                <xs:element name="TemplateEngineId" type="xs:int" />
+                <xs:element name="AutoTitle" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebPartAdmin" />
+        <xs:field xpath="PartAdminId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebPartAdmin>
+    <PartAdminId>17</PartAdminId>
+    <PartId>19</PartId>
+    <Name>Ad Writer</Name>
+    <FileName>CONTENT_AdWriter_01.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>18</PartAdminId>
+    <PartId>19</PartId>
+    <Name>Add/Edit Ad</Name>
+    <FileName>CONTENT_Ad_02.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>19</PartAdminId>
+    <PartId>19</PartId>
+    <Name>Ad Items (for ROTATION)</Name>
+    <FileName>CONTENT_AdItems_03.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>20</PartAdminId>
+    <PartId>19</PartId>
+    <Name>Add/Edit Ad Item</Name>
+    <FileName>CONTENT_AdItem_04.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>21</PartAdminId>
+    <PartId>19</PartId>
+    <Name>Ad Categories</Name>
+    <FileName>CONTENT_AdCategories_01.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>22</PartAdminId>
+    <PartId>19</PartId>
+    <Name>Ad Category</Name>
+    <FileName>CONTENT_AdCategory_02.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>39</PartAdminId>
+    <PartId>53</PartId>
+    <Name>eNewsletter E-mail Composer</Name>
+    <FileName>CCMS_eNewsletter.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>44</PartAdminId>
+    <PartId>58</PartId>
+    <Name>Photo Album Manager</Name>
+    <FileName>AdminAlbum.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>1</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>45</PartAdminId>
+    <PartId>59</PartId>
+    <Name>All Media</Name>
+    <FileName>CONTENT_Media_01.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>46</PartAdminId>
+    <PartId>59</PartId>
+    <Name>Add/Edit Media</Name>
+    <FileName>CONTENT_Media_02.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>47</PartAdminId>
+    <PartId>60</PartId>
+    <Name>Contact List</Name>
+    <FileName>AdminContactList.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>49</PartAdminId>
+    <PartId>60</PartId>
+    <Name>Inquiry Manager</Name>
+    <FileName>AdminInquiriesList.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>51</PartAdminId>
+    <PartId>53</PartId>
+    <Name>e-Newsletter Sender</Name>
+    <FileName>CCMS_MailSender.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>61</PartAdminId>
+    <PartId>53</PartId>
+    <Name>eNewsletter Entries</Name>
+    <FileName>CMS_eNewsletter.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>62</PartAdminId>
+    <PartId>1</PartId>
+    <Name>Content Manager</Name>
+    <FileName>WM_Custom.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>1</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>63</PartAdminId>
+    <PartId>64</PartId>
+    <Name>Article Manager</Name>
+    <FileName>AdminPublication.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>1</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>64</PartAdminId>
+    <PartId>64</PartId>
+    <Name>Template Manager</Name>
+    <FileName>AdminTemplateManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>65</PartAdminId>
+    <PartId>58</PartId>
+    <Name>Photo Manager</Name>
+    <FileName>AlbumPhotos.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>0</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>66</PartAdminId>
+    <PartId>6</PartId>
+    <Name>Menu Manager</Name>
+    <FileName>AdminMenu.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>1</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>84</PartAdminId>
+    <PartId>64</PartId>
+    <Name>Template Composer</Name>
+    <FileName>AdminTemplateComposer.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>0</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>89</PartAdminId>
+    <PartId>75</PartId>
+    <Name>Master Page</Name>
+    <FileName>PM_Downloads_Master_01.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>90</PartAdminId>
+    <PartId>75</PartId>
+    <Name>Edit Page</Name>
+    <FileName>PM_Downloads_Edit_02.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>112</PartAdminId>
+    <PartId>80</PartId>
+    <Name>User Account</Name>
+    <FileName>Accounts/User.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>118</PartAdminId>
+    <PartId>80</PartId>
+    <Name>User Profile</Name>
+    <FileName>Accounts/UserProfile.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>171</PartAdminId>
+    <PartId>80</PartId>
+    <Name>Create New User</Name>
+    <FileName>Accounts/CreateUser.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>174</PartAdminId>
+    <PartId>76</PartId>
+    <Name>Member Reminders</Name>
+    <FileName>MemberReminders.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>175</PartAdminId>
+    <PartId>76</PartId>
+    <Name>Reminder Templates</Name>
+    <FileName>ReminderTemplates.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>176</PartAdminId>
+    <PartId>77</PartId>
+    <Name>Event Manager</Name>
+    <FileName>AdminCalendar.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>177</PartAdminId>
+    <PartId>77</PartId>
+    <Name>Location Manager</Name>
+    <FileName>AdminLocationManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>178</PartAdminId>
+    <PartId>82</PartId>
+    <Name>Forms</Name>
+    <FileName>WM_Surveys_01.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>179</PartAdminId>
+    <PartId>85</PartId>
+    <Name>External Members Cache</Name>
+    <FileName>ConfigMembers.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>0</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>180</PartAdminId>
+    <PartId>85</PartId>
+    <Name>MemberLink Manager</Name>
+    <FileName>ConfigMemberLinks.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>181</PartAdminId>
+    <PartId>85</PartId>
+    <Name>External Members (Remote)</Name>
+    <FileName>ConfigExternalMembers.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>182</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Agent Monitor</Name>
+    <FileName>Agent/Dashboard.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>183</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Task Manager</Name>
+    <FileName>Agent/TaskManager.ascx</FileName>
+    <ParentId>182</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>184</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Event Log Manager</Name>
+    <FileName>Tools/EventLogManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>185</PartAdminId>
+    <PartId>77</PartId>
+    <Name>Calendar Manager</Name>
+    <FileName>CalendarManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>1</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>186</PartAdminId>
+    <PartId>77</PartId>
+    <Name>Template Manager</Name>
+    <FileName>AdminTemplateManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>187</PartAdminId>
+    <PartId>77</PartId>
+    <Name>Category Manager</Name>
+    <FileName>AdminCategoryManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>188</PartAdminId>
+    <PartId>85</PartId>
+    <Name>Utilities</Name>
+    <FileName>AdminUtilities.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>189</PartAdminId>
+    <PartId>78</PartId>
+    <Name>User Sessions</Name>
+    <FileName>Tools/UserSessionManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>190</PartAdminId>
+    <PartId>92</PartId>
+    <Name>Category Manager</Name>
+    <FileName>CategoryManagerView.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>191</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Performance Log</Name>
+    <FileName>Tools/PerformanceLogManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>192</PartAdminId>
+    <PartId>92</PartId>
+    <Name>Request Type Manager</Name>
+    <FileName>TypeManagerView.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>193</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Import &amp; Export Site</Name>
+    <FileName>Tools/ImportExportPage.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>194</PartAdminId>
+    <PartId>6</PartId>
+    <Name>Menu Configuration V2</Name>
+    <FileName>ConfigDynamicMenuV2.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>0</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>195</PartAdminId>
+    <PartId>6</PartId>
+    <Name>Import &amp; Export</Name>
+    <FileName>ImportExport.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>196</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Import &amp; Export Parameter Sets</Name>
+    <FileName>Tools/ImportExportParameterSets.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>197</PartAdminId>
+    <PartId>85</PartId>
+    <Name>Convention Registration Manager</Name>
+    <FileName>RegistrationManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>0</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>198</PartAdminId>
+    <PartId>94</PartId>
+    <Name>Wall Configuration</Name>
+    <FileName>ConfigWall.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>0</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>199</PartAdminId>
+    <PartId>96</PartId>
+    <Name>Votes Manager</Name>
+    <FileName>VoteManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>200</PartAdminId>
+    <PartId>96</PartId>
+    <Name>Entries (Finalists) Manager</Name>
+    <FileName>CandidateManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>201</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Message Queue Manager</Name>
+    <FileName>Tools/MessageQueueManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>203</PartAdminId>
+    <PartId>51</PartId>
+    <Name>Remote Library Manager</Name>
+    <FileName>AdminRemoteLibraryManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>204</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Web Bindings</Name>
+    <FileName>WebSites/WebIdentities.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>205</PartAdminId>
+    <PartId>85</PartId>
+    <Name>Music Ministry Members</Name>
+    <FileName>ConfigMemberLinks.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>1</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>206</PartAdminId>
+    <PartId>58</PartId>
+    <Name>Animated Banner Config</Name>
+    <FileName>ConfigAnimatedBanner.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>0</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>207</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Data Sync Manager</Name>
+    <FileName>Tools/DataSyncManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>208</PartAdminId>
+    <PartId>85</PartId>
+    <Name>MemberLink Sync</Name>
+    <FileName>AdminMemberLinkSync.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>209</PartAdminId>
+    <PartId>96</PartId>
+    <Name>Song Scores Manager</Name>
+    <FileName>AdminSongScoreManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>210</PartAdminId>
+    <PartId>96</PartId>
+    <Name>Interpreter Scores Manager</Name>
+    <FileName>AdminInterpreterScoreManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>211</PartAdminId>
+    <PartId>96</PartId>
+    <Name>Composer Manager</Name>
+    <FileName>AdminComposerManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>212</PartAdminId>
+    <PartId>97</PartId>
+    <Name>Comment Manager</Name>
+    <FileName>AdminCommentManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>0</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>213</PartAdminId>
+    <PartId>96</PartId>
+    <Name>Comment Manager</Name>
+    <FileName>../Common/AdminCommentManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>0</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>214</PartAdminId>
+    <PartId>96</PartId>
+    <Name>Competition Manager</Name>
+    <FileName>AdminCompetitionManager.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>215</PartAdminId>
+    <PartId>99</PartId>
+    <Name>Chapters</Name>
+    <FileName>Admin/Chapters.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>216</PartAdminId>
+    <PartId>99</PartId>
+    <Name>Chapter</Name>
+    <FileName>Admin/Chapter.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>0</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>217</PartAdminId>
+    <PartId>99</PartId>
+    <Name>Chapter Home</Name>
+    <FileName>Admin/ChapterHome.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>0</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>219</PartAdminId>
+    <PartId>80</PartId>
+    <Name>Razor Demo Admin</Name>
+    <FileName>Admin/DemoAdmin.cshtml</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>2</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>220</PartAdminId>
+    <PartId>86</PartId>
+    <Name>Reviewer Administration</Name>
+    <FileName>~/Content/Parts/Integration/LessonReviewer/AdminReviewer.cshtml</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>1</InSiteContext>
+    <TemplateEngineId>2</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>221</PartAdminId>
+    <PartId>86</PartId>
+    <Name>Members Manager</Name>
+    <FileName>~/Content/Parts/Integration/Account/AdminMembers.cshtml</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>1</InSiteContext>
+    <TemplateEngineId>2</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>222</PartAdminId>
+    <PartId>98</PartId>
+    <Name>Make-Up Sessions</Name>
+    <FileName>~/Content/Parts/Integration/LessonReviewer/MemberSessions.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>223</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Session Diagnostics</Name>
+    <FileName>Tools/SessionDiagnostics.cshtml</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>2</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>224</PartAdminId>
+    <PartId>78</PartId>
+    <Name>Code Executor</Name>
+    <FileName>Tools/CodeExecutor.cshtml</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>2</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+  <WebPartAdmin>
+    <PartAdminId>225</PartAdminId>
+    <PartId>92</PartId>
+    <Name>Instance Manager</Name>
+    <FileName>InstanceManagerView.ascx</FileName>
+    <ParentId>-1</ParentId>
+    <Active>1</Active>
+    <Visible>1</Visible>
+    <InSiteContext>0</InSiteContext>
+    <TemplateEngineId>1</TemplateEngineId>
+    <AutoTitle>1</AutoTitle>
+  </WebPartAdmin>
+</mPortal>

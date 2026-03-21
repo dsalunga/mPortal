@@ -1,0 +1,347 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="ArticleTemplate">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Date" type="xs:dateTime" />
+                <xs:element name="File">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ImageUrl">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ListItemTemplate">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ListTemplate">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DetailsTemplate">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="DateFormat">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//ArticleTemplate" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <ArticleTemplate>
+    <Id>5</Id>
+    <Name>Basic w/ Share</Name>
+    <Date>2012-06-29T11:59:26.67+08:00</Date>
+    <File>Basic.ascx</File>
+    <ImageUrl />
+    <ListItemTemplate>&lt;table border="0" cellspacing="1" cellpadding="0" width="100%"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+&lt;div id="divTitle" style="font-weight: bold"&gt;&lt;h3 class="list-title"&gt;&lt;a href="$(Link)" title="" rel="bookmark"&gt;$(Title)&lt;/a&gt;&lt;/h3&gt;&lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;em&gt;
+            &lt;div id="divDate"&gt;Published:&amp;nbsp;$(Date)&lt;/div&gt;&lt;/em&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+            &lt;div id="divDescription" class="list-blurb"&gt;$(Description)&lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;a title="view details" href="$(Link)"&gt;&amp;raquo; Continue reading&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="height: 5px"&gt;&amp;nbsp;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</ListItemTemplate>
+    <ListTemplate>&lt;div&gt;$(Content)&lt;/div&gt;</ListTemplate>
+    <DetailsTemplate>&lt;table border="0" width="100%"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td style="height: 5px"&gt;&amp;nbsp;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;!--&lt;div id="divTitle" class="link" style="font-weight: bold"&gt;&lt;/div&gt;--&gt;
+            &lt;h3&gt;$(Title)&lt;/h3&gt;
+&lt;em&gt;
+            &lt;div id="divDate" class="text12blk"&gt;Published:&amp;nbsp;$(Date)&lt;/div&gt;
+            &lt;/em&gt;
+&lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+            &lt;div id="divContent" class="text12blk"&gt;$(Content)&lt;/div&gt;
+&lt;!-- AddThis Button BEGIN --&gt;
+&lt;div class="addthis_toolbox addthis_default_style"&gt;
+&lt;a href="http://www.addthis.com/bookmark.php?v=250&amp;amp;username=xa-4b9e6a012dd53372" class="addthis_button_compact"&gt;Share&lt;/a&gt;
+&lt;span class="addthis_separator"&gt;|&lt;/span&gt;
+&lt;a class="addthis_button_facebook"&gt;&lt;/a&gt;
+&lt;a class="addthis_button_myspace"&gt;&lt;/a&gt;
+&lt;a class="addthis_button_google"&gt;&lt;/a&gt;
+&lt;a class="addthis_button_twitter"&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4b9e6a012dd53372"&gt;&lt;/script&gt;
+&lt;!-- AddThis Button END --&gt;
+&lt;br/&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td align="left"&gt;&lt;a title="return to list" href="$(BasePath)"&gt;&amp;raquo; Return to titles&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</DetailsTemplate>
+    <DateFormat>{0:MMMM d, yyyy}</DateFormat>
+  </ArticleTemplate>
+  <ArticleTemplate>
+    <Id>10</Id>
+    <Name>List with Blurb</Name>
+    <Date>2012-06-29T11:59:35.997+08:00</Date>
+    <File />
+    <ImageUrl />
+    <ListItemTemplate>&lt;table border="0" cellspacing="1" cellpadding="0" width="100%"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+&lt;div id="divTitle" style="font-weight: bold"&gt;&lt;h3 class="list-title"&gt;&lt;a href="$(Link)" title="" rel="bookmark"&gt;$(Title)&lt;/a&gt;&lt;/h3&gt;&lt;/div&gt;&lt;div id="divDescription"&gt;$(Description)&lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</ListItemTemplate>
+    <ListTemplate>&lt;div&gt;$(Content)&lt;/div&gt;</ListTemplate>
+    <DetailsTemplate>&lt;table border="0" width="100%"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td style="height: 5px"&gt;&amp;nbsp;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;h3&gt;$(Title)&lt;/h3&gt;
+&lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+            &lt;div id="divContent" class="text12blk"&gt;$(Content)&lt;/div&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td align="left"&gt;&lt;a title="return to list" href="$(BasePath)"&gt;&amp;raquo; Return to titles&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</DetailsTemplate>
+    <DateFormat>{0:MMMM d, yyyy}</DateFormat>
+  </ArticleTemplate>
+  <ArticleTemplate>
+    <Id>11</Id>
+    <Name>Basic</Name>
+    <Date>2012-06-29T11:59:39.26+08:00</Date>
+    <File />
+    <ImageUrl />
+    <ListItemTemplate>&lt;table border="0" cellspacing="1" cellpadding="0" width="100%"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+&lt;div id="divTitle" style="font-weight: bold"&gt;&lt;h3 class="list-title"&gt;&lt;a href="$(Link)" title="" rel="bookmark"&gt;$(Title)&lt;/a&gt;&lt;/h3&gt;&lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;em&gt;
+            &lt;div id="divDate"&gt;Published:&amp;nbsp;$(Date)&lt;/div&gt;&lt;/em&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+            &lt;div id="divDescription" class="list-blurb"&gt;$(Description)&lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;a title="view details" href="$(Link)"&gt;&amp;raquo; Continue reading&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="height: 5px"&gt;&amp;nbsp;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</ListItemTemplate>
+    <ListTemplate>&lt;div&gt;$(Content)&lt;/div&gt;</ListTemplate>
+    <DetailsTemplate>&lt;table border="0" width="100%"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td style="height: 5px"&gt;&amp;nbsp;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;!--&lt;div id="divTitle" class="link" style="font-weight: bold"&gt;&lt;/div&gt;--&gt;
+            &lt;h3&gt;$(Title)&lt;/h3&gt;
+&lt;em&gt;
+            &lt;div id="divDate" class="text12blk"&gt;Published:&amp;nbsp;$(Date)&lt;/div&gt;
+            &lt;/em&gt;
+&lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+            &lt;div id="divContent" class="text12blk"&gt;$(Content)&lt;/div&gt;&lt;br/&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td align="left"&gt;&lt;a title="return to list" href="$(BasePath)"&gt;&amp;raquo; Return to titles&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</DetailsTemplate>
+    <DateFormat>{0:MMMM d, yyyy}</DateFormat>
+  </ArticleTemplate>
+  <ArticleTemplate>
+    <Id>12</Id>
+    <Name>X-TECH Basic</Name>
+    <Date>2012-06-29T11:59:45.077+08:00</Date>
+    <File />
+    <ImageUrl />
+    <ListItemTemplate>&lt;table border="0" cellspacing="1" cellpadding="0" width="100%"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;a href="$(Link)" title="" rel="bookmark"&gt;&lt;h5&gt;$(Title)&lt;/h5&gt;&lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+            &lt;small&gt;Published:&amp;nbsp;$(Date)&lt;/small&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;$(Description)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;a title="view details" href="$(Link)" style="color: #1D1D1D"&gt;&amp;raquo; Continue reading&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="height: 20px"&gt;&amp;nbsp;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</ListItemTemplate>
+    <ListTemplate>&lt;div&gt;$(Content)&lt;/div&gt;</ListTemplate>
+    <DetailsTemplate>&lt;table border="0" width="100%"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td style="height: 5px"&gt;&amp;nbsp;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;h5&gt;$(Title)&lt;/h5&gt;
+            &lt;small&gt;Published:&amp;nbsp;$(Date)&lt;/small&gt;
+&lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+            &lt;div&gt;$(Content)&lt;/div&gt;&lt;br/&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td align="left"&gt;&lt;a title="return to list" href="$(BasePath)" style="color:#1D1D1D"&gt;&amp;raquo; Return to titles&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</DetailsTemplate>
+    <DateFormat>{0:MMMM d, yyyy}</DateFormat>
+  </ArticleTemplate>
+  <ArticleTemplate>
+    <Id>13</Id>
+    <Name>area51 Basic</Name>
+    <Date>2012-06-29T11:59:51.097+08:00</Date>
+    <File />
+    <ImageUrl />
+    <ListItemTemplate>&lt;li&gt;
+&lt;p class="date"&gt;$(Date)&lt;/p&gt;
+&lt;a href="$(Link)" title=""&gt;&lt;h2 class="colr"&gt;$(Title)&lt;/h2&gt;&lt;/a&gt;
+&lt;div class="clear"&gt;&lt;/div&gt;
+&lt;div class="cont"&gt;$(Description)&lt;/div&gt;
+&lt;div class="clear"&gt;&lt;/div&gt;
+&lt;div class="blog_links"&gt;
+&lt;a href="$(Link)" class="continue"&gt;Continue Reading&lt;/a&gt;
+                    &lt;/div&gt; 
+                &lt;/li&gt;
+&lt;!--
+&lt;table border="0" cellspacing="1" cellpadding="0" width="100%"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;a href="$(Link)" title=""&gt;&lt;h2 class="colr"&gt;$(Title)&lt;/h2&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;em&gt;
+            &lt;div id="divDate"&gt;Published:&amp;nbsp;$(Date)&lt;/div&gt;&lt;/em&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+            &lt;div id="divDescription" class="list-blurb"&gt;$(Description)&lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;a title="view details" href="$(Link)"&gt;&amp;raquo; Continue reading&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="height: 5px"&gt;&amp;nbsp;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;--&gt;</ListItemTemplate>
+    <ListTemplate>&lt;div class="blog"&gt;&lt;ul&gt;$(Content)&lt;/ul&gt;&lt;/div&gt;</ListTemplate>
+    <DetailsTemplate>&lt;div class="blog"&gt;
+&lt;ul&gt;
+    &lt;li&gt;
+    &lt;p class="date"&gt;$(Date)&lt;/p&gt;
+    &lt;h2 class="colr"&gt;$(Title)&lt;/h2&gt;
+    &lt;div class="clear"&gt;&lt;/div&gt;
+    &lt;div class="cont"&gt;$(Content)&lt;/div&gt;
+    &lt;div class="clear"&gt;&lt;/div&gt;
+    &lt;div class="blog_links"&gt;&lt;a class="continue" href="$(BasePath)"&gt;Back To List&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;!--
+&lt;table border="0" width="100%"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td style="height: 5px"&gt;&amp;nbsp;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+&lt;h3&gt;$(Title)&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt; &lt;/em&gt;&lt;/p&gt;
+&lt;div id="divDate" class="text12blk"&gt;&lt;em&gt;Published:&amp;nbsp;$(Date)&lt;/em&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt; &lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;div id="divContent" class="text12blk"&gt;$(Content)&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;a title="return to list" href="$(BasePath)"&gt;&amp;raquo; Return to titles&lt;/a&gt;&lt;/p&gt;--&gt;</DetailsTemplate>
+    <DateFormat>{0:MMM}&lt;br/&gt;{0:dd}</DateFormat>
+  </ArticleTemplate>
+</mPortal>

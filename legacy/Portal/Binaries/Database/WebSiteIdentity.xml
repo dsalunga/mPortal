@@ -1,0 +1,193 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebSiteIdentity">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="SiteId" type="xs:int" />
+                <xs:element name="HostName">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="UrlPath">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="256" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Port" type="xs:int" />
+                <xs:element name="IPAddress">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="RedirectUrl">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ProtocolId" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebSiteIdentity" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebSiteIdentity>
+    <Id>1</Id>
+    <SiteId>7</SiteId>
+    <HostName>localhost_</HostName>
+    <UrlPath>/</UrlPath>
+    <Port>80</Port>
+    <IPAddress />
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>2</Id>
+    <SiteId>15</SiteId>
+    <HostName>dev.portal.mcgi.org.sg</HostName>
+    <UrlPath>/</UrlPath>
+    <Port>80</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>3</Id>
+    <SiteId>4</SiteId>
+    <HostName>localhost_</HostName>
+    <UrlPath>/</UrlPath>
+    <Port>9000</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>4</Id>
+    <SiteId>16</SiteId>
+    <HostName>dev.portal.mcgi.org.sg</HostName>
+    <UrlPath>/</UrlPath>
+    <Port>80</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>5</Id>
+    <SiteId>16</SiteId>
+    <HostName>musicministry.dev.mcgi.org.sg</HostName>
+    <UrlPath>/</UrlPath>
+    <Port>80</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>8</Id>
+    <SiteId>16</SiteId>
+    <HostName>_localhost</HostName>
+    <UrlPath>/</UrlPath>
+    <Port>9000</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>9</Id>
+    <SiteId>18</SiteId>
+    <HostName>_localhost</HostName>
+    <UrlPath>/</UrlPath>
+    <Port>9000</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>10</Id>
+    <SiteId>25</SiteId>
+    <HostName>localhost</HostName>
+    <UrlPath />
+    <Port>9000</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>13</Id>
+    <SiteId>25</SiteId>
+    <HostName>asia.stage.someorg.org.sg</HostName>
+    <UrlPath>/</UrlPath>
+    <Port>80</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>17</Id>
+    <SiteId>7</SiteId>
+    <HostName>sg.local.someorg.org</HostName>
+    <UrlPath />
+    <Port>80</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>18</Id>
+    <SiteId>16</SiteId>
+    <HostName>mm.local.someorg.org</HostName>
+    <UrlPath />
+    <Port>80</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>19</Id>
+    <SiteId>25</SiteId>
+    <HostName>dev.bengswi.com</HostName>
+    <UrlPath />
+    <Port>9000</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>0</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>20</Id>
+    <SiteId>25</SiteId>
+    <HostName>dev.bengswi.com</HostName>
+    <UrlPath />
+    <Port>443</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>1</ProtocolId>
+  </WebSiteIdentity>
+  <WebSiteIdentity>
+    <Id>21</Id>
+    <SiteId>16</SiteId>
+    <HostName>dev.bengswi.com</HostName>
+    <UrlPath>/musicportal</UrlPath>
+    <Port>443</Port>
+    <IPAddress>*</IPAddress>
+    <RedirectUrl />
+    <ProtocolId>1</ProtocolId>
+  </WebSiteIdentity>
+</mPortal>

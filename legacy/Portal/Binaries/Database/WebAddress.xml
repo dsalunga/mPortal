@@ -1,0 +1,151 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="WebAddress">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" />
+                <xs:element name="AddressLine1">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="AddressLine2">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="CityTown">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="StateProvince">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="StateProvinceCode" type="xs:int" />
+                <xs:element name="CountryCode" type="xs:int" />
+                <xs:element name="ZipCode">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="PhoneNumber">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="ObjectId" type="xs:int" />
+                <xs:element name="RecordId" type="xs:int" />
+                <xs:element name="Tag">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="LastUpdated" type="xs:dateTime" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//WebAddress" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <WebAddress>
+    <Id>3</Id>
+    <AddressLine1>225B Compassvale Walk # 13-325</AddressLine1>
+    <AddressLine2>Bliss 1, San Vicente, Magalang 2011, Pampanga</AddressLine2>
+    <CityTown />
+    <StateProvince />
+    <StateProvinceCode>-1</StateProvinceCode>
+    <CountryCode>416</CountryCode>
+    <ZipCode>542225</ZipCode>
+    <PhoneNumber>83871509</PhoneNumber>
+    <ObjectId>21</ObjectId>
+    <RecordId>3</RecordId>
+    <Tag>Home</Tag>
+    <LastUpdated>2021-09-23T03:59:25.357+08:00</LastUpdated>
+  </WebAddress>
+  <WebAddress>
+    <Id>4</Id>
+    <AddressLine1>211 Henderson road</AddressLine1>
+    <AddressLine2 />
+    <CityTown />
+    <StateProvince />
+    <StateProvinceCode>-1</StateProvinceCode>
+    <CountryCode>416</CountryCode>
+    <ZipCode>12323</ZipCode>
+    <PhoneNumber>123456</PhoneNumber>
+    <ObjectId>21</ObjectId>
+    <RecordId>3</RecordId>
+    <Tag>Work</Tag>
+    <LastUpdated>2021-09-23T03:59:25.363+08:00</LastUpdated>
+  </WebAddress>
+  <WebAddress>
+    <Id>117</Id>
+    <AddressLine1>Blk 122 Paya Lebar Way #1</AddressLine1>
+    <AddressLine2 />
+    <CityTown />
+    <StateProvince />
+    <StateProvinceCode>-1</StateProvinceCode>
+    <CountryCode>416</CountryCode>
+    <ZipCode>362720</ZipCode>
+    <PhoneNumber />
+    <ObjectId>21</ObjectId>
+    <RecordId>237</RecordId>
+    <Tag>Home</Tag>
+    <LastUpdated>2011-04-03T21:26:35.667+08:00</LastUpdated>
+  </WebAddress>
+  <WebAddress>
+    <Id>130</Id>
+    <AddressLine1 />
+    <AddressLine2 />
+    <CityTown />
+    <StateProvince />
+    <StateProvinceCode>-1</StateProvinceCode>
+    <CountryCode>416</CountryCode>
+    <ZipCode />
+    <PhoneNumber />
+    <ObjectId>21</ObjectId>
+    <RecordId>275</RecordId>
+    <Tag>Home</Tag>
+    <LastUpdated>2013-01-13T23:06:48.637+08:00</LastUpdated>
+  </WebAddress>
+  <WebAddress>
+    <Id>131</Id>
+    <AddressLine1 />
+    <AddressLine2 />
+    <CityTown />
+    <StateProvince />
+    <StateProvinceCode>-1</StateProvinceCode>
+    <CountryCode>229</CountryCode>
+    <ZipCode />
+    <PhoneNumber />
+    <ObjectId>21</ObjectId>
+    <RecordId>275</RecordId>
+    <Tag>Work</Tag>
+    <LastUpdated>2013-01-14T10:37:36.757+08:00</LastUpdated>
+  </WebAddress>
+</mPortal>

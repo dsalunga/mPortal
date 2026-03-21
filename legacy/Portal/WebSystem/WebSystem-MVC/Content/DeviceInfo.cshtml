@@ -1,0 +1,20 @@
+﻿@using System.Text;
+@using WCMS.Common.Utilities;
+@using WCMS.Framework
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>WCMS - Device Information</title>
+</head>
+<body>
+    <div>
+        <h1>Request Variables</h1>
+        <div>IP Address: <strong>@WHelper.GetUserHostAddress()</strong></div>
+        <div>UserAgent: <strong>@Request.UserAgent</strong></div>
+        @*<div>UserHostName: <strong>@Request.UserHostName</strong></div>*@
+        @*<div>LogonUserIdentity: @Request.LogonUserIdentity.User</div>*@
+    </div>
+</body>
+</html>

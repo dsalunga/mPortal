@@ -1,0 +1,241 @@
+<?xml version="1.0" standalone="yes"?>
+<mPortal>
+  <xs:schema id="mPortal" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="mPortal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="MCCandidate">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Entry">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2000" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Lyrics">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="SourceUrl">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="SourceUrl2">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Lyricist">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Interpreter">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="PhotoFile">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="500" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="CompetitionId" type="xs:int" />
+                <xs:element name="Rank" type="xs:int" />
+                <xs:element name="WinnerRank" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//MCCandidate" />
+        <xs:field xpath="Id" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <MCCandidate>
+    <Id>1</Id>
+    <Name>Jaya</Name>
+    <Entry>Ikaw Lang</Entry>
+    <Lyrics>&lt;div&gt;I can't remember when you weren't there&lt;/div&gt;
+&lt;div&gt;When I didn't care for anyone but you&lt;/div&gt;
+&lt;div&gt;I swear, we've been through everything there is&lt;/div&gt;
+&lt;div&gt;Can't imagine anything we've missed&lt;/div&gt;
+&lt;div&gt;Can't imagine anything the two of us can't do&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Through the years, you've never let me down&lt;/div&gt;
+&lt;div&gt;You turned my life around, the sweetest days I've found&lt;/div&gt;
+&lt;div&gt;I've found with you, through the years&lt;/div&gt;
+&lt;div&gt;I've never been afraid, I've loved the life we've made&lt;/div&gt;
+&lt;div&gt;And I'm so glad I've stayed, right here with you&lt;/div&gt;
+&lt;div&gt;Through the years&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;I can't remember what I used to do&lt;/div&gt;
+&lt;div&gt;Who I trusted, who I listened to before&lt;/div&gt;
+&lt;div&gt;I swear, you've taught me everything I know&lt;/div&gt;
+&lt;div&gt;Can't imagine needing someone so&lt;/div&gt;
+&lt;div&gt;But through the years it seems to me, I need you more and more&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Through the years, through all the good and bad&lt;/div&gt;
+&lt;div&gt;I knew how much we had, I've always been so glad&lt;/div&gt;
+&lt;div&gt;To be with you, through the years&lt;/div&gt;
+&lt;div&gt;It's better every day, you've kissed my tears away&lt;/div&gt;
+&lt;div&gt;As long as it's okay, I'll stay with you&lt;/div&gt;
+&lt;div&gt;Through the years&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Through the years, when everything went wrong&lt;/div&gt;
+&lt;div&gt;Together we were strong, I know that I belong&lt;/div&gt;
+&lt;div&gt;Right here with you, through the years&lt;/div&gt;
+&lt;div&gt;I never had a doubt, we'd always work things out&lt;/div&gt;
+&lt;div&gt;I've learned what love's about, by loving you&lt;/div&gt;
+&lt;div&gt;Through the years&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Through the years, you've never let me down&lt;/div&gt;
+&lt;div&gt;You've turned my life around, the sweetest days I've found&lt;/div&gt;
+&lt;div&gt;I've found with you, through the years&lt;/div&gt;
+&lt;div&gt;It's better every day, you've kissed my tears away&lt;/div&gt;
+&lt;div&gt;As long as it's okay, I'll stay with you&lt;/div&gt;
+&lt;div&gt;Through the years&lt;/div&gt;</Lyrics>
+    <SourceUrl>Bamboo - Sunshine Song.mp3</SourceUrl>
+    <SourceUrl2 />
+    <Lyricist>Jaya</Lyricist>
+    <Interpreter>Jaya</Interpreter>
+    <PhotoFile>myraliza.png</PhotoFile>
+    <CompetitionId>1</CompetitionId>
+    <Rank>20</Rank>
+    <WinnerRank>1</WinnerRank>
+  </MCCandidate>
+  <MCCandidate>
+    <Id>2</Id>
+    <Name>Mariah</Name>
+    <Entry>Walang Hanggan</Entry>
+    <Lyrics />
+    <SourceUrl>/Content/Assets/Music/Bamboo - Sunshine Song.mp3</SourceUrl>
+    <SourceUrl2 />
+    <Lyricist>Mariah</Lyricist>
+    <Interpreter>Mariah</Interpreter>
+    <PhotoFile>piamike.png</PhotoFile>
+    <CompetitionId>1</CompetitionId>
+    <Rank>0</Rank>
+    <WinnerRank>3</WinnerRank>
+  </MCCandidate>
+  <MCCandidate>
+    <Id>3</Id>
+    <Name>Ogie</Name>
+    <Entry>Walang Hanggan Walang Hanggan</Entry>
+    <Lyrics />
+    <SourceUrl>/Content/Assets/Music/Bamboo - Sunshine Song.mp3</SourceUrl>
+    <SourceUrl2 />
+    <Lyricist>Ogie</Lyricist>
+    <Interpreter>Ogie</Interpreter>
+    <PhotoFile />
+    <CompetitionId>1</CompetitionId>
+    <Rank>0</Rank>
+    <WinnerRank>2</WinnerRank>
+  </MCCandidate>
+  <MCCandidate>
+    <Id>4</Id>
+    <Name>Ogie</Name>
+    <Entry>Walang Hanggan Walang Hanggan</Entry>
+    <Lyrics />
+    <SourceUrl>/Content/Assets/Music/Bamboo - Sunshine Song.mp3</SourceUrl>
+    <SourceUrl2 />
+    <Lyricist>Ogie</Lyricist>
+    <Interpreter>Ogie</Interpreter>
+    <PhotoFile />
+    <CompetitionId>2</CompetitionId>
+    <Rank>0</Rank>
+    <WinnerRank>2</WinnerRank>
+  </MCCandidate>
+  <MCCandidate>
+    <Id>5</Id>
+    <Name>Mariah</Name>
+    <Entry>Walang Hanggan</Entry>
+    <Lyrics />
+    <SourceUrl>/Content/Assets/Music/Bamboo - Sunshine Song.mp3</SourceUrl>
+    <SourceUrl2 />
+    <Lyricist>Mariah</Lyricist>
+    <Interpreter>Mariah</Interpreter>
+    <PhotoFile>piamike.png</PhotoFile>
+    <CompetitionId>2</CompetitionId>
+    <Rank>0</Rank>
+    <WinnerRank>3</WinnerRank>
+  </MCCandidate>
+  <MCCandidate>
+    <Id>6</Id>
+    <Name>Jaya</Name>
+    <Entry>Ikaw Lang</Entry>
+    <Lyrics>&lt;div&gt;I can't remember when you weren't there&lt;/div&gt;
+&lt;div&gt;When I didn't care for anyone but you&lt;/div&gt;
+&lt;div&gt;I swear, we've been through everything there is&lt;/div&gt;
+&lt;div&gt;Can't imagine anything we've missed&lt;/div&gt;
+&lt;div&gt;Can't imagine anything the two of us can't do&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Through the years, you've never let me down&lt;/div&gt;
+&lt;div&gt;You turned my life around, the sweetest days I've found&lt;/div&gt;
+&lt;div&gt;I've found with you, through the years&lt;/div&gt;
+&lt;div&gt;I've never been afraid, I've loved the life we've made&lt;/div&gt;
+&lt;div&gt;And I'm so glad I've stayed, right here with you&lt;/div&gt;
+&lt;div&gt;Through the years&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;I can't remember what I used to do&lt;/div&gt;
+&lt;div&gt;Who I trusted, who I listened to before&lt;/div&gt;
+&lt;div&gt;I swear, you've taught me everything I know&lt;/div&gt;
+&lt;div&gt;Can't imagine needing someone so&lt;/div&gt;
+&lt;div&gt;But through the years it seems to me, I need you more and more&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Through the years, through all the good and bad&lt;/div&gt;
+&lt;div&gt;I knew how much we had, I've always been so glad&lt;/div&gt;
+&lt;div&gt;To be with you, through the years&lt;/div&gt;
+&lt;div&gt;It's better every day, you've kissed my tears away&lt;/div&gt;
+&lt;div&gt;As long as it's okay, I'll stay with you&lt;/div&gt;
+&lt;div&gt;Through the years&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Through the years, when everything went wrong&lt;/div&gt;
+&lt;div&gt;Together we were strong, I know that I belong&lt;/div&gt;
+&lt;div&gt;Right here with you, through the years&lt;/div&gt;
+&lt;div&gt;I never had a doubt, we'd always work things out&lt;/div&gt;
+&lt;div&gt;I've learned what love's about, by loving you&lt;/div&gt;
+&lt;div&gt;Through the years&lt;/div&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div&gt;Through the years, you've never let me down&lt;/div&gt;
+&lt;div&gt;You've turned my life around, the sweetest days I've found&lt;/div&gt;
+&lt;div&gt;I've found with you, through the years&lt;/div&gt;
+&lt;div&gt;It's better every day, you've kissed my tears away&lt;/div&gt;
+&lt;div&gt;As long as it's okay, I'll stay with you&lt;/div&gt;
+&lt;div&gt;Through the years&lt;/div&gt;</Lyrics>
+    <SourceUrl>Bamboo - Sunshine Song.mp3</SourceUrl>
+    <SourceUrl2 />
+    <Lyricist>Jaya</Lyricist>
+    <Interpreter>Jaya</Interpreter>
+    <PhotoFile>myraliza.png</PhotoFile>
+    <CompetitionId>2</CompetitionId>
+    <Rank>20</Rank>
+    <WinnerRank>1</WinnerRank>
+  </MCCandidate>
+</mPortal>
