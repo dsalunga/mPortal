@@ -16,10 +16,6 @@ namespace WCMS.Common.Utilities
 
     public class ControlHelper : NameValueCollection
     {
-        private string _PageType;
-        private int _ItemID;
-        private int _SiteID;
-        private bool _IsValid;
         //private NameValueCollection _nvcSettings;
 
         public ControlHelper()
@@ -132,36 +128,12 @@ namespace WCMS.Common.Utilities
             }
         }
 
-        public bool IsValid
-        {
-            get
-            {
-                return _IsValid;
-            }
-        }
+        public bool IsValid { get; private set; }
 
-        public string PageType
-        {
-            get
-            {
-                return _PageType;
-            }
-        }
+        public string PageType { get; private set; }
 
-        public int ItemID
-        {
-            get
-            {
-                return _ItemID;
-            }
-        }
+        public int ItemID { get; private set; }
 
-        public int SiteID
-        {
-            get
-            {
-                return _SiteID;
-            }
-        }
+        public int SiteID { get; private set; }
     }
 }
