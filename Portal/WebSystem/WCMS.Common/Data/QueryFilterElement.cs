@@ -55,6 +55,11 @@ namespace WCMS.Common.Data
             return DataUtil.CompareValues(obj, this.Value);
         }
 
+        public override int GetHashCode()
+        {
+            return Value?.GetHashCode() ?? 0;
+        }
+
         public static QueryFilterElement Create(PropertyInfo prop, object value)
         {
             QueryFilterElement filter = new QueryFilterElement();

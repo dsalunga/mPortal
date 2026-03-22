@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+#pragma warning disable CS0612
 namespace WCMS.Framework.Core
 {
     public interface IWebPartConfigProvider : IDataProvider<WebPartConfig>
@@ -14,3 +15,4 @@ namespace WCMS.Framework.Core
         //bool Delete(int partConfigId);
     }
 }
+#pragma warning restore CS0612

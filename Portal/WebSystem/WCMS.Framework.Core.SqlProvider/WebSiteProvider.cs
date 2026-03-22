@@ -8,6 +8,7 @@ using System.Text;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
+#pragma warning disable CS0612 // WSite.AccessDeniedPage is [Obsolete] but still needed for SQL parameter binding
 namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebSiteProvider : IWebSiteProvider
@@ -221,3 +222,4 @@ namespace WCMS.Framework.Core.SqlProvider
         }
     }
 }
+#pragma warning restore CS0612

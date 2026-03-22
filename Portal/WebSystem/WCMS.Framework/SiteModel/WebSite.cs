@@ -293,7 +293,9 @@ namespace WCMS.Framework
             item.HostName = r["HostName"].ToString();
             item.PublicAccess = DataUtil.GetInt32(r["PublicAccess"]);
             item.LoginPage = r["LoginPage"].ToString();
+#pragma warning disable CS0612
             item.AccessDeniedPage = r["AccessDeniedPage"].ToString();
+#pragma warning restore CS0612
             item.PageTitleFormat = r["PageTitleFormat"].ToString();
             item.ManagementAccess = DataUtil.GetInt32(r, "ManagementAccess");
             item.BaseAddress = DataUtil.Get(r, "BaseAddress");

@@ -27,7 +27,7 @@ namespace WCMS.Framework.Core
 
         protected abstract T From(IDataReader r, T source);
 
-        public virtual T Refresh(T item)
+        public new virtual T Refresh(T item)
         {
             var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier(TableName) + " WHERE " + DbSyntax.QuoteIdentifier(IdColumn) + " = @" + IdColumn;
             using (IDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,

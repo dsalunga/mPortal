@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+#pragma warning disable CS0612 // WebPartConfig is intentionally [Obsolete] but still used by LinkedPart
 namespace WCMS.Framework.Core
 {
     public class LinkedPart
@@ -58,3 +59,4 @@ namespace WCMS.Framework.Core
         }
     }
 }
+#pragma warning restore CS0612

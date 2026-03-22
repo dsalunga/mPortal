@@ -8,6 +8,7 @@ using System.Text;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 
+#pragma warning disable CS0612 // WebPartConfig is intentionally [Obsolete] but still used by this provider
 namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebPartConfigProvider : IWebPartConfigProvider
@@ -160,3 +161,4 @@ namespace WCMS.Framework.Core.SqlProvider
         }
     }
 }
+#pragma warning restore CS0612
