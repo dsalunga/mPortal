@@ -236,10 +236,8 @@ namespace WCMS.Common.Utilities
 
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
-                if (fs.Length >= 256)
-                    fs.Read(buffer, 0, 256);
-                else
-                    fs.Read(buffer, 0, (int)fs.Length);
+                int bytesToRead = fs.Length >= 256 ? 256 : (int)fs.Length;
+                fs.ReadExactly(buffer, 0, bytesToRead);
             }
 
             try

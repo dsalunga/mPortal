@@ -179,7 +179,7 @@ namespace WCMS.Common.Utilities
 
         public static string ToISOString(DateTime dateTime)
         {
-            return dateTime == null ? "" : dateTime.ToString("yyyy-MM-ddTHH:mm:ssZ");
+            return dateTime == default ? "" : dateTime.ToString("yyyy-MM-ddTHH:mm:ssZ");
         }
     }
 
