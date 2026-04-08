@@ -11,9 +11,15 @@ namespace WCMS.Framework.Utilities
 {
     public class LoginSecurity
     {
+        private static ISession GetSession()
+        {
+            return WCMS.Common.Utilities.HttpContextHelper.Current?.Session;
+        }
+
         public static List<string> Decode(string[] decode)
         {
-            string domainKey = WCMS.Common.Utilities.HttpContextHelper.Current.Session.GetString("KeyPair"); //(string)HttpRuntime.Cache["KeyPair"];
+            var session = GetSession();
+            string domainKey = session?.GetString("KeyPair");
             if (!string.IsNullOrEmpty(domainKey))
             {
                 RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
@@ -36,7 +42,8 @@ namespace WCMS.Framework.Utilities
 
         public static string[] DecodeLogin(string encUserName, string encPassword)
         {
-            string domainKey = WCMS.Common.Utilities.HttpContextHelper.Current.Session.GetString("KeyPair"); //(string)HttpRuntime.Cache["KeyPair"];
+            var session = GetSession();
+            string domainKey = session?.GetString("KeyPair");
             if (!string.IsNullOrEmpty(domainKey))
             {
                 RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
@@ -52,22 +59,17 @@ namespace WCMS.Framework.Utilities
 
         public bool ValidateUser(string encUsername, string encPassword, bool rememberMe)
         {
-            // Check request number from this ip is in allowed range
-            /*
-            if (!ActionValidator.IsValid(ActionValidator.ActionTypeEnum.FirstVisit))
-                return false;*/
-
-            //read Key Pair (Public + Private Key) from Cache
-            string domainKey = WCMS.Common.Utilities.HttpContextHelper.Current.Session.GetString("KeyPair"); //(string)HttpRuntime.Cache["KeyPair"];
+            var session = GetSession();
+            string domainKey = session?.GetString("KeyPair");
             if (!string.IsNullOrEmpty(domainKey))
             {
                 RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
                 rsa.FromXmlString(domainKey);
                 string username = Encoding.UTF8.GetString(rsa.Decrypt(SecurityHelper.ToHexByte(encUsername), false));
                 string password = Encoding.UTF8.GetString(rsa.Decrypt(SecurityHelper.ToHexByte(encPassword), false));
-                {
-                    return true;
-                }
+
+                var user = AccountHelper.ValidateLogin(username, password);
+                return user != null && user.IsActive;
             }
 
             return false;
@@ -76,31 +78,24 @@ namespace WCMS.Framework.Utilities
         public static string GetLoginKey()
         {
             byte[] data = GetPublicKey();
-            using (RijndaelManaged rijAlg = new RijndaelManaged())
+            using (Aes aes = Aes.Create())
             {
-                //string[] key = File.ReadAllLines(Server.MapPath("~/App_Data/AESKey.txt"));
-                rijAlg.Key = Convert.FromBase64String(SECRET_KEY); //key[0]);
-                rijAlg.IV = Convert.FromBase64String(INIT_VECTOR); //key[1]);
+                aes.Key = Convert.FromBase64String(SECRET_KEY);
+                aes.IV = Convert.FromBase64String(INIT_VECTOR);
 
-                // Create a decrytor to perform the stream transform.
-                ICryptoTransform decryptor = rijAlg.CreateDecryptor(rijAlg.Key, rijAlg.IV);
+                ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
 
-                // Create the streams used for decryption.
                 using (MemoryStream msDecrypt = new MemoryStream(data))
                 {
                     using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
                     {
                         using (StreamReader srDecrypt = new StreamReader(csDecrypt))
                         {
-                            // Read the decrypted bytes from the decrypting stream
-                            // and place them in a string.
                             return srDecrypt.ReadToEnd();
                         }
                     }
                 }
             }
-
-            //return string.Empty;
         }
 
         private const string SECRET_KEY = "<redacted-login-secret-key>";
@@ -109,7 +104,8 @@ namespace WCMS.Framework.Utilities
         public static byte[] GetPublicKey()
         {
             var rsa = new RSACryptoServiceProvider();
-            var session = WCMS.Common.Utilities.HttpContextHelper.Current.Session;
+            var session = GetSession();
+            if (session == null) return Array.Empty<byte>();
 
             var keyPair = session.GetString("KeyPair");
             if (!string.IsNullOrEmpty(keyPair))
@@ -117,8 +113,6 @@ namespace WCMS.Framework.Utilities
             else
                 session.SetString("KeyPair", rsa.ToXmlString(true));
 
-            //Add Key Pair (Public + Private Key) to Cache to be used by ValidateUser
-            //HttpContext.Current.Session["KeyPair"] = rsa.ToXmlString(true); //HttpRuntime.Cache["KeyPair"] = rsa.ToXmlString(true);
             RSAParameters param = rsa.ExportParameters(false);
 
             string keyToSend = SecurityHelper.ToHexString(param.Exponent) + "," +
@@ -126,12 +120,11 @@ namespace WCMS.Framework.Utilities
 
             // Encrypting public key to block Man-in-the-Middle attack
             byte[] encrypted;
-            using (RijndaelManaged myRijndael = new RijndaelManaged())
+            using (Aes aes = Aes.Create())
             {
-                //string[] key = File.ReadAllLines(Server.MapPath("~/App_Data/AESKey.txt"));
-                myRijndael.Key = Convert.FromBase64String(SECRET_KEY); //key[0]);
-                myRijndael.IV = Convert.FromBase64String(INIT_VECTOR); //key[1]);
-                ICryptoTransform encryptor = myRijndael.CreateEncryptor();
+                aes.Key = Convert.FromBase64String(SECRET_KEY);
+                aes.IV = Convert.FromBase64String(INIT_VECTOR);
+                ICryptoTransform encryptor = aes.CreateEncryptor();
                 using (MemoryStream msEncrypt = new MemoryStream())
                 {
                     using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))

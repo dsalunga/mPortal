@@ -91,9 +91,38 @@ namespace WCMS.Framework
             }
         }
 
-        public int InDesignPanelLeft { get; set; }
-        public int InDesignPanelTop { get; set; }
-        public bool IsDesignInitiated { get; set; }
+        private int _inDesignPanelLeft;
+        public int InDesignPanelLeft
+        {
+            get { return _inDesignPanelLeft; }
+            set
+            {
+                _inDesignPanelLeft = value;
+                this.Update();
+            }
+        }
+
+        private int _inDesignPanelTop;
+        public int InDesignPanelTop
+        {
+            get { return _inDesignPanelTop; }
+            set
+            {
+                _inDesignPanelTop = value;
+                this.Update();
+            }
+        }
+
+        private bool _isDesignInitiated;
+        public bool IsDesignInitiated
+        {
+            get { return _isDesignInitiated; }
+            set
+            {
+                _isDesignInitiated = value;
+                this.Update();
+            }
+        }
 
         #endregion Designer
 
@@ -148,7 +177,7 @@ namespace WCMS.Framework
 
         public static ISession Session
         {
-            get { return Context.Session; }
+            get { return Context?.Session; }
         }
 
         public static UserSessionManager UserSessions
@@ -241,13 +270,13 @@ namespace WCMS.Framework
             if (uid > 0)
             {
                 LogSessionEvent(uid, EventLogConstants.EndSession);
-                _userSessions.End(uid, force ? "" : Session.Id);
+                _userSessions.End(uid, force ? "" : (Session?.Id ?? ""));
             }
 
             if (userId == -1)
             {
                 session.UserId = -1;
-                Context.Session.Clear();
+                Context?.Session?.Clear();
                 ClearLoginCookie(Context);
             }
         }
@@ -281,7 +310,7 @@ namespace WCMS.Framework
             var session = _userSessions.Create(Context, userId, -1);
             var browser = session.LastBrowserSession;
             browser.IPAddress = WHelper.GetUserHostAddress();
-            browser.UserAgent = Context.Request.Headers.UserAgent.ToString();
+            browser.UserAgent = Context?.Request?.Headers["User-Agent"].ToString() ?? "";
             return browser;
         }
 

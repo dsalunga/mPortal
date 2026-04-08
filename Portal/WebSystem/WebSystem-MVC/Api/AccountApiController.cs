@@ -22,7 +22,9 @@ namespace WCMS.WebSystem.Api
             UserSession session = null;
             if (!string.IsNullOrEmpty(sessionId))
             {
-                var guid = new Guid(sessionId);
+                if (!Guid.TryParse(sessionId, out var guid))
+                    return BadRequest(new { error = "Invalid session ID format." });
+
                 session = WSession.UserSessions.Sessions.FirstOrDefault(i => i.SessionId.Equals(guid));
             }
 
@@ -35,7 +37,9 @@ namespace WCMS.WebSystem.Api
             UserSession session = null;
             if (!string.IsNullOrEmpty(authKey))
             {
-                var authKeyGuid = new Guid(authKey);
+                if (!Guid.TryParse(authKey, out var authKeyGuid))
+                    return BadRequest(new { error = "Invalid auth key format." });
+
                 session = WSession.UserSessions.Sessions.FirstOrDefault(i => i.AuthKey.Equals(authKeyGuid));
                 if (session != null)
                     session.AuthKey = Guid.NewGuid();
