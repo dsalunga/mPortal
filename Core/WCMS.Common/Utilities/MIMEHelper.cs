@@ -221,9 +221,20 @@ namespace WCMS.Common.Utilities
         {
             string mime = "application/octetstream";
             string ext = Path.GetExtension(Filename).ToLower();
-            RegistryKey rk = Registry.ClassesRoot.OpenSubKey(ext);
-            if (rk != null && rk.GetValue("Content Type") != null)
-                mime = rk.GetValue("Content Type").ToString();
+
+            // Prefer dictionary lookup first for cross-platform behavior.
+            var dictMime = GetMIMEType(Filename);
+            if (!string.IsNullOrEmpty(dictMime))
+                return dictMime;
+
+            // Fall back to registry only on Windows.
+            if (OperatingSystem.IsWindows())
+            {
+                RegistryKey rk = Registry.ClassesRoot.OpenSubKey(ext);
+                if (rk != null && rk.GetValue("Content Type") != null)
+                    mime = rk.GetValue("Content Type").ToString();
+            }
+
             return mime;
         }
 

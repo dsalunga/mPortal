@@ -3,6 +3,7 @@ using System.Data;
 using System.Configuration;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text.Encodings.Web;
@@ -30,27 +31,15 @@ namespace WCMS.Common.Utilities
             get { return HttpContextHelper.Current != null; }
         }
 
+        private static readonly HttpClient SharedHttpClient = new HttpClient();
+
         public static string GetResponseString(string httpAddress)
         {
             if (!string.IsNullOrEmpty(httpAddress))
             {
                 try
                 {
-                    // Create a request for the URL. 		
-                    var request = WebRequest.Create(httpAddress);
-                    // If required by the server, set the credentials.
-                    request.Credentials = CredentialCache.DefaultCredentials;
-
-                    // Get the response.
-                    using (var response = (HttpWebResponse)request.GetResponse())
-                    {
-                        // Open the stream using a StreamReader for easy access.
-                        using (var reader = new StreamReader(response.GetResponseStream()))
-                        {
-                            // Read the content.
-                            return reader.ReadToEnd();
-                        }
-                    }
+                    return SharedHttpClient.GetStringAsync(httpAddress).GetAwaiter().GetResult();
                 }
                 catch (Exception ex)
                 {

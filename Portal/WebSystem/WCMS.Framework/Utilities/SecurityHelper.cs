@@ -50,8 +50,7 @@ namespace WCMS.Framework.Utilities
             string randomString;
 
             //Create random salt and convert to string
-            var rng = new RNGCryptoServiceProvider();
-            rng.GetBytes(randomArray);
+            RandomNumberGenerator.Fill(randomArray);
             randomString = Convert.ToBase64String(randomArray);
             return randomString;
         }
@@ -64,7 +63,7 @@ namespace WCMS.Framework.Utilities
 
             // Use MD5 to compute the hash of the byte array, and return the hash as
             // a Base64-encoded string.
-            var md5 = new MD5CryptoServiceProvider();
+            using var md5 = MD5.Create();
             byte[] hashedBytes = md5.ComputeHash(authBytes);
             string hash = Convert.ToBase64String(hashedBytes);
 

@@ -22,32 +22,29 @@ namespace WCMS
                 switch (algo)
                 {
                     case Algorithm.MD5:
-                        return new MD5CryptoServiceProvider();
+                        return MD5.Create();
 
                     case Algorithm.SHA1:
-                        return new SHA1Managed();
+                        return SHA1.Create();
 
                     case Algorithm.SHA256:
-                        return new SHA256Managed();
+                        return SHA256.Create();
 
                     case Algorithm.SHA384:
-                        return new SHA384Managed();
+                        return SHA384.Create();
 
                     case Algorithm.SHA512:
-                        return new SHA512Managed();
+                        return SHA512.Create();
 
                     default:
-                        return new MD5CryptoServiceProvider();
+                        return MD5.Create();
                 }
             }
 
             public static byte[] CreateSalt(int intSize)
             {
-                RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
                 byte[] byteBuff = new byte[intSize];
-
-                rng.GetBytes(byteBuff);
-
+                RandomNumberGenerator.Fill(byteBuff);
                 return byteBuff;
             }
 

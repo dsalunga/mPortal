@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net;
-using System.IO;
+using System.Net.Http;
 
 using WCMS.Common.Utilities;
 
@@ -11,6 +11,8 @@ namespace WCMS.Common.Net
 {
     public class SmsHelper
     {
+        private static readonly HttpClient HttpClient = new HttpClient();
+
         public static bool SendMessage(string httpSmsUrl, string number, string message, bool checkResponse = false)
         {
             var httpAddress = !string.IsNullOrEmpty(httpSmsUrl) ? httpSmsUrl : ConfigUtil.Get("HttpSmsUrl");
@@ -28,28 +30,12 @@ namespace WCMS.Common.Net
 
                 try
                 {
-                    // Create a request for the URL. 		
-                    WebRequest request = WebRequest.Create(completedUrl);
-                    // If required by the server, set the credentials.
-                    request.Credentials = CredentialCache.DefaultCredentials;
+                    var response = HttpClient.GetAsync(completedUrl).GetAwaiter().GetResult();
 
-                    // Get the response.
-                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    if (checkResponse)
                     {
-                        if (checkResponse)
-                        {
-                            // Display the status.
-                            Console.WriteLine(response.StatusDescription);
-
-                            // Open the stream using a StreamReader for easy access.
-                            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                            {
-                                // Read the content.
-                                string responseFromServer = reader.ReadToEnd();
-
-                                return responseFromServer.IndexOf("Message Submitted", StringComparison.InvariantCultureIgnoreCase) >= 0;
-                            }
-                        }
+                        var responseFromServer = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                        return responseFromServer.IndexOf("Message Submitted", StringComparison.InvariantCultureIgnoreCase) >= 0;
                     }
                 }
                 catch (Exception ex)
