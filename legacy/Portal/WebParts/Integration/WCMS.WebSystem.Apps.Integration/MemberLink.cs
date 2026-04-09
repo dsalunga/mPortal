@@ -546,7 +546,7 @@ namespace WCMS.WebSystem.Apps.Integration
         }
 
         /// <summary>
-        /// Ex: Bro Joe, Sis Jane
+        /// Ex: Mr. Synthetic8ff324, Ms. Synthetic5844a1
         /// </summary>
         public string GetShortName
         {

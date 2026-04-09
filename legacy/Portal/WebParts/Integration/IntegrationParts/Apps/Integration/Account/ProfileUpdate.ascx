@@ -58,7 +58,7 @@
                     <div class="FieldLine" runat="server" id="panelEmailPending" visible="false" clientidmode="Static">
                         <div id="alertEmail" class="alert alert-warning fade in" style="padding: 5px">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="font-weight: normal">Cancel</button>
-                            <strong runat="server" id="lblActiveEmail" clientidmode="Static">dsalunga@live.com</strong> (active), new - pending confirmation
+                            <strong runat="server" id="lblActiveEmail" clientidmode="Static">synthetic_user@example.test</strong> (active), new - pending confirmation
                         </div>
                     </div>
                     <div class="FieldLine">
@@ -68,7 +68,7 @@
                     <div class="FieldLine" runat="server" id="panelEmailPending2" visible="false" clientidmode="Static">
                         <div id="alertEmail2" class="alert alert-warning fade in" style="padding: 5px">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="font-weight: normal">Cancel</button>
-                            <strong runat="server" id="lblActiveEmail2" clientidmode="Static">dsalunga@live.com</strong> (active), new - pending confirmation
+                            <strong runat="server" id="lblActiveEmail2" clientidmode="Static">synthetic_user@example.test</strong> (active), new - pending confirmation
                         </div>
                     </div>
                     <div class="FieldLine" style="margin-bottom: 15px;">

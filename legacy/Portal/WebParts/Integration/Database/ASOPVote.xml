@@ -76,10 +76,10 @@
   <MCVote>
     <Id>1</Id>
     <Code />
-    <FirstName>Daniel</FirstName>
-    <LastName>Salunga</LastName>
+    <FirstName>Given5b9c8e01</FirstName>
+    <LastName>Surname9214c270</LastName>
     <MobileNumber />
-    <Email>dsalunga@live.com</Email>
+    <Email>user_713e5506@example.test</Email>
     <CandidateId>2</CandidateId>
     <DateVoted>2013-06-18T13:37:12.703+08:00</DateVoted>
     <UserName />
@@ -91,13 +91,13 @@
   <MCVote>
     <Id>2</Id>
     <Code />
-    <FirstName>Portal</FirstName>
-    <LastName>Administrator</LastName>
+    <FirstName>Given67b48b50</FirstName>
+    <LastName>Surnamed34252e2</LastName>
     <MobileNumber />
-    <Email>dcsalunga@gmail.com</Email>
+    <Email>user_06604cdc@example.test</Email>
     <CandidateId>2</CandidateId>
     <DateVoted>2013-06-18T13:48:34.147+08:00</DateVoted>
-    <UserName>admin</UserName>
+    <UserName>user_3f2ca7e6</UserName>
     <Status>1</Status>
     <CompetitionId>1</CompetitionId>
     <IPAddress>::1</IPAddress>
@@ -106,13 +106,13 @@
   <MCVote>
     <Id>3</Id>
     <Code />
-    <FirstName>Daniel</FirstName>
-    <LastName>Salunga</LastName>
-    <MobileNumber>83871509</MobileNumber>
-    <Email>daniel.salunga@mcgi.org.sg</Email>
+    <FirstName>Given5b9c8e01</FirstName>
+    <LastName>Surname9214c270</LastName>
+    <MobileNumber>+13585663245</MobileNumber>
+    <Email>user_8c4c23e0@example.test</Email>
     <CandidateId>2</CandidateId>
     <DateVoted>2013-08-01T17:28:42.69+08:00</DateVoted>
-    <UserName>Daniel.Salunga</UserName>
+    <UserName>user_5de7ce4e</UserName>
     <Status>1</Status>
     <CompetitionId>1</CompetitionId>
     <IPAddress>::1</IPAddress>

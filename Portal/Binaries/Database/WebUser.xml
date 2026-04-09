@@ -136,22 +136,22 @@
   </xs:schema>
   <WebUser>
     <UserId>3</UserId>
-    <UserName>admin</UserName>
+    <UserName>user_3f2ca7e6</UserName>
     <Password>NwykM5LQ4cBbLy3i68O12QcgxK95Ipb74SZESCgUYUxZ4iPLizaqO1G1YDtHaFRt00x9//OwgvAXPJR9WUGyzd3fF5eVBqqS3SSwqbJNVjb8HW4dprntXPQbFU5XIsGddgWNK6WsW9YacgdAO5Cohf+WbTICqV/i1RHoyxI2LHs=</Password>
-    <FirstName>Portal</FirstName>
+    <FirstName>Given67b48b50</FirstName>
     <MiddleName />
-    <LastName>Administrator</LastName>
-    <Email>dsalunga@live.com</Email>
+    <LastName>Surnamed34252e2</LastName>
+    <Email>user_713e5506@example.test</Email>
     <LastUpdate>2014-04-15T04:14:21.117+08:00</LastUpdate>
     <Active>1</Active>
     <ActivationKey>92433d71ffe644b1819b2daad93e1d1f|</ActivationKey>
     <DateCreated>2010-06-29T15:13:06.763+08:00</DateCreated>
-    <NewEmail>dsalunga@outlook.com|</NewEmail>
-    <Email2>daniel.salunga@mcgi.org.sg</Email2>
+    <NewEmail>user_939f5f1d@example.test|</NewEmail>
+    <Email2>user_8c4c23e0@example.test</Email2>
     <Gender>M</Gender>
     <NameSuffix />
-    <MobileNumber>+6583871509</MobileNumber>
-    <TelephoneNumber>83871509</TelephoneNumber>
+    <MobileNumber>+11362210254</MobileNumber>
+    <TelephoneNumber>+13585663245</TelephoneNumber>
     <LastLogin>2012-10-10T12:48:36.53+08:00</LastLogin>
     <StatusText />
     <PasswordExpiryDate>1800-01-01T00:00:00+08:00</PasswordExpiryDate>
@@ -164,12 +164,12 @@
   </WebUser>
   <WebUser>
     <UserId>20</UserId>
-    <UserName>ANONYMOUS</UserName>
+    <UserName>user_41c41ba2</UserName>
     <Password />
-    <FirstName>Anonymous</FirstName>
-    <MiddleName>A.</MiddleName>
-    <LastName>User</LastName>
-    <Email>anonymous@mcgisg.org</Email>
+    <FirstName>Given3e80129e</FirstName>
+    <MiddleName>Middle881afedc</MiddleName>
+    <LastName>Surnameb493035d</LastName>
+    <Email>user_cb135f18@example.test</Email>
     <LastUpdate>2010-02-12T23:08:38.58+08:00</LastUpdate>
     <Active>0</Active>
     <ActivationKey />
@@ -178,7 +178,7 @@
     <Email2 />
     <Gender>U</Gender>
     <NameSuffix />
-    <MobileNumber>83871509</MobileNumber>
+    <MobileNumber>+13585663245</MobileNumber>
     <TelephoneNumber />
     <LastLogin>2011-02-14T14:37:22.793+08:00</LastLogin>
     <StatusText />
@@ -192,12 +192,12 @@
   </WebUser>
   <WebUser>
     <UserId>237</UserId>
-    <UserName>regular-portal-user</UserName>
+    <UserName>user_ad1bacb1</UserName>
     <Password>KMdOFB6bup507j3HSUcy9PRXKqPcegU+zAmECVENUlYrY97Ru9K66fBWYLfzTFgOml0VpQ1YuOsIPSNuVgW5m8bgXVml5Wa1KQ+xQI8RFA1CsRwoGhtZGTG9IDwF8u5iir7XkZJCrXcEPJCx/7gxApsWPeupybeOKcKkhy6UowA=</Password>
-    <FirstName>Regular</FirstName>
-    <MiddleName>Portal</MiddleName>
-    <LastName>User</LastName>
-    <Email>daniel.salunga@mcgi.org.sg</Email>
+    <FirstName>Given74ec714b</FirstName>
+    <MiddleName>Middle32536d35</MiddleName>
+    <LastName>Surnameb493035d</LastName>
+    <Email>user_8c4c23e0@example.test</Email>
     <LastUpdate>1799-12-31T21:30:00+08:00</LastUpdate>
     <Active>1</Active>
     <ActivationKey />
@@ -220,12 +220,12 @@
   </WebUser>
   <WebUser>
     <UserId>264</UserId>
-    <UserName>guest</UserName>
+    <UserName>user_9e149bfa</UserName>
     <Password>2ThsN+NticR1Kf6xxmuFZ0wszgbTQDAL6v0IOj88KknJ4/7IGvyqB6xKoQJU5XeYNoknG1Dn+7Y+b0sCZgAZNUsYJGzDw5vlv+J593bxlLzGCWO86w0pH9c6q3shwDHoBCiX7uhldKacVoBQUvymEi8DbicxQe4oRS9odhcnhIc=</Password>
-    <FirstName>guest</FirstName>
+    <FirstName>Givend1a345ed</FirstName>
     <MiddleName />
-    <LastName>guest</LastName>
-    <Email>dcsalunga@yahoo.com</Email>
+    <LastName>Surnamef766486b</LastName>
+    <Email>user_8630f977@example.test</Email>
     <LastUpdate>2010-05-16T12:16:55.313+08:00</LastUpdate>
     <Active>0</Active>
     <ActivationKey />
@@ -248,12 +248,12 @@
   </WebUser>
   <WebUser>
     <UserId>272</UserId>
-    <UserName>demo-regular</UserName>
+    <UserName>user_6ab9d7be</UserName>
     <Password>cvhfV3JtzW5TI46oAd6xMOYKw7ftQkjJu6ZNFsc6AqkxGH2JiYnqLwdNfSPNHndwMEzyDPNL7mL8zIlhtUoe5LlGWStodHzLiOQlCqIie1R8WniyEmi8xJTOY+i3XUqFfsF0YzcgGFMhVttiVggPiMOnamGTZ2ZZ9zncWw3tX2A=</Password>
-    <FirstName>Demo</FirstName>
+    <FirstName>Given3476f574</FirstName>
     <MiddleName />
-    <LastName>Regular</LastName>
-    <Email>dcsalunga@gmail.com</Email>
+    <LastName>Surname440c5820</LastName>
+    <Email>user_06604cdc@example.test</Email>
     <LastUpdate>1800-01-01T00:00:00+08:00</LastUpdate>
     <Active>1</Active>
     <ActivationKey />
@@ -276,12 +276,12 @@
   </WebUser>
   <WebUser>
     <UserId>273</UserId>
-    <UserName>sitemanager-demo</UserName>
+    <UserName>user_bfa1aa29</UserName>
     <Password>kEcqmTe//zI8K1ab59bjWJ1ioCoqeMWaODGvRHxtPcHV1TI8VAeQVCNdBd3etq9oifgwB8pEYCPVQrfhY704MljMsqM7lMIjYPriB5rxj8uqZEM/vAuPDqlY/2OqClABpNHkO6lypBPeseMqFkdJB0Jgl9Y4JVFU+elox/pnfRE=</Password>
-    <FirstName>Demo</FirstName>
+    <FirstName>Given3476f574</FirstName>
     <MiddleName />
-    <LastName>Site Manager</LastName>
-    <Email>dcsalunga@gmail.com</Email>
+    <LastName>Surname7b5cfabc</LastName>
+    <Email>user_06604cdc@example.test</Email>
     <LastUpdate>1800-01-01T00:00:00+08:00</LastUpdate>
     <Active>1</Active>
     <ActivationKey />
@@ -304,12 +304,12 @@
   </WebUser>
   <WebUser>
     <UserId>275</UserId>
-    <UserName>MAG00049</UserName>
+    <UserName>user_ac7172c5</UserName>
     <Password>Z8QHUY1Bpum1mRvvxiMA5sNNnMidW1FvOaD0s0TL97JNFNiKlRMEiFH2ZXEFSv6IEVxBwZ/zB1FWS6dVT4hlN7dyOlZDAiAedqn2g1IMCz1bph61cG3ZPl+Xyyu1z5fRBT0DFm2vbbmILPdXFujpTlFL8qdYETaQitxJZlNaMIc=V5zlU/RsieEPW1AzjA08HUcKvLQS9KqHQtfiDnDUVfQ5cirbjkGQno53090xhfC/n/noRJ7grnTa9NdnFkahoXWUZNAqeodgq8aZfwOMeJt6ce6zRdXOkJCvnbl3ZdBIqZAUEi/f4Pk0yqUTxMYMZdA5GW2zi2aI2udFN7UcbHU=</Password>
-    <FirstName>DANIEL</FirstName>
+    <FirstName>Given5b9c8e01</FirstName>
     <MiddleName />
-    <LastName>Salunga</LastName>
-    <Email>dsalunga@live.com</Email>
+    <LastName>Surname9214c270</LastName>
+    <Email>user_713e5506@example.test</Email>
     <LastUpdate>2013-01-14T10:37:37.093+08:00</LastUpdate>
     <Active>1</Active>
     <ActivationKey />
@@ -318,7 +318,7 @@
     <Email2 />
     <Gender>M</Gender>
     <NameSuffix />
-    <MobileNumber>+6583871509</MobileNumber>
+    <MobileNumber>+11362210254</MobileNumber>
     <TelephoneNumber />
     <LastLogin>2013-01-13T23:10:21.92+08:00</LastLogin>
     <StatusText />

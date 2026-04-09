@@ -4,12 +4,26 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using WCMS.Common.Utilities;
 
 namespace WCMS.Framework.Utilities
 {
     public static class SecurityHelper
     {
-        public const string SALT = "<redacted-password-salt>=";
+        private static readonly Lazy<string> _salt = new(() =>
+        {
+            var configuredSalt = ConfigUtil.Get("Security:PasswordSalt");
+            if (!string.IsNullOrWhiteSpace(configuredSalt))
+            {
+                return configuredSalt;
+            }
+
+            var randomSalt = new byte[32];
+            RandomNumberGenerator.Fill(randomSalt);
+            return Convert.ToBase64String(randomSalt);
+        });
+
+        public static string SALT => _salt.Value;
 
         public static string ToHexString(byte[] byteValue)
         {

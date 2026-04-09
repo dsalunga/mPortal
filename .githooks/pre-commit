@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "gitleaks is not installed; skipping local secret scan."
+  echo "Install: https://github.com/gitleaks/gitleaks"
+  exit 0
+fi
+
+echo "Running gitleaks on staged changes..."
+if gitleaks help git >/dev/null 2>&1; then
+  gitleaks git --staged --redact --exit-code 1
+elif gitleaks help protect >/dev/null 2>&1; then
+  gitleaks protect --staged --redact --exit-code 1
+else
+  # Fallback for older/newer CLIs; this scans tracked files if staged mode is unavailable.
+  gitleaks detect --no-git --source . --redact --exit-code 1
+fi

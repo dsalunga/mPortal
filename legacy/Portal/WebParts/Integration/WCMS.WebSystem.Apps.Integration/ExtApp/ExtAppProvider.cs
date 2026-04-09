@@ -80,7 +80,7 @@ namespace WCMS.WebSystem.Apps.Integration.ExtApp
                 item.LastName = "LastName";
                 item.FirstName = "FirstName";
                 item.MiddleName = "MiddleName";
-                item.Email = "email@someorg.org";
+                item.Email = "email@example.test";
                 return item;
             }
 

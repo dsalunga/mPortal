@@ -26,4 +26,4 @@ Portal/Utilities/
 **/*.sqlproj
 
 # Content that's copied separately
-Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/
+Portal/WebSystem/WebSystem/Content/Plugins/fckeditor/

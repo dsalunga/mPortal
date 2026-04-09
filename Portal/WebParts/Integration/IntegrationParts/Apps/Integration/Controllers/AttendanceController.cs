@@ -100,7 +100,7 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
                                 new JProperty("firstName", "firstName"),
                                 new JProperty("lastName", "lastName"),
                                 new JProperty("nickname", "nickname"),
-                                //new JProperty("email", "email@someorg.org.sg"),
+                                //new JProperty("email", "email@example.test"),
                                 new JProperty("photoUrl", "https://external.someorg.org/photos/200x200/photo.jpg"),
                                 new JProperty("country", "country"),
                                 new JProperty("chapter", "chapter"),

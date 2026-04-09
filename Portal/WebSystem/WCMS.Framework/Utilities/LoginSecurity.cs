@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using WCMS.Common.Utilities;
 
 namespace WCMS.Framework.Utilities
 {
@@ -80,8 +81,8 @@ namespace WCMS.Framework.Utilities
             byte[] data = GetPublicKey();
             using (Aes aes = Aes.Create())
             {
-                aes.Key = Convert.FromBase64String(SECRET_KEY);
-                aes.IV = Convert.FromBase64String(INIT_VECTOR);
+                aes.Key = LoginEncryptionKey;
+                aes.IV = LoginEncryptionIV;
 
                 ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
 
@@ -98,8 +99,40 @@ namespace WCMS.Framework.Utilities
             }
         }
 
-        private const string SECRET_KEY = "<redacted-login-secret-key>";
-        private const string INIT_VECTOR = "<redacted-login-init-vector>=";
+        private static readonly Lazy<byte[]> _loginEncryptionKey = new(() =>
+            GetConfiguredBytes("Security:LoginEncryptionKey", 32) ?? CreateRandomBytes(32));
+
+        private static readonly Lazy<byte[]> _loginEncryptionIv = new(() =>
+            GetConfiguredBytes("Security:LoginEncryptionIV", 16) ?? CreateRandomBytes(16));
+
+        private static byte[] LoginEncryptionKey => _loginEncryptionKey.Value;
+        private static byte[] LoginEncryptionIV => _loginEncryptionIv.Value;
+
+        private static byte[] GetConfiguredBytes(string key, int expectedSize)
+        {
+            var raw = ConfigUtil.Get(key);
+            if (string.IsNullOrWhiteSpace(raw))
+            {
+                return null;
+            }
+
+            try
+            {
+                var value = Convert.FromBase64String(raw);
+                return value.Length == expectedSize ? value : null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static byte[] CreateRandomBytes(int size)
+        {
+            var bytes = new byte[size];
+            RandomNumberGenerator.Fill(bytes);
+            return bytes;
+        }
 
         public static byte[] GetPublicKey()
         {
@@ -122,8 +155,8 @@ namespace WCMS.Framework.Utilities
             byte[] encrypted;
             using (Aes aes = Aes.Create())
             {
-                aes.Key = Convert.FromBase64String(SECRET_KEY);
-                aes.IV = Convert.FromBase64String(INIT_VECTOR);
+                aes.Key = LoginEncryptionKey;
+                aes.IV = LoginEncryptionIV;
                 ICryptoTransform encryptor = aes.CreateEncryptor();
                 using (MemoryStream msEncrypt = new MemoryStream())
                 {

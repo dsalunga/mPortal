@@ -57,11 +57,11 @@
     <UserId>3</UserId>
     <DateCreated>2011-05-24T00:50:12.43+08:00</DateCreated>
     <CategoryId>2</CategoryId>
-    <Description>Create an MCGISG Email for Bro Rani Dasco worker.
+    <Description>Create an MCGISG Email for Mr. Syntheticcb7f06 worker.
 
-Rani.Dasco@mcgi.org.sg
+user_10a2680e@example.test
 
-His personal email is ranidasco@gmail.com
+His personal email is user_de6ad40d@example.test
 kindly notify him once OK.
 
 yes it is not working...
@@ -143,11 +143,11 @@ sddddxx</Description>
     <UserId>3</UserId>
     <DateCreated>2011-06-04T13:41:11.25+08:00</DateCreated>
     <CategoryId>1</CategoryId>
-    <Description>Create an MCGISG Email for Bro Rani Dasco worker.
+    <Description>Create an MCGISG Email for Mr. Syntheticcb7f06 worker.
 
-Rani.Dasco@mcgi.org.sg
+user_10a2680e@example.test
 
-His personal email is ranidasco@gmail.com
+His personal email is user_de6ad40d@example.test
 kindly notify him once OK.</Description>
     <Urgency>1</Urgency>
     <Status>2</Status>
@@ -230,19 +230,13 @@ Your request has been COMPLETED. Kindly verify and confirm if the solution has s
     <CategoryId>6</CategoryId>
     <Description>Please grant HelpDesk Access to ADDCIT member below:
 
-Bro Anderson So
-Bro Jett Tayer
-Bro Romano Dela Torre
-Bro Daniel Salunga
-Bro Shier Vermont
-Bro Delfin Gacu
-Bro Gerald Manguiam
-Bro Darryl Mancilla
-Bro Dennis Rodiano
-Bro Jay Llaguno
-Bro Archie Federico
-Bro Jun De Guzman
-Bro Michael Taruc
+Mr. Synthetic839241 Tayer
+Mr. Synthetic3b1f23 Mr. Synthetic User
+Mr. Syntheticf1e0f9 Gacu
+Mr. Synthetic26a288 Mancilla
+Mr. Synthetic4f76ac Llaguno
+Mr. Syntheticb7c12e De Guzman
+Mr. Synthetic17e2aa
 
 ssD.</Description>
     <Urgency>1</Urgency>

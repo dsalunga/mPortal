@@ -230,11 +230,11 @@
                 </td>
                 <td class="schedule-entry-container">
                     <div class="schedule-entry">
-                        Sis. Mae</div>
+                        Ms. Syntheticeb4a4a</div>
                     <div class="schedule-entry schedule-entry-successor">
-                        Sis. Pia</div>
+                        Ms. Synthetic32adf0</div>
                     <div class="schedule-entry schedule-entry-successor">
-                        Bro. Greg</div>
+                        Mr. Syntheticea26b0</div>
                 </td>
             </tr>
             <tr>
@@ -284,11 +284,11 @@
             <tr style="">
                 <td class="footer-note" colspan="2">
                     <div>
-                        <em>Bro. Jun Gundayao</em></div>
+                        <em>Mr. Synthetic834d33</em></div>
                 </td>
                 <td class="footer-note" colspan="2">
                     <div>
-                        <em>Bro. Robert Navoa</em></div>
+                        <em>Mr. Synthetice12995</em></div>
                 </td>
             </tr>
         </tbody>

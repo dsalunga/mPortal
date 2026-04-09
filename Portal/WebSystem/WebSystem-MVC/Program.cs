@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -84,8 +85,16 @@ var dbProvider = DbHelper.ParseProvider(dbProviderName);
 var healthChecks = builder.Services.AddHealthChecks();
 if (dbProvider == DatabaseProvider.PostgreSql)
 {
-    healthChecks.AddNpgSql(defaultConnStr ?? "Host=localhost;Database=mPortal;Username=postgres;Password=${PG_PASSWORD}",
-        name: "postgresql", tags: new[] { "db", "sql" });
+    if (!string.IsNullOrWhiteSpace(defaultConnStr))
+    {
+        healthChecks.AddNpgSql(defaultConnStr, name: "postgresql", tags: new[] { "db", "sql" });
+    }
+    else
+    {
+        healthChecks.AddCheck("postgresql",
+            () => HealthCheckResult.Unhealthy("Missing ConnectionStrings:DefaultConnection for PostgreSql provider."),
+            tags: new[] { "db", "sql" });
+    }
 }
 else
 {

@@ -219,7 +219,7 @@ namespace WCMS.WebSystem.Apps.Integration
         //private static string GetUserPrefix(WebUser user)
         //{
         //    if (user != null)
-        //        return user.Gender == GenderTypes.Male ? "Bro" : (user.Gender == GenderTypes.Female ? "Sis" : "");
+        //        return user.Gender == GenderTypes.Male ? "Mr." : (user.Gender == GenderTypes.Female ? "Ms." : "");
         //    else
         //        return "";
         //}

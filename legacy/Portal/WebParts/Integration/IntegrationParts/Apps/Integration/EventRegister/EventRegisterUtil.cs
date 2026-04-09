@@ -111,7 +111,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
                 graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
                 graphics.DrawString(displayName, font, textBrush, nicknameXY.X, nicknameXY.Y);
 
-                // Draw Brother/Sister
+                // Draw Mr./Ms.
                 if ( false) // || user.Gender == GenderTypes.Male || user.Gender == GenderTypes.Female)
                 {
                     var initSize = fontSize / 2.3;

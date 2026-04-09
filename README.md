@@ -1,73 +1,77 @@
 # mPortal
 A custom ASP.NET web content management system (WCMS).
 
-**Dev Login**  
-Dev URL: https://localhost:44300/Central/  
-Username: admin  
-Password: dev123  
-Setup URL: https://localhost:44300/Content/Setup.aspx
+## Current Status
+- Runtime and libraries target `.NET 10` (`net10.0`).
+- Windows-only desktop utilities remain `net10.0-windows`.
+- Legacy pre-migration source is preserved in `/legacy` for reference.
 
-**Debugging**
-Logs
-* Log files: ~/Content/Admin/Data/Logs/
-* Fallback: ~/App_Data/Logs/
+## Prerequisites
+- .NET 10 SDK (`dotnet --list-sdks` should include a `10.0.x` SDK).
+- PostgreSQL (recommended for cross-platform setup), or SQL Server for Windows.
+- On macOS/Linux: standard shell tooling (`bash`/`zsh`).
+- Optional on Windows only: Visual Studio 2026 for `net10.0-windows` utilities.
 
-**Deployment**
-IIS
-* Ensure the Identify Pool has permission to connect to SQL Server
-* Ensure the Identify Pool has read/write to file system
-* Ensure the Identify Pool can stop/start processes
+## Quick Start (macOS/Linux)
+1. Restore runtime projects (recommended on macOS/Linux):
+```bash
+dotnet restore Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj
+dotnet restore Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj
+```
+If you need to restore the full solution graph (including Windows-only projects metadata):
+```bash
+dotnet restore mPortal.slnx -p:EnableWindowsTargeting=true
+```
+2. Configure database settings (example for PostgreSQL):
+```bash
+export WCMS__DatabaseProvider=PostgreSql
+export PG_PASSWORD='<set-a-strong-password>'
+export ConnectionStrings__ConnectionString="Host=localhost;Port=5432;Database=mportal;Username=postgres;Password=${PG_PASSWORD}"
+export ConnectionStrings__DefaultConnection="${ConnectionStrings__ConnectionString}"
+```
+3. Run the main CMS web app:
+```bash
+dotnet run --project Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj --urls http://localhost:5088
+```
+4. Open:
+- `http://localhost:5088/`
+- `http://localhost:5088/Central/`
 
-## Build Prerequisites
-- Windows with **.NET Framework 4.8** installed.
-- **Visual Studio 2022** (or 2019) including the Build Tools. The build scripts
-  call `VsDevCmd.bat` from Visual Studio to provide MSBuild.
-- **SQL Server** (Express or LocalDB) where the sample databases can be restored.
-- **SQL Server Data Tools 2015** for database projects.
-
-## Initial Setup
-1. Clone this repository.
-2. Open a command prompt and run `Portal/FIRST-TIME-setup.cmd`.
-   This script creates junctions, builds all modules and restores the sample
-   database using `DbManager.exe`.
-3. If you prefer to build manually, run `Portal/build-debug.cmd` followed by
-   `Portal/db-restore.cmd`.
-4. Edit the connection strings in the various `*.config` files if your SQL Server
-   instance is not `(local)` or `(localdb)\\MSSQLLocalDB`.
-
-## Running the Applications
-- The main solutions are located under `Portal/WebSystem/`:
-  - `mPortal.sln` – full solution.
-  - `mPortal-Web.sln` – web‑only solution.
-- Open either solution in Visual Studio and set the desired web project as the
-  startup project.
-- For a quick run using IIS Express, execute `Portal/IISExpress - Portal.cmd`
-  which launches the site using the configuration under `Portal/Binaries`.
+## Configuration Notes
+- Main app settings: `Portal/WebSystem/WebSystem/appsettings.json`
+- WCMS provider switch: `WCMS:DatabaseProvider` (`SqlServer` or `PostgreSql`)
+- Primary connection string key: `ConnectionStrings:ConnectionString`
+- Health endpoint: `/health`
+- Security keys should be provided from environment variables (see `.env.example`):
+  - `Security__PasswordSalt`
+  - `Security__LoginEncryptionKey`
+  - `Security__LoginEncryptionIV`
 
 ## Database Notes
-The repository includes scripts to back up and restore the sample database.
-`DbManager.exe` reads its connection string from
-`Portal/Binaries/DbManager/DbManager.exe.config`. Adjust this if your SQL Server
-instance differs. Logs for database operations are written to `Binaries/Logs`.
+- A blank database can result in limited/empty site rendering until seed or migrated data is loaded.
+- SQL Server dumps can be processed and migrated to PostgreSQL as part of modernization execution.
 
-## Environment Variables
-The build scripts set up the Visual Studio environment automatically via
-`Portal/_set-env-vars.cmd`. When running MSBuild manually, call this script
-first so that MSBuild and related tools are on the PATH.
+## Logging
+- Application logs default under: `Content/Admin/Data/Logs/`
+
+## Migration Tracking
+- File-level source-of-truth inventory:
+  - `docs/plans/legacy-migration/inventory/legacy-source-tracking-all.csv`
+- Execution board for active migration batches:
+  - `docs/plans/legacy-migration/EXECUTION_BOARD.md`
 
 ## Tests
-A small set of unit tests lives in
-`Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest`.
-Open the test project in Visual Studio and run the tests from the Test Explorer.
-
-## Deployment
-Release builds can be produced with `Portal/build-release.cmd` or the
-`_build-restoredb-release.cmd` helper which also restores the database.
-These commands publish the binaries to `Portal/Binaries` and can be deployed to
-IIS. Ensure the application pool identity can connect to the database and has
-write access to the content directories as noted above.
+- Integration unit test project:
+  - `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest`
+- Repo test projects:
+  - `Tests/WCMS.Framework.Tests`
+  - `Tests/WCMS.Integration.Tests`
 
 ## Contributing
 1. Create a feature branch for your work.
-2. Follow the existing folder structure when adding new projects.
-3. Submit a pull request describing the changes.
+2. Keep migration changes traceable in the legacy tracker CSV + execution board.
+3. Run local secret checks before commit:
+```bash
+git config core.hooksPath .githooks
+```
+4. Submit a pull request with scope, risks, validation notes, and confirmation that no plaintext secrets/PII were introduced.

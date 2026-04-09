@@ -41,7 +41,7 @@ namespace WCMS.Framework.Utilities
                     case NamePrefixes.Salutation:
                         return user.Gender == GenderTypes.Male ? "Mr" : (user.Gender == GenderTypes.Female ? "Ms" : "");
                     case NamePrefixes.Brotherhood:
-                        return user.Gender == GenderTypes.Male ? "Bro" : (user.Gender == GenderTypes.Female ? "Sis" : "");
+                        return user.Gender == GenderTypes.Male ? "Mr." : (user.Gender == GenderTypes.Female ? "Ms." : "");
                 }
             }
 

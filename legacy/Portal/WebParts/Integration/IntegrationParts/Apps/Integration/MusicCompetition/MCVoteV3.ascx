@@ -96,7 +96,7 @@
             <%--<p>Voting Ends by September 23, 2012 - 9pm.</p>
             <p>
                 If you experience any technical issue with this online voting system please contact
-                +65-9777-1773 or asopasiaoceania@me.com.
+                +65-9000-1773 or asop-support@example.test.
             </p>--%>
         </div>
 

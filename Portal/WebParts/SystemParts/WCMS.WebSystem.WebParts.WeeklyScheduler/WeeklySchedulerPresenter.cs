@@ -90,12 +90,12 @@ namespace WCMS.WebSystem.WebParts.WeeklyScheduler
 
                         // Cell 1
                         TemplateFragment cellOneFragment = new TemplateFragment(GetSection("FIRST-CELL"));
-                        cellOneFragment.Add("CONTENT", "Bro Jun");
+                        cellOneFragment.Add("CONTENT", "Mr. Synthetic6b5843");
                         cellContainerFragment.Fragments.Add(cellOneFragment);
 
                         // Cell 2
                         TemplateFragment cellTwo = new TemplateFragment(GetSection("SUCCEEDING-CELL"));
-                        cellTwo.Add("CONTENT", "Bro Greg");
+                        cellTwo.Add("CONTENT", "Mr. Syntheticea26b0");
                         cellContainerFragment.Fragments.Add(cellTwo);
                     }
 

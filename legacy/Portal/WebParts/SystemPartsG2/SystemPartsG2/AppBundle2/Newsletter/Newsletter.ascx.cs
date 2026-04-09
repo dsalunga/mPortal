@@ -75,7 +75,7 @@ namespace WCMS.WebSystem.WebParts.Newsletter
                 if (alertEnabled && !string.IsNullOrEmpty(emailContent) && !string.IsNullOrEmpty(emailSubject))
                 {
                     NamedValueProvider provider = new NamedValueProvider();
-                    provider.Add("Name", string.Format("{0} {1}", gender == GenderTypes.MaleId ? "Bro." : "Sis.", name));
+                    provider.Add("Name", string.Format("{0} {1}", gender == GenderTypes.MaleId ? "Mr.." : "Ms..", name));
 
                     emailSubject = Substituter.Substitute(emailSubject, provider);
 

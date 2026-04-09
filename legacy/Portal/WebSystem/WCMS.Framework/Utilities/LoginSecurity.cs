@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using WCMS.Common.Utilities;
 
 namespace WCMS.Framework.Utilities
 {
@@ -81,8 +82,8 @@ namespace WCMS.Framework.Utilities
             using (RijndaelManaged rijAlg = new RijndaelManaged())
             {
                 //string[] key = File.ReadAllLines(Server.MapPath("~/App_Data/AESKey.txt"));
-                rijAlg.Key = Convert.FromBase64String(SECRET_KEY); //key[0]);
-                rijAlg.IV = Convert.FromBase64String(INIT_VECTOR); //key[1]);
+                rijAlg.Key = LoginEncryptionKey; //key[0]);
+                rijAlg.IV = LoginEncryptionIV; //key[1]);
 
                 // Create a decrytor to perform the stream transform.
                 ICryptoTransform decryptor = rijAlg.CreateDecryptor(rijAlg.Key, rijAlg.IV);
@@ -105,8 +106,51 @@ namespace WCMS.Framework.Utilities
             //return string.Empty;
         }
 
-        private const string SECRET_KEY = "<redacted-login-secret-key>";
-        private const string INIT_VECTOR = "<redacted-login-init-vector>=";
+        private static readonly Lazy<byte[]> _loginEncryptionKey = new Lazy<byte[]>(() =>
+            GetConfiguredBytes("Security.LoginEncryptionKey", 32) ?? CreateRandomBytes(32));
+
+        private static readonly Lazy<byte[]> _loginEncryptionIv = new Lazy<byte[]>(() =>
+            GetConfiguredBytes("Security.LoginEncryptionIV", 16) ?? CreateRandomBytes(16));
+
+        private static byte[] LoginEncryptionKey
+        {
+            get { return _loginEncryptionKey.Value; }
+        }
+
+        private static byte[] LoginEncryptionIV
+        {
+            get { return _loginEncryptionIv.Value; }
+        }
+
+        private static byte[] GetConfiguredBytes(string key, int expectedSize)
+        {
+            var raw = ConfigUtil.Get(key);
+            if (string.IsNullOrWhiteSpace(raw))
+            {
+                return null;
+            }
+
+            try
+            {
+                var value = Convert.FromBase64String(raw);
+                return value.Length == expectedSize ? value : null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static byte[] CreateRandomBytes(int size)
+        {
+            var bytes = new byte[size];
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(bytes);
+            }
+
+            return bytes;
+        }
 
         public static byte[] GetPublicKey()
         {
@@ -131,8 +175,8 @@ namespace WCMS.Framework.Utilities
             using (RijndaelManaged myRijndael = new RijndaelManaged())
             {
                 //string[] key = File.ReadAllLines(Server.MapPath("~/App_Data/AESKey.txt"));
-                myRijndael.Key = Convert.FromBase64String(SECRET_KEY); //key[0]);
-                myRijndael.IV = Convert.FromBase64String(INIT_VECTOR); //key[1]);
+                myRijndael.Key = LoginEncryptionKey; //key[0]);
+                myRijndael.IV = LoginEncryptionIV; //key[1]);
                 ICryptoTransform encryptor = myRijndael.CreateEncryptor();
                 using (MemoryStream msEncrypt = new MemoryStream())
                 {

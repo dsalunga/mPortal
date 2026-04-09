@@ -123,7 +123,7 @@
             <p class="textshadow1">
                 Host City: Singapore<br />
                 Date & Time: April 28, 2013 - 7pm SGT<br />
-                For inquiries please contact: <a style="color: #FFFF00;" href="mailto:asopasiaoceania@me.com">asopasiaoceania@me.com</a>
+                For inquiries please contact: <a style="color: #FFFF00;" href="mailto:asop-support@example.test">asop-support@example.test</a>
             </p>--%>
         </div>
         <div id="content" class="content_section_holder gradient_section" runat="server">

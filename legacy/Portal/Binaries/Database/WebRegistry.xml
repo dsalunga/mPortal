@@ -52,7 +52,7 @@
   <WebRegistry>
     <RegistryId>21</RegistryId>
     <Key>DefaultReminderToEmail</Key>
-    <Value>daniel.salunga@someorg.org.sg</Value>
+    <Value>user_b6edb698@example.test</Value>
     <ParentId>20</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -171,7 +171,7 @@
   <WebRegistry>
     <RegistryId>40</RegistryId>
     <Key>_From</Key>
-    <Value>portal@someorg.org.sg</Value>
+    <Value>user_0159110d@example.test</Value>
     <ParentId>38</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -185,7 +185,7 @@
   <WebRegistry>
     <RegistryId>45</RegistryId>
     <Key>Reminder.FromEmail</Key>
-    <Value>portal@someorg.org.sg</Value>
+    <Value>user_0159110d@example.test</Value>
     <ParentId>20</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -343,7 +343,7 @@
   <WebRegistry>
     <RegistryId>50</RegistryId>
     <Key>LocalPath</Key>
-    <Value>C:\Workspace\github.com\dsalunga\mPortal\Portal\WebSystem</Value>
+    <Value>C:\Workspace\github.com\example_user\mPortal\Portal\WebSystem</Value>
     <ParentId>22</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -487,14 +487,14 @@
   <WebRegistry>
     <RegistryId>75</RegistryId>
     <Key>From</Key>
-    <Value>mportal@gmail.com</Value>
+    <Value>user_a9e1f268@example.test</Value>
     <ParentId>72</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
   <WebRegistry>
     <RegistryId>76</RegistryId>
     <Key>UserName</Key>
-    <Value>mportal@gmail.com</Value>
+    <Value>user_a9e1f268@example.test</Value>
     <ParentId>72</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -578,7 +578,7 @@
   <WebRegistry>
     <RegistryId>95</RegistryId>
     <Key>DefaultInquiryRecipient</Key>
-    <Value>daniel.salunga@someorg.org.sg</Value>
+    <Value>user_b6edb698@example.test</Value>
     <ParentId>57</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -613,7 +613,7 @@
   <WebRegistry>
     <RegistryId>103</RegistryId>
     <Key>__DefaultInquiryRecipient</Key>
-    <Value>dsalunga@live.com; so.anderson@gmail.com</Value>
+    <Value>user_713e5506@example.test; user_b2c3476e@example.test</Value>
     <ParentId>57</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -655,7 +655,7 @@
   <WebRegistry>
     <RegistryId>110</RegistryId>
     <Key>From</Key>
-    <Value>dev@localhost.someorg.org</Value>
+    <Value>user_90b496c3@example.test</Value>
     <ParentId>109</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -676,7 +676,7 @@
   <WebRegistry>
     <RegistryId>114</RegistryId>
     <Key>MonitorBCC</Key>
-    <Value>daniel.salunga@someorg.org.sg</Value>
+    <Value>user_b6edb698@example.test</Value>
     <ParentId>38</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -697,7 +697,7 @@
   <WebRegistry>
     <RegistryId>117</RegistryId>
     <Key>ReplyTo</Key>
-    <Value>daniel.salunga@someorg.org.sg</Value>
+    <Value>user_b6edb698@example.test</Value>
     <ParentId>38</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -739,7 +739,7 @@
   <WebRegistry>
     <RegistryId>124</RegistryId>
     <Key>NotifyEmail</Key>
-    <Value>daniel.salunga@someorg.org.sg</Value>
+    <Value>user_b6edb698@example.test</Value>
     <ParentId>26</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -774,7 +774,7 @@
   <WebRegistry>
     <RegistryId>129</RegistryId>
     <Key>SourceXmlFile</Key>
-    <Value>C:\Daniel\Test\temp\Email IntegrationSG.xml</Value>
+    <Value>C:\Synthetic\Test\temp\Email IntegrationSG.xml</Value>
     <ParentId>128</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -798,12 +798,12 @@
         &lt;br /&gt;
         Note: It is a requirement to change your password in the 1st login.&lt;br /&gt;
         &lt;br /&gt;
-        Any questions feel free to email me at &lt;a href="mailto:anderson.so@someorg.org.sg"&gt;anderson.so@someorg.org.sg&lt;/a&gt;&lt;br /&gt;
+        Any questions feel free to email me at &lt;a href="mailto:user_c87647c9@example.test"&gt;user_c87647c9@example.test&lt;/a&gt;&lt;br /&gt;
         &lt;br /&gt;
         &lt;br /&gt;
         &lt;br /&gt;
         In Christ,&lt;br /&gt;
-        Bro. Anderson&lt;/p&gt;
+        Mr. Synthetic89ba02&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</Value>
     <ParentId>128</ParentId>
@@ -840,7 +840,7 @@
   <WebRegistry>
     <RegistryId>135</RegistryId>
     <Key>From</Key>
-    <Value>portal@someorg.org.sg</Value>
+    <Value>user_0159110d@example.test</Value>
     <ParentId>134</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -882,7 +882,7 @@
   <WebRegistry>
     <RegistryId>141</RegistryId>
     <Key>UserName</Key>
-    <Value>portal@someorg.org.sg</Value>
+    <Value>user_0159110d@example.test</Value>
     <ParentId>134</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -896,7 +896,7 @@
   <WebRegistry>
     <RegistryId>143</RegistryId>
     <Key>ReplyTo</Key>
-    <Value>anderson.so@someorg.org.sg</Value>
+    <Value>user_c87647c9@example.test</Value>
     <ParentId>128</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -959,7 +959,7 @@
   <WebRegistry>
     <RegistryId>152</RegistryId>
     <Key>SourceXmlFile</Key>
-    <Value>C:\Daniel\Test\svn\temp\Email IntegrationSG.xml</Value>
+    <Value>C:\Synthetic\Test\svn\temp\Email IntegrationSG.xml</Value>
     <ParentId>150</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>
@@ -1297,7 +1297,7 @@ Thanks be to GOD!&lt;br /&gt;
   <WebRegistry>
     <RegistryId>191</RegistryId>
     <Key>UserName</Key>
-    <Value>dev@localhost.someorg.org</Value>
+    <Value>user_90b496c3@example.test</Value>
     <ParentId>109</ParentId>
     <StageId>-1</StageId>
   </WebRegistry>

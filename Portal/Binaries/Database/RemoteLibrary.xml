@@ -76,7 +76,7 @@
     <Name>Music Ministry</Name>
     <SourceTypeId>0</SourceTypeId>
     <BaseAddress>ftp://tunes.mcgi.org/MUSIC_MINISTRY/FILES</BaseAddress>
-    <UserName>portal</UserName>
+    <UserName>user_7ee9c4f8</UserName>
     <Password>hzMt_ouT3i</Password>
     <LastIndexDate>2014-11-20T01:39:57.677+08:00</LastIndexDate>
     <Active>0</Active>
@@ -95,7 +95,7 @@
     <Name>Local FTP</Name>
     <SourceTypeId>0</SourceTypeId>
     <BaseAddress>ftp://localhost/</BaseAddress>
-    <UserName>admin</UserName>
+    <UserName>user_21232f29</UserName>
     <Password>dev123</Password>
     <LastIndexDate>2014-11-20T01:40:03.7+08:00</LastIndexDate>
     <Active>0</Active>
@@ -114,7 +114,7 @@
     <Name>Windows Share</Name>
     <SourceTypeId>2</SourceTypeId>
     <BaseAddress>\\L-SIN-0035551X\ftproot</BaseAddress>
-    <UserName>CORP\dcsalunga</UserName>
+    <UserName>user_eb6f6847</UserName>
     <Password>1Dcs911(!!</Password>
     <LastIndexDate>2012-07-20T00:19:55.38+08:00</LastIndexDate>
     <Active>0</Active>
@@ -133,7 +133,7 @@
     <Name>Daniel's Photos</Name>
     <SourceTypeId>0</SourceTypeId>
     <BaseAddress>ftp://naswi/Daniel/My Photos/</BaseAddress>
-    <UserName>daniel</UserName>
+    <UserName>user_aa47f821</UserName>
     <Password>Dcs431900</Password>
     <LastIndexDate>2021-09-14T06:39:33.29+08:00</LastIndexDate>
     <Active>1</Active>

@@ -52,7 +52,7 @@
   <Contact>
     <ContactId>1</ContactId>
     <Name>Site Administrator</Name>
-    <Email>adsf1@sadf.com</Email>
+    <Email>user_2e4bc09b@example.test</Email>
     <Details>&lt;p&gt;adsf&lt;/p&gt;</Details>
     <Rank>4</Rank>
     <IsActive>1</IsActive>
@@ -61,7 +61,7 @@
   <Contact>
     <ContactId>2</ContactId>
     <Name>Content Manager</Name>
-    <Email>ggggg@gggg.gg</Email>
+    <Email>user_d360c7c6@example.test</Email>
     <Details>&lt;p&gt;ggggggg&lt;/p&gt;</Details>
     <Rank>56</Rank>
     <IsActive>1</IsActive>

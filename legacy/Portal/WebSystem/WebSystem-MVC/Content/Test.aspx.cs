@@ -51,7 +51,7 @@ namespace WCMS.WebSystem
         {
             if (!Page.IsPostBack)
             {
-                WebUser user = WebUser.Get("dsalunga");
+                WebUser user = WebUser.Get("synthetic_user");
                 txtEncrypt.Text = user.Password;
                 //user.Password = WebCryptography.EncryptString(
                 //KeyPair kp = WebCryptography.GenerateKeyPair();
@@ -170,10 +170,10 @@ namespace WCMS.WebSystem
         protected void cmdSerialize_Click(object sender, EventArgs e)
         {
             WebUser user = new WebUser();
-            user.Email = "email@live.com";
+            user.Email = "user@example.test";
             user.FirstName = "Daniel";
             user.LastName = "Salunga";
-            user.UserName = "dsalunga";
+            user.UserName = "synthetic_user";
 
             SerializationUtil.Serialize<WebUser>(@"C:\user.dat", user);
         }

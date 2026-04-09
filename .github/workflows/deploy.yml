@@ -40,7 +40,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Restore and build
-      run: dotnet publish Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj -c Release -o ./publish/web
+      run: dotnet publish Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj -c Release -o ./publish/web
 
     - name: Build Integration host
       if: inputs.app == 'integration' || inputs.app == 'all'

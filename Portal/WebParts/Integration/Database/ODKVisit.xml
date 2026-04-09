@@ -120,9 +120,9 @@
     <VisitedUserId>17</VisitedUserId>
     <DateVisited>2010-08-30T21:30:00+08:00</DateVisited>
     <ActionTaken>wala po</ActionTaken>
-    <ContactNo>83871509</ContactNo>
+    <ContactNo>+12260032311</ContactNo>
     <TimesVisited>1</TimesVisited>
-    <Address>Tampines Ave 8</Address>
+    <Address>Address_7341a9</Address>
     <MembershipDate>2002-02-14T21:30:00+08:00</MembershipDate>
     <Tags />
   </ODKVisit>
@@ -142,10 +142,9 @@ asdf</ActualReport>
     <VisitedUserId>3</VisitedUserId>
     <DateVisited>2010-08-16T21:30:00+08:00</DateVisited>
     <ActionTaken />
-    <ContactNo>83871509</ContactNo>
+    <ContactNo>+12260032311</ContactNo>
     <TimesVisited>0</TimesVisited>
-    <Address>211 Henderson road
-Singapore 345344</Address>
+    <Address>Address_570563</Address>
     <MembershipDate>2010-03-08T21:30:00+08:00</MembershipDate>
     <Tags />
   </ODKVisit>
@@ -160,10 +159,9 @@ Singapore 345344</Address>
     <VisitedUserId>3</VisitedUserId>
     <DateVisited>2010-08-29T21:30:00+08:00</DateVisited>
     <ActionTaken>test action</ActionTaken>
-    <ContactNo>83871509</ContactNo>
+    <ContactNo>+12260032311</ContactNo>
     <TimesVisited>1</TimesVisited>
-    <Address>211 Henderson road
-Singapore 345344</Address>
+    <Address>Address_570563</Address>
     <MembershipDate>2010-03-08T21:30:00+08:00</MembershipDate>
     <Tags />
   </ODKVisit>
@@ -180,7 +178,7 @@ Singapore 345344</Address>
     <ActionTaken />
     <ContactNo />
     <TimesVisited>1</TimesVisited>
-    <Address>test</Address>
+    <Address>Address_098f6b</Address>
     <MembershipDate>2011-08-01T21:30:00+08:00</MembershipDate>
     <Tags>Sensitive</Tags>
   </ODKVisit>
@@ -197,7 +195,7 @@ Singapore 345344</Address>
     <ActionTaken />
     <ContactNo />
     <TimesVisited>1</TimesVisited>
-    <Address>adf</Address>
+    <Address>Address_b3af40</Address>
     <MembershipDate>2012-01-02T21:30:00+08:00</MembershipDate>
     <Tags>Sensitive</Tags>
   </ODKVisit>

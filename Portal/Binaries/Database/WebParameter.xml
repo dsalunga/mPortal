@@ -3108,7 +3108,7 @@ $(Content)</Value>
     <ObjectId>22</ObjectId>
     <RecordId>189</RecordId>
     <Name>TwitterUserName</Name>
-    <Value>dsalunga</Value>
+    <Value>synthetic_user</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>
@@ -3244,7 +3244,7 @@ $(Content)</Value>
     <ObjectId>22</ObjectId>
     <RecordId>190</RecordId>
     <Name>TwitterUserName</Name>
-    <Value>BroEliSoriano</Value>
+    <Value>PublicSpeakerOfficial</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>
@@ -4175,7 +4175,7 @@ Kindly contact the ADDCIT team&amp;nbsp;for any issues.&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Thanks be to GOD!&lt;br /&gt;
 &lt;/strong&gt;                        MCGI Singapore&amp;nbsp;Portal&lt;br /&gt;
-&lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt; info@mcgi.org.sg&lt;/a&gt;&lt;/p&gt;</Value>
+&lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt; user_d5049bb6@example.test&lt;/a&gt;&lt;/p&gt;</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>
@@ -4329,7 +4329,7 @@ Kindly contact the ADDCIT team&amp;nbsp;for any issues.&lt;/p&gt;
                         &lt;br /&gt;
                         &lt;b&gt;Thanks be to GOD!&lt;/b&gt;&lt;br /&gt;
                         MCGI Singapore Portal&lt;br /&gt;
-                        &lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt; info@mcgi.org.sg&lt;/a&gt;&lt;/td&gt;
+                        &lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt; user_d5049bb6@example.test&lt;/a&gt;&lt;/td&gt;
                     &lt;/tr&gt;
                 &lt;/tbody&gt;
             &lt;/table&gt;
@@ -4448,7 +4448,7 @@ Kindly contact the ADDCIT team&amp;nbsp;for any issues.&lt;/p&gt;
                         &lt;br /&gt;
                         &lt;b&gt;Thanks be to GOD!&lt;/b&gt;&lt;br /&gt;
                         MCGI Singapore Portal&lt;br /&gt;
-                        &lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt; info@mcgi.org.sg&lt;/a&gt;&lt;/p&gt;
+                        &lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt; user_d5049bb6@example.test&lt;/a&gt;&lt;/p&gt;
                         &lt;/td&gt;
                     &lt;/tr&gt;
                 &lt;/tbody&gt;
@@ -4560,7 +4560,7 @@ Kindly contact the ADDCIT team&amp;nbsp;for any issues.&lt;/p&gt;
                         &lt;br /&gt;
                         &lt;b&gt;Thanks be to GOD!&lt;/b&gt;&lt;br /&gt;
                         MCGI Singapore Portal&lt;br /&gt;
-                        &lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt; info@mcgi.org.sg&lt;/a&gt;&lt;/td&gt;
+                        &lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt; user_d5049bb6@example.test&lt;/a&gt;&lt;/td&gt;
                     &lt;/tr&gt;
                 &lt;/tbody&gt;
             &lt;/table&gt;
@@ -4667,7 +4667,7 @@ Kindly contact the ADDCIT team&amp;nbsp;for any issues.&lt;/p&gt;
                         &lt;br /&gt;
                         &lt;b&gt;Thanks be to GOD!&lt;/b&gt;&lt;br /&gt;
                         MCGI Singapore Portal&lt;br /&gt;
-                        &lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt; info@mcgi.org.sg&lt;/a&gt;&lt;/p&gt;
+                        &lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt; user_d5049bb6@example.test&lt;/a&gt;&lt;/p&gt;
                         &lt;/td&gt;
                     &lt;/tr&gt;
                 &lt;/tbody&gt;
@@ -4703,7 +4703,7 @@ Kindly contact the ADDCIT team&amp;nbsp;for any issues.&lt;/p&gt;
     <ObjectId>95</ObjectId>
     <RecordId>10</RecordId>
     <Name>AccountReviewer</Name>
-    <Value>Daniel Salunga &lt;daniel.salunga@mcgi.org.sg&gt;</Value>
+    <Value>Mr. Synthetic User &lt;user_8c4c23e0@example.test&gt;</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>
@@ -4980,7 +4980,7 @@ To view the ticket, click the link below: &lt;br /&gt;
 &lt;br /&gt;
 &lt;b&gt;Thanks be to GOD!&lt;/b&gt;&lt;br /&gt;
 MCGI Singapore Portal&lt;br /&gt;
-&lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt;info@mcgi.org.sg&lt;/a&gt;&lt;/p&gt;
+&lt;a href="javascript:location.href='mailto:'+String.fromCharCode(105,110,102,111,64,109,99,103,105,46,111,114,103,46,115,103)+'?subject=MCGI%20Portal%20Registration'"&gt;user_d5049bb6@example.test&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
@@ -9383,8 +9383,8 @@ Hi $(FIRST_NAME), thank you for voting!&lt;/p&gt;
     <RecordId>23</RecordId>
     <Name>SendTo</Name>
     <Value>&lt;SendTos&gt;
-&lt;SendTo Text="Daniel Salunga" Value="daniel.salunga@mcgi.org.sg" /&gt;
-&lt;SendTo Text="Anderson So" Value="anderson.so@mcgi.org.sg" /&gt;
+&lt;SendTo Text="Mr. Synthetic User" Value="user_8c4c23e0@example.test" /&gt;
+&lt;SendTo Text="Anderson So" Value="user_46155094@example.test" /&gt;
 &lt;/SendTos&gt;</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
@@ -9621,7 +9621,7 @@ Hi $(FIRST_NAME), thank you for voting!&lt;/p&gt;
     <ObjectId>3</ObjectId>
     <RecordId>448</RecordId>
     <Name>Recipients</Name>
-    <Value>daniel.salunga;SMS00004;girlie</Value>
+    <Value>synthetic.user;SMS00004;girlie</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>
@@ -9633,17 +9633,17 @@ Hi $(FIRST_NAME), thank you for voting!&lt;/p&gt;
 
 &lt;SendTo&gt;
 &lt;Text&gt;Suggest a Feature&lt;/Text&gt;
-&lt;Value&gt;daniel.salunga@mcgi.org.sg;pebz@me.com&lt;/Value&gt;
+&lt;Value&gt;user_8c4c23e0@example.test;user_615751b6@example.test&lt;/Value&gt;
 &lt;/SendTo&gt;
 
 &lt;SendTo&gt;
 &lt;Text&gt;Bugs &amp;amp; Problem&lt;/Text&gt;
-&lt;Value&gt;daniel.salunga@mcgi.org.sg;pebz@me.com&lt;/Value&gt;
+&lt;Value&gt;user_8c4c23e0@example.test;user_615751b6@example.test&lt;/Value&gt;
 &lt;/SendTo&gt;
 
 &lt;SendTo&gt;
 &lt;Text&gt;Request A File&lt;/Text&gt;
-&lt;Value&gt;daniel.salunga@mcgi.org.sg;pebz@me.com&lt;/Value&gt;
+&lt;Value&gt;user_8c4c23e0@example.test;user_615751b6@example.test&lt;/Value&gt;
 &lt;/SendTo&gt;
 
 &lt;/SendTos&gt;</Value>
@@ -10579,7 +10579,7 @@ $(Content)
     <ObjectId>22</ObjectId>
     <RecordId>358</RecordId>
     <Name>TwitterUserName</Name>
-    <Value>BroEliSoriano</Value>
+    <Value>PublicSpeakerOfficial</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>
@@ -10797,7 +10797,7 @@ $(Content)</Value>
     <ObjectId>3</ObjectId>
     <RecordId>447</RecordId>
     <Name>DefaultRecipients</Name>
-    <Value>Members;dcsalunga@hotmail.com</Value>
+    <Value>Members;user_ab125970@example.test</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>
@@ -10996,9 +10996,9 @@ $('#theshow_menu').slideToggle('fast');
     <Name>SourceXmlData</Name>
     <Value>&lt;Names&gt;
 &lt;Person Name="Daniel"&gt;
-&lt;Email&gt;dsalunga@live.com&lt;/Email&gt;
+&lt;Email&gt;user_713e5506@example.test&lt;/Email&gt;
 &lt;/Person&gt;
-&lt;Person Name="Pogi" Email="dcsalunga@gmail.com" /&gt;
+&lt;Person Name="Pogi" Email="user_06604cdc@example.test" /&gt;
 &lt;/Names&gt;</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
@@ -11535,7 +11535,7 @@ $(Content)</Value>
     <ObjectId>3</ObjectId>
     <RecordId>520</RecordId>
     <Name>Recipients</Name>
-    <Value>anderson.so@mcgi.org.sg; dcsalunga@gmail.com; daniel.salunga@mcgi.org.sg</Value>
+    <Value>user_46155094@example.test; user_06604cdc@example.test; user_8c4c23e0@example.test</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>
@@ -11589,7 +11589,7 @@ $(Content)</Value>
     <ObjectId>3</ObjectId>
     <RecordId>520</RecordId>
     <Name>ReplyEmailSender</Name>
-    <Value>info@mcgi.org.sg</Value>
+    <Value>user_d5049bb6@example.test</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>
@@ -11597,7 +11597,7 @@ $(Content)</Value>
     <ObjectId>3</ObjectId>
     <RecordId>520</RecordId>
     <Name>_Recipients</Name>
-    <Value>dsalunga@live.com</Value>
+    <Value>user_713e5506@example.test</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>
@@ -11687,7 +11687,7 @@ $(Content)</Value>
     <Name>Parameter-Schema</Name>
     <Value>&lt;Parameters&gt;
   &lt;Parameter Name="InstagramId" Value="38126460" /&gt;
-  &lt;Parameter Name="InstagramUsername" Value="dsalunga" /&gt;
+  &lt;Parameter Name="InstagramUsername" Value="synthetic_user" /&gt;
 &lt;/Parameters&gt;</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
@@ -11758,7 +11758,7 @@ $(Content)</Value>
     <ObjectId>3</ObjectId>
     <RecordId>470</RecordId>
     <Name>InstagramUsername</Name>
-    <Value>dsalunga</Value>
+    <Value>synthetic_user</Value>
     <IsRequired>0</IsRequired>
   </WebParameter>
   <WebParameter>

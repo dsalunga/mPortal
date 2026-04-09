@@ -2,9 +2,9 @@ name: Build and Test
 
 on:
   push:
-    branches: [ master, codex/net10-modernization, feat/update-net10-migration-tasks ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, codex/net10-modernization, feat/update-net10-migration-tasks ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
         dotnet-version: ${{ matrix.dotnet-version }}
 
     - name: Restore dependencies
-      run: dotnet restore Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj
+      run: dotnet restore Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj
 
     - name: Build core libraries
       run: |
@@ -32,7 +32,7 @@ jobs:
         dotnet build Portal/WebSystem/WCMS.Framework.Core.XmlProvider/WCMS.Framework.Core.XmlProvider.csproj --no-restore -c Release
 
     - name: Build web application
-      run: dotnet build Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj --no-restore -c Release
+      run: dotnet build Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj --no-restore -c Release
 
     - name: Build module libraries
       run: |
