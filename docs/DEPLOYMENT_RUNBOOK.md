@@ -19,7 +19,7 @@ This document describes how to deploy the mPortal CMS (.NET 10) to production en
 git clone <repo-url> && cd mPortal-private
 
 # Set the SA password
-export SA_PASSWORD="YourStrong!Passw0rd"
+export SA_PASSWORD="$(openssl rand -base64 24)"
 
 # Start SQL Server and web application
 docker compose up -d
@@ -42,7 +42,7 @@ The web application is exposed on port 8080. SQL Server is on port 1433.
 
 ```bash
 # Publish the main portal
-dotnet publish Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj -c Release -o ./publish
+dotnet publish Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj -c Release -o ./publish
 
 # Copy to target server
 scp -r ./publish/* user@server:/var/www/mportal/
@@ -78,6 +78,10 @@ For secrets, use:
 - **Environment variables**: `ConnectionStrings__DefaultConnection=...`
 - **Azure Key Vault**: Configure via `builder.Configuration.AddAzureKeyVault()`
 - **User secrets**: `dotnet user-secrets set "ConnectionStrings:DefaultConnection" "..."`
+- Set application security keys from secrets/env:
+  - `Security__PasswordSalt`
+  - `Security__LoginEncryptionKey` (base64, 32 bytes)
+  - `Security__LoginEncryptionIV` (base64, 16 bytes)
 
 ### Environment Variables
 

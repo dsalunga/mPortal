@@ -1,6 +1,8 @@
 # Post-Migration Improvement Proposal
 
-> This document is §9 of the [NET10_MIGRATION_PLAN.md](NET10_MIGRATION_PLAN.md). It was extracted to keep the main plan manageable.
+> This document is §9 of the [NET10_MIGRATION_PLAN.md](../NET10_MIGRATION_PLAN.md). It was extracted to keep the main plan manageable.
+
+> Validation update (2026-04-08): all original 45 checklist items in this proposal remain complete. Remaining platform migration blockers are tracked in `NET10_MIGRATION_PLAN.md` and `POSTGRES_SUPPORT_PLAN.md`.
 
 ## 9) Post-Migration Improvement Proposal
 

@@ -2,6 +2,22 @@
 
 > **Goal**: Make mPortal CMS fully cross-platform by adding PostgreSQL as an alternative to MS SQL Server.
 
+## Validation Snapshot (2026-04-08)
+
+- PostgreSQL schema assets are present and versioned:
+  - `Database/PostgreSQL/schema.sql` (121 `CREATE TABLE` statements)
+  - `Database/PostgreSQL/schema-integration.sql` (16 `CREATE TABLE` statements)
+  - `Database/PostgreSQL/schema-biblereader.sql` (60 `CREATE TABLE` statements)
+  - `Database/PostgreSQL/init-db.sh`
+- Provider abstraction and multi-provider wiring remain in place (`DbHelper`, `DatabaseProvider`, `UseNpgsql()` branches in host `Program.cs` files).
+- Automated tests currently pass:
+  - `Tests/WCMS.Framework.Tests` -> 77 passed
+  - `Tests/WCMS.Integration.Tests` -> 8 passed
+- Remaining implementation gaps still block a fully complete PostgreSQL rollout:
+  - No EF `Migrations/` directories exist yet for dual-provider migration flow.
+  - GitHub Actions workflows currently have no PostgreSQL service-container lane.
+  - `WCMS.WebSystem.Apps.BranchLocator` pins EF Core `9.0.0` while `WCMS.Framework` uses `9.0.1`, causing `NU1605` downgrade failures during solution restore/build.
+
 ## Summary of Changes (This PR)
 
 This PR introduces the **core database abstraction layer** and **eliminates all stored procedure dependencies**, enabling PostgreSQL support across the mPortal CMS platform. All data access operations now use inline parameterized SQL through a provider-agnostic interface, allowing the system to run on either SQL Server or PostgreSQL with a single configuration change.
@@ -44,7 +60,7 @@ This PR introduces the **core database abstraction layer** and **eliminates all 
 - [x] `SqlDataProviderBase.cs` — Uses `DbHelper`
 - [x] `ServiceCollectionExtensions.cs` — New `AddWcmsDatabase()` method
 - [x] `WConfigOptions.cs` — New `DatabaseProvider` property
-- [x] `Program.cs` (WebSystem-MVC) — Provider-aware health checks + DbHelper init
+- [x] `Program.cs` (WebSystem) — Provider-aware health checks + DbHelper init
 - [x] `Program.cs` (BranchLocator) — Config-driven `UseNpgsql()`/`UseSqlServer()` for EF Core DbContext
 - [x] `Program.cs` (IntegrationParts) — Config-driven `UseNpgsql()`/`UseSqlServer()` for 3 EF Core DbContexts
 - [x] `appsettings.json` — New `DatabaseProvider` setting
@@ -69,7 +85,7 @@ All **115 stored procedures** have been replaced with inline parameterized SQL:
 |---------|---------|---------|
 | `Npgsql` | 9.0.3 | WCMS.Common, Core/WCMS.Common |
 | `Npgsql.EntityFrameworkCore.PostgreSQL` | 9.0.4 | WCMS.Framework |
-| `AspNetCore.HealthChecks.NpgSql` | 9.0.0 | WebSystem-MVC |
+| `AspNetCore.HealthChecks.NpgSql` | 9.0.0 | WebSystem |
 
 ### Tests
 
@@ -135,8 +151,9 @@ The following items are needed for a complete PostgreSQL deployment:
 - [x] ~~Ensure `CommandType.StoredProcedure` works with PostgreSQL~~ — **No longer needed; all queries use `CommandType.Text`**
 - [x] **Migrated all stored procedures to inline parameterized SQL** — reduces DB-specific code entirely
 
-### ~~Phase 4: EF Core DbContext Multi-Provider~~ — **COMPLETE**
+### Phase 4: EF Core DbContext Multi-Provider — **IN PROGRESS**
 - [x] Update `IntegrationDbContext`, `MusicDbContext`, `ExternalDbContext`, `BranchLocatorDbContext` registration to use config-driven `UseNpgsql()`/`UseSqlServer()`
+- [ ] Align EF Core package versions in `WCMS.WebSystem.Apps.BranchLocator` with `WCMS.Framework` (9.0.1+) to remove `NU1605` downgrade restore/build failures.
 - [ ] Add EF Core migrations for both providers
 - [ ] Test EF Core model compatibility with PostgreSQL data types
 
