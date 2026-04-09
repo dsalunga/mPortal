@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.11" />
     <Content Include="notes.txt" />
     <None Include="App.Config" />
   </ItemGroup>
