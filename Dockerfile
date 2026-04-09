@@ -12,14 +12,14 @@ COPY Portal/WebSystem/WCMS.Framework.Core.XmlProvider/WCMS.Framework.Core.XmlPro
 COPY Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/
 COPY Portal/WebSystem/WCMS.WebSystem.Utilities/WCMS.WebSystem.Utilities.csproj Portal/WebSystem/WCMS.WebSystem.Utilities/
 COPY Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj Portal/WebSystem/WCMS.WebSystem.ViewModels/
-COPY Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj Portal/WebSystem/WebSystem-MVC/
+COPY Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj Portal/WebSystem/WebSystem/
 COPY Directory.Build.props ./
 
-RUN dotnet restore Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj
+RUN dotnet restore Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj
 
 # Copy source and build
 COPY Portal/WebSystem/ Portal/WebSystem/
-RUN dotnet publish Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj -c Release -o /app/publish --no-restore
+RUN dotnet publish Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj -c Release -o /app/publish --no-restore
 
 # Runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
@@ -28,7 +28,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # Copy static content
-COPY Portal/WebSystem/WebSystem-MVC/Content/ Content/
+COPY Portal/WebSystem/WebSystem/Content/ Content/
 
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080

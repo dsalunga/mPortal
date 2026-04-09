@@ -121,8 +121,8 @@
   <Folder Name="/Portal/WebSystem/WCMS.WebSystem.ViewModels/">
     <Project Path="Portal/WebSystem/WCMS.WebSystem.ViewModels/WCMS.WebSystem.csproj" />
   </Folder>
-  <Folder Name="/Portal/WebSystem/WebSystem-MVC/">
-    <Project Path="Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj" />
+  <Folder Name="/Portal/WebSystem/WebSystem/">
+    <Project Path="Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj" />
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj" />

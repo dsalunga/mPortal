@@ -12,6 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Portal\WebSystem\WebSystem-MVC\WCMS.WebSystem.WebApp.csproj" />
+    <ProjectReference Include="..\..\Portal\WebSystem\WebSystem\WCMS.WebSystem.WebApp.csproj" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
   <Add Key="AdminPassword" Value="add!@#" />
   <Add Key="PortalAjaxHandlerUrl" Value="https://mcgi.church/Content/Handlers/AjaxHandler.ashx" />
   <Add Key="PortalMakeUpHomeUrl" Value="https://mcgi.church/Account/Attendance" />
-  <!--<Add Key="MCGI.MakeUp.BaseFolder" Value="D:\Projects\mcgi-portal\svn\trunk\WebSystem-MVC\Assets\Public\Services" />-->
-  <Add Key="MCGI.MakeUp.BaseFolder" Value="~\..\..\MCGI-Portal\WebSystem\WebSystem-MVC\Content\Assets\Public\Services" />
+  <!--<Add Key="MCGI.MakeUp.BaseFolder" Value="D:\Projects\mcgi-portal\svn\trunk\WebSystem\Assets\Public\Services" />-->
+  <Add Key="MCGI.MakeUp.BaseFolder" Value="~\..\..\MCGI-Portal\WebSystem\WebSystem\Content\Assets\Public\Services" />
   <Add Key="MCGI.MakeUp.BaseHttp" Value="http://localhost:8888/Content/Assets/Public/Services/" />
 </Configuration>

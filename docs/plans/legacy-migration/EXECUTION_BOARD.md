@@ -39,6 +39,6 @@ A migration batch is done only when all criteria pass:
 | `BATCH-P2-001` | Portal admin/Central execution closure | In Progress | `TBD` | Pending implementation and runtime verification. |
 
 ## Next Batch Candidates
-- `BATCH-P2-002`: remaining `Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/*` parity gaps.
+- `BATCH-P2-002`: remaining `Portal/WebSystem/WebSystem/Content/Parts/Central/*` parity gaps.
 - `BATCH-P2-003`: unresolved `SystemParts` and `SystemPartsG2/G3` UX component replacements.
 - `BATCH-P2-004`: post-migration data/DB behavior parity and regression hardening.
