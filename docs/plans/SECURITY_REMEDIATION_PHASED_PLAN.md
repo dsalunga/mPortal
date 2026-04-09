@@ -1,7 +1,6 @@
 # Security Remediation Plan (Phased, Safe-First)
 
 Status: in progress (Phases 1/1B/3 partially completed on 2026-04-09)  
-Scope: `/Users/dsalunga/Projects/github.com/dsalunga/mPortal`  
 Objective: remove active exposure in current branch first, then perform controlled history cleanup.
 
 ## Guiding Rules
@@ -49,13 +48,11 @@ Goal: remove direct personal identifiers in first-party source/content while pre
 Checklist:
 - [x] Replace personal contact emails with dummy addresses in first-party templates/content.
 - [x] Replace personal phone numbers with dummy values in first-party templates/content.
-- [x] Replace salutation/name references (`Bro./Sis./Brother/Sister`) with neutral placeholders (`Mr./Ms.` style).
 - [x] Apply updates to both modern (`Portal/`) and legacy (`legacy/Portal/`) sources.
 - [x] Re-run first-party pattern scans and confirm zero known-personal-identifier hits from tracked patterns.
 
 Exit criteria:
 - [x] No known personal emails from the tracked domain set remain in first-party sources.
-- [x] No `Bro./Sis./Brother/Sister` salutation references remain in first-party sources.
 - [ ] Optional: third-party/vendor payload review completed for sanitize/remove decisions.
 
 ## Phase 2: Legacy Footprint Reduction (Still Non-Destructive)
@@ -90,7 +87,7 @@ Exit criteria:
 Goal: prepare safe rewrite execution package, no force-push yet.
 
 Reference: `docs/plans/SECURITY_GIT_HISTORY_REWRITE_RUNBOOK.md`
-Dry-run report: `docs/plans/SECURITY_GIT_HISTORY_DRY_RUN_REPORT_2026-04-09.md`
+Dry-run report: `docs/plans/completed/SECURITY_GIT_HISTORY_DRY_RUN_REPORT_2026-04-09.md`
 
 Checklist:
 - [x] Define rewrite scope (all branches/tags vs selected refs).

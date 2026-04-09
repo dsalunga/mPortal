@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Portal\WebParts\Integration\WCMS.WebSystem.Apps.Integration\WCMS.WebSystem.Apps.Integration.csproj" />
+    <ProjectReference Include="..\..\..\Portal\WebSystem\WCMS.Common\WCMS.Common.csproj" />
+  </ItemGroup>
+</Project>

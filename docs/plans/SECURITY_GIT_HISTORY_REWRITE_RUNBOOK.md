@@ -13,7 +13,6 @@ Purge historical secret-bearing content from git history after current-branch re
 
 ## Scope
 - Refs: all branches and tags.
-- Target repo: `/Users/dsalunga/Projects/github.com/dsalunga/mPortal`.
 - Cleanup strategy:
   - Remove known secret-bearing binary/sample artifacts from history where not required.
   - Replace known secret literals with redacted placeholders.
@@ -26,7 +25,7 @@ Evidence that sensitive values still exist in prior commits:
 
 ## Dry-Run Procedure (Mirror Clone)
 1. Create disposable mirror:
-   - `git clone --mirror /Users/dsalunga/Projects/github.com/dsalunga/mPortal /tmp/mportal-history-rewrite.git`
+   - `git clone --mirror . /tmp/mportal-history-rewrite.git`
 2. Enter mirror:
    - `cd /tmp/mportal-history-rewrite.git`
 3. Prepare replacement rules file (`/tmp/mportal-replacements.txt`):
@@ -44,7 +43,7 @@ Evidence that sensitive values still exist in prior commits:
    - communication/reset steps
 
 Dry-run evidence:
-- `docs/plans/SECURITY_GIT_HISTORY_DRY_RUN_REPORT_2026-04-09.md`
+- `docs/plans/completed/SECURITY_GIT_HISTORY_DRY_RUN_REPORT_2026-04-09.md`
 
 ## Cutover Procedure (After Approval)
 1. Freeze merges.

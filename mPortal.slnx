@@ -1,16 +1,16 @@
 <Solution>
-  <Folder Name="/BibleReader/">
-    <Project Path="BibleReader/BibleReader.Core/BibleReader.Core.csproj" />
+  <Folder Name="/Apps/BibleReader/">
+    <Project Path="Apps/BibleReader/BibleReader.Core/BibleReader.Core.csproj" />
   </Folder>
-  <Folder Name="/BibleReader/BibleReader/">
-    <Project Path="BibleReader/BibleReader/BibleReader.WebApp.csproj" />
+  <Folder Name="/Apps/BibleReader/BibleReader/">
+    <Project Path="Apps/BibleReader/BibleReader/BibleReader.WebApp.csproj" />
   </Folder>
   <Folder Name="/Core/">
     <Project Path="Core/WCMS.Common/WCMS.Common.csproj" />
   </Folder>
-  <Folder Name="/LessonReviewer/">
-    <Project Path="LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj" />
-    <Project Path="LessonReviewer/LessonReviewer/LessonReviewer.csproj" />
+  <Folder Name="/Apps/LessonReviewer/">
+    <Project Path="Apps/LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj" />
+    <Project Path="Apps/LessonReviewer/LessonReviewer/LessonReviewer.csproj" />
   </Folder>
   <Folder Name="/Libraries/" />
   <Folder Name="/Libraries/Media-Player-ASP.NET-Control/">

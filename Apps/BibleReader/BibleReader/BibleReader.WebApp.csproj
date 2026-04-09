@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BibleReader.Core\BibleReader.Core.csproj" />
-    <ProjectReference Include="..\..\Portal\WebSystem\WCMS.Common\WCMS.Common.csproj" />
-    <ProjectReference Include="..\..\Portal\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
+    <ProjectReference Include="..\..\..\Portal\WebSystem\WCMS.Common\WCMS.Common.csproj" />
+    <ProjectReference Include="..\..\..\Portal\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
   </ItemGroup>
 </Project>

@@ -52,7 +52,6 @@ Status: in progress (current-branch remediation completed 2026-04-09; secret rot
 ## 9) PII/Contact Data Anonymization (Modern + Legacy)
 - [x] Replace direct personal contact emails with dummy addresses in first-party templates/content.
 - [x] Replace direct personal phone/contact numbers with dummy values in first-party templates/content.
-- [x] Replace personal-name social handles and salutation text (`Bro./Sis./Brother/Sister`) with neutral placeholders.
 - [x] Apply replacements in both `Portal/` and `legacy/Portal/` trees.
 - [x] Re-scan first-party sources and confirm zero known-personal-identifier hits from the tracked pattern set.
 - [ ] Complete secondary review of third-party/vendor bundles to decide keep-as-is vs sanitize/remove.
@@ -62,4 +61,4 @@ Status: in progress (current-branch remediation completed 2026-04-09; secret rot
 - 2026-04-09: targeted validation build passed:
   - `dotnet build Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj -c Release`
   - `dotnet build Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj -c Release`
-- 2026-04-09: history rewrite dry-run completed in mirror clone with baseline `32` findings reduced to `0` post-rewrite (`docs/plans/SECURITY_GIT_HISTORY_DRY_RUN_REPORT_2026-04-09.md`).
+- 2026-04-09: history rewrite dry-run completed in mirror clone with baseline `32` findings reduced to `0` post-rewrite (`docs/plans/completed/SECURITY_GIT_HISTORY_DRY_RUN_REPORT_2026-04-09.md`).

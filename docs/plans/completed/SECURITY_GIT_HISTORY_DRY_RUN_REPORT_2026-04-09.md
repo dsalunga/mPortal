@@ -3,7 +3,6 @@
 Status: completed dry-run in disposable mirror clone (no force-push performed)
 
 ## Scope
-- Source repository: `/Users/dsalunga/Projects/github.com/dsalunga/mPortal`
 - Dry-run mirror: `/tmp/mportal-history-rewrite-20260409-114228.git`
 - Rules file used: `/tmp/mportal-history-replacements.txt`
 - Tools:

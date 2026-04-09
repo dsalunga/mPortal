@@ -11,8 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LessonReviewer.Core\LessonReviewer.Core.csproj" />
-    <ProjectReference Include="..\..\Portal\WebSystem\WCMS.Common\WCMS.Common.csproj" />
-    <ProjectReference Include="..\..\Portal\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
-    <ProjectReference Include="..\..\Portal\WebParts\Integration\WCMS.WebSystem.Apps.Integration\WCMS.WebSystem.Apps.Integration.csproj" />
+    <ProjectReference Include="..\..\..\Portal\WebSystem\WCMS.Common\WCMS.Common.csproj" />
+    <ProjectReference Include="..\..\..\Portal\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
+    <ProjectReference Include="..\..\..\Portal\WebParts\Integration\WCMS.WebSystem.Apps.Integration\WCMS.WebSystem.Apps.Integration.csproj" />
   </ItemGroup>
 </Project>

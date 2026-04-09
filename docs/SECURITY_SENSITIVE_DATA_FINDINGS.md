@@ -9,14 +9,14 @@ Completed a full first-party pass over modern and legacy sources for personal id
 Completed:
 - Replaced personal email addresses with dummy addresses (primarily `@example.test`) in app templates, seeded XML content, and integration pages.
 - Replaced personal contact numbers with dummy values in seed content and UI templates.
-- Replaced personal-name social references (including `Bro./Brother`-style references) with neutral placeholders (`Mr. Public Speaker`, `PublicSpeakerOfficial`).
+- Replaced personal-name social references with neutral placeholders (`Mr. Public Speaker`, `PublicSpeakerOfficial`).
 - Replaced legacy image file references tied to personal handles and moved views to neutral asset names (`PublicSpeakerTwitter.jpg`).
 - Applied equivalent replacements in both modern (`Portal/...`) and legacy (`legacy/Portal/...`) trees.
 
 Verification snapshot:
 - `Bro./Sis./Brother/Sister` salutation scan (first-party scope): `0` findings.
 - Known personal identifiers and contact emails from previous findings: `0` findings.
-- Real-email domain scan (`gmail/yahoo/me/live/ymail/someorg/mcgi/angdatingdaan`) in first-party scope: `0` findings.
+- Real-email domain scan (`gmail/yahoo/me/live/ymail/someorg`) in first-party scope: `0` findings.
 
 Intentional exclusions in this pass:
 - Third-party/vendor/plugin payloads and archives (for example plugin bundles and legacy external binary docs).
