@@ -1,6 +1,6 @@
 # Security Git History Rewrite Runbook
 
-Status: draft (execution pending owner approval)
+Status: dry-run completed on 2026-04-09; cutover execution pending owner approval
 
 ## Objective
 Purge historical secret-bearing content from git history after current-branch remediation and credential rotation are complete.
@@ -42,6 +42,9 @@ Evidence that sensitive values still exist in prior commits:
    - refs changed
    - tags changed
    - communication/reset steps
+
+Dry-run evidence:
+- `docs/plans/SECURITY_GIT_HISTORY_DRY_RUN_REPORT_2026-04-09.md`
 
 ## Cutover Procedure (After Approval)
 1. Freeze merges.

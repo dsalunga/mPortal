@@ -62,3 +62,4 @@ Status: in progress (current-branch remediation completed 2026-04-09; secret rot
 - 2026-04-09: targeted validation build passed:
   - `dotnet build Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj -c Release`
   - `dotnet build Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj -c Release`
+- 2026-04-09: history rewrite dry-run completed in mirror clone with baseline `32` findings reduced to `0` post-rewrite (`docs/plans/SECURITY_GIT_HISTORY_DRY_RUN_REPORT_2026-04-09.md`).

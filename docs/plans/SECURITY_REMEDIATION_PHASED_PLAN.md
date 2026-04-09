@@ -90,12 +90,13 @@ Exit criteria:
 Goal: prepare safe rewrite execution package, no force-push yet.
 
 Reference: `docs/plans/SECURITY_GIT_HISTORY_REWRITE_RUNBOOK.md`
+Dry-run report: `docs/plans/SECURITY_GIT_HISTORY_DRY_RUN_REPORT_2026-04-09.md`
 
 Checklist:
 - [x] Define rewrite scope (all branches/tags vs selected refs).
-- [ ] Build exact removal rules for known sensitive values and files.
-- [ ] Dry-run rewrite in a disposable mirror clone.
-- [ ] Produce impact report:
+- [x] Build exact removal rules for known sensitive values and files.
+- [x] Dry-run rewrite in a disposable mirror clone.
+- [x] Produce impact report:
   - refs changed
   - tags changed
   - estimated clone reset steps
