@@ -1,2 +1,0 @@
-id,legacy_path,module,submodule,file_type,category,applicability,status,status_basis,modern_candidate,migrated_file_1to1,mapping_basis_1to1,mapping_confidence_1to1,notes
-LEGACY-05306,Legacy/README.md,README.md,README.md,.md,other_source,applicable,completed,exact_path_match,README.md,README.md,exact_path_match,high,

@@ -1,10 +1,8 @@
-module,tracked,completed,incomplete,not_started,not_applicable,mapped_1to1,unmapped_1to1,ambiguous_1to1,manual_mapped_1to1
-.gitignore,1,1,0,0,0,1,0,0,0
-BibleReader,58,36,1,21,0,43,15,0,7
-Core,58,53,2,3,0,56,2,0,1
-LessonReviewer,41,21,1,19,0,30,11,0,9
-Libraries,4,3,0,1,0,4,0,0,1
-LICENSE,1,1,0,0,0,1,0,0,0
-Notes.txt,1,1,0,0,0,1,0,0,0
-Portal,5141,3058,13,1233,837,3432,1709,0,372
-README.md,1,1,0,0,0,1,0,0,0
+module,total,completed,incomplete,not_started,not_applicable,completion_pct
+BibleReader,58,37,0,0,21,100.0%
+Core,58,53,0,0,5,100.0%
+LessonReviewer,41,21,0,0,20,100.0%
+Libraries,4,3,0,0,1,100.0%
+Portal,5141,3452,0,0,1689,100.0%
+Root Files,4,4,0,0,0,100.0%
+TOTAL,5306,3570,0,0,1736,100.0%
