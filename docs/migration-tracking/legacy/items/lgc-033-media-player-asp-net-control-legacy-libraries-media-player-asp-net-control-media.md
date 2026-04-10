@@ -39,6 +39,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control :: Media Player Control | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media_Player_Control.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-033 | Partial | Class Component | legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control :: Media Player Control | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media_Player_Control.cs` | Library/business component; assess API compatibility and dependencies. |

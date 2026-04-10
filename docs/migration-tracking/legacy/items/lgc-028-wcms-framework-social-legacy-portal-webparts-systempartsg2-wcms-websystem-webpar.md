@@ -27,8 +27,7 @@
 
 ## Project References
 
-| Reference Include |
-| --- |
+| --- | --- | --- |
 | ../../../WebSystem/WCMS.Common/WCMS.Common.csproj |
 | ../../../WebSystem/WCMS.Framework/WCMS.Framework.csproj |
 
@@ -46,18 +45,18 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: Constant | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Constant.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: GenericWallEvent | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/GenericWallEvent.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: IWallUpdateEvent | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/IWallUpdateEvent.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Managers :: WallPluginManager | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Managers/WallPluginManager.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Managers :: WallUpdateManager | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Managers/WallUpdateManager.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: ProfileUpdateEvent | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/ProfileUpdateEvent.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers :: IWallPluginProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers/IWallPluginProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers :: IWallUpdateProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers/IWallUpdateProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers :: WallPluginSqlProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers/WallPluginSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers :: WallUpdateSqlProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers/WallUpdateSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: WallPlugin | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WallPlugin.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: WallUpdate | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WallUpdate.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: WallUpdateEventBase | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WallUpdateEventBase.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: Constant | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Constant.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: GenericWallEvent | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/GenericWallEvent.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: IWallUpdateEvent | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/IWallUpdateEvent.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Managers :: WallPluginManager | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Managers/WallPluginManager.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Managers :: WallUpdateManager | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Managers/WallUpdateManager.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: ProfileUpdateEvent | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/ProfileUpdateEvent.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers :: IWallPluginProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers/IWallPluginProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers :: IWallUpdateProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers/IWallUpdateProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers :: WallPluginSqlProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers/WallPluginSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers :: WallUpdateSqlProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/Providers/WallUpdateSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: WallPlugin | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WallPlugin.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: WallUpdate | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WallUpdate.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-028 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social :: WallUpdateEventBase | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social/WallUpdateEventBase.cs` | Library/business component; assess API compatibility and dependencies. |

@@ -39,9 +39,9 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/Interfaces :: IWeeklySchedulerTaskProvider | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/Interfaces/IWeeklySchedulerTaskProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/Providers :: WeeklySchedulerSqlProvider | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/Providers/WeeklySchedulerSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler :: WeeklySchedulerPresenter | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/WeeklySchedulerPresenter.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler :: WeeklySchedulerTask | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/WeeklySchedulerTask.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-025 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/Interfaces :: IWeeklySchedulerTaskProvider | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/Interfaces/IWeeklySchedulerTaskProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-025 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/Providers :: WeeklySchedulerSqlProvider | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/Providers/WeeklySchedulerSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-025 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler :: WeeklySchedulerPresenter | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/WeeklySchedulerPresenter.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-025 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler :: WeeklySchedulerTask | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.WeeklyScheduler/WeeklySchedulerTask.cs` | Library/business component; assess API compatibility and dependencies. |

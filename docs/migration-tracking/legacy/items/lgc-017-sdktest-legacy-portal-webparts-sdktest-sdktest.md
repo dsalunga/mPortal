@@ -31,9 +31,9 @@ _No artifacts found._
 
 ## User Controls
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Code-Behind / Pair | Migration Note |
-| --- | --- | --- | --- | --- |
-| User Control | legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test :: WebUserControl1.ascx | `legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx` | `legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Code-Behind / Pair | Migration Note |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-017 | Partial | User Control | legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test :: WebUserControl1.ascx | `legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx` | `legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
 
 ## Services And Handlers
 
@@ -41,6 +41,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test :: WebUserControl1 | `legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-017 | Partial | Class Component | legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test :: WebUserControl1 | `legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx.cs` | Library/business component; assess API compatibility and dependencies. |

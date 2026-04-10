@@ -27,8 +27,7 @@
 
 ## Project References
 
-| Reference Include |
-| --- |
+| --- | --- | --- |
 | ../WCMS.Common/WCMS.Common.csproj |
 | ../WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj |
 | ../WCMS.Framework/WCMS.Framework.csproj |
@@ -47,8 +46,8 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities :: DbManager | `legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/DbManager.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/EmailUpdater :: EmailUpdaterTask | `legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/EmailUpdater/EmailUpdaterTask.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/Spammer :: SenderTask | `legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/Spammer/SenderTask.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-041 | Partial | Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities :: DbManager | `legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/DbManager.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-041 | Partial | Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/EmailUpdater :: EmailUpdaterTask | `legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/EmailUpdater/EmailUpdaterTask.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-041 | Partial | Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/Spammer :: SenderTask | `legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/Spammer/SenderTask.cs` | Library/business component; assess API compatibility and dependencies. |

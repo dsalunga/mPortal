@@ -39,8 +39,8 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter :: NewsletterEntry | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter/NewsletterEntry.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter/Providers :: INewsletterProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter/Providers/INewsletterProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter/Providers :: NewsletterSqlProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter/Providers/NewsletterSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-026 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter :: NewsletterEntry | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter/NewsletterEntry.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-026 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter/Providers :: INewsletterProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter/Providers/INewsletterProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-026 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter/Providers :: NewsletterSqlProvider | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts/Newsletter/Providers/NewsletterSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |

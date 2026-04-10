@@ -39,17 +39,17 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/BibleReader/BibleReader.Core :: BibleBook | `legacy/BibleReader/BibleReader.Core/BibleBook.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core :: BibleBookName | `legacy/BibleReader/BibleReader.Core/BibleBookName.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core :: BibleChapter | `legacy/BibleReader/BibleReader.Core/BibleChapter.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core :: BibleManager | `legacy/BibleReader/BibleReader.Core/BibleManager.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core :: BibleVerse | `legacy/BibleReader/BibleReader.Core/BibleVerse.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core :: BibleVersion | `legacy/BibleReader/BibleReader.Core/BibleVersion.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core :: BibleVersionLanguage | `legacy/BibleReader/BibleReader.Core/BibleVersionLanguage.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core :: Constants | `legacy/BibleReader/BibleReader.Core/Constants.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core/Providers :: BibleBookNameProvider | `legacy/BibleReader/BibleReader.Core/Providers/BibleBookNameProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core/Providers :: BibleVersionLanguageProvider | `legacy/BibleReader/BibleReader.Core/Providers/BibleVersionLanguageProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core/Providers :: BibleVersionProvider | `legacy/BibleReader/BibleReader.Core/Providers/BibleVersionProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader.Core/Providers :: GenericBibleVerseProvider | `legacy/BibleReader/BibleReader.Core/Providers/GenericBibleVerseProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core :: BibleBook | `legacy/BibleReader/BibleReader.Core/BibleBook.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core :: BibleBookName | `legacy/BibleReader/BibleReader.Core/BibleBookName.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core :: BibleChapter | `legacy/BibleReader/BibleReader.Core/BibleChapter.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core :: BibleManager | `legacy/BibleReader/BibleReader.Core/BibleManager.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core :: BibleVerse | `legacy/BibleReader/BibleReader.Core/BibleVerse.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core :: BibleVersion | `legacy/BibleReader/BibleReader.Core/BibleVersion.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core :: BibleVersionLanguage | `legacy/BibleReader/BibleReader.Core/BibleVersionLanguage.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core :: Constants | `legacy/BibleReader/BibleReader.Core/Constants.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core/Providers :: BibleBookNameProvider | `legacy/BibleReader/BibleReader.Core/Providers/BibleBookNameProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core/Providers :: BibleVersionLanguageProvider | `legacy/BibleReader/BibleReader.Core/Providers/BibleVersionLanguageProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core/Providers :: BibleVersionProvider | `legacy/BibleReader/BibleReader.Core/Providers/BibleVersionProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-002 | Not Stated | Class Component | legacy/BibleReader/BibleReader.Core/Providers :: GenericBibleVerseProvider | `legacy/BibleReader/BibleReader.Core/Providers/GenericBibleVerseProvider.cs` | Library/business component; assess API compatibility and dependencies. |

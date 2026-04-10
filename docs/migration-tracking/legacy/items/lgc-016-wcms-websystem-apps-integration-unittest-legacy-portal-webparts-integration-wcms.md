@@ -27,8 +27,7 @@
 
 ## Project References
 
-| Reference Include |
-| --- |
+| --- | --- | --- |
 | ../WCMS.WebSystem.Apps.BibleReader/WCMS.WebSystem.Apps.BibleReader.csproj |
 | ../WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj |
 
@@ -46,7 +45,7 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: MemberHelperTests | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/MemberHelperTests.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: UnitTest1 | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/UnitTest1.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-016 | Partial | Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: MemberHelperTests | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/MemberHelperTests.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-016 | Partial | Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: UnitTest1 | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/UnitTest1.cs` | Library/business component; assess API compatibility and dependencies. |

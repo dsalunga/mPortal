@@ -39,9 +39,9 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/LessonReviewer/LessonReviewer.Core :: ConfigManager | `legacy/LessonReviewer/LessonReviewer.Core/ConfigManager.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/LessonReviewer/LessonReviewer.Core :: MakeUpServiceSession | `legacy/LessonReviewer/LessonReviewer.Core/MakeUpServiceSession.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/LessonReviewer/LessonReviewer.Core :: PlaybackHelper | `legacy/LessonReviewer/LessonReviewer.Core/PlaybackHelper.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/LessonReviewer/LessonReviewer.Core :: ServiceDefinition | `legacy/LessonReviewer/LessonReviewer.Core/ServiceDefinition.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-004 | Not Stated | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: ConfigManager | `legacy/LessonReviewer/LessonReviewer.Core/ConfigManager.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-004 | Not Stated | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: MakeUpServiceSession | `legacy/LessonReviewer/LessonReviewer.Core/MakeUpServiceSession.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-004 | Not Stated | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: PlaybackHelper | `legacy/LessonReviewer/LessonReviewer.Core/PlaybackHelper.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-004 | Not Stated | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: ServiceDefinition | `legacy/LessonReviewer/LessonReviewer.Core/ServiceDefinition.cs` | Library/business component; assess API compatibility and dependencies. |

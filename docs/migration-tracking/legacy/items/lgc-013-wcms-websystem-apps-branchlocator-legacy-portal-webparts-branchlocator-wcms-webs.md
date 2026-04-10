@@ -39,12 +39,12 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: Constants | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/Constants.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: FALHelper | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/FALHelper.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: IMChapterProvider | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/IMChapterProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapter | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapter.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterExtra | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterExtra.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterSqlProvider | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterViewModel | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterViewModel.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: Constants | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/Constants.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: FALHelper | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/FALHelper.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: IMChapterProvider | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/IMChapterProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapter | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapter.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterExtra | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterExtra.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterSqlProvider | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterViewModel | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterViewModel.cs` | Library/business component; assess API compatibility and dependencies. |

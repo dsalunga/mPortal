@@ -39,9 +39,9 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs :: Job | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Job.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs :: JobResult | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/JobResult.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers :: IJobProvider | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers/IJobProvider.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers :: JobSqlProvider | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers/JobSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-031 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs :: Job | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Job.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-031 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs :: JobResult | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/JobResult.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-031 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers :: IJobProvider | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers/IJobProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-031 | Not Stated | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers :: JobSqlProvider | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers/JobSqlProvider.cs` | Library/business component; assess API compatibility and dependencies. |

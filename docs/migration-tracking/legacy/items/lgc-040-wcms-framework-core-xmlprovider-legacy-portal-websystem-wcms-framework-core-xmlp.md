@@ -27,8 +27,7 @@
 
 ## Project References
 
-| Reference Include |
-| --- |
+| --- | --- | --- |
 | ../WCMS.Common/WCMS.Common.csproj |
 | ../WCMS.Framework/WCMS.Framework.csproj |
 
@@ -46,6 +45,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/WebSystem/WCMS.Framework.Core.XmlProvider :: WebObjectProvider | `legacy/Portal/WebSystem/WCMS.Framework.Core.XmlProvider/WebObjectProvider.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-040 | Partial | Class Component | legacy/Portal/WebSystem/WCMS.Framework.Core.XmlProvider :: WebObjectProvider | `legacy/Portal/WebSystem/WCMS.Framework.Core.XmlProvider/WebObjectProvider.cs` | Library/business component; assess API compatibility and dependencies. |

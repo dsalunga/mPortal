@@ -27,22 +27,21 @@
 
 ## Project References
 
-| Reference Include |
-| --- |
+| --- | --- | --- |
 | ../BibleReader.Core/BibleReader.Core.csproj |
 
 ## Pages And Views
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Code-Behind / Pair | Migration Note |
-| --- | --- | --- | --- | --- |
-| Master Page | legacy/BibleReader/BibleReader :: Site.Master | `legacy/BibleReader/BibleReader/Site.Master` | `legacy/BibleReader/BibleReader/Site.Master.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
-| Page | legacy/BibleReader/BibleReader :: About.aspx | `legacy/BibleReader/BibleReader/About.aspx` | `legacy/BibleReader/BibleReader/About.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
-| Page | legacy/BibleReader/BibleReader/Account :: ChangePassword.aspx | `legacy/BibleReader/BibleReader/Account/ChangePassword.aspx` | `legacy/BibleReader/BibleReader/Account/ChangePassword.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
-| Page | legacy/BibleReader/BibleReader/Account :: ChangePasswordSuccess.aspx | `legacy/BibleReader/BibleReader/Account/ChangePasswordSuccess.aspx` | `legacy/BibleReader/BibleReader/Account/ChangePasswordSuccess.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
-| Page | legacy/BibleReader/BibleReader/Account :: Login.aspx | `legacy/BibleReader/BibleReader/Account/Login.aspx` | `legacy/BibleReader/BibleReader/Account/Login.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
-| Page | legacy/BibleReader/BibleReader/Account :: Register.aspx | `legacy/BibleReader/BibleReader/Account/Register.aspx` | `legacy/BibleReader/BibleReader/Account/Register.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
-| Page | legacy/BibleReader/BibleReader :: Default.aspx | `legacy/BibleReader/BibleReader/Default.aspx` | `legacy/BibleReader/BibleReader/Default.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
-| Page | legacy/BibleReader/BibleReader :: Setup.aspx | `legacy/BibleReader/BibleReader/Setup.aspx` | `legacy/BibleReader/BibleReader/Setup.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Code-Behind / Pair | Migration Note |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-001 | Partial | Master Page | legacy/BibleReader/BibleReader :: Site.Master | `legacy/BibleReader/BibleReader/Site.Master` | `legacy/BibleReader/BibleReader/Site.Master.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
+| LGC-001 | Partial | Page | legacy/BibleReader/BibleReader :: About.aspx | `legacy/BibleReader/BibleReader/About.aspx` | `legacy/BibleReader/BibleReader/About.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
+| LGC-001 | Partial | Page | legacy/BibleReader/BibleReader/Account :: ChangePassword.aspx | `legacy/BibleReader/BibleReader/Account/ChangePassword.aspx` | `legacy/BibleReader/BibleReader/Account/ChangePassword.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
+| LGC-001 | Partial | Page | legacy/BibleReader/BibleReader/Account :: ChangePasswordSuccess.aspx | `legacy/BibleReader/BibleReader/Account/ChangePasswordSuccess.aspx` | `legacy/BibleReader/BibleReader/Account/ChangePasswordSuccess.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
+| LGC-001 | Partial | Page | legacy/BibleReader/BibleReader/Account :: Login.aspx | `legacy/BibleReader/BibleReader/Account/Login.aspx` | `legacy/BibleReader/BibleReader/Account/Login.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
+| LGC-001 | Partial | Page | legacy/BibleReader/BibleReader/Account :: Register.aspx | `legacy/BibleReader/BibleReader/Account/Register.aspx` | `legacy/BibleReader/BibleReader/Account/Register.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
+| LGC-001 | Partial | Page | legacy/BibleReader/BibleReader :: Default.aspx | `legacy/BibleReader/BibleReader/Default.aspx` | `legacy/BibleReader/BibleReader/Default.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
+| LGC-001 | Partial | Page | legacy/BibleReader/BibleReader :: Setup.aspx | `legacy/BibleReader/BibleReader/Setup.aspx` | `legacy/BibleReader/BibleReader/Setup.aspx.cs` | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). |
 
 ## User Controls
 
@@ -50,21 +49,21 @@ _No artifacts found._
 
 ## Services And Handlers
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Code-Behind / Pair | Migration Note |
-| --- | --- | --- | --- | --- |
-| Service | legacy/BibleReader/BibleReader :: BibleService.asmx | `legacy/BibleReader/BibleReader/BibleService.asmx` | `legacy/BibleReader/BibleReader/BibleService.asmx.cs` | Legacy endpoint surface; map to ASP.NET Core APIs/services. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Code-Behind / Pair | Migration Note |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-001 | Partial | Service | legacy/BibleReader/BibleReader :: BibleService.asmx | `legacy/BibleReader/BibleReader/BibleService.asmx` | `legacy/BibleReader/BibleReader/BibleService.asmx.cs` | Legacy endpoint surface; map to ASP.NET Core APIs/services. |
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/BibleReader/BibleReader :: About | `legacy/BibleReader/BibleReader/About.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader/Account :: ChangePassword | `legacy/BibleReader/BibleReader/Account/ChangePassword.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader/Account :: ChangePasswordSuccess | `legacy/BibleReader/BibleReader/Account/ChangePasswordSuccess.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader/Account :: Login | `legacy/BibleReader/BibleReader/Account/Login.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader/Account :: Register | `legacy/BibleReader/BibleReader/Account/Register.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader :: BibleService | `legacy/BibleReader/BibleReader/BibleService.asmx.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader :: Default | `legacy/BibleReader/BibleReader/Default.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader :: Global.asax | `legacy/BibleReader/BibleReader/Global.asax.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader :: Setup | `legacy/BibleReader/BibleReader/Setup.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/BibleReader/BibleReader :: Site | `legacy/BibleReader/BibleReader/Site.Master.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-001 | Partial | Class Component | legacy/BibleReader/BibleReader :: About | `legacy/BibleReader/BibleReader/About.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-001 | Partial | Class Component | legacy/BibleReader/BibleReader/Account :: ChangePassword | `legacy/BibleReader/BibleReader/Account/ChangePassword.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-001 | Partial | Class Component | legacy/BibleReader/BibleReader/Account :: ChangePasswordSuccess | `legacy/BibleReader/BibleReader/Account/ChangePasswordSuccess.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-001 | Partial | Class Component | legacy/BibleReader/BibleReader/Account :: Login | `legacy/BibleReader/BibleReader/Account/Login.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-001 | Partial | Class Component | legacy/BibleReader/BibleReader/Account :: Register | `legacy/BibleReader/BibleReader/Account/Register.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-001 | Partial | Class Component | legacy/BibleReader/BibleReader :: BibleService | `legacy/BibleReader/BibleReader/BibleService.asmx.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-001 | Partial | Class Component | legacy/BibleReader/BibleReader :: Default | `legacy/BibleReader/BibleReader/Default.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-001 | Partial | Class Component | legacy/BibleReader/BibleReader :: Global.asax | `legacy/BibleReader/BibleReader/Global.asax.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-001 | Partial | Class Component | legacy/BibleReader/BibleReader :: Setup | `legacy/BibleReader/BibleReader/Setup.aspx.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-001 | Partial | Class Component | legacy/BibleReader/BibleReader :: Site | `legacy/BibleReader/BibleReader/Site.Master.cs` | Library/business component; assess API compatibility and dependencies. |

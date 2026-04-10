@@ -27,10 +27,10 @@
 
 ## Pages And Views
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Code-Behind / Pair | Migration Note |
-| --- | --- | --- | --- | --- |
-| XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App.xaml | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml` | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` | Desktop UI artifact; assess target desktop strategy. |
-| XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow.xaml | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml` | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` | Desktop UI artifact; assess target desktop strategy. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Code-Behind / Pair | Migration Note |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-044 | Not Stated | XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App.xaml | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml` | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` | Desktop UI artifact; assess target desktop strategy. |
+| LGC-044 | Not Stated | XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow.xaml | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml` | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` | Desktop UI artifact; assess target desktop strategy. |
 
 ## User Controls
 
@@ -42,7 +42,7 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-044 | Not Stated | Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-044 | Not Stated | Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` | Library/business component; assess API compatibility and dependencies. |

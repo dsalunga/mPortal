@@ -39,7 +39,7 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
-| --- | --- | --- | --- |
-| Class Component | legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer :: FormMain | `legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer/FormMain.cs` | Library/business component; assess API compatibility and dependencies. |
-| Class Component | legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer :: Program | `legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer/Program.cs` | Library/business component; assess API compatibility and dependencies. |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Source File | Migration Note |
+| --- | --- | --- | --- | --- | --- |
+| LGC-048 | Not Stated | Class Component | legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer :: FormMain | `legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer/FormMain.cs` | Library/business component; assess API compatibility and dependencies. |
+| LGC-048 | Not Stated | Class Component | legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer :: Program | `legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer/Program.cs` | Library/business component; assess API compatibility and dependencies. |
