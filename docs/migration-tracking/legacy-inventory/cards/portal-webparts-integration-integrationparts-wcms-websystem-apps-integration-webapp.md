@@ -352,20 +352,20 @@
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Service/Handler Endpoint | `Apps/Integration/BibleReader` | `BibleService` | `Apps/Integration/BibleReader/BibleService.asmx` | Not Stated | `TBD` |
+| Service/Handler Endpoint | `Apps/Integration/BibleReader` | `BibleService` | `Apps/Integration/BibleReader/BibleService.asmx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
 | Controller Component | `Apps/Integration/Controllers` | `AttendanceController` | `Apps/Integration/Controllers/AttendanceController.cs` | Not Stated | `TBD` |
 | Controller Component | `Apps/Integration/Controllers` | `MemberController` | `Apps/Integration/Controllers/MemberController.cs` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration` | `External` | `Apps/Integration/External.asmx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration` | `MakeUp` | `Apps/Integration/MakeUp.ashx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration` | `Member` | `Apps/Integration/Member.asmx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration` | `Member` | `Apps/Integration/Member.svc` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration` | `MemberVisitPrintPreview` | `Apps/Integration/MemberVisitPrintPreview.ashx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration` | `Music` | `Apps/Integration/Music.svc` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration/MusicCompetition` | `ASOP-WS` | `Apps/Integration/MusicCompetition/ASOP-WS.asmx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration/Profile/LessonReviewer` | `Playback` | `Apps/Integration/Profile/LessonReviewer/Playback.ashx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration/Profile` | `MemberService` | `Apps/Integration/Profile/MemberService.asmx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration/Registration` | `DataSync` | `Apps/Integration/Registration/DataSync.svc` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Apps/Integration/Streaming` | `VerifySession` | `Apps/Integration/Streaming/VerifySession.ashx` | Not Stated | `TBD` |
+| Service/Handler Endpoint | `Apps/Integration` | `External` | `Apps/Integration/External.asmx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Apps/Integration` | `MakeUp` | `Apps/Integration/MakeUp.ashx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Apps/Integration` | `Member` | `Apps/Integration/Member.asmx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Apps/Integration` | `Member` | `Apps/Integration/Member.svc` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Apps/Integration` | `MemberVisitPrintPreview` | `Apps/Integration/MemberVisitPrintPreview.ashx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Apps/Integration` | `Music` | `Apps/Integration/Music.svc` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Apps/Integration/MusicCompetition` | `ASOP-WS` | `Apps/Integration/MusicCompetition/ASOP-WS.asmx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Apps/Integration/Profile/LessonReviewer` | `Playback` | `Apps/Integration/Profile/LessonReviewer/Playback.ashx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Apps/Integration/Profile` | `MemberService` | `Apps/Integration/Profile/MemberService.asmx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Apps/Integration/Registration` | `DataSync` | `Apps/Integration/Registration/DataSync.svc` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Apps/Integration/Streaming` | `VerifySession` | `Apps/Integration/Streaming/VerifySession.ashx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
 
 ## Core Components And Utilities
 
@@ -628,7 +628,7 @@
 | Configuration/Resource | `(root)` | `Web.Debug` | `Web.Debug.config` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `Web.Release` | `Web.Release.config` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `Web` | `Web.config` | Not Stated | `TBD` |
-| Build/Automation Script | `(root)` | `create-junction` | `create-junction.cmd` | Not Stated | `TBD` |
+| Build/Automation Script | `(root)` | `create-junction` | `create-junction.cmd` | Do Not Migrate As-Is | Legacy script pattern; replace with modern CI/CD and environment automation. |
 | Build/Automation Script | `(root)` | `delete-junction` | `delete-junction.cmd` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | `TBD` |
 

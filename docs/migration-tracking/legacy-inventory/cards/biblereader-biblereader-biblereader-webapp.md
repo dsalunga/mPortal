@@ -59,7 +59,7 @@
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Service/Handler Endpoint | `(root)` | `BibleService` | `BibleService.asmx` | Not Stated | `TBD` |
+| Service/Handler Endpoint | `(root)` | `BibleService` | `BibleService.asmx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
 | Application Lifecycle | `(root)` | `Global.asax` | `Global.asax.cs` | Not Stated | `TBD` |
 
 ## Core Components And Utilities

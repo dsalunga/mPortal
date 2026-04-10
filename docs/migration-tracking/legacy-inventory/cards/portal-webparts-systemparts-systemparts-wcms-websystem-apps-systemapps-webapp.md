@@ -301,10 +301,10 @@
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Service/Handler Endpoint | `AppBundle/Article` | `EmailPreview` | `AppBundle/Article/EmailPreview.ashx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `AppBundle/Content` | `Service` | `AppBundle/Content/Service.svc` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `AppBundle/FileManager` | `Download` | `AppBundle/FileManager/Download.ashx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `AppBundle/FileManager` | `Indexer` | `AppBundle/FileManager/Indexer.asmx` | Not Stated | `TBD` |
+| Service/Handler Endpoint | `AppBundle/Article` | `EmailPreview` | `AppBundle/Article/EmailPreview.ashx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `AppBundle/Content` | `Service` | `AppBundle/Content/Service.svc` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `AppBundle/FileManager` | `Download` | `AppBundle/FileManager/Download.ashx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `AppBundle/FileManager` | `Indexer` | `AppBundle/FileManager/Indexer.asmx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
 
 ## Core Components And Utilities
 
@@ -444,7 +444,7 @@
 | Configuration/Resource | `AppBundle/Content` | `wcms-config` | `AppBundle/Content/wcms-config.xml` | Not Stated | `TBD` |
 | Frontend Asset | `AppBundle/EventCalendar` | `AdminEvent.ascx` | `AppBundle/EventCalendar/AdminEvent.ascx.js` | Not Stated | `TBD` |
 | Configuration/Resource | `AppBundle/WeeklyScheduler/Templates` | `Default` | `AppBundle/WeeklyScheduler/Templates/Default.xml` | Not Stated | `TBD` |
-| Build/Automation Script | `(root)` | `create-junction` | `create-junction.cmd` | Not Stated | `TBD` |
+| Build/Automation Script | `(root)` | `create-junction` | `create-junction.cmd` | Do Not Migrate As-Is | Legacy script pattern; replace with modern CI/CD and environment automation. |
 | Build/Automation Script | `(root)` | `delete-junction` | `delete-junction.cmd` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `web.Debug` | `web.Debug.config` | Not Stated | `TBD` |

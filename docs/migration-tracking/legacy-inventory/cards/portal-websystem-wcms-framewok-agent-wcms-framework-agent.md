@@ -9,8 +9,8 @@
 | Assembly Name | `WCMS.Framework.Agent` |
 | Target Framework | `v4.8` |
 | Output Type | `Exe` |
-| Migration Status | Not Stated |
-| Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Migration Status | Blocked |
+| Status Basis | Thread-abort scheduler model cannot be migrated directly; requires durable job orchestration redesign. |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -26,14 +26,14 @@
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Application Entry Point | `(root)` | `Program` | `Program.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
+| Application Entry Point | `(root)` | `Program` | `Program.cs` | Blocked | Blocked: replace thread-abort scheduler with durable jobs. |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Blocked | Blocked: replace thread-abort scheduler with durable jobs. |
 
 ## Database And Automation Assets
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Configuration/Resource | `(root)` | `App` | `App.config` | Not Stated | `TBD` |
+| Configuration/Resource | `(root)` | `App` | `App.config` | Blocked | Blocked: replace thread-abort scheduler with durable jobs. |
 
 ## Migration Action Items
 

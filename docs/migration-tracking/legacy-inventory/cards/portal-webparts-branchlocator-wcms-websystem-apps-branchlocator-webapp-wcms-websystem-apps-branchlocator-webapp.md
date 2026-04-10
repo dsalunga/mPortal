@@ -96,7 +96,7 @@
 | Configuration/Resource | `(root)` | `Web.Debug` | `Web.Debug.config` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `Web.Release` | `Web.Release.config` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `Web` | `Web.config` | Not Stated | `TBD` |
-| Build/Automation Script | `(root)` | `create-junction` | `create-junction.cmd` | Not Stated | `TBD` |
+| Build/Automation Script | `(root)` | `create-junction` | `create-junction.cmd` | Do Not Migrate As-Is | Legacy script pattern; replace with modern CI/CD and environment automation. |
 | Build/Automation Script | `(root)` | `delete-junction` | `delete-junction.cmd` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | `TBD` |
 

@@ -37,8 +37,8 @@
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Core Component | `Agent` | `AgentTaskBase` | `Agent/AgentTaskBase.cs` | Not Stated | `TBD` |
-| Core Component | `Agent` | `FrameworkAgent` | `Agent/FrameworkAgent.cs` | Not Stated | `TBD` |
+| Core Component | `Agent` | `AgentTaskBase` | `Agent/AgentTaskBase.cs` | Blocked | Legacy thread/service execution model; requires durable job orchestration redesign. |
+| Core Component | `Agent` | `FrameworkAgent` | `Agent/FrameworkAgent.cs` | Blocked | Legacy thread/service execution model; requires durable job orchestration redesign. |
 | Task/Job Component | `Agent` | `ITask` | `Agent/ITask.cs` | Not Stated | `TBD` |
 | Core Component | `Agent` | `ITaskRequest` | `Agent/ITaskRequest.cs` | Not Stated | `TBD` |
 | Core Component | `Caching` | `DataSetCache` | `Caching/DataSetCache.cs` | Not Stated | `TBD` |
@@ -242,11 +242,11 @@
 | Core Component | `SiteModel` | `WebTemplate` | `SiteModel/WebTemplate.cs` | Not Stated | `TBD` |
 | Core Component | `SiteModel` | `WebTemplatePanel` | `SiteModel/WebTemplatePanel.cs` | Not Stated | `TBD` |
 | Core Component | `SiteModel` | `WebTheme` | `SiteModel/WebTheme.cs` | Not Stated | `TBD` |
-| Helper Component | `Utilities` | `AccountHelper` | `Utilities/AccountHelper.cs` | Not Stated | `TBD` |
+| Helper Component | `Utilities` | `AccountHelper` | `Utilities/AccountHelper.cs` | Blocked | Legacy security/auth/session pattern; migrate via modern identity and secrets architecture. |
 | Helper Component | `Utilities` | `HtmlHelper` | `Utilities/HtmlHelper.cs` | Not Stated | `TBD` |
-| Core Component | `Utilities` | `LoginSecurity` | `Utilities/LoginSecurity.cs` | Not Stated | `TBD` |
+| Core Component | `Utilities` | `LoginSecurity` | `Utilities/LoginSecurity.cs` | Blocked | Legacy security/auth/session pattern; migrate via modern identity and secrets architecture. |
 | Helper Component | `Utilities` | `ParameterHelper` | `Utilities/ParameterHelper.cs` | Not Stated | `TBD` |
-| Helper Component | `Utilities` | `SecurityHelper` | `Utilities/SecurityHelper.cs` | Not Stated | `TBD` |
+| Helper Component | `Utilities` | `SecurityHelper` | `Utilities/SecurityHelper.cs` | Blocked | Legacy security/auth/session pattern; migrate via modern identity and secrets architecture. |
 | Helper Component | `Utilities` | `SyncHelper` | `Utilities/SyncHelper.cs` | Not Stated | `TBD` |
 | Core Component | `Utilities` | `UserDataTag` | `Utilities/UserDataTag.cs` | Not Stated | `TBD` |
 | Core Component | `Utilities` | `UserIdEqualityComparer` | `Utilities/UserIdEqualityComparer.cs` | Not Stated | `TBD` |
@@ -264,7 +264,7 @@
 | Core Component | `(root)` | `WFrameworkModel.Context` | `WFrameworkModel.Context.cs` | Not Stated | `TBD` |
 | Core Component | `(root)` | `WFrameworkModel` | `WFrameworkModel.cs` | Not Stated | `TBD` |
 | Core Component | `(root)` | `WQuery` | `WQuery.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `WSession` | `WSession.cs` | Not Stated | `TBD` |
+| Core Component | `(root)` | `WSession` | `WSession.cs` | Blocked | Legacy security/auth/session pattern; migrate via modern identity and secrets architecture. |
 | Core Component | `(root)` | `WebCategory` | `WebCategory.cs` | Not Stated | `TBD` |
 | Core Component | `(root)` | `WebRewriter` | `WebRewriter.cs` | Not Stated | `TBD` |
 | Core Component | `(root)` | `WebUserContainer` | `WebUserContainer.cs` | Not Stated | `TBD` |

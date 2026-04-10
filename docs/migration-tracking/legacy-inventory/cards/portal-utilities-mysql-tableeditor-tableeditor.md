@@ -9,8 +9,8 @@
 | Assembly Name | `TableEditor` |
 | Target Framework | `v4.7` |
 | Output Type | `WinExe` |
-| Migration Status | Not Stated |
-| Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Migration Status | Do Not Migrate As-Is |
+| Status Basis | Legacy MySQL table editor is outside core product scope and has high operational risk. |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -26,17 +26,17 @@
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Assembly Metadata | `(root)` | `AssemblyInfo` | `AssemblyInfo.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `Form1` | `Form1.cs` | Not Stated | `TBD` |
+| Assembly Metadata | `(root)` | `AssemblyInfo` | `AssemblyInfo.cs` | Do Not Migrate As-Is | Legacy DB editor; retire/replace with controlled admin tooling. |
+| Core Component | `(root)` | `Form1` | `Form1.cs` | Do Not Migrate As-Is | Legacy DB editor; retire/replace with controlled admin tooling. |
 
 ## Database And Automation Assets
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Configuration/Resource | `(root)` | `Form1` | `Form1.resx` | Not Stated | `TBD` |
-| Configuration/Resource | `(root)` | `app` | `app.config` | Not Stated | `TBD` |
-| Configuration/Resource | `(root)` | `nuget` | `nuget.config` | Not Stated | `TBD` |
-| Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | `TBD` |
+| Configuration/Resource | `(root)` | `Form1` | `Form1.resx` | Do Not Migrate As-Is | Legacy DB editor; retire/replace with controlled admin tooling. |
+| Configuration/Resource | `(root)` | `app` | `app.config` | Do Not Migrate As-Is | Legacy DB editor; retire/replace with controlled admin tooling. |
+| Configuration/Resource | `(root)` | `nuget` | `nuget.config` | Do Not Migrate As-Is | Legacy DB editor; retire/replace with controlled admin tooling. |
+| Configuration/Resource | `(root)` | `packages` | `packages.config` | Do Not Migrate As-Is | Legacy DB editor; retire/replace with controlled admin tooling. |
 
 ## Migration Action Items
 

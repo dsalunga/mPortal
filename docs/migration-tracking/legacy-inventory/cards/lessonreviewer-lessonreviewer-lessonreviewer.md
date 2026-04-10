@@ -52,8 +52,8 @@
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
 | Application Lifecycle | `(root)` | `Global.asax` | `Global.asax.cs` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Handlers` | `AjaxHandler` | `Handlers/AjaxHandler.ashx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `Handlers` | `Playback` | `Handlers/Playback.ashx` | Not Stated | `TBD` |
+| Service/Handler Endpoint | `Handlers` | `AjaxHandler` | `Handlers/AjaxHandler.ashx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `Handlers` | `Playback` | `Handlers/Playback.ashx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
 
 ## Core Components And Utilities
 

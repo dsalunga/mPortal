@@ -144,10 +144,10 @@
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Service/Handler Endpoint | `AppBundle2/Download` | `Handler` | `AppBundle2/Download/Handler.ashx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `AppBundle2/FlashBanner` | `FlashService` | `AppBundle2/FlashBanner/FlashService.asmx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `AppBundle2/FlashBanner` | `Handler` | `AppBundle2/FlashBanner/Handler.ashx` | Not Stated | `TBD` |
-| Service/Handler Endpoint | `AppBundle2/Social` | `WebService` | `AppBundle2/Social/WebService.asmx` | Not Stated | `TBD` |
+| Service/Handler Endpoint | `AppBundle2/Download` | `Handler` | `AppBundle2/Download/Handler.ashx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `AppBundle2/FlashBanner` | `FlashService` | `AppBundle2/FlashBanner/FlashService.asmx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `AppBundle2/FlashBanner` | `Handler` | `AppBundle2/FlashBanner/Handler.ashx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
+| Service/Handler Endpoint | `AppBundle2/Social` | `WebService` | `AppBundle2/Social/WebService.asmx` | Blocked | Legacy endpoint surface; redesign to modern API/adapter before migration. |
 
 ## Core Components And Utilities
 
@@ -212,7 +212,7 @@
 | Frontend Asset | `AppBundle2/Social/css` | `social.min` | `AppBundle2/Social/css/social.min.css` | Not Stated | `TBD` |
 | Frontend Asset | `AppBundle2/Social/js` | `social` | `AppBundle2/Social/js/social.js` | Not Stated | `TBD` |
 | Frontend Asset | `AppBundle2/Social/js` | `social.min` | `AppBundle2/Social/js/social.min.js` | Not Stated | `TBD` |
-| Build/Automation Script | `(root)` | `create-junction` | `create-junction.cmd` | Not Stated | `TBD` |
+| Build/Automation Script | `(root)` | `create-junction` | `create-junction.cmd` | Do Not Migrate As-Is | Legacy script pattern; replace with modern CI/CD and environment automation. |
 | Build/Automation Script | `(root)` | `delete-junction` | `delete-junction.cmd` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `web.Debug` | `web.Debug.config` | Not Stated | `TBD` |

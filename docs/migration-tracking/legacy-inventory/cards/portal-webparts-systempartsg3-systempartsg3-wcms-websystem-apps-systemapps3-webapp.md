@@ -69,7 +69,7 @@
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
 | Configuration/Resource | `AppBundle3/Jobs/Xml` | `Countries` | `AppBundle3/Jobs/Xml/Countries.xml` | Not Stated | `TBD` |
-| Build/Automation Script | `(root)` | `create-junction` | `create-junction.cmd` | Not Stated | `TBD` |
+| Build/Automation Script | `(root)` | `create-junction` | `create-junction.cmd` | Do Not Migrate As-Is | Legacy script pattern; replace with modern CI/CD and environment automation. |
 | Build/Automation Script | `(root)` | `delete-junction` | `delete-junction.cmd` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | `TBD` |
 | Configuration/Resource | `(root)` | `web.Debug` | `web.Debug.config` | Not Stated | `TBD` |

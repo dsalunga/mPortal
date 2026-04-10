@@ -9,8 +9,8 @@
 | Assembly Name | `PostBuildManager` |
 | Target Framework | `v4.7` |
 | Output Type | `Exe` |
-| Migration Status | Not Stated |
-| Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Migration Status | Blocked |
+| Status Basis | Depends on legacy post-build/release mechanics; migrate only after CI/CD redesign. |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -26,14 +26,14 @@
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Application Entry Point | `(root)` | `Program` | `Program.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
+| Application Entry Point | `(root)` | `Program` | `Program.cs` | Blocked | Blocked pending modern build/release pipeline. |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Blocked | Blocked pending modern build/release pipeline. |
 
 ## Database And Automation Assets
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Configuration/Resource | `(root)` | `app` | `app.config` | Not Stated | `TBD` |
+| Configuration/Resource | `(root)` | `app` | `app.config` | Blocked | Blocked pending modern build/release pipeline. |
 
 ## Migration Action Items
 

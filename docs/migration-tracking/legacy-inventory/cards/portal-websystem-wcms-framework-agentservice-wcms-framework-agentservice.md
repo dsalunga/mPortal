@@ -9,8 +9,8 @@
 | Assembly Name | `WCMS.Framework.AgentService` |
 | Target Framework | `v4.8` |
 | Output Type | `WinExe` |
-| Migration Status | Not Stated |
-| Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Migration Status | Blocked |
+| Status Basis | Service host is coupled to legacy agent runtime and needs architectural redesign. |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -28,22 +28,22 @@
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Generated UI Partial | `(root)` | `FrameworkAgentService.Designer` | `FrameworkAgentService.Designer.cs` | Not Stated | `TBD` |
+| Generated UI Partial | `(root)` | `FrameworkAgentService.Designer` | `FrameworkAgentService.Designer.cs` | Blocked | Blocked pending agent runtime redesign. |
 
 ## Core Components And Utilities
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Core Component | `(root)` | `FrameworkAgentService` | `FrameworkAgentService.cs` | Not Stated | `TBD` |
-| Application Entry Point | `(root)` | `Program` | `Program.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
+| Core Component | `(root)` | `FrameworkAgentService` | `FrameworkAgentService.cs` | Blocked | Legacy thread/service execution model; requires durable job orchestration redesign. |
+| Application Entry Point | `(root)` | `Program` | `Program.cs` | Blocked | Blocked pending agent runtime redesign. |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Blocked | Blocked pending agent runtime redesign. |
 
 ## Database And Automation Assets
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Configuration/Resource | `(root)` | `App` | `App.config` | Not Stated | `TBD` |
-| Configuration/Resource | `(root)` | `FrameworkAgentService` | `FrameworkAgentService.resx` | Not Stated | `TBD` |
+| Configuration/Resource | `(root)` | `App` | `App.config` | Blocked | Blocked pending agent runtime redesign. |
+| Configuration/Resource | `(root)` | `FrameworkAgentService` | `FrameworkAgentService.resx` | Blocked | Blocked pending agent runtime redesign. |
 
 ## Migration Action Items
 

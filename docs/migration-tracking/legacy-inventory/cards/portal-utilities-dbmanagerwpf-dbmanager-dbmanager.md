@@ -9,8 +9,8 @@
 | Assembly Name | `DbManager` |
 | Target Framework | `v4.0` |
 | Output Type | `WinExe` |
-| Migration Status | Not Stated |
-| Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Migration Status | Do Not Migrate As-Is |
+| Status Basis | WPF shell has minimal operational behavior; replace only if a validated modern tooling need exists. |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -28,24 +28,24 @@
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| User Control/UI | `(root)` | `App` | `App.xaml` | Not Stated | `TBD` |
-| User Control/UI | `(root)` | `MainWindow` | `MainWindow.xaml` | Not Stated | `TBD` |
-| Generated UI Partial | `Properties` | `Resources.Designer` | `Properties/Resources.Designer.cs` | Not Stated | `TBD` |
-| Generated UI Partial | `Properties` | `Settings.Designer` | `Properties/Settings.Designer.cs` | Not Stated | `TBD` |
+| User Control/UI | `(root)` | `App` | `App.xaml` | Do Not Migrate As-Is | Legacy utility shell; do not lift-and-shift. |
+| User Control/UI | `(root)` | `MainWindow` | `MainWindow.xaml` | Do Not Migrate As-Is | Legacy utility shell; do not lift-and-shift. |
+| Generated UI Partial | `Properties` | `Resources.Designer` | `Properties/Resources.Designer.cs` | Do Not Migrate As-Is | Legacy utility shell; do not lift-and-shift. |
+| Generated UI Partial | `Properties` | `Settings.Designer` | `Properties/Settings.Designer.cs` | Do Not Migrate As-Is | Legacy utility shell; do not lift-and-shift. |
 
 ## Core Components And Utilities
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Core Component | `(root)` | `App.xaml` | `App.xaml.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `MainWindow.xaml` | `MainWindow.xaml.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
+| Core Component | `(root)` | `App.xaml` | `App.xaml.cs` | Do Not Migrate As-Is | Legacy utility shell; do not lift-and-shift. |
+| Core Component | `(root)` | `MainWindow.xaml` | `MainWindow.xaml.cs` | Do Not Migrate As-Is | Legacy utility shell; do not lift-and-shift. |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Do Not Migrate As-Is | Legacy utility shell; do not lift-and-shift. |
 
 ## Database And Automation Assets
 
 | Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
 |---|---|---|---|---|---|
-| Configuration/Resource | `Properties` | `Resources` | `Properties/Resources.resx` | Not Stated | `TBD` |
+| Configuration/Resource | `Properties` | `Resources` | `Properties/Resources.resx` | Do Not Migrate As-Is | Legacy utility shell; do not lift-and-shift. |
 
 ## Migration Action Items
 

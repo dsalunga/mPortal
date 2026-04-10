@@ -9,8 +9,8 @@
 | Assembly Name | `FredCK.FCKeditorV2.vs2003` |
 | Target Framework | `N/A` |
 | Output Type | `N/A` |
-| Migration Status | Deprecated |
-| Status Basis | Legacy VS2003 project artifact retained for backward compatibility/reference. |
+| Migration Status | Do Not Migrate As-Is |
+| Status Basis | VS2003-specific artifact is obsolete and retained for historical reference only. |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
