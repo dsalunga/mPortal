@@ -11,6 +11,7 @@
 | Output Type | `Library` |
 | Migration Status | Not Stated |
 | Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Target Alternative | TBD |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -22,9 +23,9 @@
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Core Component | `(root)` | `Media_Player_Control` | `Media_Player_Control.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Core Component | `(root)` | `Media_Player_Control` | `Media_Player_Control.cs` | Not Stated | TBD | `TBD` |
 
 ## Migration Action Items
 

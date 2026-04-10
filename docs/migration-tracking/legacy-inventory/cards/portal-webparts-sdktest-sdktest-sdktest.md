@@ -11,6 +11,7 @@
 | Output Type | `Library` |
 | Migration Status | Not Stated |
 | Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Target Alternative | TBD |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -26,27 +27,27 @@
 
 ## User Controls And UI Components
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| User Control/UI | `WebParts/Test` | `WebUserControl1` | `WebParts/Test/WebUserControl1.ascx` | Not Stated | `TBD` |
-| Generated UI Partial | `WebParts/Test` | `WebUserControl1.ascx.designer` | `WebParts/Test/WebUserControl1.ascx.designer.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| User Control/UI | `WebParts/Test` | `WebUserControl1` | `WebParts/Test/WebUserControl1.ascx` | Not Stated | TBD | `TBD` |
+| Generated UI Partial | `WebParts/Test` | `WebUserControl1.ascx.designer` | `WebParts/Test/WebUserControl1.ascx.designer.cs` | Not Stated | TBD | `TBD` |
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
-| Core Component | `WebParts/Test` | `WebUserControl1.ascx` | `WebParts/Test/WebUserControl1.ascx.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `WebParts/Test` | `WebUserControl1.ascx` | `WebParts/Test/WebUserControl1.ascx.cs` | Not Stated | TBD | `TBD` |
 
 ## Database And Automation Assets
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Configuration/Resource | `(root)` | `Merge` | `Merge.xml` | Not Stated | `TBD` |
-| Configuration/Resource | `WebParts/Test` | `Setup` | `WebParts/Test/Setup.xml` | Not Stated | `TBD` |
-| Configuration/Resource | `(root)` | `web.Debug` | `web.Debug.config` | Not Stated | `TBD` |
-| Configuration/Resource | `(root)` | `web.Release` | `web.Release.config` | Not Stated | `TBD` |
-| Configuration/Resource | `(root)` | `web` | `web.config` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Configuration/Resource | `(root)` | `Merge` | `Merge.xml` | Not Stated | TBD | `TBD` |
+| Configuration/Resource | `WebParts/Test` | `Setup` | `WebParts/Test/Setup.xml` | Not Stated | TBD | `TBD` |
+| Configuration/Resource | `(root)` | `web.Debug` | `web.Debug.config` | Not Stated | TBD | `TBD` |
+| Configuration/Resource | `(root)` | `web.Release` | `web.Release.config` | Not Stated | TBD | `TBD` |
+| Configuration/Resource | `(root)` | `web` | `web.config` | Not Stated | TBD | `TBD` |
 
 ## Migration Action Items
 

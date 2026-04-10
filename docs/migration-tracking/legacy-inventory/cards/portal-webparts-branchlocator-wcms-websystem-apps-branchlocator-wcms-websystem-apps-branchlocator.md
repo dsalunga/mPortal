@@ -11,6 +11,7 @@
 | Output Type | `Library` |
 | Migration Status | Not Stated |
 | Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Target Alternative | TBD |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -26,23 +27,23 @@
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Core Component | `(root)` | `Constants` | `Constants.cs` | Not Stated | `TBD` |
-| Helper Component | `(root)` | `FALHelper` | `FALHelper.cs` | Not Stated | `TBD` |
-| Provider Component | `(root)` | `IMChapterProvider` | `IMChapterProvider.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `MChapter` | `MChapter.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `MChapterExtra` | `MChapterExtra.cs` | Not Stated | `TBD` |
-| Provider Component | `(root)` | `MChapterSqlProvider` | `MChapterSqlProvider.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `MChapterViewModel` | `MChapterViewModel.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Core Component | `(root)` | `Constants` | `Constants.cs` | Not Stated | TBD | `TBD` |
+| Helper Component | `(root)` | `FALHelper` | `FALHelper.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `(root)` | `IMChapterProvider` | `IMChapterProvider.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `MChapter` | `MChapter.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `MChapterExtra` | `MChapterExtra.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `(root)` | `MChapterSqlProvider` | `MChapterSqlProvider.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `MChapterViewModel` | `MChapterViewModel.cs` | Not Stated | TBD | `TBD` |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | TBD | `TBD` |
 
 ## Database And Automation Assets
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Configuration/Resource | `(root)` | `App` | `App.config` | Not Stated | `TBD` |
-| Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Configuration/Resource | `(root)` | `App` | `App.config` | Not Stated | TBD | `TBD` |
+| Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | TBD | `TBD` |
 
 ## Migration Action Items
 

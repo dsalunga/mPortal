@@ -11,6 +11,7 @@
 | Output Type | `Library` |
 | Migration Status | Not Stated |
 | Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Target Alternative | TBD |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -25,22 +26,22 @@
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Core Component | `(root)` | `Constant` | `Constant.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `GenericWallEvent` | `GenericWallEvent.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `IWallUpdateEvent` | `IWallUpdateEvent.cs` | Not Stated | `TBD` |
-| Manager Component | `Managers` | `WallPluginManager` | `Managers/WallPluginManager.cs` | Not Stated | `TBD` |
-| Manager Component | `Managers` | `WallUpdateManager` | `Managers/WallUpdateManager.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `ProfileUpdateEvent` | `ProfileUpdateEvent.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IWallPluginProvider` | `Providers/IWallPluginProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IWallUpdateProvider` | `Providers/IWallUpdateProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `WallPluginSqlProvider` | `Providers/WallPluginSqlProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `WallUpdateSqlProvider` | `Providers/WallUpdateSqlProvider.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `WallPlugin` | `WallPlugin.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `WallUpdate` | `WallUpdate.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `WallUpdateEventBase` | `WallUpdateEventBase.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Core Component | `(root)` | `Constant` | `Constant.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `GenericWallEvent` | `GenericWallEvent.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `IWallUpdateEvent` | `IWallUpdateEvent.cs` | Not Stated | TBD | `TBD` |
+| Manager Component | `Managers` | `WallPluginManager` | `Managers/WallPluginManager.cs` | Not Stated | TBD | `TBD` |
+| Manager Component | `Managers` | `WallUpdateManager` | `Managers/WallUpdateManager.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `ProfileUpdateEvent` | `ProfileUpdateEvent.cs` | Not Stated | TBD | `TBD` |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IWallPluginProvider` | `Providers/IWallPluginProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IWallUpdateProvider` | `Providers/IWallUpdateProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `WallPluginSqlProvider` | `Providers/WallPluginSqlProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `WallUpdateSqlProvider` | `Providers/WallUpdateSqlProvider.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `WallPlugin` | `WallPlugin.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `WallUpdate` | `WallUpdate.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `WallUpdateEventBase` | `WallUpdateEventBase.cs` | Not Stated | TBD | `TBD` |
 
 ## Migration Action Items
 

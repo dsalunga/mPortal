@@ -11,6 +11,7 @@
 | Output Type | `Exe` |
 | Migration Status | Not Stated |
 | Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Target Alternative | TBD |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -24,16 +25,16 @@
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Application Entry Point | `(root)` | `Program` | `Program.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Application Entry Point | `(root)` | `Program` | `Program.cs` | Not Stated | TBD | `TBD` |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | TBD | `TBD` |
 
 ## Database And Automation Assets
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Configuration/Resource | `(root)` | `App` | `App.config` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Configuration/Resource | `(root)` | `App` | `App.config` | Not Stated | TBD | `TBD` |
 
 ## Migration Action Items
 

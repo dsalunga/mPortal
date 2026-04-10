@@ -11,6 +11,7 @@
 | Output Type | `Library` |
 | Migration Status | Not Stated |
 | Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Target Alternative | TBD |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -24,12 +25,12 @@
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Core Component | `Newsletter` | `NewsletterEntry` | `Newsletter/NewsletterEntry.cs` | Not Stated | `TBD` |
-| Provider Component | `Newsletter/Providers` | `INewsletterProvider` | `Newsletter/Providers/INewsletterProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Newsletter/Providers` | `NewsletterSqlProvider` | `Newsletter/Providers/NewsletterSqlProvider.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Core Component | `Newsletter` | `NewsletterEntry` | `Newsletter/NewsletterEntry.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Newsletter/Providers` | `INewsletterProvider` | `Newsletter/Providers/INewsletterProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Newsletter/Providers` | `NewsletterSqlProvider` | `Newsletter/Providers/NewsletterSqlProvider.cs` | Not Stated | TBD | `TBD` |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | TBD | `TBD` |
 
 ## Migration Action Items
 

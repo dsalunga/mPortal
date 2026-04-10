@@ -11,6 +11,7 @@
 | Output Type | `WinExe` |
 | Migration Status | Blocked |
 | Status Basis | Service host is coupled to legacy agent runtime and needs architectural redesign. |
+| Target Alternative | Replace Windows service host with modern background worker orchestration and observability. |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -26,24 +27,24 @@
 
 ## User Controls And UI Components
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Generated UI Partial | `(root)` | `FrameworkAgentService.Designer` | `FrameworkAgentService.Designer.cs` | Blocked | Blocked pending agent runtime redesign. |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Generated UI Partial | `(root)` | `FrameworkAgentService.Designer` | `FrameworkAgentService.Designer.cs` | Blocked | Replace Windows service host with modern background worker orchestration and observability. | Blocked pending agent runtime redesign. |
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Core Component | `(root)` | `FrameworkAgentService` | `FrameworkAgentService.cs` | Blocked | Legacy thread/service execution model; requires durable job orchestration redesign. |
-| Application Entry Point | `(root)` | `Program` | `Program.cs` | Blocked | Blocked pending agent runtime redesign. |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Blocked | Blocked pending agent runtime redesign. |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Core Component | `(root)` | `FrameworkAgentService` | `FrameworkAgentService.cs` | Blocked | Replace with durable job orchestration and safe cancellation semantics. | Legacy thread/service execution model; requires durable job orchestration redesign. |
+| Application Entry Point | `(root)` | `Program` | `Program.cs` | Blocked | Replace Windows service host with modern background worker orchestration and observability. | Blocked pending agent runtime redesign. |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Blocked | Replace Windows service host with modern background worker orchestration and observability. | Blocked pending agent runtime redesign. |
 
 ## Database And Automation Assets
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Configuration/Resource | `(root)` | `App` | `App.config` | Blocked | Blocked pending agent runtime redesign. |
-| Configuration/Resource | `(root)` | `FrameworkAgentService` | `FrameworkAgentService.resx` | Blocked | Blocked pending agent runtime redesign. |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Configuration/Resource | `(root)` | `App` | `App.config` | Blocked | Replace Windows service host with modern background worker orchestration and observability. | Blocked pending agent runtime redesign. |
+| Configuration/Resource | `(root)` | `FrameworkAgentService` | `FrameworkAgentService.resx` | Blocked | Replace Windows service host with modern background worker orchestration and observability. | Blocked pending agent runtime redesign. |
 
 ## Migration Action Items
 

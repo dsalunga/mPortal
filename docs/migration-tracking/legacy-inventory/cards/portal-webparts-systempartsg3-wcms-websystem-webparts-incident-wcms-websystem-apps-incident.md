@@ -11,6 +11,7 @@
 | Output Type | `Library` |
 | Migration Status | Not Stated |
 | Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Target Alternative | TBD |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -26,27 +27,27 @@
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Core Component | `(root)` | `Constants` | `Constants.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `IncidentCategory` | `IncidentCategory.cs` | Not Stated | `TBD` |
-| Helper Component | `(root)` | `IncidentHelper` | `IncidentHelper.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `IncidentInstance` | `IncidentInstance.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `IncidentTicket` | `IncidentTicket.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `IncidentTicketHistory` | `IncidentTicketHistory.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `IncidentType` | `IncidentType.cs` | Not Stated | `TBD` |
-| Manager Component | `Managers` | `IncidentCategoryManager` | `Managers/IncidentCategoryManager.cs` | Not Stated | `TBD` |
-| Manager Component | `Managers` | `IncidentTypeManager` | `Managers/IncidentTypeManager.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IIncidentCategoryProvider` | `Providers/IIncidentCategoryProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IIncidentTicketHistoryProvider` | `Providers/IIncidentTicketHistoryProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IIncidentTicketProvider` | `Providers/IIncidentTicketProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IIncidentTypeProvider` | `Providers/IIncidentTypeProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IncidentCategoryProvider` | `Providers/IncidentCategoryProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IncidentInstanceProvider` | `Providers/IncidentInstanceProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IncidentTicketHistoryProvider` | `Providers/IncidentTicketHistoryProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IncidentTicketProvider` | `Providers/IncidentTicketProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IncidentTypeProvider` | `Providers/IncidentTypeProvider.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Core Component | `(root)` | `Constants` | `Constants.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `IncidentCategory` | `IncidentCategory.cs` | Not Stated | TBD | `TBD` |
+| Helper Component | `(root)` | `IncidentHelper` | `IncidentHelper.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `IncidentInstance` | `IncidentInstance.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `IncidentTicket` | `IncidentTicket.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `IncidentTicketHistory` | `IncidentTicketHistory.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `IncidentType` | `IncidentType.cs` | Not Stated | TBD | `TBD` |
+| Manager Component | `Managers` | `IncidentCategoryManager` | `Managers/IncidentCategoryManager.cs` | Not Stated | TBD | `TBD` |
+| Manager Component | `Managers` | `IncidentTypeManager` | `Managers/IncidentTypeManager.cs` | Not Stated | TBD | `TBD` |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IIncidentCategoryProvider` | `Providers/IIncidentCategoryProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IIncidentTicketHistoryProvider` | `Providers/IIncidentTicketHistoryProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IIncidentTicketProvider` | `Providers/IIncidentTicketProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IIncidentTypeProvider` | `Providers/IIncidentTypeProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IncidentCategoryProvider` | `Providers/IncidentCategoryProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IncidentInstanceProvider` | `Providers/IncidentInstanceProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IncidentTicketHistoryProvider` | `Providers/IncidentTicketHistoryProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IncidentTicketProvider` | `Providers/IncidentTicketProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IncidentTypeProvider` | `Providers/IncidentTypeProvider.cs` | Not Stated | TBD | `TBD` |
 
 ## Migration Action Items
 

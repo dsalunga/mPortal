@@ -11,6 +11,7 @@
 | Output Type | `Library` |
 | Migration Status | Not Stated |
 | Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Target Alternative | TBD |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -24,13 +25,13 @@
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Core Component | `(root)` | `Job` | `Job.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `JobResult` | `JobResult.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `IJobProvider` | `Providers/IJobProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `JobSqlProvider` | `Providers/JobSqlProvider.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Core Component | `(root)` | `Job` | `Job.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `JobResult` | `JobResult.cs` | Not Stated | TBD | `TBD` |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `IJobProvider` | `Providers/IJobProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `JobSqlProvider` | `Providers/JobSqlProvider.cs` | Not Stated | TBD | `TBD` |
 
 ## Migration Action Items
 

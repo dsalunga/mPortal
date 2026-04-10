@@ -11,6 +11,7 @@
 | Output Type | `WinExe` |
 | Migration Status | Do Not Migrate As-Is |
 | Status Basis | Manual desktop deploy copier should be replaced with automated deployment workflows. |
+| Target Alternative | Replace manual desktop deploy flow with automated release/deploy pipeline. |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -26,27 +27,27 @@
 
 ## User Controls And UI Components
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Generated UI Partial | `(root)` | `FormMain.Designer` | `FormMain.Designer.cs` | Do Not Migrate As-Is | Manual deploy utility; replace with CI/CD automation. |
-| Generated UI Partial | `Properties` | `Resources.Designer` | `Properties/Resources.Designer.cs` | Do Not Migrate As-Is | Manual deploy utility; replace with CI/CD automation. |
-| Generated UI Partial | `Properties` | `Settings.Designer` | `Properties/Settings.Designer.cs` | Do Not Migrate As-Is | Manual deploy utility; replace with CI/CD automation. |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Generated UI Partial | `(root)` | `FormMain.Designer` | `FormMain.Designer.cs` | Do Not Migrate As-Is | Replace manual desktop deploy flow with automated release/deploy pipeline. | Manual deploy utility; replace with CI/CD automation. |
+| Generated UI Partial | `Properties` | `Resources.Designer` | `Properties/Resources.Designer.cs` | Do Not Migrate As-Is | Replace manual desktop deploy flow with automated release/deploy pipeline. | Manual deploy utility; replace with CI/CD automation. |
+| Generated UI Partial | `Properties` | `Settings.Designer` | `Properties/Settings.Designer.cs` | Do Not Migrate As-Is | Replace manual desktop deploy flow with automated release/deploy pipeline. | Manual deploy utility; replace with CI/CD automation. |
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Core Component | `(root)` | `FormMain` | `FormMain.cs` | Do Not Migrate As-Is | Manual deploy utility; replace with CI/CD automation. |
-| Application Entry Point | `(root)` | `Program` | `Program.cs` | Do Not Migrate As-Is | Manual deploy utility; replace with CI/CD automation. |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Do Not Migrate As-Is | Manual deploy utility; replace with CI/CD automation. |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Core Component | `(root)` | `FormMain` | `FormMain.cs` | Do Not Migrate As-Is | Replace manual desktop deploy flow with automated release/deploy pipeline. | Manual deploy utility; replace with CI/CD automation. |
+| Application Entry Point | `(root)` | `Program` | `Program.cs` | Do Not Migrate As-Is | Replace manual desktop deploy flow with automated release/deploy pipeline. | Manual deploy utility; replace with CI/CD automation. |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Do Not Migrate As-Is | Replace manual desktop deploy flow with automated release/deploy pipeline. | Manual deploy utility; replace with CI/CD automation. |
 
 ## Database And Automation Assets
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Configuration/Resource | `(root)` | `App` | `App.config` | Do Not Migrate As-Is | Manual deploy utility; replace with CI/CD automation. |
-| Configuration/Resource | `(root)` | `FormMain` | `FormMain.resx` | Do Not Migrate As-Is | Manual deploy utility; replace with CI/CD automation. |
-| Configuration/Resource | `Properties` | `Resources` | `Properties/Resources.resx` | Do Not Migrate As-Is | Manual deploy utility; replace with CI/CD automation. |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Configuration/Resource | `(root)` | `App` | `App.config` | Do Not Migrate As-Is | Replace manual desktop deploy flow with automated release/deploy pipeline. | Manual deploy utility; replace with CI/CD automation. |
+| Configuration/Resource | `(root)` | `FormMain` | `FormMain.resx` | Do Not Migrate As-Is | Replace manual desktop deploy flow with automated release/deploy pipeline. | Manual deploy utility; replace with CI/CD automation. |
+| Configuration/Resource | `Properties` | `Resources` | `Properties/Resources.resx` | Do Not Migrate As-Is | Replace manual desktop deploy flow with automated release/deploy pipeline. | Manual deploy utility; replace with CI/CD automation. |
 
 ## Migration Action Items
 

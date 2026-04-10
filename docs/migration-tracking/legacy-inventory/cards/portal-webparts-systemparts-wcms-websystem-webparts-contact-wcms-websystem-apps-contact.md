@@ -11,6 +11,7 @@
 | Output Type | `Library` |
 | Migration Status | Not Stated |
 | Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Target Alternative | TBD |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -26,23 +27,23 @@
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Core Component | `(root)` | `Contact` | `Contact.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `ContactConstants` | `ContactConstants.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `ContactInquiry` | `ContactInquiry.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `ContactLink` | `ContactLink.cs` | Not Stated | `TBD` |
-| Manager Component | `(root)` | `ContactPartDataManager` | `ContactPartDataManager.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `ContactInquiryProvider` | `Providers/ContactInquiryProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `ContactLinkProvider` | `Providers/ContactLinkProvider.cs` | Not Stated | `TBD` |
-| Provider Component | `Providers` | `ContactProvider` | `Providers/ContactProvider.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Core Component | `(root)` | `Contact` | `Contact.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `ContactConstants` | `ContactConstants.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `ContactInquiry` | `ContactInquiry.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `ContactLink` | `ContactLink.cs` | Not Stated | TBD | `TBD` |
+| Manager Component | `(root)` | `ContactPartDataManager` | `ContactPartDataManager.cs` | Not Stated | TBD | `TBD` |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `ContactInquiryProvider` | `Providers/ContactInquiryProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `ContactLinkProvider` | `Providers/ContactLinkProvider.cs` | Not Stated | TBD | `TBD` |
+| Provider Component | `Providers` | `ContactProvider` | `Providers/ContactProvider.cs` | Not Stated | TBD | `TBD` |
 
 ## Database And Automation Assets
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | TBD | `TBD` |
 
 ## Migration Action Items
 

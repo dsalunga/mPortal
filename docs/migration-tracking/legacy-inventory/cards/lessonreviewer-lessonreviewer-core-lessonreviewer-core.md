@@ -11,6 +11,7 @@
 | Output Type | `Library` |
 | Migration Status | Not Stated |
 | Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Target Alternative | TBD |
 | Tracking Owner | `TBD` |
 | Target Milestone | `TBD` |
 
@@ -25,13 +26,13 @@
 
 ## Core Components And Utilities
 
-| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
-|---|---|---|---|---|---|
-| Manager Component | `(root)` | `ConfigManager` | `ConfigManager.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `MakeUpServiceSession` | `MakeUpServiceSession.cs` | Not Stated | `TBD` |
-| Helper Component | `(root)` | `PlaybackHelper` | `PlaybackHelper.cs` | Not Stated | `TBD` |
-| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
-| Core Component | `(root)` | `ServiceDefinition` | `ServiceDefinition.cs` | Not Stated | `TBD` |
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Target Alternative | Tracking Notes |
+|---|---|---|---|---|---|---|
+| Manager Component | `(root)` | `ConfigManager` | `ConfigManager.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `MakeUpServiceSession` | `MakeUpServiceSession.cs` | Not Stated | TBD | `TBD` |
+| Helper Component | `(root)` | `PlaybackHelper` | `PlaybackHelper.cs` | Not Stated | TBD | `TBD` |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | TBD | `TBD` |
+| Core Component | `(root)` | `ServiceDefinition` | `ServiceDefinition.cs` | Not Stated | TBD | `TBD` |
 
 ## Migration Action Items
 
