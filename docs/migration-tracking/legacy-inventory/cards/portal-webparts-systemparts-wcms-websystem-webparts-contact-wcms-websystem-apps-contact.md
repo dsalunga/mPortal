@@ -1,0 +1,54 @@
+# P027 - WCMS.WebSystem.Apps.Contact
+
+## Project Tracking Summary
+
+| Field | Value |
+|---|---|
+| Project Path | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Contact/WCMS.WebSystem.Apps.Contact.csproj` |
+| Project Kind | Library/Component |
+| Assembly Name | `WCMS.WebSystem.WebParts.Contact` |
+| Target Framework | `v4.8` |
+| Output Type | `Library` |
+| Migration Status | Not Stated |
+| Status Basis | No explicit migration metadata or roadmap marker found in project artifact. |
+| Tracking Owner | `TBD` |
+| Target Milestone | `TBD` |
+
+## Surface Coverage Snapshot
+
+| Surface | Count |
+|---|---:|
+| Provider Component | 3 |
+| Manager Component | 1 |
+| Core Component | 4 |
+| Configuration/Resource | 1 |
+| Assembly Metadata | 1 |
+
+## Core Components And Utilities
+
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
+|---|---|---|---|---|---|
+| Core Component | `(root)` | `Contact` | `Contact.cs` | Not Stated | `TBD` |
+| Core Component | `(root)` | `ContactConstants` | `ContactConstants.cs` | Not Stated | `TBD` |
+| Core Component | `(root)` | `ContactInquiry` | `ContactInquiry.cs` | Not Stated | `TBD` |
+| Core Component | `(root)` | `ContactLink` | `ContactLink.cs` | Not Stated | `TBD` |
+| Manager Component | `(root)` | `ContactPartDataManager` | `ContactPartDataManager.cs` | Not Stated | `TBD` |
+| Assembly Metadata | `Properties` | `AssemblyInfo` | `Properties/AssemblyInfo.cs` | Not Stated | `TBD` |
+| Provider Component | `Providers` | `ContactInquiryProvider` | `Providers/ContactInquiryProvider.cs` | Not Stated | `TBD` |
+| Provider Component | `Providers` | `ContactLinkProvider` | `Providers/ContactLinkProvider.cs` | Not Stated | `TBD` |
+| Provider Component | `Providers` | `ContactProvider` | `Providers/ContactProvider.cs` | Not Stated | `TBD` |
+
+## Database And Automation Assets
+
+| Component Type | Feature/Area | Functionality | Source File | Migration Status | Tracking Notes |
+|---|---|---|---|---|---|
+| Configuration/Resource | `(root)` | `packages` | `packages.config` | Not Stated | `TBD` |
+
+## Migration Action Items
+
+| Action | Priority | Status | Notes |
+|---|---|---|---|
+| Confirm owner and target architecture for this artifact | High | Not Stated | `TBD` |
+| Validate feature-level parity against source inventory tables above | High | Not Stated | `TBD` |
+| Update row-level statuses as migration work progresses | Medium | Not Stated | `TBD` |
+
