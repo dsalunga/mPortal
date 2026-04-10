@@ -1,9 +1,12 @@
-# Legacy Migration Inventory
+# Legacy Migration Inventory (Canonical P-ID View)
 
 This folder tracks migration status and source coverage for every legacy project/app/library/component/utility discovered under `legacy/`.
 
 Companion decision document:
-- [Canonical Cards Migration Status](./CANONICAL_CARDS_MIGRATION_STATUS.md)
+- [Canonical Cards Migration Status](./canonical-cards-migration-status.md)
+
+Companion LGC inventory:
+- [Legacy Migration Master Inventory](./master-inventory.md)
 
 Status legend:
 - `Completed`: modern target (`net8+`) is declared in project metadata.

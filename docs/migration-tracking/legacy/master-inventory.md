@@ -2,6 +2,11 @@
 
 This folder tracks migration scope for all discovered legacy projects/components/utilities using repository evidence.
 
+Companion views:
+
+- [Canonical P-ID inventory](./master-inventory-canonical.md)
+- [Canonical migration decision matrix](./canonical-cards-migration-status.md)
+
 ## Scope And Method
 
 - Source scope: `legacy/`

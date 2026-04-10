@@ -1,6 +1,19 @@
-# Legacy Migration Tracking Pack
+# Legacy Migration Tracking (Canonical)
 
-- Master inventory: [master-inventory.md](./master-inventory.md)
-- Detail cards: `./items/`
+This folder is the single source of truth for legacy migration tracking.
 
-Use this pack to track discovery, migration planning, execution, and completion per legacy item.
+## Master Views
+
+- LGC master inventory (project-grouped tracking): [master-inventory.md](./master-inventory.md)
+- Canonical master inventory (P-ID card index): [master-inventory-canonical.md](./master-inventory-canonical.md)
+- Canonical migration decision matrix: [canonical-cards-migration-status.md](./canonical-cards-migration-status.md)
+
+## Detail Cards
+
+- LGC item cards: [items](./items)
+- Canonical P-ID cards: [cards](./cards)
+
+## ID Conventions
+
+- `LGC-###`: legacy inventory items and per-item implementation tracking.
+- `P###`: canonical card set used for architecture-level migration planning.
