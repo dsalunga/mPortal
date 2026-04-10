@@ -6,7 +6,7 @@ This folder is the single source of truth for legacy migration tracking.
 
 - LGC master inventory (project-grouped tracking): [master-inventory.md](./master-inventory.md)
 - Canonical master inventory (P-ID card index): [master-inventory-canonical.md](./master-inventory-canonical.md)
-- Canonical migration decision matrix: [canonical-cards-migration-status.md](./canonical-cards-migration-status.md)
+- Canonical migration decision matrix: [master-inventory-canonical.md#canonical-migration-decision-matrix](./master-inventory-canonical.md#canonical-migration-decision-matrix)
 
 ## Detail Cards
 

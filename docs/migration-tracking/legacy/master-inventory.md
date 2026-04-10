@@ -5,7 +5,7 @@ This folder tracks migration scope for all discovered legacy projects/components
 Companion views:
 
 - [Canonical P-ID inventory](./master-inventory-canonical.md)
-- [Canonical migration decision matrix](./canonical-cards-migration-status.md)
+- [Canonical migration decision matrix](./master-inventory-canonical.md#canonical-migration-decision-matrix)
 
 ## Scope And Method
 
