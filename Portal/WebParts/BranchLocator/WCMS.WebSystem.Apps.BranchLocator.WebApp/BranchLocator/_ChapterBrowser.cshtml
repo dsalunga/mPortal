@@ -15,8 +15,8 @@
     double dlat = 0;
     double dlng = 0;
     bool hasLoc = false;
-    var lat = Request["lat"];
-    var lng = Request["lng"];
+    var lat = Context.Request.Query["lat"].ToString();
+    var lng = Context.Request.Query["lng"].ToString();
     if (!string.IsNullOrEmpty(lat) && !string.IsNullOrEmpty(lng))
     {
         dlat = double.Parse(lat);
@@ -24,7 +24,7 @@
         hasLoc = true;
     }
     
-    var query = new WQuery(this);
+    var query = new WQuery(Context);
     var parentId = query.GetId(WebColumns.Id);
     var countryCode = query.GetInt32("country");
     MChapter parent = parentId > 0 ? MChapter.Provider.Get(parentId) : null;

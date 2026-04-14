@@ -8,9 +8,9 @@
     var dob = string.Empty;
     var step = AccessSteps.Step10_EnterCIDEmail;
 
-    if (!IsPost)
+    if (Context.Request.Method != "POST")
     {
-        var context = new WContext(this);
+        var context = new WContext(Context);
         var element = context.Element;
         //var forgotPasswordUrl = element.GetParameterValue(AccountConstants.ForgotPasswordUrl);
         //if (!string.IsNullOrEmpty(forgotPasswordUrl))
@@ -27,7 +27,7 @@
                 if (session != null && session.UserId > 0) // Make sure user has a valid active session
                 {
                     var request = Context.Request;
-                    if (/*request.UserAgent == session.UserAgent &&*/ request.UserHostAddress == session.IPAddress)
+                    if (/*request.UserAgent == session.UserAgent &&*/ Context.Connection.RemoteIpAddress?.ToString() == session.IPAddress)
                     {
                         WSession.LogOff(session.UserId);
                     }
@@ -38,7 +38,7 @@
             WSession.LogOff();
             // WSession.ClearLoginCookie(Context);
 
-            var signOutRedirect = Request[WQuery.SourceKey];
+            var signOutRedirect = Context.Request.Query[WQuery.SourceKey].ToString();
             if (!string.IsNullOrEmpty(signOutRedirect))
             {
                 WQuery.StaticRedirect(signOutRedirect);
@@ -184,14 +184,14 @@
     else
     {
         // Submit
-        email = Request["email"];
-        cid = Request["cid"];
-        step = Request["step"];
+        email = Context.Request.Form["email"];
+        cid = Context.Request.Form["cid"];
+        step = Context.Request.Form["step"];
 
         switch (step)
         {
             case AccessSteps.Step10_EnterCIDEmail:
-                var inputEmailCID = Request["inputEmailCID"];
+                var inputEmailCID = Context.Request.Form["inputEmailCID"];
                 
                 // Check if account is existing
                 
@@ -208,7 +208,7 @@
     <form method="post" role="form">
         <input type="hidden" name="email" value="@email" />
 
-        @if (!IsPost)
+        @if (Context.Request.Method != "POST")
         {
             switch (mode)
             {

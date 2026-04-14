@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="BranchLocator\**\*.cshtml" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

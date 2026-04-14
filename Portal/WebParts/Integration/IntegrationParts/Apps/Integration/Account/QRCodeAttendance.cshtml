@@ -1,7 +1,7 @@
 ﻿@using WCMS.Framework
 @using WCMS.WebSystem.Apps.Integration;
 @{
-    var context = new WContext(this);
+    var context = new WContext(Context);
     var element = context.Element;
     var serviceSchedule = context.Get("s");
     //var result = AttendanceStatus.UnknownError;

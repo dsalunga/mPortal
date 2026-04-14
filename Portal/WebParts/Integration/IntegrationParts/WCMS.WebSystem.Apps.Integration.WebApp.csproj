@@ -9,7 +9,13 @@
     <Compile Remove="Apps\Integration\EventRegister\**" />
     <Compile Remove="Apps\Integration\Controllers\MemberController.cs" />
     <Compile Remove="Apps\Integration\Controllers\AttendanceController.cs" />
-    <Content Remove="Apps\**\*.cshtml" />
+    <Content Remove="Apps\Integration\Streaming\LiveStreaming.cshtml" />
+    <Content Remove="Apps\Integration\EventRegister\Dashboard.cshtml" />
+    <Content Remove="Apps\Integration\GlobalSwitch\Dashboard.cshtml" />
+    <Content Remove="Apps\Integration\GlobalSwitch\GlobalSwitch.cshtml" />
+    <Content Remove="Apps\Integration\Chat\ChatLobby.cshtml" />
+    <Content Remove="Apps\Integration\LoginForgotRegister.cshtml" />
+    <Content Remove="Apps\Integration\Account\QRCodeAttendance.cshtml" />
     <Content Remove="Themes\**" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
@@ -17,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WCMS.WebSystem.Apps.Integration\WCMS.WebSystem.Apps.Integration.csproj" />
     <ProjectReference Include="..\WCMS.WebSystem.Apps.BibleReader\WCMS.WebSystem.Apps.BibleReader.csproj" />
+    <ProjectReference Include="..\..\SystemParts\WCMS.Framework.WebParts\WCMS.WebSystem.Apps.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Common\WCMS.Common.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.WebSystem.ViewModels\WCMS.WebSystem.csproj" />

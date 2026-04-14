@@ -23,17 +23,17 @@ namespace WCMS.WebSystem.Apps.Integration
         public const string ExternalId = "ExternalId";
     }
 
-    //public class AccessSteps
-    //{
-    //    public const string Step10_EnterCIDEmail = "1.0";
-    //    public const string Step11_EnterPwd = "1.1";
+    public class AccessSteps
+    {
+        public const string Step10_EnterCIDEmail = "1.0";
+        public const string Step11_EnterPwd = "1.1";
 
-    //    public const string Step20_ForgotEnterEmail = "2.0";
-    //    public const string Step21_ForgotEnterCID = "2.1";
-    //    public const string Step22_ForgotEnterDOB = "2.2";
+        public const string Step20_ForgotEnterEmail = "2.0";
+        public const string Step21_ForgotEnterCID = "2.1";
+        public const string Step22_ForgotEnterDOB = "2.2";
 
-    //    public const string Step30_RegEnterBasic = "3.0";
-    //}
+        public const string Step30_RegEnterBasic = "3.0";
+    }
 
     public class AccountRecoverStatus
     {

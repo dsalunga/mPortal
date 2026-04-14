@@ -6,7 +6,7 @@
 @using WCMS.WebSystem
 @using WCMS.WebSystem.Apps.BranchLocator
 @{
-    var query = new WQuery(this);
+    var query = new WQuery(Context);
     var chapterParents = MChapter.Provider.GetList(-1);
     IEnumerable<MChapter> chapters = null;// chapterParents.Take(3);
     double dlat = 0;
@@ -15,8 +15,8 @@
     var loggedIn = WSession.Current.IsLoggedIn;
     var isAdmin = WSession.Current.IsAdministrator;
 
-    var lat = Request["lat"];
-    var lng = Request["lng"];
+    var lat = Context.Request.Query["lat"].ToString();
+    var lng = Context.Request.Query["lng"].ToString();
     if (!string.IsNullOrEmpty(lat) && !string.IsNullOrEmpty(lng))
     {
         var chapterType = (int)ChapterTypes.Regular;

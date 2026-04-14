@@ -12,20 +12,20 @@
     
     var chapterUrl = "";
     var announcementsUrl = "";
-    var query = new WQuery(this);
+    var query = new WQuery(Context);
     var id = query.GetId(WebColumns.Id);
     var q = query.Clone();
     query.BasePath = CentralPages.LoaderMain;
     
     if (id > 0 && (item = MChapter.Provider.Get(id)) != null)
     {
-        if (IsPost)
+        if (Context.Request.Method == "POST")
         {
-            lt = Request.Form["lat"];
-            lg = Request.Form["lng"];
-            address = Request.Form["address"];
-            var currAddress = Request.Form["currAddress"];
-            var updateAddr = Request.Form["updateAddr"];
+            lt = Context.Request.Form["lat"];
+            lg = Context.Request.Form["lng"];
+            address = Context.Request.Form["address"];
+            var currAddress = Context.Request.Form["currAddress"];
+            var updateAddr = Context.Request.Form["updateAddr"];
 
             if (!string.IsNullOrEmpty(address))
             {

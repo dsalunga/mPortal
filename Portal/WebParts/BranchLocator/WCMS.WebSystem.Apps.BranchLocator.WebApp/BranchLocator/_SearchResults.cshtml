@@ -4,7 +4,7 @@
 @using WCMS.WebSystem
 @using WCMS.WebSystem.Apps.BranchLocator
 @{
-    var query = new WQuery(this);
+    var query = new WQuery(Context);
     IEnumerable<MChapter> chapters = null;
     var loggedIn = WSession.Current.IsLoggedIn;
     var isAdmin = WSession.Current.IsAdministrator;

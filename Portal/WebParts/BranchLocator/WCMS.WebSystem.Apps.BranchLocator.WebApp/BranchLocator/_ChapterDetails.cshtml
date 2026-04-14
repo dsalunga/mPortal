@@ -7,7 +7,7 @@
     var isAdmin = WSession.Current.IsAdministrator;
     MChapter chapter = null;
     
-    var query = new WQuery(this);
+    var query = new WQuery(Context);
     var chapterId = query.GetId("id");
     query.Remove(WConstants.Open);
     query.Remove("id");

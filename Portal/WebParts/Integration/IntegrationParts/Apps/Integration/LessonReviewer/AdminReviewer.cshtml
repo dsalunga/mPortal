@@ -1,6 +1,6 @@
 ﻿@using WCMS.Framework
 @{
-    var context = new WContext(this);
+    var context = new WContext(Context);
     var element = context.Element;
 
     var admin = element != null ? element.PartControlTemplate.PartControl.PartAdmin : context.PartAdmin;

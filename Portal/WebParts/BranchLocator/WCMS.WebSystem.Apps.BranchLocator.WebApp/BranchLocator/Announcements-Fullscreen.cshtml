@@ -5,8 +5,8 @@
 @using Newtonsoft.Json.Linq
 @{
     var slides = "";
-    var id = DataHelper.GetId(Request, "id");
-    var show = DataUtil.GetInt32(Request, "show", 3);
+    var id = DataHelper.GetId(Context.Request, "id");
+    var show = DataUtil.GetInt32(Context.Request, "show", 3);
     MChapter item = null;
 
     if (id <= 0 && show == 3)

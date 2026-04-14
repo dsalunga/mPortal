@@ -6,7 +6,7 @@
 
     if (string.IsNullOrEmpty(room))
     {
-        var context = new WContext(this);
+        var context = new WContext(Context);
         var element = context.Element;
         room = element.GetParameterValue("ChatRoom", "Chat Room");
     }

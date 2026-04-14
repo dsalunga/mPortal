@@ -9,17 +9,17 @@
     var locationUrl = "";
     var chapterUrl = "";
     
-    var query = new WQuery(this);
+    var query = new WQuery(Context);
     var id = query.GetId(WebColumns.Id);
     var q = query.Clone();
     query.BasePath = CentralPages.LoaderMain;
 
     if (id > 0 && (item = MChapter.Provider.Get(id)) != null)
     {
-        if (IsPost)
+        if (Context.Request.Method == "POST")
         {
-            var slides = Request.Unvalidated().Form["extra"];
-            var enabled = Request.Form["enabled"] == "enabled";
+            var slides = Context.Request.Form["extra"].ToString();
+            var enabled = Context.Request.Form["enabled"] == "enabled";
 
             var extra = item.GetExtra();
             announcement = extra.Announcement;

@@ -4,7 +4,7 @@
 @using WCMS.Framework.Utilities;
 @{
     //Layout = null;
-    if (!IsPost)
+    if (Context.Request.Method != "POST")
     {
         var user = WSession.Current.User;
         if (user != null)

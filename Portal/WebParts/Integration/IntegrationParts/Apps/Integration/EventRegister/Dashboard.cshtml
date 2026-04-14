@@ -3,7 +3,7 @@
 @using WCMS.WebSystem.Apps.Integration
 @using WCMS.WebSystem.Apps.Integration.EventRegister
 @{
-    var context = new WContext(this);
+    var context = new WContext(Context);
     var site = context.Site;
     //var portalSite = WSite.Provider.Get("Portal");
     var session = WSession.Current;
@@ -40,7 +40,7 @@
                 myCoordinator = ug.CreatedBy;
             }
 
-            if (IsPost && !string.IsNullOrEmpty(Request.Form["btnDownload"]))
+            if (Context.Request.Method == "POST" && !string.IsNullOrEmpty(Context.Request.Form["btnDownload"]))
             {
                 // trigger ID card download
 

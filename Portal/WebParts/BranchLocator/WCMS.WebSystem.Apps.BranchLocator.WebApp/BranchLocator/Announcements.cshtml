@@ -13,7 +13,7 @@
 
     var slides = "";
     var id = link == null || link.LocaleId <= 0 ? -1 : link.LocaleId; //DataHelper.GetId(Request, "id");
-    var show = DataUtil.GetInt32(Request, "show", 3);
+    var show = DataUtil.GetInt32(Context.Request, "show", 3);
     MChapter item = null;
 
     if (id <= 0 && show == 3)
