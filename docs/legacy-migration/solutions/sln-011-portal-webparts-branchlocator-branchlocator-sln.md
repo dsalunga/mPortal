@@ -10,8 +10,8 @@
 | Projects In Solution | 2 |
 | Mapped Projects | 2 |
 | Unmapped Projects | 0 |
-| Aggregate Migration Status | Mixed (Partial, Not Stated) |
-| Status Breakdown | Not Stated:1, Partial:1 |
+| Aggregate Migration Status | Partial |
+| Status Breakdown | Partial:2 |
 | Mapped LGC Items | LGC-005, LGC-013 |
 
 ## Projects In Solution
@@ -19,7 +19,7 @@
 | Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | SLN-011-P01 | Partial | Project | `WCMS.WebSystem.Apps.BranchLocator.WebApp` | LGC-005 | `WCMS.WebSystem.WebParts.BranchLocator.WebApp` | [Card](./sln-011-branchlocator/lgc-005-wcms-websystem-webparts-branchlocator-webapp-legacy-portal-webparts-branchlocato.md) | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj` |
-| SLN-011-P02 | Not Stated | Project | `WCMS.WebSystem.Apps.BranchLocator` | LGC-013 | `WCMS.WebSystem.Apps.BranchLocator` | [Card](./sln-011-branchlocator/lgc-013-wcms-websystem-apps-branchlocator-legacy-portal-webparts-branchlocator-wcms-webs.md) | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` |
+| SLN-011-P02 | Partial | Project | `WCMS.WebSystem.Apps.BranchLocator` | LGC-013 | `WCMS.WebSystem.Apps.BranchLocator` | [Card](./sln-011-branchlocator/lgc-013-wcms-websystem-apps-branchlocator-legacy-portal-webparts-branchlocator-wcms-webs.md) | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` |
 
 ## Migration Actions
 

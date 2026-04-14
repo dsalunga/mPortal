@@ -10,15 +10,15 @@
 | Projects In Solution | 1 |
 | Mapped Projects | 1 |
 | Unmapped Projects | 0 |
-| Aggregate Migration Status | Not Stated |
-| Status Breakdown | Not Stated:1 |
+| Aggregate Migration Status | Partial |
+| Status Breakdown | Partial:1 |
 | Mapped LGC Items | LGC-047 |
 
 ## Projects In Solution
 
 | Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-009-P01 | Not Stated | Project | `WebExtractor` | LGC-047 | `WebExtractor` | [Card](./sln-009-webextractor/lgc-047-webextractor-legacy-portal-utilities-webextractor-webextractor.md) | `legacy/Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` |
+| SLN-009-P01 | Partial | Project | `WebExtractor` | LGC-047 | `WebExtractor` | [Card](./sln-009-webextractor/lgc-047-webextractor-legacy-portal-utilities-webextractor-webextractor.md) | `legacy/Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` |
 
 ## Migration Actions
 
