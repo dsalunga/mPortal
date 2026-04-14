@@ -66,33 +66,7 @@ namespace WCMS.Common.Utilities
             }
         }
 
-        public void Init(HttpRequestBase request)
-        {
-            string pageId = request[PageIdInternal];
-            string requestPath = request.AppRelativeCurrentExecutionFilePath;
-            if (pageId != null && (requestPath.Equals("~/Default.cshtml")))
-            {
-                int qIndex = request.RawUrl.IndexOf("?");
-                BasePath = qIndex > 0 ? request.RawUrl.Substring(0, qIndex) : request.RawUrl;
-                Add(request.QueryString);
-
-                // For further checking...
-                // When the page has been rewritten but still containing a pageId then...
-                Remove(PageIdInternal);
-            }
-            else
-            {
-                BasePath = request.AppRelativeCurrentExecutionFilePath;
-                Add(request.QueryString);
-            }
-        }
-
         public QueryParser(HttpRequest request)
-        {
-            Init(request);
-        }
-
-        public QueryParser(HttpRequestBase request)
         {
             Init(request);
         }

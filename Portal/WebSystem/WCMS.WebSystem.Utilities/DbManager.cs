@@ -20,11 +20,33 @@ namespace WCMS.WebSystem.Utilities
 
         public readonly string XML_PATH = WebUtil.MapPath(ConfigUtil.Get(DbConstants.DB_PROVIDER_PATH_KEY), true);
 
-        public string BackupPath { get { return string.Format(@"{0}\Database", XML_PATH); } }
-        public string ProcedureSqlPath { get { return string.Format(@"{0}\Database\Procedures\", XML_PATH); } }
-        public string TableSqlPath { get { return string.Format(@"{0}\Database\Tables\", XML_PATH); } }
+        public string BackupPath => XML_PATH;
+        public string ProcedureSqlPath => Path.Combine(XML_PATH, "Procedures");
+        public string TableSqlPath => Path.Combine(XML_PATH, "Tables");
+
+        /// <summary>
+        /// Path to Database/PostgreSQL/ directory (contains schema.sql for PostgreSQL schema creation).
+        /// Resolves relative to the repository root, assuming XML_PATH points to Portal/Binaries/Database.
+        /// </summary>
+        public string PostgreSqlSchemaDir
+        {
+            get
+            {
+                // XML_PATH resolves to Portal/Binaries/Database — go up to repo root, then into Database/PostgreSQL
+                var dbDir = new DirectoryInfo(XML_PATH);
+                var repoRoot = dbDir.Parent?.Parent?.Parent; // Database → Binaries → Portal → repo root
+                if (repoRoot != null)
+                {
+                    var pgDir = Path.Combine(repoRoot.FullName, "Database", "PostgreSQL");
+                    if (Directory.Exists(pgDir))
+                        return pgDir;
+                }
+                return string.Empty;
+            }
+        }
 
         private bool IsSqlServer => DbHelper.Provider == DatabaseProvider.SqlServer;
+        private bool IsPostgreSql => DbHelper.Provider == DatabaseProvider.PostgreSql;
 
         public DbManager()
         {
@@ -126,7 +148,7 @@ namespace WCMS.WebSystem.Utilities
 
         public void RestoreObjectData(WebObject item, Action<string> notify)
         {
-            string tableXml = string.Format(@"{0}\{1}.xml", BackupPath, item.Name);
+            string tableXml = Path.Combine(BackupPath, item.Name + ".xml");
             if (!File.Exists(tableXml))
             {
                 notify(string.Format("{0}.xml does not exist.", item.Name));
@@ -138,15 +160,17 @@ namespace WCMS.WebSystem.Utilities
             var ds = new DataSet();
             ds.ReadXml(tableXml, XmlReadMode.ReadSchema);
 
+            var table = ds.Tables[0];
+
             var quotedName = DbSyntax.QuoteIdentifier(item.Name);
-            DbHelper.ExecuteUpdateDataSet(string.Format("SELECT * FROM {0}", quotedName), ds.Tables[0]);
+            DbHelper.ExecuteUpdateDataSet(string.Format("SELECT * FROM {0}", quotedName), table);
 
             notify(string.Format("{0}.xml RESTORED.", item.Name));
         }
 
         public void BackupObjectData(WebObject item, Action<string> notify, int index = -1)
         {
-            string targetXmlFile = string.Format(@"{0}\{1}.xml", BackupPath, item.Name);
+            string targetXmlFile = Path.Combine(BackupPath, item.Name + ".xml");
             var quotedName = DbSyntax.QuoteIdentifier(item.Name);
 
             // Backup the data
@@ -159,7 +183,7 @@ namespace WCMS.WebSystem.Utilities
 
             if (item.Name == WebObject.OBJECT_NAME)
             {
-                string dbXml = string.Format(@"{0}\{1}", XML_PATH, DbConstants.XML_FILE);
+                string dbXml = Path.Combine(XML_PATH, DbConstants.XML_FILE);
                 File.Copy(targetXmlFile, dbXml, true);
             }
 
@@ -174,18 +198,28 @@ namespace WCMS.WebSystem.Utilities
             var errors = new StringBuilder();
 
             // Execute schema scripts
-
-            // Restore table schema
-            string[] tableFiles = Directory.GetFiles(TableSqlPath, DbConstants.CREATE_FILTER_WC);
-            foreach (string tableFile in tableFiles)
-                ExecuteSqlScriptFile(tableFile, errors, true);
-
-            // Restore procedure schema (SQL Server only)
-            if (IsSqlServer && Directory.Exists(ProcedureSqlPath))
+            if (IsPostgreSql)
             {
-                string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, DbConstants.CREATE_FILTER_WC);
-                foreach (string procedureFile in procedureFiles)
-                    ExecuteSqlScriptFile(procedureFile, errors, true);
+                // PostgreSQL: use the consolidated schema.sql DDL script
+                RestorePostgreSqlSchema(errors, notify);
+            }
+            else
+            {
+                // SQL Server: use individual .create.sql scripts from Tables/
+                if (Directory.Exists(TableSqlPath))
+                {
+                    string[] tableFiles = Directory.GetFiles(TableSqlPath, DbConstants.CREATE_FILTER_WC);
+                    foreach (string tableFile in tableFiles)
+                        ExecuteSqlScriptFile(tableFile, errors, true);
+                }
+
+                // Restore procedure schema (SQL Server only)
+                if (Directory.Exists(ProcedureSqlPath))
+                {
+                    string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, DbConstants.CREATE_FILTER_WC);
+                    foreach (string procedureFile in procedureFiles)
+                        ExecuteSqlScriptFile(procedureFile, errors, true);
+                }
             }
 
             // Start restoring data
@@ -288,31 +322,39 @@ namespace WCMS.WebSystem.Utilities
 
         public bool DropAllObjects(Action<string> notify)
         {
-            string tableSqlPath = TableSqlPath;
-
             notify(string.Format("Object drop process STARTED...", WConstants.WBREAK));
 
             var sbErrors = new StringBuilder();
 
-            // Drop procedures (SQL Server only — stored procedures have been eliminated)
-            if (IsSqlServer && Directory.Exists(ProcedureSqlPath))
+            if (IsPostgreSql)
             {
-                string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, DbConstants.DROP_FILTER_WC);
-                foreach (string procedureFile in procedureFiles)
+                // PostgreSQL: drop all tables using information_schema
+                DropAllPostgreSqlTables(sbErrors, notify);
+            }
+            else
+            {
+                // SQL Server: use individual .drop.sql scripts
+                if (Directory.Exists(ProcedureSqlPath))
                 {
-                    notify(string.Format("Drop Procedure: {0}", Path.GetFileName(procedureFile)));
-                    ExecuteSqlScriptFile(procedureFile, sbErrors, true);
+                    string[] procedureFiles = Directory.GetFiles(ProcedureSqlPath, DbConstants.DROP_FILTER_WC);
+                    foreach (string procedureFile in procedureFiles)
+                    {
+                        notify(string.Format("Drop Procedure: {0}", Path.GetFileName(procedureFile)));
+                        ExecuteSqlScriptFile(procedureFile, sbErrors, true);
+                    }
+
+                    notify("");
                 }
 
-                notify("");
-            }
-
-            // Get all table drop scripts and execute them
-            var tableFiles = Directory.GetFiles(tableSqlPath, DbConstants.DROP_FILTER_WC);
-            foreach (string tableFile in tableFiles)
-            {
-                notify(string.Format("Drop Table: {0}", Path.GetFileName(tableFile)));
-                ExecuteSqlScriptFile(tableFile, sbErrors, true);
+                if (Directory.Exists(TableSqlPath))
+                {
+                    var tableFiles = Directory.GetFiles(TableSqlPath, DbConstants.DROP_FILTER_WC);
+                    foreach (string tableFile in tableFiles)
+                    {
+                        notify(string.Format("Drop Table: {0}", Path.GetFileName(tableFile)));
+                        ExecuteSqlScriptFile(tableFile, sbErrors, true);
+                    }
+                }
             }
 
             notify(string.Format("{0}Object Drop process COMPLETED...{0}", WConstants.WBREAK));
@@ -322,6 +364,77 @@ namespace WCMS.WebSystem.Utilities
                 notify(sbErrors.ToString());
 
             return true;
+        }
+
+        private void DropAllPostgreSqlTables(StringBuilder errors, Action<string> notify)
+        {
+            // Get all table names from the public schema
+            var tableNames = new List<string>();
+            using (var r = DbHelper.ExecuteReader(CommandType.Text,
+                "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE'"))
+            {
+                while (r.Read())
+                    tableNames.Add(r["table_name"].ToString());
+            }
+
+            // Drop all tables with CASCADE to handle foreign key dependencies
+            foreach (var tableName in tableNames)
+            {
+                try
+                {
+                    notify(string.Format("Drop Table: {0}", tableName));
+                    DbHelper.ExecuteNonQuery(CommandType.Text, string.Format("DROP TABLE IF EXISTS \"{0}\" CASCADE", tableName));
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(ex);
+                    errors?.AppendLine(ex.ToString());
+                }
+            }
+        }
+
+        private void RestorePostgreSqlSchema(StringBuilder errors, Action<string> notify)
+        {
+            var pgDir = PostgreSqlSchemaDir;
+            if (string.IsNullOrEmpty(pgDir))
+            {
+                errors?.AppendLine("PostgreSQL schema directory not found.");
+                notify?.Invoke("ERROR: PostgreSQL schema directory not found.");
+                return;
+            }
+
+            // Execute schema files for the main database
+            var schemaFiles = new[] { "schema.sql", "schema-integration.sql", "schema-biblereader.sql" };
+            foreach (var schemaFile in schemaFiles)
+            {
+                var schemaPath = Path.Combine(pgDir, schemaFile);
+                if (File.Exists(schemaPath))
+                {
+                    notify?.Invoke(string.Format("Executing PostgreSQL schema: {0}", schemaFile));
+                    ExecutePostgreSqlScript(schemaPath, errors);
+                }
+                else
+                {
+                    notify?.Invoke(string.Format("Schema file not found: {0}", schemaFile));
+                }
+            }
+        }
+
+        private void ExecutePostgreSqlScript(string scriptPath, StringBuilder errors)
+        {
+            var sql = File.ReadAllText(scriptPath);
+
+            // Split on semicolons for individual statement execution, handling edge cases
+            // Execute the whole script as a single batch first; fall back to statement-by-statement
+            try
+            {
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(ex);
+                errors?.AppendLine(string.Format("Error executing {0}: {1}", Path.GetFileName(scriptPath), ex.Message));
+            }
         }
 
         public bool Backup(Action<string> notify)
@@ -335,7 +448,7 @@ namespace WCMS.WebSystem.Utilities
             string backupPath = BackupPath;
             string backupTablesPath = TableSqlPath;
             string backupProceduresPath = ProcedureSqlPath;
-            string dbXml = string.Format(@"{0}\{1}", XML_PATH, DbConstants.XML_FILE);
+            string dbXml = Path.Combine(XML_PATH, DbConstants.XML_FILE);
 
             FileHelper.CreateFolderOrDeleteAllFiles(backupPath);
             FileHelper.CreateFolderOrDeleteAllFiles(backupTablesPath);

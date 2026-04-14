@@ -1,0 +1,243 @@
+# =============================================================================
+# .editorconfig — mPortal .NET 10 Migration Baseline
+# =============================================================================
+# Created during .NET 4.7 → .NET 10 migration to triage pre-existing analyzer
+# warnings. Security rules remain as warnings; style/naming rules are lowered
+# to suggestion severity until the team addresses them incrementally.
+# =============================================================================
+
+root = true
+
+[*.cs]
+
+# ---------------------------------------------------------------------------
+# NAMING / STYLE — lowered from warning to suggestion (pre-existing debt)
+# ---------------------------------------------------------------------------
+
+# CA1305: Specify IFormatProvider (1566 instances)
+dotnet_diagnostic.CA1305.severity = suggestion
+
+# CA1707: Identifiers should not contain underscores (440)
+dotnet_diagnostic.CA1707.severity = suggestion
+
+# CA1822: Mark members as static (252)
+dotnet_diagnostic.CA1822.severity = suggestion
+
+# CA1309: Use ordinal StringComparison (218)
+dotnet_diagnostic.CA1309.severity = suggestion
+
+# CA1863: Use CompositeFormat (194)
+dotnet_diagnostic.CA1863.severity = suggestion
+
+# CA1310: Specify StringComparison for correctness (194)
+dotnet_diagnostic.CA1310.severity = suggestion
+
+# CA1716: Identifiers should not match keywords (152)
+dotnet_diagnostic.CA1716.severity = suggestion
+
+# CA1051: Do not declare visible instance fields (116)
+dotnet_diagnostic.CA1051.severity = suggestion
+
+# CA1859: Use concrete types when possible for improved performance (90)
+dotnet_diagnostic.CA1859.severity = suggestion
+
+# CA1311: Specify a culture or use an invariant version (86)
+dotnet_diagnostic.CA1311.severity = suggestion
+
+# CA1304: Specify CultureInfo (86)
+dotnet_diagnostic.CA1304.severity = suggestion
+
+# CA1854: Prefer IDictionary.TryGetValue (84)
+dotnet_diagnostic.CA1854.severity = suggestion
+
+# CA1805: Do not initialize unnecessarily (82)
+dotnet_diagnostic.CA1805.severity = suggestion
+
+# CA1866: Use char overload (72)
+dotnet_diagnostic.CA1866.severity = suggestion
+
+# CA1852: Type can be sealed (72)
+dotnet_diagnostic.CA1852.severity = suggestion
+
+# CA1827: Do not use Count()/LongCount() when Any() can be used (72)
+dotnet_diagnostic.CA1827.severity = suggestion
+
+# CA1725: Parameter names should match base declaration (70)
+dotnet_diagnostic.CA1725.severity = suggestion
+
+# CA1829: Use Length/Count property instead of Count() (68)
+dotnet_diagnostic.CA1829.severity = suggestion
+
+# CA1847: Use char.IsXxx for single character (60)
+dotnet_diagnostic.CA1847.severity = suggestion
+
+# CA2201: Do not raise reserved exception types (40)
+dotnet_diagnostic.CA2201.severity = suggestion
+
+# CA1861: Avoid constant arrays as arguments (24)
+dotnet_diagnostic.CA1861.severity = suggestion
+
+# CA2211: Non-constant fields should not be visible (22)
+dotnet_diagnostic.CA2211.severity = suggestion
+
+# CA1873: Avoid StringBuilder.Append with char (6)
+dotnet_diagnostic.CA1873.severity = suggestion
+
+# CA1848: Use the LoggerMessage delegates (6)
+dotnet_diagnostic.CA1848.severity = suggestion
+
+# CA1708: Identifiers should differ by more than case (6)
+dotnet_diagnostic.CA1708.severity = suggestion
+
+# CA1001: Type owns disposable fields should implement IDisposable (6)
+dotnet_diagnostic.CA1001.severity = suggestion
+
+# CA1864: Prefer IDictionary.TryAdd (4)
+dotnet_diagnostic.CA1864.severity = suggestion
+
+# CA1846: Prefer AsSpan over Substring (4)
+dotnet_diagnostic.CA1846.severity = suggestion
+
+# CA1825: Avoid zero-length array allocations (4)
+dotnet_diagnostic.CA1825.severity = suggestion
+
+# CA1824: Mark assemblies with NeutralResourcesLanguageAttribute (4)
+dotnet_diagnostic.CA1824.severity = suggestion
+
+# CA1041: Provide ObsoleteAttribute message (4)
+dotnet_diagnostic.CA1041.severity = suggestion
+
+# CA2200: Rethrow to preserve stack details (4)
+dotnet_diagnostic.CA2200.severity = suggestion
+
+# CA1853: Unnecessary call to Dictionary.ContainsKey (2)
+dotnet_diagnostic.CA1853.severity = suggestion
+
+# CA1850: Prefer static HashData method (2)
+dotnet_diagnostic.CA1850.severity = suggestion
+
+# CA2022: Avoid inexact read with Stream.Read (2)
+dotnet_diagnostic.CA2022.severity = suggestion
+
+# CA2241: Provide correct arguments to formatting methods (2)
+dotnet_diagnostic.CA2241.severity = suggestion
+
+# CA1016: Mark assemblies with AssemblyVersionAttribute (2)
+dotnet_diagnostic.CA1016.severity = suggestion
+
+# ---------------------------------------------------------------------------
+# PLATFORM COMPATIBILITY — lowered to suggestion (known Windows dependencies)
+# ---------------------------------------------------------------------------
+
+# CA1416: Validate platform compatibility (358)
+dotnet_diagnostic.CA1416.severity = suggestion
+
+# ---------------------------------------------------------------------------
+# NULLABLE REFERENCE TYPES — lowered to suggestion (pre-existing, gradual fix)
+# ---------------------------------------------------------------------------
+
+# CS8618: Non-nullable field/property must contain a non-null value (124)
+dotnet_diagnostic.CS8618.severity = suggestion
+
+# CS8600: Converting null literal or possible null value (78)
+dotnet_diagnostic.CS8600.severity = suggestion
+
+# CS8625: Cannot convert null literal to non-nullable reference type (68)
+dotnet_diagnostic.CS8625.severity = suggestion
+
+# CS8604: Possible null reference argument (68)
+dotnet_diagnostic.CS8604.severity = suggestion
+
+# CS8603: Possible null reference return (66)
+dotnet_diagnostic.CS8603.severity = suggestion
+
+# CS8602: Dereference of a possibly null reference (28)
+dotnet_diagnostic.CS8602.severity = suggestion
+
+# CS8622: Nullability of reference types doesn't match (4)
+dotnet_diagnostic.CS8622.severity = suggestion
+
+# CS8765: Nullability of type doesn't match overridden member (2)
+dotnet_diagnostic.CS8765.severity = suggestion
+
+# CS8605: Unboxing a possibly null value (2)
+dotnet_diagnostic.CS8605.severity = suggestion
+
+# CS8601: Possible null reference assignment (2)
+dotnet_diagnostic.CS8601.severity = suggestion
+
+# ---------------------------------------------------------------------------
+# DOCUMENTATION — lowered to suggestion
+# ---------------------------------------------------------------------------
+
+# CS1573: Parameter has no matching param tag in XML comment (22)
+dotnet_diagnostic.CS1573.severity = suggestion
+
+# CS1587: XML comment is not placed on a valid language element (6)
+dotnet_diagnostic.CS1587.severity = suggestion
+
+# CS1570: XML comment has badly formed XML (2)
+dotnet_diagnostic.CS1570.severity = suggestion
+
+# ---------------------------------------------------------------------------
+# MISCELLANEOUS — lowered to suggestion
+# ---------------------------------------------------------------------------
+
+# CS0162: Unreachable code detected (4)
+dotnet_diagnostic.CS0162.severity = suggestion
+
+# SYSLIB0006: Thread.Abort is not supported (4)
+dotnet_diagnostic.SYSLIB0006.severity = suggestion
+
+# WFDEV006: WinForms compat (4)
+dotnet_diagnostic.WFDEV006.severity = suggestion
+
+# MSTEST0006: Avoid [ExpectedException] (4)
+dotnet_diagnostic.MSTEST0006.severity = suggestion
+
+# SYSLIB0014: WebRequest, HttpWebRequest, ServicePoint, WebClient are obsolete (12)
+dotnet_diagnostic.SYSLIB0014.severity = suggestion
+
+# CA1806: Do not ignore method results (22)
+dotnet_diagnostic.CA1806.severity = suggestion
+
+# CA2249: Consider using String.Contains instead of IndexOf (16)
+dotnet_diagnostic.CA2249.severity = suggestion
+
+# CA2101: Specify marshaling for P/Invoke string arguments (16)
+dotnet_diagnostic.CA2101.severity = suggestion
+
+# CA1862: Use StringComparison method overloads (16)
+dotnet_diagnostic.CA1862.severity = suggestion
+
+# CA1845: Use span-based String.Concat (16)
+dotnet_diagnostic.CA1845.severity = suggestion
+
+# CS1572: XML comment has param tag but no matching parameter (14)
+dotnet_diagnostic.CS1572.severity = suggestion
+
+# CA1834: Use StringBuilder.Append(char) (14)
+dotnet_diagnostic.CA1834.severity = suggestion
+
+# CA1720: Identifier contains type name (14)
+dotnet_diagnostic.CA1720.severity = suggestion
+
+# CA1711: Identifiers should not have incorrect suffix (14)
+dotnet_diagnostic.CA1711.severity = suggestion
+
+# CA2263: Prefer generic overload (12)
+dotnet_diagnostic.CA2263.severity = suggestion
+
+# CA1830: Prefer strongly-typed Append/Insert on StringBuilder (8)
+dotnet_diagnostic.CA1830.severity = suggestion
+
+# CA1010: Collections should implement generic interface (8)
+dotnet_diagnostic.CA1010.severity = suggestion
+
+# CA2245: Do not assign a property to itself (6)
+dotnet_diagnostic.CA2245.severity = suggestion
+
+# ---------------------------------------------------------------------------
+# SECURITY — KEEP AS WARNINGS (do NOT lower these)
+# ---------------------------------------------------------------------------
+# CA5366, CA5359, CA5350, CA5351, CA5385 — all remain at default warning severity

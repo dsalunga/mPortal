@@ -41,6 +41,12 @@ namespace WCMS.Common.Utilities
             return DataUtil.GetBool(Get(name), defaultIfNull);
         }
 
+        public static string GetConnectionString(string connectionStringKey)
+        {
+            var entry = ConfigurationManager.ConnectionStrings[connectionStringKey];
+            return entry?.ConnectionString;
+        }
+
         //public static string Get2(string name)
         //{
         //    return ConfigurationManager.AppSettings[name];

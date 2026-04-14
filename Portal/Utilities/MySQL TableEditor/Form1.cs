@@ -29,7 +29,7 @@ using System.Data;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 using WCMS.Common.Utilities;
 
@@ -417,7 +417,7 @@ namespace TableEditor
                 {
                     foreach (DataColumn pkColumn in dataTable.PrimaryKey)
                     {
-                        Index index = new Index(table, "PK_" + pkColumn.ColumnName);
+                        Microsoft.SqlServer.Management.Smo.Index index = new Microsoft.SqlServer.Management.Smo.Index(table, "PK_" + pkColumn.ColumnName);
                         index.IndexKeyType = IndexKeyType.DriPrimaryKey;
                         index.IndexedColumns.Add(new IndexedColumn(index, pkColumn.ColumnName));
 
