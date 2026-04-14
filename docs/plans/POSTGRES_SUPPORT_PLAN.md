@@ -2,21 +2,28 @@
 
 > **Goal**: Make mPortal CMS fully cross-platform by adding PostgreSQL as an alternative to MS SQL Server.
 
-## Validation Snapshot (2026-04-08)
+## Validation Snapshot (2026-06-26)
 
+- **PostgreSQL local runtime verified**: App runs on PostgreSQL 18.3 (macOS/Homebrew), pages render correctly via `http://localhost:5000/`
 - PostgreSQL schema assets are present and versioned:
-  - `Database/PostgreSQL/schema.sql` (121 `CREATE TABLE` statements)
+  - `Database/PostgreSQL/schema.sql` (121 `CREATE TABLE` statements, including 6 columns added for parity: `parentid`, `primaryidentityid`, `protocolid`, `maritalstatusid`, `lastloginfailuredate`, `loginfailurecount`)
   - `Database/PostgreSQL/schema-integration.sql` (16 `CREATE TABLE` statements)
   - `Database/PostgreSQL/schema-biblereader.sql` (60 `CREATE TABLE` statements)
+  - `Database/PostgreSQL/seed-data.sql` — Minimal CMS seed data with DataProviderName, TypeName, and ManagerName for all 34 WebObject entities
   - `Database/PostgreSQL/init-db.sh`
-- Provider abstraction and multi-provider wiring remain in place (`DbHelper`, `DatabaseProvider`, `UseNpgsql()` branches in host `Program.cs` files).
+- `DbSyntax.QuoteIdentifier()` lowercases identifiers for PostgreSQL (`"columnname"`) to match PostgreSQL's default lowercase convention — fixed in both `Core/WCMS.Common/` and `Portal/WebSystem/WCMS.Common/`
+- Provider abstraction and multi-provider wiring in place (`DbHelper`, `DatabaseProvider`, `UseNpgsql()` branches in all 8 host `Program.cs` files)
+- `appsettings.Development.json` created for all 8 web hosts with PostgreSQL configuration
 - Automated tests currently pass:
-  - `Tests/WCMS.Framework.Tests` -> 77 passed
-  - `Tests/WCMS.Integration.Tests` -> 8 passed
-- Remaining implementation gaps still block a fully complete PostgreSQL rollout:
-  - No EF `Migrations/` directories exist yet for dual-provider migration flow.
-  - GitHub Actions workflows currently have no PostgreSQL service-container lane.
-  - `WCMS.WebSystem.Apps.BranchLocator` pins EF Core `9.0.0` while `WCMS.Framework` uses `9.0.1`, causing `NU1605` downgrade failures during solution restore/build.
+  - `Tests/WCMS.Framework.Tests` → 77 passed
+  - `Tests/WCMS.Integration.Tests` → 8 passed
+  - `Tests/WCMS.WebSystem.Apps.Integration.UnitTest` → 2 passed
+  - `Tests/SDKTest` → 1 passed
+  - **88 total tests** — all passing
+- Remaining implementation gaps:
+  - No EF `Migrations/` directories exist yet for dual-provider migration flow
+  - GitHub Actions workflows currently have no PostgreSQL service-container lane
+  - EF Core package version alignment needed for `WCMS.WebSystem.Apps.BranchLocator`
 
 ## Summary of Changes (This PR)
 
@@ -83,15 +90,16 @@ All **115 stored procedures** have been replaced with inline parameterized SQL:
 
 | Package | Version | Project |
 |---------|---------|---------|
-| `Npgsql` | 9.0.3 | WCMS.Common, Core/WCMS.Common |
-| `Npgsql.EntityFrameworkCore.PostgreSQL` | 9.0.4 | WCMS.Framework |
+| `Npgsql` | 10.0.2 | WCMS.Common, Core/WCMS.Common |
+| `Npgsql.EntityFrameworkCore.PostgreSQL` | 10.0.1 | WCMS.Framework |
 | `AspNetCore.HealthChecks.NpgSql` | 9.0.0 | WebSystem |
 
 ### Tests
 
 - **77 unit tests** (62 existing + 15 SqlBuilder) — all passing
 - **8 integration tests** — all passing
-- **85 total tests** — all passing
+- **2 app integration tests** + **1 SDK test** — all passing
+- **88 total tests** — all passing
 
 ---
 
@@ -153,7 +161,7 @@ The following items are needed for a complete PostgreSQL deployment:
 
 ### Phase 4: EF Core DbContext Multi-Provider — **IN PROGRESS**
 - [x] Update `IntegrationDbContext`, `MusicDbContext`, `ExternalDbContext`, `BranchLocatorDbContext` registration to use config-driven `UseNpgsql()`/`UseSqlServer()`
-- [ ] Align EF Core package versions in `WCMS.WebSystem.Apps.BranchLocator` with `WCMS.Framework` (9.0.1+) to remove `NU1605` downgrade restore/build failures.
+- [ ] Align EF Core package versions in `WCMS.WebSystem.Apps.BranchLocator` with `WCMS.Framework` (10.0.x) to remove `NU1605` downgrade restore/build failures.
 - [ ] Add EF Core migrations for both providers
 - [ ] Test EF Core model compatibility with PostgreSQL data types
 
@@ -172,7 +180,12 @@ The following items are needed for a complete PostgreSQL deployment:
 - [x] Update DbManager utility for PostgreSQL backup/restore — provider-aware schema generation, `GO` batch handling, `DbSyntax.QuoteIdentifier()` for portable SQL
 - [x] Agent/AgentService — already uses framework layer (WebJob, AgentTaskBase) which is fully migrated to DbHelper
 
-### Phase 6: Testing & Validation
+### Phase 6: Testing & Validation — **PARTIALLY COMPLETE**
+- [x] **Local PostgreSQL runtime verified** — App runs on PostgreSQL 18.3, CMS pages render, diagnostic endpoint confirms all providers resolve
+- [x] Seed data (`Database/PostgreSQL/seed-data.sql`) with WebObject TypeName, DataProviderName, ManagerName for all entities
+- [x] Schema parity — 6 missing columns added to `schema.sql` (`parentid`, `primaryidentityid`, `protocolid`, `maritalstatusid`, `lastloginfailuredate`, `loginfailurecount`)
+- [x] `DbSyntax.QuoteIdentifier()` lowercases PostgreSQL identifiers to match convention
+- [x] Unit and integration tests updated and passing (88 total)
 - [ ] Integration tests with PostgreSQL (Testcontainers) — requires running PostgreSQL instance
 - [ ] CI pipeline with both SQL Server and PostgreSQL — requires CI service containers
 - [ ] Performance benchmarking on PostgreSQL
