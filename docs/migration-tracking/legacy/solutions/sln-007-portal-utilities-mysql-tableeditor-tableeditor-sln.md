@@ -18,7 +18,7 @@
 
 | Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-007-P01 | Not Stated | Project | `TableEditor` | LGC-045 | `TableEditor` | [Card](../components/lgc-045-tableeditor-legacy-portal-utilities-mysql-tableeditor.md) | `legacy/Portal/Utilities/MySQL TableEditor/TableEditor.csproj` |
+| SLN-007-P01 | Not Stated | Project | `TableEditor` | LGC-045 | `TableEditor` | [Card](../components/solutions/sln-007-tableeditor/lgc-045-tableeditor-legacy-portal-utilities-mysql-tableeditor.md) | `legacy/Portal/Utilities/MySQL TableEditor/TableEditor.csproj` |
 
 ## Migration Actions
 

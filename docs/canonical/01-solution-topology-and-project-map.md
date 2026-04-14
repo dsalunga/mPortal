@@ -2,7 +2,7 @@
 
 ## Inventory snapshot
 - 48 C# project files in `legacy/`.
-- 19 Visual Studio solution files.
+- 18 Visual Studio solution files.
 - Target frameworks detected:
   - `v4.8`: 38 projects
   - `v4.7`: 6 projects
@@ -22,7 +22,6 @@
 
 ## Primary solution entry points
 - Main: `legacy/Portal/WebSystem/mPortal.sln`
-- Web-focused: `legacy/Portal/WebSystem/mPortal-Web.sln`
 - Module packs:
   - `legacy/Portal/WebParts/SystemParts/System-Parts.sln`
   - `legacy/Portal/WebParts/SystemPartsG2/System-Parts-G2.sln`

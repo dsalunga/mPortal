@@ -12,14 +12,14 @@ Companion views:
 
 | Metric | Value |
 | --- | --- |
-| Total solutions | 19 |
-| Total projects referenced by solutions | 55 |
-| Total mapped projects | 55 |
+| Total solutions | 18 |
+| Total projects referenced by solutions | 52 |
+| Total mapped projects | 52 |
 | Total unmapped projects | 0 |
 | Aggregate Status - Completed | 1 |
 | Aggregate Status - Mixed (Partial, Not Stated) | 8 |
 | Aggregate Status - Not Stated | 6 |
-| Aggregate Status - Partial | 4 |
+| Aggregate Status - Partial | 3 |
 
 ## Solution Master Table
 
@@ -42,5 +42,4 @@ Companion views:
 | SLN-015 | `System-Parts-G2` | Mixed (Partial, Not Stated) | 4 | 4 | 0 | LGC-008, LGC-026, LGC-027, LGC-029 | [card](solutions/sln-015-portal-webparts-systempartsg2-system-parts-g2-sln.md) | `legacy/Portal/WebParts/SystemPartsG2/System-Parts-G2.sln` |
 | SLN-016 | `System-Parts-G3` | Mixed (Partial, Not Stated) | 3 | 3 | 0 | LGC-009, LGC-030, LGC-031 | [card](solutions/sln-016-portal-webparts-systempartsg3-system-parts-g3-sln.md) | `legacy/Portal/WebParts/SystemPartsG3/System-Parts-G3.sln` |
 | SLN-017 | `FredCK.FCKeditorV2` | Partial | 1 | 1 | 0 | LGC-034 | [card](solutions/sln-017-portal-websystem-fckeditor-net-2-6-3-fredck-fckeditorv2-sln.md) | `legacy/Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.sln` |
-| SLN-018 | `mPortal-Web` | Partial | 3 | 3 | 0 | LGC-012, LGC-041, LGC-042 | [card](solutions/sln-018-portal-websystem-mportal-web-sln.md) | `legacy/Portal/WebSystem/mPortal-Web.sln` |
 | SLN-019 | `mPortal` | Mixed (Partial, Not Stated) | 13 | 13 | 0 | LGC-010, LGC-011, LGC-012, LGC-028, LGC-034, LGC-036, LGC-037, LGC-038, LGC-039, LGC-040, LGC-041, LGC-042, LGC-051 | [card](solutions/sln-019-portal-websystem-mportal-sln.md) | `legacy/Portal/WebSystem/mPortal.sln` |

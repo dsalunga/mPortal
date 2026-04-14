@@ -85,7 +85,7 @@ mPortal-private/
 │   │   ├── FCKeditor.Net_2.6.3/      # Rich-text editor integration
 │   │   ├── WebSystem/            # ★ Main web application host
 │   │   ├── mPortal.sln               # Full solution
-│   │   └── mPortal-Web.sln           # Web-only solution
+│   │   └── mPortal.slnx              # Consolidated modern solution file
 │   ├── WebParts/                      # ──── Pluggable modules ────
 │   │   ├── SystemParts/              # G1: FileManager, Calendar, Article, Contact, etc.
 │   │   ├── SystemPartsG2/            # G2: Forum, Social, Ads, Newsletter

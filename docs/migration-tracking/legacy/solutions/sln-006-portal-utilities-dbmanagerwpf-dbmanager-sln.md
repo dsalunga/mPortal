@@ -18,7 +18,7 @@
 
 | Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-006-P01 | Not Stated | Project | `DbManager` | LGC-044 | `DbManager` | [Card](../components/lgc-044-dbmanager-legacy-portal-utilities-dbmanagerwpf-dbmanager.md) | `legacy/Portal/Utilities/DbManagerWPF/DbManager/DbManager.csproj` |
+| SLN-006-P01 | Not Stated | Project | `DbManager` | LGC-044 | `DbManager` | [Card](../components/solutions/sln-006-dbmanager/lgc-044-dbmanager-legacy-portal-utilities-dbmanagerwpf-dbmanager.md) | `legacy/Portal/Utilities/DbManagerWPF/DbManager/DbManager.csproj` |
 
 ## Migration Actions
 

@@ -18,7 +18,7 @@
 
 | Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-017-P01 | Partial | Project | `FredCK.FCKeditorV2` | LGC-034 | `FredCK.FCKeditorV2` | [Card](../components/lgc-034-fredck-fckeditorv2-legacy-portal-websystem-fckeditor-net-2-6-3.md) | `legacy/Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` |
+| SLN-017-P01 | Partial | Project | `FredCK.FCKeditorV2` | LGC-034 | `FredCK.FCKeditorV2` | [Card](../components/shared/lgc-034-fredck-fckeditorv2-legacy-portal-websystem-fckeditor-net-2-6-3.md) | `legacy/Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` |
 
 ## Migration Actions
 

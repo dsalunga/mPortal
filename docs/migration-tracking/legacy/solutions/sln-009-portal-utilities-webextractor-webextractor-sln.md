@@ -18,7 +18,7 @@
 
 | Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-009-P01 | Not Stated | Project | `WebExtractor` | LGC-047 | `WebExtractor` | [Card](../components/lgc-047-webextractor-legacy-portal-utilities-webextractor-webextractor.md) | `legacy/Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` |
+| SLN-009-P01 | Not Stated | Project | `WebExtractor` | LGC-047 | `WebExtractor` | [Card](../components/solutions/sln-009-webextractor/lgc-047-webextractor-legacy-portal-utilities-webextractor-webextractor.md) | `legacy/Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` |
 
 ## Migration Actions
 

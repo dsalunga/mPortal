@@ -18,7 +18,7 @@
 
 | Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-004-P01 | Partial | Project | `Media-Player-ASP.NET-Control` | LGC-033 | `Media-Player-ASP.NET-Control` | [Card](../components/lgc-033-media-player-asp-net-control-legacy-libraries-media-player-asp-net-control-media.md) | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` |
+| SLN-004-P01 | Partial | Project | `Media-Player-ASP.NET-Control` | LGC-033 | `Media-Player-ASP.NET-Control` | [Card](../components/solutions/sln-004-media-player-asp-net-control/lgc-033-media-player-asp-net-control-legacy-libraries-media-player-asp-net-control-media.md) | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` |
 
 ## Migration Actions
 

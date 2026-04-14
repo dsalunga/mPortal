@@ -21,5 +21,4 @@ Per-solution migration tracking cards generated from legacy `*.sln` files and ma
 | SLN-015 | `System-Parts-G2` | [card](./sln-015-portal-webparts-systempartsg2-system-parts-g2-sln.md) |
 | SLN-016 | `System-Parts-G3` | [card](./sln-016-portal-webparts-systempartsg3-system-parts-g3-sln.md) |
 | SLN-017 | `FredCK.FCKeditorV2` | [card](./sln-017-portal-websystem-fckeditor-net-2-6-3-fredck-fckeditorv2-sln.md) |
-| SLN-018 | `mPortal-Web` | [card](./sln-018-portal-websystem-mportal-web-sln.md) |
 | SLN-019 | `mPortal` | [card](./sln-019-portal-websystem-mportal-sln.md) |

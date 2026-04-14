@@ -38,8 +38,7 @@ IIS
 ## Running the Applications
 - The main solutions are located under `Portal/WebSystem/`:
   - `mPortal.sln` – full solution.
-  - `mPortal-Web.sln` – web‑only solution.
-- Open either solution in Visual Studio and set the desired web project as the
+- Open the solution in Visual Studio and set the desired web project as the
   startup project.
 - For a quick run using IIS Express, execute `Portal/IISExpress - Portal.cmd`
   which launches the site using the configuration under `Portal/Binaries`.

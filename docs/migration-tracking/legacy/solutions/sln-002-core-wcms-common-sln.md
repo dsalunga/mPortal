@@ -18,7 +18,7 @@
 
 | Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-002-P01 | Completed | Project | `WCMS.Common` | LGC-032 | `WCMS.Common` | [Card](../components/lgc-032-wcms-common-legacy-core-wcms-common.md) | `legacy/Core/WCMS.Common/WCMS.Common.csproj` |
+| SLN-002-P01 | Completed | Project | `WCMS.Common` | LGC-032 | `WCMS.Common` | [Card](../components/solutions/sln-002-wcms-common/lgc-032-wcms-common-legacy-core-wcms-common.md) | `legacy/Core/WCMS.Common/WCMS.Common.csproj` |
 
 ## Migration Actions
 
