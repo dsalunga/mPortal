@@ -20,6 +20,8 @@ Decision state legend:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Runtime/Web Platform | `ASP.NET Core 10`; retain legacy ASP.NET/WebForms; mixed dual runtime | `ASP.NET Core 10` on `.NET 10` | Long-term supportability, performance, security posture, and cleaner modernization path | No | Active | No | Picked (Confirmed) |
 | Architecture Migration Pattern | Big-bang rewrite; staged strangler; keep legacy core as-is | Staged strangler migration by bounded capability | Lowers risk, supports incremental cutover, easier rollback | No | Active | No | Picked (Confirmed) |
+| CMS Module Manifest Contract | DB-only manifest; code-only manifest; hybrid DB + code manifest | Hybrid DB + code manifest | Preserves dynamic CMS composition while adding compile-time validation and safer startup registration | No | Active | No | Picked (Confirmed) |
+| Admin Modernization UI Strategy | Razor-first; API + SPA-first; hybrid per domain | Hybrid per domain | Balances migration speed and maintainability: Razor-first for core admin/CMS, API + SPA for high-interactivity workflows | No | Active | No | Picked (Confirmed) |
 | Identity and Authentication | `ASP.NET Core Identity + OpenIddict`; `Duende IdentityServer`; `Keycloak` (self-hosted); `Microsoft Entra`; `Auth0` | `ASP.NET Core Identity + OpenIddict` | Fully .NET-native path, no external IdP platform dependency required, strong fit for phased legacy migration | Yes (NuGet packages) | Active | No (selection closed) | Picked (Confirmed) |
 | Rich Text Editor | `CKEditor 5`; `TinyMCE`; `TipTap` | `TipTap OSS` + server-side HTML sanitization | Free-first licensing clarity and modern integration flexibility, with a single explicit replacement target across all legacy editor surfaces | Yes (OSS package) | Active | No (selection closed) | Picked (Confirmed) |
 | Background Jobs/Scheduling | `Quartz.NET`; `Hangfire Core`; custom worker-only scheduler | `Quartz.NET` + .NET Worker services | .NET-native, durable scheduling, predictable ops model | Yes (OSS package) | Active | No (selection closed) | Picked (Confirmed) |
@@ -37,6 +39,8 @@ This section preserves previously considered options for traceability.
 | Area | Not-Selected Alternatives |
 | --- | --- |
 | Identity | `Duende IdentityServer`, `Keycloak`, `Microsoft Entra`, `Auth0` |
+| CMS module manifest | DB-only manifest, code-only manifest |
+| Admin modernization strategy | Razor-first, API + SPA-first |
 | Editor | `CKEditor 5`, `TinyMCE` |
 | Jobs | `Hangfire Core`, custom worker-only scheduler |
 | Database migration | `Flyway Community`, `Liquibase Community`, `EF Migrations` only |
