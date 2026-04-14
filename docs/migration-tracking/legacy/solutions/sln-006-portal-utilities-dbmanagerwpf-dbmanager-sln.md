@@ -1,0 +1,28 @@
+# SLN-006 - DbManager
+
+## Solution Metadata
+
+| Field | Value |
+| --- | --- |
+| Solution ID | SLN-006 |
+| Solution Name | `DbManager` |
+| Solution File | `legacy/Portal/Utilities/DbManagerWPF/DbManager.sln` |
+| Projects In Solution | 1 |
+| Mapped Projects | 1 |
+| Unmapped Projects | 0 |
+| Aggregate Migration Status | Not Stated |
+| Status Breakdown | Not Stated:1 |
+| Mapped LGC Items | LGC-044 |
+
+## Projects In Solution
+
+| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| SLN-006-P01 | Not Stated | Project | `DbManager` | LGC-044 | `DbManager` | [Card](../components/lgc-044-dbmanager-legacy-portal-utilities-dbmanagerwpf-dbmanager.md) | `legacy/Portal/Utilities/DbManagerWPF/DbManager/DbManager.csproj` |
+
+## Migration Actions
+
+| Action | Priority | Status | Notes |
+| --- | --- | --- | --- |
+| Validate solution-level migration sequencing against component statuses | High | Not Stated | Use aggregate and row statuses as planning baseline. |
+| Update per-project row statuses as migration progresses | Medium | Not Stated | Keep solution card synchronized with implementation state. |
