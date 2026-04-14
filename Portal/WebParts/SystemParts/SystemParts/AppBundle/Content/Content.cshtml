@@ -7,7 +7,7 @@
 
     var sw = PerformanceLog.StartLog();
     
-    var context = new WContext(this);
+    var context = new WContext(Context);
     var contentText = ContentHelper.GetElementContent(context);
     
     PerformanceLog.EndLog(string.Format("Content: {0}/{1}", context.ObjectId, context.RecordId), sw, context.PageId);

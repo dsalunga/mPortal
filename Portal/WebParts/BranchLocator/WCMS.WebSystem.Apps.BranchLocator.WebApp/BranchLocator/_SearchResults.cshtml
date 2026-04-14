@@ -146,7 +146,7 @@
                     query.Set(WConstants.Open, "details");
                     <text>
                     latLng = new google.maps.LatLng('@item.Latitude', '@item.Longitude');
-                    setMapMarker(map, latLng, false, '@item.Name', buildInfoWindow('@item.Name', "@Html.Raw(RazorHelper.FormatJsString(address))", '@query.Set("id", item.Id)'));
+                    setMapMarker(map, latLng, false, '@item.Name', buildInfoWindow('@item.Name', "@Html.Raw(WebHelper.FormatJsString(address))", '@query.Set("id", item.Id)'));
                     bounds.extend (latLng);
                     </text>
                 }

@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -13,7 +11,9 @@ using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
 
 namespace WCMS.WebSystem.Apps.Integration.Controllers
 {
-    public class MemberController : ApiController
+    [ApiController]
+    [Route("api/v1/[controller]")]
+    public class MemberController : ControllerBase
     {
         private WebUser GetUser(string id)
         {
@@ -28,27 +28,15 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
             return user;
         }
 
-        // GET: api/Member
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(new string[] { "value1", "value2" });
         }
 
-        //[Route("api/v1/Member/GetUserId2/")]
-        //[HttpGet]
-        //public HttpResponseMessage GetUserId2(string id)
-        //{
-        //    var userId = getUserId(id);
-
-        //    if (userId == -1)
-        //        return Request.CreateResponse(HttpStatusCode.NotFound);
-
-        //    return Request.CreateResponse(HttpStatusCode.OK, new JObject(new JProperty("userId", userId)));
-        //}
-
-        [Route("api/v1/Member/GetUserId/")]
+        [Route("GetUserId")]
         [HttpGet]
-        public HttpResponseMessage GetUserId(string id, int checkExternal = 0)
+        public IActionResult GetUserId(string id, int checkExternal = 0)
         {
             int memberId = -1;
             int userId = -1;
@@ -57,7 +45,7 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
             if (user == null)
             {
                 if (checkExternal == 0)
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                    return NotFound();
             }
             else
             {
@@ -70,16 +58,15 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
                 memberId = (int)client.GetMemberID(id);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK,
-                new JObject(
+            return Ok(new JObject(
                     new JProperty("userId", userId),
                     new JProperty("memberId", memberId)
                 ));
         }
 
-        [Route("api/v1/Member/FindInfo/")]
+        [Route("FindInfo")]
         [HttpGet]
-        public HttpResponseMessage FindInfo(string id)
+        public IActionResult FindInfo(string id)
         {
             int memberId = -1;
             int userId = -1;
@@ -87,7 +74,7 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
             Member member = null;
 
             if (user == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                return NotFound();
             else
                 userId = user.Id;
 
@@ -109,25 +96,22 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
             else if (member != null)
                 response.Add(new JProperty("name", AccountHelper.GetPrefixedName(MemberHelper.CreateDraftUser(member), NamePrefixes.Salutation)));
 
-            return Request.CreateResponse(HttpStatusCode.OK, response);
+            return Ok(response);
         }
 
-        // GET: api/Member/5
-        // [Route("api/v1/Member/{id}")]
-        [Route("api/v1/Member/")]
-        [HttpGet]
-        public HttpResponseMessage Get(string id)
+        [HttpGet("{id}")]
+        public IActionResult Get(string id)
         {
             var user = GetUser(id);
             if (user == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                return NotFound();
 
             var link = MemberLink.Provider.GetByUserId(user.Id);
             if (link == null)
                 link = new MemberLink();
 
             var country = link.LocaleCountry;
-            return Request.CreateResponse(HttpStatusCode.OK, new JObject(
+            return Ok(new JObject(
                 new JProperty("member",
                     new JObject(
                         new JProperty("externalId", link.ExternalIdNo),
@@ -144,19 +128,22 @@ namespace WCMS.WebSystem.Apps.Integration.Controllers
                     ))));
         }
 
-        // POST: api/Member
-        public void Post([FromBody]JToken value)
+        [HttpPost]
+        public IActionResult Post([FromBody] JToken value)
         {
+            return Ok();
         }
 
-        // PUT: api/Member/5
-        public void Put(int id, [FromBody]JToken value)
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] JToken value)
         {
+            return Ok();
         }
 
-        // DELETE: api/Member/5
-        public void Delete(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
+            return Ok();
         }
     }
 }

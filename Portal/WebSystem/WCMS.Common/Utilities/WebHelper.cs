@@ -354,5 +354,34 @@ namespace WCMS.Common.Utilities
             return !string.IsNullOrEmpty(loginUrl) && loginUrl.Contains("://");
         }
 
+        private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, string> _versionCache = new();
+
+        public static string Version(string rootRelativePath)
+        {
+            if (_versionCache.TryGetValue(rootRelativePath, out var cached))
+                return cached;
+
+            try
+            {
+                var absolutePath = MapPath(rootRelativePath);
+                var lastChanged = File.GetLastWriteTime(absolutePath);
+
+                var url = rootRelativePath;
+                if (url.StartsWith("~"))
+                    url = url.Substring(1);
+
+                var versionedUrl = url + "?v=" + lastChanged.Ticks;
+                _versionCache[rootRelativePath] = versionedUrl;
+                return versionedUrl;
+            }
+            catch
+            {
+                var url = rootRelativePath;
+                if (url.StartsWith("~"))
+                    url = url.Substring(1);
+                return url;
+            }
+        }
+
     }
 }

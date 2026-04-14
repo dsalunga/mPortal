@@ -6,8 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="AppBundle\**" />
-    <Content Remove="AppBundle\**" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

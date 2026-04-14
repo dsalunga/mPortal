@@ -114,7 +114,7 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         var map = new google.maps.Map(document.getElementById('mapContainer'), mapOptions);
-        setMapMarker(map, latlng, false, '@chapter.Name', buildInfoWindow('@chapter.Name', "@Html.Raw(RazorHelper.FormatJsString(address))", '@query.Set("id", chapter.Id)'));
+        setMapMarker(map, latlng, false, '@chapter.Name', buildInfoWindow('@chapter.Name', "@Html.Raw(WebHelper.FormatJsString(address))", '@query.Set("id", chapter.Id)'));
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>

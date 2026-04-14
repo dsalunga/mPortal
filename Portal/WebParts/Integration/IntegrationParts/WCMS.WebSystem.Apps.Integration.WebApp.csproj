@@ -6,8 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Apps\**" />
-    <Content Remove="Apps\**" />
+    <Compile Remove="Apps\Integration\EventRegister\**" />
+    <Compile Remove="Apps\Integration\Controllers\MemberController.cs" />
+    <Compile Remove="Apps\Integration\Controllers\AttendanceController.cs" />
+    <Content Remove="Apps\**\*.cshtml" />
     <Content Remove="Themes\**" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
@@ -17,5 +19,6 @@
     <ProjectReference Include="..\WCMS.WebSystem.Apps.BibleReader\WCMS.WebSystem.Apps.BibleReader.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Common\WCMS.Common.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Framework\WCMS.Framework.csproj" />
+    <ProjectReference Include="..\..\..\WebSystem\WCMS.WebSystem.ViewModels\WCMS.WebSystem.csproj" />
   </ItemGroup>
 </Project>

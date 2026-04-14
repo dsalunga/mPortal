@@ -182,7 +182,7 @@
                     var address = string.IsNullOrEmpty(item.Address) ? "Please contact the assigned coordinator." : item.Address;
                     <text>
                     latLng = new google.maps.LatLng('@item.Latitude', '@item.Longitude');
-                    setMapMarker(map, latLng, false, '@item.Name', buildInfoWindow('@item.Name', "@Html.Raw(RazorHelper.FormatJsString(address))", '@query.Set("id", item.Id)'));
+                    setMapMarker(map, latLng, false, '@item.Name', buildInfoWindow('@item.Name', "@Html.Raw(WebHelper.FormatJsString(address))", '@query.Set("id", item.Id)'));
                     bounds.extend (latLng);
                     </text>
                 }
