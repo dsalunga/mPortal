@@ -159,7 +159,7 @@ Legend:
 | 4 | [x] `Portal/WebParts/SystemParts/SystemParts/WCMS.WebSystem.Apps.SystemApps.WebApp.csproj` | Rebuild | Replaced legacy SystemParts host with ASP.NET Core `net10.0` scaffold to drive phased module route/page migration. |
 | 4 | [x] `Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj` | Retire | Legacy web project retired and replaced with SDK-style `net10.0` automated smoke-test harness for CI. |
 | 5 | [x] `Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj` | Rebuild | Legacy primary host replaced with ASP.NET Core `net10.0` scaffold baseline to drive phased portal cutover. |
-| 5 | [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` | Removed | FCKeditor project fully removed. `RichTextEditorRenderer` moved to `WCMS.Framework/RichTextEditor/` with CKEditor 5 CDN integration. |
+| 5 | [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` | Removed | FCKeditor project fully removed. `RichTextEditorRenderer` moved to `WCMS.Framework/RichTextEditor/` with TipTap OSS integration target + server-side HTML sanitization. |
 | 5 | [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.vs2003.csproj` | Retire | Obsolete VS2003 project removed and replaced with retirement marker documentation. |
 | 5 | [x] `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` | Replace | Replaced legacy ASP.NET control project with SDK-style `net10.0` media-renderer abstraction. |
 | 6 | [x] `Portal/Utilities/DbManager/DbManager/DbManager.csproj` | Port | Converted to SDK-style (`net48`) as interim CLI; move to `net10.0` after core runtime deps are off `System.Web`. |
@@ -449,7 +449,7 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 
 ### 7.9) Replace legacy third-party controls
 
-- [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` — complete the editor integration abstraction; wire a modern rich-text editor (e.g., TinyMCE, CKEditor 5) into the ASP.NET Core host.
+- [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` — complete the editor integration abstraction; wire `TipTap OSS` into the ASP.NET Core host and enforce server-side HTML sanitization.
 - [x] `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` — HTML5 `<video>` renderer created (`MediaPlayerRenderer.RenderVideoTag`) replacing legacy ASP.NET media control.
 
 ---
@@ -543,7 +543,7 @@ All legacy `.ascx` user controls have been deleted. 269 ViewComponents have been
 
 #### Tier 4 — Shared controls — completed
 - [x] Convert `CascadeMenu.ascx` → `NavigationViewComponent` (hierarchical menu with Bootstrap nav).
-- [x] Convert shared controls to Tag Helpers — created `<wcms-tabs>`/`<wcms-tab>` (Bootstrap 5 nav-tabs), `<wcms-editor>` (CKEditor 5 CDN integration), `<wcms-datepicker>` (HTML5 date input) in `WCMS.Framework/TagHelpers/`.
+- [x] Convert shared controls to Tag Helpers — created `<wcms-tabs>`/`<wcms-tab>` (Bootstrap 5 nav-tabs), `<wcms-editor>` (TipTap OSS integration target), `<wcms-datepicker>` (HTML5 date input) in `WCMS.Framework/TagHelpers/`.
 
 #### Tier 5 — Module-specific parts (completed)
 - [x] Convert SystemParts module controls — 34 ViewComponents created (Content, Article, Contact, Search, Gallery, Feedback, Calendar, FileManager, Survey, etc.).

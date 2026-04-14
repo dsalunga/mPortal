@@ -598,7 +598,7 @@ Source files:
 - [ ] MAP-005 | Needs-Manual | Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp | `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/BranchLocator/Admin/ChapterHome.ascx` | type=ascx | replacement=`(none)` | source=Mapped
 - [ ] MAP-006 | Needs-Manual | Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp | `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/BranchLocator/Admin/ChapterTree.ascx` | type=ascx | replacement=`(none)` | source=Mapped
 - [ ] MAP-007 | Needs-Manual | Portal/WebParts/Integration/IntegrationParts | `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/Account/ChangePasswordV2.ascx` | type=ascx | replacement=`(none)` | source=Mapped
-- [ ] MAP-141 | Needs-Manual | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Controls/CKEditor.ascx` | type=ascx | replacement=`(none)` | source=Mapped
+- [ ] MAP-141 | Needs-Manual | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Controls/CKEditor.ascx` | type=ascx | replacement=`TipTap OSS editor component + server-side HTML sanitization` | source=Mapped
 - [ ] MAP-142 | Needs-Manual | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Controls/ComboDatePicker.ascx` | type=ascx | replacement=`(none)` | source=Mapped
 - [ ] MAP-143 | Needs-Manual | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Controls/ContextActionBar.ascx` | type=ascx | replacement=`(none)` | source=Mapped
 - [ ] MAP-144 | Needs-Manual | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/Controls/FullNamePicker.ascx` | type=ascx | replacement=`(none)` | source=Mapped
@@ -616,4 +616,3 @@ Source files:
 - [ ] MAP-185 | Needs-Manual | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Content/fb-channel.aspx` | type=aspx | replacement=`(none)` | source=Mapped
 - [ ] MAP-186 | Needs-Manual | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Error.aspx` | type=aspx | replacement=`(none)` | source=Mapped
 - [ ] MAP-187 | Needs-Manual | Portal/WebSystem/WebSystem-MVC | `Portal/WebSystem/WebSystem-MVC/Static.aspx` | type=aspx | replacement=`(none)` | source=Mapped
-

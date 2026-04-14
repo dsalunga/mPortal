@@ -16,6 +16,7 @@ Companion views:
   - `Completed`: modern target framework explicitly set (for example `net8.0+`)
   - `Partial`: legacy target with evidence of ongoing migration/build transition
   - `Not Stated`: legacy target and no explicit migration marker
+  - `Do Not Migrate As-Is`: validated legacy artifact that must be replaced (not lift-and-shifted)
 
 ## Inventory Summary
 
@@ -23,8 +24,9 @@ Companion views:
 | --- | --- |
 | Total tracked items | 50 |
 | Status - Completed | 1 |
-| Status - Partial | 19 |
+| Status - Partial | 18 |
 | Status - Not Stated | 30 |
+| Status - Do Not Migrate As-Is | 1 |
 | Type - App | 12 |
 | Type - Component | 19 |
 | Type - Library | 10 |
@@ -78,7 +80,7 @@ Companion views:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | LGC-032 | WCMS.Common | net8.0 | Completed | 0 / 55 | [card](components/solutions/sln-002-wcms-common/lgc-032-wcms-common-legacy-core-wcms-common.md) | Modern target framework detected (net8.0). | `legacy/Core/WCMS.Common/WCMS.Common.csproj` |
 | LGC-033 | Media-Player-ASP.NET-Control | v4.5.2 | Partial | 0 / 1 | [card](components/solutions/sln-004-media-player-asp-net-control/lgc-033-media-player-asp-net-control-legacy-libraries-media-player-asp-net-control-media.md) | Legacy target (v4.5.2) with modern build artifacts in obj/bin. | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` |
-| LGC-034 | FredCK.FCKeditorV2 | v4.8 | Partial | 8 / 18 | [card](components/shared/lgc-034-fredck-fckeditorv2-legacy-portal-websystem-fckeditor-net-2-6-3.md) | Legacy target (v4.8) with modern build artifacts in obj/bin. | `legacy/Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` |
+| LGC-034 | FredCK.FCKeditorV2 | v4.8 | Do Not Migrate As-Is | 8 / 18 | [card](components/shared/lgc-034-fredck-fckeditorv2-legacy-portal-websystem-fckeditor-net-2-6-3.md) | FCKeditorV2 is a non-migration target; replace all editor usage with TipTap OSS + server-side HTML sanitization. | `legacy/Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` |
 | LGC-036 | WCMS.Common | v4.8 | Partial | 0 / 55 | [card](components/solutions/sln-019-mportal/lgc-036-wcms-common-legacy-portal-websystem-wcms-common.md) | Legacy target (v4.8) with modern build artifacts in obj/bin. | `legacy/Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` |
 | LGC-037 | WCMS.Framework | v4.8 | Partial | 0 / 230 | [card](components/solutions/sln-019-mportal/lgc-037-wcms-framework-legacy-portal-websystem-wcms-framework.md) | Legacy target (v4.8) with modern build artifacts in obj/bin. | `legacy/Portal/WebSystem/WCMS.Framework/WCMS.Framework.csproj` |
 | LGC-038 | WCMS.Framework.Core.SqlProvider | v4.8 | Partial | 0 / 48 | [card](components/solutions/sln-019-mportal/lgc-038-wcms-framework-core-sqlprovider-legacy-portal-websystem-wcms-framework-core-sqlp.md) | Legacy target (v4.8) with modern build artifacts in obj/bin. | `legacy/Portal/WebSystem/WCMS.Framework.Core.SqlProvider/WCMS.Framework.Core.SqlProvider.csproj` |

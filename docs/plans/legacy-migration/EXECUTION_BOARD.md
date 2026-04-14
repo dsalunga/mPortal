@@ -35,7 +35,7 @@ A migration batch is done only when all criteria pass:
 | `BATCH-P1-TRACKER-BASELINE` | Exhaustive legacy inventory + deterministic mapping cleanup | Completed | `7d86e7c7` | Inventory totals synced; ambiguous mappings reduced to zero. |
 | `BATCH-P2-001` | Portal admin/Central execution closure + Setup.aspx migration | Completed | `1deb3b7f` | Setup API endpoints implemented; DB restore verified (136 tables, 10338 rows). |
 | `BATCH-P2-002` | Obsolete file types batch closure (cmd/sln/config/asax/edmx/svc/asmx/ashx/etc.) | Completed | TBD | 137 items → not_applicable via automated classification. |
-| `BATCH-P2-003` | FCKeditor + obsolete .cs patterns batch closure | Completed | TBD | 25 FCKeditor + 82 obsolete patterns → not_applicable. |
+| `BATCH-P2-003` | FCKeditor + obsolete .cs patterns batch closure | Completed | TBD | 25 FCKeditor + 82 obsolete patterns → not_applicable; editor migration target standardized to TipTap OSS. |
 | `BATCH-P2-004` | WebForms .ascx → ViewComponent cross-reference | Completed | TBD | 206 .ascx matched to ViewComponents; 177 code-behind paired → completed. |
 | `BATCH-P2-005` | Remaining WebForms closure + .aspx pages + incomplete items | Completed | TBD | 302 .ascx + 293 code-behind + 39 .aspx + 7 incomplete → resolved. |
 
@@ -49,7 +49,7 @@ A migration batch is done only when all criteria pass:
 | Incomplete items resolved | 7 | completed/not_applicable | Gallery/Ad/Media → VC; IDataSync → exact match |
 | Setup.aspx migrated | 2 | completed | REST API endpoints in Program.cs |
 | Obsolete file types | 137 | not_applicable | .cmd/.sln/.config/.asax/.edmx/.svc/.asmx/.ashx etc. |
-| FCKeditor files | 25 | not_applicable | Third-party editor replaced |
+| FCKeditor files | 25 | not_applicable | Third-party editor replacement-only scope; modern target is TipTap OSS |
 | Obsolete .cs patterns | ~100 | not_applicable | App_Start/Startup/SOAP/WebForms bases/etc. |
 | Unmatched WebForms .ascx | 302 | not_applicable | Consolidated or removed in modern architecture |
 | Unmatched .ascx code-behind | 248 | not_applicable | Paired with not_applicable parent |

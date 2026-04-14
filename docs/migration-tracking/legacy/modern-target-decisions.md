@@ -21,7 +21,7 @@ Decision state legend:
 | Runtime/Web Platform | `ASP.NET Core 10`; retain legacy ASP.NET/WebForms; mixed dual runtime | `ASP.NET Core 10` on `.NET 10` | Long-term supportability, performance, security posture, and cleaner modernization path | No | Active | No | Picked (Confirmed) |
 | Architecture Migration Pattern | Big-bang rewrite; staged strangler; keep legacy core as-is | Staged strangler migration by bounded capability | Lowers risk, supports incremental cutover, easier rollback | No | Active | No | Picked (Confirmed) |
 | Identity and Authentication | `ASP.NET Core Identity + OpenIddict`; `Duende IdentityServer`; `Keycloak` (self-hosted); `Microsoft Entra`; `Auth0` | `ASP.NET Core Identity + OpenIddict` | Fully .NET-native path, no external IdP platform dependency required, strong fit for phased legacy migration | Yes (NuGet packages) | Active | No (selection closed) | Picked (Confirmed) |
-| Rich Text Editor | `CKEditor 5`; `TinyMCE`; `Tiptap` | `Tiptap OSS` + server-side HTML sanitization | Free-first licensing clarity and modern integration flexibility | Yes (OSS package) | Active | No (selection closed) | Picked (Confirmed) |
+| Rich Text Editor | `CKEditor 5`; `TinyMCE`; `TipTap` | `TipTap OSS` + server-side HTML sanitization | Free-first licensing clarity and modern integration flexibility, with a single explicit replacement target across all legacy editor surfaces | Yes (OSS package) | Active | No (selection closed) | Picked (Confirmed) |
 | Background Jobs/Scheduling | `Quartz.NET`; `Hangfire Core`; custom worker-only scheduler | `Quartz.NET` + .NET Worker services | .NET-native, durable scheduling, predictable ops model | Yes (OSS package) | Active | No (selection closed) | Picked (Confirmed) |
 | Integration Endpoints (ASMX/WCF/ASHX) | Direct lift-and-shift; full rewrite first; API adapter strangler | API adapter strangler (`REST/JSON`) + endpoint-by-endpoint migration | Safest path for compatibility and progressive replacement | No | Active | No (pattern can start now) | Picked (Confirmed) |
 | Database Migration Strategy | `EF Core Migrations + DbUp`; `Flyway Community`; `Liquibase Community`; `EF Migrations` only | `EF Core Migrations + DbUp` hybrid | .NET-native migration toolchain with SQL-first support where needed | Yes (OSS packages/tools) | Active | No (selection closed) | Picked (Confirmed) |
@@ -41,6 +41,13 @@ This section preserves previously considered options for traceability.
 | Jobs | `Hangfire Core`, custom worker-only scheduler |
 | Database migration | `Flyway Community`, `Liquibase Community`, `EF Migrations` only |
 | CI/CD | `Azure DevOps`, self-hosted `Jenkins/GitLab` |
+
+## Editor Cutover Rule (Mandatory)
+
+1. `FredCK.FCKeditorV2` is **Do Not Migrate As-Is**.
+2. Legacy `FCKeditor`/`CKEditor.ascx` surfaces are replacement-only targets.
+3. All editor usage in the modern stack must converge to `TipTap OSS` + server-side HTML sanitization.
+4. No new migration work should attempt `FCKeditor` lift-and-shift or `CKEditor 5`/`TinyMCE` adoption for this program.
 
 ## Deferred Third-Party Decisions And Blocker Gates
 
@@ -62,7 +69,7 @@ Current assessment:
 | ASMX/WCF/ASHX transport contracts | Do Not Migrate As-Is | Adapter/strangler APIs in modern endpoints, then progressive client cutover |
 | Thread-abort agent/service model | Do Not Migrate As-Is | Durable scheduling and worker execution model (Quartz.NET + workers) |
 | NAnt + junction release flow | Do Not Migrate As-Is | CI/CD workflows with deterministic builds and artifact promotion |
-| FCKeditor/VS2003 legacy artifacts | Do Not Migrate As-Is | Replace editor stack and archive obsolete compatibility artifacts |
+| FCKeditor/VS2003 legacy artifacts | Do Not Migrate As-Is | Do not migrate legacy editor binaries or controls; replace all usage with TipTap OSS and archive obsolete compatibility artifacts |
 | Vendored sample/demo assets | Do Not Migrate As-Is | Exclude from migration scope unless explicitly business-used |
 
 ## Guardrails For Free-First Execution

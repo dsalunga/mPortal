@@ -17,9 +17,10 @@ Companion views:
 | Total mapped projects | 52 |
 | Total unmapped projects | 0 |
 | Aggregate Status - Completed | 1 |
-| Aggregate Status - Mixed (Partial, Not Stated) | 8 |
+| Aggregate Status - Mixed | 8 |
 | Aggregate Status - Not Stated | 6 |
-| Aggregate Status - Partial | 3 |
+| Aggregate Status - Partial | 2 |
+| Aggregate Status - Do Not Migrate As-Is | 1 |
 
 ## Solution Master Table
 
@@ -41,5 +42,5 @@ Companion views:
 | SLN-014 | `System-Parts` | Mixed (Partial, Not Stated) | 9 | 9 | 0 | LGC-007, LGC-018, LGC-019, LGC-020, LGC-021, LGC-022, LGC-023, LGC-024, LGC-025 | [card](solutions/sln-014-portal-webparts-systemparts-system-parts-sln.md) | `legacy/Portal/WebParts/SystemParts/System-Parts.sln` |
 | SLN-015 | `System-Parts-G2` | Mixed (Partial, Not Stated) | 4 | 4 | 0 | LGC-008, LGC-026, LGC-027, LGC-029 | [card](solutions/sln-015-portal-webparts-systempartsg2-system-parts-g2-sln.md) | `legacy/Portal/WebParts/SystemPartsG2/System-Parts-G2.sln` |
 | SLN-016 | `System-Parts-G3` | Mixed (Partial, Not Stated) | 3 | 3 | 0 | LGC-009, LGC-030, LGC-031 | [card](solutions/sln-016-portal-webparts-systempartsg3-system-parts-g3-sln.md) | `legacy/Portal/WebParts/SystemPartsG3/System-Parts-G3.sln` |
-| SLN-017 | `FredCK.FCKeditorV2` | Partial | 1 | 1 | 0 | LGC-034 | [card](solutions/sln-017-portal-websystem-fckeditor-net-2-6-3-fredck-fckeditorv2-sln.md) | `legacy/Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.sln` |
-| SLN-019 | `mPortal` | Mixed (Partial, Not Stated) | 13 | 13 | 0 | LGC-010, LGC-011, LGC-012, LGC-028, LGC-034, LGC-036, LGC-037, LGC-038, LGC-039, LGC-040, LGC-041, LGC-042, LGC-051 | [card](solutions/sln-019-portal-websystem-mportal-sln.md) | `legacy/Portal/WebSystem/mPortal.sln` |
+| SLN-017 | `FredCK.FCKeditorV2` | Do Not Migrate As-Is | 1 | 1 | 0 | LGC-034 | [card](solutions/sln-017-portal-websystem-fckeditor-net-2-6-3-fredck-fckeditorv2-sln.md) | `legacy/Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.sln` |
+| SLN-019 | `mPortal` | Mixed (Do Not Migrate As-Is, Partial, Not Stated) | 13 | 13 | 0 | LGC-010, LGC-011, LGC-012, LGC-028, LGC-034, LGC-036, LGC-037, LGC-038, LGC-039, LGC-040, LGC-041, LGC-042, LGC-051 | [card](solutions/sln-019-portal-websystem-mportal-sln.md) | `legacy/Portal/WebSystem/mPortal.sln` |

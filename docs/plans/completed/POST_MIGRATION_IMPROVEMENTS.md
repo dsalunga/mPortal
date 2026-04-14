@@ -169,7 +169,7 @@ No caching middleware is configured. CMS pages are re-rendered on every request.
 
 The `FCKeditor.Net_2.6.3` library is an unmaintained WYSIWYG editor from 2010. It has known security vulnerabilities and uses `HttpContext.Current` extensively.
 
-- [x] Replace FCKeditor with CKEditor 5 — FCKeditor.Net_2.6.3 project removed. `RichTextEditorRenderer` moved to `WCMS.Framework/RichTextEditor/` with CKEditor 5 CDN integration. 558 client-side files (5.1MB) removed from Content/Plugins/fckeditor/. fckeditor.rar removed.
+- [x] Replace FCKeditor with TipTap OSS — FCKeditor.Net_2.6.3 project removed. `RichTextEditorRenderer` moved to `WCMS.Framework/RichTextEditor/` with TipTap-based integration target and server-side HTML sanitization. 558 client-side files (5.1MB) removed from Content/Plugins/fckeditor/. fckeditor.rar removed.
 - [x] Remove `Portal/WebSystem/FCKeditor.Net_2.6.3/` directory — deleted (14 .cs files, csproj, documentation). Project removed from mPortal.slnx.
 
 **b) Clean up Integration `Service References/` directory**
@@ -216,7 +216,7 @@ Current caching uses `AddDistributedMemoryCache()` (in-process only). For multi-
 | **P3** | Blazor, YARP, Redis caching (evaluations) | 3 | 3 | 0 | ✅ Complete |
 | **Total** | | **45** | **45** | **0** | **✅ All Complete** |
 
-> **All 45 items complete.** All `System.Web` dependencies removed, FCKeditor replaced with CKEditor 5, all ViewComponents async.
+> **All 45 items complete.** All `System.Web` dependencies removed, FCKeditor marked replacement-only with TipTap OSS target, all ViewComponents async.
 >
 > **7 database-dependent E2E validation items** (§8.3) remain for post-deployment validation:
 > 1. Cookie authentication flow

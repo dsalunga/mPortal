@@ -61,7 +61,7 @@ database and assembled at runtime.
 - SQL Server with stored procedures
 - IIS / IIS Express hosting
 - OWIN middleware for auth
-- FCKeditor for rich-text editing
+- FCKeditor (legacy only; do not migrate as-is, replace with TipTap OSS)
 
 ---
 
@@ -82,7 +82,7 @@ mPortal-private/
 │   │   ├── WCMS.WebSystem.ViewModels/# ViewModel bridge (framework ↔ UI)
 │   │   ├── WCMS.Framewok.Agent/      # Background agent console
 │   │   ├── WCMS.Framework.AgentService/ # Background agent Windows service
-│   │   ├── FCKeditor.Net_2.6.3/      # Rich-text editor integration
+│   │   ├── FCKeditor.Net_2.6.3/      # Legacy editor package (replacement-only; TipTap target)
 │   │   ├── WebSystem/            # ★ Main web application host
 │   │   ├── mPortal.sln               # Full solution
 │   │   └── mPortal.slnx              # Consolidated modern solution file
@@ -893,14 +893,16 @@ app.MapGet("/files/{**path}", async (string path, IFileManagerService svc) => {
 
 **Legacy:** FCKeditor 2.6.3 ASP.NET control
 
-**Migration:** Replace with CKEditor 5 or TinyMCE:
+**Migration rule (mandatory):** Do not migrate `FCKeditorV2` as-is. Replace all legacy editor surfaces with `TipTap OSS` + server-side HTML sanitization.
+
+**Reference integration shape (Razor + TipTap):**
 
 ```html
-<!-- In Razor view: -->
-<textarea id="editor" asp-for="Content"></textarea>
-<script src="https://cdn.ckeditor.com/ckeditor5/latest/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor.create(document.querySelector('#editor'));
+<div id="editor"></div>
+<input type="hidden" id="Content" name="Content" />
+<script type="module">
+  // TipTap editor bootstrapping; persist sanitized HTML via server-side pipeline.
+  // (Import Editor + extensions from the project's TipTap package setup.)
 </script>
 ```
 

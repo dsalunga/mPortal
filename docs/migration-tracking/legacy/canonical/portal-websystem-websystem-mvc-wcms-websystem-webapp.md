@@ -324,8 +324,8 @@
 | Generated UI Partial | `Content/Admin` | `WebOpen.aspx.designer` | Not Stated | TBD | `TBD` | `Content/Admin/WebOpen.aspx.designer.cs` |
 | User Control/UI | `Content/Controls` | `Breadcrumb` | Not Stated | TBD | `TBD` | `Content/Controls/Breadcrumb.ascx` |
 | Generated UI Partial | `Content/Controls` | `Breadcrumb.ascx.designer` | Not Stated | TBD | `TBD` | `Content/Controls/Breadcrumb.ascx.designer.cs` |
-| User Control/UI | `Content/Controls` | `CKEditor` | Not Stated | TBD | `TBD` | `Content/Controls/CKEditor.ascx` |
-| Generated UI Partial | `Content/Controls` | `CKEditor.ascx.designer` | Not Stated | TBD | `TBD` | `Content/Controls/CKEditor.ascx.designer.cs` |
+| User Control/UI | `Content/Controls` | `CKEditor` | Do Not Migrate As-Is | Replace with TipTap OSS editor component + server-side HTML sanitization. | Legacy editor surface is replacement-only; do not lift-and-shift. | `Content/Controls/CKEditor.ascx` |
+| Generated UI Partial | `Content/Controls` | `CKEditor.ascx.designer` | Do Not Migrate As-Is | Replace with TipTap OSS editor component + server-side HTML sanitization. | Designer artifact tied to legacy editor control; replacement-only. | `Content/Controls/CKEditor.ascx.designer.cs` |
 | User Control/UI | `Content/Controls` | `ComboDatePicker` | Not Stated | TBD | `TBD` | `Content/Controls/ComboDatePicker.ascx` |
 | Generated UI Partial | `Content/Controls` | `ComboDatePicker.ascx.designer` | Not Stated | TBD | `TBD` | `Content/Controls/ComboDatePicker.ascx.designer.cs` |
 | User Control/UI | `Content/Controls` | `ContextActionBar` | Not Stated | TBD | `TBD` | `Content/Controls/ContextActionBar.ascx` |
@@ -734,7 +734,7 @@
 | Core Component | `Content/Admin` | `WebObjectPermissions.aspx` | Not Stated | TBD | `TBD` | `Content/Admin/WebObjectPermissions.aspx.cs` |
 | Core Component | `Content/Admin` | `WebOpen.aspx` | Not Stated | TBD | `TBD` | `Content/Admin/WebOpen.aspx.cs` |
 | Core Component | `Content/Controls` | `Breadcrumb.ascx` | Not Stated | TBD | `TBD` | `Content/Controls/Breadcrumb.ascx.cs` |
-| Core Component | `Content/Controls` | `CKEditor.ascx` | Not Stated | TBD | `TBD` | `Content/Controls/CKEditor.ascx.cs` |
+| Core Component | `Content/Controls` | `CKEditor.ascx` | Do Not Migrate As-Is | Replace with TipTap OSS editor component + server-side HTML sanitization. | Legacy control wrapper is replacement-only; do not port internals. | `Content/Controls/CKEditor.ascx.cs` |
 | Core Component | `Content/Controls` | `ComboDatePicker.ascx` | Not Stated | TBD | `TBD` | `Content/Controls/ComboDatePicker.ascx.cs` |
 | Core Component | `Content/Controls` | `ContextActionBar.ascx` | Not Stated | TBD | `TBD` | `Content/Controls/ContextActionBar.ascx.cs` |
 | Core Component | `Content/Controls` | `FullNamePicker.ascx` | Not Stated | TBD | `TBD` | `Content/Controls/FullNamePicker.ascx.cs` |
@@ -1422,4 +1422,3 @@
 | Confirm owner and target architecture for this artifact | High | Not Stated | `TBD` |
 | Validate feature-level parity against source inventory tables above | High | Not Stated | `TBD` |
 | Update row-level statuses as migration work progresses | Medium | Not Stated | `TBD` |
-
