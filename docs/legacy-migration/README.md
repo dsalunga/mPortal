@@ -1,4 +1,4 @@
-# Legacy Migration Tracking (Canonical)
+# Legacy Migration Tracking
 
 This folder is the single source of truth for legacy migration tracking.
 
@@ -14,7 +14,7 @@ This folder is the single source of truth for legacy migration tracking.
 
 - LGC component cards (grouped by solution): [SOLUTION_GROUPS_INDEX.md](./solutions/SOLUTION_GROUPS_INDEX.md)
 - Solution cards: [solutions/README.md](./solutions/README.md)
-- Canonical P-ID cards: [canonical](./canonical)
+- Canonical `P###` index with direct LGC links: [master-inventory-canonical.md](./master-inventory-canonical.md)
 
 ## ID Conventions
 
