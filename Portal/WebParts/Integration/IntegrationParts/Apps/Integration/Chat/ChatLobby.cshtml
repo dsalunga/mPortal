@@ -1,8 +1,8 @@
 ﻿@using WCMS.Framework
 @{
-    string sessionId = Page.SessionId;
-    string room = Page.Room;
-    string minHeight = Page.MinHeight;
+    string sessionId = ViewData["SessionId"]?.ToString();
+    string room = ViewData["Room"]?.ToString();
+    string minHeight = ViewData["MinHeight"]?.ToString();
 
     if (string.IsNullOrEmpty(room))
     {

@@ -25,6 +25,10 @@
             {
                 portalSessionId = sessionId;
             }
+
+            ViewData["SessionId"] = userSession.SessionId.ToString();
+            ViewData["Room"] = "Integration Portal";
+            ViewData["MinHeight"] = "350";
         }
     }
 
@@ -102,7 +106,7 @@
                 </div>*@
             @if (false && wsession.IsLoggedIn)
             {
-                @RenderPage("../FindALocale/Announcements.cshtml")
+                @await Html.PartialAsync("../FindALocale/Announcements.cshtml")
             }
             else {
             <div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
@@ -423,7 +427,7 @@
             @if (wsession.IsLoggedIn)
             {
                 <br />
-                @RenderPage("../Chat/ChatLobby.cshtml", new { SessionId = userSession.SessionId.ToString(), Room = "Integration Portal", MinHeight = "350" })
+                @await Html.PartialAsync("../Chat/ChatLobby.cshtml")
             }
         </div><!--/span-->
     </div><!--/row-->

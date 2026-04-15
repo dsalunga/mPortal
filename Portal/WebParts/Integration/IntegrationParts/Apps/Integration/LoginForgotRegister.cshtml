@@ -27,7 +27,7 @@
                 if (session != null && session.UserId > 0) // Make sure user has a valid active session
                 {
                     var request = Context.Request;
-                    if (/*request.UserAgent == session.UserAgent &&*/ Context.Connection.RemoteIpAddress?.ToString() == session.IPAddress)
+                    if (/*request.UserAgent == session.UserAgent &&*/ Context.Connection.RemoteIpAddress?.ToString() == session.LastBrowserSession?.IPAddress)
                     {
                         WSession.LogOff(session.UserId);
                     }
