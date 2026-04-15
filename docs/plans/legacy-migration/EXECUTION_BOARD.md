@@ -1,6 +1,6 @@
 # Legacy Migration Execution Board
 
-Last Updated: 2026-06-08
+Last Updated: 2026-07-20
 
 ## Purpose
 This board is the execution layer for coding agents.
@@ -10,11 +10,16 @@ This board is the execution layer for coding agents.
 ## Sources of Truth
 - File inventory: `docs/plans/legacy-migration/inventory/legacy-source-tracking-all.csv`
 - Module rollup: `docs/plans/legacy-migration/module-status-rollup.csv`
+- File tracking: `docs/plans/legacy-migration/MIGRATION_FILE_TRACKING.md` (legacy→modern mapping for all 519 .ascx files)
+- CMS admin plan: `docs/plans/WEBSYSTEM_CMS_ADMIN_MIGRATION_PLAN.md`
 - Update script: `docs/plans/legacy-migration/update-tracker.py` (idempotent, safe to re-run)
 
 ## Current Phase
-- `Phase 2` - **COMPLETED**.
-- All 5306 tracked legacy files resolved: **3570 completed**, **1736 not_applicable**, **0 not_started**, **0 incomplete**.
+- `Phase 2` - **COMPLETED** (file inventory closure).
+- `Phase 3` - **IN PROGRESS** (feature gap migration + ViewComponent view completion).
+- All 5306 tracked legacy files resolved: **3613 completed**, **1693 not_applicable**, **0 not_started**, **0 incomplete**.
+- 9 feature gaps migrated: 6 Article Templates (views completed), ContactUsV2 (new VC), Photo Album (new VC).
+- 80 additional .ascx entries updated with `migrated_file_1to1` paths via viewcomponent_match.
 
 ## Active Batch
 - None. All batches completed.
@@ -38,6 +43,7 @@ A migration batch is done only when all criteria pass:
 | `BATCH-P2-003` | FCKeditor + obsolete .cs patterns batch closure | Completed | TBD | 25 FCKeditor + 82 obsolete patterns → not_applicable; editor migration target standardized to TipTap OSS. |
 | `BATCH-P2-004` | WebForms .ascx → ViewComponent cross-reference | Completed | TBD | 206 .ascx matched to ViewComponents; 177 code-behind paired → completed. |
 | `BATCH-P2-005` | Remaining WebForms closure + .aspx pages + incomplete items | Completed | TBD | 302 .ascx + 293 code-behind + 39 .aspx + 7 incomplete → resolved. |
+| `BATCH-P3-001` | 9 feature gap migration + CSV inventory update | Completed | `b39b00be` | 6 Article Template views completed, ContactUsV2 + PhotoAlbum VCs created; 80 CSV entries updated with migrated_file_1to1; build 0 errors, 85/85 tests pass. |
 
 ## Summary of Closure Categories
 
