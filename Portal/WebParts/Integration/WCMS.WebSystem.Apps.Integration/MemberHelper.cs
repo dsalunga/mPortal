@@ -13,6 +13,7 @@ using WCMS.WebSystem.Apps.Integration;
 using WCMS.WebSystem.Apps.Integration.ExtApp;
 using WCMS.Framework.Net;
 using WCMS.WebSystem.Agent;
+using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
 using WCMS.Framework.Core;
 using Microsoft.AspNetCore.Http;
 
@@ -20,6 +21,15 @@ namespace WCMS.WebSystem.Apps.Integration
 {
     public abstract class MemberHelper
     {
+
+        public static WebUser CreateDraftUser(Member member)
+        {
+            var user = new WebUser();
+            user.FirstName = member.FirstName;
+            user.LastName = member.LastName;
+            user.Gender = char.Parse(member.Gender.Substring(0, 1).ToUpper());
+            return user;
+        }
 
         public static bool ActivateAccount(int userId, int groupId, ParameterizedWebObject paramSet, HttpContext context)
         {
