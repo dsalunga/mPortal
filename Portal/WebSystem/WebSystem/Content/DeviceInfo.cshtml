@@ -12,7 +12,7 @@
     <div>
         <h1>Request Variables</h1>
         <div>IP Address: <strong>@WHelper.GetUserHostAddress()</strong></div>
-        <div>UserAgent: <strong>@Request.UserAgent</strong></div>
+        <div>UserAgent: <strong>@Context.Request.Headers["User-Agent"]</strong></div>
         @*<div>UserHostName: <strong>@Request.UserHostName</strong></div>*@
         @*<div>LogonUserIdentity: @Request.LogonUserIdentity.User</div>*@
     </div>

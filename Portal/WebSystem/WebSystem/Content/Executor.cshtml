@@ -138,17 +138,17 @@
     <br />
 </h1>
 
-<a href="@(Request.ServerVariables["HTTP_HOST"] + Request.RawUrl)">
+<a href="@(Context.Request.Host + Context.Request.Path + Context.Request.QueryString)">
     Link
 </a>
 
 @{
-    if (IsPost && Request.Form["Download"] != null)
+    if (HttpMethods.IsPost(Context.Request.Method) && Context.Request.HasFormContentType && Context.Request.Form["Download"].Count > 0)
     {
-        Response.ContentType = "application/octet-stream";
-        Response.AddHeader("Content-Disposition",
+        Context.Response.ContentType = "application/octet-stream";
+        Context.Response.Headers.Append("Content-Disposition",
                           "attachment; filename=http://cdn.someorg.org/tmp.mp4");
-        Response.End();
+        await Context.Response.CompleteAsync();
     }
 }
 

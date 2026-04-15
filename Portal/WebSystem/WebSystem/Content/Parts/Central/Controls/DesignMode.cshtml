@@ -3,7 +3,7 @@
 @using WCMS.Framework
 @{
     var session = WSession.Current;
-    var context = new WContext(this);
+    var context = new WContext(Context);
     var page = WPage.Get(context.PageId);
     var site = page.Site;
     var panelExpanded = session.InDesignPanelExpanded;

@@ -6,10 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Exclude legacy Razor views that use System.Web APIs (will be replaced with View Components) -->
-    <Content Remove="Content/**/*.cshtml" />
-    <Content Remove="Default.cshtml" />
-    <Content Remove="_loader.cshtml" />
+    <!-- All CSHTML files previously excluded have been migrated to ASP.NET Core -->
   </ItemGroup>
 
   <ItemGroup>

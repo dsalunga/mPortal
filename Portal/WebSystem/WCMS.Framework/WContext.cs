@@ -59,6 +59,16 @@ namespace WCMS.Framework
             this.Initialize();
         }
 
+        public WContext(HttpRequest request, IPageElement element)
+            : this()
+        {
+            Query = new WQuery(request);
+            if (element != null)
+                this.Initialize(element);
+            else
+                this.Initialize();
+        }
+
         #endregion
 
         #region Properties

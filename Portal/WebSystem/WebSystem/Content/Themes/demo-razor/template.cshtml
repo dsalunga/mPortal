@@ -1,17 +1,17 @@
 ﻿@using WCMS.WebSystem
 <h2>Message from a Theme</h2>
-<p>@PageData[0]</p>
+<p>@ViewData["Page"]</p>
 <br />
 <br />
 <div>
     <h1>Header</h1>
-    @RazorHelper.RenderPanel("phHeader", this)
+    @await RazorHelper.RenderPanelAsync("phHeader", Html)
 </div>
 <div>
     <h1>Main</h1>
-    @RazorHelper.RenderPanel("phMain", this)
+    @await RazorHelper.RenderPanelAsync("phMain", Html)
 </div>
 <div>
     <h1>Footer</h1>
-    @RazorHelper.RenderPanel("phFooter", this)
+    @await RazorHelper.RenderPanelAsync("phFooter", Html)
 </div>

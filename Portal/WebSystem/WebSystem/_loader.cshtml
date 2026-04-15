@@ -3,11 +3,11 @@
 @using WCMS.Framework.Core
 @using WCMS.WebSystem
 @{
-    var page = Page.Page;
-    WebTemplate template = Page.Template;
-    var panelName = Page.PanelName;
-    IEnumerable<WebTemplatePanel> panels = Page.Panels;
-    IEnumerable<IPageElement> elements = Page.Elements;
+    var page = (WPage)ViewData["Page"];
+    WebTemplate template = (WebTemplate)ViewData["Template"];
+    var panelName = (string)ViewData["PanelName"];
+    IEnumerable<WebTemplatePanel> panels = (IEnumerable<WebTemplatePanel>)ViewData["Panels"];
+    IEnumerable<IPageElement> elements = (IEnumerable<IPageElement>)ViewData["Elements"];
     var panel = panels.FirstOrDefault(i => i.PanelName.Equals(panelName, StringComparison.InvariantCultureIgnoreCase));
     IEnumerable<IPageElement> panelElements = null;
 
@@ -31,7 +31,7 @@
 
     foreach (var item in panelElements)
     {
-        Page.Element = item;
+        ViewData["Element"] = item;
 
         var partTemplate = item.PartControlTemplate;
         var partControl = partTemplate.PartControl;
@@ -39,8 +39,8 @@
 
         if (item.OBJECT_ID == WebObjects.WebPage)
         {
-            var openRequest = DataHelper.Get(Request, WConstants.Open);
-            var debugTemplateId = DataHelper.GetId(Request, WConstants.DebugTemplateId);
+            var openRequest = DataHelper.Get(Context.Request, WConstants.Open);
+            var debugTemplateId = DataHelper.GetId(Context.Request, WConstants.DebugTemplateId);
 
             // Check if there is a request to load another WebPartControl
             if (!string.IsNullOrEmpty(openRequest))
@@ -66,7 +66,7 @@
 
             if (WSession.Current.IsSiteManager)
             {
-                @RenderPage(WSConstants.RazorDesignModeControlPath, PageData)
+                @await Html.PartialAsync(WSConstants.RazorDesignModeControlPath)
             }
         }
 
@@ -81,7 +81,7 @@
             formatString = formatString.Replace(Substituter.DefaultContentToken, WConstants.ReplacerString);
 
             // Substituter
-            var context = new WContext(this, item);
+            var context = new WContext(Context.Request, item);
             formatString = Substituter.Substitute(formatString, context.ValueProvider);
 
             var paddingArray = formatString.Split(WConstants.ReplacerChar);
@@ -93,14 +93,14 @@
                 if (padLen == 1 || i != padLen - 1)
                 {
                     //var templatePath = el.PartControlTemplate.Path;
-                    @RenderPage(templatePath, PageData)
+                    @await Html.PartialAsync(templatePath)
                 }
             }
         }
         else
         {
             //var templatePath = el.PartControlTemplate.Path;
-            @RenderPage(templatePath, PageData)
+            @await Html.PartialAsync(templatePath)
         }
 
     }

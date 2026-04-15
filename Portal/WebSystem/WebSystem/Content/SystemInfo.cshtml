@@ -51,8 +51,8 @@
         <div>WCMS:Environment: <strong>@ConfigHelper.Get("WCMS:Environment")</strong></div>
         <div>WCMS:AllowCache: <strong>@ConfigHelper.Get(WConfig.ALLOW_CACHE)</strong></div>
         <br />
-        <div>Request.Url: <strong>@Request.Url</strong></div>
-        <div>Request.RawUrl: <strong>@Request.RawUrl</strong></div>
+        <div>Request.Url: <strong>@($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")</strong></div>
+        <div>Request.RawUrl: <strong>@($"{Context.Request.Path}{Context.Request.QueryString}")</strong></div>
         <br />
         <h1>Server Information</h1>
         <div>@Html.Raw(sb.ToString())</div>

@@ -1,9 +1,11 @@
 ﻿@using WCMS.Common.Utilities
 @using WCMS.Framework
 @using WCMS.WebSystem
+@removeTagHelper Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper, Microsoft.AspNetCore.Mvc.Razor
+@removeTagHelper Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper, Microsoft.AspNetCore.Mvc.Razor
 @{
-    var page = Page.Page;
-    var site = Page.Site;
+    var page = (WPage)ViewData["Page"];
+    var site = (WSite)ViewData["Site"];
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +17,7 @@
     <meta name="description" content="description" />
     <meta name="author" content="" />
 
-    <title>@page.BuildTitle()</title>
+    <title>@(page.BuildTitle())</title>
 
     <!-- Bootstrap core CSS -->
     <link href="@WebUtil.Version("~/content/plugins/bootstrap3/css/bootstrap.min.css")" rel="stylesheet">
@@ -28,16 +30,16 @@
     <![endif]-->
 
     <script src="@WebUtil.Version("~/content/assets/scripts/jquery.min.js")"></script>
-    @Html.Raw(Page.Resources)
+    @Html.Raw(ViewData["Resources"])
     @*@RenderSection("head", required: false)*@
 </head>
 
-<body id="Body" data-fx='{"userId":@WSession.Current.UserId,"pageId":@page.Id,"siteId":@site.Id}'>
+<body id="Body" data-fx='{"userId":@WSession.Current.UserId,"pageId":@(page.Id),"siteId":@site.Id}'>
     <a name="top"></a>
-    <input type="hidden" id="__hidPageId" value="@page.Id" />
-    @RazorHelper.RenderPanel("Header", this)
+    <input type="hidden" id="__hidPageId" value="@(page.Id)" />
+    @await RazorHelper.RenderPanelAsync("Header", Html)
     <!-- Fixed navbar -->
-    @if (!Page.HideHeader)
+    @if (!(bool)(ViewData["HideHeader"] ?? false))
     {
         <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top">
             <div class="container">
@@ -51,13 +53,13 @@
                     <a class="navbar-brand" href="@site.BuildAbsoluteUrl()">@site.Name</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    @RazorHelper.RenderPanel("Navigation", this)
+                    @await RazorHelper.RenderPanelAsync("Navigation", Html)
                 </div><!--/.nav-collapse -->
             </div>
         </div>
     }
     @*<div class="container">*@
-    @RazorHelper.RenderPanel("Main", this)
+    @await RazorHelper.RenderPanelAsync("Main", Html)
     @*</div>*@
     <div class="container">
         <hr />
@@ -72,6 +74,6 @@
     <script src="@WebUtil.Version("~/content/assets/scripts/wcms.core.min.js")" type="text/javascript"></script>
     <script src="@WebUtil.Version("~/content/assets/scripts/wcms.utils.min.js")" type="text/javascript"></script>
     <script src="@WebUtil.Version("~/content/assets/scripts/common.min.js")" type="text/javascript"></script>
-    @RazorHelper.RenderPanel("Footer", this)
+    @await RazorHelper.RenderPanelAsync("Footer", Html)
 </body>
 </html>

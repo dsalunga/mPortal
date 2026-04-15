@@ -2,6 +2,9 @@ using System;
 using System.IO;
 using System.Runtime.Caching;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
 
@@ -49,6 +52,12 @@ namespace WCMS.WebSystem
         public static string FormatJsString(string s)
         {
             return WebHelper.FormatJsString(s);
+        }
+
+        public static async Task<IHtmlContent> RenderPanelAsync(string panelName, IHtmlHelper html)
+        {
+            html.ViewData["PanelName"] = panelName;
+            return await html.PartialAsync("~/_loader.cshtml");
         }
     }
 }

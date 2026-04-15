@@ -13,8 +13,8 @@
     var showActions = true;
     var sw = PerformanceLog.StartLog();
 
-    if (!WHelper.CheckCentralLoaderAccess(this)) { return; }
-    var query = new WQuery(this);
+    if (!WHelper.CheckCentralLoaderAccess(Context)) { return; }
+    var query = new WQuery(Context.Request);
     if (query.Count == 0)
     {
         WebHelper.Redirect(CentralPages.CentrlHome);
@@ -194,7 +194,7 @@
         message = WSConstants.NO_LOAD;
     }
 
-    WSession.UserSessions.Update(WSession.Current.UserId, -1, Request.RawUrl);
+    WSession.UserSessions.Update(WSession.Current.UserId, -1, $"{Context.Request.Path}{Context.Request.QueryString}");
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -265,7 +265,7 @@
 </head>
 <body>
     <a name="top"></a>
-    @RenderPage("HeaderNavbar.cshtml", PageData)
+    @await Html.PartialAsync("HeaderNavbar.cshtml")
     <div class="container-fluid">
         @*<uc5:headernavbar id="HeaderNavbar1" runat="server" />
             <uc1:breadcrumb id="Breadcrumb1" runat="server" />
@@ -283,7 +283,7 @@
                 </div>
             }*@
         <div>
-            @RenderPage(controlPath, PageData)
+            @await Html.PartialAsync(controlPath)
             @if (!string.IsNullOrEmpty(message))
             {
                 <div class="alert alert-danger">@message</div>

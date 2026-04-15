@@ -2,11 +2,9 @@
 @using WCMS.Framework
 @using WCMS.Framework.Core
 @{
-    var context = Model.Context == null ? this : Model.Context;
-
     var isAdmin = WSession.Current.IsAdministrator;
     var isSiteManager = WSession.Current.IsSiteManager;
-    var siteId = DataHelper.GetId(context.Request, WebColumns.SiteId);
+    var siteId = DataHelper.GetId(Context.Request, WebColumns.SiteId);
 }
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
