@@ -31,8 +31,12 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
 
     public class ArticleMultipleMultiNewsroomViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        // TODO: Add model properties based on legacy control analysis
+        public string TitleHtml { get; set; } = string.Empty;
+        public string LinkHtml { get; set; } = string.Empty;
+        public string DateHtml { get; set; } = string.Empty;
+        public string DescriptionHtml { get; set; } = string.Empty;
+        public string ImageHtml { get; set; } = string.Empty;
     }
 }

@@ -1,8 +1,17 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ArticleSingleSingleBasicViewModel
-@* Ported from Basic.ascx. *@
+@* Ported from Basic.ascx (Article/Templates/Single). *@
 
-<div class="component-article-single-single-basic">
-    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-        <p class="text-muted"><em>Article Single Single Basic</em> component loaded.</p>
+<div class="article-template article-single-basic mb-3" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+    <div class="fw-bold">
+        @Html.Raw(Model.TitleHtml)
+    </div>
+    <div class="text-muted small">
+        @Html.Raw(Model.DateHtml)
+    </div>
+    <div class="mt-2">
+        @Html.Raw(Model.ContentHtml)
+    </div>
+    <div class="mt-2">
+        @Html.Raw(Model.LinkHtml)
     </div>
 </div>

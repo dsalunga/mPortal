@@ -31,8 +31,11 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
 
     public class ArticleSingleSingleBasicViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        // TODO: Add model properties based on legacy control analysis
+        public string TitleHtml { get; set; } = string.Empty;
+        public string LinkHtml { get; set; } = string.Empty;
+        public string DateHtml { get; set; } = string.Empty;
+        public string ContentHtml { get; set; } = string.Empty;
     }
 }

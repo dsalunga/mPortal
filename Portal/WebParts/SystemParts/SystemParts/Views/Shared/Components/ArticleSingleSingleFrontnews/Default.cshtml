@@ -1,8 +1,19 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ArticleSingleSingleFrontnewsViewModel
-@* Ported from FrontNews.ascx. *@
+@* Ported from FrontNews.ascx (Article/Templates/Single). *@
 
-<div class="component-article-single-single-frontnews">
-    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-        <p class="text-muted"><em>Article Single Single Frontnews</em> component loaded.</p>
+<div class="article-template article-single-frontnews mb-3" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+    @Html.Raw(Model.ImageHtml)
+    <div class="fw-bold">
+        @Html.Raw(Model.TitleHtml)
     </div>
+    <div class="text-muted small">
+        @Html.Raw(Model.DateHtml)
+    </div>
+    <div>
+        @Html.Raw(Model.DescriptionHtml)
+    </div>
+    <div class="text-end">
+        @Html.Raw(Model.LinkHtml)
+    </div>
+    <hr class="my-2" />
 </div>

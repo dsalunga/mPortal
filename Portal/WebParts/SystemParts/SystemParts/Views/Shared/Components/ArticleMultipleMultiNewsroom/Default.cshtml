@@ -1,8 +1,19 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ArticleMultipleMultiNewsroomViewModel
-@* Ported from Newsroom.ascx. *@
+@* Ported from Newsroom.ascx (Article/Templates/Multiple). *@
 
-<div class="component-article-multiple-multi-newsroom">
-    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-        <p class="text-muted"><em>Article Multiple Multi Newsroom</em> component loaded.</p>
+<div class="article-template article-multi-newsroom mb-3" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+    @Html.Raw(Model.ImageHtml)
+    <div class="fw-bold">
+        @Html.Raw(Model.TitleHtml)
     </div>
+    <div class="text-muted small">
+        @Html.Raw(Model.DateHtml)
+    </div>
+    <div>
+        @Html.Raw(Model.DescriptionHtml)
+    </div>
+    <div class="text-end">
+        @Html.Raw(Model.LinkHtml)
+    </div>
+    <hr class="my-2" />
 </div>

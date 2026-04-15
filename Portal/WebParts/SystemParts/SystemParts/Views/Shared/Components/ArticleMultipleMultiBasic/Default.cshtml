@@ -1,8 +1,17 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ArticleMultipleMultiBasicViewModel
-@* Ported from Basic.ascx. *@
+@* Ported from Basic.ascx (Article/Templates/Multiple). *@
 
-<div class="component-article-multiple-multi-basic">
-    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-        <p class="text-muted"><em>Article Multiple Multi Basic</em> component loaded.</p>
+<div class="article-template article-multi-basic mb-3" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+    <div class="fw-bold">
+        @Html.Raw(Model.TitleHtml)
+    </div>
+    <div>
+        @Html.Raw(Model.LinkHtml)
+    </div>
+    <div class="text-muted small">
+        @Html.Raw(Model.DateHtml)
+    </div>
+    <div>
+        @Html.Raw(Model.DescriptionHtml)
     </div>
 </div>

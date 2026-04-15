@@ -1,0 +1,27 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.PhotoalbumViewModel
+@* Ported from Album.ascx (Photo/Controls). Photo album gallery grid. *@
+
+<div class="gallery-album" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+    @if (Model.Albums.Count > 0)
+    {
+        <div class="row row-cols-1 row-cols-sm-@Model.Columns g-3">
+            @foreach (var album in Model.Albums)
+            {
+                <div class="col">
+                    <div class="card h-100 text-center">
+                        <a href="@album.LinkUrl" title="@album.Title">
+                            <img src="@album.ImageUrl" class="card-img-top fancybox-img" alt="@album.Title" />
+                        </a>
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold">@album.Title</h3>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-muted">No albums available.</p>
+    }
+</div>

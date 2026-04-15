@@ -1,8 +1,22 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ArticleMultipleMultiFrontnewsViewModel
-@* Ported from FrontNews.ascx. *@
+@* Ported from FrontNews.ascx (Article/Templates/Multiple). *@
 
-<div class="component-article-multiple-multi-frontnews">
-    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-        <p class="text-muted"><em>Article Multiple Multi Frontnews</em> component loaded.</p>
+<div class="article-template article-multi-frontnews d-flex gap-3 mb-3" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+    @if (!string.IsNullOrEmpty(Model.ImageHtml))
+    {
+        <div class="flex-shrink-0">
+            @Html.Raw(Model.ImageHtml)
+        </div>
+    }
+    <div class="flex-grow-1">
+        <div class="fw-bold">
+            @Html.Raw(Model.TitleHtml)
+        </div>
+        <div>
+            @Html.Raw(Model.DescriptionHtml)
+        </div>
+        <div class="text-end">
+            @Html.Raw(Model.LinkHtml)
+        </div>
     </div>
 </div>
