@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.MediaCmsMediaViewModel
+@* Ported from cms_media.ascx (AppBundle2/Media). *@
+
+<div class="component-mediacmsmedia">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>cms media</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            cms media component requires configuration.
+        </div>
+    }
+</div>

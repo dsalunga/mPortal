@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.AdsContentAdcategory02ViewModel
+@* Ported from content_adcategory_02.ascx (AppBundle2/Ads). *@
+
+<div class="component-adscontentadcategory02">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>content adcategory 02</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            content adcategory 02 component requires configuration.
+        </div>
+    }
+</div>

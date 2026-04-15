@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.Cms01BasiclistViewModel
+@* Ported from CMS_01_BasicList.ascx (AppBundle2/BasicList). *@
+
+<div class="component-cms01basiclist">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>CMS 01 Basic List</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            CMS 01 Basic List component requires configuration.
+        </div>
+    }
+</div>

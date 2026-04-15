@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.AdsContentAditem04ViewModel
+@* Ported from content_aditem_04.ascx (AppBundle2/Ads). *@
+
+<div class="component-adscontentaditem04">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>content aditem 04</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            content aditem 04 component requires configuration.
+        </div>
+    }
+</div>

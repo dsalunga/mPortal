@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.SocialWallViewModel
+@* Ported from Wall.ascx (AppBundle2/Social). *@
+
+<div class="component-socialwall">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Wall</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Wall component requires configuration.
+        </div>
+    }
+</div>

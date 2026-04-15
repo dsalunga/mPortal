@@ -1,0 +1,20 @@
+@model BibleReader.ViewComponents.AboutViewModel
+@* Ported from About.aspx (). *@
+
+<div class="component-about">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>About</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            About component requires configuration.
+        </div>
+    }
+</div>

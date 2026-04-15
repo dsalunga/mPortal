@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.G2.ViewComponents.CmsAdViewModel
+@* Ported from CMS_Ad.ascx (AppBundle2/Ads). *@
+
+<div class="component-cmsad">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>CMS Ad</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            CMS Ad component requires configuration.
+        </div>
+    }
+</div>
