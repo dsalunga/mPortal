@@ -7,6 +7,8 @@ This file also includes the canonical migration decision matrix (see `Canonical 
 Companion LGC inventory:
 - [Legacy Migration Master Inventory](./master-inventory-projects.md)
 
+> **Migration Completion Note (2026-06-08):** All 5,306 tracked source files in the [CSV inventory](../plans/legacy-migration/inventory/) are resolved: 3,570 completed, 1,736 not_applicable, 0 incomplete, 0 not_started. All cshtml views and C# files are migrated to ASP.NET Core (.NET 10). Zero csproj source exclusions remain. The project-level "Partial" status below reflects that legacy artifacts have verified modern counterparts but formal parity validation is ongoing — it does **not** indicate incomplete file migration.
+
 Status legend:
 - `Completed`: modern target (`net8+`) is declared in project metadata.
 - `Partial`: project has evidence of split legacy/modern coexistence.

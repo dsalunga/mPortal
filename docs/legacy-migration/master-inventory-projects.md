@@ -13,6 +13,7 @@ Companion views:
 - Tracked items: all discovered `*.csproj` and `*.sqlproj` files
 - Evidence model: target framework metadata, project structure, and discovered runtime artifacts
 - Evidence refresh: modern counterpart scan performed on April 15, 2026 (non-`legacy/` projects)
+- **File-level migration status (2026-06-08):** All 5,306 tracked source files resolved (3,570 completed, 1,736 not_applicable, 0 incomplete). All cshtml views and C# files migrated to ASP.NET Core (.NET 10). Zero csproj source exclusions remain. The project-level `Partial` status below indicates parity validation is ongoing, not that file migration is incomplete.
 - Status semantics:
   - `Completed`: modern target framework explicitly set (for example `net8.0+`)
   - `Partial`: legacy artifact has a verified modern counterpart and migration parity is still being validated

@@ -76,7 +76,7 @@ Zero csproj exclusions remain for source files.
 | 4 | EventRegisterUtil QRCoder | `e204ead5` | Migrate System.Drawing → SkiaSharp for QR/image generation |
 | 5 | Re-enable ALL Integration exclusions | `a78632cb` | Remove all csproj exclusions from Integration WebApp |
 | 6 | WebSystem cshtml views | `9e63e69f` | Migrate all WebSystem views: Page→ViewData, RenderPage→PartialAsync, Request→Context.Request |
-| 7 | Final cleanup | TBD | Fix remaining ASOP theme RenderPage, update tracking docs |
+| 7 | Final cleanup | `f974f1bf` | Fix remaining ASOP theme RenderPage, update tracking docs |
 
 ### Key Migration Patterns Applied
 - `@inherits Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>` via `_ViewImports.cshtml`

@@ -3,6 +3,8 @@
 This document tracks migration status per Visual Studio solution (`*.sln`) discovered under `legacy/`.
 Aggregate solution status is derived from mapped `LGC-###` project statuses in `master-inventory-projects.md` (refreshed April 15, 2026).
 
+> **Migration Completion Note (2026-06-08):** All 5,306 tracked source files are resolved at the file level (3,570 completed, 1,736 not_applicable, 0 incomplete). All cshtml views and C# files are migrated to ASP.NET Core (.NET 10) with zero csproj source exclusions. Solution-level "Partial" status reflects ongoing parity validation, not incomplete file migration. See [EXECUTION_BOARD.md](../plans/legacy-migration/EXECUTION_BOARD.md) for commit history.
+
 Companion views:
 
 - [LGC project/component inventory](./master-inventory-projects.md)
