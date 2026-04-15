@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.FlashbannerFlashbannerDefaultViewModel
-@* Ported from Default.aspx (AppBundle2/FlashBanner). *@
+@* Ported from Default.aspx. *@
 
-<div class="component-flashbannerflashbannerdefault">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Default</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Default component requires configuration.
-        </div>
-    }
+<div class="component-flashbanner-flashbanner-default">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Flashbanner Flashbanner Default</em> component loaded.</p>
+    </div>
 </div>

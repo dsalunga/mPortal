@@ -1,20 +1,21 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.TworowsViewModel
-@* Ported from TwoRows.ascx (AppBundle2/BasicList/ItemTemplates). *@
+@* Ported from TwoRows.ascx. *@
 
 <div class="component-tworows">
-    @if (Model.ObjectId > 0)
+    @if (Model.Items.Any())
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Two Rows</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="list-group">
+            @foreach (var item in Model.Items)
+            {
+                <div class="list-group-item">
+                    <span class="me-3">@item.Field1</span>
+                    <span class="me-3">@item.Field2</span>
+                </div>
+            }
         </div>
     }
     else
     {
-        <div class="alert alert-info">
-            Two Rows component requires configuration.
-        </div>
+        <p class="text-muted fst-italic">No items available.</p>
     }
 </div>

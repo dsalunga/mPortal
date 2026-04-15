@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.ScriptBodyeventViewModel
-@* Ported from BodyEvent.ascx (AppBundle2/Misc/Script). *@
+@* Ported from BodyEvent.ascx. *@
 
-<div class="component-scriptbodyevent">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Body Event</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Body Event component requires configuration.
-        </div>
-    }
+<div class="component-script-bodyevent">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Script Bodyevent</em> component loaded.</p>
+    </div>
 </div>

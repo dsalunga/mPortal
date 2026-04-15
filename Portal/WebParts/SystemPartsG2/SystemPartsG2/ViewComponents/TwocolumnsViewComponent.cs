@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.G2.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,16 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class TwocolumnsViewModel
+        public class TwocolumnsViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public List<TwocolumnsItem> Items { get; set; } = new();
+    }
+
+    public class TwocolumnsItem
+    {
+        public string Field1 { get; set; } = string.Empty;
+        public string Field2 { get; set; } = string.Empty;
     }
 }

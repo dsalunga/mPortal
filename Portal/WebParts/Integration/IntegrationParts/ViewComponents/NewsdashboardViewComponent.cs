@@ -29,9 +29,10 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class NewsdashboardViewModel
+        public class NewsdashboardViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string ScriptMakeUpTestHtml { get; set; } = string.Empty;
     }
 }

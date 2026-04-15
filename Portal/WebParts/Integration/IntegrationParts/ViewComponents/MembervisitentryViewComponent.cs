@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,24 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class MembervisitentryViewModel
+        public class MembervisitentryViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string ActionTaken { get; set; } = string.Empty;
+        public string ActualReport { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public List<SelectOption> CboGroupOptions { get; set; } = new();
+        public List<SelectOption> CboTagOptions { get; set; } = new();
+        public List<SelectOption> CboTimesVisitedOptions { get; set; } = new();
+        public string ContactNo { get; set; } = string.Empty;
+        public string DateVisited { get; set; } = string.Empty;
+        public string Member { get; set; } = string.Empty;
+        public string MembershipDate { get; set; } = string.Empty;
+        public string SelectedCboGroup { get; set; } = string.Empty;
+        public string SelectedCboTag { get; set; } = string.Empty;
+        public string SelectedCboTimesVisited { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
-}
+    }

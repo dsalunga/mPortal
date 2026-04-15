@@ -29,9 +29,10 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class ControlsWebgrouptabViewModel
+        public class ControlsWebgrouptabViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string BreadcrumbHtml { get; set; } = string.Empty;
     }
 }

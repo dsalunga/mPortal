@@ -1,20 +1,39 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.ContentAditem04ViewModel
-@* Ported from content_aditem_04.ascx (AppBundle2/Ads). *@
+@* Ported from content_aditem_04.ascx. *@
 
-<div class="component-contentaditem04">
-    @if (Model.ObjectId > 0)
+<div class="component-content-aditem04">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>content aditem 04</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            content aditem 04 component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_AlternateText" class="form-label">Alternate Text</label>
+            <input type="text" class="form-control" id="field_AlternateText" name="AlternateText" value="@Model.AlternateText" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_Filename" class="form-label">Filename</label>
+            <input type="text" class="form-control" id="field_Filename" name="Filename" value="@Model.Filename" />
+        </div>
+        <div class="mb-3">
+            <label for="field_NavigateUrl" class="form-label">Navigate Url</label>
+            <input type="text" class="form-control" id="field_NavigateUrl" name="NavigateUrl" value="@Model.NavigateUrl" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Keyword" class="form-label">Keyword</label>
+            <input type="text" class="form-control" id="field_Keyword" name="Keyword" value="@Model.Keyword" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Impressions" class="form-label">Impressions</label>
+            <input type="text" class="form-control" id="field_Impressions" name="Impressions" value="@Model.Impressions" />
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdUpdate">Update</button>
+            <button type="submit" class="btn btn-outline-secondary" name="action" value="cmdCancel">Cancel</button>
+        </div>
+    </form>
 </div>

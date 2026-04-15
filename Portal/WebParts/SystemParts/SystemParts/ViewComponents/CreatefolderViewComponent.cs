@@ -29,11 +29,11 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class CreatefolderViewModel
+        public class CreatefolderViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtNewFolder { get; set; } = string.Empty;
-        public string lblMessage { get; set; } = string.Empty;
+        public string NewFolder { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

@@ -29,12 +29,12 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class RenamefileViewModel
+        public class RenamefileViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtOldName { get; set; } = string.Empty;
-        public string txtNewName { get; set; } = string.Empty;
-        public string lblMessage { get; set; } = string.Empty;
+        public string NewName { get; set; } = string.Empty;
+        public string OldName { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

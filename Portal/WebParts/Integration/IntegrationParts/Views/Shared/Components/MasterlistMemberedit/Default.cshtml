@@ -1,20 +1,113 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.MasterlistMembereditViewModel
-@* Ported from MemberEdit.ascx (Apps/Integration/MasterList). *@
+@* Ported from MemberEdit.ascx. *@
 
-<div class="component-masterlistmemberedit">
-    @if (Model.ObjectId > 0)
+<div class="component-masterlist-memberedit">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Member Edit</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Member Edit component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_FirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="field_FirstName" name="FirstName" value="@Model.FirstName" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_MiddleName" class="form-label">Middle Name</label>
+            <input type="text" class="form-control" id="field_MiddleName" name="MiddleName" value="@Model.MiddleName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="field_LastName" name="LastName" value="@Model.LastName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_ExternalID" class="form-label">External I D</label>
+            <input type="text" class="form-control" id="field_ExternalID" name="ExternalID" value="@Model.ExternalID" />
+        </div>
+        <div class="mb-3">
+            <label for="field_MembershipDate" class="form-label">Membership Date</label>
+            <input type="text" class="form-control" id="field_MembershipDate" name="MembershipDate" value="@Model.MembershipDate" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="field_Email" name="Email" value="@Model.Email" />
+        </div>
+        <div class="mb-3">
+            <label for="field_MobileNumber" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="field_MobileNumber" name="MobileNumber" value="@Model.MobileNumber" />
+        </div>
+        <div class="mb-3">
+            <label for="field_HomePhone" class="form-label">Home Phone</label>
+            <input type="text" class="form-control" id="field_HomePhone" name="HomePhone" value="@Model.HomePhone" />
+        </div>
+        <div class="mb-3">
+            <label for="field_HomeAddress1" class="form-label">Home Address1</label>
+            <input type="text" class="form-control" id="field_HomeAddress1" name="HomeAddress1" value="@Model.HomeAddress1" />
+        </div>
+        <div class="mb-3">
+            <label for="field_HomeAddress2" class="form-label">Home Address2</label>
+            <input type="text" class="form-control" id="field_HomeAddress2" name="HomeAddress2" value="@Model.HomeAddress2" />
+        </div>
+        <div class="mb-3">
+            <label for="field_HomeAddressZipCode" class="form-label">Home Address Zip Code</label>
+            <input type="text" class="form-control" id="field_HomeAddressZipCode" name="HomeAddressZipCode" value="@Model.HomeAddressZipCode" />
+        </div>
+        <div class="mb-3">
+            <label for="field_ObjectDataSourceCountries" class="form-label">Object Data Source Countries</label>
+            <select class="form-select" id="field_ObjectDataSourceCountries" name="SelectedObjectDataSourceCountries">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.ObjectDataSourceCountriesOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedObjectDataSourceCountries ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboOfficerPosition" class="form-label">Cbo Officer Position</label>
+            <select class="form-select" id="field_CboOfficerPosition" name="SelectedCboOfficerPosition">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboOfficerPositionOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboOfficerPosition ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboVoiceDesignation" class="form-label">Cbo Voice Designation</label>
+            <select class="form-select" id="field_CboVoiceDesignation" name="SelectedCboVoiceDesignation">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboVoiceDesignationOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboVoiceDesignation ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_IsOfficer" name="IsOfficer" @(Model.IsOfficer ? "checked" : "") />
+            <label class="form-check-label" for="field_IsOfficer">Position (Officers)</label>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_AssignedCouncillor" name="AssignedCouncillor" @(Model.AssignedCouncillor ? "checked" : "") />
+            <label class="form-check-label" for="field_AssignedCouncillor">Assigned Councillor</label>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_GroupMentor" name="GroupMentor" @(Model.GroupMentor ? "checked" : "") />
+            <label class="form-check-label" for="field_GroupMentor">Group Mentor</label>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_GroupConductor" name="GroupConductor" @(Model.GroupConductor ? "checked" : "") />
+            <label class="form-check-label" for="field_GroupConductor">Group Conductor</label>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_GroupManager" name="GroupManager" @(Model.GroupManager ? "checked" : "") />
+            <label class="form-check-label" for="field_GroupManager">Group Manager (Coordinator)</label>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdSubmit">Update</button>
+            <button type="submit" class="btn btn-outline-secondary" name="action" value="cmdCancel">Cancel</button>
+        </div>
+    </form>
 </div>

@@ -29,9 +29,14 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class AccountGetaccessViewModel
+        public class AccountGetaccessViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string DateOfMembership { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string ExternalId { get; set; } = string.Empty;
+        public bool NoExternalId { get; set; } = false;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

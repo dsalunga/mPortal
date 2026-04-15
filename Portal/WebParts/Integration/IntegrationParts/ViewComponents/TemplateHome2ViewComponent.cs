@@ -29,9 +29,10 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class TemplateHome2ViewModel
+        public class TemplateHome2ViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string ContentHtml { get; set; } = string.Empty;
     }
 }

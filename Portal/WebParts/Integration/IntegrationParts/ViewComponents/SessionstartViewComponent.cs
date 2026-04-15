@@ -29,9 +29,11 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class SessionstartViewModel
+        public class SessionstartViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string ScriptMakeUpTestHtml { get; set; } = string.Empty;
+        public string ScriptPlaybackTestHtml { get; set; } = string.Empty;
     }
 }

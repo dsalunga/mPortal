@@ -1,20 +1,62 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.BiblebrowserViewModel
-@* Ported from BibleBrowser.ascx (Apps/Integration/BibleReader). *@
+@* Ported from BibleBrowser.ascx. *@
 
 <div class="component-biblebrowser">
-    @if (Model.ObjectId > 0)
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Bible Browser</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Bible Browser component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Search" class="form-label">Search</label>
+            <input type="text" class="form-control" id="field_Search" name="Search" value="@Model.Search" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_CboLanguages" class="form-label">Cbo Languages</label>
+            <select class="form-select" id="field_CboLanguages" name="SelectedCboLanguages">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboLanguagesOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboLanguages ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboVersions" class="form-label">Cbo Versions</label>
+            <select class="form-select" id="field_CboVersions" name="SelectedCboVersions">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboVersionsOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboVersions ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboBooks" class="form-label">Cbo Books</label>
+            <select class="form-select" id="field_CboBooks" name="SelectedCboBooks">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboBooksOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboBooks ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboChapters" class="form-label">Cbo Chapters</label>
+            <select class="form-select" id="field_CboChapters" name="SelectedCboChapters">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboChaptersOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboChapters ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdSearch">Search</button>
+        </div>
+    </form>
 </div>

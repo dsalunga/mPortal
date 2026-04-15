@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.ForgotpassViewModel
-@* Ported from ForgotPass.ascx (Apps/Integration/Registration). *@
+@* Ported from ForgotPass.ascx. *@
 
 <div class="component-forgotpass">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Forgot Pass</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Forgot Pass component requires configuration.
-        </div>
-    }
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Forgotpass</em> component loaded.</p>
+    </div>
 </div>

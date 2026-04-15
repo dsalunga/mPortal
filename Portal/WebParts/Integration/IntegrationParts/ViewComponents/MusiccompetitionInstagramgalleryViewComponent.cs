@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,15 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class MusiccompetitionInstagramgalleryViewModel
+        public class MusiccompetitionInstagramgalleryViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public List<MusiccompetitionInstagramgalleryItem> Items { get; set; } = new();
+    }
+
+    public class MusiccompetitionInstagramgalleryItem
+    {
+        public string Name { get; set; } = string.Empty;
     }
 }

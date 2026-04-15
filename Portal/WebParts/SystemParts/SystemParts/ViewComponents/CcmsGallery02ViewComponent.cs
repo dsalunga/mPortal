@@ -31,23 +31,25 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class CcmsGallery02ViewModel
+        public class CcmsGallery02ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<SelectListItem> SqlDataSource2Items { get; set; } = new();
-        public string SqlDataSource2Selected { get; set; } = string.Empty;
-        public List<object> ObjectDataSource1Data { get; set; } = new();
-        public string litID { get; set; } = string.Empty;
-        public string txtCaption { get; set; } = string.Empty;
-        public string txtThumbnail { get; set; } = string.Empty;
-        public string txtImageURL { get; set; } = string.Empty;
-        public List<SelectListItem> ddlSitesItems { get; set; } = new();
-        public string ddlSitesSelected { get; set; } = string.Empty;
-        public bool chkIsActive { get; set; }
-        public string litDateCreated { get; set; } = string.Empty;
-        public string txtPhotoCollection { get; set; } = string.Empty;
-        public string lblBatchUploadStatus { get; set; } = string.Empty;
-        public string lblNotify { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<CcmsGallery02Item> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class CcmsGallery02Item
+    {
+        public string Active { get; set; } = string.Empty;
+        public string Caption { get; set; } = string.Empty;
+        public string DateCreated { get; set; } = string.Empty;
+        public string Edit { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string PhotoName { get; set; } = string.Empty;
+        public string Preview { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

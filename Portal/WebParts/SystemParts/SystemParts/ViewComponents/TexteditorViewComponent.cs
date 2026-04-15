@@ -29,11 +29,11 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class TexteditorViewModel
+        public class TexteditorViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string lblStatus { get; set; } = string.Empty;
-        public string txtContent { get; set; } = string.Empty;
+        public string Content { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

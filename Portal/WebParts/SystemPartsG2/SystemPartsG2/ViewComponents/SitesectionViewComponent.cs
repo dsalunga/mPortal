@@ -29,9 +29,10 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class SitesectionViewModel
+        public class SitesectionViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string LNameHtml { get; set; } = string.Empty;
     }
 }

@@ -30,10 +30,23 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class CcmsMenu08ViewModel
+        public class CcmsMenu08ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<object> ObjectDataSource1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<CcmsMenu08Item> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class CcmsMenu08Item
+    {
+        public string Actions { get; set; } = string.Empty;
+        public string Active { get; set; } = string.Empty;
+        public string DateCreated { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string SiteName { get; set; } = string.Empty;
     }
 }

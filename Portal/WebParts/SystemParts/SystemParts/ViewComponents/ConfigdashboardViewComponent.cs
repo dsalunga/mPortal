@@ -31,18 +31,20 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ConfigdashboardViewModel
+        public class ConfigdashboardViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string hSiteId { get; set; } = string.Empty;
-        public List<SelectListItem> cboSubscriptionModeItems { get; set; } = new();
-        public string cboSubscriptionModeSelected { get; set; } = string.Empty;
-        public string txtGroupId { get; set; } = string.Empty;
-        public string txtIgnoreGroups { get; set; } = string.Empty;
-        public bool chkUsePageParameter { get; set; }
-        public string txtNavigateURL { get; set; } = string.Empty;
-        public List<object> ObjectDataSource1Data { get; set; } = new();
-        public string lblStatus { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<ConfigdashboardItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class ConfigdashboardItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string PageName { get; set; } = string.Empty;
     }
 }

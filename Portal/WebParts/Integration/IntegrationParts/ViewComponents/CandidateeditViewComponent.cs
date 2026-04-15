@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,21 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class CandidateeditViewModel
+        public class CandidateeditViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public List<SelectOption> CboCompetitionOptions { get; set; } = new();
+        public string Entry { get; set; } = string.Empty;
+        public string Interpreter { get; set; } = string.Empty;
+        public string Lyricist { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string PhotoFile { get; set; } = string.Empty;
+        public string Rank { get; set; } = string.Empty;
+        public string SelectedCboCompetition { get; set; } = string.Empty;
+        public string SourceUrl { get; set; } = string.Empty;
+        public string SourceUrl2 { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string WinnerRank { get; set; } = string.Empty;
     }
-}
+    }

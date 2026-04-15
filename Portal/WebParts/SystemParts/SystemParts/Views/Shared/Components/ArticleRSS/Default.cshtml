@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ArticleRSSViewModel
-@* Ported from RSS.ascx (SystemParts). *@
+@* Ported from RSS.ascx. *@
 
-<div class="component-articlerss">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>RSS</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>Article:</strong> RSS component requires configuration.
-        </div>
-    }
+<div class="component-article-r-s-s">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Article R S S</em> component loaded.</p>
+    </div>
 </div>

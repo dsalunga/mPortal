@@ -1,20 +1,18 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.StdcascademenuViewModel
-@* Ported from StdCascadeMenu.ascx (SystemParts). *@
+@* Ported from StdCascadeMenu.ascx. *@
 
 <div class="component-stdcascademenu">
-    @if (Model.ObjectId > 0)
+    @if (Model.Items.Any())
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Std Cascade Menu</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>System:</strong> Std Cascade Menu component requires configuration.
-        </div>
+        <nav aria-label="Navigation">
+            <ul class="nav flex-column">
+                @foreach (var item in Model.Items)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@item.Name">@item.Name</a>
+                    </li>
+                }
+            </ul>
+        </nav>
     }
 </div>

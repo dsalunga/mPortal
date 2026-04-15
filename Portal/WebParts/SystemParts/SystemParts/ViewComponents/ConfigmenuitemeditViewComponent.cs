@@ -31,16 +31,17 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ConfigmenuitemeditViewModel
+        public class ConfigmenuitemeditViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtCaption { get; set; } = string.Empty;
-        public string txtNavigateURL { get; set; } = string.Empty;
-        public List<SelectListItem> ObjectDataSource1Items { get; set; } = new();
-        public string ObjectDataSource1Selected { get; set; } = string.Empty;
-        public string txtRank { get; set; } = string.Empty;
-        public bool chkIsActive { get; set; }
-        public bool chkCheckPermission { get; set; }
+        public string Caption { get; set; } = string.Empty;
+        public bool CheckPermission { get; set; } = false;
+        public bool IsActive { get; set; }
+        public string NavigateURL { get; set; } = string.Empty;
+        public List<SelectOption> ObjectDataSource1Options { get; set; } = new();
+        public string Rank { get; set; } = string.Empty;
+        public string SelectedObjectDataSource1 { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
-}
+    }

@@ -29,9 +29,14 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class PmDownloadsEdit02ViewModel
+        public class PmDownloadsEdit02ViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string Date { get; set; } = string.Empty;
+        public string Filename { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Rank { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

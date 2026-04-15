@@ -1,20 +1,10 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.FancyboxthumbnailsViewModel
-@* Ported from FancyBoxThumbnails.ascx (SystemParts). *@
+@* Ported from FancyBoxThumbnails.ascx. *@
 
 <div class="component-fancyboxthumbnails">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Fancy Box Thumbnails</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>Photo:</strong> Fancy Box Thumbnails component requires configuration.
-        </div>
-    }
+    @Html.Raw(Model.LCategoryHtml)
+    @Html.Raw(Model.LThumbsHtml)
+    @Html.Raw(Model.LNumsHtml)
+    @Html.Raw(Model.LPrevHtml)
+    @Html.Raw(Model.LNextHtml)
 </div>

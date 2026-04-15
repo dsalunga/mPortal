@@ -30,10 +30,22 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ConfiglinkedmenuViewModel
+        public class ConfiglinkedmenuViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<object> ObjectDataSource1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<ConfiglinkedmenuItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class ConfiglinkedmenuItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public string Active { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string MenuName { get; set; } = string.Empty;
+        public string Text { get; set; } = string.Empty;
     }
 }

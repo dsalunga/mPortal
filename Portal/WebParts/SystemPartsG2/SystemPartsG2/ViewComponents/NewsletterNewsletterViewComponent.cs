@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.G2.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,14 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class NewsletterNewsletterViewModel
+        public class NewsletterNewsletterViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public List<SelectOption> RblGenderOptions { get; set; } = new();
+        public string SelectedRblGender { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
-}
+    }

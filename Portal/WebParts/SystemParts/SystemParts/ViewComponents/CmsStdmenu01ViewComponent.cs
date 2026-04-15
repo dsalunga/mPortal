@@ -31,19 +31,19 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class CmsStdmenu01ViewModel
+        public class CmsStdmenu01ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<SelectListItem> DropDownList1Items { get; set; } = new();
-        public string DropDownList1Selected { get; set; } = string.Empty;
-        public List<SelectListItem> DropDownList2Items { get; set; } = new();
-        public string DropDownList2Selected { get; set; } = string.Empty;
-        public List<SelectListItem> cboOrientationItems { get; set; } = new();
-        public string cboOrientationSelected { get; set; } = string.Empty;
-        public string txtHome { get; set; } = string.Empty;
-        public string txtWidth { get; set; } = string.Empty;
-        public string txtHeight { get; set; } = string.Empty;
-        public string lblStatus { get; set; } = string.Empty;
+        public List<SelectOption> CboOrientationOptions { get; set; } = new();
+        public List<SelectOption> DropDownList1Options { get; set; } = new();
+        public List<SelectOption> DropDownList2Options { get; set; } = new();
+        public string Height { get; set; } = string.Empty;
+        public string Home { get; set; } = string.Empty;
+        public string SelectedCboOrientation { get; set; } = string.Empty;
+        public string SelectedDropDownList1 { get; set; } = string.Empty;
+        public string SelectedDropDownList2 { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string Width { get; set; } = string.Empty;
     }
-}
+    }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,15 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class LessonreviewerLogattendanceViewModel
+        public class LessonreviewerLogattendanceViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string AbsentReason { get; set; } = string.Empty;
+        public List<SelectOption> CboNotesOptions { get; set; } = new();
+        public string CustomNote { get; set; } = string.Empty;
+        public bool Note { get; set; } = false;
+        public string SelectedCboNotes { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
-}
+    }

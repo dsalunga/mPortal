@@ -31,12 +31,11 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ImportexportViewModel
+        public class ImportexportViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<SelectListItem> ObjectDataSource1Items { get; set; } = new();
-        public string ObjectDataSource1Selected { get; set; } = string.Empty;
-        public string lblStatus { get; set; } = string.Empty;
+        public int ActiveViewIndex { get; set; }
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

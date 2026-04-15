@@ -29,9 +29,11 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class AccountChangepasswordv2ViewModel
+        public class AccountChangepasswordv2ViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public int ActiveViewIndex { get; set; }
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

@@ -29,13 +29,14 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class WmCreatequestion06ViewModel
+        public class WmCreatequestion06ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtQLabel { get; set; } = string.Empty;
-        public string txtQRanking { get; set; } = string.Empty;
-        public bool chkRequired { get; set; }
-        public bool chkHorizontal { get; set; }
+        public bool Horizontal { get; set; } = false;
+        public string QLabel { get; set; } = string.Empty;
+        public string QRanking { get; set; } = string.Empty;
+        public bool Required { get; set; } = false;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

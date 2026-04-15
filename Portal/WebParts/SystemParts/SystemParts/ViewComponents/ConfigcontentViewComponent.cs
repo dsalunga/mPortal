@@ -31,20 +31,23 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ConfigcontentViewModel
+        public class ConfigcontentViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtTitle { get; set; } = string.Empty;
-        public bool chkActiveContent { get; set; }
-        public List<object> grdHistoryData { get; set; } = new();
-        public List<object> grdDraftData { get; set; } = new();
-        public string litID { get; set; } = string.Empty;
-        public List<SelectListItem> ddlSiteIDItems { get; set; } = new();
-        public string ddlSiteIDSelected { get; set; } = string.Empty;
-        public List<SelectListItem> ddlRankItems { get; set; } = new();
-        public string ddlRankSelected { get; set; } = string.Empty;
-        public bool chkIsActive { get; set; }
-        public string hidId { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<ConfigcontentItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class ConfigcontentItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public string Content { get; set; } = string.Empty;
+        public string DateModified { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string VersionNo { get; set; } = string.Empty;
     }
 }

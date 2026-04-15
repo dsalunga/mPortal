@@ -1,20 +1,6 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.TworowViewModel
-@* Ported from TwoRow.ascx (SystemParts). *@
+@* Ported from TwoRow.ascx. *@
 
 <div class="component-tworow">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Two Row</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>System:</strong> Two Row component requires configuration.
-        </div>
-    }
+    @Html.Raw(Model.ContentHtml ?? "")
 </div>

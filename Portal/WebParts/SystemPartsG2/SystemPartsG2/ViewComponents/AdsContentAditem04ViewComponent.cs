@@ -29,9 +29,15 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class AdsContentAditem04ViewModel
+        public class AdsContentAditem04ViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string AlternateText { get; set; } = string.Empty;
+        public string Filename { get; set; } = string.Empty;
+        public string Impressions { get; set; } = string.Empty;
+        public string Keyword { get; set; } = string.Empty;
+        public string NavigateUrl { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

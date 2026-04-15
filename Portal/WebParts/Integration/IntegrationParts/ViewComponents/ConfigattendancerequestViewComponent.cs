@@ -29,9 +29,13 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class ConfigattendancerequestViewModel
+        public class ConfigattendancerequestViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string Note { get; set; } = string.Empty;
+        public bool Notes { get; set; } = false;
+        public bool SendCopy { get; set; } = false;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

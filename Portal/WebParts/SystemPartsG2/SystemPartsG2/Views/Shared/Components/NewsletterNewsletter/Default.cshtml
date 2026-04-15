@@ -1,20 +1,37 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.NewsletterNewsletterViewModel
-@* Ported from Newsletter.ascx (AppBundle2/Newsletter). *@
+@* Ported from Newsletter.ascx. *@
 
-<div class="component-newsletternewsletter">
-    @if (Model.ObjectId > 0)
+<div class="component-newsletter-newsletter">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Newsletter</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Newsletter component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="field_Name" name="Name" value="@Model.Name" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_Email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="field_Email" name="Email" value="@Model.Email" />
+        </div>
+        <fieldset class="mb-3">
+            <legend class="form-label">Rbl Gender</legend>
+            @foreach (var opt in Model.RblGenderOptions)
+            {
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="SelectedRblGender" value="@opt.Value"
+                           id="radio_RblGender_@opt.Value" @(opt.Value == Model.SelectedRblGender ? "checked" : "") />
+                    <label class="form-check-label" for="radio_RblGender_@opt.Value">@opt.Text</label>
+                </div>
+            }
+        </fieldset>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdSubmit">Submit</button>
+        </div>
+    </form>
 </div>

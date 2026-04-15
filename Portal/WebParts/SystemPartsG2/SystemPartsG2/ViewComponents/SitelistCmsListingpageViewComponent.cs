@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.G2.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,20 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class SitelistCmsListingpageViewModel
+        public class SitelistCmsListingpageViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public List<SelectOption> CboPaddingOptions { get; set; } = new();
+        public List<SelectOption> CboRepeatColumnsOptions { get; set; } = new();
+        public List<SelectOption> CboSitesOptions { get; set; } = new();
+        public string HeaderText { get; set; } = string.Empty;
+        public string Height { get; set; } = string.Empty;
+        public string SelectedCboPadding { get; set; } = string.Empty;
+        public string SelectedCboRepeatColumns { get; set; } = string.Empty;
+        public string SelectedCboSites { get; set; } = string.Empty;
+        public bool SortName { get; set; } = false;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string Width { get; set; } = string.Empty;
     }
-}
+    }

@@ -1,20 +1,6 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.RemindertemplatesViewModel
-@* Ported from ReminderTemplates.ascx (Apps/Integration/Reminder). *@
+@* Ported from ReminderTemplates.ascx. *@
 
 <div class="component-remindertemplates">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Reminder Templates</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Reminder Templates component requires configuration.
-        </div>
-    }
+    @Html.Raw(Model.ContentHtml ?? "")
 </div>

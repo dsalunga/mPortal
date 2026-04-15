@@ -29,9 +29,11 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class DatedisplayCmsDatedisplayViewModel
+        public class DatedisplayCmsDatedisplayViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string FormatString { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

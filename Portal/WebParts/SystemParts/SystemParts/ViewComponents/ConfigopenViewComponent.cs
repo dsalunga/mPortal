@@ -29,10 +29,11 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ConfigopenViewModel
+        public class ConfigopenViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtContentId { get; set; } = string.Empty;
+        public string ContentId { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

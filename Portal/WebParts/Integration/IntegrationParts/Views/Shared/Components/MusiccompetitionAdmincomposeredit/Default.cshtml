@@ -1,20 +1,57 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.MusiccompetitionAdmincomposereditViewModel
-@* Ported from AdminComposerEdit.ascx (Apps/Integration/MusicCompetition). *@
+@* Ported from AdminComposerEdit.ascx. *@
 
-<div class="component-musiccompetitionadmincomposeredit">
-    @if (Model.ObjectId > 0)
+<div class="component-musiccompetition-admincomposeredit">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Admin Composer Edit</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Admin Composer Edit component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="field_Name" name="Name" value="@Model.Name" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_NickName" class="form-label">Nick Name</label>
+            <input type="text" class="form-control" id="field_NickName" name="NickName" value="@Model.NickName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Locale" class="form-label">Locale</label>
+            <input type="text" class="form-control" id="field_Locale" name="Locale" value="@Model.Locale" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Entry" class="form-label">Entry</label>
+            <input type="text" class="form-control" id="field_Entry" name="Entry" value="@Model.Entry" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Work" class="form-label">Work</label>
+            <input type="text" class="form-control" id="field_Work" name="Work" value="@Model.Work" />
+        </div>
+        <div class="mb-3">
+            <label for="field_PhotoFile" class="form-label">Photo File</label>
+            <input type="text" class="form-control" id="field_PhotoFile" name="PhotoFile" value="@Model.PhotoFile" />
+        </div>
+        <div class="mb-3">
+            <label for="field_CboCompetition" class="form-label">Cbo Competition</label>
+            <select class="form-select" id="field_CboCompetition" name="SelectedCboCompetition">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboCompetitionOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboCompetition ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_Active" name="Active" @(Model.Active ? "checked" : "") />
+            <label class="form-check-label" for="field_Active">Active</label>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdUpdate">Update</button>
+            <button type="submit" class="btn btn-outline-secondary" name="action" value="cmdCancel">Cancel</button>
+        </div>
+    </form>
 </div>

@@ -29,9 +29,11 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class StreamingAccessrequestViewModel
+        public class StreamingAccessrequestViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string Reason { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

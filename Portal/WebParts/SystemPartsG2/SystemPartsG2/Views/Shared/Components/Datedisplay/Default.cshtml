@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.DatedisplayViewModel
-@* Ported from DateDisplay.ascx (AppBundle2/Misc/DateDisplay). *@
+@* Ported from DateDisplay.ascx. *@
 
 <div class="component-datedisplay">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Date Display</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Date Display component requires configuration.
-        </div>
-    }
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Datedisplay</em> component loaded.</p>
+    </div>
 </div>

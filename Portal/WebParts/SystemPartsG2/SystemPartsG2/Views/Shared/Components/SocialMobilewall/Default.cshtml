@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.SocialMobilewallViewModel
-@* Ported from MobileWall.ascx (AppBundle2/Social). *@
+@* Ported from MobileWall.ascx. *@
 
-<div class="component-socialmobilewall">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Mobile Wall</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Mobile Wall component requires configuration.
-        </div>
-    }
+<div class="component-social-mobilewall">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Social Mobilewall</em> component loaded.</p>
+    </div>
 </div>

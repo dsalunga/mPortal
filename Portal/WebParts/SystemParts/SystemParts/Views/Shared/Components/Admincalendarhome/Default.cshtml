@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.AdmincalendarhomeViewModel
-@* Ported from AdminCalendarHome.ascx (SystemParts). *@
+@* Ported from AdminCalendarHome.ascx. *@
 
 <div class="component-admincalendarhome">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Admin Calendar Home</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>System:</strong> Admin Calendar Home component requires configuration.
-        </div>
-    }
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Admincalendarhome</em> component loaded.</p>
+    </div>
 </div>

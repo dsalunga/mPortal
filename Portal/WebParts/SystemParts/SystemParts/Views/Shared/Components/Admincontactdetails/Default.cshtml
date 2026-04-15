@@ -1,20 +1,39 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.AdmincontactdetailsViewModel
-@* Ported from AdminContactDetails.ascx (SystemParts). *@
+@* Ported from AdminContactDetails.ascx. *@
 
 <div class="component-admincontactdetails">
-    @if (Model.ObjectId > 0)
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Admin Contact Details</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>System:</strong> Admin Contact Details component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="field_Name" name="Name" value="@Model.Name" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_Email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="field_Email" name="Email" value="@Model.Email" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="field_Subject" name="Subject" value="@Model.Subject" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Rank" class="form-label">Rank</label>
+            <input type="text" class="form-control" id="field_Rank" name="Rank" value="@Model.Rank" />
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_Active" name="Active" @(Model.Active ? "checked" : "") />
+            <label class="form-check-label" for="field_Active">Active</label>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdUpdate">Update</button>
+            <button type="submit" class="btn btn-outline-secondary" name="action" value="cmdCancel">Cancel</button>
+        </div>
+    </form>
 </div>

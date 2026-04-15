@@ -1,20 +1,6 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.TemplateHomeViewModel
-@* Ported from template_home.ascx (Themes/mcgi_website). *@
+@* Ported from template_home.ascx. *@
 
-<div class="component-templatehome">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>template home</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            template home component requires configuration.
-        </div>
-    }
+<div class="component-template-home">
+    @Html.Raw(Model.ContentHtml ?? "")
 </div>

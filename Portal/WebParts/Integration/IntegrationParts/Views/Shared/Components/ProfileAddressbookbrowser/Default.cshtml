@@ -1,20 +1,70 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.ProfileAddressbookbrowserViewModel
-@* Ported from AddressBookBrowser.ascx (Apps/Integration/Profile). *@
+@* Ported from AddressBookBrowser.ascx. *@
 
-<div class="component-profileaddressbookbrowser">
-    @if (Model.ObjectId > 0)
+<div class="component-profile-addressbookbrowser">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col" style="width:60px" class="text-center">Actions</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact&nbsp;No</th>
+                    <th scope="col">Group ID</th>
+                    <th scope="col">Membership&nbsp;Date</th>
+                    <th scope="col"></th>
+                    <th scope="col">Contact Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Items.Any())
+                {
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <a href="?action=edit&id=@item.Id" class="btn btn-sm btn-outline-primary" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </td>
+                            <td>@item.UserName</td>
+                            <td>@item.FullName</td>
+                            <td>@item.Email</td>
+                            <td>@item.ContactNo</td>
+                            <td>@item.ExternalIDNo</td>
+                            <td>@item.MembershipDate</td>
+                            <td>@item.Name</td>
+                            <td>@item.ContactInfo</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="9" class="text-center text-muted fst-italic">No records found.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.TotalItems > Model.PageSize)
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Address Book Browser</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Address Book Browser component requires configuration.
-        </div>
+        var pageCount = (int)Math.Ceiling((double)Model.TotalItems / Model.PageSize);
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center mt-3">
+                <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                    <a class="page-link" href="?page=@(Model.CurrentPage - 1)" aria-label="Previous">&laquo;</a>
+                </li>
+                @for (int i = 1; i <= pageCount; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="?page=@i">@i</a>
+                    </li>
+                }
+                <li class="page-item @(Model.CurrentPage >= pageCount ? "disabled" : "")">
+                    <a class="page-link" href="?page=@(Model.CurrentPage + 1)" aria-label="Next">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
     }
 </div>

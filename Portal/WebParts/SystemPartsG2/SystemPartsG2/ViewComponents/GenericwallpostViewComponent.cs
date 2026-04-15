@@ -29,9 +29,10 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class GenericwallpostViewModel
+        public class GenericwallpostViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string OutputHtml { get; set; } = string.Empty;
     }
 }

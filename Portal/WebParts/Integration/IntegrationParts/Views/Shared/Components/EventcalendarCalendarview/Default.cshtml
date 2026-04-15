@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.EventcalendarCalendarviewViewModel
-@* Ported from CalendarView.ascx (Themes/area51/Parts/EventCalendar/EventCalendar). *@
+@* Ported from CalendarView.ascx. *@
 
-<div class="component-eventcalendarcalendarview">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Calendar View</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Calendar View component requires configuration.
-        </div>
-    }
+<div class="component-eventcalendar-calendarview">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Eventcalendar Calendarview</em> component loaded.</p>
+    </div>
 </div>

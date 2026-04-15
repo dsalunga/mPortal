@@ -31,12 +31,13 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdmincategoryeditViewModel
+        public class AdmincategoryeditViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtName { get; set; } = string.Empty;
-        public List<SelectListItem> cboTemplatesItems { get; set; } = new();
-        public string cboTemplatesSelected { get; set; } = string.Empty;
+        public List<SelectOption> CboTemplatesOptions { get; set; } = new();
+        public string Name { get; set; } = string.Empty;
+        public string SelectedCboTemplates { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
-}
+    }

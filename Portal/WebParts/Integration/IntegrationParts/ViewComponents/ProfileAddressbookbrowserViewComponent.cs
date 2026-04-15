@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,26 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class ProfileAddressbookbrowserViewModel
+        public class ProfileAddressbookbrowserViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public int CurrentPage { get; set; } = 1;
+        public List<ProfileAddressbookbrowserItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class ProfileAddressbookbrowserItem
+    {
+        public string ContactInfo { get; set; } = string.Empty;
+        public string ContactNo { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string ExternalIDNo { get; set; } = string.Empty;
+        public string FullName { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string MembershipDate { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
     }
 }

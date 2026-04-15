@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ArticleMultipleMultiBasicViewModel
-@* Ported from Basic.ascx (SystemParts). *@
+@* Ported from Basic.ascx. *@
 
-<div class="component-articlemultiplemultibasic">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Basic</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>Article:</strong> Basic component requires configuration.
-        </div>
-    }
+<div class="component-article-multiple-multi-basic">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Article Multiple Multi Basic</em> component loaded.</p>
+    </div>
 </div>

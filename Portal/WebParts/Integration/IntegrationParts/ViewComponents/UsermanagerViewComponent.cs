@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,23 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class UsermanagerViewModel
+        public class UsermanagerViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public int CurrentPage { get; set; } = 1;
+        public List<UsermanagerItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class UsermanagerItem
+    {
+        public string ActivityStartDate { get; set; } = string.Empty;
+        public string IPAddress { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string IdleTime { get; set; } = string.Empty;
+        public string LastActivityDate { get; set; } = string.Empty;
+        public string SessionTime { get; set; } = string.Empty;
     }
 }

@@ -1,20 +1,28 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.InstagramgalleryViewModel
-@* Ported from InstagramGallery.ascx (Apps/Integration/MusicCompetition). *@
+@* Ported from InstagramGallery.ascx. *@
 
 <div class="component-instagramgallery">
-    @if (Model.ObjectId > 0)
+    @if (Model.Items.Any())
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Instagram Gallery</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+            @foreach (var item in Model.Items)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        @if (!string.IsNullOrEmpty(item.Name))
+                        {
+                            <img src="@item.Name" class="card-img-top" alt="@item.Name" loading="lazy" />
+                        }
+                        <div class="card-body">
+                            <p class="card-text small">@item.Name</p>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     }
     else
     {
-        <div class="alert alert-info">
-            Instagram Gallery component requires configuration.
-        </div>
+        <p class="text-muted fst-italic">No items available.</p>
     }
 </div>

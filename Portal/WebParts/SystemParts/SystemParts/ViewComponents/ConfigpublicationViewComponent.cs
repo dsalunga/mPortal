@@ -31,39 +31,24 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ConfigpublicationViewModel
+        public class ConfigpublicationViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string hidObjectId { get; set; } = string.Empty;
-        public string hidRecordId { get; set; } = string.Empty;
-        public List<object> ObjectDataSourceInsertedArticlesData { get; set; } = new();
-        public List<SelectListItem> cboSitesItems { get; set; } = new();
-        public string cboSitesSelected { get; set; } = string.Empty;
-        public List<object> ObjectDataSourceAllArticlesData { get; set; } = new();
-        public string txtTitle { get; set; } = string.Empty;
-        public List<SelectListItem> ddlMonthItems { get; set; } = new();
-        public string ddlMonthSelected { get; set; } = string.Empty;
-        public List<SelectListItem> ddlDayItems { get; set; } = new();
-        public string ddlDaySelected { get; set; } = string.Empty;
-        public List<SelectListItem> ddlYearItems { get; set; } = new();
-        public string ddlYearSelected { get; set; } = string.Empty;
-        public string txtTags { get; set; } = string.Empty;
-        public List<SelectListItem> cboCommentOnItems { get; set; } = new();
-        public string cboCommentOnSelected { get; set; } = string.Empty;
-        public bool chkSendEmail { get; set; }
-        public string litID { get; set; } = string.Empty;
-        public string txtAuthor { get; set; } = string.Empty;
-        public List<SelectListItem> ddlRankItems { get; set; } = new();
-        public string ddlRankSelected { get; set; } = string.Empty;
-        public bool chkIsActive { get; set; }
-        public List<SelectListItem> cboSiteIdItems { get; set; } = new();
-        public string cboSiteIdSelected { get; set; } = string.Empty;
-        public string txtDateFormat { get; set; } = string.Empty;
-        public string txtPageSize { get; set; } = string.Empty;
-        public bool chkComments { get; set; }
-        public List<SelectListItem> ObjectDataSourceTemplatesItems { get; set; } = new();
-        public string ObjectDataSourceTemplatesSelected { get; set; } = string.Empty;
-        public string lblStatus { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<ConfigpublicationItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class ConfigpublicationItem
+    {
+        public string Author { get; set; } = string.Empty;
+        public string CreatedByName { get; set; } = string.Empty;
+        public string Date { get; set; } = string.Empty;
+        public string Edit { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

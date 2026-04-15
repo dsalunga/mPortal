@@ -29,9 +29,10 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class PluginsProfileupdatewallViewModel
+        public class PluginsProfileupdatewallViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string OutputHtml { get; set; } = string.Empty;
     }
 }

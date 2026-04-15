@@ -1,20 +1,10 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.FullviewViewModel
-@* Ported from FullView.ascx (SystemParts). *@
+@* Ported from FullView.ascx. *@
 
 <div class="component-fullview">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Full View</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>Photo:</strong> Full View component requires configuration.
-        </div>
-    }
+    @Html.Raw(Model.LCategoryHtml)
+    @Html.Raw(Model.LThumbsHtml)
+    @Html.Raw(Model.LNumsHtml)
+    @Html.Raw(Model.LPrevHtml)
+    @Html.Raw(Model.LNextHtml)
 </div>

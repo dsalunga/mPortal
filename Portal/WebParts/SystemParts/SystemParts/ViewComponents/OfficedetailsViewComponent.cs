@@ -39,5 +39,11 @@ public int ObjectId { get; set; }
         public string txtMobileNumber { get; set; } = string.Empty;
         public string txtContactPerson { get; set; } = string.Empty;
         public string lblStatus { get; set; } = string.Empty;
+        public string AddressLine1 { get; set; } = string.Empty;
+        public string ContactPerson { get; set; } = string.Empty;
+        public string EmailAddress { get; set; } = string.Empty;
+        public string MobileNumber { get; set; } = string.Empty;
+        public string PhoneNumber { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
     }
 }

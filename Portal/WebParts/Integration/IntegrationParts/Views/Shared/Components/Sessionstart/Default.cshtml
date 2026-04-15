@@ -1,20 +1,7 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.SessionstartViewModel
-@* Ported from SessionStart.ascx (Apps/Integration/Profile/LessonReviewer). *@
+@* Ported from SessionStart.ascx. *@
 
 <div class="component-sessionstart">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Session Start</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Session Start component requires configuration.
-        </div>
-    }
+    @Html.Raw(Model.ScriptMakeUpTestHtml)
+    @Html.Raw(Model.ScriptPlaybackTestHtml)
 </div>

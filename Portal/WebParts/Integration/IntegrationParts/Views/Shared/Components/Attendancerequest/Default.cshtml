@@ -1,20 +1,35 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.AttendancerequestViewModel
-@* Ported from AttendanceRequest.ascx (Apps/Integration/LessonReviewer). *@
+@* Ported from AttendanceRequest.ascx. *@
 
 <div class="component-attendancerequest">
-    @if (Model.ObjectId > 0)
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Attendance Request</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Attendance Request component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Note" class="form-label">Note</label>
+            <textarea class="form-control" id="field_Note" name="Note" rows="4">@Model.Note</textarea>
         </div>
-    }
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_CblCoAttendees" name="CblCoAttendees" @(Model.CblCoAttendees ? "checked" : "") />
+            <label class="form-check-label" for="field_CblCoAttendees">Cbl Co Attendees</label>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_Notes" name="Notes" @(Model.Notes ? "checked" : "") />
+            <label class="form-check-label" for="field_Notes">Notes to member</label>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_SendCopy" name="SendCopy" @(Model.SendCopy ? "checked" : "") />
+            <label class="form-check-label" for="field_SendCopy">Send me a copy</label>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdSubmit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdReopen">Re-Open</button>
+        </div>
+    </form>
 </div>

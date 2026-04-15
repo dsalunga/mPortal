@@ -29,9 +29,13 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class MusiccompetitionMessageboardv2ViewModel
+        public class MusiccompetitionMessageboardv2ViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string Comment { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

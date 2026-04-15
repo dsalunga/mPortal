@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.G2.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,20 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class SocialConfigwallViewModel
+        public class SocialConfigwallViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public int CurrentPage { get; set; } = 1;
+        public List<SocialConfigwallItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class SocialConfigwallItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string PageName { get; set; } = string.Empty;
     }
 }

@@ -29,11 +29,12 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdminlocationViewModel
+        public class AdminlocationViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtName { get; set; } = string.Empty;
-        public bool chkBookable { get; set; }
+        public bool Bookable { get; set; } = false;
+        public string Name { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

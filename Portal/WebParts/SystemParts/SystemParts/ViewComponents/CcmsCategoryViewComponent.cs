@@ -30,17 +30,21 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class CcmsCategoryViewModel
+        public class CcmsCategoryViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<object> SqlDataSource1Data { get; set; } = new();
-        public string litID { get; set; } = string.Empty;
-        public string txtTitle { get; set; } = string.Empty;
-        public string txtFolderName { get; set; } = string.Empty;
-        public string txtImageURL { get; set; } = string.Empty;
-        public string txtWidth { get; set; } = string.Empty;
-        public string txtPhotoHeight { get; set; } = string.Empty;
-        public string lblNotify { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<CcmsCategoryItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class CcmsCategoryItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string ImageURL { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

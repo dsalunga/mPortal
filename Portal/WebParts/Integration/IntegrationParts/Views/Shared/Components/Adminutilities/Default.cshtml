@@ -1,20 +1,36 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.AdminutilitiesViewModel
-@* Ported from AdminUtilities.ascx (Apps/Integration/Registration). *@
+@* Ported from AdminUtilities.ascx. *@
 
 <div class="component-adminutilities">
-    @if (Model.ObjectId > 0)
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Admin Utilities</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Admin Utilities component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_AttendanceId" class="form-label">Attendance Id</label>
+            <input type="text" class="form-control" id="field_AttendanceId" name="AttendanceId" value="@Model.AttendanceId" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_ExternalIDNo" class="form-label">External I D No</label>
+            <input type="text" class="form-control" id="field_ExternalIDNo" name="ExternalIDNo" value="@Model.ExternalIDNo" />
+        </div>
+        <div class="mb-3">
+            <label for="field_ServiceScheduleId" class="form-label">Service Schedule Id</label>
+            <input type="text" class="form-control" id="field_ServiceScheduleId" name="ServiceScheduleId" value="@Model.ServiceScheduleId" />
+        </div>
+        <div class="mb-3">
+            <label for="field_SearchExternalId" class="form-label">Search External Id</label>
+            <input type="text" class="form-control" id="field_SearchExternalId" name="SearchExternalId" value="@Model.SearchExternalId" />
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-danger" name="action" value="cmdDelete">Delete</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdCreateAttendance">Create</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdONESubmit">Submit</button>
+        </div>
+    </form>
 </div>

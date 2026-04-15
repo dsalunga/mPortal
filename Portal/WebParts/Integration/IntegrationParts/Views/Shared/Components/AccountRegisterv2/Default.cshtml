@@ -1,20 +1,89 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.AccountRegisterv2ViewModel
-@* Ported from RegisterV2.ascx (Apps/Integration/Account). *@
+@* Ported from RegisterV2.ascx. *@
 
-<div class="component-accountregisterv2">
-    @if (Model.ObjectId > 0)
+<div class="component-account-registerv2">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Register V2</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Register V2 component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_EnterEmail" class="form-label">Enter Email</label>
+            <input type="text" class="form-control" id="field_EnterEmail" name="EnterEmail" value="@Model.EnterEmail" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_PortalEmail" class="form-label">Portal Email</label>
+            <input type="text" class="form-control" id="field_PortalEmail" name="PortalEmail" value="@Model.PortalEmail" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="field_Password" name="Password" />
+        </div>
+        <div class="mb-3">
+            <label for="field_UserName" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="field_UserName" name="UserName" value="@Model.UserName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_FirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="field_FirstName" name="FirstName" value="@Model.FirstName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="field_LastName" name="LastName" value="@Model.LastName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_RegisterEmail" class="form-label">Register Email</label>
+            <input type="text" class="form-control" id="field_RegisterEmail" name="RegisterEmail" value="@Model.RegisterEmail" />
+        </div>
+        <div class="mb-3">
+            <label for="field_MobileNumber" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="field_MobileNumber" name="MobileNumber" value="@Model.MobileNumber" />
+        </div>
+        <div class="mb-3">
+            <label for="field_ExternalID" class="form-label">External I D</label>
+            <input type="text" class="form-control" id="field_ExternalID" name="ExternalID" value="@Model.ExternalID" />
+        </div>
+        <div class="mb-3">
+            <label for="field_MembershipDate" class="form-label">Membership Date</label>
+            <input type="text" class="form-control" id="field_MembershipDate" name="MembershipDate" value="@Model.MembershipDate" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Locale" class="form-label">Locale</label>
+            <textarea class="form-control" id="field_Locale" name="Locale" rows="4">@Model.Locale</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboGender" class="form-label">Cbo Gender</label>
+            <select class="form-select" id="field_CboGender" name="SelectedCboGender">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboGenderOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboGender ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboCountries" class="form-label">Cbo Countries</label>
+            <select class="form-select" id="field_CboCountries" name="SelectedCboCountries">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboCountriesOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboCountries ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdAgree">I AGREE AND ACCEPT</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdNext">Next</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdPortalFinish">Finish</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdInfoNext">Next</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdUpload">Upload Now</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdUploadSkip">Skip</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdRegister">Accept & Finish</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdReUpload">Re-Upload</button>
+        </div>
+    </form>
 </div>

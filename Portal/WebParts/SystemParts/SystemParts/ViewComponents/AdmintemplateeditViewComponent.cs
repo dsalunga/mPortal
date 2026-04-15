@@ -29,13 +29,14 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdmintemplateeditViewModel
+        public class AdmintemplateeditViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtName { get; set; } = string.Empty;
-        public string txtForeColor { get; set; } = string.Empty;
-        public string txtBackColor { get; set; } = string.Empty;
-        public string txtSmsContent { get; set; } = string.Empty;
+        public string BackColor { get; set; } = string.Empty;
+        public string ForeColor { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string SmsContent { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

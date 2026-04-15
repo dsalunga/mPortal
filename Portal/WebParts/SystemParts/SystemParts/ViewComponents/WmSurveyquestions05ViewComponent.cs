@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.ViewComponents
 {
     /// <summary>
@@ -29,10 +30,24 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class WmSurveyquestions05ViewModel
+        public class WmSurveyquestions05ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string lblTitle { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<WmSurveyquestions05Item> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class WmSurveyquestions05Item
+    {
+        public string Choices { get; set; } = string.Empty;
+        public string Edit { get; set; } = string.Empty;
+        public string Horizontal { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Label { get; set; } = string.Empty;
+        public string Rank { get; set; } = string.Empty;
+        public string Required { get; set; } = string.Empty;
     }
 }

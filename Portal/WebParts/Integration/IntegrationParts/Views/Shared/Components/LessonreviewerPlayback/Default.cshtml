@@ -1,20 +1,6 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.LessonreviewerPlaybackViewModel
-@* Ported from Playback.ascx (Apps/Integration/Profile/LessonReviewer). *@
+@* Ported from Playback.ascx. *@
 
-<div class="component-lessonreviewerplayback">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Playback</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Playback component requires configuration.
-        </div>
-    }
+<div class="component-lessonreviewer-playback">
+    @Html.Raw(Model.ScriptMakeUpTestHtml)
 </div>

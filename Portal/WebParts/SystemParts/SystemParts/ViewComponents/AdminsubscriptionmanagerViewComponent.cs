@@ -30,10 +30,21 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdminsubscriptionmanagerViewModel
+        public class AdminsubscriptionmanagerViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<object> ObjectDataSource1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<AdminsubscriptionmanagerItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdminsubscriptionmanagerItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public bool IsSystem { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }

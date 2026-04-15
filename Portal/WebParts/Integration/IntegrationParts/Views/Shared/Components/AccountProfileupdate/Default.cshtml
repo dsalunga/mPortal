@@ -1,20 +1,127 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.AccountProfileupdateViewModel
-@* Ported from ProfileUpdate.ascx (Apps/Integration/Account). *@
+@* Ported from ProfileUpdate.ascx. *@
 
-<div class="component-accountprofileupdate">
-    @if (Model.ObjectId > 0)
+<div class="component-account-profileupdate">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Profile Update</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Profile Update component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_FirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="field_FirstName" name="FirstName" value="@Model.FirstName" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_MiddleName" class="form-label">Middle Name</label>
+            <input type="text" class="form-control" id="field_MiddleName" name="MiddleName" value="@Model.MiddleName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="field_LastName" name="LastName" value="@Model.LastName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Nickname" class="form-label">Nickname</label>
+            <input type="text" class="form-control" id="field_Nickname" name="Nickname" value="@Model.Nickname" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="field_Email" name="Email" value="@Model.Email" />
+        </div>
+        <div class="mb-3">
+            <label for="field_NewEmail" class="form-label">New Email</label>
+            <input type="text" class="form-control" id="field_NewEmail" name="NewEmail" value="@Model.NewEmail" />
+        </div>
+        <div class="mb-3">
+            <label for="field_MobileNumber" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="field_MobileNumber" name="MobileNumber" value="@Model.MobileNumber" />
+        </div>
+        <div class="mb-3">
+            <label for="field_HomePhone" class="form-label">Home Phone</label>
+            <input type="text" class="form-control" id="field_HomePhone" name="HomePhone" value="@Model.HomePhone" />
+        </div>
+        <div class="mb-3">
+            <label for="field_HomeAddress1" class="form-label">Home Address1</label>
+            <input type="text" class="form-control" id="field_HomeAddress1" name="HomeAddress1" value="@Model.HomeAddress1" />
+        </div>
+        <div class="mb-3">
+            <label for="field_HomeAddress2" class="form-label">Home Address2</label>
+            <input type="text" class="form-control" id="field_HomeAddress2" name="HomeAddress2" value="@Model.HomeAddress2" />
+        </div>
+        <div class="mb-3">
+            <label for="field_HomeAddressZipCode" class="form-label">Home Address Zip Code</label>
+            <input type="text" class="form-control" id="field_HomeAddressZipCode" name="HomeAddressZipCode" value="@Model.HomeAddressZipCode" />
+        </div>
+        <div class="mb-3">
+            <label for="field_StatusText" class="form-label">Status Text</label>
+            <textarea class="form-control" id="field_StatusText" name="StatusText" rows="4">@Model.StatusText</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="field_WorkAddress1" class="form-label">Work Address1</label>
+            <input type="text" class="form-control" id="field_WorkAddress1" name="WorkAddress1" value="@Model.WorkAddress1" />
+        </div>
+        <div class="mb-3">
+            <label for="field_WorkAddress2" class="form-label">Work Address2</label>
+            <input type="text" class="form-control" id="field_WorkAddress2" name="WorkAddress2" value="@Model.WorkAddress2" />
+        </div>
+        <div class="mb-3">
+            <label for="field_WorkAddressZipCode" class="form-label">Work Address Zip Code</label>
+            <input type="text" class="form-control" id="field_WorkAddressZipCode" name="WorkAddressZipCode" value="@Model.WorkAddressZipCode" />
+        </div>
+        <div class="mb-3">
+            <label for="field_WorkDesignation" class="form-label">Work Designation</label>
+            <input type="text" class="form-control" id="field_WorkDesignation" name="WorkDesignation" value="@Model.WorkDesignation" />
+        </div>
+        <div class="mb-3">
+            <label for="field_WorkPhone" class="form-label">Work Phone</label>
+            <input type="text" class="form-control" id="field_WorkPhone" name="WorkPhone" value="@Model.WorkPhone" />
+        </div>
+        <div class="mb-3">
+            <label for="field_ObjectDataSourceUSStates" class="form-label">Object Data Source U S States</label>
+            <select class="form-select" id="field_ObjectDataSourceUSStates" name="SelectedObjectDataSourceUSStates">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.ObjectDataSourceUSStatesOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedObjectDataSourceUSStates ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_ObjectDataSourceCountries" class="form-label">Object Data Source Countries</label>
+            <select class="form-select" id="field_ObjectDataSourceCountries" name="SelectedObjectDataSourceCountries">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.ObjectDataSourceCountriesOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedObjectDataSourceCountries ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_ObjectDataSourceUSStates" class="form-label">Object Data Source U S States</label>
+            <select class="form-select" id="field_ObjectDataSourceUSStates" name="SelectedObjectDataSourceUSStates">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.ObjectDataSourceUSStatesOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedObjectDataSourceUSStates ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_ObjectDataSourceCountries" class="form-label">Object Data Source Countries</label>
+            <select class="form-select" id="field_ObjectDataSourceCountries" name="SelectedObjectDataSourceCountries">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.ObjectDataSourceCountriesOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedObjectDataSourceCountries ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdSubmit">Update</button>
+            <button type="submit" class="btn btn-outline-secondary" name="action" value="cmdCancel">Cancel</button>
+        </div>
+    </form>
 </div>

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.ViewComponents
 {
     /// <summary>
@@ -29,10 +30,15 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class PhotoPreviewViewModel
+        public class PhotoPreviewViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        // TODO: Add model properties based on legacy control analysis
+        public List<PhotoPreviewItem> Items { get; set; } = new();
+    }
+
+    public class PhotoPreviewItem
+    {
+        public string Name { get; set; } = string.Empty;
     }
 }

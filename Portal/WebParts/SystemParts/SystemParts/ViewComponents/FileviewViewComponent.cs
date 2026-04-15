@@ -30,11 +30,21 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class FileviewViewModel
+        public class FileviewViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string hFileId { get; set; } = string.Empty;
-        public List<object> ObjectDataSourceFoldersData { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<FileviewItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class FileviewItem
+    {
+        public string ActivityString { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string User { get; set; } = string.Empty;
+        public string VersionDate { get; set; } = string.Empty;
     }
 }

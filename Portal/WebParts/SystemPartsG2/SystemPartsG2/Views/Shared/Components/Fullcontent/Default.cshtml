@@ -1,20 +1,6 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.FullcontentViewModel
-@* Ported from fullcontent.ascx (AppBundle2/Media). *@
+@* Ported from fullcontent.ascx. *@
 
 <div class="component-fullcontent">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>fullcontent</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            fullcontent component requires configuration.
-        </div>
-    }
+    @Html.Raw(Model.LContentHtml)
 </div>

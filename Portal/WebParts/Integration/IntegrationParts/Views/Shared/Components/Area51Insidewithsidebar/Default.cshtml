@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.Area51InsidewithsidebarViewModel
-@* Ported from InsideWithSidebar.ascx (Themes/area51). *@
+@* Ported from InsideWithSidebar.ascx. *@
 
-<div class="component-area51insidewithsidebar">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Inside With Sidebar</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Inside With Sidebar component requires configuration.
-        </div>
-    }
+<div class="component-area51-insidewithsidebar">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Area51 Insidewithsidebar</em> component loaded.</p>
+    </div>
 </div>

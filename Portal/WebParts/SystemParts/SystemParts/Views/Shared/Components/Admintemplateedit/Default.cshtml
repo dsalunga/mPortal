@@ -1,20 +1,35 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.AdmintemplateeditViewModel
-@* Ported from AdminTemplateEdit.ascx (SystemParts). *@
+@* Ported from AdminTemplateEdit.ascx. *@
 
 <div class="component-admintemplateedit">
-    @if (Model.ObjectId > 0)
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Admin Template Edit</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>System:</strong> Admin Template Edit component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="field_Name" name="Name" value="@Model.Name" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_ForeColor" class="form-label">Fore Color</label>
+            <input type="text" class="form-control" id="field_ForeColor" name="ForeColor" value="@Model.ForeColor" />
+        </div>
+        <div class="mb-3">
+            <label for="field_BackColor" class="form-label">Back Color</label>
+            <input type="text" class="form-control" id="field_BackColor" name="BackColor" value="@Model.BackColor" />
+        </div>
+        <div class="mb-3">
+            <label for="field_SmsContent" class="form-label">Sms Content</label>
+            <textarea class="form-control" id="field_SmsContent" name="SmsContent" rows="4">@Model.SmsContent</textarea>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdUpdate">Update</button>
+            <button type="submit" class="btn btn-outline-secondary" name="action" value="cmdCancel">Cancel</button>
+        </div>
+    </form>
 </div>

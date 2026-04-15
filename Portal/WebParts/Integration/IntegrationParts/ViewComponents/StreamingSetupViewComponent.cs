@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,15 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class StreamingSetupViewModel
+        public class StreamingSetupViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public List<SelectOption> CboDurationOptions { get; set; } = new();
+        public List<SelectOption> CboStreamTypeOptions { get; set; } = new();
+        public string SelectedCboDuration { get; set; } = string.Empty;
+        public string SelectedCboStreamType { get; set; } = string.Empty;
+        public string StartDate { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
-}
+    }

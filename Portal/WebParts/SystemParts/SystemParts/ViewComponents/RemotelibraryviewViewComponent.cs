@@ -31,17 +31,22 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class RemotelibraryviewViewModel
+        public class RemotelibraryviewViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string hLibraryId { get; set; } = string.Empty;
-        public string hDownloadUrl { get; set; } = string.Empty;
-        public string hDownloadTimeOut { get; set; } = string.Empty;
-        public List<SelectListItem> ObjectDataSourceLibrariesItems { get; set; } = new();
-        public string ObjectDataSourceLibrariesSelected { get; set; } = string.Empty;
-        public string txtSearch { get; set; } = string.Empty;
-        public List<object> ObjectDataSourceIndexesData { get; set; } = new();
-        public string lblMessage { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<RemotelibraryviewItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class RemotelibraryviewItem
+    {
+        public string DateModified { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string SizeString { get; set; } = string.Empty;
+        public string TypeName { get; set; } = string.Empty;
     }
 }

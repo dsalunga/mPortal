@@ -31,19 +31,19 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class CmsListingpageViewModel
+        public class CmsListingpageViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtHeaderText { get; set; } = string.Empty;
-        public List<SelectListItem> cboTypeItems { get; set; } = new();
-        public string cboTypeSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboRepeatColumnsItems { get; set; } = new();
-        public string cboRepeatColumnsSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboPaddingItems { get; set; } = new();
-        public string cboPaddingSelected { get; set; } = string.Empty;
-        public string txtWidth { get; set; } = string.Empty;
-        public string txtHeight { get; set; } = string.Empty;
-        public string lblStatus { get; set; } = string.Empty;
+        public List<SelectOption> CboPaddingOptions { get; set; } = new();
+        public List<SelectOption> CboRepeatColumnsOptions { get; set; } = new();
+        public List<SelectOption> CboTypeOptions { get; set; } = new();
+        public string HeaderText { get; set; } = string.Empty;
+        public string Height { get; set; } = string.Empty;
+        public string SelectedCboPadding { get; set; } = string.Empty;
+        public string SelectedCboRepeatColumns { get; set; } = string.Empty;
+        public string SelectedCboType { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string Width { get; set; } = string.Empty;
     }
-}
+    }

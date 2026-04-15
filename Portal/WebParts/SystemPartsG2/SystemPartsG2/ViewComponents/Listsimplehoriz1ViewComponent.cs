@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.G2.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,15 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class Listsimplehoriz1ViewModel
+        public class Listsimplehoriz1ViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public List<Listsimplehoriz1Item> Items { get; set; } = new();
+    }
+
+    public class Listsimplehoriz1Item
+    {
+        public string Name { get; set; } = string.Empty;
     }
 }

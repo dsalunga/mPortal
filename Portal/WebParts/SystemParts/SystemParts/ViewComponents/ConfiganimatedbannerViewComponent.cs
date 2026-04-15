@@ -40,5 +40,6 @@ public int ObjectId { get; set; }
         public List<SelectListItem> cboRenderModeItems { get; set; } = new();
         public string cboRenderModeSelected { get; set; } = string.Empty;
         public string lblStatus { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
     }
 }

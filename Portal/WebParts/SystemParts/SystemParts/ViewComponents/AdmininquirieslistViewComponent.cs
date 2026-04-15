@@ -31,12 +31,27 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdmininquirieslistViewModel
+        public class AdmininquirieslistViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<SelectListItem> cboSitesItems { get; set; } = new();
-        public string cboSitesSelected { get; set; } = string.Empty;
-        public List<object> ObjectDataSource1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<AdmininquirieslistItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdmininquirieslistItem
+    {
+        public string Email { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string InqDateTime { get; set; } = string.Empty;
+        public string InquiryType { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        public string SendTo { get; set; } = string.Empty;
+        public string SenderName { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public string Subject { get; set; } = string.Empty;
+        public string View { get; set; } = string.Empty;
     }
 }

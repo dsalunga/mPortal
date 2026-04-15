@@ -30,10 +30,21 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class WmResults08ViewModel
+        public class WmResults08ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<object> ObjectDataSource1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<WmResults08Item> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class WmResults08Item
+    {
+        public string Answers { get; set; } = string.Empty;
+        public string DateTimeTaken { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string ResponseID { get; set; } = string.Empty;
     }
 }

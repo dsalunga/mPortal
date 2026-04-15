@@ -31,18 +31,18 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class Configdynamicmenu01ViewModel
+        public class Configdynamicmenu01ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<SelectListItem> cboMenuItems { get; set; } = new();
-        public string cboMenuSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboRenderModeItems { get; set; } = new();
-        public string cboRenderModeSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboOrientationItems { get; set; } = new();
-        public string cboOrientationSelected { get; set; } = string.Empty;
-        public string txtWidth { get; set; } = string.Empty;
-        public string txtHeight { get; set; } = string.Empty;
-        public string lblStatus { get; set; } = string.Empty;
+        public List<SelectOption> CboMenuOptions { get; set; } = new();
+        public List<SelectOption> CboOrientationOptions { get; set; } = new();
+        public List<SelectOption> CboRenderModeOptions { get; set; } = new();
+        public string Height { get; set; } = string.Empty;
+        public string SelectedCboMenu { get; set; } = string.Empty;
+        public string SelectedCboOrientation { get; set; } = string.Empty;
+        public string SelectedCboRenderMode { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string Width { get; set; } = string.Empty;
     }
-}
+    }

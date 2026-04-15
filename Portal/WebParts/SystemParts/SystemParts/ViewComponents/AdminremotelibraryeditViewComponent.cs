@@ -31,17 +31,17 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdminremotelibraryeditViewModel
+        public class AdminremotelibraryeditViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtName { get; set; } = string.Empty;
-        public List<SelectListItem> cboSourceTypeItems { get; set; } = new();
-        public string cboSourceTypeSelected { get; set; } = string.Empty;
-        public bool chkActive { get; set; }
-        public string txtBaseAddress { get; set; } = string.Empty;
-        public string txtUserName { get; set; } = string.Empty;
-        public string txtPassword { get; set; } = string.Empty;
-        public string txtDisplayBaseAddress { get; set; } = string.Empty;
+        public bool Active { get; set; } = false;
+        public string BaseAddress { get; set; } = string.Empty;
+        public List<SelectOption> CboSourceTypeOptions { get; set; } = new();
+        public string DisplayBaseAddress { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string SelectedCboSourceType { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
     }
-}
+    }

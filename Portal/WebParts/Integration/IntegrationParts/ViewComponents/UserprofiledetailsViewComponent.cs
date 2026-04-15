@@ -29,9 +29,11 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class UserprofiledetailsViewModel
+        public class UserprofiledetailsViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string AdditionalInfo { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

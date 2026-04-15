@@ -29,10 +29,10 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ThreerowViewModel
+        public class ThreerowViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        // TODO: Add model properties based on legacy control analysis
+        public string ContentHtml { get; set; } = string.Empty;
     }
 }

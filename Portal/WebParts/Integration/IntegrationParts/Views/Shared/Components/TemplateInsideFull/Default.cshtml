@@ -1,20 +1,6 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.TemplateInsideFullViewModel
-@* Ported from template_inside_full.ascx (Themes/mcgi_website). *@
+@* Ported from template_inside_full.ascx. *@
 
-<div class="component-templateinsidefull">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>template inside full</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            template inside full component requires configuration.
-        </div>
-    }
+<div class="component-template-inside-full">
+    @Html.Raw(Model.ContentHtml ?? "")
 </div>

@@ -1,20 +1,78 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.MasterlistMembermanagerViewModel
-@* Ported from MemberManager.ascx (Apps/Integration/MasterList). *@
+@* Ported from MemberManager.ascx. *@
 
-<div class="component-masterlistmembermanager">
-    @if (Model.ObjectId > 0)
+<div class="component-masterlist-membermanager">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col" style="width:60px" class="text-center">Actions</th>
+                    <th scope="col">UserName</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Contact No.</th>
+                    <th scope="col">Voice Designation</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Date Modified</th>
+                    <th scope="col">ID</th>
+                    <th scope="col"></th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Group ID</th>
+                    <th scope="col">Active</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Items.Any())
+                {
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <a href="?action=edit&id=@item.Id" class="btn btn-sm btn-outline-primary" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </td>
+                            <td>@item.Name</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.MobileNumber</td>
+                            <td>@item.VoiceDesignation</td>
+                            <td>@item.Position</td>
+                            <td>@item.DateModified</td>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Username</td>
+                            <td>@item.GroupID</td>
+                            <td>@item.Active</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="13" class="text-center text-muted fst-italic">No records found.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.TotalItems > Model.PageSize)
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Member Manager</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Member Manager component requires configuration.
-        </div>
+        var pageCount = (int)Math.Ceiling((double)Model.TotalItems / Model.PageSize);
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center mt-3">
+                <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                    <a class="page-link" href="?page=@(Model.CurrentPage - 1)" aria-label="Previous">&laquo;</a>
+                </li>
+                @for (int i = 1; i <= pageCount; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="?page=@i">@i</a>
+                    </li>
+                }
+                <li class="page-item @(Model.CurrentPage >= pageCount ? "disabled" : "")">
+                    <a class="page-link" href="?page=@(Model.CurrentPage + 1)" aria-label="Next">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
     }
 </div>

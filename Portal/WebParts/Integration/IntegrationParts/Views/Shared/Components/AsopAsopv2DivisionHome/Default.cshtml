@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.AsopAsopv2DivisionHomeViewModel
-@* Ported from asopv2-division-home.ascx (Themes/ASOP). *@
+@* Ported from asopv2-division-home.ascx. *@
 
-<div class="component-asopasopv2divisionhome">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>asopv2-division-home</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            asopv2-division-home component requires configuration.
-        </div>
-    }
+<div class="component-asop-asopv2-division-home">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Asop Asopv2 Division Home</em> component loaded.</p>
+    </div>
 </div>

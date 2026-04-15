@@ -29,14 +29,15 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdmincontactdetailsViewModel
+        public class AdmincontactdetailsViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtName { get; set; } = string.Empty;
-        public string txtEmail { get; set; } = string.Empty;
-        public string txtSubject { get; set; } = string.Empty;
-        public string txtRank { get; set; } = string.Empty;
-        public bool chkActive { get; set; }
+        public bool Active { get; set; } = false;
+        public string Email { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Rank { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string Subject { get; set; } = string.Empty;
     }
 }

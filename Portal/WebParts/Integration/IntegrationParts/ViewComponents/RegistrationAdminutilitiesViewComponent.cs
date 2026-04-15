@@ -29,9 +29,14 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class RegistrationAdminutilitiesViewModel
+        public class RegistrationAdminutilitiesViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string AttendanceId { get; set; } = string.Empty;
+        public string ExternalIDNo { get; set; } = string.Empty;
+        public string SearchExternalId { get; set; } = string.Empty;
+        public string ServiceScheduleId { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

@@ -29,9 +29,15 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class ConfigmemberlinkeditViewModel
+        public class ConfigmemberlinkeditViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string ExternalIDNo { get; set; } = string.Empty;
+        public string MembershipDate { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string PhotoPath { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

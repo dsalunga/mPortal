@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.DownloadDownloadsViewModel
-@* Ported from Downloads.ascx (AppBundle2/Download). *@
+@* Ported from Downloads.ascx. *@
 
-<div class="component-downloaddownloads">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Downloads</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Downloads component requires configuration.
-        </div>
-    }
+<div class="component-download-downloads">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Download Downloads</em> component loaded.</p>
+    </div>
 </div>

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,19 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class WebgrouplistViewModel
+        public class WebgrouplistViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public List<WebgrouplistItem> Items { get; set; } = new();
+    }
+
+    public class WebgrouplistItem
+    {
+        public string AccessDeniedContent { get; set; } = string.Empty;
+        public string DisplayHTML { get; set; } = string.Empty;
+        public string IsPermitted { get; set; } = string.Empty;
+        public string PageId { get; set; } = string.Empty;
+        public string PageUrl { get; set; } = string.Empty;
     }
 }

@@ -30,10 +30,20 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ListdataViewModel
+        public class ListdataViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<object> ObjectDataSource1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<ListdataItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class ListdataItem
+    {
+        public string DateTimeTaken { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Results { get; set; } = string.Empty;
     }
 }

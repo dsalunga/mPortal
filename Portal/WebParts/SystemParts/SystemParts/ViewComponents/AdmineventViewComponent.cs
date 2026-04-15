@@ -31,31 +31,21 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdmineventViewModel
+        public class AdmineventViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string hRecipients { get; set; } = string.Empty;
-        public string hBaseGroup { get; set; } = string.Empty;
-        public string txtSubject { get; set; } = string.Empty;
-        public List<SelectListItem> cboLocationsItems { get; set; } = new();
-        public string cboLocationsSelected { get; set; } = string.Empty;
-        public bool chkOtherLocation { get; set; }
-        public string txtLocation { get; set; } = string.Empty;
-        public string txtStartDate { get; set; } = string.Empty;
-        public string txtEndDate { get; set; } = string.Empty;
-        public List<SelectListItem> cboCalendarItems { get; set; } = new();
-        public string cboCalendarSelected { get; set; } = string.Empty;
-        public string txtRepeatUntil { get; set; } = string.Empty;
-        public bool chkNoEnd { get; set; }
-        public List<SelectListItem> cboReminderBeforeItems { get; set; } = new();
-        public string cboReminderBeforeSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboTemplatesItems { get; set; } = new();
-        public string cboTemplatesSelected { get; set; } = string.Empty;
-        public string txtReminderToEmail { get; set; } = string.Empty;
-        public string txtAdd { get; set; } = string.Empty;
-        public List<object> ObjectDataSource1Data { get; set; } = new();
-        public List<SelectListItem> cboCategoryItems { get; set; } = new();
-        public string cboCategorySelected { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<AdmineventItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdmineventItem
+    {
+        public string Email { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string MobileNumber { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
     }
 }

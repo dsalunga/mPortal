@@ -1,20 +1,64 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.CmsListingpageViewModel
-@* Ported from CMS_ListingPage.ascx (AppBundle2/SiteList). *@
+@* Ported from CMS_ListingPage.ascx. *@
 
-<div class="component-cmslistingpage">
-    @if (Model.ObjectId > 0)
+<div class="component-cms-listingpage">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>CMS Listing Page</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            CMS Listing Page component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_HeaderText" class="form-label">Header Text</label>
+            <input type="text" class="form-control" id="field_HeaderText" name="HeaderText" value="@Model.HeaderText" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_Width" class="form-label">Width</label>
+            <input type="text" class="form-control" id="field_Width" name="Width" value="@Model.Width" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Height" class="form-label">Height</label>
+            <input type="text" class="form-control" id="field_Height" name="Height" value="@Model.Height" />
+        </div>
+        <div class="mb-3">
+            <label for="field_CboSites" class="form-label">Cbo Sites</label>
+            <select class="form-select" id="field_CboSites" name="SelectedCboSites">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboSitesOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboSites ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboRepeatColumns" class="form-label">Cbo Repeat Columns</label>
+            <select class="form-select" id="field_CboRepeatColumns" name="SelectedCboRepeatColumns">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboRepeatColumnsOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboRepeatColumns ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboPadding" class="form-label">Cbo Padding</label>
+            <select class="form-select" id="field_CboPadding" name="SelectedCboPadding">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboPaddingOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboPadding ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_SortName" name="SortName" @(Model.SortName ? "checked" : "") />
+            <label class="form-check-label" for="field_SortName">Sort by Name</label>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdUpdate">Update</button>
+        </div>
+    </form>
 </div>

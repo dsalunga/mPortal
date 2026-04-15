@@ -1,20 +1,99 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.ConventionregistrationViewModel
-@* Ported from ConventionRegistration.ascx (Apps/Integration/Registration). *@
+@* Ported from ConventionRegistration.ascx. *@
 
 <div class="component-conventionregistration">
-    @if (Model.ObjectId > 0)
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Convention Registration</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Convention Registration component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Locale" class="form-label">Locale</label>
+            <input type="text" class="form-control" id="field_Locale" name="Locale" value="@Model.Locale" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_ExternalId" class="form-label">External Id</label>
+            <input type="text" class="form-control" id="field_ExternalId" name="ExternalId" value="@Model.ExternalId" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="field_Name" name="Name" value="@Model.Name" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Designation" class="form-label">Designation</label>
+            <input type="text" class="form-control" id="field_Designation" name="Designation" value="@Model.Designation" />
+        </div>
+        <div class="mb-3">
+            <label for="field_ArrivalDate" class="form-label">Arrival Date</label>
+            <input type="text" class="form-control" id="field_ArrivalDate" name="ArrivalDate" value="@Model.ArrivalDate" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Airline" class="form-label">Airline</label>
+            <input type="text" class="form-control" id="field_Airline" name="Airline" value="@Model.Airline" />
+        </div>
+        <div class="mb-3">
+            <label for="field_FlightNo" class="form-label">Flight No</label>
+            <input type="text" class="form-control" id="field_FlightNo" name="FlightNo" value="@Model.FlightNo" />
+        </div>
+        <div class="mb-3">
+            <label for="field_DepartureDate" class="form-label">Departure Date</label>
+            <input type="text" class="form-control" id="field_DepartureDate" name="DepartureDate" value="@Model.DepartureDate" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Address" class="form-label">Address</label>
+            <textarea class="form-control" id="field_Address" name="Address" rows="4">@Model.Address</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="field_PlaceType" class="form-label">Place Type</label>
+            <input type="text" class="form-control" id="field_PlaceType" name="PlaceType" value="@Model.PlaceType" />
+        </div>
+        <div class="mb-3">
+            <label for="field_CboCountry" class="form-label">Cbo Country</label>
+            <select class="form-select" id="field_CboCountry" name="SelectedCboCountry">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboCountryOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboCountry ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboAge" class="form-label">Cbo Age</label>
+            <select class="form-select" id="field_CboAge" name="SelectedCboAge">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboAgeOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboAge ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboGender" class="form-label">Cbo Gender</label>
+            <select class="form-select" id="field_CboGender" name="SelectedCboGender">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboGenderOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboGender ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <fieldset class="mb-3">
+            <legend class="form-label">Rbl Place To Stay</legend>
+            @foreach (var opt in Model.RblPlaceToStayOptions)
+            {
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="SelectedRblPlaceToStay" value="@opt.Value"
+                           id="radio_RblPlaceToStay_@opt.Value" @(opt.Value == Model.SelectedRblPlaceToStay ? "checked" : "") />
+                    <label class="form-check-label" for="radio_RblPlaceToStay_@opt.Value">@opt.Text</label>
+                </div>
+            }
+        </fieldset>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdSubmit">REGISTER</button>
+        </div>
+    </form>
 </div>

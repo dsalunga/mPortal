@@ -30,12 +30,19 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class SearchresultsViewModel
+        public class SearchresultsViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtSearch { get; set; } = string.Empty;
-        public List<object> SqlDataSource1Data { get; set; } = new();
-        public string litNotify { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<SearchresultsItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class SearchresultsItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }

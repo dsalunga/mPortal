@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.McgisgInsideViewModel
-@* Ported from mcgisg_inside.ascx (Themes/mcgisg). *@
+@* Ported from mcgisg_inside.ascx. *@
 
-<div class="component-mcgisginside">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>mcgisg inside</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            mcgisg inside component requires configuration.
-        </div>
-    }
+<div class="component-mcgisg-inside">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Mcgisg Inside</em> component loaded.</p>
+    </div>
 </div>

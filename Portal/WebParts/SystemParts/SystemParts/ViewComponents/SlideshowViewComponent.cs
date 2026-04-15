@@ -29,10 +29,10 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class SlideshowViewModel
+        public class SlideshowViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string ___LiteralID { get; set; } = string.Empty;
+        public string ___LiteralIDHtml { get; set; } = string.Empty;
     }
 }

@@ -29,9 +29,10 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class MypreferencesViewModel
+        public class MypreferencesViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string Status { get; set; } = string.Empty;
     }
 }

@@ -1,20 +1,20 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.ControlsGroupbyyearViewModel
-@* Ported from GroupByYear.ascx (AppBundle2/Download/Controls). *@
+@* Ported from GroupByYear.ascx. *@
 
-<div class="component-controlsgroupbyyear">
-    @if (Model.ObjectId > 0)
+<div class="component-controls-groupbyyear">
+    @if (Model.Items.Any())
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Group By Year</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="list-group">
+            @foreach (var item in Model.Items)
+            {
+                <div class="list-group-item">
+                    <span class="me-3">@item.FileYear</span>
+                </div>
+            }
         </div>
     }
     else
     {
-        <div class="alert alert-info">
-            Group By Year component requires configuration.
-        </div>
+        <p class="text-muted fst-italic">No items available.</p>
     }
 </div>

@@ -1,20 +1,6 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.PluginsGenericwallpostViewModel
-@* Ported from GenericWallPost.ascx (AppBundle2/Social/Plugins). *@
+@* Ported from GenericWallPost.ascx. *@
 
-<div class="component-pluginsgenericwallpost">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Generic Wall Post</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Generic Wall Post component requires configuration.
-        </div>
-    }
+<div class="component-plugins-genericwallpost">
+    @Html.Raw(Model.OutputHtml)
 </div>

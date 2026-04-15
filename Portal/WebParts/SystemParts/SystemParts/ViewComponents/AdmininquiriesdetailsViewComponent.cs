@@ -49,5 +49,21 @@ public int ObjectId { get; set; }
         public string lblSendToEmail { get; set; } = string.Empty;
         public string lblDateTime { get; set; } = string.Empty;
         public string lblMessage { get; set; } = string.Empty;
+        public string AddressLine1 { get; set; } = string.Empty;
+        public string AddressLine2 { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
+        public string DateTime { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Fax { get; set; } = string.Empty;
+        public string InquiryType { get; set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        public string SendTo { get; set; } = string.Empty;
+        public string SendToEmail { get; set; } = string.Empty;
+        public string State { get; set; } = string.Empty;
+        public string Subject { get; set; } = string.Empty;
+        public string ZipCode { get; set; } = string.Empty;
     }
 }

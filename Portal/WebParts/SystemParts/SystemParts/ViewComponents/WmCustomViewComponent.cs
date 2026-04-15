@@ -31,20 +31,24 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class WmCustomViewModel
+        public class WmCustomViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string hIsPlainTextDefault { get; set; } = string.Empty;
-        public List<SelectListItem> cboSitesItems { get; set; } = new();
-        public string cboSitesSelected { get; set; } = string.Empty;
-        public List<object> ObjectDataSource1Data { get; set; } = new();
-        public string txtTitle { get; set; } = string.Empty;
-        public bool chkActiveContent { get; set; }
-        public string litID { get; set; } = string.Empty;
-        public List<SelectListItem> cboSiteIDItems { get; set; } = new();
-        public string cboSiteIDSelected { get; set; } = string.Empty;
-        public bool chkIsActive { get; set; }
-        public bool chkEditorSensitive { get; set; }
+        public int CurrentPage { get; set; } = 1;
+        public List<WmCustomItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class WmCustomItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public string Active { get; set; } = string.Empty;
+        public string Content { get; set; } = string.Empty;
+        public string DateModified { get; set; } = string.Empty;
+        public int ID { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; } = string.Empty;
     }
 }

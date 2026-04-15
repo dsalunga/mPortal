@@ -1,20 +1,10 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ThumbnailsViewModel
-@* Ported from Thumbnails.ascx (SystemParts). *@
+@* Ported from Thumbnails.ascx. *@
 
 <div class="component-thumbnails">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Thumbnails</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>Photo:</strong> Thumbnails component requires configuration.
-        </div>
-    }
+    @Html.Raw(Model.LCategoryHtml)
+    @Html.Raw(Model.LThumbsHtml)
+    @Html.Raw(Model.LNumsHtml)
+    @Html.Raw(Model.LPrevHtml)
+    @Html.Raw(Model.LNextHtml)
 </div>

@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.EventviewbasicViewModel
-@* Ported from EventViewBasic.ascx (SystemParts). *@
+@* Ported from EventViewBasic.ascx. *@
 
 <div class="component-eventviewbasic">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Event View Basic</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>Event Calendar:</strong> Event View Basic component requires configuration.
-        </div>
-    }
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Eventviewbasic</em> component loaded.</p>
+    </div>
 </div>

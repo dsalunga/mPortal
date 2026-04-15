@@ -29,9 +29,11 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class ProfileChangepasswordViewModel
+        public class ProfileChangepasswordViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public int ActiveViewIndex { get; set; }
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

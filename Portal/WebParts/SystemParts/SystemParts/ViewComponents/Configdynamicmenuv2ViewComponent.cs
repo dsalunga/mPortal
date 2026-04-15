@@ -38,5 +38,6 @@ public int ObjectId { get; set; }
         public List<SelectListItem> cboMenuItems { get; set; } = new();
         public string cboMenuSelected { get; set; } = string.Empty;
         public string lblStatus { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
     }
 }

@@ -1,20 +1,64 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.CandidateeditViewModel
-@* Ported from CandidateEdit.ascx (Apps/Integration/MusicCompetition). *@
+@* Ported from CandidateEdit.ascx. *@
 
 <div class="component-candidateedit">
-    @if (Model.ObjectId > 0)
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Candidate Edit</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Candidate Edit component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Entry" class="form-label">Entry</label>
+            <input type="text" class="form-control" id="field_Entry" name="Entry" value="@Model.Entry" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_Name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="field_Name" name="Name" value="@Model.Name" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Lyricist" class="form-label">Lyricist</label>
+            <input type="text" class="form-control" id="field_Lyricist" name="Lyricist" value="@Model.Lyricist" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Interpreter" class="form-label">Interpreter</label>
+            <input type="text" class="form-control" id="field_Interpreter" name="Interpreter" value="@Model.Interpreter" />
+        </div>
+        <div class="mb-3">
+            <label for="field_SourceUrl" class="form-label">Source Url</label>
+            <input type="text" class="form-control" id="field_SourceUrl" name="SourceUrl" value="@Model.SourceUrl" />
+        </div>
+        <div class="mb-3">
+            <label for="field_SourceUrl2" class="form-label">Source Url2</label>
+            <input type="text" class="form-control" id="field_SourceUrl2" name="SourceUrl2" value="@Model.SourceUrl2" />
+        </div>
+        <div class="mb-3">
+            <label for="field_PhotoFile" class="form-label">Photo File</label>
+            <input type="text" class="form-control" id="field_PhotoFile" name="PhotoFile" value="@Model.PhotoFile" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Rank" class="form-label">Rank</label>
+            <input type="text" class="form-control" id="field_Rank" name="Rank" value="@Model.Rank" />
+        </div>
+        <div class="mb-3">
+            <label for="field_WinnerRank" class="form-label">Winner Rank</label>
+            <input type="text" class="form-control" id="field_WinnerRank" name="WinnerRank" value="@Model.WinnerRank" />
+        </div>
+        <div class="mb-3">
+            <label for="field_CboCompetition" class="form-label">Cbo Competition</label>
+            <select class="form-select" id="field_CboCompetition" name="SelectedCboCompetition">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboCompetitionOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboCompetition ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdUpdate">Update</button>
+        </div>
+    </form>
 </div>

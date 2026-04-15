@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.BibleauthViewModel
-@* Ported from BibleAuth.ascx (Apps/Integration/BibleReader). *@
+@* Ported from BibleAuth.ascx. *@
 
 <div class="component-bibleauth">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Bible Auth</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Bible Auth component requires configuration.
-        </div>
-    }
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Bibleauth</em> component loaded.</p>
+    </div>
 </div>

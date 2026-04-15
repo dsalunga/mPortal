@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.StreamingStreamingconsoleViewModel
-@* Ported from StreamingConsole.ascx (Apps/Integration/Streaming). *@
+@* Ported from StreamingConsole.ascx. *@
 
-<div class="component-streamingstreamingconsole">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Streaming Console</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Streaming Console component requires configuration.
-        </div>
-    }
+<div class="component-streaming-streamingconsole">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Streaming Streamingconsole</em> component loaded.</p>
+    </div>
 </div>

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.G2.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,15 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class SitelistSubsiteslistNbViewModel
+        public class SitelistSubsiteslistNbViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public List<SitelistSubsiteslistNbItem> Items { get; set; } = new();
+    }
+
+    public class SitelistSubsiteslistNbItem
+    {
+        public string Name { get; set; } = string.Empty;
     }
 }

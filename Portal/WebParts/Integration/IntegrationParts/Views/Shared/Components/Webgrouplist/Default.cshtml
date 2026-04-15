@@ -1,20 +1,24 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.WebgrouplistViewModel
-@* Ported from WebGroupList.ascx (Apps/Integration/Registration). *@
+@* Ported from WebGroupList.ascx. *@
 
 <div class="component-webgrouplist">
-    @if (Model.ObjectId > 0)
+    @if (Model.Items.Any())
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Web Group List</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="list-group">
+            @foreach (var item in Model.Items)
+            {
+                <div class="list-group-item">
+                    <span class="me-3">@item.AccessDeniedContent</span>
+                    <span class="me-3">@item.DisplayHTML</span>
+                    <span class="me-3">@item.IsPermitted</span>
+                    <span class="me-3">@item.PageId</span>
+                    <span class="me-3">@item.PageUrl</span>
+                </div>
+            }
         </div>
     }
     else
     {
-        <div class="alert alert-info">
-            Web Group List component requires configuration.
-        </div>
+        <p class="text-muted fst-italic">No items available.</p>
     }
 </div>

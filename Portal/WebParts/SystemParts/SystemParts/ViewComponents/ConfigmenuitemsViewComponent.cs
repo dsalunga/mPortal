@@ -31,14 +31,24 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ConfigmenuitemsViewModel
+        public class ConfigmenuitemsViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<SelectListItem> DropDownList1Items { get; set; } = new();
-        public string DropDownList1Selected { get; set; } = string.Empty;
-        public List<object> ObjectDataSource1Data { get; set; } = new();
-        public string Image1Url { get; set; } = string.Empty;
-        public string Image2Url { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<ConfigmenuitemsItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class ConfigmenuitemsItem
+    {
+        public string Active { get; set; } = string.Empty;
+        public string Edit { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Permission { get; set; } = string.Empty;
+        public string Rank { get; set; } = string.Empty;
+        public string Target { get; set; } = string.Empty;
+        public string Text { get; set; } = string.Empty;
     }
 }

@@ -31,14 +31,22 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class WmCreatequestionitems07ViewModel
+        public class WmCreatequestionitems07ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtOptionID { get; set; } = string.Empty;
-        public List<SelectListItem> cboTypesItems { get; set; } = new();
-        public string cboTypesSelected { get; set; } = string.Empty;
-        public string txtItemText { get; set; } = string.Empty;
-        public string txtItemRanking { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<WmCreatequestionitems07Item> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class WmCreatequestionitems07Item
+    {
+        public string Caption { get; set; } = string.Empty;
+        public string Edit { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Label { get; set; } = string.Empty;
+        public string Rank { get; set; } = string.Empty;
     }
 }

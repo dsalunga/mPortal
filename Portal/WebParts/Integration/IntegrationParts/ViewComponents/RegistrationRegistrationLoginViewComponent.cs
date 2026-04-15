@@ -29,9 +29,11 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class RegistrationRegistrationLoginViewModel
+        public class RegistrationRegistrationLoginViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string StatusMessage { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
     }
 }

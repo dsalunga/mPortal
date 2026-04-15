@@ -1,20 +1,23 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.ControlsBasiclistViewModel
-@* Ported from BasicList.ascx (AppBundle2/Download/Controls). *@
+@* Ported from BasicList.ascx. *@
 
-<div class="component-controlsbasiclist">
-    @if (Model.ObjectId > 0)
+<div class="component-controls-basiclist">
+    @if (Model.Items.Any())
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Basic List</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="list-group">
+            @foreach (var item in Model.Items)
+            {
+                <div class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">@item.Name</h5>
+                    </div>
+                    <p class="mb-1">@item.DownloadID</p>
+                </div>
+            }
         </div>
     }
     else
     {
-        <div class="alert alert-info">
-            Basic List component requires configuration.
-        </div>
+        <p class="text-muted fst-italic">No items available.</p>
     }
 </div>

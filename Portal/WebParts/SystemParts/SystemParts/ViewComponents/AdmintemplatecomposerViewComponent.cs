@@ -30,12 +30,21 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdmintemplatecomposerViewModel
+        public class AdmintemplatecomposerViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<object> grvContentData { get; set; } = new();
-        public string txtName { get; set; } = string.Empty;
-        public string hidValue { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<AdmintemplatecomposerItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdmintemplatecomposerItem
+    {
+        public int Id { get; set; }
+        public string Multiple { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Single { get; set; } = string.Empty;
     }
 }

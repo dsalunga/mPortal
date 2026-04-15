@@ -36,5 +36,8 @@ public int ObjectId { get; set; }
         public string lblTitle { get; set; } = string.Empty;
         public string lblMessage { get; set; } = string.Empty;
         public string lblStatus { get; set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

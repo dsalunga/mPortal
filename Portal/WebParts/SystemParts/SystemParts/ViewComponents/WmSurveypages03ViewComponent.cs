@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.ViewComponents
 {
     /// <summary>
@@ -29,10 +30,22 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class WmSurveypages03ViewModel
+        public class WmSurveypages03ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        // TODO: Add model properties based on legacy control analysis
+        public int CurrentPage { get; set; } = 1;
+        public List<WmSurveypages03Item> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class WmSurveypages03Item
+    {
+        public string Edit { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Questions { get; set; } = string.Empty;
+        public string Rank { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

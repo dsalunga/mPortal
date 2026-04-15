@@ -29,9 +29,17 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class MasterlistGroupeditViewModel
+        public class MasterlistGroupeditViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string Conductors { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string Managers { get; set; } = string.Empty;
+        public string Mentors { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Owner { get; set; } = string.Empty;
+        public string Parent { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

@@ -1,20 +1,60 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.AccountRegistersgViewModel
-@* Ported from RegisterSG.ascx (Apps/Integration/Account). *@
+@* Ported from RegisterSG.ascx. *@
 
-<div class="component-accountregistersg">
-    @if (Model.ObjectId > 0)
+<div class="component-account-registersg">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Register SG</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Register SG component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_ExternalIDNo" class="form-label">External I D No</label>
+            <input type="text" class="form-control" id="field_ExternalIDNo" name="ExternalIDNo" value="@Model.ExternalIDNo" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_MembershipDate" class="form-label">Membership Date</label>
+            <input type="text" class="form-control" id="field_MembershipDate" name="MembershipDate" value="@Model.MembershipDate" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Locale" class="form-label">Locale</label>
+            <input type="text" class="form-control" id="field_Locale" name="Locale" value="@Model.Locale" />
+        </div>
+        <div class="mb-3">
+            <label for="field_FirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="field_FirstName" name="FirstName" value="@Model.FirstName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_MiddleName" class="form-label">Middle Name</label>
+            <input type="text" class="form-control" id="field_MiddleName" name="MiddleName" value="@Model.MiddleName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="field_LastName" name="LastName" value="@Model.LastName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="field_Email" name="Email" value="@Model.Email" />
+        </div>
+        <div class="mb-3">
+            <label for="field_MobileNumber" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="field_MobileNumber" name="MobileNumber" value="@Model.MobileNumber" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="field_Address" name="Address" value="@Model.Address" />
+        </div>
+        <div class="mb-3">
+            <label for="field_UserName" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="field_UserName" name="UserName" value="@Model.UserName" />
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="btnRetrieve">Retrieve</button>
+            <button type="submit" class="btn btn-primary" name="action" value="btnRegister">Register</button>
+            <button type="submit" class="btn btn-primary" name="action" value="btnModal1">Modal Popup</button>
+        </div>
+    </form>
 </div>

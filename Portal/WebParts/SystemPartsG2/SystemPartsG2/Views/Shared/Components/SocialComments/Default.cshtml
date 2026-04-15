@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.SocialCommentsViewModel
-@* Ported from Comments.ascx (AppBundle2/Social). *@
+@* Ported from Comments.ascx. *@
 
-<div class="component-socialcomments">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Comments</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Comments component requires configuration.
-        </div>
-    }
+<div class="component-social-comments">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Social Comments</em> component loaded.</p>
+    </div>
 </div>

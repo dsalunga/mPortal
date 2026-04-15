@@ -30,15 +30,21 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ConfigsendemailViewModel
+        public class ConfigsendemailViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string hRecipients { get; set; } = string.Empty;
-        public string hExcluded { get; set; } = string.Empty;
-        public string hView { get; set; } = string.Empty;
-        public string txtSubject { get; set; } = string.Empty;
-        public string txtAdd { get; set; } = string.Empty;
-        public List<object> ObjectDataSource1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<ConfigsendemailItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class ConfigsendemailItem
+    {
+        public string Email { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
     }
 }

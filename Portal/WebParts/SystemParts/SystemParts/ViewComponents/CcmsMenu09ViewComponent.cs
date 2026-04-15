@@ -31,13 +31,14 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class CcmsMenu09ViewModel
+        public class CcmsMenu09ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtCaption { get; set; } = string.Empty;
-        public List<SelectListItem> ddlSitesItems { get; set; } = new();
-        public string ddlSitesSelected { get; set; } = string.Empty;
-        public bool chkIsActive { get; set; }
+        public string Caption { get; set; } = string.Empty;
+        public bool IsActive { get; set; }
+        public string SelectedSites { get; set; } = string.Empty;
+        public List<SelectOption> SitesOptions { get; set; } = new();
+        public string StatusMessage { get; set; } = string.Empty;
     }
-}
+    }

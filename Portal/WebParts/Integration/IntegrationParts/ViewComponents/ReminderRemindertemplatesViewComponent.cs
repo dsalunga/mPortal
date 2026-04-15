@@ -29,9 +29,10 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class ReminderRemindertemplatesViewModel
+        public class ReminderRemindertemplatesViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string ContentHtml { get; set; } = string.Empty;
     }
 }

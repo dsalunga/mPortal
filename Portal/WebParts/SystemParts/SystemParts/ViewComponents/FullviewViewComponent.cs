@@ -29,14 +29,14 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class FullviewViewModel
+        public class FullviewViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string lCategory { get; set; } = string.Empty;
-        public string lThumbs { get; set; } = string.Empty;
-        public string lNums { get; set; } = string.Empty;
-        public string lPrev { get; set; } = string.Empty;
-        public string lNext { get; set; } = string.Empty;
+        public string LCategoryHtml { get; set; } = string.Empty;
+        public string LNextHtml { get; set; } = string.Empty;
+        public string LNumsHtml { get; set; } = string.Empty;
+        public string LPrevHtml { get; set; } = string.Empty;
+        public string LThumbsHtml { get; set; } = string.Empty;
     }
 }

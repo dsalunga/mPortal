@@ -1,20 +1,64 @@
 @model WCMS.WebSystem.WebParts.G2.ViewComponents.Cms01BasiclistViewModel
-@* Ported from CMS_01_BasicList.ascx (AppBundle2/BasicList). *@
+@* Ported from CMS_01_BasicList.ascx. *@
 
-<div class="component-cms01basiclist">
-    @if (Model.ObjectId > 0)
+<div class="component-cms01-basiclist">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col" style="width:60px" class="text-center">Actions</th>
+                    <th scope="col">Field1</th>
+                    <th scope="col">Field2</th>
+                    <th scope="col">Field3</th>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Items.Any())
+                {
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <a href="?action=edit&id=@item.Id" class="btn btn-sm btn-outline-primary" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </td>
+                            <td>@item.Field1</td>
+                            <td>@item.Field2</td>
+                            <td>@item.Field3</td>
+                            <td>@item.Rank</td>
+                            <td>@item.Edit</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="6" class="text-center text-muted fst-italic">No records found.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.TotalItems > Model.PageSize)
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>CMS 01 Basic List</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            CMS 01 Basic List component requires configuration.
-        </div>
+        var pageCount = (int)Math.Ceiling((double)Model.TotalItems / Model.PageSize);
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center mt-3">
+                <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                    <a class="page-link" href="?page=@(Model.CurrentPage - 1)" aria-label="Previous">&laquo;</a>
+                </li>
+                @for (int i = 1; i <= pageCount; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="?page=@i">@i</a>
+                    </li>
+                }
+                <li class="page-item @(Model.CurrentPage >= pageCount ? "disabled" : "")">
+                    <a class="page-link" href="?page=@(Model.CurrentPage + 1)" aria-label="Next">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
     }
 </div>

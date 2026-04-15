@@ -31,25 +31,25 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdminpublicationViewModel
+        public class AdminpublicationViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<SelectListItem> cboSitesItems { get; set; } = new();
-        public string cboSitesSelected { get; set; } = string.Empty;
-        public List<object> ObjectDataSource1Data { get; set; } = new();
-        public string txtTitle { get; set; } = string.Empty;
-        public List<SelectListItem> ddlMonthItems { get; set; } = new();
-        public string ddlMonthSelected { get; set; } = string.Empty;
-        public List<SelectListItem> ddlDayItems { get; set; } = new();
-        public string ddlDaySelected { get; set; } = string.Empty;
-        public List<SelectListItem> ddlYearItems { get; set; } = new();
-        public string ddlYearSelected { get; set; } = string.Empty;
-        public string txtTags { get; set; } = string.Empty;
-        public string litID { get; set; } = string.Empty;
-        public string txtAuthor { get; set; } = string.Empty;
-        public List<SelectListItem> ddlSiteIDItems { get; set; } = new();
-        public string ddlSiteIDSelected { get; set; } = string.Empty;
-        public bool chkIsActive { get; set; }
+        public int CurrentPage { get; set; } = 1;
+        public List<AdminpublicationItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdminpublicationItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public string Active { get; set; } = string.Empty;
+        public string Author { get; set; } = string.Empty;
+        public string CreatedByName { get; set; } = string.Empty;
+        public string CustomID { get; set; } = string.Empty;
+        public string Date { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Title { get; set; } = string.Empty;
     }
 }

@@ -1,20 +1,78 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.EventregisterAttendeeformViewModel
-@* Ported from AttendeeForm.ascx (Apps/Integration/EventRegister). *@
+@* Ported from AttendeeForm.ascx. *@
 
-<div class="component-eventregisterattendeeform">
-    @if (Model.ObjectId > 0)
+<div class="component-eventregister-attendeeform">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Attendee Form</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Attendee Form component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_ExternalId" class="form-label">External Id</label>
+            <input type="text" class="form-control" id="field_ExternalId" name="ExternalId" value="@Model.ExternalId" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_Email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="field_Email" name="Email" value="@Model.Email" />
+        </div>
+        <div class="mb-3">
+            <label for="field_FirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="field_FirstName" name="FirstName" value="@Model.FirstName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="field_LastName" name="LastName" value="@Model.LastName" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Nickname" class="form-label">Nickname</label>
+            <input type="text" class="form-control" id="field_Nickname" name="Nickname" value="@Model.Nickname" />
+        </div>
+        <div class="mb-3">
+            <label for="field_MobileNumber" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="field_MobileNumber" name="MobileNumber" value="@Model.MobileNumber" />
+        </div>
+        <div class="mb-3">
+            <label for="field_MembershipDate" class="form-label">Membership Date</label>
+            <input type="text" class="form-control" id="field_MembershipDate" name="MembershipDate" value="@Model.MembershipDate" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Locale" class="form-label">Locale</label>
+            <input type="text" class="form-control" id="field_Locale" name="Locale" value="@Model.Locale" />
+        </div>
+        <div class="mb-3">
+            <label for="field_CboGender" class="form-label">Cbo Gender</label>
+            <select class="form-select" id="field_CboGender" name="SelectedCboGender">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboGenderOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboGender ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboCountries" class="form-label">Cbo Countries</label>
+            <select class="form-select" id="field_CboCountries" name="SelectedCboCountries">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboCountriesOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboCountries ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboCoordinator" class="form-label">Cbo Coordinator</label>
+            <select class="form-select" id="field_CboCoordinator" name="SelectedCboCoordinator">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboCoordinatorOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboCoordinator ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
 </div>

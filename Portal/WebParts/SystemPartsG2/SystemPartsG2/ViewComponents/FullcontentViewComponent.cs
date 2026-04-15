@@ -29,9 +29,10 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class FullcontentViewModel
+        public class FullcontentViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string LContentHtml { get; set; } = string.Empty;
     }
 }

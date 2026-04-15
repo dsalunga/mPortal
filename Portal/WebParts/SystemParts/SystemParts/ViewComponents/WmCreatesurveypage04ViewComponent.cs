@@ -29,11 +29,12 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class WmCreatesurveypage04ViewModel
+        public class WmCreatesurveypage04ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtTitle { get; set; } = string.Empty;
-        public string txtRank { get; set; } = string.Empty;
+        public string Rank { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

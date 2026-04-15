@@ -31,21 +31,22 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ConfiglinkedmenueditViewModel
+        public class ConfiglinkedmenueditViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtCaption { get; set; } = string.Empty;
-        public string txtNavigateURL { get; set; } = string.Empty;
-        public List<SelectListItem> ObjectDataSource1Items { get; set; } = new();
-        public string ObjectDataSource1Selected { get; set; } = string.Empty;
-        public List<SelectListItem> cboMenusItems { get; set; } = new();
-        public string cboMenusSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboMenuItemsItems { get; set; } = new();
-        public string cboMenuItemsSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboItemPostionItems { get; set; } = new();
-        public string cboItemPostionSelected { get; set; } = string.Empty;
-        public bool chkIsActive { get; set; }
-        public bool chkCheckPermission { get; set; }
+        public string Caption { get; set; } = string.Empty;
+        public List<SelectOption> CboItemPostionOptions { get; set; } = new();
+        public List<SelectOption> CboMenuItemsOptions { get; set; } = new();
+        public List<SelectOption> CboMenusOptions { get; set; } = new();
+        public bool CheckPermission { get; set; } = false;
+        public bool IsActive { get; set; }
+        public string NavigateURL { get; set; } = string.Empty;
+        public List<SelectOption> ObjectDataSource1Options { get; set; } = new();
+        public string SelectedCboItemPostion { get; set; } = string.Empty;
+        public string SelectedCboMenuItems { get; set; } = string.Empty;
+        public string SelectedCboMenus { get; set; } = string.Empty;
+        public string SelectedObjectDataSource1 { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
-}
+    }

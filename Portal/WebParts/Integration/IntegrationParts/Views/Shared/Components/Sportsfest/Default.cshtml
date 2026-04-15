@@ -1,20 +1,104 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.SportsfestViewModel
-@* Ported from Sportsfest.ascx (Apps/Integration/Profile). *@
+@* Ported from Sportsfest.ascx. *@
 
 <div class="component-sportsfest">
-    @if (Model.ObjectId > 0)
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Sportsfest</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            Sportsfest component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="field_Name" name="Name" value="@Model.Name" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_Mobile" class="form-label">Mobile</label>
+            <input type="text" class="form-control" id="field_Mobile" name="Mobile" value="@Model.Mobile" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Locale" class="form-label">Locale</label>
+            <input type="text" class="form-control" id="field_Locale" name="Locale" value="@Model.Locale" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Suggestion" class="form-label">Suggestion</label>
+            <textarea class="form-control" id="field_Suggestion" name="Suggestion" rows="4">@Model.Suggestion</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboGroupColor" class="form-label">Cbo Group Color</label>
+            <select class="form-select" id="field_CboGroupColor" name="SelectedCboGroupColor">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboGroupColorOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboGroupColor ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboShirtSize" class="form-label">Cbo Shirt Size</label>
+            <select class="form-select" id="field_CboShirtSize" name="SelectedCboShirtSize">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboShirtSizeOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboShirtSize ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_CboAge" class="form-label">Cbo Age</label>
+            <select class="form-select" id="field_CboAge" name="SelectedCboAge">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.CboAgeOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedCboAge ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="field_ObjectDataSourceCountries" class="form-label">Object Data Source Countries</label>
+            <select class="form-select" id="field_ObjectDataSourceCountries" name="SelectedObjectDataSourceCountries">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.ObjectDataSourceCountriesOptions)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedObjectDataSourceCountries ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_Agree1" name="Agree1" @(Model.Agree1 ? "checked" : "") />
+            <label class="form-check-label" for="field_Agree1">I am aware that these sport activities may involve physical contact that may cause injury and accident.</label>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_Agree2" name="Agree2" @(Model.Agree2 ? "checked" : "") />
+            <label class="form-check-label" for="field_Agree2">I must wear appropriate sports attire on the type of sport I would like to join.</label>
+        </div>
+        <fieldset class="mb-3">
+            <legend class="form-label">Rbl Set1</legend>
+            @foreach (var opt in Model.RblSet1Options)
+            {
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="SelectedRblSet1" value="@opt.Value"
+                           id="radio_RblSet1_@opt.Value" @(opt.Value == Model.SelectedRblSet1 ? "checked" : "") />
+                    <label class="form-check-label" for="radio_RblSet1_@opt.Value">@opt.Text</label>
+                </div>
+            }
+        </fieldset>
+        <fieldset class="mb-3">
+            <legend class="form-label">Rbl Set2</legend>
+            @foreach (var opt in Model.RblSet2Options)
+            {
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="SelectedRblSet2" value="@opt.Value"
+                           id="radio_RblSet2_@opt.Value" @(opt.Value == Model.SelectedRblSet2 ? "checked" : "") />
+                    <label class="form-check-label" for="radio_RblSet2_@opt.Value">@opt.Text</label>
+                </div>
+            }
+        </fieldset>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdSubmit">Register</button>
+        </div>
+    </form>
 </div>

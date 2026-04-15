@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.ViewComponents
 {
     /// <summary>
@@ -29,10 +30,15 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class FileManagerBreadcrumbViewModel
+        public class FileManagerBreadcrumbViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string lRoot { get; set; } = string.Empty;
+        public List<FileManagerBreadcrumbItem> Items { get; set; } = new();
+    }
+
+    public class FileManagerBreadcrumbItem
+    {
+        public string Name { get; set; } = string.Empty;
     }
 }

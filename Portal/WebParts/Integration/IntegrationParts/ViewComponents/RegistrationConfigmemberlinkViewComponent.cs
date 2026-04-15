@@ -29,9 +29,13 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class RegistrationConfigmemberlinkViewModel
+        public class RegistrationConfigmemberlinkViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public bool AccountSendEmail { get; set; } = false;
+        public string ExternalID { get; set; } = string.Empty;
+        public bool PortalSendEmail { get; set; } = false;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

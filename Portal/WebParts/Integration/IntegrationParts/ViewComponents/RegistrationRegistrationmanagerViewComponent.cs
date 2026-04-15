@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,32 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class RegistrationRegistrationmanagerViewModel
+        public class RegistrationRegistrationmanagerViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public int CurrentPage { get; set; } = 1;
+        public List<RegistrationRegistrationmanagerItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class RegistrationRegistrationmanagerItem
+    {
+        public string Address { get; set; } = string.Empty;
+        public string Age { get; set; } = string.Empty;
+        public string Airline { get; set; } = string.Empty;
+        public string ArrivalDate { get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
+        public string DepartureDate { get; set; } = string.Empty;
+        public string Designation { get; set; } = string.Empty;
+        public string EntryDate { get; set; } = string.Empty;
+        public string ExternalId { get; set; } = string.Empty;
+        public string FlightNo { get; set; } = string.Empty;
+        public string Gender { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Locale { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string PlaceType { get; set; } = string.Empty;
     }
 }

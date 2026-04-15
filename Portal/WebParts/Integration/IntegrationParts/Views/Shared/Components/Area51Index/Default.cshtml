@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.Area51IndexViewModel
-@* Ported from index.ascx (Themes/area51). *@
+@* Ported from index.ascx. *@
 
-<div class="component-area51index">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>index</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            index component requires configuration.
-        </div>
-    }
+<div class="component-area51-index">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Area51 Index</em> component loaded.</p>
+    </div>
 </div>

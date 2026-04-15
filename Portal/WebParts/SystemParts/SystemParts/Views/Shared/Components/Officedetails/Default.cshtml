@@ -1,20 +1,29 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.OfficedetailsViewModel
-@* Ported from OfficeDetails.ascx (SystemParts). *@
+@* Ported from OfficeDetails.ascx. *@
 
 <div class="component-officedetails">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Office Details</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>Office:</strong> Office Details component requires configuration.
-        </div>
-    }
+    <div class="mb-2">
+        <strong>Email Address:</strong>
+        <span>@Model.EmailAddress</span>
+    </div>
+    <div class="mb-2">
+        <strong>Address Line1:</strong>
+        <span>@Model.AddressLine1</span>
+    </div>
+    <div class="mb-2">
+        <strong>Phone Number:</strong>
+        <span>@Model.PhoneNumber</span>
+    </div>
+    <div class="mb-2">
+        <strong>Mobile Number:</strong>
+        <span>@Model.MobileNumber</span>
+    </div>
+    <div class="mb-2">
+        <strong>Contact Person:</strong>
+        <span>@Model.ContactPerson</span>
+    </div>
+    <div class="mb-2">
+        <strong>Status:</strong>
+        <span>@Model.Status</span>
+    </div>
 </div>

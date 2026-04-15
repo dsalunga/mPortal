@@ -1,20 +1,18 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.MenuAdmintabcontrolViewModel
-@* Ported from AdminTabControl.ascx (SystemParts). *@
+@* Ported from AdminTabControl.ascx. *@
 
-<div class="component-menuadmintabcontrol">
-    @if (Model.ObjectId > 0)
+<div class="component-menu-admintabcontrol">
+    @if (Model.Items.Any())
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Admin Tab Control</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>Menu:</strong> Admin Tab Control component requires configuration.
-        </div>
+        <nav aria-label="Navigation">
+            <ul class="nav flex-column">
+                @foreach (var item in Model.Items)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@item.Name">@item.Name</a>
+                    </li>
+                }
+            </ul>
+        </nav>
     }
 </div>

@@ -30,10 +30,28 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdminremotelibrarymanagerViewModel
+        public class AdminremotelibrarymanagerViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<object> ObjectDataSource1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<AdminremotelibrarymanagerItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdminremotelibrarymanagerItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public string Active { get; set; } = string.Empty;
+        public string BaseAddress { get; set; } = string.Empty;
+        public string DisplayBaseAddress { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string LastIndexDate { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Size { get; set; } = string.Empty;
+        public string SourceType { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
     }
 }

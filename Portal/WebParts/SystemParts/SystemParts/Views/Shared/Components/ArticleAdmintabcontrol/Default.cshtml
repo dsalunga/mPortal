@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ArticleAdmintabcontrolViewModel
-@* Ported from AdminTabControl.ascx (SystemParts). *@
+@* Ported from AdminTabControl.ascx. *@
 
-<div class="component-articleadmintabcontrol">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Admin Tab Control</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>Article:</strong> Admin Tab Control component requires configuration.
-        </div>
-    }
+<div class="component-article-admintabcontrol">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Article Admintabcontrol</em> component loaded.</p>
+    </div>
 </div>

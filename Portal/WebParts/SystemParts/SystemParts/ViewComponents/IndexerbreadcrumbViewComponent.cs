@@ -29,10 +29,10 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class IndexerbreadcrumbViewModel
+        public class IndexerbreadcrumbViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string lRoot { get; set; } = string.Empty;
+        public string LRootHtml { get; set; } = string.Empty;
     }
 }

@@ -29,9 +29,10 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class ProfileAddressbookminiViewModel
+        public class ProfileAddressbookminiViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string EralOutputHtml { get; set; } = string.Empty;
     }
 }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,25 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class AdminsongscoremanagerViewModel
+        public class AdminsongscoremanagerViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public int CurrentPage { get; set; } = 1;
+        public List<AdminsongscoremanagerItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdminsongscoremanagerItem
+    {
+        public string Entry { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Judge { get; set; } = string.Empty;
+        public string LyricsMessage { get; set; } = string.Empty;
+        public string Musicality { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string OverallImpact { get; set; } = string.Empty;
+        public string Total { get; set; } = string.Empty;
     }
 }

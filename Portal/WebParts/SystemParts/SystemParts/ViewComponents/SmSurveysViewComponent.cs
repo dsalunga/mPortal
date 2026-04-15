@@ -31,15 +31,21 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class SmSurveysViewModel
+        public class SmSurveysViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<SelectListItem> cboSortItems { get; set; } = new();
-        public string cboSortSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboOrderItems { get; set; } = new();
-        public string cboOrderSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboSitesItems { get; set; } = new();
-        public string cboSitesSelected { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<SmSurveysItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class SmSurveysItem
+    {
+        public string Edit { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string ListId { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

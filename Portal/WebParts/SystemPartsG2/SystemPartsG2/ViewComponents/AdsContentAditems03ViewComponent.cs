@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.G2.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,27 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class AdsContentAditems03ViewModel
+        public class AdsContentAditems03ViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public int CurrentPage { get; set; } = 1;
+        public List<AdsContentAditems03Item> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdsContentAditems03Item
+    {
+        public string AdItemID { get; set; } = string.Empty;
+        public string AlternateText { get; set; } = string.Empty;
+        public string Appearance { get; set; } = string.Empty;
+        public string Edit { get; set; } = string.Empty;
+        public string Hits { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string ImageUrl { get; set; } = string.Empty;
+        public string Impressions { get; set; } = string.Empty;
+        public string Keyword { get; set; } = string.Empty;
+        public string NavigateUrl { get; set; } = string.Empty;
     }
 }

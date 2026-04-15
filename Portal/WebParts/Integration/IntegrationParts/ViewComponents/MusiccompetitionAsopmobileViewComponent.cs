@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,16 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class MusiccompetitionAsopmobileViewModel
+        public class MusiccompetitionAsopmobileViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public List<MusiccompetitionAsopmobileItem> Items { get; set; } = new();
+    }
+
+    public class MusiccompetitionAsopmobileItem
+    {
+        public string Entry { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
     }
 }

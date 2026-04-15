@@ -29,12 +29,13 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class WmCreatesurvey02ViewModel
+        public class WmCreatesurvey02ViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtTitle { get; set; } = string.Empty;
-        public bool chkActive { get; set; }
-        public bool chkPageTitle { get; set; }
+        public bool Active { get; set; } = false;
+        public bool PageTitle { get; set; } = false;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

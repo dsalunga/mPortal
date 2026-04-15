@@ -31,21 +31,24 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class CmsCategoryViewModel
+        public class CmsCategoryViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string hObjectId { get; set; } = string.Empty;
-        public string hRecordId { get; set; } = string.Empty;
-        public List<object> ObjectDataSource2Data { get; set; } = new();
-        public List<object> ObjectDataSource1Data { get; set; } = new();
-        public List<SelectListItem> cboControlsItems { get; set; } = new();
-        public string cboControlsSelected { get; set; } = string.Empty;
-        public string txtAlbumColumns { get; set; } = string.Empty;
-        public string txtAlbumPadding { get; set; } = string.Empty;
-        public string txtThumbColumns { get; set; } = string.Empty;
-        public string txtThumbRows { get; set; } = string.Empty;
-        public string txtMaxPhotoWidth { get; set; } = string.Empty;
-        public string lblStatus { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<CmsCategoryItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class CmsCategoryItem
+    {
+        public string DateModified { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string ImageFile { get; set; } = string.Empty;
+        public string PhotoHeight { get; set; } = string.Empty;
+        public string PhotoWidth { get; set; } = string.Empty;
+        public string Preview { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

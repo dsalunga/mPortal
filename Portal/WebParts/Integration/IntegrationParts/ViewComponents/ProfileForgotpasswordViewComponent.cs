@@ -29,9 +29,13 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class ProfileForgotpasswordViewModel
+        public class ProfileForgotpasswordViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public string DateOfMembership { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string ExternalId { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

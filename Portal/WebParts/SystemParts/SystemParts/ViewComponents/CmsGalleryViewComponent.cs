@@ -31,20 +31,23 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class CmsGalleryViewModel
+        public class CmsGalleryViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<SelectListItem> SqlDataSource3Items { get; set; } = new();
-        public string SqlDataSource3Selected { get; set; } = string.Empty;
-        public List<object> SqlDataSource2Data { get; set; } = new();
-        public List<object> SqlDataSource1Data { get; set; } = new();
-        public List<SelectListItem> cboControlsItems { get; set; } = new();
-        public string cboControlsSelected { get; set; } = string.Empty;
-        public string txtAlbumColumns { get; set; } = string.Empty;
-        public string txtAlbumPadding { get; set; } = string.Empty;
-        public string txtThumbColumns { get; set; } = string.Empty;
-        public string txtThumbRows { get; set; } = string.Empty;
-        public string lblStatus { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<CmsGalleryItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class CmsGalleryItem
+    {
+        public string Active { get; set; } = string.Empty;
+        public string Caption { get; set; } = string.Empty;
+        public string DateCreated { get; set; } = string.Empty;
+        public string Edit { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Title { get; set; } = string.Empty;
     }
 }

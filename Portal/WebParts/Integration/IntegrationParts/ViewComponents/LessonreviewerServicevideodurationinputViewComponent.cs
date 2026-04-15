@@ -29,9 +29,11 @@ namespace WCMS.WebSystem.WebParts.Integration.ViewComponents
         }
     }
 
-    public class LessonreviewerServicevideodurationinputViewModel
+        public class LessonreviewerServicevideodurationinputViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public int ActiveViewIndex { get; set; }
+        public string StatusMessage { get; set; } = string.Empty;
     }
 }

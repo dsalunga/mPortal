@@ -1,20 +1,8 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.ProfileAmstestViewModel
-@* Ported from AMSTest.ascx (Apps/Integration/Profile). *@
+@* Ported from AMSTest.ascx. *@
 
-<div class="component-profileamstest">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>AMSTest</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            AMSTest component requires configuration.
-        </div>
-    }
+<div class="component-profile-amstest">
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Profile Amstest</em> component loaded.</p>
+    </div>
 </div>

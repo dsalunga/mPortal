@@ -1,20 +1,9 @@
 @model WCMS.WebSystem.WebParts.Integration.ViewComponents.UpdatemygroupsViewModel
-@* Ported from UpdateMyGroups.ascx (Apps/Integration/Profile). *@
+@* Ported from UpdateMyGroups.ascx. *@
 
 <div class="component-updatemygroups">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Update My Groups</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Update My Groups component requires configuration.
-        </div>
-    }
+    <div class="mb-2">
+        <strong>Status:</strong>
+        <span>@Model.Status</span>
+    </div>
 </div>

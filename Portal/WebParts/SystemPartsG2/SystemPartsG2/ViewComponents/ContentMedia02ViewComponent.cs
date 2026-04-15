@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
+using System.Collections.Generic;
 namespace WCMS.WebSystem.WebParts.G2.ViewComponents
 {
     /// <summary>
@@ -29,9 +30,20 @@ namespace WCMS.WebSystem.WebParts.G2.ViewComponents
         }
     }
 
-    public class ContentMedia02ViewModel
+        public class ContentMedia02ViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
+        public bool Active { get; set; } = false;
+        public string Agency { get; set; } = string.Empty;
+        public List<SelectOption> CboRankOptions { get; set; } = new();
+        public List<SelectOption> CboSitesOptions { get; set; } = new();
+        public string Filename { get; set; } = string.Empty;
+        public string Length { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string SelectedCboRank { get; set; } = string.Empty;
+        public string SelectedCboSites { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string Version { get; set; } = string.Empty;
     }
-}
+    }

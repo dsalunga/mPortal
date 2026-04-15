@@ -30,11 +30,22 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdmintemplatemanagerViewModel
+        public class AdmintemplatemanagerViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtSearch { get; set; } = string.Empty;
-        public List<object> ObjectDataSource1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<AdmintemplatemanagerItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdmintemplatemanagerItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public string Date { get; set; } = string.Empty;
+        public int ID { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }

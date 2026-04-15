@@ -29,15 +29,15 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdminalbumeditViewModel
+        public class AdminalbumeditViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string txtTitle { get; set; } = string.Empty;
-        public string txtFolderName { get; set; } = string.Empty;
-        public string txtImageURL { get; set; } = string.Empty;
-        public string txtWidth { get; set; } = string.Empty;
-        public string txtPhotoHeight { get; set; } = string.Empty;
-        public string lblNotify { get; set; } = string.Empty;
+        public string FolderName { get; set; } = string.Empty;
+        public string ImageURL { get; set; } = string.Empty;
+        public string PhotoHeight { get; set; } = string.Empty;
+        public string StatusMessage { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Width { get; set; } = string.Empty;
     }
 }

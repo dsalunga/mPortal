@@ -1,20 +1,50 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ConfigmenuitemeditViewModel
-@* Ported from ConfigMenuItemEdit.ascx (SystemParts). *@
+@* Ported from ConfigMenuItemEdit.ascx. *@
 
 <div class="component-configmenuitemedit">
-    @if (Model.ObjectId > 0)
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Config Menu Item Edit</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>Configuration:</strong> Config Menu Item Edit component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Caption" class="form-label">Caption</label>
+            <input type="text" class="form-control" id="field_Caption" name="Caption" value="@Model.Caption" />
         </div>
-    }
+        <div class="mb-3">
+            <label for="field_NavigateURL" class="form-label">Navigate U R L</label>
+            <input type="text" class="form-control" id="field_NavigateURL" name="NavigateURL" value="@Model.NavigateURL" />
+        </div>
+        <div class="mb-3">
+            <label for="field_Rank" class="form-label">Rank</label>
+            <input type="text" class="form-control" id="field_Rank" name="Rank" value="@Model.Rank" />
+        </div>
+        <div class="mb-3">
+            <label for="field_ObjectDataSource1" class="form-label">Object Data Source1</label>
+            <select class="form-select" id="field_ObjectDataSource1" name="SelectedObjectDataSource1">
+                <option value="">-- Select --</option>
+                @foreach (var opt in Model.ObjectDataSource1Options)
+                {
+                    <option value="@opt.Value" selected="@(opt.Value == Model.SelectedObjectDataSource1 ? "selected" : null)">@opt.Text</option>
+                }
+            </select>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_IsActive" name="IsActive" @(Model.IsActive ? "checked" : "") />
+            <label class="form-check-label" for="field_IsActive">Active</label>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_CheckPermission" name="CheckPermission" @(Model.CheckPermission ? "checked" : "") />
+            <label class="form-check-label" for="field_CheckPermission">Check Permission</label>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdBrowse">Browse...</button>
+            <button type="submit" class="btn btn-primary" name="action" value="cmdUpdate">Update</button>
+            <button type="submit" class="btn btn-outline-secondary" name="action" value="cmdCancel">Cancel</button>
+        </div>
+    </form>
 </div>

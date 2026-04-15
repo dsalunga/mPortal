@@ -29,11 +29,11 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class SurveyfinishViewModel
+        public class SurveyfinishViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string lTitle { get; set; } = string.Empty;
-        public string lblMessage { get; set; } = string.Empty;
+        public string LTitleHtml { get; set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
     }
 }

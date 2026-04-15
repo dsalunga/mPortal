@@ -1,20 +1,23 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.CreatefolderViewModel
-@* Ported from CreateFolder.ascx (SystemParts). *@
+@* Ported from CreateFolder.ascx. *@
 
 <div class="component-createfolder">
-    @if (Model.ObjectId > 0)
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Create Folder</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>File Manager:</strong> Create Folder component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_NewFolder" class="form-label">New Folder</label>
+            <input type="text" class="form-control" id="field_NewFolder" name="NewFolder" value="@Model.NewFolder" />
         </div>
-    }
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdUploadNow">Create folder</button>
+            <button type="submit" class="btn btn-outline-secondary" name="action" value="cmdCancel">Cancel</button>
+        </div>
+    </form>
 </div>

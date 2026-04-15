@@ -31,19 +31,26 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ConfiginquirieslistViewModel
+        public class ConfiginquirieslistViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public string hObjectId { get; set; } = string.Empty;
-        public string hRecordId { get; set; } = string.Empty;
-        public List<SelectListItem> cboModeItems { get; set; } = new();
-        public string cboModeSelected { get; set; } = string.Empty;
-        public List<SelectListItem> ObjectDataSourceContactsItems { get; set; } = new();
-        public string ObjectDataSourceContactsSelected { get; set; } = string.Empty;
-        public string lblStatus { get; set; } = string.Empty;
-        public List<SelectListItem> cboSitesItems { get; set; } = new();
-        public string cboSitesSelected { get; set; } = string.Empty;
-        public List<object> ObjectDataSource1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<ConfiginquirieslistItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class ConfiginquirieslistItem
+    {
+        public string Email { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string InqDateTime { get; set; } = string.Empty;
+        public string InquiryType { get; set; } = string.Empty;
+        public string SendTo { get; set; } = string.Empty;
+        public string SenderName { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public string Subject { get; set; } = string.Empty;
+        public string View { get; set; } = string.Empty;
     }
 }

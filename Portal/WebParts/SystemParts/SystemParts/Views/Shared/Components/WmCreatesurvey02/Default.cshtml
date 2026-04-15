@@ -1,20 +1,31 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.WmCreatesurvey02ViewModel
-@* Ported from WM_CreateSurvey_02.ascx (SystemParts). *@
+@* Ported from WM_CreateSurvey_02.ascx. *@
 
-<div class="component-wmcreatesurvey02">
-    @if (Model.ObjectId > 0)
+<div class="component-wm-createsurvey02">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
     {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>WM Create Survey 02</em> — ported from legacy WebForms. 
-                Awaiting full UI implementation.
-            </p>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    else
-    {
-        <div class="alert alert-info">
-            <strong>File Manager:</strong> WM Create Survey 02 component requires configuration.
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="field_Title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="field_Title" name="Title" value="@Model.Title" />
         </div>
-    }
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_Active" name="Active" @(Model.Active ? "checked" : "") />
+            <label class="form-check-label" for="field_Active">Active</label>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="field_PageTitle" name="PageTitle" @(Model.PageTitle ? "checked" : "") />
+            <label class="form-check-label" for="field_PageTitle">Show Page Title</label>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" name="action" value="cmdCreate">Update</button>
+            <button type="submit" class="btn btn-outline-secondary" name="action" value="cmdCancel">Cancel</button>
+        </div>
+    </form>
 </div>

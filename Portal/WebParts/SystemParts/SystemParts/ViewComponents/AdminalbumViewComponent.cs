@@ -30,11 +30,25 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdminalbumViewModel
+        public class AdminalbumViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<object> ObjectDataSource1Data { get; set; } = new();
-        public string lblNotify { get; set; } = string.Empty;
+        public int CurrentPage { get; set; } = 1;
+        public List<AdminalbumItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdminalbumItem
+    {
+        public string Actions { get; set; } = string.Empty;
+        public string DateModified { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string ImageFile { get; set; } = string.Empty;
+        public string PhotoHeight { get; set; } = string.Empty;
+        public string PhotoWidth { get; set; } = string.Empty;
+        public string Preview { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

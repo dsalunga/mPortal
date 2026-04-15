@@ -31,16 +31,25 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class AdmincalendarViewModel
+        public class AdmincalendarViewModel
     {
-public int ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        public List<SelectListItem> cboCalendarItems { get; set; } = new();
-        public string cboCalendarSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboMonthItems { get; set; } = new();
-        public string cboMonthSelected { get; set; } = string.Empty;
-        public List<SelectListItem> cboYearItems { get; set; } = new();
-        public string cboYearSelected { get; set; } = string.Empty;
-        public List<object> GridView1Data { get; set; } = new();
+        public int CurrentPage { get; set; } = 1;
+        public List<AdmincalendarItem> Items { get; set; } = new();
+        public int PageSize { get; set; } = 20;
+        public int TotalItems { get; set; }
+    }
+
+    public class AdmincalendarItem
+    {
+        public string CategoryName { get; set; } = string.Empty;
+        public string Edit { get; set; } = string.Empty;
+        public string EndDate { get; set; } = string.Empty;
+        public string FinalLocation { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Recurrence { get; set; } = string.Empty;
+        public string StartDate { get; set; } = string.Empty;
+        public string Subject { get; set; } = string.Empty;
     }
 }

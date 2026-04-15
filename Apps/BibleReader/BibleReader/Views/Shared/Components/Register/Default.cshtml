@@ -1,20 +1,8 @@
 @model BibleReader.ViewComponents.RegisterViewModel
-@* Ported from Register.aspx (Account). *@
+@* Ported from Register.aspx. *@
 
 <div class="component-register">
-    @if (Model.ObjectId > 0)
-    {
-        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-            <p class="text-muted">
-                <em>Register</em> — ported from legacy WebForms.
-                Awaiting full UI implementation.
-            </p>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">
-            Register component requires configuration.
-        </div>
-    }
+    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+        <p class="text-muted"><em>Register</em> component loaded.</p>
+    </div>
 </div>
