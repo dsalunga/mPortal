@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.WmSurveys01ViewModel
+@* Ported from WM_Surveys_01.ascx (SystemParts). *@
+
+<div class="component-wmsurveys01">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>WM Surveys 01</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>Generic List / Survey:</strong> WM Surveys 01 component requires configuration.
+        </div>
+    }
+</div>

@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.ArticleMultipleMultiFrontnewsViewModel
+@* Ported from FrontNews.ascx (SystemParts). *@
+
+<div class="component-articlemultiplemultifrontnews">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Front News</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>Article:</strong> Front News component requires configuration.
+        </div>
+    }
+</div>

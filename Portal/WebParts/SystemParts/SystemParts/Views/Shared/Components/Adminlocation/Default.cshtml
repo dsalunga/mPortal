@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.AdminlocationViewModel
+@* Ported from AdminLocation.ascx (SystemParts). *@
+
+<div class="component-adminlocation">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Admin Location</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>System:</strong> Admin Location component requires configuration.
+        </div>
+    }
+</div>

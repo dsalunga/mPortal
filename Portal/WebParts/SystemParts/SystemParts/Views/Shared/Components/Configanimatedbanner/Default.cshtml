@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.ConfiganimatedbannerViewModel
+@* Ported from ConfigAnimatedBanner.ascx (SystemParts). *@
+
+<div class="component-configanimatedbanner">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Config Animated Banner</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>Configuration:</strong> Config Animated Banner component requires configuration.
+        </div>
+    }
+</div>

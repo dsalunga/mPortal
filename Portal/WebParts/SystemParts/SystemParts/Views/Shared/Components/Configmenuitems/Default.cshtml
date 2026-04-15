@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.ConfigmenuitemsViewModel
+@* Ported from ConfigMenuItems.ascx (SystemParts). *@
+
+<div class="component-configmenuitems">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Config Menu Items</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>Configuration:</strong> Config Menu Items component requires configuration.
+        </div>
+    }
+</div>

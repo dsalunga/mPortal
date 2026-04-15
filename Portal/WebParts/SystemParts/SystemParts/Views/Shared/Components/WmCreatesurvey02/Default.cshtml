@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.WmCreatesurvey02ViewModel
+@* Ported from WM_CreateSurvey_02.ascx (SystemParts). *@
+
+<div class="component-wmcreatesurvey02">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>WM Create Survey 02</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>File Manager:</strong> WM Create Survey 02 component requires configuration.
+        </div>
+    }
+</div>

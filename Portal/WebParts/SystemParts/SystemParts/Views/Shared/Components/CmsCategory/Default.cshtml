@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.CmsCategoryViewModel
+@* Ported from CMS_Category.ascx (SystemParts). *@
+
+<div class="component-cmscategory">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>CMS Category</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>CMS:</strong> CMS Category component requires configuration.
+        </div>
+    }
+</div>

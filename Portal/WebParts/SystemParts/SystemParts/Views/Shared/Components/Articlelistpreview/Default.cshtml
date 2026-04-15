@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.ArticlelistpreviewViewModel
+@* Ported from ArticleListPreview.ascx (SystemParts). *@
+
+<div class="component-articlelistpreview">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Article List Preview</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>Article:</strong> Article List Preview component requires configuration.
+        </div>
+    }
+</div>

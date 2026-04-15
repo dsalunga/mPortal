@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.CcmsMenu09ViewModel
+@* Ported from CCMS_Menu_09.ascx (SystemParts). *@
+
+<div class="component-ccmsmenu09">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>CCMS Menu 09</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>Menu:</strong> CCMS Menu 09 component requires configuration.
+        </div>
+    }
+</div>

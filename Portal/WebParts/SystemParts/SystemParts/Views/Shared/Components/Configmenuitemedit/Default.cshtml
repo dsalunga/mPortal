@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.ConfigmenuitemeditViewModel
+@* Ported from ConfigMenuItemEdit.ascx (SystemParts). *@
+
+<div class="component-configmenuitemedit">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Config Menu Item Edit</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>Configuration:</strong> Config Menu Item Edit component requires configuration.
+        </div>
+    }
+</div>

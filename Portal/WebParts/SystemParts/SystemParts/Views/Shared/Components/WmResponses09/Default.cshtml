@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.WmResponses09ViewModel
+@* Ported from WM_Responses_09.ascx (SystemParts). *@
+
+<div class="component-wmresponses09">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>WM Responses 09</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>Generic List / Survey:</strong> WM Responses 09 component requires configuration.
+        </div>
+    }
+</div>

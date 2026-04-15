@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.ViewComponents.BlogViewModel
+@* Ported from Blog.ascx (SystemParts). *@
+
+<div class="component-blog">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Blog</em> — ported from legacy WebForms. 
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>Content:</strong> Blog component requires configuration.
+        </div>
+    }
+</div>
