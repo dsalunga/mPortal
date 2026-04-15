@@ -74,7 +74,7 @@
     </div>
     <div id="pages" class="pages">
 
-        @RenderPage("~/_loader.cshtml", "Content")
+        @await RazorHelper.RenderPanelAsync("Content", Html)
 
         <img class="hostcity_pic" src="v2/images/hostlocale.jpg" alt="Singapore Marina Bay, Gardens at the Bay" width="800" />
         <h3>Talk about ASOP</h3>

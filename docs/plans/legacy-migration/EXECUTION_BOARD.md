@@ -1,6 +1,6 @@
 # Legacy Migration Execution Board
 
-Last Updated: 2026-06-07
+Last Updated: 2026-06-08
 
 ## Purpose
 This board is the execution layer for coding agents.
@@ -61,3 +61,30 @@ A migration batch is done only when all criteria pass:
 - `Phase 3` (optional): Regenerate per-module CSVs from the master CSV.
 - Validate builds (`dotnet build`) and tests (`dotnet test`) remain green.
 - Consider archiving or removing the `legacy/` directory.
+
+## Post-Phase 2: cshtml View Migration (Completed 2026-06-08)
+
+All remaining cshtml views have been migrated to ASP.NET Core MVC Razor patterns.
+Zero csproj exclusions remain for source files.
+
+### Commits (Chronological)
+| Chunk | Scope | Commit | Summary |
+|---|---|---|---|
+| 1 | Integration cshtml fixes | `4c637cf1` | Fix 3 Integration cshtml views for ASP.NET Core |
+| 2 | LessonReviewerSession migration | `f2cd8067` | Convert LessonReviewerSession and AttendanceController |
+| 3 | WCF stubs + ExternalHelper | `57bcbe2d` | Create WCF service stubs, convert ExternalHelper |
+| 4 | EventRegisterUtil QRCoder | `e204ead5` | Migrate System.Drawing → SkiaSharp for QR/image generation |
+| 5 | Re-enable ALL Integration exclusions | `a78632cb` | Remove all csproj exclusions from Integration WebApp |
+| 6 | WebSystem cshtml views | `9e63e69f` | Migrate all WebSystem views: Page→ViewData, RenderPage→PartialAsync, Request→Context.Request |
+| 7 | Final cleanup | TBD | Fix remaining ASOP theme RenderPage, update tracking docs |
+
+### Key Migration Patterns Applied
+- `@inherits Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>` via `_ViewImports.cshtml`
+- `Page.*` / `PageData[]` → `ViewData[]` with casts
+- `@RenderPage()` → `@await Html.PartialAsync()` or `@await RazorHelper.RenderPanelAsync()`
+- Bare `Request` → `Context.Request` (MVC views lack `Request` property)
+- `Request.UserAgent` → `Context.Request.Headers["User-Agent"]`
+- `IsPost` → `HttpMethods.IsPost(Context.Request.Method)`
+- `new WContext(this)` → `new WContext(Context.Request)` or `new WContext(Context)`
+- `@page.xxx` → `@(page.xxx)` to disambiguate from `@page` Razor directive
+- `@removeTagHelper` for HeadTagHelper/BodyTagHelper on template files with `<head>`/`<body>` tags
