@@ -11,7 +11,7 @@
 | Output Type | Library |
 | Target Framework | net8.0 |
 | Migration Status | Completed |
-| Status Basis | Modern target framework detected (net8.0). |
+| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 55 |
@@ -20,10 +20,10 @@
 
 | Track | Current | Next Step |
 | --- | --- | --- |
-| Phase | Completed | Regression validation and documentation hardening. |
-| WebForms Surface Present | No | If `Yes`, define replacement pages/components and parity checklist. |
-| Endpoint Surface Present | No | If `Yes`, map ASMX/SVC/ASHX to target API pattern. |
-| Class/Component Porting | Yes | Review `System.Web` and framework-specific dependencies. |
+| Phase | Completed | Migration to .NET 10 complete. All source files compile with 0 errors. |
+| WebForms Surface Present | No | N/A |
+| Endpoint Surface Present | No | N/A |
+| Class/Component Porting | Yes (Completed) | All items migrated to ASP.NET Core on .NET 10. |
 
 ## Pages And Views
 
@@ -41,58 +41,58 @@ _No artifacts found._
 
 | Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
 | --- | --- | --- | --- | --- | --- |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: ConsoleLogger | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/ConsoleLogger.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: Constants | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Constants.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Controls :: ImageSecurity | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Controls/ImageSecurity.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: GenericDataColumn | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Data/GenericDataColumn.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: GenericDataRow | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Data/GenericDataRow.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: GenericDataTable | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Data/GenericDataTable.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: GenericSqlDataProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Data/GenericSqlDataProvider.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: IDataProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Data/IDataProvider.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: IQueryFilterElement | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Data/IQueryFilterElement.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: ObjectColumnAttribute | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Data/ObjectColumnAttribute.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: QueryFilter | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Data/QueryFilter.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: QueryFilterElement | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Data/QueryFilterElement.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: SqlDataProviderBase | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Data/SqlDataProviderBase.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: Dates | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Dates.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: FileLogger | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/FileLogger.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: IDataManager | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/IDataManager.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: ILogger | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/ILogger.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: INamedObjectProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/INamedObjectProvider.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: INamedValueProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/INamedValueProvider.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: LogManager | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/LogManager.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Media :: AsxMedia | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Media/AsxMedia.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: NamedObjectProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/NamedObjectProvider.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: NamedValueProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/NamedValueProvider.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Net :: NetworkConnection | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Net/NetworkConnection.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Net :: SmsHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Net/SmsHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: ObjectPair | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/ObjectPair.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: PasswordComplexityRequirement | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/PasswordComplexityRequirement.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: QueryParser | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/QueryParser.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: ConfigUtil | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/ConfigUtil.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: ControlHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/ControlHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: ControlInfo | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/ControlInfo.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/Data :: CsvHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/Data/CsvHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/Data :: DataHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/Data/DataHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/Data :: OracleHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/Data/OracleHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/Data :: SqlHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/Data/SqlHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/Data :: XmlUtil | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/Data/XmlUtil.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: Compression | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/IO/Compression.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: FileHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/IO/FileHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: FtpHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/IO/FtpHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: ImageUtil | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/IO/ImageUtil.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: LogHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/IO/LogHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: TextHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/IO/TextHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: JsonUtil | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/JsonUtil.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: MIMEHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/MIMEHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: Misc | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/Misc.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: NetHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/NetHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: ReflectionUtil | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/ReflectionUtil.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: Security | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/Security.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: SerializationUtil | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/SerializationUtil.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: SmtpHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/SmtpHelper.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: Substituter | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/Substituter.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: Test | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/Test.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: TimeUtil | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/TimeUtil.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: Validator | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/Validator.cs` |
-| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: WebHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Core/WCMS.Common/Utilities/WebHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: ConsoleLogger | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/ConsoleLogger.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: Constants | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Constants.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Controls :: ImageSecurity | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Controls/ImageSecurity.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: GenericDataColumn | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Data/GenericDataColumn.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: GenericDataRow | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Data/GenericDataRow.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: GenericDataTable | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Data/GenericDataTable.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: GenericSqlDataProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Data/GenericSqlDataProvider.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: IDataProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Data/IDataProvider.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: IQueryFilterElement | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Data/IQueryFilterElement.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: ObjectColumnAttribute | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Data/ObjectColumnAttribute.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: QueryFilter | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Data/QueryFilter.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: QueryFilterElement | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Data/QueryFilterElement.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Data :: SqlDataProviderBase | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Data/SqlDataProviderBase.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: Dates | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Dates.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: FileLogger | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/FileLogger.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: IDataManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/IDataManager.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: ILogger | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/ILogger.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: INamedObjectProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/INamedObjectProvider.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: INamedValueProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/INamedValueProvider.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: LogManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/LogManager.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Media :: AsxMedia | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Media/AsxMedia.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: NamedObjectProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/NamedObjectProvider.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: NamedValueProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/NamedValueProvider.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Net :: NetworkConnection | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Net/NetworkConnection.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Net :: SmsHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Net/SmsHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: ObjectPair | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/ObjectPair.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: PasswordComplexityRequirement | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/PasswordComplexityRequirement.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common :: QueryParser | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/QueryParser.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: ConfigUtil | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/ConfigUtil.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: ControlHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/ControlHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: ControlInfo | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/ControlInfo.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/Data :: CsvHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/Data/CsvHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/Data :: DataHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/Data/DataHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/Data :: OracleHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/Data/OracleHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/Data :: SqlHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/Data/SqlHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/Data :: XmlUtil | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/Data/XmlUtil.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: Compression | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/IO/Compression.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: FileHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/IO/FileHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: FtpHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/IO/FtpHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: ImageUtil | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/IO/ImageUtil.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: LogHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/IO/LogHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities/IO :: TextHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/IO/TextHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: JsonUtil | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/JsonUtil.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: MIMEHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/MIMEHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: Misc | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/Misc.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: NetHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/NetHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: ReflectionUtil | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/ReflectionUtil.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: Security | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/Security.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: SerializationUtil | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/SerializationUtil.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: SmtpHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/SmtpHelper.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: Substituter | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/Substituter.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: Test | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/Test.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: TimeUtil | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/TimeUtil.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: Validator | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/Validator.cs` |
+| LGC-032 | Completed | Class Component | legacy/Core/WCMS.Common/Utilities :: WebHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Core/WCMS.Common/Utilities/WebHelper.cs` |

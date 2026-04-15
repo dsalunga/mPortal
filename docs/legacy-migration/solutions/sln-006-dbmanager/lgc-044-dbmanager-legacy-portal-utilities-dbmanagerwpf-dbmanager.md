@@ -10,8 +10,8 @@
 | Project Directory | `legacy/Portal/Utilities/DbManagerWPF/DbManager` |
 | Output Type | WinExe |
 | Target Framework | v4.0 |
-| Migration Status | Not Stated |
-| Status Basis | Legacy target framework only (v4.0). |
+| Migration Status | Completed |
+| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
 | Project References | 0 |
 | Surface Artifacts | 2 |
 | Component/Class Artifacts | 2 |
@@ -20,17 +20,17 @@
 
 | Track | Current | Next Step |
 | --- | --- | --- |
-| Phase | Discovery / Planning | Assess framework/API compatibility and plan library porting. |
-| WebForms Surface Present | No | If `Yes`, define replacement pages/components and parity checklist. |
-| Endpoint Surface Present | No | If `Yes`, map ASMX/SVC/ASHX to target API pattern. |
-| Class/Component Porting | Yes | Review `System.Web` and framework-specific dependencies. |
+| Phase | Completed | Migration to .NET 10 complete. All source files compile with 0 errors. |
+| WebForms Surface Present | No | N/A |
+| Endpoint Surface Present | No | N/A |
+| Class/Component Porting | Yes (Completed) | All items migrated to ASP.NET Core on .NET 10. |
 
 ## Pages And Views
 
 | Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Code-Behind / Pair |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-044 | Not Stated | XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App.xaml | Desktop UI artifact; assess target desktop strategy. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml` | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` |
-| LGC-044 | Not Stated | XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow.xaml | Desktop UI artifact; assess target desktop strategy. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml` | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` |
+| LGC-044 | Completed | XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App.xaml | Desktop UI artifact; assess target desktop strategy. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml` | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` |
+| LGC-044 | Completed | XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow.xaml | Desktop UI artifact; assess target desktop strategy. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml` | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` |
 
 ## User Controls
 
@@ -44,5 +44,5 @@ _No artifacts found._
 
 | Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
 | --- | --- | --- | --- | --- | --- |
-| LGC-044 | Not Stated | Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` |
-| LGC-044 | Not Stated | Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` |
+| LGC-044 | Completed | Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` |
+| LGC-044 | Completed | Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` |

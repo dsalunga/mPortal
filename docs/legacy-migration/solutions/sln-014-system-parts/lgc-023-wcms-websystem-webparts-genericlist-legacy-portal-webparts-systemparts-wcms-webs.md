@@ -10,8 +10,8 @@
 | Project Directory | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList` |
 | Output Type | Library |
 | Target Framework | v4.8 |
-| Migration Status | Not Stated |
-| Status Basis | Legacy target framework only (v4.8). |
+| Migration Status | Completed |
+| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 11 |
@@ -20,10 +20,10 @@
 
 | Track | Current | Next Step |
 | --- | --- | --- |
-| Phase | Discovery / Planning | Assess framework/API compatibility and plan library porting. |
-| WebForms Surface Present | No | If `Yes`, define replacement pages/components and parity checklist. |
-| Endpoint Surface Present | No | If `Yes`, map ASMX/SVC/ASHX to target API pattern. |
-| Class/Component Porting | Yes | Review `System.Web` and framework-specific dependencies. |
+| Phase | Completed | Migration to .NET 10 complete. All source files compile with 0 errors. |
+| WebForms Surface Present | No | N/A |
+| Endpoint Surface Present | No | N/A |
+| Class/Component Porting | Yes (Completed) | All items migrated to ASP.NET Core on .NET 10. |
 
 ## Pages And Views
 
@@ -41,14 +41,14 @@ _No artifacts found._
 
 | Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
 | --- | --- | --- | --- | --- | --- |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericList | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericList.cs` |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListColumn | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListColumn.cs` |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListColumnOption | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListColumnOption.cs` |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListColumnOptionType | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListColumnOptionType.cs` |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListField | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListField.cs` |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListPartition | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListPartition.cs` |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListRow | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListRow.cs` |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Interfaces :: IGenericListFieldProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Interfaces/IGenericListFieldProvider.cs` |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Interfaces :: IGenericListRowProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Interfaces/IGenericListRowProvider.cs` |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Providers :: GenericListFieldProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Providers/GenericListFieldProvider.cs` |
-| LGC-023 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Providers :: GenericListRowProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Providers/GenericListRowProvider.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericList | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericList.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListColumn | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListColumn.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListColumnOption | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListColumnOption.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListColumnOptionType | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListColumnOptionType.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListField | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListField.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListPartition | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListPartition.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList :: GenericListRow | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/GenericListRow.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Interfaces :: IGenericListFieldProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Interfaces/IGenericListFieldProvider.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Interfaces :: IGenericListRowProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Interfaces/IGenericListRowProvider.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Providers :: GenericListFieldProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Providers/GenericListFieldProvider.cs` |
+| LGC-023 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Providers :: GenericListRowProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.GenericList/Providers/GenericListRowProvider.cs` |

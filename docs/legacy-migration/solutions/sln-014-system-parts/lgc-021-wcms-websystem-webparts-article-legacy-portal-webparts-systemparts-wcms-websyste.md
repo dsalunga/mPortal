@@ -10,8 +10,8 @@
 | Project Directory | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article` |
 | Output Type | Library |
 | Target Framework | v4.8 |
-| Migration Status | Not Stated |
-| Status Basis | Legacy target framework only (v4.8). |
+| Migration Status | Completed |
+| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 21 |
@@ -20,10 +20,10 @@
 
 | Track | Current | Next Step |
 | --- | --- | --- |
-| Phase | Discovery / Planning | Assess framework/API compatibility and plan library porting. |
-| WebForms Surface Present | No | If `Yes`, define replacement pages/components and parity checklist. |
-| Endpoint Surface Present | No | If `Yes`, map ASMX/SVC/ASHX to target API pattern. |
-| Class/Component Porting | Yes | Review `System.Web` and framework-specific dependencies. |
+| Phase | Completed | Migration to .NET 10 complete. All source files compile with 0 errors. |
+| WebForms Surface Present | No | N/A |
+| Endpoint Surface Present | No | N/A |
+| Class/Component Porting | Yes (Completed) | All items migrated to ASP.NET Core on .NET 10. |
 
 ## Pages And Views
 
@@ -41,24 +41,24 @@ _No artifacts found._
 
 | Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
 | --- | --- | --- | --- | --- | --- |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: Article | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Article.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: ArticleColumn | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleColumn.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: ArticleHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleHelper.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: ArticleLink | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleLink.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: ArticleList | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleList.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: ArticleTemplate | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleTemplate.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: Constants | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Constants.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers :: ArticleLinkManager | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers/ArticleLinkManager.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers :: ArticleListManager | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers/ArticleListManager.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers :: ArticleManager | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers/ArticleManager.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers :: ArticlePartDataManager | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers/ArticlePartDataManager.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers :: ArticleTemplateManager | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers/ArticleTemplateManager.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: ArticleColumnProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/ArticleColumnProvider.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: ArticleLinkProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/ArticleLinkProvider.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: ArticleListProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/ArticleListProvider.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: ArticleProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/ArticleProvider.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: ArticleTemplateProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/ArticleTemplateProvider.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: IArticleLinkProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/IArticleLinkProvider.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: IArticleListProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/IArticleListProvider.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: IArticleProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/IArticleProvider.cs` |
-| LGC-021 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: IArticleTemplateProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/IArticleTemplateProvider.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: Article | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Article.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: ArticleColumn | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleColumn.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: ArticleHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleHelper.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: ArticleLink | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleLink.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: ArticleList | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleList.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: ArticleTemplate | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleTemplate.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article :: Constants | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Constants.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers :: ArticleLinkManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers/ArticleLinkManager.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers :: ArticleListManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers/ArticleListManager.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers :: ArticleManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers/ArticleManager.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers :: ArticlePartDataManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers/ArticlePartDataManager.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers :: ArticleTemplateManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Managers/ArticleTemplateManager.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: ArticleColumnProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/ArticleColumnProvider.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: ArticleLinkProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/ArticleLinkProvider.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: ArticleListProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/ArticleListProvider.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: ArticleProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/ArticleProvider.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: ArticleTemplateProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/ArticleTemplateProvider.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: IArticleLinkProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/IArticleLinkProvider.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: IArticleListProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/IArticleListProvider.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: IArticleProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/IArticleProvider.cs` |
+| LGC-021 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers :: IArticleTemplateProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Providers/IArticleTemplateProvider.cs` |

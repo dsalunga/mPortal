@@ -10,8 +10,8 @@
 | Project Directory | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer` |
 | Output Type | Library |
 | Target Framework | v4.8 |
-| Migration Status | Not Stated |
-| Status Basis | Legacy target framework only (v4.8). |
+| Migration Status | Completed |
+| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 15 |
@@ -20,10 +20,10 @@
 
 | Track | Current | Next Step |
 | --- | --- | --- |
-| Phase | Discovery / Planning | Assess framework/API compatibility and plan library porting. |
-| WebForms Surface Present | No | If `Yes`, define replacement pages/components and parity checklist. |
-| Endpoint Surface Present | No | If `Yes`, map ASMX/SVC/ASHX to target API pattern. |
-| Class/Component Porting | Yes | Review `System.Web` and framework-specific dependencies. |
+| Phase | Completed | Migration to .NET 10 complete. All source files compile with 0 errors. |
+| WebForms Surface Present | No | N/A |
+| Endpoint Surface Present | No | N/A |
+| Class/Component Porting | Yes (Completed) | All items migrated to ASP.NET Core on .NET 10. |
 
 ## Pages And Views
 
@@ -41,18 +41,18 @@ _No artifacts found._
 
 | Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
 | --- | --- | --- | --- | --- | --- |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common :: FtpIndexer | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common/FtpIndexer.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common :: IRemoteIndexer | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common/IRemoteIndexer.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common :: WindowsFileSystem | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common/WindowsFileSystem.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: Constants | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Constants.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: Program | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Program.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers :: IRemoteItemProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers/IRemoteItemProvider.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers :: IRemoteLibraryProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers/IRemoteLibraryProvider.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers :: RemoteItemSqlProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers/RemoteItemSqlProvider.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers :: RemoteLibrarySqlProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers/RemoteLibrarySqlProvider.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteIndexerTask | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteIndexerTask.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteIndexerViewBase | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteIndexerViewBase.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteItem | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteItem.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteLibrary | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteLibrary.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteLibraryHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteLibraryHelper.cs` |
-| LGC-024 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteLibraryIndexer | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteLibraryIndexer.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common :: FtpIndexer | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common/FtpIndexer.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common :: IRemoteIndexer | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common/IRemoteIndexer.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common :: WindowsFileSystem | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Common/WindowsFileSystem.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: Constants | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Constants.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Program.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers :: IRemoteItemProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers/IRemoteItemProvider.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers :: IRemoteLibraryProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers/IRemoteLibraryProvider.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers :: RemoteItemSqlProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers/RemoteItemSqlProvider.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers :: RemoteLibrarySqlProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/Providers/RemoteLibrarySqlProvider.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteIndexerTask | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteIndexerTask.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteIndexerViewBase | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteIndexerViewBase.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteItem | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteItem.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteLibrary | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteLibrary.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteLibraryHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteLibraryHelper.cs` |
+| LGC-024 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer :: RemoteLibraryIndexer | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.RemoteIndexer/RemoteLibraryIndexer.cs` |

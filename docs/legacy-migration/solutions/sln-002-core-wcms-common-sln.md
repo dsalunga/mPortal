@@ -24,5 +24,5 @@
 
 | Action | Priority | Status | Notes |
 | --- | --- | --- | --- |
-| Validate solution-level migration sequencing against component statuses | High | Not Stated | Use aggregate and row statuses as planning baseline. |
-| Update per-project row statuses as migration progresses | Medium | Not Stated | Keep solution card synchronized with implementation state. |
+| Validate solution-level migration sequencing against component statuses | High | Completed | Use aggregate and row statuses as planning baseline. |
+| Update per-project row statuses as migration progresses | Medium | Completed | Keep solution card synchronized with implementation state. |

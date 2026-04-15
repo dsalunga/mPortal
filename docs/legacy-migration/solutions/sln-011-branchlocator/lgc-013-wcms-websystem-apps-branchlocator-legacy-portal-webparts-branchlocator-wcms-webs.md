@@ -10,8 +10,8 @@
 | Project Directory | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator` |
 | Output Type | Library |
 | Target Framework | v4.8 |
-| Migration Status | Not Stated |
-| Status Basis | Legacy target framework only (v4.8). |
+| Migration Status | Completed |
+| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 7 |
@@ -20,10 +20,10 @@
 
 | Track | Current | Next Step |
 | --- | --- | --- |
-| Phase | Discovery / Planning | Assess framework/API compatibility and plan library porting. |
-| WebForms Surface Present | No | If `Yes`, define replacement pages/components and parity checklist. |
-| Endpoint Surface Present | No | If `Yes`, map ASMX/SVC/ASHX to target API pattern. |
-| Class/Component Porting | Yes | Review `System.Web` and framework-specific dependencies. |
+| Phase | Completed | Migration to .NET 10 complete. All source files compile with 0 errors. |
+| WebForms Surface Present | No | N/A |
+| Endpoint Surface Present | No | N/A |
+| Class/Component Porting | Yes (Completed) | All items migrated to ASP.NET Core on .NET 10. |
 
 ## Pages And Views
 
@@ -41,10 +41,10 @@ _No artifacts found._
 
 | Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
 | --- | --- | --- | --- | --- | --- |
-| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: Constants | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/Constants.cs` |
-| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: FALHelper | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/FALHelper.cs` |
-| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: IMChapterProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/IMChapterProvider.cs` |
-| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapter | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapter.cs` |
-| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterExtra | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterExtra.cs` |
-| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterSqlProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterSqlProvider.cs` |
-| LGC-013 | Not Stated | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterViewModel | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterViewModel.cs` |
+| LGC-013 | Completed | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: Constants | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/Constants.cs` |
+| LGC-013 | Completed | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: FALHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/FALHelper.cs` |
+| LGC-013 | Completed | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: IMChapterProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/IMChapterProvider.cs` |
+| LGC-013 | Completed | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapter | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapter.cs` |
+| LGC-013 | Completed | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterExtra | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterExtra.cs` |
+| LGC-013 | Completed | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterSqlProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterSqlProvider.cs` |
+| LGC-013 | Completed | Class Component | legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator :: MChapterViewModel | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/MChapterViewModel.cs` |

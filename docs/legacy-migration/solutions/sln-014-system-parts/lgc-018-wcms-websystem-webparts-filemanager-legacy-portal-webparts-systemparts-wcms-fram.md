@@ -10,8 +10,8 @@
 | Project Directory | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager` |
 | Output Type | Library |
 | Target Framework | v4.8 |
-| Migration Status | Not Stated |
-| Status Basis | Legacy target framework only (v4.8). |
+| Migration Status | Completed |
+| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 12 |
@@ -20,10 +20,10 @@
 
 | Track | Current | Next Step |
 | --- | --- | --- |
-| Phase | Discovery / Planning | Assess framework/API compatibility and plan library porting. |
-| WebForms Surface Present | No | If `Yes`, define replacement pages/components and parity checklist. |
-| Endpoint Surface Present | No | If `Yes`, map ASMX/SVC/ASHX to target API pattern. |
-| Class/Component Porting | Yes | Review `System.Web` and framework-specific dependencies. |
+| Phase | Completed | Migration to .NET 10 complete. All source files compile with 0 errors. |
+| WebForms Surface Present | No | N/A |
+| Endpoint Surface Present | No | N/A |
+| Class/Component Porting | Yes (Completed) | All items migrated to ASP.NET Core on .NET 10. |
 
 ## Pages And Views
 
@@ -41,15 +41,15 @@ _No artifacts found._
 
 | Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
 | --- | --- | --- | --- | --- | --- |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: Constants | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Constants.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: FileIdentity | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/FileIdentity.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: FileManagerBase | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/FileManagerBase.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: FileManagerFile | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/FileManagerFile.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: FileManagerFolder | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/FileManagerFolder.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: FileVersion | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/FileVersion.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: FileIdentityProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/FileIdentityProvider.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: FileManagerFileProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/FileManagerFileProvider.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: FileManagerFolderProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/FileManagerFolderProvider.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: FileVersionProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/FileVersionProvider.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: IFileIdentityProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/IFileIdentityProvider.cs` |
-| LGC-018 | Not Stated | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: IFileVersionProvider | Library/business component; assess API compatibility and dependencies. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/IFileVersionProvider.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: Constants | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Constants.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: FileIdentity | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/FileIdentity.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: FileManagerBase | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/FileManagerBase.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: FileManagerFile | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/FileManagerFile.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: FileManagerFolder | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/FileManagerFolder.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager :: FileVersion | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/FileVersion.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: FileIdentityProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/FileIdentityProvider.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: FileManagerFileProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/FileManagerFileProvider.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: FileManagerFolderProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/FileManagerFolderProvider.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: FileVersionProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/FileVersionProvider.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: IFileIdentityProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/IFileIdentityProvider.cs` |
+| LGC-018 | Completed | Class Component | legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers :: IFileVersionProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemParts/WCMS.Framework.FileManager/Providers/IFileVersionProvider.cs` |
