@@ -9,6 +9,7 @@ namespace WCMS.WebSystem.Apps.Integration.CommonWS
     public class CommonWSSoapClient
     {
         public ServiceSchedule GetServiceSchedule(int serviceScheduleID) => null;
+        public Service[] GetServices() => Array.Empty<Service>();
     }
 
     /// <summary>
@@ -38,5 +39,15 @@ namespace WCMS.WebSystem.Apps.Integration.CommonWS
         public long AssignedCouncillor { get; set; }
         public string Remarks { get; set; } = string.Empty;
         public int IsActive { get; set; }
+    }
+
+    /// <summary>
+    /// Stub replacement for WCF-generated Service data class.
+    /// </summary>
+    public class Service : CreationDate
+    {
+        public int ServiceID { get; set; }
+        public string ServiceCode { get; set; } = string.Empty;
+        public string ServiceName { get; set; } = string.Empty;
     }
 }

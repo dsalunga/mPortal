@@ -13,6 +13,7 @@ using WCMS.WebSystem.Apps.Integration;
 using WCMS.WebSystem.Apps.Integration.ExtApp;
 using WCMS.Framework.Net;
 using WCMS.WebSystem.Agent;
+using WCMS.WebSystem.Apps.Integration.CommonWS;
 using WCMS.WebSystem.Apps.Integration.ExternalMemberWS;
 using WCMS.Framework.Core;
 using Microsoft.AspNetCore.Http;
@@ -211,6 +212,41 @@ namespace WCMS.WebSystem.Apps.Integration
             if (space > 0)
                 return service.Substring(0, space);
             return service;
+        }
+
+        public static Service GetService(int serviceId)
+        {
+            var services = GetServices();
+            foreach (var service in services)
+            {
+                if (service.ServiceID == serviceId)
+                    return service;
+            }
+            return null;
+        }
+
+        public static IEnumerable<Service> GetServices()
+        {
+            var cache = MemoryCache.Default;
+            IEnumerable<Service> services = cache[ExtConstants.ServicesCacheKey] as IEnumerable<Service>;
+            if (services == null)
+            {
+                var client = new CommonWSSoapClient();
+                services = client.GetServices();
+
+                var policy = new CacheItemPolicy();
+                policy.AbsoluteExpiration = DateTimeOffset.Now.AddHours(6.0);
+                cache.Set(ExtConstants.ServicesCacheKey, services, policy);
+            }
+            return services;
+        }
+
+        public static string GetShortService(int serviceId)
+        {
+            var service = GetService(serviceId);
+            if (service != null)
+                return service.ServiceCode;
+            return "NA";
         }
 
 

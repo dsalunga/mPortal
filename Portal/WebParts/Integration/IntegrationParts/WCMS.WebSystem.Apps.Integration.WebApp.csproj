@@ -6,12 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Apps\Integration\Controllers\MemberController.cs" />
-    <Compile Remove="Apps\Integration\Controllers\AttendanceController.cs" />
-    <Content Remove="Apps\Integration\Streaming\LiveStreaming.cshtml" />
-
-    <Content Remove="Apps\Integration\Account\QRCodeAttendance.cshtml" />
-    <Content Remove="Themes\**" />
+    <Content Remove="Themes\**\*.cshtml" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
