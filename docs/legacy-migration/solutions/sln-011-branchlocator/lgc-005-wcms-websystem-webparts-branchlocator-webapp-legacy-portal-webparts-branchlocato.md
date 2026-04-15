@@ -11,7 +11,7 @@
 | Output Type | Library |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Per-file audit verified: 0 legacy surface files. Modern core project only. Compiles on .NET 10. |
 | Project References | 1 |
 | Surface Artifacts | 12 |
 | Component/Class Artifacts | 5 |

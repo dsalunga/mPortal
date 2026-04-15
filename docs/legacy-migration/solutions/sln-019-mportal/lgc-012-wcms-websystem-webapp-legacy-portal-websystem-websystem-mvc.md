@@ -11,7 +11,7 @@
 | Output Type | Library |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Per-file audit verified: MVC webapp—no WebForms surfaces. Already ASP.NET Core MVC. Compiles on .NET 10. |
 | Project References | 10 |
 | Surface Artifacts | 258 |
 | Component/Class Artifacts | 216 |

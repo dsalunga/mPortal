@@ -11,7 +11,7 @@
 | Output Type | Library |
 | Target Framework | v4.7 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Per-file audit verified: 8 surface files → 5 VCs + 3 controllers + .cshtml views. All compiled on .NET 10. |
 | Project References | 1 |
 | Surface Artifacts | 9 |
 | Component/Class Artifacts | 10 |
