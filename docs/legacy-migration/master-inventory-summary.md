@@ -8,6 +8,8 @@ Companion LGC inventory:
 - [Legacy Migration Master Inventory](./master-inventory-projects.md)
 
 > **Migration Completed (2026-06-08):** All 50 legacy projects are migrated to .NET 10 (ASP.NET Core). 49 of 50 projects are **Completed** with modern counterparts that compile with 0 errors. 1 project (P039 FCKeditor) is **Do Not Migrate As-Is** (replaced by TipTap OSS). All 5,306 tracked source files in the [CSV inventory](../plans/legacy-migration/inventory/) are resolved: 3,570 completed, 1,736 not_applicable, 0 incomplete. Solution builds with 0 errors and 88 passing tests.
+>
+> **UI Surface Migration Completed (2026-07-22):** Per-file audit verified all 386 legacy UI surface files (.ascx/.aspx/.ashx/.asmx/.svc) have modern ASP.NET Core counterparts. Total: 382 ViewComponents, 12+ API Controllers, and .cshtml views across 8 WebApp projects. All compile with 0 errors on .NET 10.
 
 Status legend:
 - `Completed`: modern counterpart on .NET 10 verified; compiles with 0 errors.
