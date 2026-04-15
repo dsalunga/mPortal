@@ -35,10 +35,14 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
             var link = MemberLink.Provider.GetByUserId(user.Id);
 
             var assetPath = PathMapper.MapPath("~/Content/Parts/Integration/EventRegister/assets");
-            var id = Image.FromFile(assetPath + @"\blank-final.jpg");
+            var id = Image.FromFile(Path.Combine(assetPath, "blank-final.jpg"));
             var qrGenerator = new QRCodeGenerator();
-            var qrCode = qrGenerator.CreateQrCode(link.ExternalIdNo, QRCodeGenerator.ECCLevel.Q);
-            var qr = qrCode.GetGraphic(20);
+            var qrCodeData = qrGenerator.CreateQrCode(link.ExternalIdNo, QRCodeGenerator.ECCLevel.Q);
+            var pngQrCode = new PngByteQRCode(qrCodeData);
+            var qrBytes = pngQrCode.GetGraphic(20);
+            Image qr;
+            using (var qrStream = new MemoryStream(qrBytes))
+                qr = Image.FromStream(qrStream);
             var qrCropPx = 15;
 
             var resizedQR = ScaleImageGdi(qr, 150, 150);
@@ -81,8 +85,8 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
 
                 var fontReklame = new PrivateFontCollection();
                 var fontGothicBold = new PrivateFontCollection();
-                fontReklame.AddFontFile(assetPath + @"\fonts\ReklameScript-Regular.otf");
-                fontGothicBold.AddFontFile(assetPath + @"\fonts\GOTHICB.TTF");
+                fontReklame.AddFontFile(Path.Combine(assetPath, "fonts", "ReklameScript-Regular.otf"));
+                fontGothicBold.AddFontFile(Path.Combine(assetPath, "fonts", "GOTHICB.TTF"));
 
                 // Prepare Nickname
                 var nickContainerSize = new Point(1030, 330);
@@ -151,7 +155,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
 
                 // Draw Group ID
                 var fontGothic = new PrivateFontCollection();
-                fontGothic.AddFontFile(assetPath + @"\fonts\GOTHIC.TTF");
+                fontGothic.AddFontFile(Path.Combine(assetPath, "fonts", "GOTHIC.TTF"));
                 graphics.DrawString(link.ExternalIdNo, new Font(fontGothic.Families[0], 6f, FontStyle.Regular), Brushes.White, photoXY.X, photoXY.Y + resizedQR.Height + 3);
 
                 var country = link.LocaleCountry;
@@ -219,7 +223,7 @@ namespace WCMS.WebSystem.Apps.Integration.EventRegister
             var ep = new EncoderParameters();
             ep.Param[0] = new EncoderParameter(Encoder.Quality, (long)100);
 
-            var cardFilename = string.Format(@"{0}\{1} {2} {3}.jpg", savePath, link.ExternalIdNo, user.FirstName, user.LastName);
+            var cardFilename = Path.Combine(savePath, $"{link.ExternalIdNo} {user.FirstName} {user.LastName}.jpg");
             id.Save(cardFilename, jpgEncoder, ep);
 
             try

@@ -6,11 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Apps\Integration\EventRegister\**" />
     <Compile Remove="Apps\Integration\Controllers\MemberController.cs" />
     <Compile Remove="Apps\Integration\Controllers\AttendanceController.cs" />
     <Content Remove="Apps\Integration\Streaming\LiveStreaming.cshtml" />
-    <Content Remove="Apps\Integration\EventRegister\Dashboard.cshtml" />
 
     <Content Remove="Apps\Integration\Account\QRCodeAttendance.cshtml" />
     <Content Remove="Themes\**" />
