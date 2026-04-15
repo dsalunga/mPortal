@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.AsopAsopv2DivisionContentViewModel
+@* Ported from asopv2-division-content.ascx (Themes/ASOP). *@
+
+<div class="component-asopasopv2divisioncontent">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>asopv2-division-content</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            asopv2-division-content component requires configuration.
+        </div>
+    }
+</div>

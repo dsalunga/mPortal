@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.AdmininterpreterscoremanagerViewModel
+@* Ported from AdminInterpreterScoreManager.ascx (Apps/Integration/MusicCompetition). *@
+
+<div class="component-admininterpreterscoremanager">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Admin Interpreter Score Manager</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Admin Interpreter Score Manager component requires configuration.
+        </div>
+    }
+</div>

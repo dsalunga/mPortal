@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.RegistrationConfigmembersViewModel
+@* Ported from ConfigMembers.ascx (Apps/Integration/Registration). *@
+
+<div class="component-registrationconfigmembers">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Config Members</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Config Members component requires configuration.
+        </div>
+    }
+</div>

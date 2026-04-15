@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.LessonreviewerServicevideodurationinputViewModel
+@* Ported from ServiceVideoDurationInput.ascx (Apps/Integration/Profile/LessonReviewer). *@
+
+<div class="component-lessonreviewerservicevideodurationinput">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Service Video Duration Input</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Service Video Duration Input component requires configuration.
+        </div>
+    }
+</div>

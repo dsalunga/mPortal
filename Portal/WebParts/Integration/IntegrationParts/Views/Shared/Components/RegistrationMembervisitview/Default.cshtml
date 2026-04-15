@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.RegistrationMembervisitviewViewModel
+@* Ported from MemberVisitView.ascx (Apps/Integration/Registration). *@
+
+<div class="component-registrationmembervisitview">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Member Visit View</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Member Visit View component requires configuration.
+        </div>
+    }
+</div>

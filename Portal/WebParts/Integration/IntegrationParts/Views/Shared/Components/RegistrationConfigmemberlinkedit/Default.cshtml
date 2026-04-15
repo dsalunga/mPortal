@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.RegistrationConfigmemberlinkeditViewModel
+@* Ported from ConfigMemberLinkEdit.ascx (Apps/Integration/Registration). *@
+
+<div class="component-registrationconfigmemberlinkedit">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Config Member Link Edit</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Config Member Link Edit component requires configuration.
+        </div>
+    }
+</div>

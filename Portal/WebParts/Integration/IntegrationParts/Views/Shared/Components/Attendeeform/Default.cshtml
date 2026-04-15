@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.AttendeeformViewModel
+@* Ported from AttendeeForm.ascx (Apps/Integration/EventRegister). *@
+
+<div class="component-attendeeform">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Attendee Form</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Attendee Form component requires configuration.
+        </div>
+    }
+</div>

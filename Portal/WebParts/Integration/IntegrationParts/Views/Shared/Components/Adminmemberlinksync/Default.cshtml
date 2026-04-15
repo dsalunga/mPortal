@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.AdminmemberlinksyncViewModel
+@* Ported from AdminMemberLinkSync.ascx (Apps/Integration/Registration). *@
+
+<div class="component-adminmemberlinksync">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Admin Member Link Sync</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Admin Member Link Sync component requires configuration.
+        </div>
+    }
+</div>

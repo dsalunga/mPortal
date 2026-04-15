@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.RegistrationRegistrationv2ViewModel
+@* Ported from RegistrationV2.ascx (Apps/Integration/Registration). *@
+
+<div class="component-registrationregistrationv2">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Registration V2</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Registration V2 component requires configuration.
+        </div>
+    }
+</div>

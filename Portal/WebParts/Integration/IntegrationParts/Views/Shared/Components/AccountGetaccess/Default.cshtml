@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.AccountGetaccessViewModel
+@* Ported from GetAccess.ascx (Apps/Integration/Account). *@
+
+<div class="component-accountgetaccess">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>Get Access</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Get Access component requires configuration.
+        </div>
+    }
+</div>

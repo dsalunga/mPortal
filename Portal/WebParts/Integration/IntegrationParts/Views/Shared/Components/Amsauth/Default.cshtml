@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.AmsauthViewModel
+@* Ported from AMSAuth.ascx (Apps/Integration/Profile). *@
+
+<div class="component-amsauth">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>AMSAuth</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            AMSAuth component requires configuration.
+        </div>
+    }
+</div>

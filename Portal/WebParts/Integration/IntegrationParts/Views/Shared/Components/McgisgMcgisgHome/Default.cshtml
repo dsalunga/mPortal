@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.McgisgMcgisgHomeViewModel
+@* Ported from mcgisg_home.ascx (Themes/mcgisg). *@
+
+<div class="component-mcgisgmcgisghome">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>mcgisg home</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            mcgisg home component requires configuration.
+        </div>
+    }
+</div>

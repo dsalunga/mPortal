@@ -1,0 +1,20 @@
+@model WCMS.WebSystem.WebParts.Integration.ViewComponents.ProfileMyattendanceViewModel
+@* Ported from MyAttendance.ascx (Apps/Integration/Profile). *@
+
+<div class="component-profilemyattendance">
+    @if (Model.ObjectId > 0)
+    {
+        <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
+            <p class="text-muted">
+                <em>My Attendance</em> — ported from legacy WebForms.
+                Awaiting full UI implementation.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            My Attendance component requires configuration.
+        </div>
+    }
+</div>
