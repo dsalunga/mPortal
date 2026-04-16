@@ -22,13 +22,7 @@
     }
 
 
-    Func<string, string> FormatLoadParam = (string load) =>
-        {
-            if (string.IsNullOrEmpty(load) || load.EndsWith(".cshtml", StringComparison.InvariantCultureIgnoreCase))
-                return load;
-            else
-                return load + ".cshtml";
-        };
+    Func<string, string> FormatLoadParam = (string load) => WHelper.NormalizeLegacyViewPath(load);
 
     Action<IWebObject> LoadResources = (IWebObject part) =>
         {
@@ -63,6 +57,7 @@
                     {
                         var part = partControl.Part;
                         controlPath = fileName.IndexOfAny(new char[] { '~', '/' }, 0, 1) == 0 ? fileName : string.Format("~/Content/Parts/{0}/{1}", part.Identity, fileName);
+                        controlPath = WHelper.NormalizeLegacyViewPath(controlPath);
                         //controlToLoad.ID = WContext.GenerateControlId(partControl);
 
                         // Load Resources
@@ -107,6 +102,7 @@
                         {
                             var part = config.Part;
                             controlPath = fileName.IndexOfAny(new char[] { '~', '/' }, 0, 1) == 0 ? fileName : string.Format("~/Content/Parts/{0}/{1}", part.Identity, fileName);
+                            controlPath = WHelper.NormalizeLegacyViewPath(controlPath);
                             //controlToLoad.ID = WContext.GenerateControlId(config);
                             LoadResources(part);
                         }
@@ -128,6 +124,7 @@
                         {
                             var part = partControl.Part;
                             controlPath = fileName.IndexOfAny(new char[] { '~', '/' }, 0, 1) == 0 ? fileName : string.Format("~/Content/Parts/{0}/{1}", part.Identity, fileName);
+                            controlPath = WHelper.NormalizeLegacyViewPath(controlPath);
                             //controlToLoad.ID = WContext.GenerateControlId(partControl);
                             LoadResources(part);
                         }
@@ -172,6 +169,7 @@
                     controlPath = admin.FileName.StartsWith("~") || admin.FileName.StartsWith("/") ?
                         admin.FileName : string.Format("~/Content/Parts/{0}/{1}", part.Identity, admin.FileName);
                 }
+                controlPath = WHelper.NormalizeLegacyViewPath(controlPath);
 
                 // WebPartAdmin
                 //controlToLoad.ID = WContext.GenerateControlId(partAdmin);

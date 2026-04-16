@@ -12,7 +12,7 @@
 | Output Type | Library |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:292, Not Applicable:1131, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:292, Not Applicable:1131, Incomplete:0, Not Started:0. Runtime parity addendum (2026-04-16): legacy `Content/Parts` `.ascx` surfaces now resolve as modern `.cshtml` (165/165), legacy theme `.ascx` surfaces resolve as modern `.cshtml` (11/11), and legacy `User.svc` endpoint is mapped by compatibility API route. |
 | Project References | 10 |
 | Surface Artifacts | 258 |
 | Component/Class Artifacts | 216 |
@@ -22,9 +22,17 @@
 | Track | Current | Next Step |
 | --- | --- | --- |
 | Phase | Completed | Migration to .NET 10 complete. All source files compile with 0 errors. |
-| WebForms Surface Present | Yes (Completed) | All items migrated to ASP.NET Core on .NET 10. |
-| Endpoint Surface Present | Yes (Completed) | All items migrated to ASP.NET Core on .NET 10. |
+| WebForms Surface Present | Yes (Completed) | Legacy `.ascx/.aspx` `Content/Parts` render paths are normalized to `.cshtml` and covered by compatibility views. |
+| Endpoint Surface Present | Yes (Completed) | Legacy service endpoints under `Content/Parts` are mapped to ASP.NET Core controllers (including `User.svc`). |
 | Class/Component Porting | Yes (Completed) | All items migrated to ASP.NET Core on .NET 10. |
+
+## Content Parts Compatibility Parity (2026-04-16)
+
+| Area | Legacy | Modern | Notes |
+| --- | --- | --- | --- |
+| `Content/Parts` WebForms controls (`*.ascx`) | 165 | 165 (`*.cshtml`) | 57 wrappers invoke migrated ViewComponents; 105 wrappers are explicit retired placeholders; 3 pre-existing Razor files already covered. |
+| `Content/Themes` WebForms templates (`*.ascx`) | 11 | 11 (`*.cshtml`) | Theme wrappers invoke migrated `Theme*` ViewComponents (10 added, 1 existing). |
+| Legacy services under `Content/Parts` | `AccountService.asmx`, `FxService.asmx`, `User.svc` | Controller compatibility routes | `LegacyAccountServiceController`, `LegacyFxServiceController`, and `LegacyUserServiceController`. |
 
 ## Project References
 
@@ -63,7 +71,7 @@ Reference note:
 | LGC-012 | Not Applicable | Page | legacy/Portal/WebSystem/WebSystem-MVC/Content/Admin :: WebObjectPermissions.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `./Content/Admin/WebObjectPermissions.aspx` | N/A (retired/replaced in modern architecture). | `./Content/Admin/WebObjectPermissions.aspx.cs` |
 | LGC-012 | Not Applicable | Page | legacy/Portal/WebSystem/WebSystem-MVC/Content/Admin :: WebOpen.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `./Content/Admin/WebOpen.aspx` | `./Api/LegacyAdminPagesController.cs` | `./Content/Admin/WebOpen.aspx.cs` |
 | LGC-012 | Not Applicable | Page | legacy/Portal/WebSystem/WebSystem-MVC/Content :: Executor.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `./Content/Executor.aspx` | N/A (retired/replaced in modern architecture). |  |
-| LGC-012 | Not Applicable | Page | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central :: Default.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `./Content/Parts/Central/Default.aspx` | N/A (retired/replaced in modern architecture). | `./Content/Parts/Central/Default.aspx.cs` |
+| LGC-012 | Completed | Page | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central :: Default.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `./Content/Parts/Central/Default.aspx` | `./Content/Parts/Central/Default.cshtml + ./Content/Parts/Central/Loader.cshtml` | `./Content/Parts/Central/Default.aspx.cs` |
 | LGC-012 | Do Not Migrate As-Is | Page | legacy/Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/filemanager/connectors/aspx :: connector.aspx | FCKeditor connector surface is replacement-only; do not port as-is. Replace editor/file-browser flow with TipTap-compatible modern upload APIs. | `./Content/Plugins/fckeditor/editor/filemanager/connectors/aspx/connector.aspx` | TipTap OSS replacement (no 1:1 file). |  |
 | LGC-012 | Do Not Migrate As-Is | Page | legacy/Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/filemanager/connectors/aspx :: upload.aspx | FCKeditor connector surface is replacement-only; do not port as-is. Replace editor/file-browser flow with TipTap-compatible modern upload APIs. | `./Content/Plugins/fckeditor/editor/filemanager/connectors/aspx/upload.aspx` | TipTap OSS replacement (no 1:1 file). |  |
 | LGC-012 | Completed | Page | legacy/Portal/WebSystem/WebSystem-MVC/Content :: Setup.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `./Content/Setup.aspx` | Project-level evidence: `./WCMS.WebSystem.WebApp.csproj` | `./Content/Setup.aspx.cs` |
@@ -314,7 +322,7 @@ Reference note:
 | LGC-012 | Not Applicable | Service | legacy/Portal/WebSystem/WebSystem-MVC/Content/Handlers :: DataSync.svc | Legacy endpoint surface; map to ASP.NET Core APIs/services. | `./Content/Handlers/DataSync.svc` | `./Api/DataSyncApiController.cs` | `./Content/Handlers/DataSync.svc.cs` |
 | LGC-012 | Completed | Service | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central :: AccountService.asmx | Legacy endpoint surface; map to ASP.NET Core APIs/services. | `./Content/Parts/Central/AccountService.asmx` | `./Api/AccountApiController.cs` | `./Content/Parts/Central/AccountService.asmx.cs` |
 | LGC-012 | Completed | Service | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: FxService.asmx | Legacy endpoint surface; map to ASP.NET Core APIs/services. | `./Content/Parts/Common/FxService.asmx` | `./Api/FrameworkApiController.cs` | `./Content/Parts/Common/FxService.asmx.cs` |
-| LGC-012 | Not Applicable | Service | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: User.svc | Legacy endpoint surface; map to ASP.NET Core APIs/services. | `./Content/Parts/Common/User.svc` | N/A (retired/replaced in modern architecture). | `./Content/Parts/Common/User.svc.cs` |
+| LGC-012 | Completed | Service | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: User.svc | Legacy endpoint surface; map to ASP.NET Core APIs/services. | `./Content/Parts/Common/User.svc` | `./Api/UserApiController.cs + ./Api/LegacyUserServiceController.cs` | `./Content/Parts/Common/User.svc.cs` |
 
 ## Components And Classes
 
@@ -355,7 +363,7 @@ Reference note:
 | LGC-012 | Not Applicable | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Handlers :: DataSync | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Handlers/DataSync.svc.cs` | `./Api/DataSyncApiController.cs` |
 | LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Handlers :: IDataSync | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Handlers/IDataSync.cs` | `Portal/WebParts/Integration/IntegrationParts/Apps/Integration/Registration/IDataSync.cs` |
 | LGC-012 | Not Applicable | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Handlers :: Resource | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Handlers/Resource.ashx.cs` | N/A (retired/replaced in modern architecture). |
-| LGC-012 | Not Applicable | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central :: AccountService | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Central/AccountService.asmx.cs` | `./Api/LegacyAccountServiceController.cs` |
+| LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central :: AccountService | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Central/AccountService.asmx.cs` | `./Api/LegacyAccountServiceController.cs` |
 | LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Agent :: Dashboard | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Central/Agent/Dashboard.ascx.cs` | `./ViewComponents/Admin/AgentDashboardViewComponent.cs` |
 | LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Agent :: TaskEditor | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Central/Agent/TaskEditor.ascx.cs` | `./ViewComponents/Admin/TaskEditorViewComponent.cs` |
 | LGC-012 | Not Applicable | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Agent :: TaskManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Central/Agent/TaskManager.ascx.cs` | N/A (retired/replaced in modern architecture). |
@@ -512,11 +520,11 @@ Reference note:
 | LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/WebSites :: WebSites | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Central/WebSites/WebSites.ascx.cs` | `./ViewComponents/Admin/WebSitesViewComponent.cs` |
 | LGC-012 | Not Applicable | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: AdminCommentManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Common/AdminCommentManager.ascx.cs` | N/A (retired/replaced in modern architecture). |
 | LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: Comments | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Common/Comments.ascx.cs` | `./ViewComponents/CommentsViewComponent.cs` |
-| LGC-012 | Not Applicable | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: FxService | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Common/FxService.asmx.cs` | `./Api/LegacyFxServiceController.cs` |
+| LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: FxService | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Common/FxService.asmx.cs` | `./Api/LegacyFxServiceController.cs` |
 | LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: Login | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Common/Login.ascx.cs` | `./ViewComponents/LoginViewComponent.cs` |
 | LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: MessageBoard | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Common/MessageBoard.ascx.cs` | `./ViewComponents/MessageBoardViewComponent.cs` |
 | LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: TriggerTask | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Common/TriggerTask.ascx.cs` | `./ViewComponents/TriggerTaskViewComponent.cs` |
-| LGC-012 | Not Applicable | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: User | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Common/User.svc.cs` | N/A (retired/replaced in modern architecture). |
+| LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: User | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Common/User.svc.cs` | `./Api/UserApiController.cs + ./Api/LegacyUserServiceController.cs` |
 | LGC-012 | Completed | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Common :: UserPhotoUpload | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Common/UserPhotoUpload.ascx.cs` | `./ViewComponents/UserPhotoUploadViewComponent.cs` |
 | LGC-012 | Not Applicable | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Test :: CategoryPart | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Test/CategoryPart.ascx.cs` | N/A (retired/replaced in modern architecture). |
 | LGC-012 | Not Applicable | Class Component | legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Test :: DetailsPart | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Content/Parts/Test/DetailsPart.ascx.cs` | N/A (retired/replaced in modern architecture). |

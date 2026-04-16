@@ -84,4 +84,5 @@
     
     PerformanceLog.EndLog("Page Unload", stopWatch, pageId);
 }
+@{ templatePath = WHelper.NormalizeLegacyViewPath(templatePath); }
 @await Html.PartialAsync(templatePath)

@@ -169,6 +169,44 @@ namespace WCMS.Framework
             return relPath;
         }
 
+        /// <summary>
+        /// Normalizes legacy WebForms view paths to Razor view paths for PartialAsync rendering.
+        /// </summary>
+        public static string NormalizeLegacyViewPath(string viewPath)
+        {
+            if (string.IsNullOrWhiteSpace(viewPath))
+                return viewPath;
+
+            var path = viewPath.Trim();
+            var query = string.Empty;
+            var queryPos = path.IndexOf('?');
+            if (queryPos >= 0)
+            {
+                query = path.Substring(queryPos);
+                path = path.Substring(0, queryPos);
+            }
+
+            if (path.EndsWith(".cshtml", StringComparison.InvariantCultureIgnoreCase))
+                return path + query;
+
+            if (path.EndsWith(".ascx", StringComparison.InvariantCultureIgnoreCase) ||
+                path.EndsWith(".aspx", StringComparison.InvariantCultureIgnoreCase) ||
+                path.EndsWith(".htm", StringComparison.InvariantCultureIgnoreCase) ||
+                path.EndsWith(".html", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var dotPos = path.LastIndexOf('.');
+                if (dotPos > -1)
+                    return path.Substring(0, dotPos) + ".cshtml" + query;
+            }
+
+            // Keep explicit non-Razor extensions (e.g., .ashx/.asmx) unchanged.
+            var fileName = System.IO.Path.GetFileName(path);
+            if (!string.IsNullOrEmpty(fileName) && fileName.Contains('.'))
+                return path + query;
+
+            return path + ".cshtml" + query;
+        }
+
         public static WPage GetPageOrDefault(int pageId)
         {
             WPage page = null;

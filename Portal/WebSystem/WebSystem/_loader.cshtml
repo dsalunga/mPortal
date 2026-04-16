@@ -72,6 +72,7 @@
 
         var templatePath = item.UsePartTemplatePath == WebBoolean.Yes && !string.IsNullOrEmpty(partTemplate.Path) ? partTemplate.GetRenderPath() :
             string.Format(WSConstants.PART_PATH_FORMAT, item.MasterPage.Template.Identity, part.Identity, partControl.Identity, partTemplate.FileName);
+        templatePath = WHelper.NormalizeLegacyViewPath(templatePath);
 
         // FormatString
         string formatString = WebParameter.GetStringValue(item.OBJECT_ID, item.Id, WConstants.FormatStringKey);
