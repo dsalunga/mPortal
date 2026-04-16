@@ -40,9 +40,9 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-004 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: ConfigManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer.Core/ConfigManager.cs` | `Apps/LessonReviewer/LessonReviewer.Core/ConfigManager.cs` |
-| LGC-004 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: MakeUpServiceSession | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer.Core/MakeUpServiceSession.cs` | `Apps/LessonReviewer/LessonReviewer.Core/MakeUpServiceSession.cs` |
-| LGC-004 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: PlaybackHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer.Core/PlaybackHelper.cs` | `Apps/LessonReviewer/LessonReviewer.Core/PlaybackHelper.cs` |
-| LGC-004 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: ServiceDefinition | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer.Core/ServiceDefinition.cs` | `Apps/LessonReviewer/LessonReviewer.Core/ServiceDefinition.cs` |
+| LGC-004 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: ConfigManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./ConfigManager.cs` | `./ConfigManager.cs` |
+| LGC-004 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: MakeUpServiceSession | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./MakeUpServiceSession.cs` | `./MakeUpServiceSession.cs` |
+| LGC-004 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: PlaybackHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./PlaybackHelper.cs` | `./PlaybackHelper.cs` |
+| LGC-004 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer.Core :: ServiceDefinition | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./ServiceDefinition.cs` | `./ServiceDefinition.cs` |

@@ -47,8 +47,8 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-041 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities :: DbManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/DbManager.cs` | `Portal/WebSystem/WCMS.WebSystem.Utilities/DbManager.cs` |
-| LGC-041 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/EmailUpdater :: EmailUpdaterTask | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/EmailUpdater/EmailUpdaterTask.cs` | `Portal/WebSystem/WCMS.WebSystem.Utilities/EmailUpdater/EmailUpdaterTask.cs` |
-| LGC-041 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/Spammer :: SenderTask | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/Spammer/SenderTask.cs` | `Portal/WebSystem/WCMS.WebSystem.Utilities/Spammer/SenderTask.cs` |
+| LGC-041 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities :: DbManager | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./DbManager.cs` | `./DbManager.cs` |
+| LGC-041 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/EmailUpdater :: EmailUpdaterTask | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./EmailUpdater/EmailUpdaterTask.cs` | `./EmailUpdater/EmailUpdaterTask.cs` |
+| LGC-041 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.WebSystem.Utilities/Spammer :: SenderTask | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Spammer/SenderTask.cs` | `./Spammer/SenderTask.cs` |

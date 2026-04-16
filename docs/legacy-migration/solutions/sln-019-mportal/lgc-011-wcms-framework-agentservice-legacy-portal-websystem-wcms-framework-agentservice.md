@@ -48,7 +48,7 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-011 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.AgentService :: FrameworkAgentService | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framework.AgentService/FrameworkAgentService.cs` | `Portal/WebSystem/WCMS.Framework.AgentService/FrameworkAgentService.cs` |
-| LGC-011 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.AgentService :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framework.AgentService/Program.cs` | `Portal/WebSystem/WCMS.Framework.AgentService/Program.cs` |
+| LGC-011 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.AgentService :: FrameworkAgentService | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./FrameworkAgentService.cs` | `./FrameworkAgentService.cs` |
+| LGC-011 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.AgentService :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Program.cs` | `./Program.cs` |

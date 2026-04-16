@@ -40,6 +40,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-045 | Completed | Class Component | legacy/Portal/Utilities/MySQL TableEditor :: Form1 | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/Utilities/MySQL TableEditor/Form1.cs` | `Portal/Utilities/MySQL TableEditor/Form1.cs` |
+| LGC-045 | Completed | Class Component | legacy/Portal/Utilities/MySQL TableEditor :: Form1 | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Form1.cs` | `./Form1.cs` |

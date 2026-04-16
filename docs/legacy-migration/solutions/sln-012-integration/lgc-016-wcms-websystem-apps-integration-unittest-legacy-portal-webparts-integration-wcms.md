@@ -46,7 +46,7 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-016 | Completed | Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: MemberHelperTests | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/MemberHelperTests.cs` | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/MemberHelperTests.cs` |
-| LGC-016 | Completed | Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: UnitTest1 | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/UnitTest1.cs` | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/UnitTest1.cs` |
+| LGC-016 | Completed | Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: MemberHelperTests | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./MemberHelperTests.cs` | `./MemberHelperTests.cs` |
+| LGC-016 | Completed | Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: UnitTest1 | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./UnitTest1.cs` | `./UnitTest1.cs` |

@@ -32,9 +32,9 @@ _No artifacts found._
 
 ## User Controls
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence | Code-Behind / Pair |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) | Code-Behind / Pair (relative to Project Directory) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| LGC-017 | Not Applicable | User Control | legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test :: WebUserControl1.ascx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx` | N/A (retired/replaced in modern architecture). | `legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx.cs` |
+| LGC-017 | Not Applicable | User Control | legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test :: WebUserControl1.ascx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `./WebParts/Test/WebUserControl1.ascx` | N/A (retired/replaced in modern architecture). | `./WebParts/Test/WebUserControl1.ascx.cs` |
 
 ## Services And Handlers
 
@@ -42,6 +42,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-017 | Not Applicable | Class Component | legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test :: WebUserControl1 | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx.cs` | N/A (retired/replaced in modern architecture). |
+| LGC-017 | Not Applicable | Class Component | legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test :: WebUserControl1 | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./WebParts/Test/WebUserControl1.ascx.cs` | N/A (retired/replaced in modern architecture). |

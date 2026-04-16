@@ -46,6 +46,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-039 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo :: SqlScriptGenerator | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/SqlScriptGenerator.cs` | `Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/SqlScriptGenerator.cs` |
+| LGC-039 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo :: SqlScriptGenerator | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./SqlScriptGenerator.cs` | `./SqlScriptGenerator.cs` |

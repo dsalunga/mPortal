@@ -28,10 +28,10 @@
 
 ## Pages And Views
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence | Code-Behind / Pair |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) | Code-Behind / Pair (relative to Project Directory) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| LGC-044 | Completed | XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App.xaml | Desktop UI artifact; assess target desktop strategy. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml` | `Portal/Utilities/DbManagerWPF/DbManager/App.xaml` | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` |
-| LGC-044 | Completed | XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow.xaml | Desktop UI artifact; assess target desktop strategy. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml` | `Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml` | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` |
+| LGC-044 | Completed | XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App.xaml | Desktop UI artifact; assess target desktop strategy. | `./App.xaml` | `./App.xaml` | `./App.xaml.cs` |
+| LGC-044 | Completed | XAML View | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow.xaml | Desktop UI artifact; assess target desktop strategy. | `./MainWindow.xaml` | `./MainWindow.xaml` | `./MainWindow.xaml.cs` |
 
 ## User Controls
 
@@ -43,7 +43,7 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-044 | Completed | Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` | `Portal/Utilities/DbManagerWPF/DbManager/App.xaml.cs` |
-| LGC-044 | Completed | Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` | `Portal/Utilities/DbManagerWPF/DbManager/MainWindow.xaml.cs` |
+| LGC-044 | Completed | Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: App | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./App.xaml.cs` | `./App.xaml.cs` |
+| LGC-044 | Completed | Class Component | legacy/Portal/Utilities/DbManagerWPF/DbManager :: MainWindow | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./MainWindow.xaml.cs` | `./MainWindow.xaml.cs` |

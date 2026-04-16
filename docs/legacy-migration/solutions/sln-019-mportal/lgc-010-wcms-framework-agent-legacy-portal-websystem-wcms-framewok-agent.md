@@ -49,6 +49,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-010 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framewok.Agent :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framewok.Agent/Program.cs` | `Portal/WebSystem/WCMS.Framewok.Agent/Program.cs` |
+| LGC-010 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framewok.Agent :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Program.cs` | `./Program.cs` |

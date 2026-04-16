@@ -40,9 +40,9 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-031 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs :: Job | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Job.cs` | `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Job.cs` |
-| LGC-031 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs :: JobResult | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/JobResult.cs` | `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/JobResult.cs` |
-| LGC-031 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers :: IJobProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers/IJobProvider.cs` | `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers/IJobProvider.cs` |
-| LGC-031 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers :: JobSqlProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers/JobSqlProvider.cs` | `Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers/JobSqlProvider.cs` |
+| LGC-031 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs :: Job | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Job.cs` | `./Job.cs` |
+| LGC-031 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs :: JobResult | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./JobResult.cs` | `./JobResult.cs` |
+| LGC-031 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers :: IJobProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Providers/IJobProvider.cs` | `./Providers/IJobProvider.cs` |
+| LGC-031 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG3/WCMS.WebSystem.WebParts.Jobs/Providers :: JobSqlProvider | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Providers/JobSqlProvider.cs` | `./Providers/JobSqlProvider.cs` |

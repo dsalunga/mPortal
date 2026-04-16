@@ -40,9 +40,9 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File (relative to Project Directory) | Modern File / Evidence (relative when in-project) |
 | --- | --- | --- | --- | --- | --- | --- |
-| LGC-027 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum :: Forum | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/Forum.cs` | `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/Forum.cs` |
-| LGC-027 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum :: ForumCategory | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/ForumCategory.cs` | `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/ForumCategory.cs` |
-| LGC-027 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum :: ForumPost | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/ForumPost.cs` | `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/ForumPost.cs` |
-| LGC-027 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum :: ForumThread | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/ForumThread.cs` | `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum/ForumThread.cs` |
+| LGC-027 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum :: Forum | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./Forum.cs` | `./Forum.cs` |
+| LGC-027 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum :: ForumCategory | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./ForumCategory.cs` | `./ForumCategory.cs` |
+| LGC-027 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum :: ForumPost | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./ForumPost.cs` | `./ForumPost.cs` |
+| LGC-027 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Forum :: ForumThread | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `./ForumThread.cs` | `./ForumThread.cs` |
