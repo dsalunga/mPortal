@@ -17,15 +17,18 @@ This board is the execution layer for coding agents.
 ## Current Phase
 - `Phase 2` - **COMPLETED** (file inventory closure).
 - `Phase 3` - **IN PROGRESS** (feature gap migration + ViewComponent view completion).
-- All 5306 tracked legacy files resolved: **3613 completed**, **1693 not_applicable**, **0 not_started**, **0 incomplete**.
+- All 5306 tracked legacy files resolved: **3863 completed**, **1443 not_applicable**, **0 not_started**, **0 incomplete**.
 - 9 feature gaps migrated: 6 Article Templates (views completed), ContactUsV2 (new VC), Photo Album (new VC).
 - 80 additional .ascx entries updated with `migrated_file_1to1` paths via viewcomponent_match.
+- 105 `Content/Parts` `.ascx` entries reclassified to `completed` with explicit `.cshtml` compatibility wrapper mappings.
+- 145 additional `.ascx` entries (Integration/SystemParts/SystemPartsG2) reclassified to `completed` with deterministic same-project ViewComponent compatibility wrappers.
 
 ## Active Batch
 - None. All batches completed.
 
 ## Blocked Items
 - None remaining.
+- Remaining `not_applicable` `.ascx` controls are explicitly non-migratable/retired (27 items) and listed in `docs/plans/legacy-migration/inventory/unresolved-ascx-not-applicable.txt`; no runtime migration blocker.
 
 ## Done Criteria
 A migration batch is done only when all criteria pass:

@@ -3,7 +3,7 @@
 This document tracks migration status per Visual Studio solution (`*.sln`) discovered under `legacy/`.
 Aggregate solution status is derived from mapped `LGC-###` project statuses in `master-inventory-projects.md` (refreshed April 15, 2026).
 
-> **Migration Completed (2026-06-08):** All 18 legacy solutions are migrated. 16 Completed, 1 Mixed (Do Not Migrate As-Is + Completed), 1 Do Not Migrate As-Is (FCKeditor). All 5,306 tracked source files resolved (3,570 completed, 1,736 not_applicable, 0 incomplete). Solution builds with 0 errors and 88 passing tests. See [EXECUTION_BOARD.md](../plans/legacy-migration/EXECUTION_BOARD.md) for commit history.
+> **Migration Completed (2026-06-08):** All 18 legacy solutions are migrated. 16 Completed, 1 Mixed (Do Not Migrate As-Is + Completed), 1 Do Not Migrate As-Is (FCKeditor). All 5,306 tracked source files resolved (3,863 completed, 1,443 not_applicable, 0 incomplete). Solution builds with 0 errors and 88 passing tests. See [EXECUTION_BOARD.md](../plans/legacy-migration/EXECUTION_BOARD.md) for commit history.
 
 Companion views:
 
