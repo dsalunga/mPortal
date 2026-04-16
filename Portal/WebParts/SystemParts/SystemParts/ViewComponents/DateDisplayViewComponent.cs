@@ -29,7 +29,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 Format = "dddd, MMMM d, yyyy"
             };
 
-            return View(model);
+            return View("~/Views/Shared/Components/DateDisplay/Default.cshtml", model);
         }
     }
 

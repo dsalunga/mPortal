@@ -29,7 +29,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 BasePath = WcmsContext.BasePath
             };
 
-            return View(model);
+            return View("~/Views/Shared/Components/OfficeBrowser/Default.cshtml", model);
         }
     }
 

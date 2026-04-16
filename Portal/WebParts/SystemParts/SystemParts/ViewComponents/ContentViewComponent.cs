@@ -31,7 +31,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 string.Format("Content: {0}/{1}", WcmsContext.ObjectId, WcmsContext.RecordId),
                 sw, WcmsContext.PageId);
 
-            return View(model: contentText ?? string.Empty);
+            return View("~/Views/Shared/Components/Content/Default.cshtml", model: contentText ?? string.Empty);
         }
     }
 }

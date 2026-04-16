@@ -26,7 +26,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 RecordId = recordId > 0 ? recordId : WcmsContext.RecordId
             };
 
-            return View(model);
+            return View("~/Views/Shared/Components/TwitterHelper/Default.cshtml", model);
         }
     }
 

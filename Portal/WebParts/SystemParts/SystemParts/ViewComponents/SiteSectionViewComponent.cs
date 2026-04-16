@@ -27,7 +27,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 BasePath = WcmsContext.BasePath
             };
 
-            return View(model);
+            return View("~/Views/Shared/Components/SiteSection/Default.cshtml", model);
         }
     }
 

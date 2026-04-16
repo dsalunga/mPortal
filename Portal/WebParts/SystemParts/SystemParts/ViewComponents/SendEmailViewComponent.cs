@@ -28,7 +28,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 SenderName = WcmsSession.User?.FullName
             };
 
-            return View(model);
+            return View("~/Views/Shared/Components/SendEmail/Default.cshtml", model);
         }
     }
 
