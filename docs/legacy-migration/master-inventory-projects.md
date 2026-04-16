@@ -13,11 +13,12 @@ Companion views:
 - Tracked items: all discovered `*.csproj` and `*.sqlproj` files
 - Evidence model: target framework metadata, project structure, and discovered runtime artifacts
 - Evidence refresh: modern counterpart scan performed on April 15, 2026 (non-`legacy/` projects)
-- **Migration Completed (2026-06-08):** All 50 legacy projects migrated to .NET 10. 49 Completed, 1 Do Not Migrate As-Is (FCKeditor). All 5,306 tracked source files resolved (3,863 completed, 1,443 not_applicable, 0 incomplete). Solution builds with 0 errors and 88 passing tests.
+- **Program Status (2026-04-16): In Progress (implementation closure).** Artifact mapping remains 49 `Completed` + 1 `Do Not Migrate As-Is` (FCKeditor replaced by TipTap OSS), but reconciliation and implementation closure are still active. Current tracker totals: 5,306 tracked source files, 3,878 completed, 1,428 not_applicable, 0 incomplete.
 - **LGC-012 Addendum (2026-04-16):** `Content/Parts` compatibility parity completed for `WCMS.WebSystem.WebApp`: 165/165 legacy `.ascx` controls now resolve via modern `.cshtml` files, 11/11 legacy theme `.ascx` templates now resolve via `.cshtml`, and legacy `User.svc` is mapped with compatibility controller routes.
 - Status semantics:
   - `Completed`: modern counterpart on .NET 10 verified; compiles with 0 errors
   - `Do Not Migrate As-Is`: validated legacy artifact that must be replaced (not lift-and-shifted)
+  - `In Progress` (program-level): tracked in `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`
 
 ## Inventory Summary
 

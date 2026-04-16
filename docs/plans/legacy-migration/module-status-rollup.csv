@@ -2,10 +2,10 @@ module,total,completed,incomplete,not_started,not_applicable,completion_pct
 .gitignore,1,1,0,0,0,100.0%
 BibleReader,58,37,0,0,21,100.0%
 Core,58,53,0,0,5,100.0%
-LICENSE,1,1,0,0,0,100.0%
 LessonReviewer,41,21,0,0,20,100.0%
 Libraries,4,3,0,0,1,100.0%
+LICENSE,1,1,0,0,0,100.0%
 Notes.txt,1,1,0,0,0,100.0%
-Portal,5141,3745,0,0,1396,100.0%
+Portal,5141,3760,0,0,1381,100.0%
 README.md,1,1,0,0,0,100.0%
-TOTAL,5306,3863,0,0,1443,100.0%
+TOTAL,5306,3878,0,0,1428,100.0%

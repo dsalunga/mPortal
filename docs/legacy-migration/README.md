@@ -2,6 +2,8 @@
 
 This folder is the single source of truth for legacy migration tracking.
 
+Program status (`2026-04-16`): **In Progress**. Artifact mapping is largely complete, while remaining implementation closure work is tracked in `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`.
+
 ## Master Views
 
 - LGC master inventory (project-grouped tracking): [master-inventory-projects.md](./master-inventory-projects.md)

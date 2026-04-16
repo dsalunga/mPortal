@@ -1,6 +1,6 @@
 # Legacy Migration Execution Board
 
-Last Updated: 2026-07-20
+Last Updated: 2026-04-16
 
 ## Purpose
 This board is the execution layer for coding agents.
@@ -10,25 +10,26 @@ This board is the execution layer for coding agents.
 ## Sources of Truth
 - File inventory: `docs/plans/legacy-migration/inventory/legacy-source-tracking-all.csv`
 - Module rollup: `docs/plans/legacy-migration/module-status-rollup.csv`
-- File tracking: `docs/plans/legacy-migration/MIGRATION_FILE_TRACKING.md` (legacy→modern mapping for all 519 .ascx files)
+- File tracking: `docs/plans/legacy-migration/MIGRATION_FILE_TRACKING.md` (historical snapshot; CSV inventory remains authoritative during reconciliation)
 - CMS admin plan: `docs/plans/WEBSYSTEM_CMS_ADMIN_MIGRATION_PLAN.md`
 - Update script: `docs/plans/legacy-migration/update-tracker.py` (idempotent, safe to re-run)
+- Pending closure plan: `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`
 
 ## Current Phase
 - `Phase 2` - **COMPLETED** (file inventory closure).
-- `Phase 3` - **IN PROGRESS** (feature gap migration + ViewComponent view completion).
-- All 5306 tracked legacy files resolved: **3863 completed**, **1443 not_applicable**, **0 not_started**, **0 incomplete**.
-- 9 feature gaps migrated: 6 Article Templates (views completed), ContactUsV2 (new VC), Photo Album (new VC).
-- 80 additional .ascx entries updated with `migrated_file_1to1` paths via viewcomponent_match.
-- 105 `Content/Parts` `.ascx` entries reclassified to `completed` with explicit `.cshtml` compatibility wrapper mappings.
-- 145 additional `.ascx` entries (Integration/SystemParts/SystemPartsG2) reclassified to `completed` with deterministic same-project ViewComponent compatibility wrappers.
+- `Phase 3` - **IN PROGRESS** (implementation parity closure + remaining control rebuilds).
+- Tracker reconciliation pass 1 applied on `2026-04-16`: **5306 tracked**, **3878 completed**, **1428 not_applicable**, **0 not_started**, **0 incomplete**.
+- `.ascx` tracker state after reconciliation: **519 total**, **507 completed**, **12 not_applicable**.
+- 15 previously misclassified `.ascx` rows were reclassified from `not_applicable` to `completed` with explicit modern-file evidence.
+- Program status is intentionally **In Progress** until `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md` is closed.
 
 ## Active Batch
-- None. All batches completed.
+- `BATCH-RC-001` - Tracker/docs reconciliation (**Completed**, 2026-04-16).
+- `BATCH-IMP-001` - Remaining implementation closure from pending checklist (**In Progress**).
 
 ## Blocked Items
-- None remaining.
-- Remaining `not_applicable` `.ascx` controls are explicitly non-migratable/retired (27 items) and listed in `docs/plans/legacy-migration/inventory/unresolved-ascx-not-applicable.txt`; no runtime migration blocker.
+- No hard blockers identified.
+- `12` unresolved `.ascx` controls remain listed in `docs/plans/legacy-migration/inventory/unresolved-ascx-not-applicable.txt`; each requires explicit implementation closure or approved do-not-migrate rationale.
 
 ## Done Criteria
 A migration batch is done only when all criteria pass:
@@ -67,9 +68,9 @@ A migration batch is done only when all criteria pass:
 | Previously not_applicable | 837 | not_applicable | Pre-existing Phase 1 classifications |
 
 ## Next Steps
-- `Phase 3` (optional): Regenerate per-module CSVs from the master CSV.
-- Validate builds (`dotnet build`) and tests (`dotnet test`) remain green.
-- Consider archiving or removing the `legacy/` directory.
+- Execute only the implementation items in `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`.
+- Keep tracker/docs updates synchronized after each implementation batch.
+- Run focused build/test validation per touched solution group after each implementation batch.
 
 ## Post-Phase 2: cshtml View Migration (Completed 2026-06-08)
 

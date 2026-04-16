@@ -1,0 +1,112 @@
+# Legacy Migration Pending Tasks Checklist Plan
+
+## Objective
+
+Close all **remaining real migration gaps** in the legacy-to-modern program (code + tracker + docs), based on a fresh evidence pass of source and tracking artifacts.
+
+## Re-evaluation Summary (2026-04-16)
+
+The statement below is **partially true but over-generalized**:
+
+> "These are mostly obsolete WebForms/vendor/test/special controls with approved retirement/replacement rationale."
+
+What the evidence shows now:
+
+- Tracker now reports (`3878 completed`, `1428 not_applicable`) after manual reclassification, but there are still migration TODO stubs in runtime code.
+- `unresolved-ascx-not-applicable.txt` now has 12 items after reclassifying 15 rows with explicit modern replacements.
+- Remaining unresolved `.ascx` items are mixed: some truly vendor/sample retirements, some still needing explicit modern replacement/absorption decisions.
+- There are **14 endpoint stub controllers** still returning `not_implemented`.
+- There are **18 ViewComponents** with migration TODO model scaffolds.
+- Editor decision is TipTap, but current rich-text implementation still uses CKEditor 5 renderer/tag helper code.
+
+## Pending Work Checklist
+
+### A) Re-open status and lock source-of-truth
+
+- [x] Mark migration status as `In Progress` (instead of fully completed) in rollup docs until this checklist is closed.
+- [x] Add a temporary guard note in `docs/plans/legacy-migration/README.md` that tracker counts are under reconciliation.
+- [x] Freeze broad auto-classification changes until manual reconciliation completes (manual-only reconciliation rule).
+
+### B) Fix misclassified `.ascx` tracker rows (15 items)
+
+These rows are currently `not_applicable` but already have explicit modern migration evidence and should be `completed` with mapped modern files:
+
+- [x] `LEGACY-01963` `Themes/ASOP/Default.ascx` -> `Portal/WebParts/Integration/IntegrationParts/ViewComponents/AsopAsopDefaultViewComponent.cs`
+- [x] `LEGACY-02052` `Themes/area51/Default.ascx` -> `Portal/WebParts/Integration/IntegrationParts/ViewComponents/Area51Area51DefaultViewComponent.cs`
+- [x] `LEGACY-02073` `Themes/area51/index.ascx` -> `Portal/WebParts/Integration/IntegrationParts/ViewComponents/Area51Area51IndexViewComponent.cs`
+- [x] `LEGACY-02128` `Themes/mcgi_website/Default.ascx` -> `Portal/WebParts/Integration/IntegrationParts/ViewComponents/McgiwebsiteMcgiwebsiteDefaultViewComponent.cs`
+- [x] `LEGACY-02364` `Article/Controls/AdminTabControl.ascx` -> `Portal/WebParts/SystemParts/SystemParts/ViewComponents/Article/Controls/ArticleAdmintabcontrolViewComponent.cs`
+- [x] `LEGACY-02560` `Menu/Controls/AdminTabControl.ascx` -> `Portal/WebParts/SystemParts/SystemParts/ViewComponents/Menu/Controls/MenuAdmintabcontrolViewComponent.cs`
+- [x] `LEGACY-02960` `Incident/CategoryEditView.ascx` -> `Portal/WebParts/SystemPartsG3/SystemPartsG3/ViewComponents/Incident/IncidentCategoryEditViewComponent.cs`
+- [x] `LEGACY-02962` `Incident/CategoryManagerView.ascx` -> `Portal/WebParts/SystemPartsG3/SystemPartsG3/ViewComponents/Incident/IncidentCategoryManagerViewComponent.cs`
+- [x] `LEGACY-02964` `Incident/InstanceEditView.ascx` -> `Portal/WebParts/SystemPartsG3/SystemPartsG3/ViewComponents/Incident/IncidentInstanceEditViewComponent.cs`
+- [x] `LEGACY-02966` `Incident/InstanceManagerView.ascx` -> `Portal/WebParts/SystemPartsG3/SystemPartsG3/ViewComponents/Incident/IncidentInstanceManagerViewComponent.cs`
+- [x] `LEGACY-02968` `Incident/TicketManagerView.ascx` -> `Portal/WebParts/SystemPartsG3/SystemPartsG3/ViewComponents/Incident/IncidentTicketManagerViewComponent.cs`
+- [x] `LEGACY-02970` `Incident/TicketView.ascx` -> `Portal/WebParts/SystemPartsG3/SystemPartsG3/ViewComponents/Incident/IncidentTicketViewComponent.cs`
+- [x] `LEGACY-02972` `Incident/TypeEditView.ascx` -> `Portal/WebParts/SystemPartsG3/SystemPartsG3/ViewComponents/Incident/IncidentTypeEditViewComponent.cs`
+- [x] `LEGACY-02974` `Incident/TypeManagerView.ascx` -> `Portal/WebParts/SystemPartsG3/SystemPartsG3/ViewComponents/Incident/IncidentTypeManagerViewComponent.cs`
+- [x] `LEGACY-04039` `Content/Controls/TextEditor.ascx` -> `Portal/WebParts/SystemParts/SystemParts/ViewComponents/FileManager/TexteditorViewComponent.cs`
+
+### C) Resolve remaining unresolved `.ascx` items (12 items)
+
+For each item below, close with either `completed` (rebuild/absorb) or `do_not_migrate_as_is` (approved replacement/retirement rationale + evidence).
+
+- [ ] `LEGACY-01269` `Legacy/Portal/Binaries/Externals/config.ascx` (vendor duplicate config surface)
+- [ ] `LEGACY-02334` `Legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx` (sample/test artifact)
+- [ ] `LEGACY-04022` `.../Content/Controls/CKEditor.ascx` (must converge to TipTap)
+- [ ] `LEGACY-04024` `.../Content/Controls/ComboDatePicker.ascx`
+- [ ] `LEGACY-04026` `.../Content/Controls/ContextActionBar.ascx`
+- [ ] `LEGACY-04028` `.../Content/Controls/FullNamePicker.ascx`
+- [ ] `LEGACY-04031` `.../Content/Controls/MonthPicker.ascx`
+- [ ] `LEGACY-04033` `.../Content/Controls/PhoneNumber.ascx`
+- [ ] `LEGACY-04035` `.../Content/Controls/TabControl.ascx`
+- [ ] `LEGACY-04037` `.../Content/Controls/TabControlV1.ascx`
+- [ ] `LEGACY-04041` `.../Content/Controls/WMPControl.ascx`
+- [ ] `LEGACY-05000` `.../fckeditor/.../config.ascx` (explicit TipTap upload/file API replacement path)
+
+### D) Endpoint migration closure
+
+- [ ] Replace/remove 14 stub controllers that currently return `not_implemented` under:
+  - `Portal/WebParts/Integration/IntegrationParts/Controllers/*ApiController.cs`
+  - `Portal/WebParts/SystemPartsG2/SystemPartsG2/Controllers/*ApiController.cs`
+- [ ] Reconcile endpoint tracker rows currently `not_applicable` + `N/A` with real modern targets (15 rows), including explicit closure for:
+  - `.../FileManager/Download.ashx`
+  - `.../FileManager/Indexer.asmx`
+  - `.../Content/Handlers/Resource.ashx`
+  - plus all Integration/SystemPartsG2 endpoint rows still mapped only to TODO stubs.
+- [ ] Add compatibility tests for legacy route contracts (`.asmx/.ashx/.svc` URL compatibility where required).
+
+### E) ViewComponent migration TODO closure
+
+- [ ] Resolve 18 ViewComponents with `TODO: Add model properties based on legacy control analysis`.
+- [ ] Verify each migrated ViewComponent renders legacy-equivalent fields/actions (or has approved intentional delta).
+- [ ] Update tracker/evidence rows for those controls with concrete modern file proof.
+
+### F) Modern target decision alignment (already decided, not optional)
+
+- [ ] Replace CKEditor 5 renderer/tag helper implementation with TipTap-based implementation (decision already approved).
+- [ ] Remove/retire lingering `FCKeditor` config/runtime assumptions from `appsettings` and runtime plumbing.
+- [ ] Ensure modern canonical + migration docs reference TipTap as the only editor migration target.
+
+### G) Platform/config alignment tasks
+
+- [ ] Update default DB provider and sample connection config to reflect PostgreSQL-first target posture.
+- [ ] Document any unavoidable SQL Server compatibility paths as optional, not default.
+
+### H) Validation and documentation sync
+
+- [ ] Run relevant builds/tests for touched solution groups and capture results.
+- [x] Regenerate tracker rollups and unresolved lists after reconciliation.
+- [x] Update:
+  - `docs/plans/legacy-migration/EXECUTION_BOARD.md`
+  - `docs/legacy-migration/master-inventory-*.md`
+- [ ] Update affected solution cards under `docs/legacy-migration/solutions/**` if their status/evidence rows change during implementation.
+- [x] Remove any “migration fully completed” statements until all checklist items are closed.
+
+## Exit Criteria
+
+- [ ] `unresolved-ascx-not-applicable.txt` reduced to only explicitly approved do-not-migrate items (with rationale) or zero.
+- [ ] No `TODO: Implement endpoint logic from legacy` remains in runtime controllers.
+- [ ] No `TODO: Add model properties based on legacy control analysis` remains in migrated ViewComponents.
+- [ ] Every legacy row has evidence-backed status (`completed` with mapped file, or approved replacement/retirement with rationale).
+- [ ] Docs, tracker CSVs, and actual source tree are consistent.

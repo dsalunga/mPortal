@@ -7,15 +7,18 @@ This file also includes the canonical migration decision matrix (see `Canonical 
 Companion LGC inventory:
 - [Legacy Migration Master Inventory](./master-inventory-projects.md)
 
-> **Migration Completed (2026-06-08):** All 50 legacy projects are migrated to .NET 10 (ASP.NET Core). 49 of 50 projects are **Completed** with modern counterparts that compile with 0 errors. 1 project (P039 FCKeditor) is **Do Not Migrate As-Is** (replaced by TipTap OSS). All 5,306 tracked source files in the [CSV inventory](../plans/legacy-migration/inventory/) are resolved: 3,863 completed, 1,443 not_applicable, 0 incomplete. Solution builds with 0 errors and 88 passing tests.
->
-> **UI Surface Migration Completed (2026-07-22):** Per-file audit verified all 386 legacy UI surface files (.ascx/.aspx/.ashx/.asmx/.svc) have modern ASP.NET Core counterparts. Total: 382 ViewComponents, 12+ API Controllers, and .cshtml views across 8 WebApp projects. All compile with 0 errors on .NET 10.
->
-> **P051 Content/Parts Parity Addendum (2026-04-16):** `WCMS.WebSystem.WebApp` now has full legacy-to-modern file-path compatibility for `Content/Parts` and legacy theme templates: 165/165 legacy `Content/Parts/*.ascx` controls map to modern `.cshtml`, 11/11 legacy theme `.ascx` templates map to modern `.cshtml`, and legacy `User.svc` is mapped by compatibility API controller routes.
+> **Program Status (2026-04-16): In Progress (implementation closure).**  
+> Artifact-level project mapping remains: 49 of 50 projects are `Completed`; 1 project (P039 `FCKeditor`) is `Do Not Migrate As-Is` and replaced by TipTap OSS.  
+> File tracker totals from [CSV inventory](../plans/legacy-migration/inventory/): 5,306 tracked files, 3,878 `completed`, 1,428 `not_applicable`, 0 `incomplete`, 0 `not_started`.  
+> `.ascx` coverage is 519 total: 507 `completed`, 12 `not_applicable` pending explicit closure decisions.  
+> Implementation closure work is tracked in `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`.
+
+> **P051 Content/Parts Parity Addendum (2026-04-16):** `WCMS.WebSystem.WebApp` has legacy-to-modern file-path compatibility for `Content/Parts` and legacy theme templates: 165/165 legacy `Content/Parts/*.ascx` controls map to modern `.cshtml`, 11/11 legacy theme `.ascx` templates map to modern `.cshtml`, and legacy `User.svc` is mapped by compatibility API controller routes.
 
 Status legend:
 - `Completed`: modern counterpart on .NET 10 verified; compiles with 0 errors.
 - `Do Not Migrate As-Is`: retain/replace/retire; do not lift-and-shift this artifact.
+- `In Progress` (program-level): implementation parity closure is ongoing even if artifact mapping rows are completed.
 
 ## Master Table
 
