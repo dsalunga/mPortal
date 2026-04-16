@@ -7,11 +7,12 @@
 | Item ID | LGC-010 |
 | Project Type | App |
 | Project File | `legacy/Portal/WebSystem/WCMS.Framewok.Agent/WCMS.Framework.Agent.csproj` |
+| Modern Project File / Evidence | `Portal/WebSystem/WCMS.Framewok.Agent/WCMS.Framework.Agent.csproj` |
 | Project Directory | `legacy/Portal/WebSystem/WCMS.Framewok.Agent` |
 | Output Type | Exe |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:5, Not Applicable:0, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 5 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 1 |
@@ -48,6 +49,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
-| --- | --- | --- | --- | --- | --- |
-| LGC-010 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framewok.Agent :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framewok.Agent/Program.cs` |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-010 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framewok.Agent :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framewok.Agent/Program.cs` | `Portal/WebSystem/WCMS.Framewok.Agent/Program.cs` |

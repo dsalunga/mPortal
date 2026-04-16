@@ -7,6 +7,7 @@
 | Solution ID | SLN-009 |
 | Solution Name | `WebExtractor` |
 | Solution File | `legacy/Portal/Utilities/WebExtractor/WebExtractor.sln` |
+| Modern Solution File / Evidence | `mPortal.slnx` |
 | Projects In Solution | 1 |
 | Mapped Projects | 1 |
 | Unmapped Projects | 0 |
@@ -16,9 +17,9 @@
 
 ## Projects In Solution
 
-| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-009-P01 | Completed | Project | `WebExtractor` | LGC-047 | `WebExtractor` | [Card](./sln-009-webextractor/lgc-047-webextractor-legacy-portal-utilities-webextractor-webextractor.md) | `legacy/Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` |
+| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File | Modern Project File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SLN-009-P01 | Completed | Project | `WebExtractor` | LGC-047 | `WebExtractor` | [Card](./sln-009-webextractor/lgc-047-webextractor-legacy-portal-utilities-webextractor-webextractor.md) | `legacy/Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` | `Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` |
 
 ## Migration Actions
 

@@ -7,6 +7,7 @@
 | Solution ID | SLN-017 |
 | Solution Name | `FredCK.FCKeditorV2` |
 | Solution File | `legacy/Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.sln` |
+| Modern Solution File / Evidence | `mPortal.slnx` |
 | Projects In Solution | 1 |
 | Mapped Projects | 1 |
 | Unmapped Projects | 0 |
@@ -16,9 +17,9 @@
 
 ## Projects In Solution
 
-| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-017-P01 | Do Not Migrate As-Is | Project | `FredCK.FCKeditorV2` | LGC-034 | `FredCK.FCKeditorV2` | [Card](./shared/lgc-034-fredck-fckeditorv2-legacy-portal-websystem-fckeditor-net-2-6-3.md) | `legacy/Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` |
+| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File | Modern Project File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SLN-017-P01 | Do Not Migrate As-Is | Project | `FredCK.FCKeditorV2` | LGC-034 | `FredCK.FCKeditorV2` | [Card](./shared/lgc-034-fredck-fckeditorv2-legacy-portal-websystem-fckeditor-net-2-6-3.md) | `legacy/Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` | TipTap OSS replacement (no migrated project file). |
 
 ## Migration Actions
 

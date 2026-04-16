@@ -7,6 +7,7 @@
 | Solution ID | SLN-006 |
 | Solution Name | `DbManager` |
 | Solution File | `legacy/Portal/Utilities/DbManagerWPF/DbManager.sln` |
+| Modern Solution File / Evidence | `mPortal.slnx` |
 | Projects In Solution | 1 |
 | Mapped Projects | 1 |
 | Unmapped Projects | 0 |
@@ -16,9 +17,9 @@
 
 ## Projects In Solution
 
-| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-006-P01 | Completed | Project | `DbManager` | LGC-044 | `DbManager` | [Card](./sln-006-dbmanager/lgc-044-dbmanager-legacy-portal-utilities-dbmanagerwpf-dbmanager.md) | `legacy/Portal/Utilities/DbManagerWPF/DbManager/DbManager.csproj` |
+| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File | Modern Project File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SLN-006-P01 | Completed | Project | `DbManager` | LGC-044 | `DbManager` | [Card](./sln-006-dbmanager/lgc-044-dbmanager-legacy-portal-utilities-dbmanagerwpf-dbmanager.md) | `legacy/Portal/Utilities/DbManagerWPF/DbManager/DbManager.csproj` | `Portal/Utilities/DbManagerWPF/DbManager/DbManager.csproj` |
 
 ## Migration Actions
 

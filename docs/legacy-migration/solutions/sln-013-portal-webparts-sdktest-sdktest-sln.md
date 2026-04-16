@@ -7,6 +7,7 @@
 | Solution ID | SLN-013 |
 | Solution Name | `SDKTest` |
 | Solution File | `legacy/Portal/WebParts/SDKTest/SDKTest.sln` |
+| Modern Solution File / Evidence | `mPortal.slnx` |
 | Projects In Solution | 1 |
 | Mapped Projects | 1 |
 | Unmapped Projects | 0 |
@@ -16,9 +17,9 @@
 
 ## Projects In Solution
 
-| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-013-P01 | Completed | Project | `SDKTest` | LGC-017 | `SDKTest` | [Card](./sln-013-sdktest/lgc-017-sdktest-legacy-portal-webparts-sdktest-sdktest.md) | `legacy/Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj` |
+| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File | Modern Project File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SLN-013-P01 | Completed | Project | `SDKTest` | LGC-017 | `SDKTest` | [Card](./sln-013-sdktest/lgc-017-sdktest-legacy-portal-webparts-sdktest-sdktest.md) | `legacy/Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj` | `Portal/WebParts/SDKTest/SDKTest/SDKTest.csproj` |
 
 ## Migration Actions
 

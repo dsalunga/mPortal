@@ -7,11 +7,12 @@
 | Item ID | LGC-033 |
 | Project Type | Library |
 | Project File | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` |
+| Modern Project File / Evidence | `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` |
 | Project Directory | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control` |
 | Output Type | Library |
 | Target Framework | v4.5.2 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:2, Not Applicable:0, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 1 |
@@ -39,6 +40,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
-| --- | --- | --- | --- | --- | --- |
-| LGC-033 | Completed | Class Component | legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control :: Media Player Control | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media_Player_Control.cs` |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-033 | Completed | Class Component | legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control :: Media Player Control | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media_Player_Control.cs` | `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media_Player_Control.cs` |

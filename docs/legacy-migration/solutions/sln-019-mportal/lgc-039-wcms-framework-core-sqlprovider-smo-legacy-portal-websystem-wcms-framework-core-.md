@@ -7,11 +7,12 @@
 | Item ID | LGC-039 |
 | Project Type | Library |
 | Project File | `legacy/Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj` |
+| Modern Project File / Evidence | `Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/WCMS.Framework.Core.SqlProvider.Smo.csproj` |
 | Project Directory | `legacy/Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo` |
 | Output Type | Library |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:3, Not Applicable:1, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 2 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 1 |
@@ -45,6 +46,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
-| --- | --- | --- | --- | --- | --- |
-| LGC-039 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo :: SqlScriptGenerator | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/SqlScriptGenerator.cs` |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-039 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo :: SqlScriptGenerator | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/SqlScriptGenerator.cs` | `Portal/WebSystem/WCMS.Framework.Core.SqlProvider.Smo/SqlScriptGenerator.cs` |

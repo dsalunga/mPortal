@@ -7,11 +7,12 @@
 | Item ID | LGC-046 |
 | Project Type | Utility |
 | Project File | `legacy/Portal/Utilities/PostBuildManager/PostBuildManager/PostBuildManager.csproj` |
+| Modern Project File / Evidence | `Portal/Utilities/PostBuildManager/PostBuildManager/PostBuildManager.csproj` |
 | Project Directory | `legacy/Portal/Utilities/PostBuildManager/PostBuildManager` |
 | Output Type | Exe |
 | Target Framework | v4.7 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:4, Not Applicable:0, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 1 |
@@ -39,6 +40,6 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
-| --- | --- | --- | --- | --- | --- |
-| LGC-046 | Completed | Class Component | legacy/Portal/Utilities/PostBuildManager/PostBuildManager :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/Utilities/PostBuildManager/PostBuildManager/Program.cs` |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-046 | Completed | Class Component | legacy/Portal/Utilities/PostBuildManager/PostBuildManager :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/Utilities/PostBuildManager/PostBuildManager/Program.cs` | `Portal/Utilities/PostBuildManager/PostBuildManager/Program.cs` |

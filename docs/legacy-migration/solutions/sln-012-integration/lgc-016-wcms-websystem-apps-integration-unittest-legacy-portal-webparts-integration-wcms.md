@@ -7,11 +7,12 @@
 | Item ID | LGC-016 |
 | Project Type | Component |
 | Project File | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj` |
+| Modern Project File / Evidence | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj` |
 | Project Directory | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest` |
 | Output Type | Library |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:5, Not Applicable:0, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 2 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 2 |
@@ -45,7 +46,7 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
-| --- | --- | --- | --- | --- | --- |
-| LGC-016 | Completed | Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: MemberHelperTests | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/MemberHelperTests.cs` |
-| LGC-016 | Completed | Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: UnitTest1 | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/UnitTest1.cs` |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-016 | Completed | Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: MemberHelperTests | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/MemberHelperTests.cs` | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/MemberHelperTests.cs` |
+| LGC-016 | Completed | Class Component | legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest :: UnitTest1 | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/UnitTest1.cs` | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/UnitTest1.cs` |

@@ -7,6 +7,7 @@
 | Solution ID | SLN-010 |
 | Solution Name | `WebSystemDeployer` |
 | Solution File | `legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer.sln` |
+| Modern Solution File / Evidence | `mPortal.slnx` |
 | Projects In Solution | 1 |
 | Mapped Projects | 1 |
 | Unmapped Projects | 0 |
@@ -16,9 +17,9 @@
 
 ## Projects In Solution
 
-| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-010-P01 | Completed | Project | `WebSystemDeployer` | LGC-048 | `WebSystemDeployer` | [Card](./sln-010-websystemdeployer/lgc-048-websystemdeployer-legacy-portal-utilities-websystemdeployer-websystemdeployer.md) | `legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer/WebSystemDeployer.csproj` |
+| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File | Modern Project File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SLN-010-P01 | Completed | Project | `WebSystemDeployer` | LGC-048 | `WebSystemDeployer` | [Card](./sln-010-websystemdeployer/lgc-048-websystemdeployer-legacy-portal-utilities-websystemdeployer-websystemdeployer.md) | `legacy/Portal/Utilities/WebSystemDeployer/WebSystemDeployer/WebSystemDeployer.csproj` | `Portal/Utilities/WebSystemDeployer/WebSystemDeployer/WebSystemDeployer.csproj` |
 
 ## Migration Actions
 

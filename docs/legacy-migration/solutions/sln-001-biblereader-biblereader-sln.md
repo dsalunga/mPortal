@@ -7,6 +7,7 @@
 | Solution ID | SLN-001 |
 | Solution Name | `BibleReader` |
 | Solution File | `legacy/BibleReader/BibleReader.sln` |
+| Modern Solution File / Evidence | `mPortal.slnx` |
 | Projects In Solution | 2 |
 | Mapped Projects | 2 |
 | Unmapped Projects | 0 |
@@ -16,10 +17,10 @@
 
 ## Projects In Solution
 
-| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-001-P01 | Completed | Project | `BibleReader.WebApp` | LGC-001 | `BibleReader.WebApp` | [Card](./sln-001-biblereader/lgc-001-biblereader-webapp-legacy-biblereader-biblereader.md) | `legacy/BibleReader/BibleReader/BibleReader.WebApp.csproj` |
-| SLN-001-P02 | Completed | Project | `BibleReader.Core` | LGC-002 | `BibleReader.Core` | [Card](./shared/lgc-002-biblereader-core-legacy-biblereader-biblereader-core.md) | `legacy/BibleReader/BibleReader.Core/BibleReader.Core.csproj` |
+| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File | Modern Project File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SLN-001-P01 | Completed | Project | `BibleReader.WebApp` | LGC-001 | `BibleReader.WebApp` | [Card](./sln-001-biblereader/lgc-001-biblereader-webapp-legacy-biblereader-biblereader.md) | `legacy/BibleReader/BibleReader/BibleReader.WebApp.csproj` | `Apps/BibleReader/BibleReader/BibleReader.WebApp.csproj` |
+| SLN-001-P02 | Completed | Project | `BibleReader.Core` | LGC-002 | `BibleReader.Core` | [Card](./shared/lgc-002-biblereader-core-legacy-biblereader-biblereader-core.md) | `legacy/BibleReader/BibleReader.Core/BibleReader.Core.csproj` | `Apps/BibleReader/BibleReader.Core/BibleReader.Core.csproj` |
 
 ## Migration Actions
 

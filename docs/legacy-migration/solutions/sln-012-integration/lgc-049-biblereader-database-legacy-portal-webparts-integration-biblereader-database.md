@@ -7,11 +7,12 @@
 | Item ID | LGC-049 |
 | Project Type | Database |
 | Project File | `legacy/Portal/WebParts/Integration/BibleReader.Database/BibleReader.Database.sqlproj` |
+| Modern Project File / Evidence | `Portal/WebParts/Integration/BibleReader.Database/BibleReader.Database.sqlproj` |
 | Project Directory | `legacy/Portal/WebParts/Integration/BibleReader.Database` |
 | Output Type | Database |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:66, Not Applicable:0, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 0 |

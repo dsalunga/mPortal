@@ -7,11 +7,12 @@
 | Item ID | LGC-011 |
 | Project Type | App |
 | Project File | `legacy/Portal/WebSystem/WCMS.Framework.AgentService/WCMS.Framework.AgentService.csproj` |
+| Modern Project File / Evidence | `Portal/WebSystem/WCMS.Framework.AgentService/WCMS.Framework.AgentService.csproj` |
 | Project Directory | `legacy/Portal/WebSystem/WCMS.Framework.AgentService` |
 | Output Type | WinExe |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:6, Not Applicable:0, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 4 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 2 |
@@ -47,7 +48,7 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
-| --- | --- | --- | --- | --- | --- |
-| LGC-011 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.AgentService :: FrameworkAgentService | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framework.AgentService/FrameworkAgentService.cs` |
-| LGC-011 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.AgentService :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framework.AgentService/Program.cs` |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-011 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.AgentService :: FrameworkAgentService | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framework.AgentService/FrameworkAgentService.cs` | `Portal/WebSystem/WCMS.Framework.AgentService/FrameworkAgentService.cs` |
+| LGC-011 | Completed | Class Component | legacy/Portal/WebSystem/WCMS.Framework.AgentService :: Program | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebSystem/WCMS.Framework.AgentService/Program.cs` | `Portal/WebSystem/WCMS.Framework.AgentService/Program.cs` |

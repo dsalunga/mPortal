@@ -7,6 +7,7 @@
 | Solution ID | SLN-011 |
 | Solution Name | `BranchLocator` |
 | Solution File | `legacy/Portal/WebParts/BranchLocator/BranchLocator.sln` |
+| Modern Solution File / Evidence | `mPortal.slnx` |
 | Projects In Solution | 2 |
 | Mapped Projects | 2 |
 | Unmapped Projects | 0 |
@@ -16,10 +17,10 @@
 
 ## Projects In Solution
 
-| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-011-P01 | Completed | Project | `WCMS.WebSystem.Apps.BranchLocator.WebApp` | LGC-005 | `WCMS.WebSystem.WebParts.BranchLocator.WebApp` | [Card](./sln-011-branchlocator/lgc-005-wcms-websystem-webparts-branchlocator-webapp-legacy-portal-webparts-branchlocato.md) | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj` |
-| SLN-011-P02 | Completed | Project | `WCMS.WebSystem.Apps.BranchLocator` | LGC-013 | `WCMS.WebSystem.Apps.BranchLocator` | [Card](./sln-011-branchlocator/lgc-013-wcms-websystem-apps-branchlocator-legacy-portal-webparts-branchlocator-wcms-webs.md) | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` |
+| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File | Modern Project File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SLN-011-P01 | Completed | Project | `WCMS.WebSystem.Apps.BranchLocator.WebApp` | LGC-005 | `WCMS.WebSystem.WebParts.BranchLocator.WebApp` | [Card](./sln-011-branchlocator/lgc-005-wcms-websystem-webparts-branchlocator-webapp-legacy-portal-webparts-branchlocato.md) | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj` | `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/WCMS.WebSystem.Apps.BranchLocator.WebApp.csproj` |
+| SLN-011-P02 | Completed | Project | `WCMS.WebSystem.Apps.BranchLocator` | LGC-013 | `WCMS.WebSystem.Apps.BranchLocator` | [Card](./sln-011-branchlocator/lgc-013-wcms-websystem-apps-branchlocator-legacy-portal-webparts-branchlocator-wcms-webs.md) | `legacy/Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` | `Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator/WCMS.WebSystem.Apps.BranchLocator.csproj` |
 
 ## Migration Actions
 

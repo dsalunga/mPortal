@@ -7,6 +7,7 @@
 | Solution ID | SLN-012 |
 | Solution Name | `Integration` |
 | Solution File | `legacy/Portal/WebParts/Integration/Integration.sln` |
+| Modern Solution File / Evidence | `mPortal.slnx` |
 | Projects In Solution | 7 |
 | Mapped Projects | 7 |
 | Unmapped Projects | 0 |
@@ -16,15 +17,15 @@
 
 ## Projects In Solution
 
-| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-012-P01 | Completed | Project | `WCMS.WebSystem.Apps.Integration.WebApp` | LGC-006 | `WCMS.WebSystem.Apps.Integration.WebApp` | [Card](./sln-012-integration/lgc-006-wcms-websystem-apps-integration-webapp-legacy-portal-webparts-integration-integr.md) | `legacy/Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj` |
-| SLN-012-P02 | Completed | Project | `WCMS.WebSystem.Apps.Integration` | LGC-015 | `WCMS.WebSystem.Apps.Integration` | [Card](./sln-012-integration/lgc-015-wcms-websystem-apps-integration-legacy-portal-webparts-integration-wcms-websyste.md) | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` |
-| SLN-012-P03 | Completed | Project | `WCMS.WebSystem.Apps.BibleReader` | LGC-014 | `WCMS.WebSystem.Apps.BibleReader` | [Card](./sln-012-integration/lgc-014-wcms-websystem-apps-biblereader-legacy-portal-webparts-integration-wcms-websyste.md) | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.BibleReader/WCMS.WebSystem.Apps.BibleReader.csproj` |
-| SLN-012-P04 | Completed | Project | `BibleReader.Core` | LGC-002 | `BibleReader.Core` | [Card](./shared/lgc-002-biblereader-core-legacy-biblereader-biblereader-core.md) | `legacy/BibleReader/BibleReader.Core/BibleReader.Core.csproj` |
-| SLN-012-P05 | Completed | Database Project | `BibleReader.Database` | LGC-049 | `BibleReader.Database` | [Card](./sln-012-integration/lgc-049-biblereader-database-legacy-portal-webparts-integration-biblereader-database.md) | `legacy/Portal/WebParts/Integration/BibleReader.Database/BibleReader.Database.sqlproj` |
-| SLN-012-P06 | Completed | Project | `WCMS.WebSystem.Apps.Integration.UnitTest` | LGC-016 | `WCMS.WebSystem.Apps.Integration.UnitTest` | [Card](./sln-012-integration/lgc-016-wcms-websystem-apps-integration-unittest-legacy-portal-webparts-integration-wcms.md) | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj` |
-| SLN-012-P07 | Completed | Database Project | `WCMS.WebSystem.Apps.Integration.Database` | LGC-050 | `WCMS.WebSystem.Apps.Integration.Database` | [Card](./sln-012-integration/lgc-050-wcms-websystem-apps-integration-database-legacy-portal-webparts-integration-wcms.md) | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.Database/WCMS.WebSystem.Apps.Integration.Database.sqlproj` |
+| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File | Modern Project File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SLN-012-P01 | Completed | Project | `WCMS.WebSystem.Apps.Integration.WebApp` | LGC-006 | `WCMS.WebSystem.Apps.Integration.WebApp` | [Card](./sln-012-integration/lgc-006-wcms-websystem-apps-integration-webapp-legacy-portal-webparts-integration-integr.md) | `legacy/Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj` | `Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj` |
+| SLN-012-P02 | Completed | Project | `WCMS.WebSystem.Apps.Integration` | LGC-015 | `WCMS.WebSystem.Apps.Integration` | [Card](./sln-012-integration/lgc-015-wcms-websystem-apps-integration-legacy-portal-webparts-integration-wcms-websyste.md) | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj` |
+| SLN-012-P03 | Completed | Project | `WCMS.WebSystem.Apps.BibleReader` | LGC-014 | `WCMS.WebSystem.Apps.BibleReader` | [Card](./sln-012-integration/lgc-014-wcms-websystem-apps-biblereader-legacy-portal-webparts-integration-wcms-websyste.md) | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.BibleReader/WCMS.WebSystem.Apps.BibleReader.csproj` | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.BibleReader/WCMS.WebSystem.Apps.BibleReader.csproj` |
+| SLN-012-P04 | Completed | Project | `BibleReader.Core` | LGC-002 | `BibleReader.Core` | [Card](./shared/lgc-002-biblereader-core-legacy-biblereader-biblereader-core.md) | `legacy/BibleReader/BibleReader.Core/BibleReader.Core.csproj` | `Apps/BibleReader/BibleReader.Core/BibleReader.Core.csproj` |
+| SLN-012-P05 | Completed | Database Project | `BibleReader.Database` | LGC-049 | `BibleReader.Database` | [Card](./sln-012-integration/lgc-049-biblereader-database-legacy-portal-webparts-integration-biblereader-database.md) | `legacy/Portal/WebParts/Integration/BibleReader.Database/BibleReader.Database.sqlproj` | `Portal/WebParts/Integration/BibleReader.Database/BibleReader.Database.sqlproj` |
+| SLN-012-P06 | Completed | Project | `WCMS.WebSystem.Apps.Integration.UnitTest` | LGC-016 | `WCMS.WebSystem.Apps.Integration.UnitTest` | [Card](./sln-012-integration/lgc-016-wcms-websystem-apps-integration-unittest-legacy-portal-webparts-integration-wcms.md) | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj` | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj` |
+| SLN-012-P07 | Completed | Database Project | `WCMS.WebSystem.Apps.Integration.Database` | LGC-050 | `WCMS.WebSystem.Apps.Integration.Database` | [Card](./sln-012-integration/lgc-050-wcms-websystem-apps-integration-database-legacy-portal-webparts-integration-wcms.md) | `legacy/Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.Database/WCMS.WebSystem.Apps.Integration.Database.sqlproj` | `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.Database/WCMS.WebSystem.Apps.Integration.Database.sqlproj` |
 
 ## Migration Actions
 

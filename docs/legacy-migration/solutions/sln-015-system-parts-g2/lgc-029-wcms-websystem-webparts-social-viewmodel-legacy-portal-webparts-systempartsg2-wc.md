@@ -7,11 +7,12 @@
 | Item ID | LGC-029 |
 | Project Type | Component |
 | Project File | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WCMS.WebSystem.Apps.Social.ViewModel.csproj` |
+| Modern Project File / Evidence | `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WCMS.WebSystem.Apps.Social.ViewModel.csproj` |
 | Project Directory | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel` |
 | Output Type | Library |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Modern counterpart on .NET 10 verified; compiles with 0 errors. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:4, Not Applicable:0, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 2 |
@@ -39,7 +40,7 @@ _No artifacts found._
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
-| --- | --- | --- | --- | --- | --- |
-| LGC-029 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel :: EventViewModelHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/EventViewModelHelper.cs` |
-| LGC-029 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel :: WallEventViewModel | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WallEventViewModel.cs` |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-029 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel :: EventViewModelHelper | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/EventViewModelHelper.cs` | `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/EventViewModelHelper.cs` |
+| LGC-029 | Completed | Class Component | legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel :: WallEventViewModel | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WallEventViewModel.cs` | `Portal/WebParts/SystemPartsG2/WCMS.WebSystem.WebParts.Social.ViewModel/WallEventViewModel.cs` |

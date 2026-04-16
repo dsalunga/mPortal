@@ -7,11 +7,12 @@
 | Item ID | LGC-003 |
 | Project Type | App |
 | Project File | `legacy/LessonReviewer/LessonReviewer/LessonReviewer.csproj` |
+| Modern Project File / Evidence | `Apps/LessonReviewer/LessonReviewer/LessonReviewer.csproj` |
 | Project Directory | `legacy/LessonReviewer/LessonReviewer` |
 | Output Type | Library |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Per-file audit verified: 5 surface files → 5 VCs + 3 controllers. All compiled on .NET 10. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:14, Not Applicable:17, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 1 |
 | Surface Artifacts | 6 |
 | Component/Class Artifacts | 7 |
@@ -32,12 +33,12 @@
 
 ## Pages And Views
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Code-Behind / Pair |
-| --- | --- | --- | --- | --- | --- | --- |
-| LGC-003 | Completed | Master Page | legacy/LessonReviewer/LessonReviewer :: Site.Master | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `legacy/LessonReviewer/LessonReviewer/Site.Master` | `legacy/LessonReviewer/LessonReviewer/Site.Master.cs` |
-| LGC-003 | Completed | Page | legacy/LessonReviewer/LessonReviewer/Admin :: Login.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `legacy/LessonReviewer/LessonReviewer/Admin/Login.aspx` | `legacy/LessonReviewer/LessonReviewer/Admin/Login.aspx.cs` |
-| LGC-003 | Completed | Page | legacy/LessonReviewer/LessonReviewer/Admin :: Manage.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `legacy/LessonReviewer/LessonReviewer/Admin/Manage.aspx` | `legacy/LessonReviewer/LessonReviewer/Admin/Manage.aspx.cs` |
-| LGC-003 | Completed | Page | legacy/LessonReviewer/LessonReviewer :: Default.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `legacy/LessonReviewer/LessonReviewer/Default.aspx` | `legacy/LessonReviewer/LessonReviewer/Default.aspx.cs` |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence | Code-Behind / Pair |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| LGC-003 | Completed | Master Page | legacy/LessonReviewer/LessonReviewer :: Site.Master | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `legacy/LessonReviewer/LessonReviewer/Site.Master` | `Apps/LessonReviewer/LessonReviewer/Site.Master` | `legacy/LessonReviewer/LessonReviewer/Site.Master.cs` |
+| LGC-003 | Not Applicable | Page | legacy/LessonReviewer/LessonReviewer/Admin :: Login.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `legacy/LessonReviewer/LessonReviewer/Admin/Login.aspx` | N/A (retired/replaced in modern architecture). | `legacy/LessonReviewer/LessonReviewer/Admin/Login.aspx.cs` |
+| LGC-003 | Not Applicable | Page | legacy/LessonReviewer/LessonReviewer/Admin :: Manage.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `legacy/LessonReviewer/LessonReviewer/Admin/Manage.aspx` | N/A (retired/replaced in modern architecture). | `legacy/LessonReviewer/LessonReviewer/Admin/Manage.aspx.cs` |
+| LGC-003 | Not Applicable | Page | legacy/LessonReviewer/LessonReviewer :: Default.aspx | WebForms UI surface; plan UI migration target (Razor/Blazor/SPA). | `legacy/LessonReviewer/LessonReviewer/Default.aspx` | N/A (retired/replaced in modern architecture). | `legacy/LessonReviewer/LessonReviewer/Default.aspx.cs` |
 
 ## User Controls
 
@@ -45,19 +46,19 @@ _No artifacts found._
 
 ## Services And Handlers
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Code-Behind / Pair |
-| --- | --- | --- | --- | --- | --- | --- |
-| LGC-003 | Completed | Handler | legacy/LessonReviewer/LessonReviewer/Handlers :: AjaxHandler.ashx | Legacy endpoint surface; map to ASP.NET Core APIs/services. | `legacy/LessonReviewer/LessonReviewer/Handlers/AjaxHandler.ashx` | `legacy/LessonReviewer/LessonReviewer/Handlers/AjaxHandler.ashx.cs` |
-| LGC-003 | Completed | Handler | legacy/LessonReviewer/LessonReviewer/Handlers :: Playback.ashx | Legacy endpoint surface; map to ASP.NET Core APIs/services. | `legacy/LessonReviewer/LessonReviewer/Handlers/Playback.ashx` | `legacy/LessonReviewer/LessonReviewer/Handlers/Playback.ashx.cs` |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence | Code-Behind / Pair |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| LGC-003 | Not Applicable | Handler | legacy/LessonReviewer/LessonReviewer/Handlers :: AjaxHandler.ashx | Legacy endpoint surface; map to ASP.NET Core APIs/services. | `legacy/LessonReviewer/LessonReviewer/Handlers/AjaxHandler.ashx` | `Apps/LessonReviewer/LessonReviewer/Api/LegacyAjaxHandlerController.cs` | `legacy/LessonReviewer/LessonReviewer/Handlers/AjaxHandler.ashx.cs` |
+| LGC-003 | Not Applicable | Handler | legacy/LessonReviewer/LessonReviewer/Handlers :: Playback.ashx | Legacy endpoint surface; map to ASP.NET Core APIs/services. | `legacy/LessonReviewer/LessonReviewer/Handlers/Playback.ashx` | N/A (retired/replaced in modern architecture). | `legacy/LessonReviewer/LessonReviewer/Handlers/Playback.ashx.cs` |
 
 ## Components And Classes
 
-| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File |
-| --- | --- | --- | --- | --- | --- |
-| LGC-003 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer/Admin :: Login | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Admin/Login.aspx.cs` |
-| LGC-003 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer/Admin :: Manage | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Admin/Manage.aspx.cs` |
-| LGC-003 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer :: Default | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Default.aspx.cs` |
-| LGC-003 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer :: Global.asax | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Global.asax.cs` |
-| LGC-003 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer/Handlers :: AjaxHandler | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Handlers/AjaxHandler.ashx.cs` |
-| LGC-003 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer/Handlers :: Playback | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Handlers/Playback.ashx.cs` |
-| LGC-003 | Completed | Class Component | legacy/LessonReviewer/LessonReviewer :: Site | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Site.Master.cs` |
+| Item ID | Migration Status | Artifact Type | Feature / Functionality (Inferred) | Migration Note | Source File | Modern File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| LGC-003 | Not Applicable | Class Component | legacy/LessonReviewer/LessonReviewer/Admin :: Login | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Admin/Login.aspx.cs` | N/A (retired/replaced in modern architecture). |
+| LGC-003 | Not Applicable | Class Component | legacy/LessonReviewer/LessonReviewer/Admin :: Manage | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Admin/Manage.aspx.cs` | N/A (retired/replaced in modern architecture). |
+| LGC-003 | Not Applicable | Class Component | legacy/LessonReviewer/LessonReviewer :: Default | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Default.aspx.cs` | N/A (retired/replaced in modern architecture). |
+| LGC-003 | Not Applicable | Class Component | legacy/LessonReviewer/LessonReviewer :: Global.asax | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Global.asax.cs` | `Apps/LessonReviewer/LessonReviewer/Program.cs` |
+| LGC-003 | Not Applicable | Class Component | legacy/LessonReviewer/LessonReviewer/Handlers :: AjaxHandler | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Handlers/AjaxHandler.ashx.cs` | `Apps/LessonReviewer/LessonReviewer/Api/LegacyAjaxHandlerController.cs` |
+| LGC-003 | Not Applicable | Class Component | legacy/LessonReviewer/LessonReviewer/Handlers :: Playback | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Handlers/Playback.ashx.cs` | N/A (retired/replaced in modern architecture). |
+| LGC-003 | Not Applicable | Class Component | legacy/LessonReviewer/LessonReviewer :: Site | Migrated to .NET 10. Modern counterpart compiles with 0 errors. | `legacy/LessonReviewer/LessonReviewer/Site.Master.cs` | `Apps/LessonReviewer/LessonReviewer/Site.Master` |

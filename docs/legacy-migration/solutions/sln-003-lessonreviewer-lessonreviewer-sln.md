@@ -7,6 +7,7 @@
 | Solution ID | SLN-003 |
 | Solution Name | `LessonReviewer` |
 | Solution File | `legacy/LessonReviewer/LessonReviewer.sln` |
+| Modern Solution File / Evidence | `mPortal.slnx` |
 | Projects In Solution | 2 |
 | Mapped Projects | 2 |
 | Unmapped Projects | 0 |
@@ -16,10 +17,10 @@
 
 ## Projects In Solution
 
-| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SLN-003-P01 | Completed | Project | `LessonReviewer` | LGC-003 | `WCMS.LessonReviewer` | [Card](./sln-003-lessonreviewer/lgc-003-wcms-lessonreviewer-legacy-lessonreviewer-lessonreviewer.md) | `legacy/LessonReviewer/LessonReviewer/LessonReviewer.csproj` |
-| SLN-003-P02 | Completed | Project | `LessonReviewer.Core` | LGC-004 | `WCMS.LessonReviewer.Core` | [Card](./sln-003-lessonreviewer/lgc-004-wcms-lessonreviewer-core-legacy-lessonreviewer-lessonreviewer-core.md) | `legacy/LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj` |
+| Solution Item ID | Migration Status | Project Type | Project Name | LGC ID | LGC Item | Component Card | Project File | Modern Project File / Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SLN-003-P01 | Completed | Project | `LessonReviewer` | LGC-003 | `WCMS.LessonReviewer` | [Card](./sln-003-lessonreviewer/lgc-003-wcms-lessonreviewer-legacy-lessonreviewer-lessonreviewer.md) | `legacy/LessonReviewer/LessonReviewer/LessonReviewer.csproj` | `Apps/LessonReviewer/LessonReviewer/LessonReviewer.csproj` |
+| SLN-003-P02 | Completed | Project | `LessonReviewer.Core` | LGC-004 | `WCMS.LessonReviewer.Core` | [Card](./sln-003-lessonreviewer/lgc-004-wcms-lessonreviewer-core-legacy-lessonreviewer-lessonreviewer-core.md) | `legacy/LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj` | `Apps/LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj` |
 
 ## Migration Actions
 
