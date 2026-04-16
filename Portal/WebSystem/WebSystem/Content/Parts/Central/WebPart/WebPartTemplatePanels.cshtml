@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Central/WebPart/WebPartTemplatePanels.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Central/WebPart/WebPartTemplatePanels.cshtml
+   Migration mode: Absorbed Alias -> ViewComponent WebTemplatePanels
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Central/WebPart/WebPartTemplatePanels.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Component.InvokeAsync("WebTemplatePanels")

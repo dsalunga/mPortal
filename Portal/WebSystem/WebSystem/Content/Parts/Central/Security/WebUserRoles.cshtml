@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Central/Security/WebUserRoles.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Central/Security/WebUserRoles.cshtml
+   Migration mode: Absorbed Alias -> ViewComponent WebUsers
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Central/Security/WebUserRoles.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Component.InvokeAsync("WebUsers")

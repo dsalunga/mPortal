@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Central/WebPart/WebPartAdmin.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Central/WebPart/WebPartAdmin.cshtml
+   Migration mode: Absorbed Alias -> ViewComponent WebParts
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Central/WebPart/WebPartAdmin.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Component.InvokeAsync("WebParts")

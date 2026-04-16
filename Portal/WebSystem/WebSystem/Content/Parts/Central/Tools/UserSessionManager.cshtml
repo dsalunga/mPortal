@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Central/Tools/UserSessionManager.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Central/Tools/UserSessionManager.cshtml
+   Migration mode: Absorbed Alias -> ViewComponent PerformanceLogManager
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Central/Tools/UserSessionManager.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Component.InvokeAsync("PerformanceLogManager")

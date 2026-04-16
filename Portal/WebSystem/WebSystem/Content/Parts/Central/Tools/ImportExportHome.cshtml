@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Central/Tools/ImportExportHome.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Central/Tools/ImportExportHome.cshtml
+   Migration mode: Absorbed Alias -> ViewComponent DataSyncDashboard
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Central/Tools/ImportExportHome.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Component.InvokeAsync("DataSyncDashboard")

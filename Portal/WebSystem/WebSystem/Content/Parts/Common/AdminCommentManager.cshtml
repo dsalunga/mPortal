@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Common/AdminCommentManager.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Common/AdminCommentManager.cshtml
+   Migration mode: Absorbed Alias -> ViewComponent Comments
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Common/AdminCommentManager.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Component.InvokeAsync("Comments")

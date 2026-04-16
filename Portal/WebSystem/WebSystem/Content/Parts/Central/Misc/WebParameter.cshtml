@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Central/Misc/WebParameter.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Central/Misc/WebParameter.cshtml
+   Migration mode: Absorbed Alias -> ViewComponent WebParameters
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Central/Misc/WebParameter.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Component.InvokeAsync("WebParameters")

@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Central/Tools/WebDataRows.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Central/Tools/WebDataRows.cshtml
+   Migration mode: Absorbed Alias -> ViewComponent QueryAnalyzer
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Central/Tools/WebDataRows.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Component.InvokeAsync("QueryAnalyzer")

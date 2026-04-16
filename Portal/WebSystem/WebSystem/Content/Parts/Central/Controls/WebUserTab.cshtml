@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Central/Controls/WebUserTab.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Central/Controls/WebUserTab.cshtml
+   Migration mode: Absorbed Alias -> ViewComponent WebUsers
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Central/Controls/WebUserTab.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Component.InvokeAsync("WebUsers")

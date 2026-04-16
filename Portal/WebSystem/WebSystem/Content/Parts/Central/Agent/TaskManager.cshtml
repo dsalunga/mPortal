@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Central/Agent/TaskManager.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Central/Agent/TaskManager.cshtml
+   Migration mode: Absorbed Alias -> ViewComponent TaskEditor
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Central/Agent/TaskManager.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Component.InvokeAsync("TaskEditor")

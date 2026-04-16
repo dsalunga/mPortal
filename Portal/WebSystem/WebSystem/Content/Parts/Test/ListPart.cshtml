@@ -1,7 +1,5 @@
-@* Auto-generated legacy compatibility wrapper.
-   Legacy control: Content/Parts/Test/ListPart.ascx
-   Migration status: Retired (no direct modern component mapping).
+@* Auto-migrated absorbed alias wrapper.
+   Legacy control: Content/Parts/Test/ListPart.cshtml
+   Migration mode: Absorbed Alias -> Partial ~/Content/Parts/Test/Razor/PageDemo.cshtml
 *@
-<div class="alert alert-warning">
-    Legacy control <code>Test/ListPart.ascx</code> is retired in the modern stack and has no direct component replacement.
-</div>
+@await Html.PartialAsync("~/Content/Parts/Test/Razor/PageDemo.cshtml")
