@@ -1,12 +1,3 @@
-Legacy/Portal/Binaries/Externals/config.ascx
-Legacy/Portal/WebParts/SDKTest/SDKTest/WebParts/Test/WebUserControl1.ascx
-Legacy/Portal/WebSystem/WebSystem-MVC/Content/Controls/CKEditor.ascx
-Legacy/Portal/WebSystem/WebSystem-MVC/Content/Controls/ComboDatePicker.ascx
-Legacy/Portal/WebSystem/WebSystem-MVC/Content/Controls/ContextActionBar.ascx
-Legacy/Portal/WebSystem/WebSystem-MVC/Content/Controls/FullNamePicker.ascx
-Legacy/Portal/WebSystem/WebSystem-MVC/Content/Controls/MonthPicker.ascx
-Legacy/Portal/WebSystem/WebSystem-MVC/Content/Controls/PhoneNumber.ascx
-Legacy/Portal/WebSystem/WebSystem-MVC/Content/Controls/TabControl.ascx
-Legacy/Portal/WebSystem/WebSystem-MVC/Content/Controls/TabControlV1.ascx
-Legacy/Portal/WebSystem/WebSystem-MVC/Content/Controls/WMPControl.ascx
-Legacy/Portal/WebSystem/WebSystem-MVC/Content/Plugins/fckeditor/editor/filemanager/connectors/aspx/config.ascx
+# All 12 previously unresolved .ascx items closed (2026-04-16)
+# Each item has been explicitly classified with do-not-migrate rationale in the tracker CSV.
+# See LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md Section C for details.

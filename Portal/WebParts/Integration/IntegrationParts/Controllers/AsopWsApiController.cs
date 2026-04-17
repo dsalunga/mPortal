@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace WCMS.WebSystem.WebParts.Integration
 {
     /// <summary>
-    /// Ported from ASOP-WS.asmx (Apps/Integration/MusicCompetition).
+    /// Legacy compatibility stub for ASOP-WS.asmx (SOAP web service for music competition).
+    /// The legacy ASMX service provided SOAP endpoints for ASOP music competition data.
+    /// Modern replacement: ASOP integration uses REST APIs via Integration ViewComponents.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +14,7 @@ namespace WCMS.WebSystem.WebParts.Integration
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy ASOP-WS.asmx
-            return Ok(new { status = "not_implemented", legacy = "ASOP-WS.asmx" });
+            return StatusCode(410, new { status = "gone", legacy = "ASOP-WS.asmx", message = "This legacy SOAP endpoint has been retired. ASOP integration uses REST APIs and ViewComponents." });
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BibleReader
 {
     /// <summary>
-    /// Ported from BibleService.asmx ().
+    /// Legacy compatibility endpoint for BibleService.asmx.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +12,12 @@ namespace BibleReader
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy BibleService.asmx
-            return Ok(new { status = "not_implemented", legacy = "BibleService.asmx" });
+            return StatusCode(410, new
+            {
+                status = "gone",
+                legacy = "BibleService.asmx",
+                message = "This legacy SOAP endpoint has been retired. Use the modern Bible API routes."
+            });
         }
     }
 }

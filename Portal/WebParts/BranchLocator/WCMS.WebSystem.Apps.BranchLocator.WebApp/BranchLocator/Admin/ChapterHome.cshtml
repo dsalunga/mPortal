@@ -1,0 +1,95 @@
+@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.BranchLocator
+@{
+    var query = new WQuery(Context);
+    query.BasePath = CentralPages.LoaderMain;
+    var id = query.GetId(WebColumns.Id);
+    var chapter = id > 0 ? MChapter.Provider.Get(id) : null;
+
+    if (string.Equals(Context.Request.Method, "POST", StringComparison.OrdinalIgnoreCase)
+        && Context.Request.Form["action"] == "delete"
+        && chapter != null)
+    {
+        MChapter.Provider.Delete(chapter.Id);
+        var redirect = query.Clone();
+        redirect.Remove(WebColumns.Id);
+        redirect.SetLoad("FindALocale/Admin/Chapters");
+        redirect.Redirect();
+    }
+
+    var breadcrumb = FALHelper.BuildAdminBreadcrumb(new WQuery(Context));
+    var chapterUrl = "#";
+    var setLocationUrl = "#";
+    if (chapter != null)
+    {
+        var chapterQuery = query.Clone();
+        chapterQuery.SetLoad("FindALocale/Admin/Chapter");
+        chapterUrl = chapterQuery.BuildQuery();
+
+        var locationQuery = query.Clone();
+        locationQuery.BasePath = CentralPages.LoaderRazor;
+        locationQuery.SetLoad("FindALocale/Admin/SetLocation");
+        setLocationUrl = locationQuery.BuildQuery();
+    }
+}
+
+<div style="padding: 5px 0;">
+    <span>@Html.Raw(breadcrumb)</span>
+</div>
+
+<h2>@(chapter?.Name ?? "Chapter")</h2>
+
+<table width="100%">
+    <tr>
+        <td>
+            <table border="0" cellpadding="0">
+                <tr>
+                    <td rowspan="2">
+                        <a href="@chapterUrl"><img src="/Content/Assets/Images/file_edit.png" class="TaskListIcon" border="0" /></a>
+                    </td>
+                    <td class="Header">Properties</td>
+                </tr>
+                <tr>
+                    <td valign="top">Open chapter properties.</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table border="0" cellpadding="0">
+                <tr>
+                    <td rowspan="2">
+                        <a href="@setLocationUrl"><img src="/Content/Assets/Images/file_edit.png" class="TaskListIcon" border="0" /></a>
+                    </td>
+                    <td class="Header">Set Location</td>
+                </tr>
+                <tr>
+                    <td valign="top">Update chapter coordinates and map location.</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table border="0" cellpadding="0">
+                <tr>
+                    <td rowspan="2">
+                        <form method="post" style="display:inline;">
+                            <input type="hidden" name="action" value="delete" />
+                            <button type="submit" style="border:0;background:transparent;padding:0;"
+                                    onclick="return confirm('Are you sure you want to delete this item?');">
+                                <img src="/Content/Assets/Images/delete-folder.png" class="TaskListIcon" border="0" />
+                            </button>
+                        </form>
+                    </td>
+                    <td class="Header">Delete this</td>
+                </tr>
+                <tr>
+                    <td valign="top">Delete this chapter record.</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

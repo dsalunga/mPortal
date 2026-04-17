@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace WCMS.WebSystem.WebParts.Integration
 {
     /// <summary>
-    /// Ported from External.asmx (Apps/Integration).
+    /// Legacy compatibility stub for External.asmx (SOAP external integration service).
+    /// The legacy ASMX service provided SOAP endpoints for external system integration.
+    /// Modern replacement: external integrations use ExternalHelper and REST APIs.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +14,7 @@ namespace WCMS.WebSystem.WebParts.Integration
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy External.asmx
-            return Ok(new { status = "not_implemented", legacy = "External.asmx" });
+            return StatusCode(410, new { status = "gone", legacy = "External.asmx", message = "This legacy SOAP endpoint has been retired. External integrations use ExternalHelper and REST APIs." });
         }
     }
 }

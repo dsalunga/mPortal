@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace WCMS.WebSystem.WebParts.Integration
 {
     /// <summary>
-    /// Ported from DataSync.svc (Apps/Integration/Registration).
+    /// Legacy compatibility stub for DataSync.svc (WCF data synchronization service).
+    /// The legacy WCF service handled data synchronization for registration workflows.
+    /// Modern replacement: IDataSync interface with plain C# implementation (no WCF).
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +14,7 @@ namespace WCMS.WebSystem.WebParts.Integration
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy DataSync.svc
-            return Ok(new { status = "not_implemented", legacy = "DataSync.svc" });
+            return StatusCode(410, new { status = "gone", legacy = "DataSync.svc", message = "This legacy WCF endpoint has been retired. Data synchronization uses the IDataSync interface directly." });
         }
     }
 }

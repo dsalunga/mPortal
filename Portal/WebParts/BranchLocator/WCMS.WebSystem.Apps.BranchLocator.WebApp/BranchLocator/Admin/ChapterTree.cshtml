@@ -1,0 +1,51 @@
+@using System.Net
+@using System.Text
+@using WCMS.Framework
+@using WCMS.WebSystem.Apps.BranchLocator
+@{
+    var query = new WQuery(Context);
+    query.BasePath = CentralPages.LoaderMain;
+    query.SetLoad("FindALocale/Admin/Chapters");
+
+    var allChapters = MChapter.Provider.GetList().OrderBy(x => x.Name).ToList();
+    var treeHtml = new StringBuilder();
+
+    Action<int, StringBuilder> renderChildren = null;
+    renderChildren = (parentId, sb) =>
+    {
+        var children = allChapters.Where(x => x.ParentId == parentId).OrderBy(x => x.Name).ToList();
+        if (children.Count == 0)
+        {
+            return;
+        }
+
+        sb.Append("<ul>");
+        foreach (var child in children)
+        {
+            var childQuery = query.Clone();
+            childQuery.Set(WebColumns.ParentId, child.Id);
+            var childUrl = childQuery.BuildQuery();
+
+            sb.Append("<li>");
+            sb.Append("<a href='");
+            sb.Append(WebUtility.HtmlEncode(childUrl));
+            sb.Append("'>");
+            sb.Append(WebUtility.HtmlEncode(child.Name));
+            sb.Append("</a>");
+            renderChildren(child.Id, sb);
+            sb.Append("</li>");
+        }
+        sb.Append("</ul>");
+    };
+
+    treeHtml.Append("<ul>");
+    treeHtml.Append("<li><a href='");
+    treeHtml.Append(WebUtility.HtmlEncode(query.BuildQuery()));
+    treeHtml.Append("'><strong>Chapters</strong></a>");
+    renderChildren(-1, treeHtml);
+    treeHtml.Append("</li></ul>");
+}
+
+<div class="branch-tree">
+    @Html.Raw(treeHtml.ToString())
+</div>

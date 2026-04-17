@@ -1,0 +1,224 @@
+@using System.Linq
+@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.Framework.Core.Shared
+@using WCMS.WebSystem.Apps.BranchLocator
+@{
+    var request = Context.Request;
+    var query = new WQuery(Context);
+    query.BasePath = CentralPages.LoaderMain;
+    var parentId = query.GetId(WebColumns.ParentId);
+    var selectedId = query.GetId(WebColumns.Id);
+
+    if (selectedId > 0)
+    {
+        var selected = MChapter.Provider.Get(selectedId);
+        if (selected != null)
+        {
+            var redirect = query.Clone();
+            if (selected.ParentId > 0)
+            {
+                redirect.Set(WebColumns.ParentId, selected.ParentId);
+            }
+            redirect.SetLoad("FindALocale/Admin/Chapter");
+            redirect.Redirect();
+        }
+    }
+
+    if (string.Equals(request.Method, "POST", StringComparison.OrdinalIgnoreCase))
+    {
+        var action = request.Form["action"].ToString();
+        if (action == "add")
+        {
+            var redirect = query.Clone();
+            redirect.Remove(WebColumns.Id);
+            redirect.SetLoad("FindALocale/Admin/Chapter");
+            redirect.Redirect();
+        }
+        else if (action == "up")
+        {
+            if (parentId > 0)
+            {
+                var parent = MChapter.Provider.Get(parentId);
+                if (parent != null)
+                {
+                    var redirect = query.Clone();
+                    redirect.Set(WebColumns.ParentId, parent.ParentId);
+                    redirect.Redirect();
+                }
+            }
+        }
+        else if (action == "fix")
+        {
+            var divisionType = (int)ChapterTypes.Division;
+            var districtType = (int)ChapterTypes.District;
+            var items = MChapter.Provider.GetList().ToList();
+            MChapter division = null;
+            MChapter district = null;
+
+            Action<MChapter> processItems = null;
+            processItems = parent =>
+            {
+                IEnumerable<MChapter> children = parent == null
+                    ? items.Where(i => i.ParentId == -1)
+                    : parent.Children;
+
+                foreach (var child in children)
+                {
+                    var hasUpdate = false;
+                    if (child.ChapterType == divisionType)
+                    {
+                        division = child;
+                    }
+                    else if (child.ChapterType == districtType)
+                    {
+                        district = child;
+                    }
+
+                    if (division != null)
+                    {
+                        if (child.DivisionId != division.Id)
+                        {
+                            hasUpdate = true;
+                            child.DivisionId = division.Id;
+                        }
+                    }
+                    else if (child.DivisionId != -1)
+                    {
+                        hasUpdate = true;
+                        child.DivisionId = -1;
+                    }
+
+                    if (district != null)
+                    {
+                        if (child.DistrictNo != district.DistrictNo)
+                        {
+                            hasUpdate = true;
+                            child.DistrictNo = district.DistrictNo;
+                        }
+                    }
+                    else if (child.DistrictNo != -1)
+                    {
+                        hasUpdate = true;
+                        child.DistrictNo = -1;
+                    }
+
+                    if (hasUpdate)
+                    {
+                        child.Update();
+                    }
+
+                    processItems(child);
+
+                    if (child.ChapterType == divisionType)
+                    {
+                        division = null;
+                    }
+                    else if (child.ChapterType == districtType)
+                    {
+                        district = null;
+                    }
+                }
+            };
+
+            processItems(null);
+        }
+    }
+
+    var breadcrumb = FALHelper.BuildAdminBreadcrumb(new WQuery(Context));
+    var countries = Country.Provider.GetList().ToDictionary(x => x.Id, x => x.CountryName);
+    var rows = MChapter.Provider.GetList(parentId).ToList();
+    var showParentActions = parentId > 0;
+
+    var editParentUrl = "#";
+    if (showParentActions)
+    {
+        var editParentQuery = query.Clone();
+        editParentQuery.Set(WebColumns.Id, parentId);
+        editParentQuery.SetLoad("FindALocale/Admin/Chapter");
+        editParentUrl = editParentQuery.BuildQuery();
+    }
+}
+
+<div class="breadcrumb" style="margin-bottom: 10px; margin-top: 5px;">
+    <span>@Html.Raw(breadcrumb)</span>
+    @if (showParentActions)
+    {
+        <a href="@editParentUrl" class="label label-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>
+        <form method="post" style="display:inline;">
+            <input type="hidden" name="action" value="up" />
+            <button type="submit" class="label label-info" style="border:0;"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Up</button>
+        </form>
+    }
+</div>
+
+<div class="control-box no-bottom-margin">
+    <div>
+        <form method="post" style="display:inline;">
+            <input type="hidden" name="action" value="add" />
+            <button type="submit" class="btn btn-default btn-sm">New Chapter</button>
+        </form>
+        <div class="pull-right">
+            <form method="post" style="display:inline;">
+                <input type="hidden" name="action" value="fix" />
+                <button type="submit" class="btn btn-default btn-sm">Fix Data</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th style="width:40px;"></th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Coordinates</th>
+                <th>Country</th>
+                <th>Access</th>
+                <th class="text-center" style="width:60px;">ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chapter in rows)
+            {
+                var locQuery = query.Clone();
+                locQuery.BasePath = CentralPages.LoaderRazor;
+                locQuery.SetLoad("FindALocale/Admin/SetLocation");
+                locQuery.Set(WebColumns.Id, chapter.Id);
+                var setLocationUrl = locQuery.BuildQuery();
+
+                var editQuery = query.Clone();
+                editQuery.SetLoad("FindALocale/Admin/Chapter");
+                editQuery.Set(WebColumns.Id, chapter.Id);
+                var editUrl = editQuery.BuildQuery();
+
+                var childrenQuery = query.Clone();
+                childrenQuery.Set(WebColumns.ParentId, chapter.Id);
+                var childrenUrl = childrenQuery.BuildQuery();
+
+                var address = string.IsNullOrEmpty(chapter.Address)
+                    ? "Set Address & Coordinates"
+                    : DataUtil.GetStringPreview(chapter.Address, 30);
+                var countryName = countries.TryGetValue(chapter.CountryCode, out var c) ? c : "";
+                var latLng = chapter.Latitude == 0 && chapter.Longitude == 0 ? "" : chapter.GetLatLng();
+                <tr>
+                    <td class="text-center"><a href="@editUrl" title="Edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                    <td><a href="@childrenUrl"><strong>@chapter.Name</strong></a></td>
+                    <td><a href="@setLocationUrl"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> @address</a></td>
+                    <td>@latLng</td>
+                    <td>@countryName</td>
+                    <td>@ChapterAccess.Get(chapter.AccessType)</td>
+                    <td class="text-center">@chapter.Id</td>
+                </tr>
+            }
+            @if (!rows.Any())
+            {
+                <tr>
+                    <td colspan="7" class="text-muted">No chapters found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

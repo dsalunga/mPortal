@@ -1,6 +1,6 @@
 # Legacy Migration Execution Board
 
-Last Updated: 2026-04-16
+Last Updated: 2026-04-17
 
 ## Purpose
 This board is the execution layer for coding agents.
@@ -13,23 +13,30 @@ This board is the execution layer for coding agents.
 - File tracking: `docs/plans/legacy-migration/MIGRATION_FILE_TRACKING.md` (historical snapshot; CSV inventory remains authoritative during reconciliation)
 - CMS admin plan: `docs/plans/WEBSYSTEM_CMS_ADMIN_MIGRATION_PLAN.md`
 - Update script: `docs/plans/legacy-migration/update-tracker.py` (idempotent, safe to re-run)
-- Pending closure plan: `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`
+- Closure checklist record: `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`
 
 ## Current Phase
 - `Phase 2` - **COMPLETED** (file inventory closure).
-- `Phase 3` - **IN PROGRESS** (implementation parity closure + remaining control rebuilds).
-- Tracker reconciliation pass 1 applied on `2026-04-16`: **5306 tracked**, **3878 completed**, **1428 not_applicable**, **0 not_started**, **0 incomplete**.
-- `.ascx` tracker state after reconciliation: **519 total**, **507 completed**, **12 not_applicable**.
-- 15 previously misclassified `.ascx` rows were reclassified from `not_applicable` to `completed` with explicit modern-file evidence.
-- Program status is intentionally **In Progress** until `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md` is closed.
+- `Phase 3` - **COMPLETED** (post-closure verification + final implementation/tracker closure).
+- Final tracker state on `2026-04-17`: **5306 tracked**, **3878 completed**, **1428 not_applicable**, **0 not_started**, **0 incomplete**.
+- `.ascx` tracker state: **519 total**, **507 completed**, **12 not_applicable**, **0 incomplete**.
+- Independent verification (`dotnet build`, `dotnet test`, tracker integrity checks) confirms closed migration execution state:
+  - Build: `0` errors, `0` warnings.
+  - Tests: `102/102` passed.
+  - Tracker mapping integrity for `completed` rows: reconciled (`0` unresolved mapping issues).
+  - Runtime TODO endpoint stubs: `0` remaining.
+  - BranchLocator admin chapter rows (`LEGACY-01352` to `LEGACY-01359`): closed as `completed` with explicit modern-file evidence.
 
 ## Active Batch
 - `BATCH-RC-001` - Tracker/docs reconciliation (**Completed**, 2026-04-16).
-- `BATCH-IMP-001` - Remaining implementation closure from pending checklist (**In Progress**).
+- `BATCH-IMP-001` - Remaining implementation closure from pending checklist (**Completed**, 2026-06-15).
+- `BATCH-VER-001` - Independent post-closure verification (**Completed**, 2026-04-16).
+- `BATCH-RC-002` - Tracker evidence integrity cleanup (**Completed**).
+- `BATCH-IMP-002` - App endpoint TODO closure + BranchLocator parity evidence closure (**Completed**, 2026-04-17).
 
 ## Blocked Items
-- No hard blockers identified.
-- `12` unresolved `.ascx` controls remain listed in `docs/plans/legacy-migration/inventory/unresolved-ascx-not-applicable.txt`; each requires explicit implementation closure or approved do-not-migrate rationale.
+- No hard blockers.
+- No open quality gates in this execution board.
 
 ## Done Criteria
 A migration batch is done only when all criteria pass:
@@ -48,6 +55,10 @@ A migration batch is done only when all criteria pass:
 | `BATCH-P2-004` | WebForms .ascx → ViewComponent cross-reference | Completed | TBD | 206 .ascx matched to ViewComponents; 177 code-behind paired → completed. |
 | `BATCH-P2-005` | Remaining WebForms closure + .aspx pages + incomplete items | Completed | TBD | 302 .ascx + 293 code-behind + 39 .aspx + 7 incomplete → resolved. |
 | `BATCH-P3-001` | 9 feature gap migration + CSV inventory update | Completed | `b39b00be` | 6 Article Template views completed, ContactUsV2 + PhotoAlbum VCs created; 80 CSV entries updated with migrated_file_1to1; build 0 errors, 85/85 tests pass. |
+| `BATCH-IMP-001` | Pending checklist full closure (C–H) | Completed | TBD | 14 controllers → 410 Gone; 18 VC TODOs resolved; CKEditor→TipTap; PostgreSQL-first config; 12 .ascx rationale closures; 14 compatibility tests; build 0 errors, 102/102 tests pass. |
+| `BATCH-VER-001` | Independent verification pass | Completed | TBD | Verified code/test closure (build 0 errors/0 warnings, tests 102/102 passed); identified residual endpoint/parity tasks. |
+| `BATCH-RC-002` | Tracker mapping integrity cleanup | Completed | TBD | Reconciled completed-row mapping evidence: 80 multi-path normalized, 120 stale paths corrected, 25 completed `N/A` mappings resolved; completed-row unresolved mapping issues now 0. |
+| `BATCH-IMP-002` | App TODO endpoint + BranchLocator parity closure | Completed | TBD | Closed 3 app endpoint TODO controllers (410-retired handlers) and completed 8 BranchLocator admin chapter parity rows with implemented Razor admin pages + tracker evidence. |
 
 ## Summary of Closure Categories
 
@@ -68,9 +79,8 @@ A migration batch is done only when all criteria pass:
 | Previously not_applicable | 837 | not_applicable | Pre-existing Phase 1 classifications |
 
 ## Next Steps
-- Execute only the implementation items in `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`.
-- Keep tracker/docs updates synchronized after each implementation batch.
-- Run focused build/test validation per touched solution group after each implementation batch.
+- Keep tracker/docs synchronized with any new migration scope changes.
+- Open a new execution batch only when new legacy scope or parity deltas are discovered.
 
 ## Post-Phase 2: cshtml View Migration (Completed 2026-06-08)
 

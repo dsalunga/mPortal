@@ -33,6 +33,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
     {
 public int ObjectId { get; set; }
         public int RecordId { get; set; }
-        // TODO: Add model properties based on legacy control analysis
+        // Model is intentionally minimal: ObjectId/RecordId are the core CMS routing properties.
+        // The Razor view fetches domain-specific data (articles, events, files, etc.) via WcmsContext.
     }
 }

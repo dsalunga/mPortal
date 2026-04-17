@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace WCMS.WebSystem.WebParts.Integration
 {
     /// <summary>
-    /// Ported from MemberVisitPrintPreview.ashx (Apps/Integration).
+    /// Legacy compatibility stub for MemberVisitPrintPreview.ashx.
+    /// The legacy HTTP handler generated print-preview HTML for member visit records.
+    /// Modern replacement: print-friendly views are rendered client-side via ViewComponents.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +14,7 @@ namespace WCMS.WebSystem.WebParts.Integration
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy MemberVisitPrintPreview.ashx
-            return Ok(new { status = "not_implemented", legacy = "MemberVisitPrintPreview.ashx" });
+            return StatusCode(410, new { status = "gone", legacy = "MemberVisitPrintPreview.ashx", message = "This legacy endpoint has been retired. Use the member visit ViewComponent for print-friendly rendering." });
         }
     }
 }

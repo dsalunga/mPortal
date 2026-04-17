@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace WCMS.Framework.TagHelpers
 {
     /// <summary>
-    /// Renders a textarea with CKEditor 5 CDN integration.
+    /// Renders a textarea with TipTap OSS CDN integration.
     /// Usage: &lt;wcms-editor for="Model.Content" height="400" toolbar="full" /&gt;
     /// </summary>
     [HtmlTargetElement("wcms-editor")]
@@ -31,27 +31,29 @@ namespace WCMS.Framework.TagHelpers
             var name = For?.Name ?? "editor";
             var id = name.Replace(".", "_");
             var value = For?.Model?.ToString() ?? string.Empty;
-
-            var toolbarItems = Toolbar?.ToLowerInvariant() == "full"
-                ? "'heading', '|', 'bold', 'italic', 'underline', 'strikethrough', '|', " +
-                  "'link', 'blockQuote', 'insertTable', '|', " +
-                  "'bulletedList', 'numberedList', 'outdent', 'indent', '|', " +
-                  "'imageUpload', 'mediaEmbed', '|', 'undo', 'redo'"
-                : "'bold', 'italic', 'link', '|', 'bulletedList', 'numberedList', '|', 'undo', 'redo'";
+            var encodedValue = System.Net.WebUtility.HtmlEncode(value);
 
             output.TagName = "div";
             output.Attributes.SetAttribute("class", "wcms-editor-wrapper");
             output.Content.SetHtmlContent(
-                $"<textarea id=\"{id}\" name=\"{name}\" style=\"display:none;\">{System.Net.WebUtility.HtmlEncode(value)}</textarea>" +
-                $"<div id=\"{id}_editor\" style=\"height:{Height}px;\"></div>" +
-                "<script src=\"https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js\"></script>" +
+                $"<textarea id=\"{id}\" name=\"{name}\" style=\"display:none;\">{encodedValue}</textarea>" +
+                $"<div id=\"{id}_editor\" style=\"height:{Height}px;border:1px solid #ccc;padding:0.5rem;\"></div>" +
+                "<script src=\"https://cdn.jsdelivr.net/npm/@tiptap/core@2/dist/index.umd.js\"></script>" +
+                "<script src=\"https://cdn.jsdelivr.net/npm/@tiptap/starter-kit@2/dist/index.umd.js\"></script>" +
                 $"<script>" +
-                $"ClassicEditor.create(document.getElementById('{id}_editor'),{{toolbar:[{toolbarItems}]}})" +
-                $".then(editor=>{{" +
-                $"editor.setData(document.getElementById('{id}').value);" +
-                $"editor.model.document.on('change:data',()=>{{document.getElementById('{id}').value=editor.getData();}});" +
-                $"}})" +
-                $".catch(err=>console.error(err));" +
+                $"(function(){{" +
+                $"var ta=document.getElementById('{id}');" +
+                $"var el=document.getElementById('{id}_editor');" +
+                $"if(!ta||!el||typeof window.TiptapCore==='undefined')return;" +
+                $"var editor=new window.TiptapCore.Editor({{" +
+                $"element:el," +
+                $"extensions:[window.TiptapStarterKit.StarterKit]," +
+                $"content:ta.value," +
+                $"onUpdate:function({{editor}}){{ta.value=editor.getHTML();}}" +
+                $"}});" +
+                $"window.wcmsEditors=window.wcmsEditors||{{}};" +
+                $"window.wcmsEditors['{id}']=editor;" +
+                $"}})();" +
                 $"</script>");
         }
     }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LessonReviewer
 {
     /// <summary>
-    /// Ported from AjaxHandler.ashx (Handlers).
+    /// Legacy compatibility endpoint for AjaxHandler.ashx.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +12,12 @@ namespace LessonReviewer
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy AjaxHandler.ashx
-            return Ok(new { status = "not_implemented", legacy = "AjaxHandler.ashx" });
+            return StatusCode(410, new
+            {
+                status = "gone",
+                legacy = "AjaxHandler.ashx",
+                message = "This legacy HTTP handler has been retired. Use modern LessonReviewer API routes."
+            });
         }
     }
 }

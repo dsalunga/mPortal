@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace WCMS.WebSystem.WebParts.Integration
 {
     /// <summary>
-    /// Ported from Music.svc (Apps/Integration).
+    /// Legacy compatibility stub for Music.svc (WCF music service).
+    /// The legacy WCF service provided music catalog and playback data.
+    /// Modern replacement: music features use REST APIs and Integration ViewComponents.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +14,7 @@ namespace WCMS.WebSystem.WebParts.Integration
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy Music.svc
-            return Ok(new { status = "not_implemented", legacy = "Music.svc" });
+            return StatusCode(410, new { status = "gone", legacy = "Music.svc", message = "This legacy WCF endpoint has been retired. Music features use REST APIs and Integration ViewComponents." });
         }
     }
 }

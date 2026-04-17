@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace WCMS.WebSystem.WebParts.G2
 {
     /// <summary>
-    /// Ported from FlashService.asmx (AppBundle2/FlashBanner).
+    /// Legacy compatibility stub for FlashService.asmx (Flash banner SOAP service).
+    /// The legacy ASMX service provided SOAP endpoints for Flash banner management.
+    /// Modern replacement: Flash technology is obsolete; banner features use CSS/JS animations.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +14,7 @@ namespace WCMS.WebSystem.WebParts.G2
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy FlashService.asmx
-            return Ok(new { status = "not_implemented", legacy = "FlashService.asmx" });
+            return StatusCode(410, new { status = "gone", legacy = "FlashService.asmx", message = "This legacy Flash SOAP endpoint has been retired. Flash technology is obsolete; banners use CSS/JS." });
         }
     }
 }

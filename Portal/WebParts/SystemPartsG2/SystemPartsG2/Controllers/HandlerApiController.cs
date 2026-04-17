@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace WCMS.WebSystem.WebParts.G2
 {
     /// <summary>
-    /// Ported from Handler.ashx (AppBundle2/Download).
+    /// Legacy compatibility stub for Handler.ashx (Download module HTTP handler).
+    /// The legacy handler served file downloads from the Download module.
+    /// Modern replacement: file downloads use FileManager ViewComponents and static file middleware.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +14,7 @@ namespace WCMS.WebSystem.WebParts.G2
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy Handler.ashx
-            return Ok(new { status = "not_implemented", legacy = "Handler.ashx" });
+            return StatusCode(410, new { status = "gone", legacy = "Handler.ashx", message = "This legacy download handler has been retired. File downloads use FileManager ViewComponents and static file middleware." });
         }
     }
 }

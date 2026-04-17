@@ -1,0 +1,307 @@
+@using WCMS.Common.Utilities
+@using WCMS.Framework
+@using WCMS.Framework.Core.Shared
+@using WCMS.WebSystem.Apps.BranchLocator
+@{
+    var request = Context.Request;
+    var isPost = string.Equals(request.Method, "POST", StringComparison.OrdinalIgnoreCase);
+    var query = new WQuery(Context);
+    query.BasePath = CentralPages.LoaderMain;
+
+    var updateSuccess = false;
+    var statusMessage = "";
+
+    var id = query.GetId(WebColumns.Id);
+    var parentId = query.GetId(WebColumns.ParentId);
+    var item = id > 0 ? MChapter.Provider.Get(id) : null;
+
+    if (isPost)
+    {
+        var action = request.Form["action"].ToString();
+        if (action == "delete" && id > 0)
+        {
+            MChapter.Provider.Delete(id);
+            var redirect = query.Clone();
+            redirect.Remove(WebColumns.Id);
+            redirect.SetLoad("FindALocale/Admin/Chapters");
+            redirect.Redirect();
+        }
+        else if (action == "update")
+        {
+            var isNew = id <= 0;
+            var current = isNew ? new MChapter() : (MChapter.Provider.Get(id) ?? new MChapter());
+
+            var postParentId = DataUtil.GetId(request.Form["parentId"].ToString(), -1);
+            var parent = postParentId > 0 ? MChapter.Provider.Get(postParentId) : null;
+
+            current.Name = request.Form["name"].ToString().Trim();
+            current.Address = request.Form["address"].ToString().Trim();
+            current.Telephone = request.Form["telephone"].ToString().Trim();
+            current.Mobile = request.Form["mobile"].ToString().Trim();
+            current.Email = request.Form["email"].ToString().Trim();
+            current.ServiceSchedule = request.Form["serviceSchedule"].ToString().Trim();
+            current.MoreInfo = request.Form["moreInfo"].ToString().Trim();
+            current.ParentId = parent == null ? -1 : parent.Id;
+            current.CountryCode = DataUtil.GetId(request.Form["countryCode"].ToString(), 0);
+            current.ChapterType = DataUtil.GetInt32(request.Form["chapterType"].ToString(), 0);
+            current.AccessType = DataUtil.GetInt32(request.Form["accessType"].ToString(), 0);
+            current.DivisionId = DataUtil.GetId(request.Form["divisionId"].ToString(), -1);
+            current.DistrictNo = DataUtil.GetInt32(request.Form["districtNo"].ToString(), -1);
+            current.LocaleId = DataUtil.GetId(request.Form["localeId"].ToString(), -1);
+            current.LastUpdate = DateTime.Now;
+
+            var savedId = current.Update();
+            if (savedId > 0)
+            {
+                if (isNew)
+                {
+                    var redirect = query.Clone();
+                    redirect.Set(WebColumns.Id, savedId);
+                    redirect.BasePath = CentralPages.LoaderRazor;
+                    redirect.SetLoad("FindALocale/Admin/SetLocation");
+                    redirect.Redirect();
+                }
+
+                updateSuccess = true;
+                statusMessage = "Update success!";
+                id = savedId;
+                item = MChapter.Provider.Get(savedId);
+            }
+            else
+            {
+                statusMessage = "Update failed.";
+            }
+        }
+    }
+
+    var countries = Country.GetList().ToList();
+    var divisionType = (int)ChapterTypes.Division;
+    var divisions = MChapter.Provider.GetList()
+        .Where(x => x.ChapterType == divisionType)
+        .OrderBy(x => x.Name)
+        .ToList();
+
+    var selectedCountryCode = item?.CountryCode ?? 0;
+    var selectedChapterType = item?.ChapterType ?? (int)ChapterTypes.Regular;
+    var selectedAccessType = item?.AccessType ?? ChapterAccess.INTERNAL;
+    var selectedDistrictNo = item?.DistrictNo ?? -1;
+    var selectedLocaleId = item?.LocaleId ?? -1;
+    var selectedParentId = item?.ParentId ?? (parentId > 0 ? parentId : -1);
+    var selectedDivisionId = -1;
+
+    if (item != null)
+    {
+        if (item.DivisionId > 0)
+        {
+            selectedDivisionId = item.DivisionId;
+        }
+        else if (item.ChapterType == divisionType)
+        {
+            selectedDivisionId = item.Id;
+        }
+        else if (item.ParentId > 0)
+        {
+            var cursor = item;
+            while (true)
+            {
+                cursor = cursor.Parent;
+                if (cursor == null || cursor.Id == item.Id)
+                {
+                    break;
+                }
+
+                if (cursor.ChapterType == divisionType)
+                {
+                    selectedDivisionId = cursor.Id;
+                    break;
+                }
+            }
+        }
+    }
+
+    var chaptersQuery = query.Clone();
+    chaptersQuery.Remove(WebColumns.Id);
+    chaptersQuery.RemoveLoad();
+    var chaptersUrl = chaptersQuery.BuildQuery();
+
+    var chapterUrl = "#";
+    var locationUrl = chaptersUrl + "#";
+    var announcementsUrl = chaptersUrl + "#";
+    if (item != null)
+    {
+        var chapterQuery = query.Clone();
+        chapterQuery.SetLoad("FindALocale/Admin/Chapter");
+        chapterUrl = chapterQuery.BuildQuery();
+
+        var locationQuery = query.Clone();
+        locationQuery.BasePath = CentralPages.LoaderRazor;
+        locationQuery.SetLoad("FindALocale/Admin/SetLocation");
+        locationUrl = locationQuery.BuildQuery();
+
+        var announcementsQuery = query.Clone();
+        announcementsQuery.BasePath = CentralPages.LoaderRazor;
+        announcementsQuery.SetLoad("FindALocale/Admin/Announcements");
+        announcementsUrl = announcementsQuery.BuildQuery();
+    }
+}
+
+<div id="content" class="container-fluid" style="padding: 0;">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>@(item == null ? "New Chapter" : item.Name)</h3>
+        </div>
+    </div>
+    <div role="tabpanel">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation"><a href="@chaptersUrl" role="tab">Chapters</a></li>
+            <li role="presentation" class="active"><a href="@chapterUrl" role="tab">Chapter</a></li>
+            <li role="presentation"><a href="@locationUrl" role="tab">Location</a></li>
+            <li role="presentation"><a href="@announcementsUrl" role="tab">Announcements</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="chapter">
+                <br />
+                <form class="form-horizontal" method="post">
+                    <input type="hidden" name="action" value="update" />
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 col-md-2 control-label">Name:</label>
+                        <div class="col-sm-8 col-md-6">
+                            <input id="name" name="name" class="form-control" required value="@item?.Name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="col-sm-2 col-md-2 control-label">Address:</label>
+                        <div class="col-sm-8 col-md-6">
+                            <textarea id="address" name="address" class="form-control" rows="4">@item?.Address</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="countryCode" class="col-sm-2 col-md-2 control-label">Country:</label>
+                        <div class="col-sm-4">
+                            <select id="countryCode" name="countryCode" class="form-control">
+                                <option value="0"></option>
+                                @foreach (var country in countries)
+                                {
+                                    <option value="@country.CountryCode" @(selectedCountryCode == country.CountryCode ? "selected=\"selected\"" : "")>@country.CountryName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone" class="col-sm-2 col-md-2 control-label">Phone Number:</label>
+                        <div class="col-sm-4 col-md-3">
+                            <input id="telephone" name="telephone" class="form-control" value="@item?.Telephone" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile" class="col-sm-2 col-md-2 control-label">Mobile Number:</label>
+                        <div class="col-sm-4 col-md-3">
+                            <input id="mobile" name="mobile" class="form-control" value="@item?.Mobile" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 col-md-2 control-label">Email Address:</label>
+                        <div class="col-sm-4 col-md-3">
+                            <input id="email" name="email" class="form-control" value="@item?.Email" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceSchedule" class="col-sm-2 col-md-2 control-label">Services Schedule:</label>
+                        <div class="col-sm-8 col-md-6">
+                            <textarea id="serviceSchedule" name="serviceSchedule" class="form-control" rows="4">@item?.ServiceSchedule</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="moreInfo" class="col-sm-2 col-md-2 control-label">More Info:</label>
+                        <div class="col-sm-8 col-md-6">
+                            <textarea id="moreInfo" name="moreInfo" class="form-control" rows="4">@item?.MoreInfo</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="chapterType" class="col-sm-2 col-md-2 control-label">Type:</label>
+                        <div class="col-sm-3">
+                            <select id="chapterType" name="chapterType" class="form-control">
+                                <option value="0" @(selectedChapterType == 0 ? "selected=\"selected\"" : "")>Regular Locale</option>
+                                <option value="1" @(selectedChapterType == 1 ? "selected=\"selected\"" : "")>District Office</option>
+                                <option value="2" @(selectedChapterType == 2 ? "selected=\"selected\"" : "")>Division Office</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="divisionId" class="col-sm-2 col-md-2 control-label">Division:</label>
+                        <div class="col-sm-6">
+                            <select id="divisionId" name="divisionId" class="form-control">
+                                <option value="-1"></option>
+                                @foreach (var division in divisions)
+                                {
+                                    <option value="@division.Id" @(selectedDivisionId == division.Id ? "selected=\"selected\"" : "")>@division.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="districtNo" class="col-sm-2 col-md-2 control-label">District No:</label>
+                        <div class="col-sm-2">
+                            <input id="districtNo" name="districtNo" class="form-control" value="@(selectedDistrictNo > 0 ? selectedDistrictNo : "")" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="localeId" class="col-sm-2 col-md-2 control-label">Locale ID:</label>
+                        <div class="col-sm-2">
+                            <input id="localeId" name="localeId" class="form-control" value="@(selectedLocaleId > 0 ? selectedLocaleId : "")" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentId" class="col-sm-2 col-md-2 control-label">Parent ID:</label>
+                        <div class="col-sm-2">
+                            <input id="parentId" name="parentId" class="form-control" value="@(selectedParentId > 0 ? selectedParentId : "")" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="accessType" class="col-sm-2 col-md-2 control-label">Access Type:</label>
+                        <div class="col-sm-3 col-md-2">
+                            <select id="accessType" name="accessType" class="form-control">
+                                <option value="0" @(selectedAccessType == 0 ? "selected=\"selected\"" : "")>Public</option>
+                                <option value="1" @(selectedAccessType == 1 ? "selected=\"selected\"" : "")>Internal</option>
+                                <option value="2" @(selectedAccessType == 2 ? "selected=\"selected\"" : "")>Restricted</option>
+                            </select>
+                        </div>
+                    </div>
+                    @if (item != null)
+                    {
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label">Last Update:</label>
+                            <div class="col-sm-6">
+                                <span>@item.LastUpdate</span>
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-md-offset-2 col-sm-10 col-md-6">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <a href="@chaptersUrl" class="btn btn-default">Cancel</a>
+                            @if (item != null)
+                            {
+                                <button type="submit"
+                                        formaction=""
+                                        formmethod="post"
+                                        name="action"
+                                        value="delete"
+                                        class="btn btn-danger pull-right"
+                                        onclick="return confirm('Are you sure you want to delete this item?');">
+                                    Delete
+                                </button>
+                            }
+                            @if (!string.IsNullOrEmpty(statusMessage))
+                            {
+                                <br />
+                                <span class="label @(updateSuccess ? "label-warning" : "label-danger")">@statusMessage</span>
+                            }
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LessonReviewer
 {
     /// <summary>
-    /// Ported from Playback.ashx (Handlers).
+    /// Legacy compatibility endpoint for Playback.ashx.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +12,12 @@ namespace LessonReviewer
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy Playback.ashx
-            return Ok(new { status = "not_implemented", legacy = "Playback.ashx" });
+            return StatusCode(410, new
+            {
+                status = "gone",
+                legacy = "Playback.ashx",
+                message = "This legacy playback handler has been retired. Use modern LessonReviewer media APIs."
+            });
         }
     }
 }

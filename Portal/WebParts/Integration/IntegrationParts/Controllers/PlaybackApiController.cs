@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace WCMS.WebSystem.WebParts.Integration
 {
     /// <summary>
-    /// Ported from Playback.ashx (Apps/Integration/Profile/LessonReviewer).
+    /// Legacy compatibility stub for Playback.ashx (media streaming handler).
+    /// The legacy handler served media file streams for the LessonReviewer profile.
+    /// Modern replacement: media playback uses HTML5 audio/video with direct file serving.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -12,8 +14,7 @@ namespace WCMS.WebSystem.WebParts.Integration
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO: Implement endpoint logic from legacy Playback.ashx
-            return Ok(new { status = "not_implemented", legacy = "Playback.ashx" });
+            return StatusCode(410, new { status = "gone", legacy = "Playback.ashx", message = "This legacy media handler has been retired. Use HTML5 audio/video elements with direct file URLs." });
         }
     }
 }

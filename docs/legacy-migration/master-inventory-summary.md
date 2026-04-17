@@ -7,18 +7,18 @@ This file also includes the canonical migration decision matrix (see `Canonical 
 Companion LGC inventory:
 - [Legacy Migration Master Inventory](./master-inventory-projects.md)
 
-> **Program Status (2026-04-16): In Progress (implementation closure).**  
-> Artifact-level project mapping remains: 49 of 50 projects are `Completed`; 1 project (P039 `FCKeditor`) is `Do Not Migrate As-Is` and replaced by TipTap OSS.  
+> **Program Status (2026-04-17): Completed (current migration scope closed).**  
+> Artifact-level project mapping: 49 of 50 projects are `Completed`; 1 project (P039 `FCKeditor`) is `Do Not Migrate As-Is` and replaced by TipTap OSS.  
 > File tracker totals from [CSV inventory](../plans/legacy-migration/inventory/): 5,306 tracked files, 3,878 `completed`, 1,428 `not_applicable`, 0 `incomplete`, 0 `not_started`.  
-> `.ascx` coverage is 519 total: 507 `completed`, 12 `not_applicable` pending explicit closure decisions.  
-> Implementation closure work is tracked in `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`.
+> `.ascx` coverage is 519 total: 507 `completed` and 12 `not_applicable` (all 12 explicitly closed with do-not-migrate rationale).  
+> Completed-row `migrated_file_1to1` integrity is reconciled (`0` unresolved mapping issues).  
+> Closure record: `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`.
 
 > **P051 Content/Parts Parity Addendum (2026-04-16):** `WCMS.WebSystem.WebApp` has legacy-to-modern file-path compatibility for `Content/Parts` and legacy theme templates: 165/165 legacy `Content/Parts/*.ascx` controls map to modern `.cshtml`, 11/11 legacy theme `.ascx` templates map to modern `.cshtml`, and legacy `User.svc` is mapped by compatibility API controller routes.
 
 Status legend:
 - `Completed`: modern counterpart on .NET 10 verified; compiles with 0 errors.
 - `Do Not Migrate As-Is`: retain/replace/retire; do not lift-and-shift this artifact.
-- `In Progress` (program-level): implementation parity closure is ongoing even if artifact mapping rows are completed.
 
 ## Master Table
 
