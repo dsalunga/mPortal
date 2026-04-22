@@ -52,3 +52,4 @@ bin
 /Portal/WebSystem/WebSystem/Content/Parts/BranchLocator
 
 /LessonReviewer/LessonReviewer/Admin/Data/Logs.nuget/
+scripts/__pycache__/
