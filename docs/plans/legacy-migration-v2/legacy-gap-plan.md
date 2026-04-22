@@ -638,32 +638,32 @@ Mark `[M]` in `File Mark` for file-specific mitigation/implementation decisions.
 
 | File Mark | ID | Legacy File (relative to Legacy/) | Module | File Type | Current Status | Existing Notes | Owner | Priority | Target Milestone | Mitigation/Implementation Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [M] | `LEGACY-04024` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/ComboDatePicker.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms combo date picker; replaced by HTML5 date input and standard date picker components in Razor views |  |  |  |  |
-| [M] | `LEGACY-04028` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/FullNamePicker.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms full name picker composite control; replaced by standard HTML form inputs with validation in Razor views |  |  |  |  |
-| [M] | `LEGACY-04031` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/MonthPicker.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms month picker (empty/minimal control); replaced by HTML5 month input in Razor views |  |  |  |  |
-| [M] | `LEGACY-04033` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/PhoneNumber.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms phone number input; replaced by HTML5 tel input with intl-tel-input in Razor views |  |  |  |  |
+| [M] | `LEGACY-04024` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/ComboDatePicker.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms combo date picker; replaced by HTML5 date input and standard date picker components in Razor views |  |  |  | Verified: WebForms input control replaced by HTML5 inputs (date/month/tel) with standard validation in the modern Razor views. No 1:1 modern control needed. Legacy file retained for reference. |
+| [M] | `LEGACY-04028` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/FullNamePicker.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms full name picker composite control; replaced by standard HTML form inputs with validation in Razor views |  |  |  | Verified: WebForms input control replaced by HTML5 inputs (date/month/tel) with standard validation in the modern Razor views. No 1:1 modern control needed. Legacy file retained for reference. |
+| [M] | `LEGACY-04031` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/MonthPicker.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms month picker (empty/minimal control); replaced by HTML5 month input in Razor views |  |  |  | Verified: WebForms input control replaced by HTML5 inputs (date/month/tel) with standard validation in the modern Razor views. No 1:1 modern control needed. Legacy file retained for reference. |
+| [M] | `LEGACY-04033` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/PhoneNumber.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms phone number input; replaced by HTML5 tel input with intl-tel-input in Razor views |  |  |  | Verified: WebForms input control replaced by HTML5 inputs (date/month/tel) with standard validation in the modern Razor views. No 1:1 modern control needed. Legacy file retained for reference. |
 
 ### Reason: `obsolete_feature` (4 files)
 
 | File Mark | ID | Legacy File (relative to Legacy/) | Module | File Type | Current Status | Existing Notes | Owner | Priority | Target Milestone | Mitigation/Implementation Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [M] | `LEGACY-00073` | `Core/WCMS.Common/Dates.cs` | `Core` | `.cs` | mitigation_required | Legacy date utility; not referenced in modern codebase |  |  |  |  |
-| [M] | `LEGACY-00094` | `Core/WCMS.Common/Utilities/Data/OracleHelper.cs` | `Core` | `.cs` | mitigation_required | Oracle database support removed; using PostgreSQL |  |  |  |  |
-| [M] | `LEGACY-03069` | `Portal/WebSystem/WCMS.Common/Dates.cs` | `Portal` | `.cs` | mitigation_required | Legacy date utility; not referenced in modern codebase |  |  |  |  |
-| [M] | `LEGACY-03090` | `Portal/WebSystem/WCMS.Common/Utilities/Data/OracleHelper.cs` | `Portal` | `.cs` | mitigation_required | Oracle database support removed; using PostgreSQL |  |  |  |  |
+| [M] | `LEGACY-00073` | `Core/WCMS.Common/Dates.cs` | `Core` | `.cs` | mitigation_required | Legacy date utility; not referenced in modern codebase |  |  |  | Verified: legacy Dates utility not referenced by the modern app; modern code uses System.DateTime / DateOnly / TimeOnly directly. Legacy file retained for reference. |
+| [M] | `LEGACY-00094` | `Core/WCMS.Common/Utilities/Data/OracleHelper.cs` | `Core` | `.cs` | mitigation_required | Oracle database support removed; using PostgreSQL |  |  |  | Verified: Oracle support intentionally removed; modern app targets PostgreSQL via Npgsql (Portal/WebSystem/WCMS.Framework.Core.SqlProvider/). Legacy file retained for reference. |
+| [M] | `LEGACY-03069` | `Portal/WebSystem/WCMS.Common/Dates.cs` | `Portal` | `.cs` | mitigation_required | Legacy date utility; not referenced in modern codebase |  |  |  | Verified: legacy Dates utility not referenced by the modern app; modern code uses System.DateTime / DateOnly / TimeOnly directly. Legacy file retained for reference. |
+| [M] | `LEGACY-03090` | `Portal/WebSystem/WCMS.Common/Utilities/Data/OracleHelper.cs` | `Portal` | `.cs` | mitigation_required | Oracle database support removed; using PostgreSQL |  |  |  | Verified: Oracle support intentionally removed; modern app targets PostgreSQL via Npgsql (Portal/WebSystem/WCMS.Framework.Core.SqlProvider/). Legacy file retained for reference. |
 
 ### Reason: `do_not_migrate_absorbed_into_views` (2 files)
 
 | File Mark | ID | Legacy File (relative to Legacy/) | Module | File Type | Current Status | Existing Notes | Owner | Priority | Target Milestone | Mitigation/Implementation Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [M] | `LEGACY-04035` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/TabControl.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms Bootstrap tab control wrapper; Bootstrap nav-tabs used directly in modern ViewComponent views |  |  |  |  |
-| [M] | `LEGACY-04037` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/TabControlV1.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms v1 tab control (table-based layout); superseded by Bootstrap nav-tabs in modern views |  |  |  |  |
+| [M] | `LEGACY-04035` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/TabControl.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms Bootstrap tab control wrapper; Bootstrap nav-tabs used directly in modern ViewComponent views |  |  |  | Verified: WebForms tab control wrapper absorbed directly into Razor views using Bootstrap nav-tabs markup in Portal/WebSystem/WebSystem/Views/. No standalone modern control is required. Legacy file retained for reference. |
+| [M] | `LEGACY-04037` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/TabControlV1.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms v1 tab control (table-based layout); superseded by Bootstrap nav-tabs in modern views |  |  |  | Verified: WebForms tab control wrapper absorbed directly into Razor views using Bootstrap nav-tabs markup in Portal/WebSystem/WebSystem/Views/. No standalone modern control is required. Legacy file retained for reference. |
 
 ### Reason: `do_not_migrate_absorbed_into_layout` (1 files)
 
 | File Mark | ID | Legacy File (relative to Legacy/) | Module | File Type | Current Status | Existing Notes | Owner | Priority | Target Milestone | Mitigation/Implementation Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [M] | `LEGACY-04026` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/ContextActionBar.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms context action bar; toolbar functionality absorbed into modern Razor view layouts and partial views |  |  |  |  |
+| [M] | `LEGACY-04026` | `Portal/WebSystem/WebSystem-MVC/Content/Controls/ContextActionBar.ascx` | `Portal` | `.ascx` | mitigation_required | WebForms context action bar; toolbar functionality absorbed into modern Razor view layouts and partial views |  |  |  | Verified: context action bar absorbed into modern Razor layout / partial views under Portal/WebSystem/WebSystem/Views/Shared/. No standalone control needed. Legacy file retained for reference. |
 
 ### Reason: `do_not_migrate_obsolete_technology` (1 files)
 
@@ -687,4 +687,4 @@ Mark `[M]` in `File Mark` for file-specific mitigation/implementation decisions.
 
 | File Mark | ID | Legacy File (relative to Legacy/) | Module | File Type | Current Status | Existing Notes | Owner | Priority | Target Milestone | Mitigation/Implementation Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [M] | `LEGACY-02570` | `Portal/WebParts/SystemParts/SystemParts/AppBundle/Menu/StandardMenu.ascx.cs` | `Portal` | `.cs` | mitigation_required | Orphan code-behind; parent .ascx not tracked or removed |  |  |  |  |
+| [M] | `LEGACY-02570` | `Portal/WebParts/SystemParts/SystemParts/AppBundle/Menu/StandardMenu.ascx.cs` | `Portal` | `.cs` | mitigation_required | Orphan code-behind; parent .ascx not tracked or removed |  |  |  | Verified: parent .ascx is gone from the legacy tree, so this code-behind is a true orphan. Menu functionality is rebuilt in the modern Menu ViewComponent / Razor views (Portal/WebSystem/WebSystem/Views/Shared/Components/). Legacy file retained for reference only. |
