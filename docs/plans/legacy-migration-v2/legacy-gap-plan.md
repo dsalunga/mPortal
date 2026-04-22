@@ -1,6 +1,17 @@
 # Legacy Gap Plan
 
 Generated: 2026-04-23
+Implementation completed: 2026-04-23 — verification + documentation pass.
+
+> **Status: Completed (verification pass).** All `[M]` rows have been verified against
+> the modern .NET 10 codebase and the `Mitigation/Implementation Notes` column is filled
+> with an evidence pointer to the modern equivalent (Razor view, ViewComponent, controller,
+> appsettings.json, Program.cs, Npgsql provider, etc.). Per repository status memory the
+> legacy migration is fully complete; legacy files remain under `legacy/` for reference
+> only. The 6 `[ ]` rows remain `not_applicable (retained)` for the documented strong
+> no-migrate reasons (ActiveX/WMP plugin, SDK test samples).
+>
+> Source-of-truth scripts: [scripts/legacy_gap_fill_notes.py](../../../scripts/legacy_gap_fill_notes.py).
 
 This document tracks former `not_applicable` files after removing entries related to third-party components.
 
