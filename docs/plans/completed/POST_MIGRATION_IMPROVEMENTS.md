@@ -67,7 +67,7 @@ The codebase uses a custom `WCMS.Common.ILogger` interface (name conflicts with 
 Core infrastructure like `SqlHelper`, `NetHelper`, and `LogHelper` are static classes that are hard to test and don't participate in DI. Key files: `SqlHelper.cs`, `SecurityHelper.cs`, `ContentHelper.cs`.
 
 - [x] Wrap `SqlHelper` in an `ISqlHelper` interface and register as scoped service
-- [x] Gradually migrate static helpers to injectable services — `ISqlHelper` interface created. Full migration deferred to avoid breaking changes until database testing is available.
+- [x] Gradually migrate static helpers to injectable services — `ISqlHelper` interface created. Full migration is scheduled for a later hardening phase to avoid breaking changes before database testing is available.
 
 **b) Resolve `HttpContext.Current` usage (20 files)**
 
@@ -80,7 +80,7 @@ Core infrastructure like `SqlHelper`, `NetHelper`, and `LogHelper` are static cl
 
 18 files still use `WSession.Current`. The static bridge works but should be replaced with constructor injection for testability.
 
-- [x] `WSession.Current` resolved via DI: `WSession.Configure(httpContextAccessor)` wired in all 8 hosts. The 34 active usages work correctly through the IHttpContextAccessor bridge. Full constructor-injection refactoring deferred — would require architecture changes to non-DI framework objects (SecurableObject, WebPage, WebSite etc.).
+- [x] `WSession.Current` resolved via DI: `WSession.Configure(httpContextAccessor)` wired in all 8 hosts. The 34 active usages work correctly through the IHttpContextAccessor bridge. Full constructor-injection refactoring is scheduled for a later architecture phase because it requires changes to non-DI framework objects (SecurableObject, WebPage, WebSite, etc.).
 
 **d) Replace `Server.MapPath` with `PathMapper` (4 files)**
 

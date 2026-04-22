@@ -6,7 +6,7 @@ Aggregate solution status is derived from mapped `LGC-###` project statuses in `
 > **Program Status (2026-04-17): Completed (current migration scope closed).**  
 > Solution-level mapping remains: 16 `Completed`, 1 `Mixed`, 1 `Do Not Migrate As-Is` (FCKeditor replacement-only).  
 > Tracker totals are now 5,306 files: 3,878 `completed`, 1,428 `not_applicable`, 0 `incomplete`, 0 `not_started`.  
-> See [EXECUTION_BOARD.md](../plans/legacy-migration/EXECUTION_BOARD.md) for closure history and future execution batches when new scope is added.
+> See [EXECUTION_BOARD.md](../legacy-migration-v1/EXECUTION_BOARD.md) for closure history and future execution batches when new scope is added.
 
 Companion views:
 

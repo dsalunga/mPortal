@@ -9,7 +9,7 @@ Companion LGC inventory:
 
 > **Program Status (2026-04-17): Completed (current migration scope closed).**  
 > Artifact-level project mapping: 49 of 50 projects are `Completed`; 1 project (P039 `FCKeditor`) is `Do Not Migrate As-Is` and replaced by TipTap OSS.  
-> File tracker totals from [CSV inventory](../plans/legacy-migration/inventory/): 5,306 tracked files, 3,878 `completed`, 1,428 `not_applicable`, 0 `incomplete`, 0 `not_started`.  
+> File tracker totals from [CSV inventory](../legacy-migration-v1/inventory/): 5,306 tracked files, 3,878 `completed`, 1,428 `not_applicable`, 0 `incomplete`, 0 `not_started`.  
 > `.ascx` coverage is 519 total: 507 `completed` and 12 `not_applicable` (all 12 explicitly closed with do-not-migrate rationale).  
 > Completed-row `migrated_file_1to1` integrity is reconciled (`0` unresolved mapping issues).  
 > Closure record: `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`.
@@ -79,7 +79,7 @@ Canonical `P###` rows are summary-level entries; each detail link points directl
 
 ## Canonical Migration Decision Matrix
 
-This matrix maps the canonical legacy card set in [../canonical/legacy/](../canonical/legacy/) (cards `00` through `19`) to migration decisions so implementation stays focused on core/essential outcomes.
+This matrix maps the canonical legacy card set in [../../canonical/legacy/](../../canonical/legacy/) (cards `00` through `19`) to migration decisions so implementation stays focused on core/essential outcomes.
 
 Decision status legend:
 - `Core - Migrate`: required in target architecture.
