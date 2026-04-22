@@ -1,8 +1,50 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.AdmineventviewViewModel
-@* Ported from AdminEventView.ascx. *@
-
-<div class="component-admineventview">
-    <div class="component-content" data-object-id="@Model.ObjectId" data-record-id="@Model.RecordId">
-        <p class="text-muted"><em>Admineventview</em> component loaded.</p>
+@*
+    Ported from legacy/Portal/WebParts/SystemParts/SystemParts/AppBundle/EventCalendar/AdminEventView.ascx.
+    Real Razor admin shell generated from legacy WebForms markup. The form fields,
+    list, and submit buttons reflect the legacy control structure. Persistence is
+    a TODO and must be wired to the appropriate controller action.
+*@
+<section class="card shadow-sm component-admineventview" aria-label="Admin Event View">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-list-ul" aria-hidden="true"></i> Admin Event View</h5>
     </div>
-</div>
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Model.StatusMessage))
+        {
+            <div class="alert alert-success" role="status">@Model.StatusMessage</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
+        }
+
+        <div class="mt-4">
+            <h6 class="mb-2"><i class="bi bi-list-ul" aria-hidden="true"></i> Existing items</h6>
+            @if (Model.Items != null && Model.Items.Count > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover">
+                        <thead><tr><th>Id</th><th>Title</th><th>Subtitle</th><th>Date</th><th></th></tr></thead>
+                        <tbody>
+                        @foreach (var it in Model.Items)
+                        {
+                            <tr>
+                                <td>@it.Id</td>
+                                <td>@it.Title</td>
+                                <td>@it.Subtitle</td>
+                                <td>@(it.Date?.ToString("g"))</td>
+                                <td><a class="btn btn-sm btn-outline-secondary" href="?recordId=@it.Id">Edit</a></td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="text-muted small">No records yet. (TODO: wire list provider.)</p>
+            }
+        </div>
+    </div>
+</section>

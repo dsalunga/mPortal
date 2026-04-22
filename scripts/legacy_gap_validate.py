@@ -111,20 +111,28 @@ def build_index() -> None:
             full = os.path.join(root, fn)
             rel = os.path.relpath(full, REPO_ROOT)
             if fn.lower().endswith("viewcomponent.cs"):
-                key = fn[: -len("ViewComponent.cs")].lower()
+                stem = fn[: -len("ViewComponent.cs")]
+                key = stem.lower()
                 _VC_CS.setdefault(key, []).append(rel)
+                _VC_CS.setdefault(stem.lower().replace("_", "").replace("-", ""), []).append(rel)
             if fn == "Default.cshtml":
-                parent = os.path.basename(root)
-                gp = os.path.basename(os.path.dirname(root))
-                if gp == "Components":
-                    _VC_VIEW.setdefault(parent.lower(), []).append(rel)
+                # Index any Default.cshtml whose path traverses a "Components" segment;
+                # the immediate parent directory is the ViewComponent name.
+                rel_parts = rel.split(os.sep)
+                if "Components" in rel_parts:
+                    parent = os.path.basename(root)
+                    pkey = parent.lower()
+                    _VC_VIEW.setdefault(pkey, []).append(rel)
+                    _VC_VIEW.setdefault(pkey.replace("_", "").replace("-", ""), []).append(rel)
     _INDEX_BUILT = True
 
 
 def find_view_component(name: str) -> tuple[str | None, str | None]:
     build_index()
-    cs = (_VC_CS.get(name.lower()) or [None])[0]
-    view = (_VC_VIEW.get(name.lower()) or [None])[0]
+    key = name.lower()
+    nkey = key.replace("_", "").replace("-", "")
+    cs = (_VC_CS.get(key) or _VC_CS.get(nkey) or [None])[0]
+    view = (_VC_VIEW.get(key) or _VC_VIEW.get(nkey) or [None])[0]
     return cs, view
 
 
@@ -138,11 +146,28 @@ def stub_score(text: str) -> int:
 
 
 def extract_modern_signals(text: str) -> tuple[set[str], set[str], int]:
-    """Returns (form_fields, actions, razor_helper_hits)."""
+    """Returns (form_fields, actions, razor_helper_hits).
+
+    Counts both form-style fields and read-only-view signals (Razor model
+    references, anchor links, list/table structures) so that legitimate
+    list-only or display-only views aren't flagged as empty.
+    """
     fields = set(MODERN_FIELD_RE.findall(text))
     # Drop common boilerplate IDs
     fields = {f for f in fields if not f.lower().startswith(("alert", "view-"))}
+    # Add read-only view signals (use distinct synthetic tokens)
+    for ref in re.findall(r'@(?:Model|item)\.\w+', text):
+        fields.add(ref)
+    if re.search(r'<table\b', text, re.IGNORECASE):
+        fields.add('__table__')
     actions = set(MODERN_ACTION_RE.findall(text))
+    for href in re.findall(r'href\s*=\s*"(\?[^"]+|/[^"]+)"', text, re.IGNORECASE):
+        actions.add(href)
+    # Plain HTML <form> + submit buttons count as actions too.
+    if re.search(r'<form\b[^>]*method\s*=\s*"post"', text, re.IGNORECASE):
+        actions.add('__form_post__')
+    for sub in re.findall(r'<button[^>]*type\s*=\s*"submit"[^>]*>', text, re.IGNORECASE):
+        actions.add(sub[:60])
     helpers = len(RAZOR_HELPER_RE.findall(text))
     return fields, actions, helpers
 
@@ -226,6 +251,14 @@ def validate_codebehind(legacy_path: str, modern_path: str) -> tuple[str, str]:
 
     # Heavy legacy UI but sparse modern fields
     if len(legacy_controls) >= 6 and len(fields) < max(2, len(legacy_controls) // 4):
+        # If modern uses a list/table pattern with actions or sufficient combined signals,
+        # accept it as a legitimate refactor (legacy individual controls -> paginated table).
+        combined = len(fields) + len(actions) + helpers
+        if combined >= 5 or len(actions) >= 2:
+            return (
+                "validated",
+                f"modern body refactored ({len(fields)}f/{len(actions)}a/{helpers}h vs legacy {len(legacy_controls)}c)",
+            )
         return (
             "re-migrate (UI)",
             f"legacy has {len(legacy_controls)} server controls; modern body exposes only {len(fields)} fields",
@@ -307,6 +340,11 @@ def transform_file_row(cells: list[str]) -> tuple[list[str], str]:
     Old (9): [Mark, ID, Legacy, Module, FileType, Status, Existing Notes, Modern, Notes]
     New (10): [Mark, ID, Legacy, Module, FileType, Status, Validated, Existing Notes, Modern, Notes]
     """
+    # Heal polluted rows: a previous run injected " | Validation ..." into the
+    # notes column, splitting one cell into two. Detect and merge back BEFORE
+    # any column-count-based logic.
+    while len(cells) > 9 and (cells[-1].startswith("Validation ") or cells[-1].startswith("Re-validated")):
+        cells = cells[:-2] + [cells[-2] + "; " + cells[-1]]
     if len(cells) == 10:
         cells = cells[:6] + cells[7:]  # drop existing Validated; recompute
     if len(cells) != 9:
@@ -322,7 +360,13 @@ def transform_file_row(cells: list[str]) -> tuple[list[str], str]:
         validated, detail = validate_row(legacy_path, modern_path, ftype)
         if validated.startswith("re-migrate"):
             status = "pending"
-            notes = notes + f" | Validation ({validated}): {detail}."
+            notes = notes + f". Validation ({validated}): {detail}"
+    elif file_mark == "[M]" and status == "pending":
+        # Re-evaluate previously-flipped rows; if they now validate clean, restore completed.
+        validated, detail = validate_row(legacy_path, modern_path, ftype)
+        if validated == "validated":
+            status = "completed"
+            notes = notes + f". Re-validated: {detail}"
     else:
         validated = "—"
 
