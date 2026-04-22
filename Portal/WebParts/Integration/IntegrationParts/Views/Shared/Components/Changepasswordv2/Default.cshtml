@@ -1,33 +1,57 @@
-@model WCMS.WebSystem.WebParts.Integration.ViewComponents.Changepasswordv2ViewModel
-@* Ported from ChangePasswordV2.ascx. *@
+@using WCMS.WebSystem.WebParts.Integration.ViewComponents
+@model Changepasswordv2ViewModel
+@* Ported from ChangePasswordV2.ascx (Apps/Integration/Account). *@
 
-<div class="component-changepasswordv2">
-    @if (!string.IsNullOrEmpty(Model.StatusMessage))
-    {
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            @Model.StatusMessage
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-
-    @if (Model.ActiveViewIndex == 0)
-    {
-        <div class="view-section" id="view-viewUpdate">
-            <h4>Update</h4>
-            <div class="view-content p-3">
-                @* viewUpdate content *@
-                <p class="text-muted">Section: Update</p>
+<section class="card shadow-sm component-changepasswordv2" aria-label="Change Password">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="bi bi-shield-lock" aria-hidden="true"></i> Change Password</h5>
+    </div>
+    <div class="card-body">
+        @if (Model.View == Changepasswordv2View.Note)
+        {
+            <div class="alert alert-info" role="status">
+                @Html.Raw(Model.NoteHtml)
             </div>
-        </div>
-    }
-    else if (Model.ActiveViewIndex == 1)
-    {
-        <div class="view-section" id="view-viewDisplayNote">
-            <h4>Display Note</h4>
-            <div class="view-content p-3">
-                @* viewDisplayNote content *@
-                <p class="text-muted">Section: Display Note</p>
-            </div>
-        </div>
-    }
-</div>
+            <a class="btn btn-secondary" href="/Account/"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back</a>
+        }
+        else
+        {
+            @if (!string.IsNullOrEmpty(Model.BeforeUpdateNoteHtml))
+            {
+                <div class="alert alert-warning" role="note">@Html.Raw(Model.BeforeUpdateNoteHtml)</div>
+            }
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
+            }
+            <form method="post" asp-action="@Model.PostAction" asp-controller="@Model.PostController" novalidate>
+                <input type="hidden" name="userId" value="@Model.UserId" />
+                <input type="hidden" name="emailDomainFilter" value="@Model.EmailDomainFilter" />
+                <input type="hidden" name="updateGlobalPassword" value="@Model.UpdateGlobalPassword.ToString().ToLowerInvariant()" />
+                <div class="mb-3">
+                    <label class="form-label" for="cpv2-user">User</label>
+                    <input type="text" class="form-control" id="cpv2-user" value="@Model.UserName" readonly />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="cpv2-current">Current Password</label>
+                    <input type="password" class="form-control" name="currentPassword" id="cpv2-current" autocomplete="current-password" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="cpv2-new">New Password</label>
+                    <input type="password" class="form-control" name="newPassword" id="cpv2-new" autocomplete="new-password" minlength="8" required />
+                    <div class="form-text">Minimum 8 characters; mix letters, numbers and symbols.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="cpv2-confirm">Confirm New Password</label>
+                    <input type="password" class="form-control" name="confirmPassword" id="cpv2-confirm" autocomplete="new-password" required />
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i> Update</button>
+                <a class="btn btn-secondary ms-2" href="/Account/">Cancel</a>
+                @if (Model.UpdateGlobalPassword)
+                {
+                    <p class="alert alert-warning mt-3 mb-0"><i class="bi bi-info-circle" aria-hidden="true"></i> Updating your password may also update your linked e-mail account password. This may take a moment.</p>
+                }
+            </form>
+        }
+    </div>
+</section>
