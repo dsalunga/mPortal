@@ -1,4 +1,5 @@
 <Solution>
+  <Folder Name="/Apps/" />
   <Folder Name="/Apps/BibleReader/">
     <Project Path="Apps/BibleReader/BibleReader.Core/BibleReader.Core.csproj" />
   </Folder>
@@ -43,6 +44,7 @@
   </Folder>
   <Folder Name="/Portal/WebParts/Integration/">
     <Project Path="Portal/WebParts/Integration/WCMS.WebSystem.Apps.BibleReader/WCMS.WebSystem.Apps.BibleReader.csproj" />
+    <Project Path="Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.Migrations.PostgreSql/WCMS.WebSystem.Apps.Integration.Migrations.PostgreSql.csproj" />
     <Project Path="Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest/WCMS.WebSystem.Apps.Integration.UnitTest.csproj" />
     <Project Path="Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration/WCMS.WebSystem.Apps.Integration.csproj" />
   </Folder>

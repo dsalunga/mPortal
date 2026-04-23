@@ -228,18 +228,18 @@ Why Windows VM is still needed:
 
 ## 7) Outstanding Work (Not Yet Fully Implemented)
 
-Current status snapshot (validated 2026-04-09):
+Current status snapshot (validated 2026-04-23):
 - 48 C# projects (`.csproj`) on disk; all 48 are included in `mPortal.slnx`.
 - **All projects target `.NET 10`** — 45 on `net10.0`, 3 on `net10.0-windows` (DbManagerWPF, WebSystemDeployer, MySQL TableEditor).
 - All `packages.config` files have been removed (0 remaining).
 - No active `#if NETFRAMEWORK` source guards remain outside documentation; WCF `System.ServiceModel` server usage is removed.
 - Legacy web assets outside `/Legacy` are at 0 for `.aspx/.ascx/.svc/.asmx/.ashx/Global.asax/web.config`; `.cmd` scripts are also 0.
 - 270 ViewComponent classes and 272 `Default.cshtml` views exist in the migrated codebase.
-- Test validation on 2026-04-09:
+- Test validation on 2026-04-23:
   - `dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj` -> 77 passed.
-  - `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj` -> 8 passed.
-- **Build validation on 2026-04-09:**
-  - **`dotnet build mPortal.slnx` succeeds — 0 errors, 17 warnings (14 security CA5xxx + 3 assembly metadata).**
+  - `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj` -> 25 passed, 7 skipped (environment-gated PostgreSQL/data-parity suites).
+- **Build validation on 2026-04-23:**
+  - **`dotnet build mPortal.slnx` succeeds — 0 errors, 2 warnings.**
   - `EnableWindowsTargeting=true` set globally in `Directory.Build.props` for cross-platform macOS builds.
   - Root `.editorconfig` created to triage 2590 pre-existing analyzer warnings: security rules (CA5xxx) remain as warnings; style/naming rules lowered to suggestion severity for incremental cleanup.
   - All NuGet package versions aligned: EF Core 10.0.5, Npgsql.EF 10.0.1, Npgsql 10.0.2, Microsoft.Data.SqlClient 6.1.3, SMO 181.19.0, System.Configuration.ConfigurationManager 10.0.5, SixLabors.ImageSharp 3.1.12.
@@ -521,7 +521,7 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 The CMS dynamically resolves URLs to database-stored pages and renders them from templates + web parts. This is the most critical migration item for feature parity.
 
 - [x] Create ASP.NET Core middleware to replace `WebRewriter.ResolvePage()` — resolve URL path segments to `WSite` → `WPage` hierarchy via database lookup (`PageResolutionMiddleware`).
-- [x] Implement custom `IRouter` or endpoint routing that integrates with the `WPage` resolution pipeline — `CmsPageEndpointRouteBuilderExtensions.MapCmsPages()` created as a fallback endpoint that renders pages resolved by `PageResolutionMiddleware`.
+- [x] Implement endpoint routing that integrates with the `WPage` resolution pipeline — catch-all route now maps unresolved slugs to `CmsController.Render`, which renders from `ResolvedPage` context produced by `PageResolutionMiddleware`.
 - [x] Create a `PageRenderingMiddleware` that loads page template, iterates panel zones, and maps `WebPageElement` instances to ViewComponents — stores panel-to-element mappings in `HttpContext.Items` for Razor consumption. Registered via `app.UseWcmsPageRendering()`.
 - [x] Implement dynamic Razor layout selection based on `WPage.ThemeId` → `WebTheme` → layout file mapping — `ThemeViewLocationExpander` created; registered via `services.AddWcmsThemeSupport()`.
 - [x] Port `WContext` from static `HttpContext.Current` to a scoped DI service (`IWContext`) injected via `IHttpContextAccessor` — `IWContext` interface created and registered as scoped service via `AddWcmsFramework()`; legacy `WContext.GetInstance()` guarded with `#if NETFRAMEWORK`.
@@ -701,9 +701,11 @@ Infrastructure is in place for E2E testing via `docker-compose.yml` (SQL Server 
 - [x] Set up a test SQL Server database with the WCMS schema — `docker-compose.yml` provisions SQL Server 2022 with volume persistence; WCMS schema deployment requires running the `.sqlproj` DacPac against the container.
 - [x] Run the main web host (`WebSystem`) and verify page rendering pipeline works end-to-end — health endpoint verified in integration tests; full page rendering requires database with site/page data.
 - [x] Verify all 7 API controllers return correct data — all API controllers wired to real data providers (verified in code review); endpoint availability tested via integration tests.
-- [ ] Verify cookie authentication login/logout flow — requires database with user records.
+- [x] Implement cookie-auth endpoint flow (`/account/login`, `/account/forgotpassword`, `/account/verifyotp`, `/logout`) and baseline integration coverage (`invalid login` redirect + `/logout` redirect) via `AuthenticationFlowTests`.
+- [ ] Verify successful login/logout flow against seeded database users (full E2E) — requires database with user records.
 - [ ] Verify background agent service starts and executes scheduled tasks — requires database; agent builds successfully on .NET 10.
-- [ ] Verify ViewComponents render correctly when invoked from pages — requires database with page/template data.
+- [x] Replace CMS fallback placeholder with controller-based rendering (`CmsController` + `Views/Cms/Render.cshtml`) and context propagation updates in `_loader.cshtml` / `WContext`.
+- [ ] Verify database-resolved page rendering and ViewComponent output against seeded page/template datasets (full E2E).
 - [ ] Test multi-site hosting (multiple WSite entries resolving different domains) — requires database with WSite records.
 - [ ] Test admin controls (site/page/template/user management) — requires database with admin user.
 - [ ] Performance baseline comparison with legacy .NET Framework version — requires production-like environment.
@@ -769,7 +771,7 @@ The following items were identified during review and are not fully covered by o
 - [x] Create `docker-compose.yml` — created with SQL Server 2022 + web app services, health checks, and volume persistence.
 
 **.NET 10 GA validation:**
-- [x] Validate entire solution builds and runs cleanly on the .NET 10 GA toolchain — **fully validated 2026-04-09**: `dotnet build mPortal.slnx` succeeds with 0 errors; all 85 tests pass (77 framework + 8 integration). Cross-platform macOS builds enabled via `EnableWindowsTargeting=true`. Remaining: production-like runtime validation on Windows/IIS (see §7.12).
+- [x] Validate entire solution builds and runs cleanly on the .NET 10 GA toolchain — **validated 2026-04-23**: `dotnet build mPortal.slnx` succeeds with 0 errors/2 warnings (pre-existing Razor/code warnings); `WCMS.Framework.Tests` passes 77/77; `WCMS.Integration.Tests` passes 25/32 with 7 environment-gated skips. Cross-platform macOS builds enabled via `EnableWindowsTargeting=true`. Remaining: production-like runtime validation on Windows/IIS (see §7.12).
 
 ---
 

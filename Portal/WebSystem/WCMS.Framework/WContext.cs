@@ -15,6 +15,8 @@ namespace WCMS.Framework
     public class WContext : WebContextBase, IWContext
     {
         private const string KEY = "WContext";
+        public const string CurrentElementItemKey = "WContext.CurrentElement";
+        public const string CurrentPageItemKey = "WContext.CurrentPage";
 
         private int _internalPageId = -1;
         private int _contextType = -1;
@@ -343,6 +345,48 @@ namespace WCMS.Framework
                 ObjectId = WebObjects.WebPartAdmin;
                 PartAdminId = adminId;
                 _contextType = WContextTypes.AdminMode;
+            }
+            else
+            {
+                var httpContext = HttpContextHelper.Current;
+                if (httpContext?.Items != null)
+                {
+                    if (httpContext.Items.TryGetValue(CurrentElementItemKey, out var elementObj) &&
+                        elementObj is IPageElement currentElement)
+                    {
+                        RecordId = currentElement.Id;
+                        ObjectId = currentElement.OBJECT_ID;
+                        _contextType = WContextTypes.FrontEnd;
+
+                        if (currentElement is WPage currentPage)
+                        {
+                            _internalPageId = currentPage.Id;
+                        }
+                        else if (currentElement is WebPageElement currentPageElement)
+                        {
+                            try
+                            {
+                                _internalPageId = currentPageElement.Page?.Id ?? -1;
+                            }
+                            catch
+                            {
+                                _internalPageId = -1;
+                            }
+                        }
+
+                        return;
+                    }
+
+                    if (httpContext.Items.TryGetValue(CurrentPageItemKey, out var pageObj) &&
+                        pageObj is WPage currentPageFromItems)
+                    {
+                        RecordId = currentPageFromItems.Id;
+                        ObjectId = WebObjects.WebPage;
+                        _contextType = WContextTypes.FrontEnd;
+                        _internalPageId = currentPageFromItems.Id;
+                        return;
+                    }
+                }
             }
 
             _internalPageId = pageId;

@@ -84,3 +84,42 @@ jobs:
         dotnet build "Portal/WebSystem/WCMS.Framework.SqlDabase/WCMS.Framework.SqlDabase.sqlproj" -c Release || echo "SQL project build skipped (SSDT not installed)"
         dotnet build "Portal/WebParts/Integration/BibleReader.Database/BibleReader.Database.sqlproj" -c Release || echo "SQL project build skipped (SSDT not installed)"
         dotnet build "Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.Database/WCMS.WebSystem.Apps.Integration.Database.sqlproj" -c Release || echo "SQL project build skipped (SSDT not installed)"
+
+  integration-postgres:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: mportal_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    strategy:
+      matrix:
+        dotnet-version: [ '10.0.x' ]
+    env:
+      WCMS__DatabaseProvider: PostgreSql
+      ConnectionStrings__DefaultConnection: Host=localhost;Port=5432;Database=mportal_test;Username=postgres;Password=postgres
+      ConnectionStrings__ConnectionString: Host=localhost;Port=5432;Database=mportal_test;Username=postgres;Password=postgres
+      DOTNET_ENVIRONMENT: Production
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+
+    - name: Restore dependencies
+      run: dotnet restore Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj
+
+    - name: Run PostgreSQL integration/model compatibility tests
+      run: |
+        dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj --no-restore -c Release --verbosity normal --filter "TestCategory=PostgreSql"

@@ -428,8 +428,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-// CMS page fallback endpoint — renders pages resolved by PageResolutionMiddleware
-app.MapCmsPages();
+// CMS page fallback endpoint — resolves unmatched paths through CMS rendering.
+app.MapControllerRoute(
+    name: "CmsFallback",
+    pattern: "{**slug}",
+    defaults: new { controller = "Cms", action = "Render" });
 
 app.Run();
 

@@ -1,0 +1,72 @@
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using WCMS.Framework
+@model WCMS.WebSystem.Controllers.CmsPageRenderModel
+@{
+    Layout = null;
+    var pageTitle = string.IsNullOrWhiteSpace(Model.Page?.Name) ? "mPortal" : Model.Page.Name;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="none,noarchive" />
+    <title>@pageTitle</title>
+    @if (!string.IsNullOrWhiteSpace(Model.ResourcesHtml))
+    {
+        @Html.Raw(Model.ResourcesHtml)
+    }
+</head>
+<body>
+    <main class="wcms-runtime-page" data-page-id="@Model.Page?.Id">
+        @if (Model.IsStaticPage)
+        {
+            if (!string.IsNullOrWhiteSpace(Model.TemplatePath))
+            {
+                var staticViewData = new ViewDataDictionary(ViewData)
+                {
+                    ["Page"] = Model.Page,
+                    ["Template"] = Model.Template,
+                    ["Panels"] = Model.Panels,
+                    ["Elements"] = Model.Elements
+                };
+                @await Html.PartialAsync(Model.TemplatePath, model: null, viewData: staticViewData)
+            }
+        }
+        else if (Model.Panels != null && Model.Panels.Count > 0)
+        {
+            foreach (var panel in Model.Panels)
+            {
+                var panelViewData = new ViewDataDictionary(ViewData)
+                {
+                    ["Page"] = Model.Page,
+                    ["Template"] = Model.Template,
+                    ["Panels"] = Model.Panels,
+                    ["Elements"] = Model.Elements,
+                    ["PanelName"] = panel.PanelName
+                };
+                <section class="wcms-panel" data-panel-id="@panel.Id" data-panel-name="@panel.PanelName">
+                    @await Html.PartialAsync("~/_loader.cshtml", model: null, viewData: panelViewData)
+                </section>
+            }
+        }
+        else if (!string.IsNullOrWhiteSpace(Model.TemplatePath))
+        {
+            var fallbackViewData = new ViewDataDictionary(ViewData)
+            {
+                ["Page"] = Model.Page,
+                ["Template"] = Model.Template,
+                ["Panels"] = Model.Panels,
+                ["Elements"] = Model.Elements
+            };
+            @await Html.PartialAsync(Model.TemplatePath, model: null, viewData: fallbackViewData)
+        }
+        else
+        {
+            <section class="alert alert-warning" role="status">
+                Page template is not available.
+            </section>
+        }
+    </main>
+</body>
+</html>

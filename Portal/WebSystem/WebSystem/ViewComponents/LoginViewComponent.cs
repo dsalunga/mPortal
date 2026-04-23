@@ -2,6 +2,8 @@ using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Common.Utilities;
@@ -20,6 +22,9 @@ namespace WCMS.WebSystem.ViewComponents
     /// </summary>
     public class LoginViewComponent : WViewComponent
     {
+        private const string LoginErrorQueryKey = "LoginError";
+        private const string LoginInfoQueryKey = "LoginInfo";
+
         public LoginViewComponent(IWContext context) : base(context) { }
 
         public async Task<IViewComponentResult> InvokeAsync()
@@ -31,7 +36,8 @@ namespace WCMS.WebSystem.ViewComponents
 
             if (mode == AccountConstants.ModeLogOff)
             {
-                // Log-Off handled by middleware / API controller
+                WcmsSession.Logout();
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 model.View = "LoggedOut";
                 model.RedirectUrl = "/";
             }
@@ -67,6 +73,9 @@ namespace WCMS.WebSystem.ViewComponents
                 }
             }
 
+            model.ErrorMessage = WcmsContext.Get(LoginErrorQueryKey);
+            model.InfoMessage = WcmsContext.Get(LoginInfoQueryKey);
+
             return View(model);
         }
     }
@@ -86,5 +95,6 @@ namespace WCMS.WebSystem.ViewComponents
         public string PreLoginNote { get; set; }
         public string RedirectUrl { get; set; }
         public string ErrorMessage { get; set; }
+        public string InfoMessage { get; set; }
     }
 }

@@ -8,7 +8,17 @@
     var panelName = (string)ViewData["PanelName"];
     IEnumerable<WebTemplatePanel> panels = (IEnumerable<WebTemplatePanel>)ViewData["Panels"];
     IEnumerable<IPageElement> elements = (IEnumerable<IPageElement>)ViewData["Elements"];
+    if (page == null || template == null || string.IsNullOrWhiteSpace(panelName) || panels == null || elements == null)
+    {
+        return;
+    }
+
     var panel = panels.FirstOrDefault(i => i.PanelName.Equals(panelName, StringComparison.InvariantCultureIgnoreCase));
+    if (panel == null)
+    {
+        return;
+    }
+
     IEnumerable<IPageElement> panelElements = null;
 
     if (panel.Id == template.PrimaryPanelId)
@@ -32,6 +42,8 @@
     foreach (var item in panelElements)
     {
         ViewData["Element"] = item;
+        Context.Items[WContext.CurrentPageItemKey] = page;
+        Context.Items[WContext.CurrentElementItemKey] = item;
 
         var partTemplate = item.PartControlTemplate;
         var partControl = partTemplate.PartControl;
@@ -105,4 +117,6 @@
         }
 
     }
+
+    Context.Items.Remove(WContext.CurrentElementItemKey);
 }

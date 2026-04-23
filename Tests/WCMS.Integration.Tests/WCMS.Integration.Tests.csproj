@@ -9,9 +9,14 @@
     <PackageReference Include="MSTest.TestFramework" Version="3.10.5" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
+    <PackageReference Include="Npgsql" Version="10.0.2" />
+    <PackageReference Include="Testcontainers.PostgreSql" Version="4.8.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Portal\WebSystem\WebSystem\WCMS.WebSystem.WebApp.csproj" />
+    <ProjectReference Include="..\..\Portal\WebParts\Integration\WCMS.WebSystem.Apps.Integration\WCMS.WebSystem.Apps.Integration.csproj" />
+    <ProjectReference Include="..\..\Portal\WebParts\BranchLocator\WCMS.WebSystem.Apps.BranchLocator\WCMS.WebSystem.Apps.BranchLocator.csproj" />
   </ItemGroup>
 </Project>

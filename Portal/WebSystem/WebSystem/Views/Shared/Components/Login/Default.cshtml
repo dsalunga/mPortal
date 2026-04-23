@@ -1,5 +1,13 @@
 @model WCMS.WebSystem.ViewComponents.LoginViewModel
 <section class="system-login" aria-label="Authentication">
+@if (!string.IsNullOrEmpty(Model.InfoMessage))
+{
+    <div class="alert alert-info alert-dismissible fade show" role="status">
+        <i class="bi bi-info-circle-fill" aria-hidden="true"></i>
+        @Model.InfoMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 @if (Model.View == "LoggedOut")
 {
     <script>window.location.href = '@Model.RedirectUrl';</script>
@@ -106,7 +114,7 @@ else if (Model.IsLoggedIn)
     <div class="login-status d-inline-flex align-items-center gap-2 p-2 rounded bg-light" role="status" aria-label="Login status">
         <i class="bi bi-person-circle" aria-hidden="true"></i>
         <span>Welcome, <strong>@Model.UserDisplayName</strong></span>
-        <a href="?mode=logoff" class="btn btn-sm btn-outline-danger" aria-label="Sign out">
+        <a href="/logout" class="btn btn-sm btn-outline-danger" aria-label="Sign out">
             <i class="bi bi-box-arrow-right" aria-hidden="true"></i> Sign Out
         </a>
     </div>

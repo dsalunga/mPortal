@@ -2,9 +2,12 @@
 
 > **Goal**: Make mPortal CMS fully cross-platform by adding PostgreSQL as an alternative to MS SQL Server.
 
-## Validation Snapshot (2026-06-26)
+## Validation Snapshot (2026-04-23)
 
-- **PostgreSQL local runtime verified**: App runs on PostgreSQL 18.3 (macOS/Homebrew), pages render correctly via `http://localhost:5000/`
+- `dotnet build mPortal.slnx --no-restore -v minimal` -> success (`0 Error(s)`, `2 Warning(s)`)
+- `dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj --no-build -v minimal` -> `77/77` passed
+- `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -v minimal` -> `25/32` passed, `7` skipped (environment-gated PostgreSQL/data-parity suites)
+- Provider abstraction and multi-provider wiring are in place (`DbHelper`, `DatabaseProvider`, provider-aware `UseNpgsql()`/`UseSqlServer()` branches in host `Program.cs` files)
 - PostgreSQL schema assets are present and versioned:
   - `Database/PostgreSQL/schema.sql` (121 `CREATE TABLE` statements, including 6 columns added for parity: `parentid`, `primaryidentityid`, `protocolid`, `maritalstatusid`, `lastloginfailuredate`, `loginfailurecount`)
   - `Database/PostgreSQL/schema-integration.sql` (16 `CREATE TABLE` statements)
@@ -12,20 +15,15 @@
   - `Database/PostgreSQL/seed-data.sql` — Minimal CMS seed data with DataProviderName, TypeName, and ManagerName for all 34 WebObject entities
   - `Database/PostgreSQL/init-db.sh`
 - `DbSyntax.QuoteIdentifier()` lowercases identifiers for PostgreSQL (`"columnname"`) to match PostgreSQL's default lowercase convention — fixed in both `Core/WCMS.Common/` and `Portal/WebSystem/WCMS.Common/`
-- Provider abstraction and multi-provider wiring in place (`DbHelper`, `DatabaseProvider`, `UseNpgsql()` branches in all 8 host `Program.cs` files)
-- `appsettings.Development.json` created for all 8 web hosts with PostgreSQL configuration
-- Automated tests currently pass:
-  - `Tests/WCMS.Framework.Tests` → 77 passed
-  - `Tests/WCMS.Integration.Tests` → 8 passed
-  - `Tests/WCMS.WebSystem.Apps.Integration.UnitTest` → 2 passed
-  - `Tests/SDKTest` → 1 passed
-  - **88 total tests** — all passing
+- EF migration artifacts now exist for both providers:
+  - SQL Server: module-local `Data/Migrations/SqlServer/**`
+  - PostgreSQL: BranchLocator module-local migrations + dedicated Integration PostgreSQL migrations assembly (`WCMS.WebSystem.Apps.Integration.Migrations.PostgreSql`)
+- CI coverage includes a PostgreSQL lane via `.github/workflows/build.yml` (`integration-postgres` job with postgres service container)
+- Kubernetes baseline manifests exist under `deploy/k8s/`
 - Remaining implementation gaps:
-  - No EF `Migrations/` directories exist yet for dual-provider migration flow
-  - GitHub Actions workflows currently have no PostgreSQL service-container lane
-  - EF Core package version alignment needed for `WCMS.WebSystem.Apps.BranchLocator`
+  - Benchmark and data migration parity suites are implemented but still require execution evidence in provisioned environments
 
-## Summary of Changes (This PR)
+## Summary of Implemented Foundation
 
 This PR introduces the **core database abstraction layer** and **eliminates all stored procedure dependencies**, enabling PostgreSQL support across the mPortal CMS platform. All data access operations now use inline parameterized SQL through a provider-agnostic interface, allowing the system to run on either SQL Server or PostgreSQL with a single configuration change.
 
@@ -96,10 +94,12 @@ All **115 stored procedures** have been replaced with inline parameterized SQL:
 
 ### Tests
 
-- **77 unit tests** (62 existing + 15 SqlBuilder) — all passing
-- **8 integration tests** — all passing
-- **2 app integration tests** + **1 SDK test** — all passing
-- **88 total tests** — all passing
+- `dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj --no-build -v minimal` -> 77 passed
+- `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -v minimal` -> 25 passed, 7 skipped (environment-gated PostgreSQL/data-parity suites)
+- PostgreSQL-focused test suites added:
+  - `PostgreSqlProviderIntegrationTests` (provider + `/health`/`/api/system/info`)
+  - `EfModelCompatibilityTests` (DbContext create-script compatibility)
+  - `DataMigrationValidationTests` (dual-DB parity assertions; env-gated)
 
 ---
 
@@ -159,11 +159,13 @@ The following items are needed for a complete PostgreSQL deployment:
 - [x] ~~Ensure `CommandType.StoredProcedure` works with PostgreSQL~~ — **No longer needed; all queries use `CommandType.Text`**
 - [x] **Migrated all stored procedures to inline parameterized SQL** — reduces DB-specific code entirely
 
-### Phase 4: EF Core DbContext Multi-Provider — **IN PROGRESS**
+### Phase 4: EF Core DbContext Multi-Provider — **COMPLETE (implementation), runtime execution pending**
 - [x] Update `IntegrationDbContext`, `MusicDbContext`, `ExternalDbContext`, `BranchLocatorDbContext` registration to use config-driven `UseNpgsql()`/`UseSqlServer()`
-- [ ] Align EF Core package versions in `WCMS.WebSystem.Apps.BranchLocator` with `WCMS.Framework` (10.0.x) to remove `NU1605` downgrade restore/build failures.
-- [ ] Add EF Core migrations for both providers
-- [ ] Test EF Core model compatibility with PostgreSQL data types
+- [x] Align EF Core package versions in `WCMS.WebSystem.Apps.BranchLocator` with `WCMS.Framework` (10.0.x) to remove `NU1605` downgrade restore/build failures.
+- [x] Add EF Core migrations for both providers
+  - Current status: implemented (`BranchLocator` uses module-local migrations; Integration contexts use dedicated PostgreSQL migrations assembly to avoid cross-provider snapshot conflicts)
+- [x] Test EF Core model compatibility with PostgreSQL data types
+  - Current status: implemented with environment-gated execution (`EfModelCompatibilityTests`)
 
 ### ~~Phase 5: Peripheral Apps~~ — **COMPLETE** (provider migration)
 - [x] Migrated all remaining ~55 peripheral provider files from `SqlHelper`/`SqlParameter` to `DbHelper`/`DbParameter` with inline SQL
@@ -181,20 +183,20 @@ The following items are needed for a complete PostgreSQL deployment:
 - [x] Agent/AgentService — already uses framework layer (WebJob, AgentTaskBase) which is fully migrated to DbHelper
 
 ### Phase 6: Testing & Validation — **PARTIALLY COMPLETE**
-- [x] **Local PostgreSQL runtime verified** — App runs on PostgreSQL 18.3, CMS pages render, diagnostic endpoint confirms all providers resolve
+- [ ] **Local PostgreSQL runtime verified end-to-end against seeded CMS data** — execution evidence still pending in this checklist pass
 - [x] Seed data (`Database/PostgreSQL/seed-data.sql`) with WebObject TypeName, DataProviderName, ManagerName for all entities
 - [x] Schema parity — 6 missing columns added to `schema.sql` (`parentid`, `primaryidentityid`, `protocolid`, `maritalstatusid`, `lastloginfailuredate`, `loginfailurecount`)
 - [x] `DbSyntax.QuoteIdentifier()` lowercases PostgreSQL identifiers to match convention
-- [x] Unit and integration tests updated and passing (88 total)
-- [ ] Integration tests with PostgreSQL (Testcontainers) — requires running PostgreSQL instance
-- [ ] CI pipeline with both SQL Server and PostgreSQL — requires CI service containers
+- [x] Unit and integration test implementation updated with PostgreSQL coverage
+- [x] Integration tests with PostgreSQL (Testcontainers) — implemented (`PostgreSqlTestHarness` + `PostgreSqlProviderIntegrationTests`)
+- [x] CI pipeline with both SQL Server and PostgreSQL — PostgreSQL lane added via `integration-postgres` job
 - [ ] Performance benchmarking on PostgreSQL
 - [ ] Data migration testing (SQL Server → PostgreSQL)
 
 ### Phase 7: Docker & Deployment
 - [x] Docker Compose with PostgreSQL profile (`docker-compose.yml`)
 - [x] Database initialization scripts (`Database/PostgreSQL/init-db.sh`)
-- [ ] Kubernetes manifests with PostgreSQL support
+- [x] Kubernetes manifests with PostgreSQL support (`deploy/k8s/`)
 
 ---
 

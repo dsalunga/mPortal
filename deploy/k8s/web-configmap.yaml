@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mportal-web-config
+  namespace: mportal
+data:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  WCMS__DatabaseProvider: "PostgreSql"

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mportal-web
+  namespace: mportal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mportal-web
+  template:
+    metadata:
+      labels:
+        app: mportal-web
+    spec:
+      containers:
+        - name: mportal-web
+          image: ghcr.io/dsalunga/mportal:latest
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://+:8080"
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: mportal-web-config
+                  key: ASPNETCORE_ENVIRONMENT
+            - name: WCMS__DatabaseProvider
+              valueFrom:
+                configMapKeyRef:
+                  name: mportal-web-config
+                  key: WCMS__DatabaseProvider
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: mportal-postgres-secret
+                  key: CONNECTION_STRING
+            - name: ConnectionStrings__ConnectionString
+              valueFrom:
+                secretKeyRef:
+                  name: mportal-postgres-secret
+                  key: CONNECTION_STRING
+          readinessProbe:
+            httpGet:
+              path: /health/live
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 20

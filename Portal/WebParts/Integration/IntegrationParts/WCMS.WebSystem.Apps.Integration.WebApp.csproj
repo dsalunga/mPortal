@@ -7,11 +7,16 @@
 
   <ItemGroup>
     <Content Remove="Themes\**\*.cshtml" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\WCMS.WebSystem.Apps.Integration\WCMS.WebSystem.Apps.Integration.csproj" />
+    <ProjectReference Include="..\WCMS.WebSystem.Apps.Integration.Migrations.PostgreSql\WCMS.WebSystem.Apps.Integration.Migrations.PostgreSql.csproj" />
     <ProjectReference Include="..\WCMS.WebSystem.Apps.BibleReader\WCMS.WebSystem.Apps.BibleReader.csproj" />
     <ProjectReference Include="..\..\SystemParts\WCMS.Framework.WebParts\WCMS.WebSystem.Apps.csproj" />
     <ProjectReference Include="..\..\..\WebSystem\WCMS.Common\WCMS.Common.csproj" />

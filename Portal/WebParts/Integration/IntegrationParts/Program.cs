@@ -10,6 +10,7 @@ using WCMS.Framework.Middleware;
 using WCMS.WebSystem.Apps.Integration.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+const string IntegrationPostgreSqlMigrationsAssembly = "WCMS.WebSystem.Apps.Integration.Migrations.PostgreSql";
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddRazorPages();
@@ -25,7 +26,8 @@ var integrationConn = builder.Configuration.GetConnectionString("IntegrationDb")
 builder.Services.AddDbContext<IntegrationDbContext>(options =>
 {
     if (DbHelper.Provider == DatabaseProvider.PostgreSql)
-        options.UseNpgsql(integrationConn);
+        options.UseNpgsql(integrationConn, npgsql =>
+            npgsql.MigrationsAssembly(IntegrationPostgreSqlMigrationsAssembly));
     else
         options.UseSqlServer(integrationConn);
 });
@@ -35,7 +37,8 @@ var musicConn = builder.Configuration.GetConnectionString("MusicDb")
 builder.Services.AddDbContext<MusicDbContext>(options =>
 {
     if (DbHelper.Provider == DatabaseProvider.PostgreSql)
-        options.UseNpgsql(musicConn);
+        options.UseNpgsql(musicConn, npgsql =>
+            npgsql.MigrationsAssembly(IntegrationPostgreSqlMigrationsAssembly));
     else
         options.UseSqlServer(musicConn);
 });
@@ -45,7 +48,8 @@ var externalConn = builder.Configuration.GetConnectionString("ExternalDb")
 builder.Services.AddDbContext<ExternalDbContext>(options =>
 {
     if (DbHelper.Provider == DatabaseProvider.PostgreSql)
-        options.UseNpgsql(externalConn);
+        options.UseNpgsql(externalConn, npgsql =>
+            npgsql.MigrationsAssembly(IntegrationPostgreSqlMigrationsAssembly));
     else
         options.UseSqlServer(externalConn);
 });
