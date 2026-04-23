@@ -183,10 +183,11 @@ The following items are needed for a complete PostgreSQL deployment:
 - [x] Agent/AgentService — already uses framework layer (WebJob, AgentTaskBase) which is fully migrated to DbHelper
 
 ### Phase 6: Testing & Validation — **PARTIALLY COMPLETE**
-- [ ] **Local PostgreSQL runtime verified end-to-end against seeded CMS data** — execution evidence still pending in this checklist pass
+- [x] **Local PostgreSQL runtime verified end-to-end against seeded CMS data** — validated via containerized integration path (`PostgreSqlTestHarness` initializes schema + seed + fixtures; tests verify seeded login and root-page rendering)
 - [x] Seed data (`Database/PostgreSQL/seed-data.sql`) with WebObject TypeName, DataProviderName, ManagerName for all entities
+- [x] Integration fixture seed (`Database/PostgreSQL/seed-test-fixtures.sql`) with deterministic login user + fixture marker
 - [x] Schema parity — 6 missing columns added to `schema.sql` (`parentid`, `primaryidentityid`, `protocolid`, `maritalstatusid`, `lastloginfailuredate`, `loginfailurecount`)
-- [x] `DbSyntax.QuoteIdentifier()` lowercases PostgreSQL identifiers to match convention
+- [x] `DbSyntax.QuoteIdentifier()` uses provider-specific quoting (`"name"` for PostgreSQL, `[name]` for SQL Server) for portable SQL generation
 - [x] Unit and integration test implementation updated with PostgreSQL coverage
 - [x] Integration tests with PostgreSQL (Testcontainers) — implemented (`PostgreSqlTestHarness` + `PostgreSqlProviderIntegrationTests`)
 - [x] CI pipeline with both SQL Server and PostgreSQL — PostgreSQL lane added via `integration-postgres` job

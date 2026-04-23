@@ -702,10 +702,10 @@ Infrastructure is in place for E2E testing via `docker-compose.yml` (SQL Server 
 - [x] Run the main web host (`WebSystem`) and verify page rendering pipeline works end-to-end — health endpoint verified in integration tests; full page rendering requires database with site/page data.
 - [x] Verify all 7 API controllers return correct data — all API controllers wired to real data providers (verified in code review); endpoint availability tested via integration tests.
 - [x] Implement cookie-auth endpoint flow (`/account/login`, `/account/forgotpassword`, `/account/verifyotp`, `/logout`) and baseline integration coverage (`invalid login` redirect + `/logout` redirect) via `AuthenticationFlowTests`.
-- [ ] Verify successful login/logout flow against seeded database users (full E2E) — requires database with user records.
+- [x] Verify successful login/logout flow against seeded database users (full E2E) — covered by PostgreSQL containerized fixtures in `PostgreSqlProviderIntegrationTests` (`AccountLogin_WithSeededFixtureUser_RedirectsWithoutLoginError_AndSetsAuthCookie`).
 - [ ] Verify background agent service starts and executes scheduled tasks — requires database; agent builds successfully on .NET 10.
 - [x] Replace CMS fallback placeholder with controller-based rendering (`CmsController` + `Views/Cms/Render.cshtml`) and context propagation updates in `_loader.cshtml` / `WContext`.
-- [ ] Verify database-resolved page rendering and ViewComponent output against seeded page/template datasets (full E2E).
+- [x] Verify database-resolved page rendering and ViewComponent output against seeded page/template datasets (full E2E) — covered by `PostgreSqlProviderIntegrationTests` (`CmsFallback_RootPath_RendersSeededPage`) with seeded `Database/PostgreSQL/seed-data.sql` + `seed-test-fixtures.sql`.
 - [ ] Test multi-site hosting (multiple WSite entries resolving different domains) — requires database with WSite records.
 - [ ] Test admin controls (site/page/template/user management) — requires database with admin user.
 - [ ] Performance baseline comparison with legacy .NET Framework version — requires production-like environment.

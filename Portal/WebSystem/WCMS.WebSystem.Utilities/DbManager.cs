@@ -47,6 +47,10 @@ namespace WCMS.WebSystem.Utilities
 
         private bool IsSqlServer => DbHelper.Provider == DatabaseProvider.SqlServer;
         private bool IsPostgreSql => DbHelper.Provider == DatabaseProvider.PostgreSql;
+        private const string FixtureMarkerCategory = "Integration";
+        private const string FixtureMarkerText = "FixtureMarker";
+        private const string FixtureMarkerValue = "integration-fixtures-enabled";
+        private const string AllowFixtureBackupInProductionKey = "WCMS:AllowFixtureBackupInProduction";
 
         public DbManager()
         {
@@ -445,6 +449,18 @@ namespace WCMS.WebSystem.Utilities
                 return true;
             }
 
+            if (IsProductionEnvironment() &&
+                !ConfigUtil.GetBool(AllowFixtureBackupInProductionKey, false) &&
+                HasIntegrationFixtureMarker())
+            {
+                notify(string.Format(
+                    "{0}{0}Backup process ABORTED. Integration fixture marker detected in production environment.{0}" +
+                    "Set {1}=true only if this backup is intentionally fixture-inclusive.{0}{0}",
+                    WConstants.WBREAK,
+                    AllowFixtureBackupInProductionKey));
+                return false;
+            }
+
             string backupPath = BackupPath;
             string backupTablesPath = TableSqlPath;
             string backupProceduresPath = ProcedureSqlPath;
@@ -602,6 +618,40 @@ namespace WCMS.WebSystem.Utilities
             RestoreAllObjects(notify);
 
             return true;
+        }
+
+        private static bool IsProductionEnvironment()
+        {
+            var env = (ConfigUtil.Get("WCMS:Environment") ?? string.Empty).Trim();
+            return env.Equals("PROD", StringComparison.OrdinalIgnoreCase) ||
+                   env.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool HasIntegrationFixtureMarker()
+        {
+            try
+            {
+                var tableName = DbSyntax.QuoteIdentifier("WebConstant");
+                var categoryCol = DbSyntax.QuoteIdentifier("Category");
+                var textCol = DbSyntax.QuoteIdentifier("Text");
+                var valueCol = DbSyntax.QuoteIdentifier("Value");
+
+                var sql = string.Format(
+                    "SELECT 1 FROM {0} WHERE {1}=@Category AND {2}=@Text AND {3}=@Value",
+                    tableName, categoryCol, textCol, valueCol);
+
+                var categoryParam = DbHelper.CreateParameter("@Category", FixtureMarkerCategory);
+                var textParam = DbHelper.CreateParameter("@Text", FixtureMarkerText);
+                var valueParam = DbHelper.CreateParameter("@Value", FixtureMarkerValue);
+
+                using (var reader = DbHelper.ExecuteReader(CommandType.Text, sql, categoryParam, textParam, valueParam))
+                    return reader != null && reader.Read();
+            }
+            catch
+            {
+                // If schema is not initialized yet, do not block backup here.
+                return false;
+            }
         }
     }
 }

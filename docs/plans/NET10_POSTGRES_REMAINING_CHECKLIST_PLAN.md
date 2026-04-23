@@ -52,11 +52,17 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
     - `Portal/WebSystem/WebSystem/Program.cs` now maps catch-all fallback to `CmsController.Render`
     - `Portal/WebSystem/WCMS.Framework/WContext.cs` + `Portal/WebSystem/WebSystem/_loader.cshtml` updated for per-element rendering context propagation
 
-- [ ] `CHK-NET10-008` Add integration tests covering login/logout and CMS page rendering with populated database fixtures.
-  - Current status: partially implemented
+- [x] `CHK-NET10-008` Add integration tests covering login/logout and CMS page rendering with populated database fixtures.
+  - Current status: implemented
   - Code evidence:
-    - Added: `AuthenticationFlowTests.cs`, `CmsFallbackRouteTests.cs`
-    - Remaining: full seeded-DB fixture path for successful-login and resolved-page content rendering assertions
+    - PostgreSQL test harness now auto-applies schema + baseline + fixture scripts:
+      - `Tests/WCMS.Integration.Tests/PostgreSqlTestHarness.cs`
+      - `Database/PostgreSQL/seed-data.sql`
+      - `Database/PostgreSQL/seed-test-fixtures.sql`
+    - Seeded login + CMS render assertions:
+      - `Tests/WCMS.Integration.Tests/PostgreSqlProviderIntegrationTests.cs`
+        - `AccountLogin_WithSeededFixtureUser_RedirectsWithoutLoginError_AndSetsAuthCookie`
+        - `CmsFallback_RootPath_RendersSeededPage`
 
 ### C) PostgreSQL Work Remaining
 
@@ -105,4 +111,5 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
 
 ## Remaining Blockers
 
-1. `CHK-NET10-008`: fully seeded-database E2E verification for successful login and real resolved-page rendering is still pending.
+1. `CHK-PG-006`: execute PostgreSQL benchmark runs and publish comparative results.
+2. `CHK-PG-007`: run SQL Server -> PostgreSQL parity checks against provisioned datasets and capture evidence.
