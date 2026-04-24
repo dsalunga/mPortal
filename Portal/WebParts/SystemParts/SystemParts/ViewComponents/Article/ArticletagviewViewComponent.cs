@@ -7,9 +7,9 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
     /// <summary>
     /// Ported from ArticleTagView.ascx (SystemParts/Article).
     /// </summary>
-    public class ArticletagviewViewComponent : WViewComponent
+    public class ArticleTagViewViewComponent : WViewComponent
     {
-        public ArticletagviewViewComponent(IWContext context) : base(context) { }
+        public ArticleTagViewViewComponent(IWContext context) : base(context) { }
 
         public IViewComponentResult Invoke(int objectId = 0, int recordId = 0)
         {
@@ -19,7 +19,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 WcmsContext.Set("RecordId", recordId.ToString());
             }
 
-            var model = new ArticletagviewViewModel
+            var model = new ArticleTagViewViewModel
             {
                 ObjectId = objectId > 0 ? objectId : WcmsContext.ObjectId,
                 RecordId = recordId > 0 ? recordId : WcmsContext.RecordId
@@ -29,7 +29,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-    public class ArticletagviewViewModel
+    public class ArticleTagViewViewModel
     {
 public int ObjectId { get; set; }
         public int RecordId { get; set; }

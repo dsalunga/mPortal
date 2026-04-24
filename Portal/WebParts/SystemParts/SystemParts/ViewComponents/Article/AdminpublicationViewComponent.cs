@@ -9,9 +9,9 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
     /// <summary>
     /// Ported from AdminPublication.ascx (SystemParts/Article).
     /// </summary>
-    public class AdminpublicationViewComponent : WViewComponent
+    public class AdminPublicationViewComponent : WViewComponent
     {
-        public AdminpublicationViewComponent(IWContext context) : base(context) { }
+        public AdminPublicationViewComponent(IWContext context) : base(context) { }
 
         public IViewComponentResult Invoke(int objectId = 0, int recordId = 0)
         {
@@ -21,7 +21,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 WcmsContext.Set("RecordId", recordId.ToString());
             }
 
-            var model = new AdminpublicationViewModel
+            var model = new AdminPublicationViewModel
             {
                 ObjectId = objectId > 0 ? objectId : WcmsContext.ObjectId,
                 RecordId = recordId > 0 ? recordId : WcmsContext.RecordId
@@ -31,17 +31,17 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-        public class AdminpublicationViewModel
+        public class AdminPublicationViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
         public int CurrentPage { get; set; } = 1;
-        public List<AdminpublicationItem> Items { get; set; } = new();
+        public List<AdminPublicationItem> Items { get; set; } = new();
         public int PageSize { get; set; } = 20;
         public int TotalItems { get; set; }
     }
 
-    public class AdminpublicationItem
+    public class AdminPublicationItem
     {
         public string Actions { get; set; } = string.Empty;
         public string Active { get; set; } = string.Empty;

@@ -8,9 +8,9 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
     /// <summary>
     /// Ported from AdminTemplateComposer.ascx (SystemParts/Article).
     /// </summary>
-    public class AdmintemplatecomposerViewComponent : WViewComponent
+    public class AdminTemplateComposerViewComponent : WViewComponent
     {
-        public AdmintemplatecomposerViewComponent(IWContext context) : base(context) { }
+        public AdminTemplateComposerViewComponent(IWContext context) : base(context) { }
 
         public IViewComponentResult Invoke(int objectId = 0, int recordId = 0)
         {
@@ -20,7 +20,7 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
                 WcmsContext.Set("RecordId", recordId.ToString());
             }
 
-            var model = new AdmintemplatecomposerViewModel
+            var model = new AdminTemplateComposerViewModel
             {
                 ObjectId = objectId > 0 ? objectId : WcmsContext.ObjectId,
                 RecordId = recordId > 0 ? recordId : WcmsContext.RecordId
@@ -30,17 +30,17 @@ namespace WCMS.WebSystem.WebParts.ViewComponents
         }
     }
 
-        public class AdmintemplatecomposerViewModel
+        public class AdminTemplateComposerViewModel
     {
         public int ObjectId { get; set; }
         public int RecordId { get; set; }
         public int CurrentPage { get; set; } = 1;
-        public List<AdmintemplatecomposerItem> Items { get; set; } = new();
+        public List<AdminTemplateComposerItem> Items { get; set; } = new();
         public int PageSize { get; set; } = 20;
         public int TotalItems { get; set; }
     }
 
-    public class AdmintemplatecomposerItem
+    public class AdminTemplateComposerItem
     {
         public int Id { get; set; }
         public string Multiple { get; set; } = string.Empty;

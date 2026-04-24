@@ -2,8 +2,8 @@
 
 Date: 2026-02-26  
 Compared paths:
-- Current: `/Users/dsalunga/Projects/github.com/dsalunga/mPortal`
-- Pre-migration baseline: `/Users/dsalunga/Projects/github.com/dsalunga/mPortal-copy`
+- Current: `.`
+- Pre-migration baseline: `.-copy`
 
 ## Scope and method
 
@@ -116,12 +116,12 @@ See full list: `missing-csharp-non-codegen.txt`
 Evidence of interim/scaffold behavior:
 
 - Current host excludes legacy content views:
-  - `/Users/dsalunga/Projects/github.com/dsalunga/mPortal/Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj:10`
+  - `Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj:10`
 - CMS fallback endpoint currently renders a simple stub/404 fallback behavior:
-  - `/Users/dsalunga/Projects/github.com/dsalunga/mPortal/Portal/WebSystem/WCMS.Framework/Middleware/CmsPageEndpointRouteBuilderExtensions.cs:24`
+  - `Portal/WebSystem/WCMS.Framework/Middleware/CmsPageEndpointRouteBuilderExtensions.cs:24`
 - Pre-migration host was full ASP.NET Framework MVC/WebForms + System.Web stack:
-  - `/Users/dsalunga/Projects/github.com/dsalunga/mPortal-copy/Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj:16`
-  - `/Users/dsalunga/Projects/github.com/dsalunga/mPortal-copy/Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj:200`
+  - `mPortal-copy/Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj:16`
+  - `mPortal-copy/Portal/WebSystem/WebSystem-MVC/WCMS.WebSystem.WebApp.csproj:200`
 
 ## 5) Plan/status document drift
 

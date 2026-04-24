@@ -53,8 +53,8 @@ Remaining rows: **565**
 
 ## Path Normalization
 
-- Repository root: `/Users/dsalunga/Projects/github.com/dsalunga/mPortal`
-- Legacy root: `/Users/dsalunga/Projects/github.com/dsalunga/mPortal/Legacy/`
+- Repository root: `.`
+- Legacy root: `Legacy/`
 - `Legacy File (relative to Legacy/)` removes repeated full absolute prefix for easier scanning.
 
 ## How To Use
@@ -360,7 +360,7 @@ Mark `[M]` in `File Mark` for file-specific mitigation/implementation decisions.
 | [M] | `LEGACY-00149` | `LessonReviewer/LessonReviewer/packages.config` | `LessonReviewer` | `.config` | not_applicable | — | Legacy .config files; settings in appsettings.json, packages in .csproj | — | Cannot migrate — corresponding modern project was retired (e.g., FCKeditor.Net replaced by TipTap). Legacy packages.config retained for reference. |
 | [M] | `LEGACY-00157` | `LessonReviewer/build-debug.cmd` | `LessonReviewer` | `.cmd` | not_applicable | — | Windows batch scripts; replaced by cross-platform tooling | — | Cannot migrate 1:1 — Windows-only batch script. Replaced wholesale by cross-platform tooling (`dotnet build` / `dotnet test`, docker-compose.yml at repo root, shell scripts under Database/PostgreSQL/). Legacy .cmd retained for reference. |
 | [M] | `LEGACY-00158` | `LessonReviewer/build-release.cmd` | `LessonReviewer` | `.cmd` | not_applicable | — | Windows batch scripts; replaced by cross-platform tooling | — | Cannot migrate 1:1 — Windows-only batch script. Replaced wholesale by cross-platform tooling (`dotnet build` / `dotnet test`, docker-compose.yml at repo root, shell scripts under Database/PostgreSQL/). Legacy .cmd retained for reference. |
-| [M] | `LEGACY-00162` | `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.sln` | `Libraries` | `.sln` | completed | validated | Legacy .sln files; consolidated into mPortal.slnx | `mPortal.slnx` | Verified: replaced by repository-root mPortal.slnx (consolidates all 48 SDK-style projects). Legacy .sln retained for reference. |
+| [M] | `LEGACY-00162` | `Portal/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.sln` | `Libraries` | `.sln` | completed | validated | Legacy .sln files; consolidated into mPortal.slnx | `mPortal.slnx` | Verified: replaced by repository-root mPortal.slnx (consolidates all 48 SDK-style projects). Legacy .sln retained for reference. |
 | [M] | `LEGACY-01270` | `Portal/Binaries/Install/create-package.cmd` | `Portal` | `.cmd` | not_applicable | — | Windows batch scripts; replaced by cross-platform tooling | — | Cannot migrate 1:1 — Windows-only batch script. Replaced wholesale by cross-platform tooling (`dotnet build` / `dotnet test`, docker-compose.yml at repo root, shell scripts under Database/PostgreSQL/). Legacy .cmd retained for reference. |
 | [M] | `LEGACY-01272` | `Portal/Binaries/Others/IISExpress - MakeUp.cmd` | `Portal` | `.cmd` | not_applicable | — | Windows batch scripts; replaced by cross-platform tooling | — | Cannot migrate 1:1 — Windows-only batch script. Replaced wholesale by cross-platform tooling (`dotnet build` / `dotnet test`, docker-compose.yml at repo root, shell scripts under Database/PostgreSQL/). Legacy .cmd retained for reference. |
 | [M] | `LEGACY-01273` | `Portal/Binaries/Others/IISExpress - Portal.cmd` | `Portal` | `.cmd` | not_applicable | — | Windows batch scripts; replaced by cross-platform tooling | — | Cannot migrate 1:1 — Windows-only batch script. Replaced wholesale by cross-platform tooling (`dotnet build` / `dotnet test`, docker-compose.yml at repo root, shell scripts under Database/PostgreSQL/). Legacy .cmd retained for reference. |
