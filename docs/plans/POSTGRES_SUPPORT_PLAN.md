@@ -19,7 +19,7 @@
   - SQL Server: module-local `Data/Migrations/SqlServer/**`
   - PostgreSQL: BranchLocator module-local migrations + dedicated Integration PostgreSQL migrations assembly (`WCMS.WebSystem.Apps.Integration.Migrations.PostgreSql`)
 - CI coverage includes a PostgreSQL lane via `.github/workflows/build.yml` (`integration-postgres` job with postgres service container)
-- Kubernetes baseline manifests exist under `deploy/k8s/`
+- Kubernetes baseline manifests exist under `Deploy/k8s/`
 - Remaining implementation gaps:
   - Benchmark and data migration parity suites are implemented but still require execution evidence in provisioned environments
 
@@ -197,7 +197,7 @@ The following items are needed for a complete PostgreSQL deployment:
 ### Phase 7: Docker & Deployment
 - [x] Docker Compose with PostgreSQL profile (`docker-compose.yml`)
 - [x] Database initialization scripts (`Portal/Assets/Database/PostgreSQL/init-db.sh`)
-- [x] Kubernetes manifests with PostgreSQL support (`deploy/k8s/`)
+- [x] Kubernetes manifests with PostgreSQL support (`Deploy/k8s/`)
 
 ---
 

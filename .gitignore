@@ -1,6 +1,8 @@
 obj
 bin
 .vs
+.DS_Store
+*.url
 *.suo
 *.user
 *.vshost.exe
@@ -13,9 +15,9 @@ bin
 .idea
 /Others
 
-/Portal/Binaries/IISExpress
-/Portal/Binaries/Logs
-/Portal/Binaries/Nuget-Packages
+/Portal/Assets/IISExpress
+/Portal/Assets/Logs
+/Portal/Assets/Nuget-Packages
 /Portal/WebSystem/WebSystem/Content/Admin/Data/Logs
 #/Portal/WebSystem/WebSystem/Content/Plugins/fckeditor/_samples
 #/Portal/WebSystem/WebSystem/Content/Plugins/fckeditor/editor/_source

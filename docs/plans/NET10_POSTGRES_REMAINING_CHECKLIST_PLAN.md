@@ -107,7 +107,7 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
 
 - [x] `CHK-PG-008` Add Kubernetes manifests/config overlays for PostgreSQL deployment (or explicitly mark as out-of-scope).
   - Current status: implemented
-  - Code evidence: `deploy/k8s/` manifests added (`namespace`, PostgreSQL `StatefulSet`, web `Deployment/Service`, config/secret template)
+  - Code evidence: `Deploy/k8s/` manifests added (`namespace`, PostgreSQL `StatefulSet`, web `Deployment/Service`, config/secret template)
 
 ## Remaining Blockers
 
