@@ -1,0 +1,407 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using WCMS.Common.Utilities;
+using WCMS.Framework;
+using WCMS.Framework.Core;
+using WCMS.WebSystem.Utilities;
+
+namespace WCMS.WebSystem.Controllers
+{
+    /// <summary>
+    /// Modern replacement for legacy /Content/Setup.aspx WebForms page.
+    /// This endpoint is intentionally reachable independent of CMS page resolution.
+    /// </summary>
+    [AllowAnonymous]
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [Route("Content/Setup.aspx")]
+    public class SetupController : Controller
+    {
+        private const string FlashMessagesKey = "__setup_flash_messages";
+
+        private readonly IConfiguration _configuration;
+        private readonly IHostApplicationLifetime _lifetime;
+
+        public SetupController(IConfiguration configuration, IHostApplicationLifetime lifetime)
+        {
+            _configuration = configuration;
+            _lifetime = lifetime;
+        }
+
+        [HttpGet("")]
+        public IActionResult Index([FromQuery] string setupKey = null)
+        {
+            var access = AuthorizeSetupRequest(setupKey);
+            if (!access.IsAuthorized)
+                return StatusCode(access.StatusCode, access.Message);
+
+            var model = BuildModel(setupKey ?? string.Empty);
+            return View("~/Views/Setup/Index.cshtml", model);
+        }
+
+        [HttpPost("")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Execute([FromForm] SetupCommandInput input)
+        {
+            var access = AuthorizeSetupRequest(input.SetupKey);
+            if (!access.IsAuthorized)
+                return StatusCode(access.StatusCode, access.Message);
+
+            var log = new List<string>();
+            ExecuteCommand(input, log);
+            SaveFlashMessages(log);
+
+            return RedirectToAction(nameof(Index), new { setupKey = input.SetupKey });
+        }
+
+        private SetupPageViewModel BuildModel(string setupKey)
+        {
+            var model = new SetupPageViewModel
+            {
+                SetupKey = setupKey
+            };
+
+            model.Messages.AddRange(ConsumeFlashMessages());
+
+            var db = new DbManager();
+            model.Report.AddRange(BuildInspectionReport(db, out var dbConnected));
+            model.IsDatabaseReachable = dbConnected;
+
+            if (dbConnected)
+            {
+                model.Objects.AddRange(BuildObjectRows(model.Report));
+            }
+
+            return model;
+        }
+
+        private static List<string> BuildInspectionReport(DbManager db, out bool dbConnected)
+        {
+            var report = new List<string>
+            {
+                $"DatabaseProvider: {SafeValue(() => DbHelper.Provider.ToString())}",
+                $"XmlPath: {db.XML_PATH}",
+                $"BackupPath: {db.BackupPath}"
+            };
+
+            dbConnected = false;
+
+            try
+            {
+                using var reader = DbHelper.ExecuteReader(CommandType.Text, "SELECT 1");
+                report.Add("Database connection: OK");
+                dbConnected = true;
+            }
+            catch (Exception ex)
+            {
+                report.Add($"Database connection FAILED: {ex.Message}");
+                return report;
+            }
+
+            var xmlFile = Path.Combine(db.XML_PATH, DbConstants.XML_FILE);
+            report.Add(System.IO.File.Exists(xmlFile)
+                ? $"XML definition ({DbConstants.XML_FILE}): OK"
+                : $"XML definition ({DbConstants.XML_FILE}): MISSING");
+
+            try
+            {
+                var items = WebObject.GetList()?.ToList() ?? new List<WebObject>();
+                if (items.Count == 0)
+                {
+                    report.Add("WebObject list: empty");
+                }
+                else
+                {
+                    foreach (var item in items)
+                    {
+                        try
+                        {
+                            var quotedName = DbSyntax.QuoteIdentifier(item.Name);
+                            using var r = DbHelper.ExecuteReader(CommandType.Text, $"SELECT * FROM {quotedName} LIMIT 1");
+                            report.Add($"Table {item.Name}: OK");
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                using var r2 = DbHelper.ExecuteReader(CommandType.Text, $"SELECT TOP 1 * FROM {item.Name}");
+                                report.Add($"Table {item.Name}: OK");
+                            }
+                            catch (Exception ex2)
+                            {
+                                report.Add($"Table {item.Name}: MISSING or ERROR — {ex2.Message}");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                report.Add($"WebObject list error: {ex.Message}");
+            }
+
+            return report;
+        }
+
+        private static List<SetupObjectRow> BuildObjectRows(List<string> report)
+        {
+            var rows = new List<SetupObjectRow>();
+            try
+            {
+                var items = WebObject.GetList()?.OrderBy(i => i.Name).ToList() ?? new List<WebObject>();
+                foreach (var item in items)
+                {
+                    var count = -1;
+                    try { count = WebObject.GetCount(item); } catch { }
+
+                    rows.Add(new SetupObjectRow
+                    {
+                        Name = item.Name,
+                        IdentityColumn = item.IdentityColumn,
+                        LastRecordId = item.LastRecordId,
+                        DateModified = item.DateModified,
+                        Count = count
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                report.Add($"Object listing error: {ex.Message}");
+            }
+
+            return rows;
+        }
+
+        private void ExecuteCommand(SetupCommandInput input, List<string> log)
+        {
+            var command = (input.Command ?? string.Empty).Trim();
+            if (string.IsNullOrWhiteSpace(command))
+            {
+                log.Add("No command provided.");
+                return;
+            }
+
+            var db = new DbManager();
+
+            switch (command.ToLowerInvariant())
+            {
+                case "backup":
+                    db.Backup(log.Add);
+                    break;
+
+                case "restoreall":
+                    db.Restore(log.Add);
+                    if (input.ResetOnRestore)
+                    {
+                        log.Add("System reset requested after full restore.");
+                        _lifetime.StopApplication();
+                    }
+                    break;
+
+                case "restoreselected":
+                    RestoreSelectedObjects(db, input, log);
+                    if (input.ResetOnRestore)
+                    {
+                        log.Add("System reset requested after selected restore.");
+                        _lifetime.StopApplication();
+                    }
+                    break;
+
+                case "dropall":
+                    db.DropAllObjects(log.Add);
+                    break;
+
+                case "createdatabase":
+                    if (db.CheckCreateDatabase())
+                        log.Add("Database created successfully.");
+                    else
+                        log.Add("Database already exists (or provider does not support create operation).");
+                    break;
+
+                case "reset":
+                    log.Add("System reset requested.");
+                    _lifetime.StopApplication();
+                    break;
+
+                default:
+                    log.Add($"Unsupported command '{input.Command}'.");
+                    break;
+            }
+        }
+
+        private static void RestoreSelectedObjects(DbManager db, SetupCommandInput input, List<string> log)
+        {
+            var selected = input.SelectedObjects?
+                .Where(name => !string.IsNullOrWhiteSpace(name))
+                .Select(name => name.Trim())
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList() ?? new List<string>();
+
+            if (selected.Count == 0)
+            {
+                log.Add("No objects selected.");
+                return;
+            }
+
+            List<WebObject> objects;
+            try
+            {
+                objects = WebObject.GetList()?.ToList() ?? new List<WebObject>();
+            }
+            catch (Exception ex)
+            {
+                log.Add($"Unable to load WebObject list: {ex.Message}");
+                return;
+            }
+
+            foreach (var objectName in selected)
+            {
+                var item = objects.FirstOrDefault(o => string.Equals(o.Name, objectName, StringComparison.OrdinalIgnoreCase));
+                if (item == null)
+                {
+                    log.Add($"WebObject '{objectName}' not found, skipping.");
+                    continue;
+                }
+
+                try
+                {
+                    if (input.RestoreSchema)
+                    {
+                        db.DropObjectSchema(item, log.Add);
+                        var schemaErrors = db.RestoreObjectSchema(item);
+                        if (!string.IsNullOrWhiteSpace(schemaErrors))
+                            log.Add(schemaErrors);
+                    }
+
+                    db.RestoreObjectData(item, log.Add);
+                }
+                catch (Exception ex)
+                {
+                    log.Add($"Error restoring {item.Name}: {ex.Message}");
+                }
+            }
+        }
+
+        private AccessDecision AuthorizeSetupRequest(string setupKeyCandidate)
+        {
+            if (!IsLoopbackRequest())
+            {
+                return AccessDecision.Forbidden("Setup endpoint is only available from localhost.");
+            }
+
+            var expectedKey = (_configuration["WCMS:SetupApiKey"] ?? string.Empty).Trim();
+            if (string.IsNullOrWhiteSpace(expectedKey))
+            {
+                return AccessDecision.Allow();
+            }
+
+            var candidates = new List<string>();
+            if (!string.IsNullOrWhiteSpace(setupKeyCandidate))
+                candidates.Add(setupKeyCandidate);
+
+            if (Request.Headers.TryGetValue("X-WCMS-Setup-Key", out var headerValue))
+            {
+                var headerKey = headerValue.ToString();
+                if (!string.IsNullOrWhiteSpace(headerKey))
+                    candidates.Add(headerKey);
+            }
+
+            if (Request.Query.TryGetValue("setupKey", out var queryValue))
+            {
+                var queryKey = queryValue.ToString();
+                if (!string.IsNullOrWhiteSpace(queryKey))
+                    candidates.Add(queryKey);
+            }
+
+            foreach (var candidate in candidates)
+            {
+                if (IsFixedTimeEqual(expectedKey, candidate))
+                    return AccessDecision.Allow();
+            }
+
+            return AccessDecision.Unauthorized("Missing or invalid setup key.");
+        }
+
+        private bool IsLoopbackRequest()
+        {
+            var remoteIp = HttpContext.Connection.RemoteIpAddress;
+            if (remoteIp == null)
+                return false;
+
+            return IPAddress.IsLoopback(remoteIp)
+                   || (remoteIp.IsIPv4MappedToIPv6 && IPAddress.IsLoopback(remoteIp.MapToIPv4()));
+        }
+
+        private static bool IsFixedTimeEqual(string expected, string actual)
+        {
+            var expectedBytes = Encoding.UTF8.GetBytes(expected);
+            var actualBytes = Encoding.UTF8.GetBytes(actual);
+            return expectedBytes.Length == actualBytes.Length
+                   && CryptographicOperations.FixedTimeEquals(expectedBytes, actualBytes);
+        }
+
+        private void SaveFlashMessages(List<string> messages)
+        {
+            var nonEmpty = messages.Where(m => !string.IsNullOrWhiteSpace(m)).ToArray();
+            TempData[FlashMessagesKey] = string.Join("\n", nonEmpty);
+        }
+
+        private List<string> ConsumeFlashMessages()
+        {
+            if (!TempData.TryGetValue(FlashMessagesKey, out var value) || value == null)
+                return new List<string>();
+
+            var raw = value.ToString() ?? string.Empty;
+            return raw.Split('\n', StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
+
+        private static string SafeValue(Func<string> getter)
+        {
+            try { return getter(); }
+            catch (Exception ex) { return $"{ex.GetType().Name}: {ex.Message}"; }
+        }
+
+        private readonly record struct AccessDecision(bool IsAuthorized, int StatusCode, string Message)
+        {
+            public static AccessDecision Allow() => new(true, 200, string.Empty);
+            public static AccessDecision Forbidden(string message) => new(false, 403, message);
+            public static AccessDecision Unauthorized(string message) => new(false, 401, message);
+        }
+    }
+
+    public sealed class SetupCommandInput
+    {
+        public string Command { get; set; } = string.Empty;
+        public bool ResetOnRestore { get; set; } = true;
+        public bool RestoreSchema { get; set; }
+        public string[] SelectedObjects { get; set; } = Array.Empty<string>();
+        public string SetupKey { get; set; } = string.Empty;
+    }
+
+    public sealed class SetupPageViewModel
+    {
+        public string SetupKey { get; set; } = string.Empty;
+        public bool IsDatabaseReachable { get; set; }
+        public List<string> Messages { get; set; } = new();
+        public List<string> Report { get; set; } = new();
+        public List<SetupObjectRow> Objects { get; set; } = new();
+    }
+
+    public sealed class SetupObjectRow
+    {
+        public string Name { get; set; } = string.Empty;
+        public string IdentityColumn { get; set; } = string.Empty;
+        public long LastRecordId { get; set; }
+        public DateTime DateModified { get; set; }
+        public int Count { get; set; }
+    }
+}

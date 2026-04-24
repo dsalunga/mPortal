@@ -1,0 +1,184 @@
+@using System
+@using System.Linq
+@using WCMS.WebSystem.Controllers
+@model object
+@{
+    Layout = null;
+    var setup = Model as SetupPageViewModel ?? new SetupPageViewModel();
+
+    bool IsErrorLine(string line)
+    {
+        if (string.IsNullOrWhiteSpace(line))
+            return false;
+
+        var normalized = line.ToUpperInvariant();
+        return normalized.Contains("FAILED")
+               || normalized.Contains("ERROR")
+               || normalized.Contains("MISSING")
+               || normalized.Contains("EXCEPTION")
+               || normalized.Contains("NOT FOUND");
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portal: Online Setup</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin: 1rem; background: #f6f7fb; color: #222; }
+        a { color: #0a58ca; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .bar { margin-bottom: 1rem; font-size: 0.95rem; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+        .card { background: #fff; border: 1px solid #d9d9e3; border-radius: 8px; padding: 1rem; }
+        .card h2 { margin: 0 0 0.75rem 0; font-size: 1.1rem; }
+        .card h3 { margin: 0.5rem 0; font-size: 1rem; }
+        .muted { color: #666; }
+        .ok { color: #0a7d2e; }
+        .error { color: #b00020; font-weight: 600; }
+        .toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 0.75rem; }
+        .toolbar .spacer { flex: 1; }
+        button { cursor: pointer; border: 1px solid #aaa; background: #fff; border-radius: 6px; padding: 0.4rem 0.75rem; }
+        button:hover { background: #f0f0f6; }
+        button.danger { border-color: #b00020; color: #b00020; }
+        input[type="password"], select { border: 1px solid #b7b7c8; border-radius: 6px; padding: 0.35rem 0.45rem; }
+        label { font-size: 0.95rem; }
+        .messages { white-space: pre-wrap; font-family: Menlo, Consolas, monospace; font-size: 0.85rem; max-height: 320px; overflow: auto; border: 1px solid #dfdfeb; padding: 0.75rem; background: #fafafc; border-radius: 6px; }
+        .report { margin: 0; padding-left: 1.1rem; }
+        .report li { margin: 0.25rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+        th, td { border-bottom: 1px solid #ececf4; padding: 0.4rem 0.35rem; text-align: left; }
+        th { background: #f8f8fd; }
+        .small { font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <div class="bar">
+        <a href="/">Home</a> |
+        <a href="/Central/" target="_top">Administration</a> |
+        <a href="/Content/Setup.aspx@(string.IsNullOrWhiteSpace(setup.SetupKey) ? string.Empty : ("?setupKey=" + Uri.EscapeDataString(setup.SetupKey)))" target="_top">Refresh</a>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>Setup Access</h2>
+            <form method="get" action="/Content/Setup.aspx" class="toolbar">
+                <label for="setupKey">Setup Key</label>
+                <input id="setupKey" name="setupKey" type="password" value="@setup.SetupKey" placeholder="Optional key" />
+                <button type="submit">Apply Key</button>
+                <span class="muted small">If <code>WCMS:SetupApiKey</code> is configured, this key is required.</span>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Detected Errors</h2>
+            <ul class="report">
+                @foreach (var line in setup.Report)
+                {
+                    <li class="@(IsErrorLine(line) ? "error" : "ok")">@line</li>
+                }
+            </ul>
+            @if (!setup.IsDatabaseReachable)
+            {
+                <p class="error">Database is not reachable. Fix connection/role/database first, then retry restore actions.</p>
+            }
+        </div>
+
+        <div class="card">
+            <h2>System Tools</h2>
+            <form method="post" action="/Content/Setup.aspx">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="SetupKey" value="@setup.SetupKey" />
+                <input type="hidden" name="ResetOnRestore" value="false" />
+                <div class="toolbar">
+                    <label>
+                        <input type="checkbox" name="ResetOnRestore" value="true" checked />
+                        Reset on Restore
+                    </label>
+                    <div class="spacer"></div>
+                    <button type="submit" name="Command" value="CreateDatabase">Create Database</button>
+                    <button type="submit" name="Command" value="Backup">DB Backup</button>
+                    <button type="submit" name="Command" value="RestoreAll" onclick="return confirm('This will delete existing records and restore from backup. Continue?');">DB Restore</button>
+                    <button type="submit" name="Command" value="DropAll" class="danger" onclick="return confirm('Drop all database objects?');">Drop Objects</button>
+                    <button type="submit" name="Command" value="Reset" class="danger" onclick="return confirm('Reset application now?');">System Reset</button>
+                </div>
+            </form>
+            <p class="small muted">Equivalent modern operations for legacy <code>Setup.aspx</code> are now available from this page.</p>
+        </div>
+
+        <div class="card">
+            <h2>Backup & Restore (Selected Objects)</h2>
+            @if (setup.Objects.Count == 0)
+            {
+                <p class="muted">No objects available yet. Initialize/restore DB first.</p>
+            }
+            else
+            {
+                <form method="post" action="/Content/Setup.aspx">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="Command" value="RestoreSelected" />
+                    <input type="hidden" name="SetupKey" value="@setup.SetupKey" />
+                    <input type="hidden" name="ResetOnRestore" value="false" />
+
+                    <div class="toolbar">
+                        <label for="restoreSchema">Restore Mode</label>
+                        <select id="restoreSchema" name="RestoreSchema">
+                            <option value="false" selected>Data</option>
+                            <option value="true">Schema + Data</option>
+                        </select>
+                        <label>
+                            <input type="checkbox" name="ResetOnRestore" value="true" checked />
+                            Reset on Restore
+                        </label>
+                        <button type="submit" onclick="return confirm('Restore selected objects now?');">Restore Selected</button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width:28px">
+                                    <input type="checkbox" onclick="toggleAllSelected(this)" />
+                                </th>
+                                <th>Name</th>
+                                <th>Identity</th>
+                                <th>Last Record</th>
+                                <th>Count</th>
+                                <th>Modified</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var row in setup.Objects)
+                        {
+                            <tr>
+                                <td><input type="checkbox" name="SelectedObjects" value="@row.Name" /></td>
+                                <td>@row.Name</td>
+                                <td>@row.IdentityColumn</td>
+                                <td>@row.LastRecordId</td>
+                                <td>@(row.Count >= 0 ? row.Count.ToString() : "N/A")</td>
+                                <td>@(row.DateModified == DateTime.MinValue ? "-" : row.DateModified.ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </form>
+            }
+        </div>
+
+        @if (setup.Messages.Count > 0)
+        {
+            <div class="card">
+                <h2>Operation Log</h2>
+                <div class="messages">@string.Join(Environment.NewLine, setup.Messages)</div>
+            </div>
+        }
+    </div>
+
+    <script>
+        function toggleAllSelected(source) {
+            const checkboxes = document.querySelectorAll('input[name="SelectedObjects"]');
+            checkboxes.forEach(cb => { cb.checked = source.checked; });
+        }
+    </script>
+</body>
+</html>
