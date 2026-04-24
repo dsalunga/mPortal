@@ -93,13 +93,15 @@ mPortal-private/
 │   │   ├── Integration/              # External-system integration + BibleReader adapter
 │   │   ├── BranchLocator/            # Branch/location finder with maps
 │   │   └── SDKTest/                  # SDK smoke-test harness
-│   └── Utilities/                     # ──── CLI/desktop tools ────
-│       ├── DbManager/                # CLI database backup/restore
-│       ├── DbManagerWPF/             # WPF database manager (net10.0-windows)
-│       ├── PostBuildManager/          # Post-build automation
-│       ├── WebExtractor/              # Web content extraction
-│       ├── WebSystemDeployer/         # Deployment tool
-│       └── MySQL TableEditor/         # MySQL table editor utility
+│   ├── Utilities/                     # ──── CLI/desktop tools ────
+│   │   ├── DbManager/                # CLI database backup/restore
+│   │   ├── DbManagerWPF/             # WPF database manager (net10.0-windows)
+│   │   ├── PostBuildManager/          # Post-build automation
+│   │   ├── WebExtractor/              # Web content extraction
+│   │   ├── WebSystemDeployer/         # Deployment tool
+│   │   └── MySQL TableEditor/         # MySQL table editor utility
+│   └── Libraries/                     # Shared library projects under Portal
+│       └── Media-Player-ASP.NET-Control/ # Media player abstraction (net10.0)
 ├── Apps/
 │   ├── BibleReader/                  # Standalone Bible reader web app
 │   │   ├── BibleReader.Core/         # Bible domain model
@@ -107,8 +109,6 @@ mPortal-private/
 │   └── LessonReviewer/               # Lesson playback/review web app
 │       ├── LessonReviewer.Core/      # Lesson domain model
 │       └── LessonReviewer/           # ASP.NET Core web host (net10.0)
-├── Libraries/
-│   └── Media-Player-ASP.NET-Control/ # Media player abstraction (net10.0)
 ├── Directory.Build.props              # Shared MSBuild properties
 ├── docs/plans/NET10_MIGRATION_PLAN.md # Migration plan & task tracker
 └── README.md                          # Getting-started guide

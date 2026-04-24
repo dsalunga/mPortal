@@ -1,1 +1,0 @@
-export SELENIUM_JAR=$(pwd)/selenium-server-standalone-2.42.2.jar
