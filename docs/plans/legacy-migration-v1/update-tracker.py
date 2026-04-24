@@ -548,10 +548,10 @@ def apply_updates(rows):
         if ftype == '.aspx':
             basename = os.path.basename(lp).replace('.aspx', '')
             
-            # Setup.aspx → completed (migrated to API endpoints)
+            # Setup.aspx → completed (migrated to MVC setup route + retained API endpoints)
             if basename == 'Setup':
-                update_row(row, 'completed', 'api_endpoint_replacement',
-                           'Migrated to /api/setup/* REST endpoints in Program.cs')
+                update_row(row, 'completed', 'controller_view_reimplementation',
+                           'Migrated to /Content/Setup.aspx MVC route (SetupController + Setup view) with /api/setup/* endpoints retained')
                 changes['aspx_setup_completed'] += 1
             else:
                 update_row(row, 'not_applicable', 'obsolete_webforms',
@@ -559,11 +559,16 @@ def apply_updates(rows):
                 changes['aspx_not_applicable'] += 1
             continue
         
-        # .aspx.cs code-behind for .aspx pages → not_applicable
+        # .aspx.cs code-behind for .aspx pages
         if ftype == '.cs' and lp.endswith('.aspx.cs'):
-            update_row(row, 'not_applicable', 'obsolete_webforms',
-                       'WebForms .aspx code-behind; modern app uses Razor views and ViewComponents')
-            changes['aspx_cs_not_applicable'] += 1
+            if os.path.basename(lp) == 'Setup.aspx.cs':
+                update_row(row, 'completed', 'controller_view_reimplementation',
+                           'Legacy Setup.aspx.cs behavior reimplemented in SetupController actions and Setup Razor forms')
+                changes['aspx_cs_setup_completed'] += 1
+            else:
+                update_row(row, 'not_applicable', 'obsolete_webforms',
+                           'WebForms .aspx code-behind; modern app uses Razor views and ViewComponents')
+                changes['aspx_cs_not_applicable'] += 1
             continue
     
     # ================================================================

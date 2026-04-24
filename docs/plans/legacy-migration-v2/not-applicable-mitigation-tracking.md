@@ -25,7 +25,7 @@ This document tracks all files currently classified as `not_applicable` in legac
 | [ ] | `not_applicable_vendor_path` | 753 |  |  |  |  |
 | [ ] | `codebehind_of_not_applicable` | 233 |  |  |  |  |
 | [ ] | `obsolete_filetype` | 172 |  |  |  |  |
-| [ ] | `obsolete_webforms` | 81 |  |  |  |  |
+| [ ] | `obsolete_webforms` | 80 |  |  |  |  |
 | [ ] | `not_applicable_vendor_lang` | 74 |  |  |  |  |
 | [ ] | `obsolete_pattern` | 64 |  |  |  |  |
 | [ ] | `obsolete_third_party` | 25 |  |  |  |  |
@@ -1218,7 +1218,7 @@ Mark `[M]` in `File Mark` for file-specific mitigation/implementation decisions.
 | [ ] | `LEGACY-05302` | `Legacy/Portal/db-backup.cmd` | `Legacy/Portal/db-backup.cmd` | `Portal` | `.cmd` | `not_applicable` | Windows batch scripts; replaced by cross-platform tooling |  |  |  |  |
 | [ ] | `LEGACY-05303` | `Legacy/Portal/db-restore.cmd` | `Legacy/Portal/db-restore.cmd` | `Portal` | `.cmd` | `not_applicable` | Windows batch scripts; replaced by cross-platform tooling |  |  |  |  |
 
-### Reason: `obsolete_webforms` (81 files)
+### Reason: `obsolete_webforms` (80 files)
 
 | File Mark | ID | Legacy File (Tracker Path) | Legacy File (Absolute Path) | Module | File Type | Current Status | Existing Notes | Owner | Priority | Target Milestone | Mitigation/Implementation Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1281,7 +1281,6 @@ Mark `[M]` in `File Mark` for file-specific mitigation/implementation decisions.
 | [ ] | `LEGACY-03904` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Admin/WebOpen.aspx.cs` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Admin/WebOpen.aspx.cs` | `Portal` | `.cs` | `not_applicable` | WebForms .aspx code-behind; modern app uses Razor views and ViewComponents |  |  |  |  |
 | [ ] | `LEGACY-04044` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Executor.aspx` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Executor.aspx` | `Portal` | `.aspx` | `not_applicable` | WebForms .aspx page; modern app uses Razor views and ViewComponents |  |  |  |  |
 | [ ] | `LEGACY-04124` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Default.aspx.cs` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/Central/Default.aspx.cs` | `Portal` | `.cs` | `not_applicable` | WebForms .aspx code-behind; modern app uses Razor views and ViewComponents |  |  |  |  |
-| [ ] | `LEGACY-05194` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Setup.aspx.cs` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Setup.aspx.cs` | `Portal` | `.cs` | `not_applicable` | WebForms .aspx code-behind; modern app uses Razor views and ViewComponents |  |  |  |  |
 | [ ] | `LEGACY-05196` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Test.aspx` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Test.aspx` | `Portal` | `.aspx` | `not_applicable` | WebForms .aspx page; modern app uses Razor views and ViewComponents |  |  |  |  |
 | [ ] | `LEGACY-05197` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Test.aspx.cs` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Test.aspx.cs` | `Portal` | `.cs` | `not_applicable` | WebForms .aspx code-behind; modern app uses Razor views and ViewComponents |  |  |  |  |
 | [ ] | `LEGACY-05198` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Test02.aspx` | `Legacy/Portal/WebSystem/WebSystem-MVC/Content/Test02.aspx` | `Portal` | `.aspx` | `not_applicable` | WebForms .aspx page; modern app uses Razor views and ViewComponents |  |  |  |  |
@@ -1562,4 +1561,3 @@ Mark `[M]` in `File Mark` for file-specific mitigation/implementation decisions.
 | File Mark | ID | Legacy File (Tracker Path) | Legacy File (Absolute Path) | Module | File Type | Current Status | Existing Notes | Owner | Priority | Target Milestone | Mitigation/Implementation Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | [ ] | `LEGACY-02570` | `Legacy/Portal/WebParts/SystemParts/SystemParts/AppBundle/Menu/StandardMenu.ascx.cs` | `Legacy/Portal/WebParts/SystemParts/SystemParts/AppBundle/Menu/StandardMenu.ascx.cs` | `Portal` | `.cs` | `not_applicable` | Orphan code-behind; parent .ascx not tracked or removed |  |  |  |  |
-
