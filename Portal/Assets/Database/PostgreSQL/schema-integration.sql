@@ -275,6 +275,49 @@ CREATE TABLE IF NOT EXISTS "LessonReviewerSession" (
     "Status" INTEGER DEFAULT 0 NOT NULL,
     "DateApproved" TIMESTAMP DEFAULT NOW() NOT NULL,
     "AdditionalNotes" VARCHAR(4000) DEFAULT '' NOT NULL,
+    "AttendanceType" INTEGER DEFAULT 1 NOT NULL,
+    "PageId" INTEGER DEFAULT -1 NOT NULL,
+    "Extra" VARCHAR(4000) DEFAULT '' NOT NULL,
     PRIMARY KEY ("Id")
 );
 
+-- Compatibility fixups for legacy schema variants
+DO $$
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM information_schema.columns
+        WHERE table_schema = 'public'
+          AND table_name = 'LessonReviewerSession'
+          AND column_name = 'WorkerNotes'
+    ) AND NOT EXISTS (
+        SELECT 1
+        FROM information_schema.columns
+        WHERE table_schema = 'public'
+          AND table_name = 'LessonReviewerSession'
+          AND column_name = 'CouncillorNotes'
+    ) THEN
+        ALTER TABLE "LessonReviewerSession" RENAME COLUMN "WorkerNotes" TO "CouncillorNotes";
+    END IF;
+
+    IF EXISTS (
+        SELECT 1
+        FROM information_schema.columns
+        WHERE table_schema = 'public'
+          AND table_name = 'LessonReviewerSession'
+          AND column_name = 'WorkerUserId'
+    ) AND NOT EXISTS (
+        SELECT 1
+        FROM information_schema.columns
+        WHERE table_schema = 'public'
+          AND table_name = 'LessonReviewerSession'
+          AND column_name = 'CouncillorUserId'
+    ) THEN
+        ALTER TABLE "LessonReviewerSession" RENAME COLUMN "WorkerUserId" TO "CouncillorUserId";
+    END IF;
+END
+$$;
+
+ALTER TABLE "LessonReviewerSession" ADD COLUMN IF NOT EXISTS "AttendanceType" INTEGER DEFAULT 1 NOT NULL;
+ALTER TABLE "LessonReviewerSession" ADD COLUMN IF NOT EXISTS "PageId" INTEGER DEFAULT -1 NOT NULL;
+ALTER TABLE "LessonReviewerSession" ADD COLUMN IF NOT EXISTS "Extra" VARCHAR(4000) DEFAULT '' NOT NULL;

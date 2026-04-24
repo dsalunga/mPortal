@@ -27,6 +27,8 @@ namespace WCMS.WebSystem.Controllers
     public class SetupController : Controller
     {
         private const string FlashMessagesKey = "__setup_flash_messages";
+        private const string WebObjectXmlFallbackNote = "WebObject list source: XML provider fallback (runtime provider not initialized).";
+        private const string WebObjectFileFallbackNote = "WebObject list source: WebObject.xml file fallback.";
 
         private readonly IConfiguration _configuration;
         private readonly IHostApplicationLifetime _lifetime;
@@ -78,7 +80,7 @@ namespace WCMS.WebSystem.Controllers
 
             if (dbConnected)
             {
-                model.Objects.AddRange(BuildObjectRows(model.Report));
+                model.Objects.AddRange(BuildObjectRows(model.Report, db.XML_PATH));
             }
 
             return model;
@@ -112,70 +114,56 @@ namespace WCMS.WebSystem.Controllers
                 ? $"XML definition ({DbConstants.XML_FILE}): OK"
                 : $"XML definition ({DbConstants.XML_FILE}): MISSING");
 
-            try
+            var items = LoadWebObjectsForSetup(report, "WebObject list error", db.XML_PATH);
+            if (items.Count == 0)
             {
-                var items = WebObject.GetList()?.ToList() ?? new List<WebObject>();
-                if (items.Count == 0)
+                report.Add("WebObject list: empty");
+            }
+            else
+            {
+                foreach (var item in items)
                 {
-                    report.Add("WebObject list: empty");
-                }
-                else
-                {
-                    foreach (var item in items)
+                    try
+                    {
+                        var quotedName = DbSyntax.QuoteIdentifier(item.Name);
+                        using var r = DbHelper.ExecuteReader(CommandType.Text, $"SELECT * FROM {quotedName} LIMIT 1");
+                        report.Add($"Table {item.Name}: OK");
+                    }
+                    catch
                     {
                         try
                         {
-                            var quotedName = DbSyntax.QuoteIdentifier(item.Name);
-                            using var r = DbHelper.ExecuteReader(CommandType.Text, $"SELECT * FROM {quotedName} LIMIT 1");
+                            using var r2 = DbHelper.ExecuteReader(CommandType.Text, $"SELECT TOP 1 * FROM {item.Name}");
                             report.Add($"Table {item.Name}: OK");
                         }
-                        catch
+                        catch (Exception ex2)
                         {
-                            try
-                            {
-                                using var r2 = DbHelper.ExecuteReader(CommandType.Text, $"SELECT TOP 1 * FROM {item.Name}");
-                                report.Add($"Table {item.Name}: OK");
-                            }
-                            catch (Exception ex2)
-                            {
-                                report.Add($"Table {item.Name}: MISSING or ERROR — {ex2.Message}");
-                            }
+                            report.Add($"Table {item.Name}: MISSING or ERROR — {ex2.Message}");
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                report.Add($"WebObject list error: {ex.Message}");
             }
 
             return report;
         }
 
-        private static List<SetupObjectRow> BuildObjectRows(List<string> report)
+        private static List<SetupObjectRow> BuildObjectRows(List<string> report, string xmlPath)
         {
             var rows = new List<SetupObjectRow>();
-            try
+            var items = LoadWebObjectsForSetup(report, "Object listing error", xmlPath);
+            foreach (var item in items.OrderBy(i => i.Name))
             {
-                var items = WebObject.GetList()?.OrderBy(i => i.Name).ToList() ?? new List<WebObject>();
-                foreach (var item in items)
-                {
-                    var count = -1;
-                    try { count = WebObject.GetCount(item); } catch { }
+                var count = -1;
+                try { count = WebObject.GetCount(item); } catch { }
 
-                    rows.Add(new SetupObjectRow
-                    {
-                        Name = item.Name,
-                        IdentityColumn = item.IdentityColumn,
-                        LastRecordId = item.LastRecordId,
-                        DateModified = item.DateModified,
-                        Count = count
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                report.Add($"Object listing error: {ex.Message}");
+                rows.Add(new SetupObjectRow
+                {
+                    Name = item.Name,
+                    IdentityColumn = item.IdentityColumn,
+                    LastRecordId = item.LastRecordId,
+                    DateModified = item.DateModified,
+                    Count = count
+                });
             }
 
             return rows;
@@ -252,16 +240,9 @@ namespace WCMS.WebSystem.Controllers
                 return;
             }
 
-            List<WebObject> objects;
-            try
-            {
-                objects = WebObject.GetList()?.ToList() ?? new List<WebObject>();
-            }
-            catch (Exception ex)
-            {
-                log.Add($"Unable to load WebObject list: {ex.Message}");
+            var objects = LoadWebObjectsForSetup(log, "Unable to load WebObject list", db.XML_PATH);
+            if (objects.Count == 0)
                 return;
-            }
 
             foreach (var objectName in selected)
             {
@@ -368,6 +349,123 @@ namespace WCMS.WebSystem.Controllers
         {
             try { return getter(); }
             catch (Exception ex) { return $"{ex.GetType().Name}: {ex.Message}"; }
+        }
+
+        private static List<WebObject> LoadWebObjectsForSetup(List<string> messages, string failurePrefix, string xmlPath)
+        {
+            Exception runtimeEx = null;
+            Exception xmlProviderEx = null;
+            Exception fileEx = null;
+
+            try
+            {
+                return WebObject.GetList()?.ToList() ?? new List<WebObject>();
+            }
+            catch (Exception ex)
+            {
+                runtimeEx = ex;
+            }
+
+            try
+            {
+                var xmlItems = WebObject.XmlProvider?.GetList()?.ToList();
+                if (xmlItems != null)
+                {
+                    AddMessageOnce(messages, WebObjectXmlFallbackNote);
+                    return xmlItems;
+                }
+            }
+            catch (Exception ex)
+            {
+                xmlProviderEx = ex;
+            }
+
+            try
+            {
+                var fileItems = LoadWebObjectsFromXmlFile(xmlPath);
+                if (fileItems.Count > 0)
+                {
+                    AddMessageOnce(messages, WebObjectFileFallbackNote);
+                    return fileItems;
+                }
+            }
+            catch (Exception ex)
+            {
+                fileEx = ex;
+            }
+
+            var message = fileEx?.Message
+                          ?? xmlProviderEx?.Message
+                          ?? runtimeEx?.Message
+                          ?? "Unknown setup WebObject loading failure.";
+            messages?.Add($"{failurePrefix}: {message}");
+            return new List<WebObject>();
+        }
+
+        private static List<WebObject> LoadWebObjectsFromXmlFile(string xmlPath)
+        {
+            var items = new List<WebObject>();
+            if (string.IsNullOrWhiteSpace(xmlPath))
+                return items;
+
+            var xmlFile = Path.Combine(xmlPath, DbConstants.XML_FILE);
+            if (!System.IO.File.Exists(xmlFile))
+                return items;
+
+            var ds = new DataSet();
+            ds.ReadXml(xmlFile, XmlReadMode.ReadSchema);
+            if (!ds.Tables.Contains(WebObject.OBJECT_NAME))
+                return items;
+
+            foreach (DataRow row in ds.Tables[WebObject.OBJECT_NAME].Rows)
+            {
+                var name = Convert.ToString(row["Name"]) ?? string.Empty;
+                if (string.IsNullOrWhiteSpace(name))
+                    continue;
+
+                items.Add(new WebObject
+                {
+                    Name = name,
+                    IdentityColumn = Convert.ToString(row["IdentityColumn"]) ?? string.Empty,
+                    LastRecordId = SafeToInt(row, "LastRecordId"),
+                    DateModified = SafeToDateTime(row, "DateModified")
+                });
+            }
+
+            return items;
+        }
+
+        private static int SafeToInt(DataRow row, string columnName)
+        {
+            if (!row.Table.Columns.Contains(columnName))
+                return 0;
+
+            var raw = row[columnName];
+            if (raw == null || raw == DBNull.Value)
+                return 0;
+
+            return int.TryParse(raw.ToString(), out var value) ? value : 0;
+        }
+
+        private static DateTime SafeToDateTime(DataRow row, string columnName)
+        {
+            if (!row.Table.Columns.Contains(columnName))
+                return DateTime.MinValue;
+
+            var raw = row[columnName];
+            if (raw == null || raw == DBNull.Value)
+                return DateTime.MinValue;
+
+            return DateTime.TryParse(raw.ToString(), out var value) ? value : DateTime.MinValue;
+        }
+
+        private static void AddMessageOnce(List<string> messages, string message)
+        {
+            if (messages == null || string.IsNullOrWhiteSpace(message))
+                return;
+
+            if (!messages.Any(m => string.Equals(m, message, StringComparison.Ordinal)))
+                messages.Add(message);
         }
 
         private readonly record struct AccessDecision(bool IsAuthorized, int StatusCode, string Message)

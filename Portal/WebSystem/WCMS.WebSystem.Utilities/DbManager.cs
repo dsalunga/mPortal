@@ -256,9 +256,100 @@ namespace WCMS.WebSystem.Utilities
             var table = ds.Tables[0];
 
             var quotedName = DbSyntax.QuoteIdentifier(item.Name);
+            NormalizeRestoreTableColumns(item.Name, quotedName, table, notify);
             DbHelper.ExecuteUpdateDataSet(string.Format("SELECT * FROM {0}", quotedName), table);
 
             notify(string.Format("{0}.xml RESTORED.", item.Name));
+        }
+
+        private static readonly Dictionary<string, string> LegacyRestoreColumnAliases =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "WorkerNotes", "CouncillorNotes" },
+                { "WorkerUserId", "CouncillorUserId" }
+            };
+
+        private static HashSet<string> GetTargetColumnSet(string quotedName)
+        {
+            var columns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            string[] probes =
+            {
+                string.Format("SELECT * FROM {0} LIMIT 0", quotedName),
+                string.Format("SELECT TOP 0 * FROM {0}", quotedName)
+            };
+
+            foreach (var probe in probes)
+            {
+                try
+                {
+                    using var reader = DbHelper.ExecuteReader(CommandType.Text, probe);
+                    var schema = reader.GetSchemaTable();
+                    if (schema == null)
+                        continue;
+
+                    foreach (DataRow row in schema.Rows)
+                    {
+                        var name = Convert.ToString(row["ColumnName"]);
+                        if (!string.IsNullOrWhiteSpace(name))
+                            columns.Add(name);
+                    }
+
+                    if (columns.Count > 0)
+                        break;
+                }
+                catch
+                {
+                    // Try next probe for provider compatibility.
+                }
+            }
+
+            return columns;
+        }
+
+        private static void NormalizeRestoreTableColumns(
+            string objectName,
+            string quotedName,
+            DataTable sourceTable,
+            Action<string> notify)
+        {
+            var targetColumns = GetTargetColumnSet(quotedName);
+            if (targetColumns.Count == 0)
+                return;
+
+            foreach (var kvp in LegacyRestoreColumnAliases)
+            {
+                var legacyName = kvp.Key;
+                var modernName = kvp.Value;
+
+                if (!sourceTable.Columns.Contains(legacyName))
+                    continue;
+
+                if (sourceTable.Columns.Contains(modernName))
+                    continue;
+
+                if (targetColumns.Contains(modernName) && !targetColumns.Contains(legacyName))
+                {
+                    sourceTable.Columns[legacyName].ColumnName = modernName;
+                    notify?.Invoke(string.Format(
+                        "{0}: mapped legacy column '{1}' to '{2}' for restore compatibility.",
+                        objectName, legacyName, modernName));
+                }
+            }
+
+            var removableColumns = new List<string>();
+            foreach (DataColumn col in sourceTable.Columns)
+            {
+                if (!targetColumns.Contains(col.ColumnName))
+                    removableColumns.Add(col.ColumnName);
+            }
+
+            foreach (var columnName in removableColumns)
+            {
+                sourceTable.Columns.Remove(columnName);
+                notify?.Invoke(string.Format(
+                    "{0}: skipped non-target column '{1}' during restore.",
+                    objectName, columnName));
+            }
         }
 
         public void BackupObjectData(WebObject item, Action<string> notify, int index = -1)
