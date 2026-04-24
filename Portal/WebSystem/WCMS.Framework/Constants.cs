@@ -617,7 +617,7 @@ namespace WCMS.Framework
         public const string LoaderMain = CONTENT + APPS + CENTRAL + "/";
         public const string LoaderRazor = CONTENT + APPS + CENTRAL + "/Loader";
         public const string LoaderMain2 = "/Content/Parts/Central/default.aspx";
-        public const string Setup = CONTENT + "/Setup.aspx";
+        public const string Setup = CENTRAL + "/Setup";
 
         public const string TreePanel = CENTRAL + "/TreePanel/";
         public const string WebSiteTree = CENTRAL + "/WebSiteTree/";

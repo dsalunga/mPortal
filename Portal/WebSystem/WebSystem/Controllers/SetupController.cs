@@ -18,12 +18,12 @@ using WCMS.WebSystem.Utilities;
 namespace WCMS.WebSystem.Controllers
 {
     /// <summary>
-    /// Modern replacement for legacy /Content/Setup.aspx WebForms page.
+    /// Modern replacement for legacy Setup.aspx recovery page.
     /// This endpoint is intentionally reachable independent of CMS page resolution.
     /// </summary>
     [AllowAnonymous]
     [ApiExplorerSettings(IgnoreApi = true)]
-    [Route("Content/Setup.aspx")]
+    [Route("Central/Setup")]
     public class SetupController : Controller
     {
         private const string FlashMessagesKey = "__setup_flash_messages";

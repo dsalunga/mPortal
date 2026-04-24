@@ -15,7 +15,7 @@ namespace WCMS.WebSystem
         public const string PanelDesignerPath = "~/Content/Parts/Central/Controls/PanelDesigner.ascx";
         public const string DesignModeControlPath = "~/Content/Parts/Central/Controls/DesignMode.ascx";
         public const string LoadingErrorMsg = "Failed loading control: {0}";
-        public const string SetupPath = "~/Content/Setup.aspx";
+        public const string SetupPath = "~/Central/Setup";
 
         public const string NO_LOAD = "No configuration available for this element.";
         public const string ERROR_LOAD = "Error loading module: ";

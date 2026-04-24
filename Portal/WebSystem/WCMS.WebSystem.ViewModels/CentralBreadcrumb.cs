@@ -47,7 +47,7 @@ namespace WCMS.WebSystem
 
             if (basePath.StartsWith("/Central/", StringComparison.InvariantCultureIgnoreCase) || basePath.StartsWith(CentralPages.LoaderMain, StringComparison.InvariantCultureIgnoreCase))
                 GeneratePath(query, builder, basePath);
-            else if (basePath.EndsWith("/Setup.aspx", StringComparison.InvariantCultureIgnoreCase))
+            else if (basePath.StartsWith("/Central/Setup", StringComparison.InvariantCultureIgnoreCase))
                 builder.AppendFormat(LinkStaticFormat2, "Tools", "Online Setup");
 
             return string.Format(ContainerFormat, builder);

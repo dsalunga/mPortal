@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +33,11 @@ namespace WCMS.WebSystem.Controllers
 
             if (page == null)
             {
+                if (ShouldRedirectToSetup())
+                {
+                    return Redirect("/Central/Setup");
+                }
+
                 return NotFound();
             }
 
@@ -115,6 +121,44 @@ namespace WCMS.WebSystem.Controllers
                 .ToList();
 
             Request.QueryString = QueryString.Create(filtered);
+        }
+
+        private bool ShouldRedirectToSetup()
+        {
+            if (!IsSetupCandidatePath(Request.Path))
+                return false;
+
+            if (!WebObject.IsInitialized)
+                return true;
+
+            try
+            {
+                using var reader = DbHelper.ExecuteReader(CommandType.Text, "SELECT 1");
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
+        private static bool IsSetupCandidatePath(PathString path)
+        {
+            if (!path.HasValue)
+                return true;
+
+            var value = path.Value ?? string.Empty;
+            if (string.Equals(value, "/", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (string.Equals(value, "/default", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(value, "/default.aspx", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (value.StartsWith("/central", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            return false;
         }
     }
 

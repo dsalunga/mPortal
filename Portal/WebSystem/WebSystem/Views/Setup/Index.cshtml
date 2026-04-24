@@ -57,13 +57,13 @@
     <div class="bar">
         <a href="/">Home</a> |
         <a href="/Central/" target="_top">Administration</a> |
-        <a href="/Content/Setup.aspx@(string.IsNullOrWhiteSpace(setup.SetupKey) ? string.Empty : ("?setupKey=" + Uri.EscapeDataString(setup.SetupKey)))" target="_top">Refresh</a>
+        <a href="/Central/Setup@(string.IsNullOrWhiteSpace(setup.SetupKey) ? string.Empty : ("?setupKey=" + Uri.EscapeDataString(setup.SetupKey)))" target="_top">Refresh</a>
     </div>
 
     <div class="grid">
         <div class="card">
             <h2>Setup Access</h2>
-            <form method="get" action="/Content/Setup.aspx" class="toolbar">
+            <form method="get" action="/Central/Setup" class="toolbar">
                 <label for="setupKey">Setup Key</label>
                 <input id="setupKey" name="setupKey" type="password" value="@setup.SetupKey" placeholder="Optional key" />
                 <button type="submit">Apply Key</button>
@@ -87,7 +87,7 @@
 
         <div class="card">
             <h2>System Tools</h2>
-            <form method="post" action="/Content/Setup.aspx">
+            <form method="post" action="/Central/Setup">
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="SetupKey" value="@setup.SetupKey" />
                 <input type="hidden" name="ResetOnRestore" value="false" />
@@ -115,7 +115,7 @@
             }
             else
             {
-                <form method="post" action="/Content/Setup.aspx">
+                <form method="post" action="/Central/Setup">
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="Command" value="RestoreSelected" />
                     <input type="hidden" name="SetupKey" value="@setup.SetupKey" />
