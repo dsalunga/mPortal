@@ -57,8 +57,8 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
   - Code evidence:
     - PostgreSQL test harness now auto-applies schema + baseline + fixture scripts:
       - `Tests/WCMS.Integration.Tests/PostgreSqlTestHarness.cs`
-      - `Database/PostgreSQL/seed-data.sql`
-      - `Database/PostgreSQL/seed-test-fixtures.sql`
+      - `Portal/Binaries/Database/PostgreSQL/seed-data.sql`
+      - `Portal/Binaries/Database/PostgreSQL/seed-test-fixtures.sql`
     - Seeded login + CMS render assertions:
       - `Tests/WCMS.Integration.Tests/PostgreSqlProviderIntegrationTests.cs`
         - `AccountLogin_WithSeededFixtureUser_RedirectsWithoutLoginError_AndSetsAuthCookie`

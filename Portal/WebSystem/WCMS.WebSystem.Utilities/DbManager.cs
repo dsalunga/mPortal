@@ -25,22 +25,17 @@ namespace WCMS.WebSystem.Utilities
         public string TableSqlPath => Path.Combine(XML_PATH, "Tables");
 
         /// <summary>
-        /// Path to Database/PostgreSQL/ directory (contains schema.sql for PostgreSQL schema creation).
-        /// Resolves relative to the repository root, assuming XML_PATH points to Portal/Binaries/Database.
+        /// Path to Portal/Binaries/Database/PostgreSQL directory
+        /// (contains schema.sql and PostgreSQL initialization assets).
         /// </summary>
         public string PostgreSqlSchemaDir
         {
             get
             {
-                // XML_PATH resolves to Portal/Binaries/Database — go up to repo root, then into Database/PostgreSQL
-                var dbDir = new DirectoryInfo(XML_PATH);
-                var repoRoot = dbDir.Parent?.Parent?.Parent; // Database → Binaries → Portal → repo root
-                if (repoRoot != null)
-                {
-                    var pgDir = Path.Combine(repoRoot.FullName, "Database", "PostgreSQL");
-                    if (Directory.Exists(pgDir))
-                        return pgDir;
-                }
+                // XML_PATH resolves to Portal/Binaries/Database
+                var pgDir = Path.Combine(XML_PATH, "PostgreSQL");
+                if (Directory.Exists(pgDir))
+                    return pgDir;
                 return string.Empty;
             }
         }
