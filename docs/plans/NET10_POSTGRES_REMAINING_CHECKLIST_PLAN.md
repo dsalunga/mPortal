@@ -33,7 +33,7 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
 
 - [ ] `CHK-NET10-005` Run performance baseline comparison with legacy .NET Framework runtime.
   - Current status: pending benchmark design/execution
-  - Code evidence: benchmark harness now exists (`Tools/WCMS.PostgreSql.Benchmarks/`), but legacy-vs-modern comparative run data is still pending
+  - Code evidence: benchmark harness now exists (`Portal/Utilities/Benchmarks/WCMS.PostgreSql.Benchmarks/`), but legacy-vs-modern comparative run data is still pending
 
 ### B) Implementation Gaps Found During Validation (Need code changes, not only runtime checks)
 
@@ -97,7 +97,7 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
 
 - [ ] `CHK-PG-006` Execute PostgreSQL performance benchmarking against representative workloads.
   - Current status: partially implemented
-  - Code evidence: benchmark harness added at `Tools/WCMS.PostgreSql.Benchmarks/` (`BenchmarkDotNet`)
+  - Code evidence: benchmark harness added at `Portal/Utilities/Benchmarks/WCMS.PostgreSql.Benchmarks/` (`BenchmarkDotNet`)
   - Remaining: execute benchmark runs and publish comparative SQL Server vs PostgreSQL results
 
 - [ ] `CHK-PG-007` Execute SQL Server -> PostgreSQL data migration validation (schema + data correctness + rollback plan).

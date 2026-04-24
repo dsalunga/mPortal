@@ -6,16 +6,13 @@
   <Folder Name="/Apps/BibleReader/BibleReader/">
     <Project Path="Apps/BibleReader/BibleReader/BibleReader.WebApp.csproj" />
   </Folder>
-  <Folder Name="/Core/">
-    <Project Path="Core/WCMS.Common/WCMS.Common.csproj" />
-  </Folder>
   <Folder Name="/Apps/LessonReviewer/">
     <Project Path="Apps/LessonReviewer/LessonReviewer.Core/LessonReviewer.Core.csproj" />
     <Project Path="Apps/LessonReviewer/LessonReviewer/LessonReviewer.csproj" />
   </Folder>
-  <Folder Name="/Libraries/" />
-  <Folder Name="/Libraries/Media-Player-ASP.NET-Control/">
-    <Project Path="Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj" />
+  <Folder Name="/Portal/Libraries/" />
+  <Folder Name="/Portal/Libraries/Media-Player-ASP.NET-Control/">
+    <Project Path="Portal/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj" />
   </Folder>
   <Folder Name="/Portal/" />
   <Folder Name="/Portal/Utilities/" />

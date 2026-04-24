@@ -30,7 +30,7 @@ LessonReviewer/LessonReviewer/Views/Shared/Components/LessonList/Default.cshtml
 LessonReviewer/LessonReviewer/Views/Shared/Components/LessonPlayer/Default.cshtml
 LessonReviewer/LessonReviewer/Views/Shared/Components/LessonSchedule/Default.cshtml
 LessonReviewer/LessonReviewer/appsettings.json
-Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Replacement/MediaPlayerRenderer.cs
+Portal/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Replacement/MediaPlayerRenderer.cs
 POSTGRES_SUPPORT_PLAN.md
 POST_MIGRATION_IMPROVEMENTS.md
 Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/Program.cs

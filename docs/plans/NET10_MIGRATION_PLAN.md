@@ -161,7 +161,7 @@ Legend:
 | 5 | [x] `Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj` | Rebuild | Legacy primary host replaced with ASP.NET Core `net10.0` scaffold baseline to drive phased portal cutover. |
 | 5 | [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` | Removed | FCKeditor project fully removed. `RichTextEditorRenderer` moved to `WCMS.Framework/RichTextEditor/` with TipTap OSS integration target + server-side HTML sanitization. |
 | 5 | [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.vs2003.csproj` | Retire | Obsolete VS2003 project removed and replaced with retirement marker documentation. |
-| 5 | [x] `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` | Replace | Replaced legacy ASP.NET control project with SDK-style `net10.0` media-renderer abstraction. |
+| 5 | [x] `Portal/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` | Replace | Replaced legacy ASP.NET control project with SDK-style `net10.0` media-renderer abstraction. |
 | 6 | [x] `Portal/Utilities/DbManager/DbManager/DbManager.csproj` | Port | Converted to SDK-style (`net48`) as interim CLI; move to `net10.0` after core runtime deps are off `System.Web`. |
 | 6 | [x] `Portal/Utilities/PostBuildManager/PostBuildManager/PostBuildManager.csproj` | Port | Converted to SDK-style (`net48`) as interim step; cross-platform `net10.0` move requires removing `System.Web` dependency. |
 | 6 | [x] `Portal/Utilities/WebExtractor/WebExtractor/WebExtractor.csproj` | Port | Converted to SDK-style (`net48`) as interim step; target `net10.0` after `WCMS.Common` dependencies are modernized. |
@@ -452,7 +452,7 @@ Each rebuilt web host has a basic ASP.NET Core scaffold but needs full endpoint,
 ### 7.9) Replace legacy third-party controls
 
 - [x] `Portal/WebSystem/FCKeditor.Net_2.6.3/FredCK.FCKeditorV2.csproj` — complete the editor integration abstraction; wire `TipTap OSS` into the ASP.NET Core host and enforce server-side HTML sanitization.
-- [x] `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` — HTML5 `<video>` renderer created (`MediaPlayerRenderer.RenderVideoTag`) replacing legacy ASP.NET media control.
+- [x] `Portal/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` — HTML5 `<video>` renderer created (`MediaPlayerRenderer.RenderVideoTag`) replacing legacy ASP.NET media control.
 
 ---
 

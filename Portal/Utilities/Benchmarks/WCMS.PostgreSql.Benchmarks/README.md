@@ -6,7 +6,7 @@ Simple BenchmarkDotNet harness for PostgreSQL runtime baseline checks.
 
 ```bash
 export POSTGRES_BENCHMARK_CONNECTION_STRING='Host=localhost;Port=5432;Database=mportal;Username=postgres;Password=postgres'
-dotnet run --project Tools/WCMS.PostgreSql.Benchmarks/WCMS.PostgreSql.Benchmarks.csproj -c Release
+dotnet run --project Portal/Utilities/Benchmarks/WCMS.PostgreSql.Benchmarks/WCMS.PostgreSql.Benchmarks.csproj -c Release
 ```
 
 ## Benchmarks

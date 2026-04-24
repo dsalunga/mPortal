@@ -59,7 +59,7 @@ LessonReviewer/LessonReviewer/Web.config
 LessonReviewer/LessonReviewer/packages.config
 LessonReviewer/build-debug.cmd
 LessonReviewer/build-release.cmd
-Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.sln
+Portal/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.sln
 Portal/.DS_Store
 Portal/Binaries/Externals/config.ascx
 Portal/Binaries/Externals/fckeditor.rar

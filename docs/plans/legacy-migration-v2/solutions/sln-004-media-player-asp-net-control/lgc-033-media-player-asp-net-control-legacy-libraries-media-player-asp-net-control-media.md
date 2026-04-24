@@ -7,7 +7,7 @@
 | Item ID | LGC-033 |
 | Project Type | Library |
 | Project File | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` |
-| Modern Project File / Evidence | `Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` |
+| Modern Project File / Evidence | `Portal/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control.csproj` |
 | Project Directory | `legacy/Libraries/Media-Player-ASP.NET-Control/Media-Player-ASP.NET-Control` |
 | Output Type | Library |
 | Target Framework | v4.5.2 |
