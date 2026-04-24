@@ -96,7 +96,7 @@ namespace WCMS.Integration.Tests
             var dir = new DirectoryInfo(AppContext.BaseDirectory);
             while (dir != null)
             {
-                var candidate = Path.Combine(dir.FullName, "Portal", "Binaries", "Database", "PostgreSQL");
+                var candidate = Path.Combine(dir.FullName, "Portal", "Assets", "Database", "PostgreSQL");
                 if (Directory.Exists(candidate))
                 {
                     return candidate;
@@ -106,7 +106,7 @@ namespace WCMS.Integration.Tests
             }
 
             throw new DirectoryNotFoundException(
-                "Could not locate Portal/Binaries/Database/PostgreSQL from test runtime directory.");
+                "Could not locate Portal/Assets/Database/PostgreSQL from test runtime directory.");
         }
 
         public static async Task DisposeAsync()

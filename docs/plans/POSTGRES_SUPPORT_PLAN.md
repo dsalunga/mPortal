@@ -9,11 +9,11 @@
 - `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -v minimal` -> `25/32` passed, `7` skipped (environment-gated PostgreSQL/data-parity suites)
 - Provider abstraction and multi-provider wiring are in place (`DbHelper`, `DatabaseProvider`, provider-aware `UseNpgsql()`/`UseSqlServer()` branches in host `Program.cs` files)
 - PostgreSQL schema assets are present and versioned:
-  - `Portal/Binaries/Database/PostgreSQL/schema.sql` (121 `CREATE TABLE` statements, including 6 columns added for parity: `parentid`, `primaryidentityid`, `protocolid`, `maritalstatusid`, `lastloginfailuredate`, `loginfailurecount`)
-  - `Portal/Binaries/Database/PostgreSQL/schema-integration.sql` (16 `CREATE TABLE` statements)
-  - `Portal/Binaries/Database/PostgreSQL/schema-biblereader.sql` (60 `CREATE TABLE` statements)
-  - `Portal/Binaries/Database/PostgreSQL/seed-data.sql` — Minimal CMS seed data with DataProviderName, TypeName, and ManagerName for all 34 WebObject entities
-  - `Portal/Binaries/Database/PostgreSQL/init-db.sh`
+  - `Portal/Assets/Database/PostgreSQL/schema.sql` (121 `CREATE TABLE` statements, including 6 columns added for parity: `parentid`, `primaryidentityid`, `protocolid`, `maritalstatusid`, `lastloginfailuredate`, `loginfailurecount`)
+  - `Portal/Assets/Database/PostgreSQL/schema-integration.sql` (16 `CREATE TABLE` statements)
+  - `Portal/Assets/Database/PostgreSQL/schema-biblereader.sql` (60 `CREATE TABLE` statements)
+  - `Portal/Assets/Database/PostgreSQL/seed-data.sql` — Minimal CMS seed data with DataProviderName, TypeName, and ManagerName for all 34 WebObject entities
+  - `Portal/Assets/Database/PostgreSQL/init-db.sh`
 - `DbSyntax.QuoteIdentifier()` lowercases identifiers for PostgreSQL (`"columnname"`) to match PostgreSQL's default lowercase convention — fixed in both `Core/WCMS.Common/` and `Portal/WebSystem/WCMS.Common/`
 - EF migration artifacts now exist for both providers:
   - SQL Server: module-local `Data/Migrations/SqlServer/**`
@@ -148,10 +148,10 @@ The following items are needed for a complete PostgreSQL deployment:
 - [x] Create PostgreSQL schema DDL scripts matching the SQL Server table structure — **197 tables across 3 databases**
 - [x] Handle data type differences (e.g., `nvarchar` → `varchar`/`text`, `datetime` → `timestamp`, `bit` → `boolean`, `uniqueidentifier` → `uuid`)
 - [x] Convert `IDENTITY` columns to `SERIAL`/`BIGSERIAL` in PostgreSQL DDL
-- [x] `Portal/Binaries/Database/PostgreSQL/schema.sql` — 121 core tables (mPortal CMS)
-- [x] `Portal/Binaries/Database/PostgreSQL/schema-integration.sql` — 16 Integration tables
-- [x] `Portal/Binaries/Database/PostgreSQL/schema-biblereader.sql` — 60 BibleReader tables
-- [x] `Portal/Binaries/Database/PostgreSQL/init-db.sh` — Database initialization script
+- [x] `Portal/Assets/Database/PostgreSQL/schema.sql` — 121 core tables (mPortal CMS)
+- [x] `Portal/Assets/Database/PostgreSQL/schema-integration.sql` — 16 Integration tables
+- [x] `Portal/Assets/Database/PostgreSQL/schema-biblereader.sql` — 60 BibleReader tables
+- [x] `Portal/Assets/Database/PostgreSQL/init-db.sh` — Database initialization script
 - ~~Create PostgreSQL equivalents of stored procedures as functions~~ — **DONE: All stored procedures eliminated**
 
 ### ~~Phase 3: Stored Procedures → PostgreSQL Functions~~ — **COMPLETE**
@@ -184,8 +184,8 @@ The following items are needed for a complete PostgreSQL deployment:
 
 ### Phase 6: Testing & Validation — **PARTIALLY COMPLETE**
 - [x] **Local PostgreSQL runtime verified end-to-end against seeded CMS data** — validated via containerized integration path (`PostgreSqlTestHarness` initializes schema + seed + fixtures; tests verify seeded login and root-page rendering)
-- [x] Seed data (`Portal/Binaries/Database/PostgreSQL/seed-data.sql`) with WebObject TypeName, DataProviderName, ManagerName for all entities
-- [x] Integration fixture seed (`Portal/Binaries/Database/PostgreSQL/seed-test-fixtures.sql`) with deterministic login user + fixture marker
+- [x] Seed data (`Portal/Assets/Database/PostgreSQL/seed-data.sql`) with WebObject TypeName, DataProviderName, ManagerName for all entities
+- [x] Integration fixture seed (`Portal/Assets/Database/PostgreSQL/seed-test-fixtures.sql`) with deterministic login user + fixture marker
 - [x] Schema parity — 6 missing columns added to `schema.sql` (`parentid`, `primaryidentityid`, `protocolid`, `maritalstatusid`, `lastloginfailuredate`, `loginfailurecount`)
 - [x] `DbSyntax.QuoteIdentifier()` uses provider-specific quoting (`"name"` for PostgreSQL, `[name]` for SQL Server) for portable SQL generation
 - [x] Unit and integration test implementation updated with PostgreSQL coverage
@@ -196,7 +196,7 @@ The following items are needed for a complete PostgreSQL deployment:
 
 ### Phase 7: Docker & Deployment
 - [x] Docker Compose with PostgreSQL profile (`docker-compose.yml`)
-- [x] Database initialization scripts (`Portal/Binaries/Database/PostgreSQL/init-db.sh`)
+- [x] Database initialization scripts (`Portal/Assets/Database/PostgreSQL/init-db.sh`)
 - [x] Kubernetes manifests with PostgreSQL support (`deploy/k8s/`)
 
 ---

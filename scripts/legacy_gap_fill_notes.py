@@ -79,7 +79,7 @@ def note_for(reason: str, legacy_path: str, file_type: str, existing_notes: str)
             return (
                 "Verified: replaced by cross-platform tooling — `dotnet build` / "
                 "`dotnet test`, docker-compose.yml at repo root, and shell scripts under "
-                "Portal/Binaries/Database/PostgreSQL/. Legacy .cmd retained for reference."
+                "Portal/Assets/Database/PostgreSQL/. Legacy .cmd retained for reference."
             )
         if ft == ".config":
             if base.lower() == "packages.config":

@@ -25,14 +25,14 @@ namespace WCMS.WebSystem.Utilities
         public string TableSqlPath => Path.Combine(XML_PATH, "Tables");
 
         /// <summary>
-        /// Path to Portal/Binaries/Database/PostgreSQL directory
+        /// Path to Portal/Assets/Database/PostgreSQL directory
         /// (contains schema.sql and PostgreSQL initialization assets).
         /// </summary>
         public string PostgreSqlSchemaDir
         {
             get
             {
-                // XML_PATH resolves to Portal/Binaries/Database
+                // XML_PATH resolves to Portal/Assets/Database
                 var pgDir = Path.Combine(XML_PATH, "PostgreSQL");
                 if (Directory.Exists(pgDir))
                     return pgDir;

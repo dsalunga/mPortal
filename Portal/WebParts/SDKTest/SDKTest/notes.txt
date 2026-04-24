@@ -1,11 +1,11 @@
-﻿$(SolutionDir)..\..\Binaries\PostBuildManager\PostBuildManager.exe ..\..\..\..\WebParts\SDKTest\SDKTest
+﻿$(SolutionDir)..\..\Assets\PostBuildManager\PostBuildManager.exe ..\..\..\..\WebParts\SDKTest\SDKTest
 
-$(SolutionDir)..\..\Binaries\PostBuildManager\PostBuildManager.exe /part:SystemParts
+$(SolutionDir)..\..\Assets\PostBuildManager\PostBuildManager.exe /part:SystemParts
 
-$(SolutionDir)..\..\Binaries\PostBuildManager\PostBuildManager.exe ..\..\WebParts\SDKTest\SDKTest
-$(SolutionDir)..\..\Binaries\PostBuildManager\PostBuildManager.exe /part:SDKTest
+$(SolutionDir)..\..\Assets\PostBuildManager\PostBuildManager.exe ..\..\WebParts\SDKTest\SDKTest
+$(SolutionDir)..\..\Assets\PostBuildManager\PostBuildManager.exe /part:SDKTest
 
 /part:SystemParts
 
 
-$(SolutionDir)..\..\Binaries\PostBuildManager\PostBuildManager.exe $(ProjectDir)
+$(SolutionDir)..\..\Assets\PostBuildManager\PostBuildManager.exe $(ProjectDir)

@@ -217,7 +217,7 @@ def resolve_obsolete_filetype(legacy_path: str, file_type: str) -> tuple[str, st
         return (
             "not_applicable",
             "—",
-            "Cannot migrate 1:1 — Windows-only batch script. Replaced wholesale by cross-platform tooling (`dotnet build` / `dotnet test`, docker-compose.yml at repo root, shell scripts under Portal/Binaries/Database/PostgreSQL/). Legacy .cmd retained for reference.",
+            "Cannot migrate 1:1 — Windows-only batch script. Replaced wholesale by cross-platform tooling (`dotnet build` / `dotnet test`, docker-compose.yml at repo root, shell scripts under Portal/Assets/Database/PostgreSQL/). Legacy .cmd retained for reference.",
         )
 
     if ft == ".config":

@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <Reference Include="Org.Mentalis.Security">
-      <HintPath>..\..\..\Binaries\Externals\SharpSSH\Org.Mentalis.Security.dll</HintPath>
+      <HintPath>..\..\..\Assets\Externals\SharpSSH\Org.Mentalis.Security.dll</HintPath>
     </Reference>
   </ItemGroup>
 

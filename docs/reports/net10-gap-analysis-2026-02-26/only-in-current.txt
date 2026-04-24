@@ -16,10 +16,10 @@ Core/WCMS.Common/Utilities/Data/SqlBuilder.cs
 Core/WCMS.Common/Utilities/Data/SqlServerDbHelper.cs
 Core/WCMS.Common/Utilities/HttpContextHelper.cs
 DEPLOYMENT_RUNBOOK.md
-Portal/Binaries/Database/PostgreSQL/init-db.sh
-Portal/Binaries/Database/PostgreSQL/schema-biblereader.sql
-Portal/Binaries/Database/PostgreSQL/schema-integration.sql
-Portal/Binaries/Database/PostgreSQL/schema.sql
+Portal/Assets/Database/PostgreSQL/init-db.sh
+Portal/Assets/Database/PostgreSQL/schema-biblereader.sql
+Portal/Assets/Database/PostgreSQL/schema-integration.sql
+Portal/Assets/Database/PostgreSQL/schema.sql
 Directory.Build.props
 Dockerfile
 LessonReviewer/LessonReviewer/Program.cs
