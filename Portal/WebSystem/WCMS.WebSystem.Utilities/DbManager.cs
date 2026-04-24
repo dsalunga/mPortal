@@ -61,7 +61,101 @@ namespace WCMS.WebSystem.Utilities
                 IsNewDb = true;
                 return true;
             }
+
+            if (IsPostgreSql && CheckCreatePostgreSqlDatabase())
+            {
+                IsNewDb = true;
+                return true;
+            }
+
             return false;
+        }
+
+        private static bool CheckCreatePostgreSqlDatabase()
+        {
+            try
+            {
+                var connectionString = DbHelper.ConnString;
+                if (string.IsNullOrWhiteSpace(connectionString))
+                    return false;
+
+                if (!TryBuildPostgreSqlMaintenanceConnection(connectionString, out var maintenanceConnectionString, out var targetDatabase))
+                    return false;
+
+                using var conn = DbHelper.CreateConnection(maintenanceConnectionString);
+                conn.Open();
+
+                var dbNameParam = DbHelper.CreateParameter("@dbName", targetDatabase);
+                var exists = DbHelper.ExecuteScalar(
+                    conn,
+                    CommandType.Text,
+                    "SELECT 1 FROM pg_database WHERE datname = @dbName",
+                    dbNameParam);
+
+                if (exists != null && exists != DBNull.Value)
+                    return false;
+
+                var createSql = string.Format("CREATE DATABASE {0}", QuotePostgreSqlIdentifier(targetDatabase));
+                DbHelper.ExecuteNonQuery(conn, CommandType.Text, createSql);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(ex);
+                return false;
+            }
+        }
+
+        private static bool TryBuildPostgreSqlMaintenanceConnection(
+            string connectionString,
+            out string maintenanceConnectionString,
+            out string targetDatabase)
+        {
+            maintenanceConnectionString = null;
+            targetDatabase = null;
+
+            var builder = new DbConnectionStringBuilder { ConnectionString = connectionString };
+
+            if (!TryGetValue(builder, "Database", out var database, out var databaseKey) &&
+                !TryGetValue(builder, "Initial Catalog", out database, out databaseKey))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(database))
+                return false;
+
+            targetDatabase = database.Trim();
+            builder[databaseKey] = "postgres";
+            maintenanceConnectionString = builder.ConnectionString;
+            return true;
+        }
+
+        private static bool TryGetValue(
+            DbConnectionStringBuilder builder,
+            string key,
+            out string value,
+            out string matchedKey)
+        {
+            foreach (string existingKey in builder.Keys)
+            {
+                if (!string.Equals(existingKey, key, StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                matchedKey = existingKey;
+                value = Convert.ToString(builder[existingKey]);
+                return true;
+            }
+
+            value = null;
+            matchedKey = null;
+            return false;
+        }
+
+        private static string QuotePostgreSqlIdentifier(string value)
+        {
+            return "\"" + value.Replace("\"", "\"\"") + "\"";
         }
 
         public string RestoreObjectSchema(WebObject item)
