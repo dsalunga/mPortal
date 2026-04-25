@@ -74,9 +74,39 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
       - `Portal/WebSystem/WebSystem/Content/Parts/Integration/GlobalSwitch/*.cshtml`
       - `Portal/WebSystem/WebSystem/Content/Parts/Integration/BibleReader/BibleBrowser.cshtml`
     - Local runtime validation on `http://localhost:8800`:
-      - `/` -> `200`
-      - `/Central/Security/Login/?RequestUrl=/Central` -> `200`
-      - `/BibleReader` -> `200`
+    - `/` -> `200`
+    - `/Central/Security/Login/?RequestUrl=/Central` -> `200`
+    - `/BibleReader` -> `200`
+
+- [x] `CHK-NET10-010` Link migrated WebParts modules into the modern web host and close active static legacy-template path gaps.
+  - Current status: implemented
+  - Code evidence:
+    - Web host now references migrated WebParts app modules:
+      - `Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj`
+        - `..\..\WebParts\SystemParts\SystemParts\WCMS.WebSystem.Apps.SystemApps.WebApp.csproj`
+        - `..\..\WebParts\SystemPartsG2\SystemPartsG2\WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj`
+        - `..\..\WebParts\SystemPartsG3\SystemPartsG3\WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj`
+        - `..\..\WebParts\Integration\IntegrationParts\WCMS.WebSystem.Apps.Integration.WebApp.csproj`
+    - Active static-page missing-template sweep now returns zero:
+      - `active_static_missing_rows = 0`
+      - `active_static_missing_unique = 0`
+    - Missing active static template wrappers added for MusicCompetition/Streaming/Social:
+      - `Portal/WebSystem/WebSystem/Content/Parts/Integration/MusicCompetition/ASOPMobile.cshtml`
+      - `Portal/WebSystem/WebSystem/Content/Parts/Integration/MusicCompetition/MCJudges.cshtml`
+      - `Portal/WebSystem/WebSystem/Content/Parts/Integration/MusicCompetition/MCVoteResult.cshtml`
+      - `Portal/WebSystem/WebSystem/Content/Parts/Integration/MusicCompetition/MCVoteV2.cshtml`
+      - `Portal/WebSystem/WebSystem/Content/Parts/Integration/MusicCompetition/MCVoteResultV3.cshtml`
+      - `Portal/WebSystem/WebSystem/Content/Parts/Integration/MusicCompetition/MCJudgeV2.cshtml`
+      - `Portal/WebSystem/WebSystem/Content/Parts/Integration/MusicCompetition/MCJudgesMaster.cshtml`
+      - `Portal/WebSystem/WebSystem/Content/Parts/Integration/Streaming/StreamingConsole.cshtml`
+      - `Portal/WebSystem/WebSystem/Content/Parts/AppBundle2/Social/MobileWall.cshtml`
+
+- [ ] `CHK-NET10-011` Normalize site-identity routing coverage for host/path variants that still produce `404` despite existing page records.
+  - Current status: pending runtime validation/tuning
+  - Code evidence:
+    - Some host/path combinations now work with the linked modules (for example `Host: dev.bengswi.com` + `/musicportal/Vote` -> `200`).
+    - Remaining host/path combinations still need routing identity tuning (for example `Host: localhost` + `/MusicCompetition` -> `404` with existing `WebPage` records).
+    - Multi-site host resolution remains the core decision point in `Portal/WebSystem/WCMS.Framework/Middleware/PageResolutionMiddleware.cs`.
 
 ### C) PostgreSQL Work Remaining
 
@@ -127,3 +157,4 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
 
 1. `CHK-PG-006`: execute PostgreSQL benchmark runs and publish comparative results.
 2. `CHK-PG-007`: run SQL Server -> PostgreSQL parity checks against provisioned datasets and capture evidence.
+3. `CHK-NET10-011`: finalize host/path identity routing for remaining multi-site `404` combinations.
