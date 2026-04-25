@@ -1,0 +1,16 @@
+@using WCMS.Framework
+@{
+    var session = WSession.Current;
+    var sessionId = session.UserSession?.SessionId.ToString() ?? string.Empty;
+    var sessionQuery = string.IsNullOrWhiteSpace(sessionId) ? string.Empty : $"?SessionId={sessionId}";
+}
+
+<section class="container" style="padding-top:16px; padding-bottom:24px;">
+    <h1>Bible Reader</h1>
+    <p class="text-muted">Modern migrated fallback for legacy <code>BibleBrowser.ascx</code>.</p>
+
+    <div class="list-group">
+        <a class="list-group-item" href="@($"/BibleReader{sessionQuery}")">Open Bible Reader</a>
+        <a class="list-group-item" href="@($"/Explore{sessionQuery}")">Back to Explore</a>
+    </div>
+</section>

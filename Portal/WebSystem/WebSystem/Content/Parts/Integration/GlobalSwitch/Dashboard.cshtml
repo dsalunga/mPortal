@@ -1,0 +1,47 @@
+@using WCMS.Framework
+@{
+    var context = WContext.GetInstance(Context);
+    var session = WSession.Current;
+    var isLoggedIn = session.IsLoggedIn;
+    var user = isLoggedIn ? session.User : null;
+    var sessionId = session.UserSession?.SessionId.ToString() ?? string.Empty;
+    var sessionQuery = string.IsNullOrWhiteSpace(sessionId) ? string.Empty : $"?SessionId={sessionId}";
+}
+
+<section class="container" style="padding-top:16px; padding-bottom:24px;">
+    <div class="jumbotron" style="margin-top:0;">
+        <h1>Portal Dashboard</h1>
+        @if (isLoggedIn)
+        {
+            <p>Welcome back, @(!string.IsNullOrWhiteSpace(user?.FirstAndLastName) ? user.FirstAndLastName : user?.Email).</p>
+        }
+        else
+        {
+            <p>Welcome to the portal. Sign in to access member features.</p>
+        }
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-4" style="margin-bottom:20px;">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Explore Apps</strong></div>
+                <div class="panel-body">Discover web apps and services available in this site.</div>
+                <div class="panel-footer"><a href="@($"/Explore{sessionQuery}")">Open Web Apps</a></div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4" style="margin-bottom:20px;">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Mobile & Desktop</strong></div>
+                <div class="panel-body">Access app downloads and companion native tools.</div>
+                <div class="panel-footer"><a href="@($"/NativeApps{sessionQuery}")">Open Native Apps</a></div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4" style="margin-bottom:20px;">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Help & Support</strong></div>
+                <div class="panel-body">Get support channels and submit feedback.</div>
+                <div class="panel-footer"><a href="@($"/help-feedback{sessionQuery}")">Open Help &amp; Feedback</a></div>
+            </div>
+        </div>
+    </div>
+</section>

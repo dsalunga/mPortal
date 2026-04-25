@@ -49,6 +49,11 @@ bin
 /Portal/WebParts/Integration/IntegrationParts/Content
 /Portal/WebSystem/WebSystem/Content/Parts/Integration
 /Portal/WebSystem/WebSystem/Content/Themes/Integration
+!/Portal/WebSystem/WebSystem/Content/Parts/Integration/
+!/Portal/WebSystem/WebSystem/Content/Parts/Integration/GlobalSwitch/
+!/Portal/WebSystem/WebSystem/Content/Parts/Integration/GlobalSwitch/*.cshtml
+!/Portal/WebSystem/WebSystem/Content/Parts/Integration/BibleReader/
+!/Portal/WebSystem/WebSystem/Content/Parts/Integration/BibleReader/*.cshtml
 
 /Portal/WebParts/BranchLocator/WCMS.WebSystem.Apps.BranchLocator.WebApp/Content
 /Portal/WebSystem/WebSystem/Content/Parts/BranchLocator

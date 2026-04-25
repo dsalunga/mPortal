@@ -1,0 +1,16 @@
+@using WCMS.Framework
+@{
+    var sessionId = WSession.Current.UserSession?.SessionId.ToString() ?? string.Empty;
+    var sessionQuery = string.IsNullOrWhiteSpace(sessionId) ? string.Empty : $"?SessionId={sessionId}";
+}
+
+<section class="container" style="padding-top:16px; padding-bottom:24px;">
+    <h1>Help &amp; Feedback</h1>
+    <p class="text-muted">Need help? Reach support and provide feedback from here.</p>
+
+    <ul>
+        <li><a href="@($"/HelpDesk{sessionQuery}")">Help Desk</a></li>
+        <li><a href="@($"/help-feedback{sessionQuery}")">Feedback Form</a></li>
+        <li><a href="/Central/Setup">System Setup &amp; Diagnostics</a></li>
+    </ul>
+</section>

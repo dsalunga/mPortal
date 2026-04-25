@@ -1,0 +1,65 @@
+@using WCMS.Framework
+@{
+    var context = WContext.GetInstance(Context);
+    var site = context?.Site;
+    var request = context?.Context?.Request;
+    var currentPath = request == null ? "/" : request.Path + request.QueryString;
+
+    var portalSite = WSite.Provider.Get("Portal") ?? site;
+    var portalRootUrl = portalSite?.BuildAbsoluteUrl() ?? "/";
+    if (request != null && request.Host.HasValue &&
+        request.Host.Host.Equals("localhost", StringComparison.InvariantCultureIgnoreCase) &&
+        !portalRootUrl.Contains("localhost", StringComparison.InvariantCultureIgnoreCase))
+    {
+        portalRootUrl = $"{request.Scheme}://{request.Host}";
+    }
+
+    var session = WSession.Current;
+    var isLoggedIn = session.IsLoggedIn;
+    var user = isLoggedIn ? session.User : null;
+    var userSession = session.UserSession;
+    var sessionId = userSession?.SessionId.ToString() ?? string.Empty;
+    var sessionQuery = string.IsNullOrWhiteSpace(sessionId) ? string.Empty : $"?SessionId={sessionId}";
+
+    var signInUrl = $"{portalRootUrl}/public/Login/?{WQuery.SourceKey}={currentPath}";
+    var signOutUrl = $"{portalRootUrl}/public/Login/?Mode=LogOff&{WQuery.SourceKey}={currentPath}";
+}
+
+<div class="portal-navbar navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@portalRootUrl@sessionQuery">@((site?.Name) ?? "Portal")</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#portal-switch-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="portal-switch-menu">
+            <ul class="nav navbar-nav">
+                <li><a href="@($"/{sessionQuery}")">Dashboard</a></li>
+                <li><a href="@($"/Explore{sessionQuery}")">Web Apps</a></li>
+                <li><a href="@($"/NativeApps{sessionQuery}")">Native Apps</a></li>
+                <li><a href="@($"/help-feedback{sessionQuery}")">Help &amp; Feedback</a></li>
+                <li><a href="@($"/Social{sessionQuery}")">Social</a></li>
+                <li><a href="@($"/LiveStream{sessionQuery}")">Live Stream</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                @if (isLoggedIn)
+                {
+                    <li class="navbar-text">
+                        @(!string.IsNullOrWhiteSpace(user?.FirstName) ? user.FirstName : "Member")
+                    </li>
+                    <li><a href="@signOutUrl">Sign out</a></li>
+                }
+                else
+                {
+                    <li><a href="@signInUrl">Sign in</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

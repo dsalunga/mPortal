@@ -1,0 +1,15 @@
+@using WCMS.Framework
+@{
+    var sessionId = WSession.Current.UserSession?.SessionId.ToString() ?? string.Empty;
+    var sessionQuery = string.IsNullOrWhiteSpace(sessionId) ? string.Empty : $"?SessionId={sessionId}";
+}
+
+<section class="container" style="padding-top:16px; padding-bottom:24px;">
+    <h1>Native Apps</h1>
+    <p class="text-muted">Install or launch companion apps for mobile and desktop.</p>
+
+    <div class="list-group">
+        <a class="list-group-item" href="@($"/Explore{sessionQuery}")">Integration App Hub</a>
+        <a class="list-group-item" href="@($"/Explore{sessionQuery}")">App Discover Page</a>
+    </div>
+</section>
