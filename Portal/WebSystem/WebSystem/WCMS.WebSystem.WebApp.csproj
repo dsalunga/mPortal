@@ -16,6 +16,10 @@
     <ProjectReference Include="..\WCMS.Framework.Core.XmlProvider\WCMS.Framework.Core.XmlProvider.csproj" />
     <ProjectReference Include="..\WCMS.WebSystem.Utilities\WCMS.WebSystem.Utilities.csproj" />
     <ProjectReference Include="..\WCMS.WebSystem.ViewModels\WCMS.WebSystem.csproj" />
+    <ProjectReference Include="..\..\WebParts\SystemParts\SystemParts\WCMS.WebSystem.Apps.SystemApps.WebApp.csproj" />
+    <ProjectReference Include="..\..\WebParts\SystemPartsG2\SystemPartsG2\WCMS.WebSystem.Apps.SystemApps2.WebApp.csproj" />
+    <ProjectReference Include="..\..\WebParts\SystemPartsG3\SystemPartsG3\WCMS.WebSystem.Apps.SystemApps3.WebApp.csproj" />
+    <ProjectReference Include="..\..\WebParts\Integration\IntegrationParts\WCMS.WebSystem.Apps.Integration.WebApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
