@@ -106,12 +106,20 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
     - Runtime check after linkage hardening:
       - `Host: localhost` + `/public` -> `200` (no more `WebObjectContent` manager null crash)
 
-- [ ] `CHK-NET10-011` Normalize site-identity routing coverage for host/path variants that still produce `404` despite existing page records.
-  - Current status: pending runtime validation/tuning
+- [x] `CHK-NET10-011` Normalize site-identity routing coverage for host/path variants that still produce `404` despite existing page records.
+  - Current status: implemented + runtime-validated
   - Code evidence:
-    - Some host/path combinations now work with the linked modules (for example `Host: dev.bengswi.com` + `/musicportal/Vote` -> `200`).
-    - Remaining host/path combinations still need routing identity tuning (for example `Host: localhost` + `/MusicCompetition` -> `404` with existing `WebPage` records).
-    - Multi-site host resolution remains the core decision point in `Portal/WebSystem/WCMS.Framework/Middleware/PageResolutionMiddleware.cs`.
+    - Identity matching in `Portal/WebSystem/WCMS.Framework/Middleware/PageResolutionMiddleware.cs` now resolves against ordered host/path candidates and selects the first candidate that can actually resolve a page.
+    - Legacy object/provider binding hardening was added in:
+      - `Portal/WebSystem/WCMS.Framework/Core/WebObject.cs`
+      - `Portal/WebParts/SystemParts/WCMS.Framework.WebParts/Content/WebContent.cs`
+      - `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/Article.cs`
+      - `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleLink.cs`
+      - `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleList.cs`
+      - `Portal/WebParts/SystemParts/WCMS.WebSystem.WebParts.Article/ArticleTemplate.cs`
+    - Runtime validation:
+      - Targeted checks: `Host: dev.bengswi.com` + `/musicportal/Public/Intro` -> `200`, `/musicportal/Vote` -> `200`
+      - Full active-page sweep (557 host+path URLs derived from `WebPage` + `WebSiteIdentity`) -> `2xx=152`, `3xx=405`, `404=0`, `other=0`
 
 ### C) PostgreSQL Work Remaining
 
@@ -162,4 +170,3 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
 
 1. `CHK-PG-006`: execute PostgreSQL benchmark runs and publish comparative results.
 2. `CHK-PG-007`: run SQL Server -> PostgreSQL parity checks against provisioned datasets and capture evidence.
-3. `CHK-NET10-011`: finalize host/path identity routing for remaining multi-site `404` combinations.
