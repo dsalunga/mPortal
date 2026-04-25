@@ -100,6 +100,11 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
       - `Portal/WebSystem/WebSystem/Content/Parts/Integration/MusicCompetition/MCJudgesMaster.cshtml`
       - `Portal/WebSystem/WebSystem/Content/Parts/Integration/Streaming/StreamingConsole.cshtml`
       - `Portal/WebSystem/WebSystem/Content/Parts/AppBundle2/Social/MobileWall.cshtml`
+    - Legacy provider discovery hardened for linked module assemblies and object-id binding:
+      - `Portal/WebSystem/WCMS.Framework/Core/WebObject.cs` (cross-assembly type resolution for legacy provider/manager names)
+      - `Portal/WebParts/SystemParts/WCMS.Framework.WebParts/Content/WebObjectContent.cs` (resolve manager/provider by `WebObjects.WebObjectContent`)
+    - Runtime check after linkage hardening:
+      - `Host: localhost` + `/public` -> `200` (no more `WebObjectContent` manager null crash)
 
 - [ ] `CHK-NET10-011` Normalize site-identity routing coverage for host/path variants that still produce `404` despite existing page records.
   - Current status: pending runtime validation/tuning
