@@ -44,6 +44,9 @@ namespace WCMS.Framework
 
             PartAdminId = -1;
             PartControlId = -1;
+
+            Query = CreateInitialQuery();
+            Initialize();
         }
 
 
@@ -150,8 +153,8 @@ namespace WCMS.Framework
 
         public string BasePath
         {
-            get { return Query.BasePath; }
-            set { Query.BasePath = value; }
+            get { return EnsureQuery().BasePath; }
+            set { EnsureQuery().BasePath = value; }
         }
 
         /// <summary>
@@ -267,8 +270,8 @@ namespace WCMS.Framework
 
         public string this[string key]
         {
-            get { return Query[key]; }
-            set { Query[key] = value; }
+            get { return EnsureQuery()[key]; }
+            set { EnsureQuery()[key] = value; }
         }
 
         private void Initialize(IPageElement element)
@@ -324,9 +327,10 @@ namespace WCMS.Framework
 
         private void SetUpContextFromQuery()
         {
-            int pageElementId = Query.GetId(WebColumns.PageElementId);
-            int pageId = Query.GetId(WebColumns.PageId);
-            int adminId = Query.GetId(WebColumns.PartAdminId);
+            var query = EnsureQuery();
+            int pageElementId = query.GetId(WebColumns.PageElementId);
+            int pageId = query.GetId(WebColumns.PageId);
+            int adminId = query.GetId(WebColumns.PartAdminId);
             if (pageElementId > 0)
             {
                 RecordId = pageElementId;
@@ -394,22 +398,22 @@ namespace WCMS.Framework
 
         public void Redirect()
         {
-            Query.Redirect();
+            EnsureQuery().Redirect();
         }
 
         public void Redirect(string basePath)
         {
-            Query.Redirect(basePath);
+            EnsureQuery().Redirect(basePath);
         }
 
         public void SetSourceAndRedirect(string basePath)
         {
-            Query.SetSourceAndRedirect(basePath);
+            EnsureQuery().SetSourceAndRedirect(basePath);
         }
 
         public void SetLoad(string partConfigFile)
         {
-            Query[WConstants.Load] = partConfigFile;
+            EnsureQuery()[WConstants.Load] = partConfigFile;
         }
 
         public void SetLoadAndRedirect(string partConfigFile)
@@ -420,58 +424,58 @@ namespace WCMS.Framework
 
         public void Remove(string name)
         {
-            Query.Remove(name);
+            EnsureQuery().Remove(name);
         }
 
         public string BuildQuery()
         {
-            return Query.BuildQuery();
+            return EnsureQuery().BuildQuery();
         }
 
         public string Get(string key)
         {
-            return Query.Get(key);
+            return EnsureQuery().Get(key);
         }
 
         public string GetSource()
         {
-            return Query.GetSource();
+            return EnsureQuery().GetSource();
         }
 
         public string GetDecode(string key)
         {
-            return Query.GetDecode(key);
+            return EnsureQuery().GetDecode(key);
         }
 
         public int GetId(string key)
         {
-            return Query.GetId(key);
+            return EnsureQuery().GetId(key);
         }
 
         public int GetInt32(string key)
         {
-            return Query.GetInt32(key);
+            return EnsureQuery().GetInt32(key);
         }
 
         public int GetInt32(string key, int defaultValue)
         {
-            return Query.GetInt32(key, defaultValue);
+            return EnsureQuery().GetInt32(key, defaultValue);
         }
 
         public override string ToString()
         {
-            return Query.ToString();
+            return EnsureQuery().ToString();
         }
 
         public WContext Set(string name, object value)
         {
-            Query[name] = value.ToString();
+            EnsureQuery()[name] = value.ToString();
             return this;
         }
 
         public WContext SetEncode(string name, object value)
         {
-            Query.SetEncode(name, value.ToString());
+            EnsureQuery().SetEncode(name, value.ToString());
             return this;
         }
 
@@ -482,18 +486,18 @@ namespace WCMS.Framework
         /// <param name="value"></param>
         public WContext SetOpen(object value)
         {
-            Query[WConstants.Open] = value.ToString();
+            EnsureQuery()[WConstants.Open] = value.ToString();
             return this;
         }
 
         public string GetOpen()
         {
-            return Query.Get(WConstants.Open);
+            return EnsureQuery().Get(WConstants.Open);
         }
 
         public WContext RemoveOpen()
         {
-            Query.Remove(WConstants.Open);
+            EnsureQuery().Remove(WConstants.Open);
             return this;
         }
 
@@ -519,8 +523,25 @@ namespace WCMS.Framework
 
         public WContext SetSource(string value)
         {
-            Query.SetSource(value);
+            EnsureQuery().SetSource(value);
             return this;
+        }
+
+        private static WQuery CreateInitialQuery()
+        {
+            var currentHttpContext = HttpContextHelper.Current;
+            if (currentHttpContext != null)
+                return new WQuery(currentHttpContext);
+
+            return new WQuery();
+        }
+
+        private WQuery EnsureQuery()
+        {
+            if (Query == null)
+                Query = CreateInitialQuery();
+
+            return Query;
         }
 
         #endregion
