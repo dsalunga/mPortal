@@ -64,6 +64,20 @@ Track and validate the remaining .NET 10 + PostgreSQL migration items using code
         - `AccountLogin_WithSeededFixtureUser_RedirectsWithoutLoginError_AndSetsAuthCookie`
         - `CmsFallback_RootPath_RendersSeededPage`
 
+- [x] `CHK-NET10-009` Close migrated legacy-content runtime gaps for root and BibleReader rendering paths.
+  - Current status: implemented
+  - Code evidence:
+    - Global context/query null-safety and legacy render compatibility hardening:
+      - `Portal/WebSystem/WCMS.Framework/WContext.cs`
+      - `Portal/WebSystem/WebSystem/_ViewImports.cshtml`
+    - Migrated host-native Integration content files for legacy paths:
+      - `Portal/WebSystem/WebSystem/Content/Parts/Integration/GlobalSwitch/*.cshtml`
+      - `Portal/WebSystem/WebSystem/Content/Parts/Integration/BibleReader/BibleBrowser.cshtml`
+    - Local runtime validation on `http://localhost:8800`:
+      - `/` -> `200`
+      - `/Central/Security/Login/?RequestUrl=/Central` -> `200`
+      - `/BibleReader` -> `200`
+
 ### C) PostgreSQL Work Remaining
 
 - [x] `CHK-PG-001` Close stale plan item for EF package alignment in BranchLocator (already satisfied in code).
