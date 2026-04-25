@@ -301,9 +301,22 @@ namespace WCMS.Framework
             item.BaseAddress = DataUtil.Get(r, "BaseAddress");
             item.ThemeId = DataUtil.GetId(r, WebColumns.ThemeId);
             item.SkinId = DataUtil.GetId(r, WebColumns.SkinId);
-            item.PrimaryIdentityId = DataUtil.GetId(r, "PrimaryIdentityId");
+            item.PrimaryIdentityId = HasColumn(r, "PrimaryIdentityId")
+                ? DataUtil.GetId(r, "PrimaryIdentityId")
+                : -1;
 
             return item;
+        }
+
+        private static bool HasColumn(DbDataReader reader, string columnName)
+        {
+            for (var i = 0; i < reader.FieldCount; i++)
+            {
+                if (string.Equals(reader.GetName(i), columnName, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
         }
 
         #endregion

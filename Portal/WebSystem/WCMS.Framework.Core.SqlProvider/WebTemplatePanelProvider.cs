@@ -12,13 +12,15 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebTemplatePanelProvider : IWebTemplatePanelProvider
     {
+        private static readonly string Table = DbSyntax.QuoteIdentifier("WebTemplatePanel");
+
         public WebTemplatePanelProvider() { }
 
         public IEnumerable<WebTemplatePanel> GetList()
         {
             List<WebTemplatePanel> items = new List<WebTemplatePanel>();
 
-            var sql = "SELECT * FROM WebTemplatePanel";
+            var sql = "SELECT * FROM " + Table;
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
@@ -33,7 +35,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTemplatePanel> items = new List<WebTemplatePanel>();
 
-            var sql = "SELECT * FROM WebTemplatePanel WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
+            var sql = "SELECT * FROM " + Table + " WHERE " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ObjectId", objectId),
                 DbHelper.CreateParameter("@RecordId", recordId)))
@@ -48,7 +50,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebTemplatePanel Get(int templatePanelId)
         {
-            var sql = "SELECT * FROM WebTemplatePanel WHERE " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
+            var sql = "SELECT * FROM " + Table + " WHERE " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@TemplatePanelId", templatePanelId)))
             {
@@ -66,7 +68,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (item.Id > 0)
             {
-                sql = "UPDATE WebTemplatePanel SET " +
+                sql = "UPDATE " + Table + " SET " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
                     DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId, " +
                     DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
@@ -85,7 +87,7 @@ namespace WCMS.Framework.Core.SqlProvider
             }
             else
             {
-                sql = "INSERT INTO WebTemplatePanel (" +
+                sql = "INSERT INTO " + Table + " (" +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("ObjectId") + ", " +
                     DbSyntax.QuoteIdentifier("RecordId") + ", " +
@@ -112,7 +114,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int templatePanelId)
         {
-            var sql = "DELETE FROM WebTemplatePanel WHERE " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
+            var sql = "DELETE FROM " + Table + " WHERE " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@TemplatePanelId", templatePanelId));
 

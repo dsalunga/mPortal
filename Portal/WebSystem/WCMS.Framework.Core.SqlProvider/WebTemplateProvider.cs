@@ -12,6 +12,8 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebTemplateProvider : IWebTemplateProvider
     {
+        private static readonly string Table = DbSyntax.QuoteIdentifier("WebTemplate");
+
         public WebTemplateProvider() { }
 
         public IEnumerable<WebDirectoryEntry> GetByDirectory(int directoryId, string loweredKeyword)
@@ -21,7 +23,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebTemplate Get(int templateId)
         {
-            var sql = "SELECT * FROM WebTemplate WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            var sql = "SELECT * FROM " + Table + " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", templateId)))
             {
@@ -55,7 +57,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebTemplate> items = new List<WebTemplate>();
 
-            var sql = "SELECT * FROM WebTemplate";
+            var sql = "SELECT * FROM " + Table;
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
@@ -69,7 +71,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             var items = new List<WebTemplate>();
 
-            var sql = "SELECT * FROM WebTemplate WHERE " + DbSyntax.QuoteIdentifier("ThemeId") + " = @ThemeId";
+            var sql = "SELECT * FROM " + Table + " WHERE " + DbSyntax.QuoteIdentifier("ThemeId") + " = @ThemeId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ThemeId", themeId)))
             {
@@ -82,7 +84,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int templateId)
         {
-            var sql = "DELETE FROM WebTemplate WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            var sql = "DELETE FROM " + Table + " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", templateId));
 
@@ -96,7 +98,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (item.Id > 0)
             {
-                sql = "UPDATE WebTemplate SET " +
+                sql = "UPDATE " + Table + " SET " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
                     DbSyntax.QuoteIdentifier("Content") + " = @Content, " +
                     DbSyntax.QuoteIdentifier("FileName") + " = @FileName, " +
@@ -127,7 +129,7 @@ namespace WCMS.Framework.Core.SqlProvider
             }
             else
             {
-                sql = "INSERT INTO WebTemplate (" +
+                sql = "INSERT INTO " + Table + " (" +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("Content") + ", " +
                     DbSyntax.QuoteIdentifier("FileName") + ", " +

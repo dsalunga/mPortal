@@ -12,13 +12,15 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     class WebMasterPageProvider : IWebMasterPageProvider
     {
+        private static string TableName => DbSyntax.QuoteIdentifier("WebMasterPage");
+
         public WebMasterPageProvider() { }
 
         public IEnumerable<WebMasterPage> GetList(int siteId)
         {
             var items = new List<WebMasterPage>();
 
-            var sql = "SELECT * FROM WebMasterPage WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@SiteId", siteId)))
             {
@@ -31,7 +33,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebMasterPage Get(int masterPageId)
         {
-            var sql = "SELECT * FROM WebMasterPage WHERE " + DbSyntax.QuoteIdentifier("MasterPageId") + " = @MasterPageId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("MasterPageId") + " = @MasterPageId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@MasterPageId", masterPageId)))
             {
@@ -44,7 +46,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int masterPageId)
         {
-            var sql = "DELETE FROM WebMasterPage WHERE " + DbSyntax.QuoteIdentifier("MasterPageId") + " = @MasterPageId";
+            var sql = "DELETE FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("MasterPageId") + " = @MasterPageId";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@MasterPageId", masterPageId));
 
@@ -58,7 +60,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (item.Id > 0)
             {
-                sql = "UPDATE WebMasterPage SET " +
+                sql = "UPDATE " + TableName + " SET " +
                     DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId, " +
                     DbSyntax.QuoteIdentifier("TemplateId") + " = @TemplateId, " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
@@ -85,7 +87,7 @@ namespace WCMS.Framework.Core.SqlProvider
             }
             else
             {
-                sql = "INSERT INTO WebMasterPage (" +
+                sql = "INSERT INTO " + TableName + " (" +
                     DbSyntax.QuoteIdentifier("SiteId") + ", " +
                     DbSyntax.QuoteIdentifier("TemplateId") + ", " +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
@@ -130,9 +132,22 @@ namespace WCMS.Framework.Core.SqlProvider
             item.ManagementAccess = DataUtil.GetInt32(r, "ManagementAccess");
             item.SkinId = DataUtil.GetId(r, WebColumns.SkinId);
             item.ThemeId = DataUtil.GetId(r, WebColumns.ThemeId);
-            item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
+            item.ParentId = HasColumn(r, WebColumns.ParentId)
+                ? DataUtil.GetId(r, WebColumns.ParentId)
+                : -1;
 
             return item;
+        }
+
+        private static bool HasColumn(DbDataReader reader, string columnName)
+        {
+            for (var i = 0; i < reader.FieldCount; i++)
+            {
+                if (string.Equals(reader.GetName(i), columnName, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
         }
 
         #region IDataProvider<WebMasterPage> Members
@@ -147,7 +162,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebMasterPage> items = new List<WebMasterPage>();
 
-            var sql = "SELECT * FROM WebMasterPage";
+            var sql = "SELECT * FROM " + TableName;
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())

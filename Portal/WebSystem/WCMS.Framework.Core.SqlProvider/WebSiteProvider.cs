@@ -13,12 +13,14 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebSiteProvider : IWebSiteProvider
     {
+        private static string TableName => DbSyntax.QuoteIdentifier("WebSite");
+
         public WebSiteProvider() { }
 
         public IEnumerable<WSite> GetList()
         {
             var items = new List<WSite>();
-            var sql = "SELECT * FROM WebSite";
+            var sql = "SELECT * FROM " + TableName;
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
@@ -33,7 +35,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             var items = new List<WSite>();
 
-            var sql = "SELECT * FROM WebSite WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ParentId", parentId)))
             {
@@ -46,7 +48,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WSite Get(int siteId)
         {
-            var sql = "SELECT * FROM WebSite WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@SiteId", siteId)))
             {
@@ -59,7 +61,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WSite Get(string identity)
         {
-            var sql = "SELECT * FROM WebSite WHERE " + DbSyntax.QuoteIdentifier("Identity") + " = @Identity";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("Identity") + " = @Identity";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Identity", identity)))
             {
@@ -72,7 +74,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetCount()
         {
-            var sql = "SELECT COUNT(1) FROM WebSite";
+            var sql = "SELECT COUNT(1) FROM " + TableName;
             object o = DbHelper.ExecuteScalar(CommandType.Text, sql);
             if (o != null)
                 return Convert.ToInt32(o.ToString());
@@ -87,7 +89,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (item.Id > 0)
             {
-                sql = "UPDATE WebSite SET " +
+                sql = "UPDATE " + TableName + " SET " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name" + ", " +
                     DbSyntax.QuoteIdentifier("Rank") + " = @Rank" + ", " +
                     DbSyntax.QuoteIdentifier("Active") + " = @Active" + ", " +
@@ -132,7 +134,7 @@ namespace WCMS.Framework.Core.SqlProvider
             }
             else
             {
-                sql = "INSERT INTO WebSite (" +
+                sql = "INSERT INTO " + TableName + " (" +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("Rank") + ", " +
                     DbSyntax.QuoteIdentifier("Active") + ", " +
@@ -185,7 +187,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int siteId)
         {
-            var sql = "DELETE FROM WebSite WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            var sql = "DELETE FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@SiteId", siteId)
             );
@@ -205,7 +207,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetMaxRank()
         {
-            var sql = "SELECT MAX(" + DbSyntax.QuoteIdentifier("Rank") + ") FROM WebSite";
+            var sql = "SELECT MAX(" + DbSyntax.QuoteIdentifier("Rank") + ") FROM " + TableName;
             object result = DbHelper.ExecuteScalar(CommandType.Text, sql);
             return DataUtil.GetId(result);
         }

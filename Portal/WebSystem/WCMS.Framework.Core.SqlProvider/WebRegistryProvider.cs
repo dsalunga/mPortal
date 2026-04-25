@@ -13,6 +13,8 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebRegistryProvider : IWebRegistryProvider
     {
+        private static string TableName => DbSyntax.QuoteIdentifier("WebRegistry");
+
 
         public IEnumerable<WebDirectoryEntry> GetByDirectory(int directoryId, string loweredKeyword)
         {
@@ -22,7 +24,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebRegistry> GetList()
         {
             List<WebRegistry> items = new List<WebRegistry>();
-            var sql = "SELECT * FROM WebRegistry";
+            var sql = "SELECT * FROM " + TableName;
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
@@ -36,7 +38,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebRegistry Get(string key)
         {
-            var sql = "SELECT * FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("Key") + " = @Key";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("Key") + " = @Key";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Key", key)))
             {
@@ -51,7 +53,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebRegistry Get(string key, int parentId)
         {
-            var sql = "SELECT * FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("Key") + " = @Key AND " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("Key") + " = @Key AND " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Key", key),
                 DbHelper.CreateParameter("@ParentId", parentId)
@@ -68,7 +70,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebRegistry Get(int registryId)
         {
-            var sql = "SELECT * FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("RegistryId") + " = @RegistryId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("RegistryId") + " = @RegistryId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@RegistryId", registryId)))
             {
@@ -85,7 +87,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebRegistry> items = new List<WebRegistry>();
 
-            var sql = "SELECT * FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@ParentId", parentId)))
             {
@@ -134,7 +136,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (item.Id > 0)
             {
-                sql = "UPDATE WebRegistry SET " +
+                sql = "UPDATE " + TableName + " SET " +
                     DbSyntax.QuoteIdentifier("Key") + " = @Key, " +
                     DbSyntax.QuoteIdentifier("Value") + " = @Value, " +
                     DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId, " +
@@ -151,7 +153,7 @@ namespace WCMS.Framework.Core.SqlProvider
             }
             else
             {
-                sql = "INSERT INTO WebRegistry (" +
+                sql = "INSERT INTO " + TableName + " (" +
                     DbSyntax.QuoteIdentifier("Key") + ", " +
                     DbSyntax.QuoteIdentifier("Value") + ", " +
                     DbSyntax.QuoteIdentifier("ParentId") + ", " +
@@ -176,7 +178,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(string key)
         {
-            var sql = "DELETE FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("Key") + " = @Key";
+            var sql = "DELETE FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("Key") + " = @Key";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Key", key));
 
@@ -185,7 +187,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int registryId)
         {
-            var sql = "DELETE FROM WebRegistry WHERE " + DbSyntax.QuoteIdentifier("RegistryId") + " = @RegistryId";
+            var sql = "DELETE FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("RegistryId") + " = @RegistryId";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@RegistryId", registryId));
 

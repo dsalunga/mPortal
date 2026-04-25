@@ -12,6 +12,8 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebObjectProvider : IWebObjectProvider
     {
+        private static string TableName => DbSyntax.QuoteIdentifier("WebObject");
+
         public IEnumerable<WebDirectoryEntry> GetByDirectory(int directoryId, string loweredKeyword)
         {
             throw new NotImplementedException();
@@ -19,7 +21,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebObject Get(int id)
         {
-            var sql = "SELECT * FROM WebObject WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id)))
             {
@@ -35,7 +37,7 @@ namespace WCMS.Framework.Core.SqlProvider
             //return _provider.GetList<WebObject>();
             List<WebObject> items = new List<WebObject>();
 
-            var sql = "SELECT * FROM WebObject";
+            var sql = "SELECT * FROM " + TableName;
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
@@ -55,7 +57,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (item.Id > 0)
             {
-                sql = "UPDATE WebObject SET " +
+                sql = "UPDATE " + TableName + " SET " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name" + ", " +
                     DbSyntax.QuoteIdentifier("IdentityColumn") + " = @IdentityColumn" + ", " +
                     DbSyntax.QuoteIdentifier("ObjectType") + " = @ObjectType" + ", " +
@@ -96,7 +98,7 @@ namespace WCMS.Framework.Core.SqlProvider
             }
             else
             {
-                sql = "INSERT INTO WebObject (" +
+                sql = "INSERT INTO " + TableName + " (" +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("IdentityColumn") + ", " +
                     DbSyntax.QuoteIdentifier("ObjectType") + ", " +
@@ -145,7 +147,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int id)
         {
-            var sql = "DELETE FROM WebObject WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            var sql = "DELETE FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id));
 
@@ -169,7 +171,7 @@ namespace WCMS.Framework.Core.SqlProvider
             item.Prefix = r["Prefix"].ToString();
             item.DataProviderName = r["DataProviderName"].ToString();
             item.TypeName = r["TypeName"].ToString();
-            item.CacheInterval = DataUtil.GetInt32(r["TypeName"]);
+            item.CacheInterval = DataUtil.GetInt32(r["CacheInterval"]);
             item.DateModified = (DateTime)r["DateModified"];
             item.ManagerName = r["ManagerName"].ToString();
             item.NameColumn = r["NameColumn"].ToString();

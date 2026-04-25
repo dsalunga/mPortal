@@ -12,6 +12,8 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebPageElementProvider : IWebPageElementProvider
     {
+        private static string TableName => DbSyntax.QuoteIdentifier("WebPageElement");
+
         public WebPageElementProvider() { }
 
         /// <summary>
@@ -23,7 +25,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPageElement> GetList(int recordId, int objectId)
         {
             List<WebPageElement> items = new List<WebPageElement>();
-            var sql = "SELECT * FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@RecordId", recordId),
                 DbHelper.CreateParameter("@ObjectId", objectId)
@@ -47,7 +49,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebPageElement> GetList(int recordId, int objectId, int templatePanelId)
         {
             List<WebPageElement> items = new List<WebPageElement>();
-            var sql = "SELECT * FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId AND " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@TemplatePanelId", templatePanelId),
                 DbHelper.CreateParameter("@RecordId", recordId),
@@ -64,7 +66,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebPageElement Get(int id)
         {
-            var sql = "SELECT * FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("PageElementId") + " = @PageElementId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("PageElementId") + " = @PageElementId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PageElementId", id)))
             {
@@ -77,7 +79,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetCount(int recordId, int objectId, int templatePanelId)
         {
-            var sql = "SELECT COUNT(1) FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
+            var sql = "SELECT COUNT(1) FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
             object o = DbHelper.ExecuteScalar(CommandType.Text, sql,
                 DbHelper.CreateParameter("@RecordId", recordId),
                 DbHelper.CreateParameter("@ObjectId", objectId),
@@ -88,7 +90,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetMaxRank(int recordId, int objectId, int templatePanelId)
         {
-            var sql = "SELECT MAX(" + DbSyntax.QuoteIdentifier("Rank") + ") FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
+            var sql = "SELECT MAX(" + DbSyntax.QuoteIdentifier("Rank") + ") FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId AND " + DbSyntax.QuoteIdentifier("ObjectId") + " = @ObjectId AND " + DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId";
             object o = DbHelper.ExecuteScalar(CommandType.Text, sql,
                 DbHelper.CreateParameter("@RecordId", recordId),
                 DbHelper.CreateParameter("@ObjectId", objectId),
@@ -106,7 +108,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (item.Id > 0)
             {
-                sql = "UPDATE WebPageElement SET " +
+                sql = "UPDATE " + TableName + " SET " +
                     DbSyntax.QuoteIdentifier("RecordId") + " = @RecordId, " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
                     DbSyntax.QuoteIdentifier("TemplatePanelId") + " = @TemplatePanelId, " +
@@ -135,7 +137,7 @@ namespace WCMS.Framework.Core.SqlProvider
             }
             else
             {
-                sql = "INSERT INTO WebPageElement (" +
+                sql = "INSERT INTO " + TableName + " (" +
                     DbSyntax.QuoteIdentifier("RecordId") + ", " +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("TemplatePanelId") + ", " +
@@ -172,7 +174,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public bool Delete(int PageElementId)
         {
-            var sql = "DELETE FROM WebPageElement WHERE " + DbSyntax.QuoteIdentifier("PageElementId") + " = @PageElementId";
+            var sql = "DELETE FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("PageElementId") + " = @PageElementId";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PageElementId", PageElementId));
 
@@ -208,7 +210,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WebPageElement> items = new List<WebPageElement>();
 
-            var sql = "SELECT * FROM WebPageElement";
+            var sql = "SELECT * FROM " + TableName;
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
@@ -230,7 +232,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetCount()
         {
-            var sql = "SELECT COUNT(1) FROM WebPageElement";
+            var sql = "SELECT COUNT(1) FROM " + TableName;
             object o = DbHelper.ExecuteScalar(CommandType.Text, sql);
             return DataUtil.GetId(o);
         }

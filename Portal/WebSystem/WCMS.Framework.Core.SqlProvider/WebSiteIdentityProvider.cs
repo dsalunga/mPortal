@@ -12,11 +12,13 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebSiteIdentityProvider : IWebSiteIdentityProvider
     {
+        private static string TableName => DbSyntax.QuoteIdentifier("WebSiteIdentity");
+
         #region IDataProvider<WebSiteIdentity> Members
 
         public bool Delete(int id)
         {
-            var sql = "DELETE FROM WebSiteIdentity WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            var sql = "DELETE FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
             DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id));
 
@@ -25,7 +27,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebSiteIdentity Get(int id)
         {
-            var sql = "SELECT * FROM WebSiteIdentity WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("Id") + " = @Id";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Id", id)))
             {
@@ -46,9 +48,22 @@ namespace WCMS.Framework.Core.SqlProvider
             item.Port = DataUtil.GetInt32(r, "Port");
             item.IPAddress = DataUtil.Get(r, "IPAddress");
             item.RedirectUrl = DataUtil.Get(r, "RedirectUrl");
-            item.ProtocolId = DataUtil.GetInt32(r, "ProtocolId");
+            item.ProtocolId = HasColumn(r, "ProtocolId")
+                ? DataUtil.GetInt32(r, "ProtocolId")
+                : 0;
 
             return item;
+        }
+
+        private static bool HasColumn(DbDataReader reader, string columnName)
+        {
+            for (var i = 0; i < reader.FieldCount; i++)
+            {
+                if (string.Equals(reader.GetName(i), columnName, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
         }
 
         public WebSiteIdentity Get(params QueryFilterElement[] filters)
@@ -59,7 +74,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebSiteIdentity> GetList()
         {
             var items = new List<WebSiteIdentity>();
-            var sql = "SELECT * FROM WebSiteIdentity";
+            var sql = "SELECT * FROM " + TableName;
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 while (r.Read())
@@ -72,7 +87,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WebSiteIdentity> GetList(int siteId)
         {
             var items = new List<WebSiteIdentity>();
-            var sql = "SELECT * FROM WebSiteIdentity WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@SiteId", siteId)))
             {
@@ -100,7 +115,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (item.Id > 0)
             {
-                sql = "UPDATE WebSiteIdentity SET " +
+                sql = "UPDATE " + TableName + " SET " +
                     DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId, " +
                     DbSyntax.QuoteIdentifier("HostName") + " = @HostName, " +
                     DbSyntax.QuoteIdentifier("UrlPath") + " = @UrlPath, " +
@@ -123,7 +138,7 @@ namespace WCMS.Framework.Core.SqlProvider
             }
             else
             {
-                sql = "INSERT INTO WebSiteIdentity (" +
+                sql = "INSERT INTO " + TableName + " (" +
                     DbSyntax.QuoteIdentifier("SiteId") + ", " +
                     DbSyntax.QuoteIdentifier("HostName") + ", " +
                     DbSyntax.QuoteIdentifier("UrlPath") + ", " +

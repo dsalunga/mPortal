@@ -18,7 +18,7 @@ namespace WCMS.WebSystem.Utilities
     {
         public bool IsNewDb {get; set; }
 
-        public readonly string XML_PATH = WebUtil.MapPath(ConfigUtil.Get(DbConstants.DB_PROVIDER_PATH_KEY), true);
+        public readonly string XML_PATH = ResolveXmlPath();
 
         public string BackupPath => XML_PATH;
         public string ProcedureSqlPath => Path.Combine(XML_PATH, "Procedures");
@@ -51,6 +51,82 @@ namespace WCMS.WebSystem.Utilities
         {
             //if (SqlScriptGenerator.CheckCreateDatabase())
             //    IsNewDb = true;
+        }
+
+        private static string ResolveXmlPath()
+        {
+            var configuredPath = ConfigUtil.Get(DbConstants.DB_PROVIDER_PATH_KEY);
+            var candidates = new List<string>();
+
+            static void AddCandidate(List<string> list, string path)
+            {
+                if (string.IsNullOrWhiteSpace(path))
+                    return;
+
+                try
+                {
+                    list.Add(FileHelper.EvalPath(path));
+                }
+                catch
+                {
+                    // Ignore invalid path candidates.
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(configuredPath))
+            {
+                AddCandidate(candidates, WebUtil.MapPath(configuredPath, true));
+
+                if (!Path.IsPathRooted(configuredPath))
+                {
+                    AddCandidate(candidates, Path.Combine(PathMapper.ContentRootPath, configuredPath));
+                    AddCandidate(candidates, Path.Combine(AppContext.BaseDirectory, configuredPath));
+                }
+            }
+
+            foreach (var root in EnumerateAncestorPaths(PathMapper.ContentRootPath, 10))
+            {
+                AddCandidate(candidates, Path.Combine(root, "Assets", "Database"));
+                AddCandidate(candidates, Path.Combine(root, "Portal", "Assets", "Database"));
+            }
+
+            foreach (var root in EnumerateAncestorPaths(AppContext.BaseDirectory, 10))
+            {
+                AddCandidate(candidates, Path.Combine(root, "Assets", "Database"));
+                AddCandidate(candidates, Path.Combine(root, "Portal", "Assets", "Database"));
+            }
+
+            foreach (var path in candidates.Distinct(StringComparer.OrdinalIgnoreCase))
+            {
+                if (!Directory.Exists(path))
+                    continue;
+
+                if (File.Exists(Path.Combine(path, DbConstants.XML_FILE)))
+                    return path;
+            }
+
+            foreach (var path in candidates.Distinct(StringComparer.OrdinalIgnoreCase))
+            {
+                if (Directory.Exists(path))
+                    return path;
+            }
+
+            return WebUtil.MapPath(Path.Combine("Assets", "Database"));
+        }
+
+        private static IEnumerable<string> EnumerateAncestorPaths(string startPath, int maxDepth)
+        {
+            if (string.IsNullOrWhiteSpace(startPath) || maxDepth <= 0)
+                yield break;
+
+            var dir = new DirectoryInfo(startPath);
+            var depth = 0;
+            while (dir != null && depth < maxDepth)
+            {
+                yield return dir.FullName;
+                dir = dir.Parent;
+                depth++;
+            }
         }
 
         public bool CheckCreateDatabase()
@@ -156,6 +232,96 @@ namespace WCMS.WebSystem.Utilities
         private static string QuotePostgreSqlIdentifier(string value)
         {
             return "\"" + value.Replace("\"", "\"\"") + "\"";
+        }
+
+        private void EnsurePostgreSqlRolePrivileges(StringBuilder errors, Action<string> notify)
+        {
+            if (!IsPostgreSql)
+                return;
+
+            var roles = GetConfiguredPostgreSqlRoles();
+            foreach (var role in roles)
+            {
+                var quotedRole = QuotePostgreSqlIdentifier(role);
+                var statements = new[]
+                {
+                    string.Format("GRANT USAGE ON SCHEMA public TO {0}", quotedRole),
+                    string.Format("GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER ON ALL TABLES IN SCHEMA public TO {0}", quotedRole),
+                    string.Format("GRANT USAGE, SELECT, UPDATE ON ALL SEQUENCES IN SCHEMA public TO {0}", quotedRole),
+                    string.Format("GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO {0}", quotedRole),
+                    string.Format("ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER ON TABLES TO {0}", quotedRole),
+                    string.Format("ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT USAGE, SELECT, UPDATE ON SEQUENCES TO {0}", quotedRole),
+                    string.Format("ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT EXECUTE ON FUNCTIONS TO {0}", quotedRole)
+                };
+
+                foreach (var sql in statements)
+                {
+                    try
+                    {
+                        DbHelper.ExecuteNonQuery(CommandType.Text, sql);
+                    }
+                    catch (Exception ex)
+                    {
+                        LogHelper.WriteLog(ex);
+                        errors?.AppendLine(string.Format("Role grant warning ({0}): {1}", role, ex.Message));
+                    }
+                }
+
+                notify?.Invoke(string.Format("Applied PostgreSQL role grants for '{0}'.", role));
+            }
+        }
+
+        private static IEnumerable<string> GetConfiguredPostgreSqlRoles()
+        {
+            var roles = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var connectionStrings = new[]
+            {
+                ConfigUtil.GetConnectionString("ConnectionString"),
+                ConfigUtil.GetConnectionString("DefaultConnection"),
+                ConfigUtil.GetConnectionString("BibleConnection"),
+                ConfigUtil.GetConnectionString("EventCalendar"),
+                DbHelper.ConnString
+            };
+
+            foreach (var connectionString in connectionStrings)
+            {
+                var role = ExtractConnectionUser(connectionString);
+                if (!string.IsNullOrWhiteSpace(role))
+                    roles.Add(role);
+            }
+
+            return roles;
+        }
+
+        private static string ExtractConnectionUser(string connectionString)
+        {
+            if (string.IsNullOrWhiteSpace(connectionString))
+                return null;
+
+            try
+            {
+                var builder = new DbConnectionStringBuilder { ConnectionString = connectionString };
+                foreach (string key in builder.Keys)
+                {
+                    if (!string.Equals(key, "Username", StringComparison.OrdinalIgnoreCase) &&
+                        !string.Equals(key, "User ID", StringComparison.OrdinalIgnoreCase) &&
+                        !string.Equals(key, "UserId", StringComparison.OrdinalIgnoreCase) &&
+                        !string.Equals(key, "User", StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    var value = Convert.ToString(builder[key]);
+                    if (!string.IsNullOrWhiteSpace(value))
+                        return value.Trim();
+                }
+            }
+            catch
+            {
+                // Ignore malformed connection strings.
+            }
+
+            return null;
         }
 
         public string RestoreObjectSchema(WebObject item)
@@ -428,6 +594,9 @@ namespace WCMS.WebSystem.Utilities
                         notify(ex.ToString());
                     }
                 }
+
+                if (IsPostgreSql)
+                    EnsurePostgreSqlRolePrivileges(errors, notify);
 
                 notify(string.Format("{0}Database restore process COMPLETED.", WConstants.WBREAK));
             }

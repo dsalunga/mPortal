@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Data.Common;
+using System.Text.RegularExpressions;
 using Npgsql;
 
 namespace WCMS.Common.Utilities
@@ -11,6 +12,14 @@ namespace WCMS.Common.Utilities
     /// </summary>
     public class PostgresDbHelper : IDbHelper
     {
+        private static readonly Regex TableAfterKeywordRegex = new Regex(
+            @"\b(FROM|JOIN|UPDATE|INTO)\s+([A-Za-z_][A-Za-z0-9_]*)\b",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
+        private static readonly Regex DeleteFromRegex = new Regex(
+            @"\bDELETE\s+FROM\s+([A-Za-z_][A-Za-z0-9_]*)\b",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
         private readonly string _connString;
         private readonly int _timeOut;
 
@@ -246,7 +255,7 @@ namespace WCMS.Common.Utilities
         {
             if (conn.State != ConnectionState.Open) conn.Open();
             cmd.Connection = conn;
-            cmd.CommandText = cmdText;
+            cmd.CommandText = NormalizeSqlTextForPostgres(cmdType, cmdText);
             cmd.CommandTimeout = _timeOut;
             if (trans != null) cmd.Transaction = trans;
             cmd.CommandType = cmdType;
@@ -255,6 +264,47 @@ namespace WCMS.Common.Utilities
                 foreach (var parm in cmdParms)
                     cmd.Parameters.Add(parm);
             }
+        }
+
+        private static string NormalizeSqlTextForPostgres(CommandType cmdType, string cmdText)
+        {
+            if (cmdType != CommandType.Text || string.IsNullOrWhiteSpace(cmdText))
+                return cmdText;
+
+            var result = TableAfterKeywordRegex.Replace(cmdText, match =>
+            {
+                var keyword = match.Groups[1].Value;
+                var table = match.Groups[2].Value;
+                return keyword + " " + QuoteIdentifierIfNeeded(table);
+            });
+
+            result = DeleteFromRegex.Replace(result, match =>
+            {
+                var table = match.Groups[1].Value;
+                return "DELETE FROM " + QuoteIdentifierIfNeeded(table);
+            });
+
+            return result;
+        }
+
+        private static string QuoteIdentifierIfNeeded(string identifier)
+        {
+            if (string.IsNullOrWhiteSpace(identifier))
+                return identifier;
+
+            if (identifier.StartsWith("\"", StringComparison.Ordinal) &&
+                identifier.EndsWith("\"", StringComparison.Ordinal))
+                return identifier;
+
+            foreach (var ch in identifier)
+            {
+                if (char.IsUpper(ch))
+                {
+                    return "\"" + identifier + "\"";
+                }
+            }
+
+            return identifier;
         }
     }
 }

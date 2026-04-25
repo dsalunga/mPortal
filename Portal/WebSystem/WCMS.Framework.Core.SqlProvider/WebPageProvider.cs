@@ -12,6 +12,8 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebPageProvider : IWebPageProvider
     {
+        private static string TableName => DbSyntax.QuoteIdentifier("WebPage");
+
         public WebPageProvider() { }
 
         public IEnumerable<WebDirectoryEntry> GetByDirectory(int directoryId, string loweredKeyword)
@@ -23,7 +25,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             List<WPage> items = new List<WPage>();
 
-            var sql = "SELECT * FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId AND " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId AND " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@SiteId", siteId),
                 DbHelper.CreateParameter("@ParentId", parentId)))
@@ -38,7 +40,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetCount(int siteId)
         {
-            var sql = "SELECT COUNT(1) FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            var sql = "SELECT COUNT(1) FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
             object o = DbHelper.ExecuteScalar(CommandType.Text, sql,
                 DbHelper.CreateParameter("@SiteId", siteId));
 
@@ -56,7 +58,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WPage> GetList(int siteId)
         {
             List<WPage> items = new List<WPage>();
-            var sql = "SELECT * FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@SiteId", siteId)))
             {
@@ -72,7 +74,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (pageId > 0)
             {
-                var sql = "SELECT * FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
+                var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
                 using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql,
                     DbHelper.CreateParameter("@PageId", pageId)))
                 {
@@ -88,7 +90,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (!string.IsNullOrEmpty(identity))
             {
-                var sql = "SELECT * FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId AND " + DbSyntax.QuoteIdentifier("Identity") + " = @Identity AND " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+                var sql = "SELECT * FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId AND " + DbSyntax.QuoteIdentifier("Identity") + " = @Identity AND " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
                 using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                     DbHelper.CreateParameter("@ParentId", parentId),
                     DbHelper.CreateParameter("@Identity", identity),
@@ -105,7 +107,7 @@ namespace WCMS.Framework.Core.SqlProvider
         public IEnumerable<WPage> GetList()
         {
             List<WPage> items = new List<WPage>();
-            var sql = "SELECT * FROM WebPage";
+            var sql = "SELECT * FROM " + TableName;
             using (DbDataReader r = DbHelper.ExecuteReader(CommandType.Text, sql))
             {
                 if (r.HasRows)
@@ -120,7 +122,7 @@ namespace WCMS.Framework.Core.SqlProvider
         {
             if (pageId > 0)
             {
-                var sql = "DELETE FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
+                var sql = "DELETE FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
                 DbHelper.ExecuteNonQuery(CommandType.Text, sql,
                     DbHelper.CreateParameter("@PageId", pageId));
 
@@ -137,7 +139,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (item.Id > 0)
             {
-                sql = "UPDATE WebPage SET " +
+                sql = "UPDATE " + TableName + " SET " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name" + ", " +
                     DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId" + ", " +
                     DbSyntax.QuoteIdentifier("Rank") + " = @Rank" + ", " +
@@ -176,7 +178,7 @@ namespace WCMS.Framework.Core.SqlProvider
             }
             else
             {
-                sql = "INSERT INTO WebPage (" +
+                sql = "INSERT INTO " + TableName + " (" +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("SiteId") + ", " +
                     DbSyntax.QuoteIdentifier("Rank") + ", " +
@@ -246,7 +248,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public int GetMaxRank(int siteId)
         {
-            var sql = "SELECT MAX(" + DbSyntax.QuoteIdentifier("Rank") + ") FROM WebPage WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
+            var sql = "SELECT MAX(" + DbSyntax.QuoteIdentifier("Rank") + ") FROM " + TableName + " WHERE " + DbSyntax.QuoteIdentifier("SiteId") + " = @SiteId";
             object result = DbHelper.ExecuteScalar(CommandType.Text, sql,
                 DbHelper.CreateParameter("@SiteId", siteId));
 

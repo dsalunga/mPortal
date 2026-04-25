@@ -31,9 +31,22 @@ namespace WCMS.Framework.Core.SqlProvider
             item.Id = DataUtil.GetId(r, WebColumns.Id);
             item.Name = DataUtil.Get(r, WebColumns.Name);
             item.PageId = DataUtil.GetId(r, WebColumns.PageId);
-            item.PageUrl = DataUtil.Get(r, "PageUrl");
+            item.PageUrl = HasColumn(r, "PageUrl")
+                ? DataUtil.Get(r, "PageUrl")
+                : string.Empty;
 
             return item;
+        }
+
+        private static bool HasColumn(IDataReader reader, string columnName)
+        {
+            for (var i = 0; i < reader.FieldCount; i++)
+            {
+                if (string.Equals(reader.GetName(i), columnName, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
         }
 
         public override int Update(WebShortUrl item)
@@ -43,7 +56,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
             if (item.Id > 0)
             {
-                sql = "UPDATE WebShortUrl SET " +
+                sql = "UPDATE " + DbSyntax.QuoteIdentifier("WebShortUrl") + " SET " +
                     DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
                     DbSyntax.QuoteIdentifier("PageId") + " = @PageId, " +
                     DbSyntax.QuoteIdentifier("PageUrl") + " = @PageUrl" +
@@ -58,7 +71,7 @@ namespace WCMS.Framework.Core.SqlProvider
             }
             else
             {
-                sql = "INSERT INTO WebShortUrl (" +
+                sql = "INSERT INTO " + DbSyntax.QuoteIdentifier("WebShortUrl") + " (" +
                     DbSyntax.QuoteIdentifier("Name") + ", " +
                     DbSyntax.QuoteIdentifier("PageId") + ", " +
                     DbSyntax.QuoteIdentifier("PageUrl") +
@@ -81,7 +94,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebShortUrl Get(string name)
         {
-            var sql = "SELECT * FROM WebShortUrl WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("WebShortUrl") + " WHERE " + DbSyntax.QuoteIdentifier("Name") + " = @Name";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@Name", name)))
             {
@@ -94,7 +107,7 @@ namespace WCMS.Framework.Core.SqlProvider
 
         public WebShortUrl GetByPageId(int pageId)
         {
-            var sql = "SELECT * FROM WebShortUrl WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
+            var sql = "SELECT * FROM " + DbSyntax.QuoteIdentifier("WebShortUrl") + " WHERE " + DbSyntax.QuoteIdentifier("PageId") + " = @PageId";
             using (var r = DbHelper.ExecuteReader(CommandType.Text, sql,
                 DbHelper.CreateParameter("@PageId", pageId)))
             {
