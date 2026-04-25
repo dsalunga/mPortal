@@ -19,7 +19,11 @@ namespace WCMS.WebSystem.WebParts.Article
 
         static ArticleList()
         {
-            _manager = WebObject.ResolveManager<ArticleList, IArticleListProvider>(WebObject.ResolveProvider<ArticleList, IArticleListProvider>());
+            // Resolve by object-id to support legacy DB rows where object name differs from CLR type.
+            var provider = WebObject.ResolveProvider<ArticleList, IArticleListProvider>(ID);
+            _manager = WebObject.ResolveManager<ArticleList, IArticleListProvider>(provider, ID);
+            if (_manager == null)
+                _manager = provider ?? new ArticleListProvider();
         }
 
         public ArticleList()

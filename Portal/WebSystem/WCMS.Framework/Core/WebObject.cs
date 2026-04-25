@@ -491,7 +491,7 @@ namespace WCMS.Framework.Core
 
         public static TP ResolveProvider<T, TP>(int oid = -1) where T : IWebObject
         {
-            WebObject item = oid > 0 ? Get(oid) : Get<T>();
+            WebObject item = ResolveWebObjectForType<T>(oid);
             if (item != null)
             {
                 if (item._dataProvider == null)
@@ -544,7 +544,7 @@ namespace WCMS.Framework.Core
 
         public static TM ResolveManager<T, TM>(TM provider, int oid = -1) where T : IWebObject
         {
-            WebObject item = oid > 0 ? Get(oid) : Get<T>();
+            WebObject item = ResolveWebObjectForType<T>(oid);
             if (item != null)
             {
                 if (item._dataManager == null)
@@ -566,6 +566,19 @@ namespace WCMS.Framework.Core
             }
 
             return default(TM);
+        }
+
+        private static WebObject ResolveWebObjectForType<T>(int oid) where T : IWebObject
+        {
+            if (oid > 0)
+                return Get(oid);
+
+            var item = Get<T>();
+            if (item != null)
+                return item;
+
+            var inferredOid = TryGetObjectId(typeof(T));
+            return inferredOid > 0 ? Get(inferredOid) : null;
         }
 
         public static IDataProvider ResolveProvider(Type type)
@@ -633,6 +646,24 @@ namespace WCMS.Framework.Core
             }
 
             return null;
+        }
+
+        private static int TryGetObjectId(Type type)
+        {
+            if (type == null || type.IsAbstract)
+                return -1;
+
+            try
+            {
+                if (Activator.CreateInstance(type) is IWebObject webObject)
+                    return webObject.OBJECT_ID;
+            }
+            catch
+            {
+                // Ignore unsupported types (no default ctor, ctor side-effects, etc.).
+            }
+
+            return -1;
         }
 
         #endregion

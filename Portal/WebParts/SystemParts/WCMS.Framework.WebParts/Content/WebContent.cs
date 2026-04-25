@@ -18,7 +18,11 @@ namespace WCMS.WebSystem.WebParts.Content
 
         static WebContent()
         {
-            _manager = WebObject.ResolveManager<WebContent, IWebContentProvider>(WebObject.ResolveProvider<WebContent, IWebContentProvider>());
+            // Resolve by object-id to handle legacy DB rows where object name != CLR type name.
+            var provider = WebObject.ResolveProvider<WebContent, IWebContentProvider>(WebObjects.WebContent);
+            _manager = WebObject.ResolveManager<WebContent, IWebContentProvider>(provider, WebObjects.WebContent);
+            if (_manager == null)
+                _manager = provider ?? new WebContentProvider();
         }
 
         public WebContent()

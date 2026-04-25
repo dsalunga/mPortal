@@ -36,7 +36,10 @@ namespace WCMS.WebSystem.WebParts.Article
 
         static Article()
         {
-            _manager = WebObject.ResolveManager<Article, IArticleProvider>(WebObject.ResolveProvider<Article, IArticleProvider>());
+            var provider = WebObject.ResolveProvider<Article, IArticleProvider>(ID);
+            _manager = WebObject.ResolveManager<Article, IArticleProvider>(provider, ID);
+            if (_manager == null)
+                _manager = provider ?? new ArticleProvider();
         }
 
         public string Title { get; set; }

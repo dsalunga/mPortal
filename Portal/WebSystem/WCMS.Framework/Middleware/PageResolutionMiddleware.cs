@@ -68,22 +68,31 @@ namespace WCMS.Framework.Middleware
             if (string.IsNullOrEmpty(loweredPath))
                 return null;
 
-            WSite site = null;
+            var allIdentities = WebSiteIdentity.Provider.GetList();
+            var identityMatches = FindIdentityMatches(allIdentities, hostName, loweredPath);
 
-            if (loweredPath == "/")
+            foreach (var identity in identityMatches)
             {
-                var identities = WebSiteIdentity.Provider.GetList();
-                var found = identities
-                    .Where(i => i.HostName.Equals(hostName, StringComparison.OrdinalIgnoreCase));
-                if (found.Any())
-                    site = found.First().Site;
-                else
+                var resolvedPath = StripIdentityBasePath(loweredPath, identity?.UrlPath);
+                var resolved = ResolvePageWithinSite(identity?.Site, resolvedPath);
+                if (resolved != null)
+                    return resolved;
+            }
+
+            return ResolvePageWithinSite(null, loweredPath);
+        }
+
+        private static WPage ResolvePageWithinSite(WSite site, string resolvedPath)
+        {
+            if (resolvedPath == "/")
+            {
+                if (site == null)
                     site = WConfig.DefaultSite;
 
                 return site?.HomePage;
             }
 
-            string[] urls = NormalizePathSegments(loweredPath);
+            string[] urls = NormalizePathSegments(resolvedPath);
 
             if (urls.Length == 1)
             {
@@ -111,11 +120,8 @@ namespace WCMS.Framework.Middleware
 
             if (!searchSites.Any())
             {
-                var identities = WebSiteIdentity.Provider.GetList();
-                var found = identities
-                    .Where(i => i.HostName.Equals(hostName, StringComparison.OrdinalIgnoreCase));
-                if (found.Any())
-                    site = found.First().Site;
+                if (site == null)
+                    site = WConfig.DefaultSite;
             }
             else
             {
@@ -169,7 +175,114 @@ namespace WCMS.Framework.Middleware
         {
             string ext = Path.GetExtension(loweredPath);
             string normalized = ext.StartsWith(".") ? loweredPath.Replace(ext, "/") : loweredPath;
-            return normalized.Trim('/').Split('/');
+            return normalized
+                .Trim('/')
+                .Split('/', StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private static IEnumerable<WebSiteIdentity> FindIdentityMatches(IEnumerable<WebSiteIdentity> identities, string hostName, string loweredPath)
+        {
+            if (identities == null)
+                return Enumerable.Empty<WebSiteIdentity>();
+
+            var requestHost = NormalizeHost(hostName);
+            var requestPath = NormalizeIdentityPath(loweredPath);
+            var candidates = new List<(WebSiteIdentity Identity, int HostScore, int PathLength)>();
+
+            foreach (var identity in identities)
+            {
+                var hostScore = GetHostMatchScore(requestHost, identity?.HostName);
+                if (hostScore <= 0)
+                    continue;
+
+                var identityPath = NormalizeIdentityPath(identity?.UrlPath);
+                if (!PathMatchesIdentityBase(requestPath, identityPath))
+                    continue;
+
+                candidates.Add((identity, hostScore, identityPath == "/" ? 0 : identityPath.Length));
+            }
+
+            return candidates
+                .OrderByDescending(c => c.HostScore)
+                .ThenByDescending(c => c.PathLength)
+                .ThenBy(c => c.Identity?.Id ?? int.MaxValue)
+                .Select(c => c.Identity);
+        }
+
+        private static int GetHostMatchScore(string requestHost, string identityHost)
+        {
+            if (string.IsNullOrWhiteSpace(requestHost) || string.IsNullOrWhiteSpace(identityHost))
+                return 0;
+
+            var normalizedIdentity = NormalizeHost(identityHost);
+            if (string.Equals(requestHost, normalizedIdentity, StringComparison.OrdinalIgnoreCase))
+                return 2;
+
+            // Legacy data uses placeholder hosts such as "_localhost" / "localhost_".
+            var canonicalRequest = CanonicalizeHost(requestHost);
+            var canonicalIdentity = CanonicalizeHost(normalizedIdentity);
+
+            if (string.IsNullOrWhiteSpace(canonicalRequest) || string.IsNullOrWhiteSpace(canonicalIdentity))
+                return 0;
+
+            return string.Equals(canonicalRequest, canonicalIdentity, StringComparison.OrdinalIgnoreCase) ? 1 : 0;
+        }
+
+        private static bool PathMatchesIdentityBase(string requestPath, string identityPath)
+        {
+            if (identityPath == "/")
+                return true;
+
+            if (string.Equals(requestPath, identityPath, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            return requestPath.StartsWith(identityPath + "/", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static string StripIdentityBasePath(string requestPath, string identityPath)
+        {
+            var normalizedRequest = NormalizeIdentityPath(requestPath);
+            var normalizedIdentity = NormalizeIdentityPath(identityPath);
+
+            if (normalizedIdentity == "/")
+                return normalizedRequest;
+
+            if (string.Equals(normalizedRequest, normalizedIdentity, StringComparison.OrdinalIgnoreCase))
+                return "/";
+
+            if (normalizedRequest.StartsWith(normalizedIdentity + "/", StringComparison.OrdinalIgnoreCase))
+                return normalizedRequest.Substring(normalizedIdentity.Length);
+
+            return normalizedRequest;
+        }
+
+        private static string NormalizeHost(string host)
+        {
+            if (string.IsNullOrWhiteSpace(host))
+                return string.Empty;
+
+            return host.Trim().TrimEnd('.').ToLowerInvariant();
+        }
+
+        private static string CanonicalizeHost(string host)
+        {
+            if (string.IsNullOrWhiteSpace(host))
+                return string.Empty;
+
+            return host.Trim('_');
+        }
+
+        private static string NormalizeIdentityPath(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                return "/";
+
+            var normalized = path.Trim();
+            if (!normalized.StartsWith("/"))
+                normalized = "/" + normalized;
+
+            normalized = normalized.TrimEnd('/');
+            return normalized.Length == 0 ? "/" : normalized.ToLowerInvariant();
         }
     }
 }

@@ -15,7 +15,11 @@ namespace WCMS.WebSystem.WebParts.Article
 
         static ArticleTemplate()
         {
-            _manager = WebObject.ResolveManager<ArticleTemplate, IArticleTemplateProvider>(WebObject.ResolveProvider<ArticleTemplate, IArticleTemplateProvider>());
+            const int objectId = 44;
+            var provider = WebObject.ResolveProvider<ArticleTemplate, IArticleTemplateProvider>(objectId);
+            _manager = WebObject.ResolveManager<ArticleTemplate, IArticleTemplateProvider>(provider, objectId);
+            if (_manager == null)
+                _manager = provider ?? new ArticleTemplateProvider();
         }
 
         public ArticleTemplate()

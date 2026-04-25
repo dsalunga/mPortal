@@ -14,7 +14,10 @@ namespace WCMS.WebSystem.WebParts.Article
 
         static ArticleLink()
         {
-            _manager = WebObject.ResolveManager<ArticleLink, IArticleLinkProvider>(WebObject.ResolveProvider<ArticleLink, IArticleLinkProvider>());
+            var provider = WebObject.ResolveProvider<ArticleLink, IArticleLinkProvider>(WebObjects.ArticleLocation);
+            _manager = WebObject.ResolveManager<ArticleLink, IArticleLinkProvider>(provider, WebObjects.ArticleLocation);
+            if (_manager == null)
+                _manager = provider ?? new ArticleLinkProvider();
         }
 
         public ArticleLink()
