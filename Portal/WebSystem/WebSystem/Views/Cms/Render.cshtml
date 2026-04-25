@@ -1,9 +1,10 @@
 @using Microsoft.AspNetCore.Mvc.ViewFeatures
 @using WCMS.Framework
-@model WCMS.WebSystem.Controllers.CmsPageRenderModel
+@model object
 @{
     Layout = null;
-    var pageTitle = string.IsNullOrWhiteSpace(Model.Page?.Name) ? "mPortal" : Model.Page.Name;
+    var renderModel = Model as WCMS.WebSystem.Controllers.CmsPageRenderModel ?? new WCMS.WebSystem.Controllers.CmsPageRenderModel();
+    var pageTitle = string.IsNullOrWhiteSpace(renderModel.Page?.Name) ? "mPortal" : renderModel.Page.Name;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -12,37 +13,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="none,noarchive" />
     <title>@pageTitle</title>
-    @if (!string.IsNullOrWhiteSpace(Model.ResourcesHtml))
+    @if (!string.IsNullOrWhiteSpace(renderModel.ResourcesHtml))
     {
-        @Html.Raw(Model.ResourcesHtml)
+        @Html.Raw(renderModel.ResourcesHtml)
     }
 </head>
 <body>
-    <main class="wcms-runtime-page" data-page-id="@Model.Page?.Id">
-        @if (Model.IsStaticPage)
+    <main class="wcms-runtime-page" data-page-id="@renderModel.Page?.Id">
+        @if (renderModel.IsStaticPage)
         {
-            if (!string.IsNullOrWhiteSpace(Model.TemplatePath))
+            if (!string.IsNullOrWhiteSpace(renderModel.TemplatePath))
             {
                 var staticViewData = new ViewDataDictionary(ViewData)
                 {
-                    ["Page"] = Model.Page,
-                    ["Template"] = Model.Template,
-                    ["Panels"] = Model.Panels,
-                    ["Elements"] = Model.Elements
+                    ["Page"] = renderModel.Page,
+                    ["Template"] = renderModel.Template,
+                    ["Panels"] = renderModel.Panels,
+                    ["Elements"] = renderModel.Elements
                 };
-                @await Html.PartialAsync(Model.TemplatePath, model: null, viewData: staticViewData)
+                @await Html.PartialAsync(renderModel.TemplatePath, model: null, viewData: staticViewData)
             }
         }
-        else if (Model.Panels != null && Model.Panels.Count > 0)
+        else if (renderModel.Panels != null && renderModel.Panels.Count > 0)
         {
-            foreach (var panel in Model.Panels)
+            foreach (var panel in renderModel.Panels)
             {
                 var panelViewData = new ViewDataDictionary(ViewData)
                 {
-                    ["Page"] = Model.Page,
-                    ["Template"] = Model.Template,
-                    ["Panels"] = Model.Panels,
-                    ["Elements"] = Model.Elements,
+                    ["Page"] = renderModel.Page,
+                    ["Template"] = renderModel.Template,
+                    ["Panels"] = renderModel.Panels,
+                    ["Elements"] = renderModel.Elements,
                     ["PanelName"] = panel.PanelName
                 };
                 <section class="wcms-panel" data-panel-id="@panel.Id" data-panel-name="@panel.PanelName">
@@ -50,16 +51,16 @@
                 </section>
             }
         }
-        else if (!string.IsNullOrWhiteSpace(Model.TemplatePath))
+        else if (!string.IsNullOrWhiteSpace(renderModel.TemplatePath))
         {
             var fallbackViewData = new ViewDataDictionary(ViewData)
             {
-                ["Page"] = Model.Page,
-                ["Template"] = Model.Template,
-                ["Panels"] = Model.Panels,
-                ["Elements"] = Model.Elements
+                ["Page"] = renderModel.Page,
+                ["Template"] = renderModel.Template,
+                ["Panels"] = renderModel.Panels,
+                ["Elements"] = renderModel.Elements
             };
-            @await Html.PartialAsync(Model.TemplatePath, model: null, viewData: fallbackViewData)
+            @await Html.PartialAsync(renderModel.TemplatePath, model: null, viewData: fallbackViewData)
         }
         else
         {

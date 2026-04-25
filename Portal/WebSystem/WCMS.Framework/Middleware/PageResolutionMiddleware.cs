@@ -87,9 +87,16 @@ namespace WCMS.Framework.Middleware
 
             if (urls.Length == 1)
             {
-                var shortUrl = WebShortUrl.Provider.Get(urls.First());
-                if (shortUrl != null)
-                    return shortUrl.Page;
+                try
+                {
+                    var shortUrl = WebShortUrl.Provider.Get(urls.First());
+                    if (shortUrl != null)
+                        return shortUrl.Page;
+                }
+                catch
+                {
+                    // Ignore short-url lookup failures and continue regular site/page resolution.
+                }
             }
 
             var urlQ = new Queue<string>(urls);
