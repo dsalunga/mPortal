@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Reflection;
 using WCMS.Common.Utilities;
 using WCMS.Framework.Core;
 using WCMS.Framework.Core.Manager;
@@ -189,7 +190,7 @@ namespace WCMS.Framework.Core
             get
             {
                 if (_typeInstance == null && !string.IsNullOrEmpty(TypeName))
-                    _typeInstance = Type.GetType(TypeName);
+                    _typeInstance = ResolveTypeReference(TypeName);
 
                 return _typeInstance;
             }
@@ -213,9 +214,13 @@ namespace WCMS.Framework.Core
         public IDataProvider<T> GetDataProvider<T>() where T : IWebObject
         {
             if (!string.IsNullOrEmpty(DataProviderName))
-                return (IDataProvider<T>)Activator.CreateInstance(Type.GetType(DataProviderName));
-            else
-                return new GenericSqlDataProvider<T>();
+            {
+                var providerType = ResolveTypeReference(DataProviderName);
+                if (providerType != null)
+                    return (IDataProvider<T>)Activator.CreateInstance(providerType);
+            }
+
+            return new GenericSqlDataProvider<T>();
         }
 
         //public T ResolveDataProvider<T>()
@@ -510,7 +515,11 @@ namespace WCMS.Framework.Core
         private dynamic ResolveProvider()
         {
             if (!string.IsNullOrEmpty(DataProviderName))
-                _dataProvider = Activator.CreateInstance(Type.GetType(DataProviderName));
+            {
+                var providerType = ResolveTypeReference(DataProviderName);
+                if (providerType != null)
+                    _dataProvider = Activator.CreateInstance(providerType);
+            }
             //else
             //    _dataProvider = new SqlDataProvider<T>();
 
@@ -525,7 +534,9 @@ namespace WCMS.Framework.Core
                 if (_dataProvider == null)
                     ResolveProvider();
 
-                _dataManager = Activator.CreateInstance(Type.GetType(ManagerName), _dataProvider); // ManagerName
+                var managerType = ResolveTypeReference(ManagerName);
+                if (managerType != null)
+                    _dataManager = Activator.CreateInstance(managerType, _dataProvider); // ManagerName
             }
 
             return _dataManager;
@@ -565,7 +576,11 @@ namespace WCMS.Framework.Core
                 if (item._dataProvider == null)
                 {
                     if (!string.IsNullOrEmpty(item.DataProviderName))
-                        item._dataProvider = (IDataProvider)Activator.CreateInstance(Type.GetType(item.DataProviderName));
+                    {
+                        var providerType = ResolveTypeReference(item.DataProviderName);
+                        if (providerType != null)
+                            item._dataProvider = (IDataProvider)Activator.CreateInstance(providerType);
+                    }
                     else
                         item._dataProvider = new GenericSqlDataProvider();
                 }
@@ -574,6 +589,50 @@ namespace WCMS.Framework.Core
             }
 
             return new GenericSqlDataProvider();
+        }
+
+        private static Type ResolveTypeReference(string typeName)
+        {
+            if (string.IsNullOrWhiteSpace(typeName))
+                return null;
+
+            var type = Type.GetType(typeName, throwOnError: false);
+            if (type != null)
+                return type;
+
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                type = assembly.GetType(typeName, throwOnError: false, ignoreCase: false);
+                if (type != null)
+                    return type;
+            }
+
+            // Legacy DB rows may store unqualified type names without assembly metadata.
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Type[] types;
+                try
+                {
+                    types = assembly.GetTypes();
+                }
+                catch (ReflectionTypeLoadException ex)
+                {
+                    types = ex.Types.Where(t => t != null).ToArray();
+                }
+                catch
+                {
+                    continue;
+                }
+
+                type = types.FirstOrDefault(t =>
+                    string.Equals(t.FullName, typeName, StringComparison.Ordinal) ||
+                    string.Equals(t.Name, typeName, StringComparison.Ordinal));
+
+                if (type != null)
+                    return type;
+            }
+
+            return null;
         }
 
         #endregion
