@@ -38,9 +38,15 @@ bin
 
 /Portal/WebParts/SystemParts/SystemParts/Content
 /Portal/WebSystem/WebSystem/Content/Parts/AppBundle
+!/Portal/WebSystem/WebSystem/Content/Parts/AppBundle/
+!/Portal/WebSystem/WebSystem/Content/Parts/AppBundle/**/
+!/Portal/WebSystem/WebSystem/Content/Parts/AppBundle/**/*.cshtml
 
 /Portal/WebParts/SystemPartsG2/SystemPartsG2/Content
 /Portal/WebSystem/WebSystem/Content/Parts/AppBundle2
+!/Portal/WebSystem/WebSystem/Content/Parts/AppBundle2/
+!/Portal/WebSystem/WebSystem/Content/Parts/AppBundle2/**/
+!/Portal/WebSystem/WebSystem/Content/Parts/AppBundle2/**/*.cshtml
 
 /Portal/WebParts/SystemPartsG3/SystemPartsG3/Content
 /Portal/WebSystem/WebSystem/Content/Parts/AppBundle3
