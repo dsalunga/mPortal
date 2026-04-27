@@ -69,6 +69,9 @@ namespace WCMS.Framework.Utilities
 
         public static WebUser ValidateLogin(WebUser user, string password)
         {
+            if (user == null)
+                return null;
+
             bool isMatch = false;
             if (string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(password))
             {
@@ -103,6 +106,9 @@ namespace WCMS.Framework.Utilities
         public static WebUser ValidateLogin(string userName, string password)
         {
             var user = FindUser(userName);
+            if (user == null)
+                return null;
+
             return ValidateLogin(user, password);
         }
 

@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -150,6 +151,32 @@ else
 app.UseSecurityHeaders();
 app.UseHttpLogging();
 app.UseWebOptimizer();
+// Legacy runtime serves most static assets from /Content/**.
+var legacyContentPath = Path.Combine(app.Environment.ContentRootPath, "Content");
+if (Directory.Exists(legacyContentPath))
+{
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(legacyContentPath),
+        RequestPath = "/Content",
+        OnPrepareResponse = ctx =>
+        {
+            ctx.Context.Response.Headers["Cache-Control"] = "public,max-age=31536000";
+        }
+    });
+
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(legacyContentPath),
+        RequestPath = "/content",
+        OnPrepareResponse = ctx =>
+        {
+            ctx.Context.Response.Headers["Cache-Control"] = "public,max-age=31536000";
+        }
+    });
+}
+
+// Keep default static file middleware for wwwroot when present.
 app.UseStaticFiles(new StaticFileOptions
 {
     OnPrepareResponse = ctx =>

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using WCMS.Common.Utilities;
 using WCMS.Framework;
@@ -21,6 +22,13 @@ namespace WCMS.WebSystem.Controllers
     [Route("account")]
     public class AccountController : Controller
     {
+        private readonly ILogger<AccountController> _logger;
+
+        public AccountController(ILogger<AccountController> logger)
+        {
+            _logger = logger;
+        }
+
         public const string LoginErrorQueryKey = "LoginError";
         public const string LoginInfoQueryKey = "LoginInfo";
 
@@ -50,8 +58,9 @@ namespace WCMS.WebSystem.Controllers
             {
                 user = AccountHelper.ValidateLogin(request.UserName, request.Password);
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Account login validation failed for user '{UserName}'.", request.UserName);
                 return RedirectBackWithMessage(LoginErrorQueryKey, "Authentication service is currently unavailable.");
             }
 

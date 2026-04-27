@@ -12,8 +12,9 @@ namespace WCMS.Framework.Core
 
         static WebTextResource()
         {
-            _provider = WebObject.ResolveManager<WebTextResource,
-                IWebTextResourceProvider>(WebObject.ResolveProvider<WebTextResource, IWebTextResourceProvider>());
+            var provider = WebObject.ResolveProvider<WebTextResource, IWebTextResourceProvider>(WebObjects.WebTextResource);
+            _provider = WebObject.ResolveManager<WebTextResource, IWebTextResourceProvider>(provider, WebObjects.WebTextResource);
+            _provider ??= provider;
         }
 
         public WebTextResource()
