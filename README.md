@@ -37,6 +37,13 @@ dotnet run --project Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj --u
 - `http://localhost:5088/`
 - `http://localhost:5088/Central/`
 
+## Setup Recovery and Default Admin
+- If database objects/data are missing, use `http://localhost:<port>/Central/Setup` for diagnostics and recovery actions (`Create Database`, `DB Backup`, `DB Restore`, `Drop Objects`).
+- After `DB Restore` (full or selected) from Setup, the local dev admin account is enforced as:
+  - Username: `admin`
+  - Password: `dev123`
+- This default credential is for local development bootstrap only and should be changed/disabled in shared or production environments.
+
 ## Configuration Notes
 - Main app settings: `Portal/WebSystem/WebSystem/appsettings.json`
 - WCMS provider switch: `WCMS:DatabaseProvider` (`SqlServer` or `PostgreSql`)

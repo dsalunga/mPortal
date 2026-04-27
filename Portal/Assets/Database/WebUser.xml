@@ -136,12 +136,12 @@
   </xs:schema>
   <WebUser>
     <UserId>3</UserId>
-    <UserName>user_3f2ca7e6</UserName>
-    <Password>NwykM5LQ4cBbLy3i68O12QcgxK95Ipb74SZESCgUYUxZ4iPLizaqO1G1YDtHaFRt00x9//OwgvAXPJR9WUGyzd3fF5eVBqqS3SSwqbJNVjb8HW4dprntXPQbFU5XIsGddgWNK6WsW9YacgdAO5Cohf+WbTICqV/i1RHoyxI2LHs=</Password>
-    <FirstName>Given67b48b50</FirstName>
+    <UserName>admin</UserName>
+    <Password>w1QgpxWLdZgwgbwM8KOUoRsSQhats+hwDAPeaN0ti8GGxbw0SPYAjdC0zKZQjaR1B1BdyNhujbePfMkrquyJxcpeeI4nVg7KDy0RigmC6JCR4Z20pfsekuWatENTt8lVb4AdbJlIR/6zdcLUZi0WvBDWMtRXAN+Ic0DJzUqsj1k=</Password>
+    <FirstName>System</FirstName>
     <MiddleName />
-    <LastName>Surnamed34252e2</LastName>
-    <Email>user_713e5506@example.test</Email>
+    <LastName>Administrator</LastName>
+    <Email>admin@localhost</Email>
     <LastUpdate>2014-04-15T04:14:21.117+08:00</LastUpdate>
     <Active>1</Active>
     <ActivationKey>92433d71ffe644b1819b2daad93e1d1f|</ActivationKey>

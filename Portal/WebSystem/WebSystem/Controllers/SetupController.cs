@@ -29,6 +29,10 @@ namespace WCMS.WebSystem.Controllers
         private const string FlashMessagesKey = "__setup_flash_messages";
         private const string WebObjectXmlFallbackNote = "WebObject list source: XML provider fallback (runtime provider not initialized).";
         private const string WebObjectFileFallbackNote = "WebObject list source: WebObject.xml file fallback.";
+        private const string DefaultAdminUserName = "admin";
+        private const string DefaultAdminPassword = "dev123";
+        private const string DefaultAdminEmail = "admin@localhost";
+        private static readonly DateTime DefaultAdminPasswordExpiry = new DateTime(2099, 12, 31, 0, 0, 0, DateTimeKind.Local);
 
         private readonly IConfiguration _configuration;
         private readonly IHostApplicationLifetime _lifetime;
@@ -188,6 +192,7 @@ namespace WCMS.WebSystem.Controllers
 
                 case "restoreall":
                     db.Restore(log.Add);
+                    EnsureDefaultAdmin(log);
                     if (input.ResetOnRestore)
                     {
                         log.Add("System reset requested after full restore.");
@@ -197,6 +202,7 @@ namespace WCMS.WebSystem.Controllers
 
                 case "restoreselected":
                     RestoreSelectedObjects(db, input, log);
+                    EnsureDefaultAdmin(log);
                     if (input.ResetOnRestore)
                     {
                         log.Add("System reset requested after selected restore.");
@@ -269,6 +275,54 @@ namespace WCMS.WebSystem.Controllers
                 {
                     log.Add($"Error restoring {item.Name}: {ex.Message}");
                 }
+            }
+        }
+
+        private static void EnsureDefaultAdmin(List<string> log)
+        {
+            try
+            {
+                var user = WebUser.Get(DefaultAdminUserName);
+                if (user == null)
+                {
+                    user = WebUserGroup.GetByGroupId(SystemGroups.ADMINS_GROUP_ID, RecordStatus.Active)
+                        .Select(link => WebUser.Get(link.RecordId))
+                        .FirstOrDefault(candidate => candidate != null);
+                }
+
+                if (user == null)
+                {
+                    user = new WebUser
+                    {
+                        DateCreated = DateTime.Now
+                    };
+                }
+
+                user.UserName = DefaultAdminUserName;
+                user.Password = DefaultAdminPassword;
+                user.FirstName = string.IsNullOrWhiteSpace(user.FirstName) ? "System" : user.FirstName;
+                user.LastName = string.IsNullOrWhiteSpace(user.LastName) ? "Administrator" : user.LastName;
+                user.Email = string.IsNullOrWhiteSpace(user.Email) ? DefaultAdminEmail : user.Email;
+                user.Status = AccountStatus.ACTIVE;
+                user.LastUpdate = DateTime.Now;
+                user.LastLogin = DateTime.Now;
+                user.PasswordExpiryDate = DefaultAdminPasswordExpiry;
+                user.LastLoginFailureDate = WConstants.DateTimeMinValue;
+                user.LoginFailureCount = 0;
+                user.Update();
+
+                if (!user.IsMemberOf(SystemGroups.ADMINS_GROUP_ID, -1))
+                    user.AddToGroup(SystemGroups.ADMINS_GROUP_ID, RecordStatus.Active, user.Id);
+
+                log.Add(string.Format(
+                    "Default admin account ensured: {0}/{1} (UserId={2}).",
+                    DefaultAdminUserName,
+                    DefaultAdminPassword,
+                    user.Id));
+            }
+            catch (Exception ex)
+            {
+                log.Add("Default admin bootstrap error: " + ex.Message);
             }
         }
 

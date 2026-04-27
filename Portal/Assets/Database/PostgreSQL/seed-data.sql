@@ -224,8 +224,32 @@ ON CONFLICT ("PagePanelId") DO UPDATE SET
     "UsageTypeId" = EXCLUDED."UsageTypeId";
 
 -- -----------------------------------------------------------------------------
--- 4) Baseline admin account (non-fixture; deterministic local bootstrap only)
+-- 4) Baseline security account/group bootstrap (deterministic local bootstrap)
+-- Default local dev credential target: admin / dev123
 -- -----------------------------------------------------------------------------
+INSERT INTO "WebGroup" (
+    "Id", "Name", "ParentId", "IsSystem", "DateModified",
+    "OwnerId", "JoinApproval", "JoinAlert", "PageUrl", "PageId",
+    "Description", "Managers"
+)
+VALUES (
+    1, 'Administrators', -1, 1, NOW(),
+    1, 0, 0, '', -1,
+    '', ''
+)
+ON CONFLICT ("Id") DO UPDATE SET
+    "Name" = EXCLUDED."Name",
+    "ParentId" = EXCLUDED."ParentId",
+    "IsSystem" = EXCLUDED."IsSystem",
+    "DateModified" = EXCLUDED."DateModified",
+    "OwnerId" = EXCLUDED."OwnerId",
+    "JoinApproval" = EXCLUDED."JoinApproval",
+    "JoinAlert" = EXCLUDED."JoinAlert",
+    "PageUrl" = EXCLUDED."PageUrl",
+    "PageId" = EXCLUDED."PageId",
+    "Description" = EXCLUDED."Description",
+    "Managers" = EXCLUDED."Managers";
+
 INSERT INTO "WebUser" (
     "UserId", "UserName", "Password", "FirstName", "MiddleName", "LastName", "Email",
     "LastUpdate", "Active", "ActivationKey", "DateCreated", "NewEmail", "Email2", "Gender",
@@ -233,7 +257,7 @@ INSERT INTO "WebUser" (
     "PhotoPath", "ProviderId", "Status"
 )
 VALUES (
-    1, 'admin', 'admin', 'System', '', 'Administrator', 'admin@localhost',
+    1, 'admin', 'w1QgpxWLdZgwgbwM8KOUoRsSQhats+hwDAPeaN0ti8GGxbw0SPYAjdC0zKZQjaR1B1BdyNhujbePfMkrquyJxcpeeI4nVg7KDy0RigmC6JCR4Z20pfsekuWatENTt8lVb4AdbJlIR/6zdcLUZi0WvBDWMtRXAN+Ic0DJzUqsj1k=', 'System', '', 'Administrator', 'admin@localhost',
     NOW(), 1, '', NOW(), '', '', 'U',
     '', '', '', NOW(), '', '2099-12-31 00:00:00',
     '', -1, 1
@@ -261,5 +285,22 @@ ON CONFLICT ("UserId") DO UPDATE SET
     "PhotoPath" = EXCLUDED."PhotoPath",
     "ProviderId" = EXCLUDED."ProviderId",
     "Status" = EXCLUDED."Status";
+
+INSERT INTO "WebUserGroup" (
+    "Id", "UserId", "GroupId", "Active",
+    "DateJoined", "ObjectId", "RecordId", "Remarks"
+)
+VALUES (
+    1, 1, 1, 1,
+    NOW(), 21, 1, ''
+)
+ON CONFLICT ("Id") DO UPDATE SET
+    "UserId" = EXCLUDED."UserId",
+    "GroupId" = EXCLUDED."GroupId",
+    "Active" = EXCLUDED."Active",
+    "DateJoined" = EXCLUDED."DateJoined",
+    "ObjectId" = EXCLUDED."ObjectId",
+    "RecordId" = EXCLUDED."RecordId",
+    "Remarks" = EXCLUDED."Remarks";
 
 COMMIT;
