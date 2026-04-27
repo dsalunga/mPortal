@@ -5,6 +5,31 @@
     Layout = null;
     var renderModel = Model as WCMS.WebSystem.Controllers.CmsPageRenderModel ?? new WCMS.WebSystem.Controllers.CmsPageRenderModel();
     var pageTitle = string.IsNullOrWhiteSpace(renderModel.Page?.Name) ? "mPortal" : renderModel.Page.Name;
+    var useFullTemplateRendering =
+        !renderModel.IsStaticPage &&
+        renderModel.Template != null &&
+        renderModel.Template.TemplateEngineId == TemplateEngineTypes.Razor &&
+        !string.IsNullOrWhiteSpace(renderModel.TemplatePath);
+
+    if (useFullTemplateRendering)
+    {
+        var templateViewData = new ViewDataDictionary(ViewData)
+        {
+            ["Title"] = renderModel.Page?.BuildTitle(string.Empty) ?? pageTitle,
+            ["Resources"] = renderModel.ResourcesHtml,
+            ["IsHomePage"] = DataHelper.ToString(renderModel.Page?.Site?.HomePageId == renderModel.Page?.Id, BoolStrings.ZeroOne),
+            ["Site"] = renderModel.Page?.Site,
+            ["Page"] = renderModel.Page,
+            ["Master"] = renderModel.MasterPage,
+            ["Template"] = renderModel.Template,
+            ["HideHeader"] = true,
+            ["Panels"] = renderModel.Panels,
+            ["Elements"] = renderModel.Elements
+        };
+
+        @await Html.PartialAsync(renderModel.TemplatePath, model: null, viewData: templateViewData)
+        return;
+    }
 }
 <!DOCTYPE html>
 <html lang="en">
