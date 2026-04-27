@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using WCMS.Common.Utilities;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
@@ -16,12 +18,47 @@ namespace WCMS.WebSystem.ViewComponents
 
         public IViewComponentResult Invoke(int webPartId = 0)
         {
+            var resolvedPartId = ResolvePartId(webPartId);
             var model = new WebPartControlsViewModel
             {
-                WebPartId = webPartId,
+                WebPartId = resolvedPartId,
                 Controls = new List<WebPartControlItem>()
             };
+
+            try
+            {
+                var part = resolvedPartId > 0 ? WPart.Get(resolvedPartId) : null;
+                model.WebPartName = part?.Name;
+
+                var controls = resolvedPartId > 0
+                    ? WebPartControl.GetList(resolvedPartId)?.OrderBy(i => i.Name).ToList() ?? new List<WebPartControl>()
+                    : new List<WebPartControl>();
+
+                model.Controls = controls.Select((ctrl, index) => new WebPartControlItem
+                    {
+                        Id = ctrl.Id,
+                        Name = ctrl.Name,
+                        ControlType = ctrl.Identity,
+                        IsActive = true,
+                        SortOrder = index + 1,
+                        ModifiedDate = null
+                    })
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                model.ErrorMessage = $"Failed to load web part controls: {ex.Message}";
+            }
+
             return View(model);
+        }
+
+        private int ResolvePartId(int webPartId)
+        {
+            if (webPartId > 0)
+                return webPartId;
+
+            return DataUtil.GetId(Request, WebColumns.PartId);
         }
     }
 
