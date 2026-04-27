@@ -2,7 +2,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WCMS.Framework.Configuration;
 
-namespace WCMS.Framework.Tests
+namespace WCMS.Framework.UnitTests
 {
     [TestClass]
     public class WConfigServiceTests

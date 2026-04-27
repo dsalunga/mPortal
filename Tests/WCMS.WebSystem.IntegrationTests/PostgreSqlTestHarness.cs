@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Npgsql;
 using Testcontainers.PostgreSql;
 
-namespace WCMS.Integration.Tests
+namespace WCMS.WebSystem.IntegrationTests
 {
     internal static class PostgreSqlTestHarness
     {

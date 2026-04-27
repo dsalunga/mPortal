@@ -4,7 +4,7 @@ using System.Data.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WCMS.Common.Utilities;
 
-namespace WCMS.Framework.Tests
+namespace WCMS.Framework.UnitTests
 {
     [TestClass]
     public class DbHelperTests

@@ -7,7 +7,7 @@ using WCMS.Common.Utilities;
 using WCMS.Framework;
 using WCMS.Framework.Extensions;
 
-namespace WCMS.Framework.Tests
+namespace WCMS.Framework.UnitTests
 {
     [TestClass]
     public class ServiceCollectionExtensionsTests

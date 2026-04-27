@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WCMS.Framework.Middleware;
 
-namespace WCMS.Framework.Tests
+namespace WCMS.Framework.UnitTests
 {
     [TestClass]
     public class PageRenderingMiddlewareTests

@@ -5,7 +5,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace WCMS.Integration.Tests
+namespace WCMS.WebSystem.IntegrationTests
 {
     /// <summary>
     /// Verifies that legacy API controller stubs return proper 410 Gone responses.
@@ -22,7 +22,7 @@ namespace WCMS.Integration.Tests
         public static void ClassInit(TestContext context)
         {
             // Navigate from test bin to sibling project bin directories
-            // Test output: Tests/WCMS.Integration.Tests/bin/Debug/net10.0/
+            // Test output: Tests/WCMS.WebSystem.IntegrationTests/bin/Debug/net10.0/
             // Integration: Portal/WebParts/Integration/IntegrationParts/bin/Debug/net10.0/
             // G2:          Portal/WebParts/SystemPartsG2/SystemPartsG2/bin/Debug/net10.0/
             var baseDir = AppContext.BaseDirectory;

@@ -7,7 +7,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Npgsql;
 
-namespace WCMS.Integration.Tests
+namespace WCMS.WebSystem.IntegrationTests
 {
     [TestClass]
     [TestCategory("DataMigration")]

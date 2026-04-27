@@ -1,17 +1,20 @@
+extern alias WebSystemApp;
+
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using AppProgram = WebSystemApp::Program;
 
-namespace WCMS.Integration.Tests
+namespace WCMS.WebSystem.IntegrationTests
 {
     [TestClass]
     [TestCategory("PostgreSql")]
     public class PostgreSqlProviderIntegrationTests
     {
-        private static WebApplicationFactory<Program> _factory;
+        private static WebApplicationFactory<AppProgram> _factory;
 
         [ClassInitialize]
         public static async Task ClassInit(TestContext context)
@@ -22,7 +25,7 @@ namespace WCMS.Integration.Tests
                 return;
             }
 
-            _factory = new WebApplicationFactory<Program>()
+            _factory = new WebApplicationFactory<AppProgram>()
                 .WithWebHostBuilder(builder =>
                 {
                     builder.UseSetting("WConfig:AllowCache", "false");

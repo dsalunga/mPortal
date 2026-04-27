@@ -124,7 +124,7 @@
     <Project Path="Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj" />
   </Folder>
   <Folder Name="/Tests/">
-    <Project Path="Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj" />
-    <Project Path="Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj" />
+    <Project Path="Tests/WCMS.Framework.UnitTests/WCMS.Framework.UnitTests.csproj" />
+    <Project Path="Tests/WCMS.WebSystem.IntegrationTests/WCMS.WebSystem.IntegrationTests.csproj" />
   </Folder>
 </Solution>

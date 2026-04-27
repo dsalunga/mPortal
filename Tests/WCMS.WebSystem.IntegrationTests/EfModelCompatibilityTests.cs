@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WCMS.WebSystem.Apps.BranchLocator.Data;
 using WCMS.WebSystem.Apps.Integration.Data;
 
-namespace WCMS.Integration.Tests
+namespace WCMS.WebSystem.IntegrationTests
 {
     [TestClass]
     [TestCategory("PostgreSql")]

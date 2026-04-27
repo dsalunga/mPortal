@@ -2,7 +2,7 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WCMS.Framework;
 
-namespace WCMS.Framework.Tests
+namespace WCMS.Framework.UnitTests
 {
     [TestClass]
     public class WQueryTests

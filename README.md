@@ -16,7 +16,7 @@ A custom ASP.NET web content management system (WCMS).
 1. Restore runtime projects (recommended on macOS/Linux):
 ```bash
 dotnet restore Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj
-dotnet restore Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj
+dotnet restore Tests/WCMS.WebSystem.IntegrationTests/WCMS.WebSystem.IntegrationTests.csproj
 ```
 If you need to restore the full solution graph (including Windows-only projects metadata):
 ```bash
@@ -31,11 +31,12 @@ export ConnectionStrings__DefaultConnection="${ConnectionStrings__ConnectionStri
 ```
 3. Run the main CMS web app:
 ```bash
-dotnet run --project Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj --urls http://localhost:5088
+dotnet run --project Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj --urls http://localhost:8800
 ```
+Default local launch profile also uses `http://127.0.0.1:8800`.
 4. Open:
-- `http://localhost:5088/`
-- `http://localhost:5088/Central/`
+- `http://localhost:8800/`
+- `http://localhost:8800/Central/`
 
 ## Setup Recovery and Default Admin
 - If database objects/data are missing, use `http://localhost:<port>/Central/Setup` for diagnostics and recovery actions (`Create Database`, `DB Backup`, `DB Restore`, `Drop Objects`).
@@ -71,8 +72,8 @@ dotnet run --project Portal/WebSystem/WebSystem/WCMS.WebSystem.WebApp.csproj --u
 - Integration unit test project:
   - `Portal/WebParts/Integration/WCMS.WebSystem.Apps.Integration.UnitTest`
 - Repo test projects:
-  - `Tests/WCMS.Framework.Tests`
-  - `Tests/WCMS.Integration.Tests`
+  - `Tests/WCMS.Framework.UnitTests`
+  - `Tests/WCMS.WebSystem.IntegrationTests`
 
 ## Contributing
 1. Create a feature branch for your work.

@@ -1,2 +1,0 @@
-Deprecated note file. Legacy Windows-only build notes were archived to:
-docs/plans/completed/legacy-windows-build-notes.txt

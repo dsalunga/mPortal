@@ -1,21 +1,24 @@
+extern alias WebSystemApp;
+
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using AppProgram = WebSystemApp::Program;
 
-namespace WCMS.Integration.Tests
+namespace WCMS.WebSystem.IntegrationTests
 {
     [TestClass]
     public class AuthenticationFlowTests
     {
-        private static WebApplicationFactory<Program> _factory;
+        private static WebApplicationFactory<AppProgram> _factory;
 
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            _factory = new WebApplicationFactory<Program>()
+            _factory = new WebApplicationFactory<AppProgram>()
                 .WithWebHostBuilder(builder =>
                 {
                     builder.UseSetting("WConfig:AllowCache", "false");

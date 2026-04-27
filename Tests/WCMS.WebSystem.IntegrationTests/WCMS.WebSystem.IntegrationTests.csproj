@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Portal\WebSystem\WebSystem\WCMS.WebSystem.WebApp.csproj" />
+    <ProjectReference Include="..\..\Portal\WebSystem\WebSystem\WCMS.WebSystem.WebApp.csproj" Aliases="WebSystemApp" />
     <ProjectReference Include="..\..\Portal\WebParts\Integration\WCMS.WebSystem.Apps.Integration\WCMS.WebSystem.Apps.Integration.csproj" />
     <ProjectReference Include="..\..\Portal\WebParts\BranchLocator\WCMS.WebSystem.Apps.BranchLocator\WCMS.WebSystem.Apps.BranchLocator.csproj" />
   </ItemGroup>
