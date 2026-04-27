@@ -12,6 +12,9 @@ namespace WCMS.Framework.Core.SqlProvider
 {
     public class WebPartAdminProvider : IWebPartAdminProvider
     {
+        private static readonly object ColumnCacheSync = new object();
+        private static HashSet<string> _tableColumns;
+
         public WebPartAdminProvider() { }
 
         public IEnumerable<WebPartAdmin> GetList()
@@ -83,6 +86,9 @@ namespace WCMS.Framework.Core.SqlProvider
 
         private WebPartAdmin From(DbDataReader r)
         {
+            var hasInSiteContext = HasColumn(r, "InSiteContext");
+            var hasTemplateEngineId = HasColumn(r, "TemplateEngineId");
+            var hasAutoTitle = HasColumn(r, "AutoTitle");
             var item = new WebPartAdmin();
             item.Id = DataUtil.GetId(r["PartAdminId"]);
             item.PartId = DataUtil.GetId(r["PartId"]);
@@ -91,11 +97,52 @@ namespace WCMS.Framework.Core.SqlProvider
             item.ParentId = DataUtil.GetId(r, WebColumns.ParentId);
             item.Active = DataUtil.GetInt32(r, WebColumns.Active);
             item.Visible = DataUtil.GetInt32(r, WebColumns.Visible);
-            item.InSiteContext = DataUtil.GetInt32(r, "InSiteContext");
-            item.TemplateEngineId = DataUtil.GetInt32(r, "TemplateEngineId");
-            item.AutoTitle = DataUtil.GetInt32(r, "AutoTitle");
+            if (hasInSiteContext)
+                item.InSiteContext = DataUtil.GetInt32(r, "InSiteContext");
+            if (hasTemplateEngineId)
+                item.TemplateEngineId = DataUtil.GetInt32(r, "TemplateEngineId");
+            if (hasAutoTitle)
+                item.AutoTitle = DataUtil.GetInt32(r, "AutoTitle");
 
             return item;
+        }
+
+        private static bool HasColumn(DbDataReader reader, string columnName)
+        {
+            for (var i = 0; i < reader.FieldCount; i++)
+            {
+                if (string.Equals(reader.GetName(i), columnName, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static bool HasTableColumn(string columnName)
+        {
+            EnsureTableColumns();
+            return _tableColumns != null && _tableColumns.Contains(columnName);
+        }
+
+        private static void EnsureTableColumns()
+        {
+            if (_tableColumns != null)
+                return;
+
+            lock (ColumnCacheSync)
+            {
+                if (_tableColumns != null)
+                    return;
+
+                var columns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                using (var reader = DbHelper.ExecuteReader(CommandType.Text, "SELECT * FROM WebPartAdmin WHERE 1 = 0"))
+                {
+                    for (var i = 0; i < reader.FieldCount; i++)
+                        columns.Add(reader.GetName(i));
+                }
+
+                _tableColumns = columns;
+            }
         }
 
         #region IWebPartAdminDAL Members
@@ -113,64 +160,111 @@ namespace WCMS.Framework.Core.SqlProvider
         public int Update(WebPartAdmin item)
         {
             string sql;
-            DbParameter[] parms;
+            List<DbParameter> parms;
+            var includeInSiteContext = HasTableColumn("InSiteContext");
+            var includeTemplateEngineId = HasTableColumn("TemplateEngineId");
+            var includeAutoTitle = HasTableColumn("AutoTitle");
 
             if (item.Id > 0)
             {
+                var setParts = new List<string>
+                {
+                    DbSyntax.QuoteIdentifier("PartId") + " = @PartId",
+                    DbSyntax.QuoteIdentifier("Name") + " = @Name",
+                    DbSyntax.QuoteIdentifier("FileName") + " = @FileName",
+                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId",
+                    DbSyntax.QuoteIdentifier("Active") + " = @Active",
+                    DbSyntax.QuoteIdentifier("Visible") + " = @Visible"
+                };
+                if (includeInSiteContext)
+                    setParts.Add(DbSyntax.QuoteIdentifier("InSiteContext") + " = @InSiteContext");
+                if (includeTemplateEngineId)
+                    setParts.Add(DbSyntax.QuoteIdentifier("TemplateEngineId") + " = @TemplateEngineId");
+                if (includeAutoTitle)
+                    setParts.Add(DbSyntax.QuoteIdentifier("AutoTitle") + " = @AutoTitle");
+
                 sql = "UPDATE WebPartAdmin SET " +
-                    DbSyntax.QuoteIdentifier("PartId") + " = @PartId, " +
-                    DbSyntax.QuoteIdentifier("Name") + " = @Name, " +
-                    DbSyntax.QuoteIdentifier("FileName") + " = @FileName, " +
-                    DbSyntax.QuoteIdentifier("ParentId") + " = @ParentId, " +
-                    DbSyntax.QuoteIdentifier("Active") + " = @Active, " +
-                    DbSyntax.QuoteIdentifier("Visible") + " = @Visible, " +
-                    DbSyntax.QuoteIdentifier("InSiteContext") + " = @InSiteContext, " +
-                    DbSyntax.QuoteIdentifier("TemplateEngineId") + " = @TemplateEngineId, " +
-                    DbSyntax.QuoteIdentifier("AutoTitle") + " = @AutoTitle" +
+                    string.Join(", ", setParts) +
                     " WHERE " + DbSyntax.QuoteIdentifier("PartAdminId") + " = @PartAdminId";
-                parms = new[] {
+                parms = new List<DbParameter>
+                {
                     DbHelper.CreateParameter("@PartId", item.PartId),
                     DbHelper.CreateParameter("@Name", item.Name),
                     DbHelper.CreateParameter("@FileName", item.FileName),
                     DbHelper.CreateParameter("@ParentId", item.ParentId),
                     DbHelper.CreateParameter("@Active", item.Active),
-                    DbHelper.CreateParameter("@Visible", item.Visible),
-                    DbHelper.CreateParameter("@InSiteContext", item.InSiteContext),
-                    DbHelper.CreateParameter("@TemplateEngineId", item.TemplateEngineId),
-                    DbHelper.CreateParameter("@AutoTitle", item.AutoTitle),
-                    DbHelper.CreateParameter("@PartAdminId", item.Id)
+                    DbHelper.CreateParameter("@Visible", item.Visible)
                 };
-                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms);
+                if (includeInSiteContext)
+                    parms.Add(DbHelper.CreateParameter("@InSiteContext", item.InSiteContext));
+                if (includeTemplateEngineId)
+                    parms.Add(DbHelper.CreateParameter("@TemplateEngineId", item.TemplateEngineId));
+                if (includeAutoTitle)
+                    parms.Add(DbHelper.CreateParameter("@AutoTitle", item.AutoTitle));
+                parms.Add(DbHelper.CreateParameter("@PartAdminId", item.Id));
+                DbHelper.ExecuteNonQuery(CommandType.Text, sql, parms.ToArray());
             }
             else
             {
+                var insertColumns = new List<string>
+                {
+                    DbSyntax.QuoteIdentifier("PartId"),
+                    DbSyntax.QuoteIdentifier("Name"),
+                    DbSyntax.QuoteIdentifier("FileName"),
+                    DbSyntax.QuoteIdentifier("ParentId"),
+                    DbSyntax.QuoteIdentifier("Active"),
+                    DbSyntax.QuoteIdentifier("Visible")
+                };
+                var insertValues = new List<string>
+                {
+                    "@PartId",
+                    "@Name",
+                    "@FileName",
+                    "@ParentId",
+                    "@Active",
+                    "@Visible"
+                };
+                if (includeInSiteContext)
+                {
+                    insertColumns.Add(DbSyntax.QuoteIdentifier("InSiteContext"));
+                    insertValues.Add("@InSiteContext");
+                }
+                if (includeTemplateEngineId)
+                {
+                    insertColumns.Add(DbSyntax.QuoteIdentifier("TemplateEngineId"));
+                    insertValues.Add("@TemplateEngineId");
+                }
+                if (includeAutoTitle)
+                {
+                    insertColumns.Add(DbSyntax.QuoteIdentifier("AutoTitle"));
+                    insertValues.Add("@AutoTitle");
+                }
+
                 sql = "INSERT INTO WebPartAdmin (" +
-                    DbSyntax.QuoteIdentifier("PartId") + ", " +
-                    DbSyntax.QuoteIdentifier("Name") + ", " +
-                    DbSyntax.QuoteIdentifier("FileName") + ", " +
-                    DbSyntax.QuoteIdentifier("ParentId") + ", " +
-                    DbSyntax.QuoteIdentifier("Active") + ", " +
-                    DbSyntax.QuoteIdentifier("Visible") + ", " +
-                    DbSyntax.QuoteIdentifier("InSiteContext") + ", " +
-                    DbSyntax.QuoteIdentifier("TemplateEngineId") + ", " +
-                    DbSyntax.QuoteIdentifier("AutoTitle") +
-                    ") VALUES (@PartId, @Name, @FileName, @ParentId, @Active, @Visible, @InSiteContext, @TemplateEngineId, @AutoTitle)";
+                    string.Join(", ", insertColumns) +
+                    ") VALUES (" +
+                    string.Join(", ", insertValues) +
+                    ")";
                 if (DbHelper.Provider == DatabaseProvider.PostgreSql)
                     sql += " RETURNING " + DbSyntax.QuoteIdentifier("PartAdminId");
                 else
                     sql += "; SELECT SCOPE_IDENTITY()";
-                parms = new[] {
+                parms = new List<DbParameter>
+                {
                     DbHelper.CreateParameter("@PartId", item.PartId),
                     DbHelper.CreateParameter("@Name", item.Name),
                     DbHelper.CreateParameter("@FileName", item.FileName),
                     DbHelper.CreateParameter("@ParentId", item.ParentId),
                     DbHelper.CreateParameter("@Active", item.Active),
-                    DbHelper.CreateParameter("@Visible", item.Visible),
-                    DbHelper.CreateParameter("@InSiteContext", item.InSiteContext),
-                    DbHelper.CreateParameter("@TemplateEngineId", item.TemplateEngineId),
-                    DbHelper.CreateParameter("@AutoTitle", item.AutoTitle)
+                    DbHelper.CreateParameter("@Visible", item.Visible)
                 };
-                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms);
+                if (includeInSiteContext)
+                    parms.Add(DbHelper.CreateParameter("@InSiteContext", item.InSiteContext));
+                if (includeTemplateEngineId)
+                    parms.Add(DbHelper.CreateParameter("@TemplateEngineId", item.TemplateEngineId));
+                if (includeAutoTitle)
+                    parms.Add(DbHelper.CreateParameter("@AutoTitle", item.AutoTitle));
+                var obj = DbHelper.ExecuteScalar(CommandType.Text, sql, parms.ToArray());
                 item.Id = DataUtil.GetId(obj);
             }
 

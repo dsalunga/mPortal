@@ -1,48 +1,41 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.ImportexportViewModel
-@*
-    Ported from legacy/Portal/WebParts/SystemParts/SystemParts/AppBundle/Menu/ImportExport.ascx.
-    Real Razor admin shell generated from legacy WebForms markup. The form fields,
-    list, and submit buttons reflect the legacy control structure. Persistence is
-    a TODO and must be wired to the appropriate controller action.
-*@
-<section class="card shadow-sm component-importexport" aria-label="Import Export">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-pencil-square" aria-hidden="true"></i> Import Export</h5>
-    </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.StatusMessage))
-        {
-            <div class="alert alert-success" role="status">@Model.StatusMessage</div>
-        }
-        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-        {
-            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
-        }
 
-        <form method="post" asp-action="@Model.PostAction" asp-controller="@Model.PostController" enctype="multipart/form-data" novalidate>
-            <input type="hidden" name="objectId" value="@Model.ObjectId" />
-            <input type="hidden" name="recordId" value="@Model.RecordId" />
+<section class="component-importexport" aria-label="Import Export">
+    @if (!string.IsNullOrWhiteSpace(Model.StatusMessage))
+    {
+        <div class="alert alert-success" role="status">@Model.StatusMessage</div>
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
+    }
 
-                <div class="mb-3">
-                    <label class="form-label" for="f-cbomenus">Cbo Menus</label>
-                    <select class="form-select" id="f-cbomenus" name="cboMenus">
-                        <option value="">-- Select --</option>
-                        @* TODO: populate options from service *@
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="f-fileupload1">File Upload1</label>
-                    <input type="file" class="form-control" id="f-fileupload1" name="FileUpload1" />
-                </div>
-                <div class="mb-3">
-                    <strong>Status:</strong>
-                    <span>@Model.lblStatus</span>
-                </div>
-            <div class="mt-3">
-                <button type="submit" class="btn btn-secondary me-2" name="action" value="cmdExport">Export</button>
-                <button type="submit" class="btn btn-secondary me-2" name="action" value="cmdImport">Import</button>
-                <a class="btn btn-outline-secondary" href="javascript:history.back()">Cancel</a>
+    <form method="post" asp-action="@Model.PostAction" asp-controller="@Model.PostController" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="objectId" value="@Model.ObjectId" />
+        <input type="hidden" name="recordId" value="@Model.RecordId" />
+
+        <div class="card mb-3">
+            <div class="card-header">Export</div>
+            <div class="card-body">
+                <label class="form-label" for="f-cbomenus">Menu</label>
+                <select class="form-select" id="f-cbomenus" name="cboMenus">
+                    <option value="">-- Select --</option>
+                    @foreach (var menu in Model.Menus)
+                    {
+                        <option value="@menu.Value" selected="@menu.Selected">@menu.Text</option>
+                    }
+                </select>
+                <button type="submit" class="btn btn-secondary mt-3" name="action" value="cmdExport">Export as XML</button>
             </div>
-        </form>
-    </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Import</div>
+            <div class="card-body">
+                <label class="form-label" for="f-fileupload1">Import XML</label>
+                <input type="file" class="form-control" id="f-fileupload1" name="FileUpload1" />
+                <button type="submit" class="btn btn-secondary mt-3" name="action" value="cmdImport">Import from XML</button>
+            </div>
+        </div>
+    </form>
 </section>

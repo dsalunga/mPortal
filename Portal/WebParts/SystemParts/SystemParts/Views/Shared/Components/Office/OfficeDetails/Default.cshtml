@@ -1,56 +1,31 @@
 @model WCMS.WebSystem.WebParts.ViewComponents.OfficedetailsViewModel
-@*
-    Ported from legacy/Portal/WebParts/SystemParts/SystemParts/AppBundle/Office/OfficeDetails.ascx.
-    Real Razor admin shell generated from legacy WebForms markup. The form fields,
-    list, and submit buttons reflect the legacy control structure. Persistence is
-    a TODO and must be wired to the appropriate controller action.
-*@
-<section class="card shadow-sm component-officedetails" aria-label="Office Details">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-pencil-square" aria-hidden="true"></i> Office Details</h5>
-    </div>
-    <div class="card-body">
-        @if (!string.IsNullOrEmpty(Model.StatusMessage))
-        {
-            <div class="alert alert-success" role="status">@Model.StatusMessage</div>
-        }
-        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-        {
-            <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
-        }
 
-        <form method="post" asp-action="@Model.PostAction" asp-controller="@Model.PostController" enctype="multipart/form-data" novalidate>
+<section class="component-officedetails" aria-label="Office Details">
+    <h2>Locale Information</h2>
+    <h3><strong>@Model.Name</strong></h3>
+    <img src="/Content/Assets/Images/Common/generic-building.jpg" style="border: solid 2px #aaa; margin: 2px" alt="Locale" />
+
+    @if (!string.IsNullOrWhiteSpace(Model.StatusMessage))
+    {
+        <div class="alert alert-success mt-3" role="status">@Model.StatusMessage</div>
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger mt-3" role="alert">@Model.ErrorMessage</div>
+    }
+
+    <div class="FieldLine mt-3"><strong>Email Address:</strong> @Model.Label4</div>
+    <div class="FieldLine"><strong>Address:</strong> @Model.Label1</div>
+    <div class="FieldLine"><strong>Phone Number:</strong> @Model.Label6</div>
+    <div class="FieldLine"><strong>Mobile Number:</strong> @Model.Label5</div>
+    <div class="FieldLine"><strong>Contact Person:</strong> @Model.Label3</div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.CancelRedirect))
+    {
+        <form method="post" asp-action="@Model.PostAction" asp-controller="@Model.PostController" class="mt-3">
             <input type="hidden" name="objectId" value="@Model.ObjectId" />
             <input type="hidden" name="recordId" value="@Model.RecordId" />
-
-                <div class="mb-3">
-                    <strong>Label4:</strong>
-                    <span>@Model.Label4</span>
-                </div>
-                <div class="mb-3">
-                    <strong>Label1:</strong>
-                    <span>@Model.Label1</span>
-                </div>
-                <div class="mb-3">
-                    <strong>Label6:</strong>
-                    <span>@Model.Label6</span>
-                </div>
-                <div class="mb-3">
-                    <strong>Label5:</strong>
-                    <span>@Model.Label5</span>
-                </div>
-                <div class="mb-3">
-                    <strong>Label3:</strong>
-                    <span>@Model.Label3</span>
-                </div>
-                <div class="mb-3">
-                    <strong>Status:</strong>
-                    <span>@Model.lblStatus</span>
-                </div>
-            <div class="mt-3">
-                <button type="submit" class="btn btn-secondary me-2" name="action" value="cmdCancel">Cancel</button>
-                <a class="btn btn-outline-secondary" href="javascript:history.back()">Cancel</a>
-            </div>
+            <button type="submit" class="btn btn-secondary" name="action" value="cmdCancel">OK</button>
         </form>
-    </div>
+    }
 </section>

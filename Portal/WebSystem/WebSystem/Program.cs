@@ -188,6 +188,7 @@ app.UseRouting();
 
 app.UseSession();
 app.UseAuthentication();
+app.UseWcmsSessionHydration();
 app.UseAuthorization();
 app.UseOutputCache();
 

@@ -111,6 +111,35 @@ namespace WCMS.WebSystem.IntegrationTests
             Assert.IsFalse(content.Contains("CMS Page ID:"), "Legacy placeholder HTML should not be used.");
         }
 
+        [TestMethod]
+        public async Task AccountLogin_WithSeededFixtureUser_AllowsCentralDashboardAccess()
+        {
+            EnsureAvailabilityOrInconclusive();
+
+            var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+            {
+                AllowAutoRedirect = false,
+                HandleCookies = true
+            });
+
+            var formData = new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                ["userName"] = PostgreSqlTestHarness.FixtureUserName,
+                ["password"] = PostgreSqlTestHarness.FixturePassword
+            });
+
+            var loginResponse = await client.PostAsync("/account/login", formData);
+            Assert.AreEqual(HttpStatusCode.Redirect, loginResponse.StatusCode);
+            var location = loginResponse.Headers.Location?.ToString() ?? string.Empty;
+            Assert.IsFalse(location.Contains("LoginError="), "Fixture login should not redirect with LoginError.");
+
+            var centralResponse = await client.GetAsync("/Central/");
+            Assert.AreEqual(HttpStatusCode.OK, centralResponse.StatusCode, "Authenticated user should access /Central without redirect loop.");
+
+            var content = await centralResponse.Content.ReadAsStringAsync();
+            StringAssert.Contains(content, "System Dashboard");
+        }
+
         private static void EnsureAvailabilityOrInconclusive()
         {
             if (!PostgreSqlTestHarness.IsAvailable || _factory == null)
