@@ -140,6 +140,10 @@ else
                 }
                 <form method="post" asp-action="Login" asp-controller="Account"
                       class="needs-validation" aria-label="Login form" novalidate>
+                    @if (!string.IsNullOrWhiteSpace(Model.RequestUrl))
+                    {
+                        <input type="hidden" name="RequestUrl" value="@Model.RequestUrl" />
+                    }
                     <div class="card shadow-sm">
                         <div class="card-header bg-primary text-white">
                             <h5 class="mb-0"><i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Sign In</h5>

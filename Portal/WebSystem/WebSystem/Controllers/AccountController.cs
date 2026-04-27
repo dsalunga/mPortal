@@ -85,9 +85,10 @@ namespace WCMS.WebSystem.Controllers
 
             await SignInCookieAsync(user, request.RememberMe);
 
-            if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+            var redirectTo = ResolvePostLoginRedirect(returnUrl, request?.RequestUrl, Request.Headers.Referer.ToString());
+            if (!string.IsNullOrWhiteSpace(redirectTo))
             {
-                return LocalRedirect(returnUrl);
+                return LocalRedirect(redirectTo);
             }
 
             var redirectUrl = BuildRedirectTarget(Request.Headers.Referer.ToString(), clearMessageKeys: true);
@@ -258,6 +259,92 @@ namespace WCMS.WebSystem.Controllers
 
             return QueryHelpers.AddQueryString(localPath, queryValues);
         }
+
+        private string ResolvePostLoginRedirect(string returnUrl, string requestUrl, string referer)
+        {
+            var candidates = new[]
+            {
+                NormalizeLocalUrl(returnUrl),
+                NormalizeLocalUrl(requestUrl),
+                ResolveRequestUrlFromReferer(referer)
+            };
+
+            foreach (var candidate in candidates)
+            {
+                if (!string.IsNullOrWhiteSpace(candidate))
+                {
+                    return candidate;
+                }
+            }
+
+            return null;
+        }
+
+        private string ResolveRequestUrlFromReferer(string referer)
+        {
+            if (string.IsNullOrWhiteSpace(referer))
+                return null;
+
+            Uri parsedUri;
+            if (Uri.TryCreate(referer, UriKind.Absolute, out parsedUri))
+            {
+                return ResolveRequestUrlFromQuery(parsedUri.Query);
+            }
+
+            if (Url.IsLocalUrl(referer))
+            {
+                var localUri = new Uri("http://localhost" + referer);
+                return ResolveRequestUrlFromQuery(localUri.Query);
+            }
+
+            return null;
+        }
+
+        private string ResolveRequestUrlFromQuery(string queryString)
+        {
+            var parsed = QueryHelpers.ParseQuery(queryString ?? string.Empty);
+
+            if (parsed.TryGetValue(QueryParser.SourceKey, out StringValues sourceValues))
+            {
+                var fromSource = NormalizeLocalUrl(sourceValues.FirstOrDefault());
+                if (!string.IsNullOrWhiteSpace(fromSource))
+                    return fromSource;
+            }
+
+            if (parsed.TryGetValue("returnUrl", out StringValues returnValues))
+            {
+                var fromReturn = NormalizeLocalUrl(returnValues.FirstOrDefault());
+                if (!string.IsNullOrWhiteSpace(fromReturn))
+                    return fromReturn;
+            }
+
+            return null;
+        }
+
+        private string NormalizeLocalUrl(string candidate)
+        {
+            if (string.IsNullOrWhiteSpace(candidate))
+                return null;
+
+            var trimmed = candidate.Trim();
+            if (Url.IsLocalUrl(trimmed))
+                return trimmed;
+
+            string decoded;
+            try
+            {
+                decoded = Uri.UnescapeDataString(trimmed);
+            }
+            catch
+            {
+                decoded = trimmed;
+            }
+
+            if (Url.IsLocalUrl(decoded))
+                return decoded;
+
+            return null;
+        }
     }
 
     public class LoginFormRequest
@@ -273,6 +360,9 @@ namespace WCMS.WebSystem.Controllers
 
         [FromForm(Name = "otpType")]
         public int? OtpType { get; set; }
+
+        [FromForm(Name = "RequestUrl")]
+        public string RequestUrl { get; set; }
     }
 
     public class ForgotPasswordFormRequest

@@ -66,6 +66,7 @@ namespace WCMS.WebSystem.ViewComponents
                 model.RememberMeText = element?.GetParameterValue(AccountConstants.RememberMeText);
                 model.PreLoginNote = ParameterizedWebObject.GetValue("PreLoginNote", element);
                 model.IsLoggedIn = WcmsSession.IsLoggedIn;
+                model.RequestUrl = NormalizeLocalRequestUrl(WcmsContext.Get(QueryParser.SourceKey));
 
                 if (WcmsSession.IsLoggedIn)
                 {
@@ -77,6 +78,29 @@ namespace WCMS.WebSystem.ViewComponents
             model.InfoMessage = WcmsContext.Get(LoginInfoQueryKey);
 
             return View(model);
+        }
+
+        private static string NormalizeLocalRequestUrl(string requestUrl)
+        {
+            if (string.IsNullOrWhiteSpace(requestUrl))
+                return null;
+
+            var trimmed = requestUrl.Trim();
+            if (trimmed.StartsWith('/'))
+                return trimmed;
+
+            try
+            {
+                var decoded = Uri.UnescapeDataString(trimmed);
+                if (!string.IsNullOrWhiteSpace(decoded) && decoded.StartsWith('/'))
+                    return decoded;
+            }
+            catch
+            {
+                // Keep null on invalid escape format.
+            }
+
+            return null;
         }
     }
 
@@ -93,6 +117,7 @@ namespace WCMS.WebSystem.ViewComponents
         public string LoginUrl { get; set; }
         public string RememberMeText { get; set; }
         public string PreLoginNote { get; set; }
+        public string RequestUrl { get; set; }
         public string RedirectUrl { get; set; }
         public string ErrorMessage { get; set; }
         public string InfoMessage { get; set; }
