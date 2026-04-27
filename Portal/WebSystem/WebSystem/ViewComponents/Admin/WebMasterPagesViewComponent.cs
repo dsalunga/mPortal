@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using WCMS.Common.Utilities;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
@@ -16,13 +18,71 @@ namespace WCMS.WebSystem.ViewComponents
 
         public IViewComponentResult Invoke(int selectedMasterPageId = 0)
         {
+            var siteId = ResolveSiteId();
             var model = new WebMasterPagesViewModel
             {
-                SelectedMasterPageId = selectedMasterPageId,
+                SelectedMasterPageId = ResolveSelectedMasterPageId(selectedMasterPageId),
                 MasterPages = new List<MasterPageItem>()
             };
 
+            try
+            {
+                var site = siteId > 0 ? WSite.Get(siteId) : null;
+                var masterPages = GetMasterPages(siteId);
+
+                model.MasterPages = masterPages
+                    .OrderBy(i => i.Name)
+                    .Select(masterPage => new MasterPageItem
+                    {
+                        Id = masterPage.Id,
+                        Name = masterPage.Name,
+                        Description = masterPage.GetParameterValue(WebColumns.Description, string.Empty) ?? string.Empty,
+                        FileName = masterPage.Template?.FileName ?? string.Empty,
+                        IsDefault = site != null && site.DefaultMasterPageId == masterPage.Id,
+                        IsActive = true,
+                        ModifiedDate = null
+                    })
+                    .ToList();
+
+                if (model.SelectedMasterPageId < 1 && model.MasterPages.Count > 0)
+                    model.SelectedMasterPageId = model.MasterPages[0].Id;
+            }
+            catch (Exception ex)
+            {
+                model.ErrorMessage = $"Failed to load master pages: {ex.Message}";
+            }
+
             return View(model);
+        }
+
+        private int ResolveSelectedMasterPageId(int selectedMasterPageId)
+        {
+            if (selectedMasterPageId > 0)
+                return selectedMasterPageId;
+
+            return DataUtil.GetId(Request, WebColumns.MasterPageId);
+        }
+
+        private int ResolveSiteId()
+        {
+            return DataUtil.GetId(Request, WebColumns.SiteId);
+        }
+
+        private static List<WebMasterPage> GetMasterPages(int siteId)
+        {
+            if (siteId > 0)
+                return WebMasterPage.GetList(siteId)?.ToList() ?? new List<WebMasterPage>();
+
+            var all = new List<WebMasterPage>();
+            var sites = WSite.GetList()?.ToList() ?? new List<WSite>();
+            foreach (var site in sites)
+            {
+                var siteMasterPages = WebMasterPage.GetList(site.Id)?.ToList();
+                if (siteMasterPages != null && siteMasterPages.Count > 0)
+                    all.AddRange(siteMasterPages);
+            }
+
+            return all.GroupBy(i => i.Id).Select(i => i.First()).ToList();
         }
     }
 

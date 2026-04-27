@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using WCMS.Common.Utilities;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
@@ -18,11 +20,63 @@ namespace WCMS.WebSystem.ViewComponents
         {
             var model = new WebGroupsViewModel
             {
-                SelectedGroupId = selectedGroupId,
+                SelectedGroupId = ResolveSelectedGroupId(selectedGroupId),
                 Groups = new List<WebGroupNode>()
             };
 
+            try
+            {
+                var groups = WebGroup.GetList()?.OrderBy(i => i.Name).ToList() ?? new List<WebGroup>();
+                model.Groups = BuildTree(groups, -1);
+
+                if (model.SelectedGroupId < 1 && model.Groups.Count > 0)
+                    model.SelectedGroupId = model.Groups[0].Id;
+            }
+            catch (Exception ex)
+            {
+                model.ErrorMessage = $"Failed to load groups: {ex.Message}";
+            }
+
             return View(model);
+        }
+
+        private int ResolveSelectedGroupId(int selectedGroupId)
+        {
+            if (selectedGroupId > 0)
+                return selectedGroupId;
+
+            return DataUtil.GetId(Request, WebColumns.GroupId);
+        }
+
+        private List<WebGroupNode> BuildTree(List<WebGroup> allGroups, int parentId)
+        {
+            return allGroups
+                .Where(group => group.ParentId == parentId)
+                .OrderBy(group => group.Name)
+                .Select(group =>
+                {
+                    int userCount;
+                    try
+                    {
+                        userCount = group.Users.Count();
+                    }
+                    catch
+                    {
+                        userCount = 0;
+                    }
+
+                    return new WebGroupNode
+                    {
+                        Id = group.Id,
+                        Name = group.Name,
+                        Description = group.Description,
+                        ParentId = group.ParentId,
+                        IsActive = true,
+                        UserCount = userCount,
+                        Children = BuildTree(allGroups, group.Id)
+                    };
+                })
+                .ToList();
         }
     }
 

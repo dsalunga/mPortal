@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WCMS.Framework;
+using WCMS.Framework.Core;
+using WCMS.Framework.Diagnostics;
 using WCMS.Framework.ViewComponents;
 
 namespace WCMS.WebSystem.ViewComponents
@@ -22,7 +25,121 @@ namespace WCMS.WebSystem.ViewComponents
                 QuickLinks = new List<DashboardQuickLink>()
             };
 
+            try
+            {
+                var sites = WSite.GetList()?.ToList() ?? new List<WSite>();
+                model.SiteCount = sites.Count(i => i.Active == WConstants.Active);
+
+                var pageIds = new HashSet<int>();
+                foreach (var site in sites)
+                {
+                    var pages = WPage.GetList(site.Id);
+                    if (pages == null)
+                        continue;
+
+                    foreach (var page in pages)
+                    {
+                        if (page != null && page.Active == WConstants.Active)
+                            pageIds.Add(page.Id);
+                    }
+                }
+                model.PageCount = pageIds.Count;
+
+                model.UserCount = (WebUser.GetList() ?? Enumerable.Empty<WebUser>())
+                    .Count(i => i.IsActive);
+
+                model.TemplateCount = (WebTemplate.Provider.GetList() ?? Enumerable.Empty<WebTemplate>())
+                    .Count();
+
+                model.WebPartCount = (WPart.GetList() ?? Enumerable.Empty<WPart>())
+                    .Count(i => i.IsActive);
+
+                model.QuickLinks = BuildQuickLinks(model);
+                model.RecentActivity = LoadRecentActivity();
+            }
+            catch (Exception ex)
+            {
+                model.ErrorMessage = "Dashboard data is temporarily unavailable: " + ex.Message;
+            }
+
             return View(model);
+        }
+
+        private static List<DashboardQuickLink> BuildQuickLinks(AdminDashboardViewModel model)
+        {
+            var links = new List<DashboardQuickLink>
+            {
+                new DashboardQuickLink
+                {
+                    Name = "Web Sites",
+                    Url = CentralPages.WebSites,
+                    IconClass = "bi-globe",
+                    BadgeCount = model.SiteCount
+                },
+                new DashboardQuickLink
+                {
+                    Name = "Web Pages",
+                    Url = CentralPages.WebPages,
+                    IconClass = "bi-file-earmark",
+                    BadgeCount = model.PageCount
+                },
+                new DashboardQuickLink
+                {
+                    Name = "Users",
+                    Url = CentralPages.WebUsers,
+                    IconClass = "bi-people",
+                    BadgeCount = model.UserCount
+                },
+                new DashboardQuickLink
+                {
+                    Name = "Templates",
+                    Url = CentralPages.WebTemplates,
+                    IconClass = "bi-layout-text-window",
+                    BadgeCount = model.TemplateCount
+                },
+                new DashboardQuickLink
+                {
+                    Name = "Applications",
+                    Url = CentralPages.WebParts,
+                    IconClass = "bi-puzzle",
+                    BadgeCount = model.WebPartCount
+                },
+                new DashboardQuickLink
+                {
+                    Name = "Registry",
+                    Url = CentralPages.WebRegistry,
+                    IconClass = "bi-list-check"
+                }
+            };
+
+            return links;
+        }
+
+        private static List<DashboardActivityItem> LoadRecentActivity()
+        {
+            try
+            {
+                var events = EventLog.Provider.GetList();
+                if (events == null)
+                    return new List<DashboardActivityItem>();
+
+                return events
+                    .OrderByDescending(i => i.EventDate)
+                    .Take(10)
+                    .Select(i => new DashboardActivityItem
+                    {
+                        Id = i.Id,
+                        Description = string.IsNullOrWhiteSpace(i.Content) ? i.EventName : i.Content,
+                        UserName = i.User?.UserName ?? "system",
+                        ActivityDate = i.EventDate,
+                        ActivityType = string.IsNullOrWhiteSpace(i.EventName) ? "Event" : i.EventName
+                    })
+                    .ToList();
+            }
+            catch
+            {
+                return new List<DashboardActivityItem>();
+            }
         }
     }
 

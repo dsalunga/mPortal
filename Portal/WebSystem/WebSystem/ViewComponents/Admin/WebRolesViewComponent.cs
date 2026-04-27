@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using WCMS.Common.Utilities;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
@@ -18,8 +20,32 @@ namespace WCMS.WebSystem.ViewComponents
         {
             var model = new WebRolesViewModel
             {
+                SelectedRoleId = DataUtil.GetId(Request, WebColumns.RoleId),
                 Roles = new List<WebRoleItem>()
             };
+
+            try
+            {
+                model.Roles = WebRole.GetList()
+                    .OrderBy(role => role.Name)
+                    .Select(role => new WebRoleItem
+                    {
+                        Id = role.Id,
+                        Name = role.Name,
+                        Description = string.Empty,
+                        IsSystem = false,
+                        MemberCount = 0,
+                        Permissions = new List<string>()
+                    })
+                    .ToList();
+
+                if (model.SelectedRoleId < 1 && model.Roles.Count > 0)
+                    model.SelectedRoleId = model.Roles[0].Id;
+            }
+            catch (Exception ex)
+            {
+                model.ErrorMessage = $"Failed to load roles: {ex.Message}";
+            }
 
             return View(model);
         }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using WCMS.Common.Utilities;
 using WCMS.Framework;
 using WCMS.Framework.ViewComponents;
 
@@ -18,8 +20,32 @@ namespace WCMS.WebSystem.ViewComponents
         {
             var model = new WebTemplatesViewModel
             {
+                SelectedTemplateId = DataUtil.GetId(Request, WebColumns.TemplateId),
                 Templates = new List<WebTemplateItem>()
             };
+
+            try
+            {
+                var templates = WebTemplate.Provider.GetList()?.OrderBy(i => i.Name).ToList() ?? new List<WebTemplate>();
+                model.Templates = templates.Select(template => new WebTemplateItem
+                    {
+                        Id = template.Id,
+                        Name = template.Name,
+                        Description = template.GetParameterValue(WebColumns.Description, string.Empty) ?? string.Empty,
+                        ThemeName = template.Theme?.Name ?? string.Empty,
+                        IsDefault = false,
+                        IsActive = true,
+                        ModifiedDate = template.DateModified
+                    })
+                    .ToList();
+
+                if (model.SelectedTemplateId < 1 && model.Templates.Count > 0)
+                    model.SelectedTemplateId = model.Templates[0].Id;
+            }
+            catch (Exception ex)
+            {
+                model.ErrorMessage = $"Failed to load templates: {ex.Message}";
+            }
 
             return View(model);
         }
