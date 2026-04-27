@@ -2,8 +2,8 @@
 
 This file is a concise snapshot for `.ascx` migration coverage.
 The authoritative per-file source of truth is:
-- `docs/plans/legacy-migration/inventory/legacy-source-tracking-portal.csv`
-- `docs/plans/legacy-migration/inventory/legacy-source-tracking-all.csv`
+- `docs/plans/legacy-migration-v1/inventory/legacy-source-tracking-portal.csv`
+- `docs/plans/legacy-migration-v1/inventory/legacy-source-tracking-all.csv`
 
 Snapshot date: `2026-04-16` (tracker reconciliation pass 1)
 
@@ -30,7 +30,7 @@ Snapshot date: `2026-04-16` (tracker reconciliation pass 1)
 ## Remaining Not Applicable `.ascx`
 
 Use the explicit unresolved list:
-- `docs/plans/legacy-migration/inventory/unresolved-ascx-not-applicable.txt`
+- `docs/plans/legacy-migration-v1/inventory/unresolved-ascx-not-applicable.txt`
 
 ## Implementation Closure Plan
 
@@ -44,7 +44,7 @@ For remaining implementation tasks and closure criteria, use:
 python3 - <<'PY'
 import csv
 from collections import Counter
-rows=list(csv.DictReader(open('docs/plans/legacy-migration/inventory/legacy-source-tracking-portal.csv', newline='')))
+rows=list(csv.DictReader(open('docs/plans/legacy-migration-v1/inventory/legacy-source-tracking-portal.csv', newline='')))
 ascx=[r for r in rows if r['file_type']=='.ascx']
 print(Counter(r['status'] for r in ascx))
 PY
@@ -52,5 +52,5 @@ PY
 
 ```bash
 # Show unresolved .ascx paths
-cat docs/plans/legacy-migration/inventory/unresolved-ascx-not-applicable.txt
+cat docs/plans/legacy-migration-v1/inventory/unresolved-ascx-not-applicable.txt
 ```

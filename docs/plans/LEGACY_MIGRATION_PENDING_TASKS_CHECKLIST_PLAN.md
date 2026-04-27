@@ -31,7 +31,7 @@ What the evidence shows now:
 ### A) Re-open status and lock source-of-truth
 
 - [x] Mark migration status as `In Progress` (instead of fully completed) in rollup docs until this checklist is closed.
-- [x] Add a temporary guard note in `docs/plans/legacy-migration/README.md` that tracker counts are under reconciliation.
+- [x] Add a temporary guard note in `docs/plans/legacy-migration-v1/README.md` that tracker counts are under reconciliation.
 - [x] Freeze broad auto-classification changes until manual reconciliation completes (manual-only reconciliation rule).
 
 ### B) Fix misclassified `.ascx` tracker rows (15 items)
@@ -109,9 +109,9 @@ For each item below, close with either `completed` (rebuild/absorb) or `do_not_m
 - [x] Run relevant builds/tests for touched solution groups and capture results — 0 errors, 0 warnings; 102/102 tests pass.
 - [x] Regenerate tracker rollups and unresolved lists after reconciliation.
 - [x] Update:
-  - `docs/plans/legacy-migration/EXECUTION_BOARD.md`
-  - `docs/legacy-migration/master-inventory-*.md`
-- [x] Update affected solution cards under `docs/legacy-migration/solutions/**` if their status/evidence rows change during implementation.
+  - `docs/plans/legacy-migration-v1/EXECUTION_BOARD.md`
+  - `docs/plans/legacy-migration-v2/master-inventory-*.md`
+- [x] Update affected solution cards under `docs/plans/legacy-migration-v2/solutions/**` if their status/evidence rows change during implementation.
 - [x] Remove any “migration fully completed” statements until all checklist items are closed.
 
 ## Exit Criteria
@@ -144,6 +144,6 @@ Post-closure verification was run against the current working tree (`dotnet buil
 - [x] Resolve BranchLocator admin chapter evidence rows (`LEGACY-01352` to `LEGACY-01359`) with implemented Razor admin pages (`Chapter`, `ChapterHome`, `ChapterTree`, `Chapters`) and completed tracker mappings.
 - [x] Resolve the `3` app endpoint TODO controllers (implement or 410-retire with explicit rationale/evidence), then sync tracker/docs accordingly.
 - [x] Align status language and evidence claims across rollup docs after this verification pass:
-  - `docs/plans/legacy-migration/EXECUTION_BOARD.md`
-  - `docs/plans/legacy-migration/README.md`
-  - `docs/legacy-migration/master-inventory-*.md`
+  - `docs/plans/legacy-migration-v1/EXECUTION_BOARD.md`
+  - `docs/plans/legacy-migration-v1/README.md`
+  - `docs/plans/legacy-migration-v2/master-inventory-*.md`

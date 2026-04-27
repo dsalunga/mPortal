@@ -129,7 +129,7 @@ Implementation notes:
 
 Ownership guardrails:
 1. Do not let EF create/alter objects that are DbUp-owned.
-2. Maintain the canonical ownership registry at `docs/legacy-migration/database/ef-dbup-ownership-registry.md`.
+2. Maintain the canonical ownership registry at `docs/plans/legacy-migration-v2/database/ef-dbup-ownership-registry.md`.
 3. Optional machine-readable map path: `Database/migration-ownership/ownership-map.yaml`.
 4. Maintainers: platform/data migration owner (primary), plus required review from affected module owner and DB reviewer.
 5. Run drift checks in CI once GitHub Actions is enabled.
@@ -180,7 +180,7 @@ Recommended rollout posture:
 1. Legacy account migration method:
 `Hybrid` baseline accepted (`rehash-on-login` + optional config-driven forced reset), with forced reset disabled by default and enabled only for explicit security/compliance events.
 2. EF Core vs DbUp ownership:
-Single-owner-per-object policy accepted (EF for entity-owned schemas/tables; DbUp for SQL-native artifacts and cross-schema transforms), with registry at `docs/legacy-migration/database/ef-dbup-ownership-registry.md`.
+Single-owner-per-object policy accepted (EF for entity-owned schemas/tables; DbUp for SQL-native artifacts and cross-schema transforms), with registry at `docs/plans/legacy-migration-v2/database/ef-dbup-ownership-registry.md`.
 3. CI/CD constraint:
 `GitHub Actions` remains selected but disabled in private repo for now; enablement deferred to release hardening phase.
 4. Observability cutover gates:

@@ -21,7 +21,7 @@ Set the target persistence and caching architecture for predictable behavior on 
 Boundary rule: one DB object has one owner tool to prevent migration drift.
 
 ## Ownership Registry
-- Canonical registry path: `docs/legacy-migration/database/ef-dbup-ownership-registry.md`.
+- Canonical registry path: `docs/plans/legacy-migration-v2/database/ef-dbup-ownership-registry.md`.
 - Machine-readable companion map: `Database/migration-ownership/ownership-map.yaml` (optional, recommended for automation).
 - Maintainers: platform/data migration owner (primary), with required review from affected module owner and DB reviewer.
 

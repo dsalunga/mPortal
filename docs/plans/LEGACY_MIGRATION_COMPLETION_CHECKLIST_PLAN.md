@@ -7,7 +7,7 @@ Complete migration closure for the **full `legacy/` codebase** with evidence-bac
 ## Scope
 
 - Source scope: `legacy/**`
-- Tracking scope: `docs/legacy-migration/**`, `docs/plans/legacy-migration/**`
+- Tracking scope: `docs/plans/legacy-migration-v2/**`, `docs/plans/legacy-migration-v1/**`
 - Runtime scope: all modern projects currently mapped from legacy solutions
 - Primary immediate hotspot: `legacy/Portal/WebSystem/WebSystem-MVC/Content/Parts/**` and modern compatibility layer
 
@@ -32,7 +32,7 @@ Complete migration closure for the **full `legacy/` codebase** with evidence-bac
 
 ### B) Repository-Wide Legacy Coverage Audit
 
-- [x] Enumerate all `Not Applicable` rows from `docs/legacy-migration/solutions/**`.
+- [x] Enumerate all `Not Applicable` rows from `docs/plans/legacy-migration-v2/solutions/**`.
 - [x] Reclassify each row to:
   - [x] `Completed (Absorbed Alias)`
   - [x] `Completed (Direct Rebuild)`
@@ -41,10 +41,10 @@ Complete migration closure for the **full `legacy/` codebase** with evidence-bac
 
 ### C) Plan + Tracking Synchronization
 
-- [x] Update `docs/legacy-migration/master-inventory-projects.md` status basis entries where changed.
-- [x] Update `docs/legacy-migration/master-inventory-summary.md` status basis entries where changed.
-- [x] Update all affected LGC cards under `docs/legacy-migration/solutions/**`.
-- [x] Update `docs/plans/legacy-migration/EXECUTION_BOARD.md` and related rollups.
+- [x] Update `docs/plans/legacy-migration-v2/master-inventory-projects.md` status basis entries where changed.
+- [x] Update `docs/plans/legacy-migration-v2/master-inventory-summary.md` status basis entries where changed.
+- [x] Update all affected LGC cards under `docs/plans/legacy-migration-v2/solutions/**`.
+- [x] Update `docs/plans/legacy-migration-v1/EXECUTION_BOARD.md` and related rollups.
 
 ### D) Validation
 

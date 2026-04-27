@@ -8,11 +8,11 @@ This board is the execution layer for coding agents.
 - This board tracks active delivery batches, blockers, and completion gates.
 
 ## Sources of Truth
-- File inventory: `docs/plans/legacy-migration/inventory/legacy-source-tracking-all.csv`
-- Module rollup: `docs/plans/legacy-migration/module-status-rollup.csv`
-- File tracking: `docs/plans/legacy-migration/MIGRATION_FILE_TRACKING.md` (historical snapshot; CSV inventory remains authoritative during reconciliation)
+- File inventory: `docs/plans/legacy-migration-v1/inventory/legacy-source-tracking-all.csv`
+- Module rollup: `docs/plans/legacy-migration-v1/module-status-rollup.csv`
+- File tracking: `docs/plans/legacy-migration-v1/MIGRATION_FILE_TRACKING.md` (historical snapshot; CSV inventory remains authoritative during reconciliation)
 - CMS admin plan: `docs/plans/WEBSYSTEM_CMS_ADMIN_MIGRATION_PLAN.md`
-- Update script: `docs/plans/legacy-migration/update-tracker.py` (idempotent, safe to re-run)
+- Update script: `docs/plans/legacy-migration-v1/update-tracker.py` (idempotent, safe to re-run)
 - Closure checklist record: `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`
 
 ## Current Phase
