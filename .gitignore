@@ -66,3 +66,4 @@ bin
 
 /LessonReviewer/LessonReviewer/Admin/Data/Logs.nuget/
 scripts/__pycache__/
+.playwright-mcp
