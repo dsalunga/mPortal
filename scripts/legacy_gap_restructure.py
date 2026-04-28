@@ -123,8 +123,8 @@ def csproj_for(legacy_path: str) -> str | None:
         ("Portal/WebSystem/WCMS.WebSystem.Utilities/Properties", "Portal/WebSystem/WCMS.WebSystem.Utilities/WCMS.WebSystem.Utilities.csproj"),
         ("Portal/WebSystem/WCMS.Common", "Portal/WebSystem/WCMS.Common/WCMS.Common.csproj"),
         ("Portal/WebSystem/WCMS.Common/Properties", "Portal/WebSystem/WCMS.Common/WCMS.Common.csproj"),
-        ("Core/WCMS.Common", "Core/WCMS.Common/WCMS.Common.csproj"),
-        ("Core/WCMS.Common/Properties", "Core/WCMS.Common/WCMS.Common.csproj"),
+        ("Core/WCMS.Common", "Portal/WebSystem/WCMS.Common/WCMS.Common.csproj"),
+        ("Core/WCMS.Common/Properties", "Portal/WebSystem/WCMS.Common/WCMS.Common.csproj"),
         # Integration
         ("Portal/WebParts/Integration/IntegrationParts", "Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj"),
         ("Portal/WebParts/Integration/IntegrationParts/Properties", "Portal/WebParts/Integration/IntegrationParts/WCMS.WebSystem.Apps.Integration.WebApp.csproj"),
