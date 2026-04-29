@@ -3,6 +3,15 @@
 Status: in progress (Phases 1/1B/3 partially completed on 2026-04-09)  
 Objective: remove active exposure in current branch first, then perform controlled history cleanup.
 
+## Pending Classification (2026-04-29)
+
+| Phase | Category | Current State | Remaining Action |
+|---|---|---|---|
+| Phase 0 | External/manual owner action pending | Rotation/session invalidation tasks are not code changes and remain open. | Complete secret/key rotation, invalidate old sessions, and record owner confirmation. |
+| Phase 2 | Review/decision pending | Legacy binary/vendor inventory rationalization is not yet completed. | Classify keep/sanitize/remove and document approved inventory decisions. |
+| Phase 4 | Approval-gated pending | Dry-run is complete, but owner approval and communication plan are pending. | Approve dry-run package and finalize contributor/CI communication plan. |
+| Phase 5 | Approval-gated execution pending | Cutover steps are waiting on freeze window + approvals. | Execute rewrite cutover, force-push, consumer reset, and full-history scan evidence. |
+
 ## Guiding Rules
 - Do not run history rewrite until current-branch remediation and secret rotation are complete.
 - Treat all exposed secrets as compromised now.

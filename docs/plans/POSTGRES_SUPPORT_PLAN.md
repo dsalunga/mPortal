@@ -2,11 +2,12 @@
 
 > **Goal**: Make mPortal CMS fully cross-platform by adding PostgreSQL as an alternative to MS SQL Server.
 
-## Validation Snapshot (2026-04-23)
+## Validation Snapshot (2026-04-29)
 
-- `dotnet build mPortal.slnx --no-restore -v minimal` -> success (`0 Error(s)`, `2 Warning(s)`)
+- `dotnet build mPortal.slnx -v minimal` -> success (`0 Error(s)`, `0 Warning(s)`)
 - `dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj --no-build -v minimal` -> `77/77` passed
-- `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -v minimal` -> `25/32` passed, `7` skipped (environment-gated PostgreSQL/data-parity suites)
+- `dotnet test mPortal.slnx -v minimal` -> `105/115` passed, `10` skipped, `0` failed
+- `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -v minimal` -> `25/35` passed, `10` skipped (environment-gated PostgreSQL/data-parity suites)
 - Provider abstraction and multi-provider wiring are in place (`DbHelper`, `DatabaseProvider`, provider-aware `UseNpgsql()`/`UseSqlServer()` branches in host `Program.cs` files)
 - PostgreSQL schema assets are present and versioned:
   - `Portal/Assets/Database/PostgreSQL/schema.sql` (121 `CREATE TABLE` statements, including 6 columns added for parity: `parentid`, `primaryidentityid`, `protocolid`, `maritalstatusid`, `lastloginfailuredate`, `loginfailurecount`)
@@ -22,6 +23,13 @@
 - Kubernetes baseline manifests exist under `Deploy/k8s/`
 - Remaining implementation gaps:
   - Benchmark and data migration parity suites are implemented but still require execution evidence in provisioned environments
+
+## Pending Classification (2026-04-29)
+
+| Item | Category | Current State | Remaining Action |
+|---|---|---|---|
+| `CHK-PG-006` (PostgreSQL benchmark execution) | Runtime validation pending | Benchmark harness is implemented under `Portal/Utilities/Benchmarks/WCMS.PostgreSql.Benchmarks/` but comparative run evidence is not yet captured. | Execute benchmark runs in provisioned SQL Server + PostgreSQL environments and publish baseline report. |
+| `CHK-PG-007` (SQL Server -> PostgreSQL parity execution) | Runtime validation pending | Dual-DB validation tests exist (`Tests/WCMS.Integration.Tests/DataMigrationValidationTests.cs`) but are environment-gated and not yet executed with full datasets. | Run parity suite against provisioned datasets and archive schema/data correctness results with rollback notes. |
 
 ## Summary of Implemented Foundation
 
@@ -95,7 +103,8 @@ All **115 stored procedures** have been replaced with inline parameterized SQL:
 ### Tests
 
 - `dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj --no-build -v minimal` -> 77 passed
-- `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -v minimal` -> 25 passed, 7 skipped (environment-gated PostgreSQL/data-parity suites)
+- `dotnet test mPortal.slnx -v minimal` -> 105 passed, 10 skipped, 0 failed
+- `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -v minimal` -> 25 passed, 10 skipped (environment-gated PostgreSQL/data-parity suites)
 - PostgreSQL-focused test suites added:
   - `PostgreSqlProviderIntegrationTests` (provider + `/health`/`/api/system/info`)
   - `EfModelCompatibilityTests` (DbContext create-script compatibility)

@@ -2,6 +2,14 @@
 
 Status: dry-run completed on 2026-04-09; cutover execution pending owner approval
 
+## Pending Classification (2026-04-29)
+
+| Item | Category | Current State | Remaining Action |
+|---|---|---|---|
+| Phase 0 rotation precondition | External/manual owner action pending | Rotation/session invalidation is not yet confirmed complete. | Complete rotation and record sign-off before cutover. |
+| Freeze window and communication | Approval-gated pending | Dry-run exists, but freeze and comms plan are not approved. | Approve cutover window and contributor reset instructions. |
+| Final rewrite cutover | Approval-gated execution pending | Operational steps are documented but intentionally not executed yet. | Run canonical rewrite cutover, force-push refs, and archive post-cutover history-scan evidence. |
+
 ## Objective
 Purge historical secret-bearing content from git history after current-branch remediation and credential rotation are complete.
 

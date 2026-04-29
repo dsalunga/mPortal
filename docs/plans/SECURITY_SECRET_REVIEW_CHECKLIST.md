@@ -2,6 +2,15 @@
 
 Status: in progress (current-branch remediation completed 2026-04-09; secret rotation/history rewrite/sign-off still pending)
 
+## Pending Classification (2026-04-29)
+
+| Category | Items | Notes |
+|---|---|---|
+| External/manual owner action pending | Sections 1, 2, and 8 unchecked items | Credential/key rotation, session invalidation, temporary access restriction, and formal sign-offs require security/ops owner execution. |
+| Approval-gated execution pending | Section 5 unchecked items | History rewrite cutover depends on owner-approved freeze window and coordinated consumer communication. |
+| Review/decision pending | Section 4 + Section 9 vendor-review items | Third-party/vendor bundle review needs explicit keep/sanitize/remove decisions. |
+| Verification run pending | Section 6 full-history scan | Full-history secret scan must run after approved history rewrite execution. |
+
 ## 1) Immediate Containment
 - [x] Treat the exposed values in this repo as compromised.
 - [ ] Restrict repo access (temporary) while cleanup is in progress.

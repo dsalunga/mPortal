@@ -4,12 +4,31 @@
 
 Track and validate the remaining .NET 10 + PostgreSQL migration items using code evidence, with clear separation between implemented work and runtime execution still pending.
 
-## Validation Snapshot (2026-04-23)
+## Validation Snapshot (2026-04-29)
 
 - `dotnet restore mPortal.slnx -v minimal` -> success (`All projects are up-to-date for restore`)
-- `dotnet build mPortal.slnx --no-restore -v minimal` -> success (`0 Error(s)`, `2 Warning(s)`)
+- `dotnet build mPortal.slnx -v minimal` -> success (`0 Error(s)`, `0 Warning(s)`)
 - `dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj --no-build -v minimal` -> `77/77` passed
-- `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -v minimal` -> `25/32` passed, `7` skipped (environment-gated PostgreSQL/data-parity suites)
+- `dotnet test mPortal.slnx -v minimal` -> `105/115` passed, `10` skipped, `0` failed
+- `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj -v minimal` -> `25/35` passed, `10` skipped (environment-gated PostgreSQL/data-parity suites)
+
+## Status Labels
+
+- `implemented`: code changes are complete and validated.
+- `runtime validation pending`: implementation exists; evidence run in target environment is still pending.
+- `partially implemented`: implementation scaffold exists, but execution evidence is pending for completion.
+
+## Pending Items by Category (2026-04-29)
+
+| Item | Category | Current State | Completion Evidence Needed |
+|---|---|---|---|
+| `CHK-NET10-001` | Runtime validation pending | Windows/IIS behavior is not yet execution-validated. | Capture runtime validation report for retained Windows-only workloads. |
+| `CHK-NET10-002` | Runtime validation pending | Agent service is wired but not yet validated against real scheduled DB work. | Capture logs/evidence for successful schedule execution. |
+| `CHK-NET10-003` | Runtime validation pending | Multi-site host/path routing logic is implemented, but multi-domain runtime execution is pending. | Validate multiple `WSite` host/domain entries end-to-end. |
+| `CHK-NET10-004` | Runtime validation pending | Admin components/controllers are present; operational admin scenario execution is pending. | Execute site/page/template/user management flow against real data. |
+| `CHK-NET10-005` | Runtime validation pending | Benchmark harness exists; legacy-vs-modern baseline capture is still pending. | Publish comparative performance baseline report. |
+| `CHK-PG-006` | Partially implemented | BenchmarkDotNet harness exists but comparative run data is not yet captured. | Execute and publish SQL Server vs PostgreSQL benchmark output. |
+| `CHK-PG-007` | Partially implemented | Dual-DB parity tests exist but are environment-gated and not yet executed with provisioned datasets. | Run and archive parity validation results and rollback notes. |
 
 ## Checklist
 

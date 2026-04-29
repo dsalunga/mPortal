@@ -228,18 +228,19 @@ Why Windows VM is still needed:
 
 ## 7) Outstanding Work (Not Yet Fully Implemented)
 
-Current status snapshot (validated 2026-04-23):
+Current status snapshot (validated 2026-04-29):
 - 48 C# projects (`.csproj`) on disk; all 48 are included in `mPortal.slnx`.
 - **All projects target `.NET 10`** — 45 on `net10.0`, 3 on `net10.0-windows` (DbManagerWPF, WebSystemDeployer, MySQL TableEditor).
 - All `packages.config` files have been removed (0 remaining).
 - No active `#if NETFRAMEWORK` source guards remain outside documentation; WCF `System.ServiceModel` server usage is removed.
 - Legacy web assets outside `/Legacy` are at 0 for `.aspx/.ascx/.svc/.asmx/.ashx/Global.asax/web.config`; `.cmd` scripts are also 0.
 - 270 ViewComponent classes and 272 `Default.cshtml` views exist in the migrated codebase.
-- Test validation on 2026-04-23:
+- Test validation on 2026-04-29:
+  - `dotnet test mPortal.slnx -v minimal` -> 105 passed, 10 skipped, 0 failed.
   - `dotnet test Tests/WCMS.Framework.Tests/WCMS.Framework.Tests.csproj` -> 77 passed.
-  - `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj` -> 25 passed, 7 skipped (environment-gated PostgreSQL/data-parity suites).
-- **Build validation on 2026-04-23:**
-  - **`dotnet build mPortal.slnx` succeeds — 0 errors, 2 warnings.**
+  - `dotnet test Tests/WCMS.Integration.Tests/WCMS.Integration.Tests.csproj` -> 25 passed, 10 skipped (environment-gated PostgreSQL/data-parity suites).
+- **Build validation on 2026-04-29:**
+  - **`dotnet build mPortal.slnx -v minimal` succeeds — 0 errors, 0 warnings.**
   - `EnableWindowsTargeting=true` set globally in `Directory.Build.props` for cross-platform macOS builds.
   - Root `.editorconfig` created to triage 2590 pre-existing analyzer warnings: security rules (CA5xxx) remain as warnings; style/naming rules lowered to suggestion severity for incremental cleanup.
   - All NuGet package versions aligned: EF Core 10.0.5, Npgsql.EF 10.0.1, Npgsql 10.0.2, Microsoft.Data.SqlClient 6.1.3, SMO 181.19.0, System.Configuration.ConfigurationManager 10.0.5, SixLabors.ImageSharp 3.1.12.
@@ -249,6 +250,18 @@ Current status snapshot (validated 2026-04-23):
 Important:
 - `[x]` rows in the wave map indicate the planned migration task was executed (including scaffold/interim conversions).
 - They do **not** imply full feature parity, production readiness, or complete .NET 10 retargeting for every dependency chain.
+
+Pending runtime/execution items are tracked in:
+- `docs/plans/NET10_POSTGRES_REMAINING_CHECKLIST_PLAN.md`
+
+### 7.0) Pending Runtime Validation Matrix (2026-04-29)
+
+| Item | Category | Current State | Completion Evidence Needed |
+|---|---|---|---|
+| Background agent runtime (`§8.3`) | Runtime validation pending | Service is migrated and builds on .NET 10; live scheduled execution evidence is pending. | Capture real runtime schedule execution logs with database-backed tasks. |
+| Multi-site routing runtime (`§8.3`) | Runtime validation pending | Host/path candidate logic is implemented; multi-site dataset execution is pending. | Validate multiple `WSite` identities resolving expected pages. |
+| Admin controls full E2E (`§8.3`) | Runtime validation pending | Central/admin modules are migrated; end-to-end operational flows still need recorded execution evidence. | Execute and record site/page/template/user-management scenarios. |
+| Legacy vs modern performance baseline (`§8.3`) | Runtime validation pending | Benchmark tooling exists, but baseline comparison evidence is not yet published. | Publish representative baseline comparison report. |
 
 ---
 
