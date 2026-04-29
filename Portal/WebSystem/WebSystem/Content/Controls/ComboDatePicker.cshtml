@@ -1,0 +1,43 @@
+@{
+    var controlId = (ViewData["ControlId"] as string) ?? $"combo-date-{Guid.NewGuid():N}";
+    var namePrefix = (ViewData["NamePrefix"] as string) ?? "Date";
+
+    var selected = DateTime.Today;
+    if (DateTime.TryParse(ViewData["SelectedDate"]?.ToString(), out var parsedDate))
+    {
+        selected = parsedDate;
+    }
+
+    var currentYear = DateTime.Today.Year;
+}
+
+<div class="row g-2 align-items-end" id="@controlId">
+    <div class="col-md-4">
+        <label class="form-label" for="@($"{controlId}-month")">Month</label>
+        <select class="form-select" id="@($"{controlId}-month")" name="@(namePrefix)Month">
+            @for (var month = 1; month <= 12; month++)
+            {
+                var monthName = new DateTime(2000, month, 1).ToString("MMMM");
+                <option value="@month" selected="@(month == selected.Month)">@monthName</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="@($"{controlId}-day")">Day</label>
+        <select class="form-select" id="@($"{controlId}-day")" name="@(namePrefix)Day">
+            @for (var day = 1; day <= 31; day++)
+            {
+                <option value="@day" selected="@(day == selected.Day)">@day</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="@($"{controlId}-year")">Year</label>
+        <select class="form-select" id="@($"{controlId}-year")" name="@(namePrefix)Year">
+            @for (var year = currentYear; year >= currentYear - 60; year--)
+            {
+                <option value="@year" selected="@(year == selected.Year)">@year</option>
+            }
+        </select>
+    </div>
+</div>

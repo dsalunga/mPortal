@@ -15,7 +15,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             }
-            <p>Bible browser placeholder content.</p>
+            <div class="row g-2 align-items-end">
+                <div class="col-md-8">
+                    <label class="form-label" for="bible-browser-query-@Model.ObjectId">Book / Chapter / Verse</label>
+                    <input id="bible-browser-query-@Model.ObjectId" type="text" class="form-control" placeholder="Example: John 3:16" />
+                </div>
+                <div class="col-md-4 d-grid">
+                    <button type="button" class="btn btn-primary" disabled>Open Passage</button>
+                </div>
+            </div>
+            <div class="form-text">Hook this shell to the Bible integration endpoint used by the host page.</div>
         </div>
     </div>
 </section>

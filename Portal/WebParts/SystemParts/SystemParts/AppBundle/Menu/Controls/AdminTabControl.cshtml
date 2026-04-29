@@ -1,0 +1,7 @@
+@{
+    var objectId = 0;
+    var recordId = 0;
+    int.TryParse(Context?.Request?.Query["ObjectId"].ToString(), out objectId);
+    int.TryParse(Context?.Request?.Query["RecordId"].ToString(), out recordId);
+}
+@await Component.InvokeAsync("MenuAdmintabcontrol", new { objectId, recordId })

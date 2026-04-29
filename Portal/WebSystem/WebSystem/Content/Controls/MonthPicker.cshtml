@@ -1,0 +1,12 @@
+@{
+    var value = ViewData["Value"]?.ToString();
+    if (string.IsNullOrWhiteSpace(value))
+    {
+        value = DateTime.Today.ToString("yyyy-MM");
+    }
+}
+
+<div class="mb-3">
+    <label class="form-label" for="month-picker">Month</label>
+    <input type="month" class="form-control" id="month-picker" name="Month" value="@value" />
+</div>

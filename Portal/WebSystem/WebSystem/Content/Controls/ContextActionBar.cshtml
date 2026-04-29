@@ -1,0 +1,15 @@
+@{
+    var refreshUrl = (ViewData["RefreshUrl"] as string) ?? string.Empty;
+    var createUrl = (ViewData["CreateUrl"] as string) ?? string.Empty;
+    var deleteUrl = (ViewData["DeleteUrl"] as string) ?? string.Empty;
+    var logoutUrl = (ViewData["LogoutUrl"] as string) ?? "/account/logout";
+    var settingsUrl = (ViewData["SettingsUrl"] as string) ?? string.Empty;
+}
+
+<div class="d-flex flex-wrap gap-2" role="toolbar" aria-label="Context Action Bar">
+    <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='@(string.IsNullOrWhiteSpace(refreshUrl) ? "javascript:window.location.reload()" : refreshUrl)'">Refresh</button>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='@(string.IsNullOrWhiteSpace(createUrl) ? "#" : createUrl)'">New</button>
+    <button type="button" class="btn btn-outline-danger" onclick="window.location.href='@(string.IsNullOrWhiteSpace(deleteUrl) ? "#" : deleteUrl)'">Delete</button>
+    <button type="button" class="btn btn-outline-dark" onclick="window.location.href='@logoutUrl'">Logout</button>
+    <button type="button" class="btn btn-outline-info" onclick="window.location.href='@(string.IsNullOrWhiteSpace(settingsUrl) ? "#" : settingsUrl)'">Settings</button>
+</div>

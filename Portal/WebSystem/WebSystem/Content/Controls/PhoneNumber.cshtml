@@ -1,0 +1,45 @@
+@{
+    var controlId = (ViewData["ControlId"] as string) ?? $"phone-number-{Guid.NewGuid():N}";
+    var countryCode = ViewData["CountryCode"]?.ToString() ?? "0";
+    var maxDigitsValue = 10;
+    int.TryParse(ViewData["MaxDigits"]?.ToString(), out maxDigitsValue);
+    if (maxDigitsValue <= 0)
+    {
+        maxDigitsValue = 10;
+    }
+
+    var rawNumber = ViewData["Number"]?.ToString() ?? string.Empty;
+    var trimmedNumber = rawNumber;
+    var countryPrefix = $"+{countryCode}";
+
+    if (!string.IsNullOrWhiteSpace(trimmedNumber) && trimmedNumber.StartsWith(countryPrefix))
+    {
+        trimmedNumber = trimmedNumber.Substring(countryPrefix.Length);
+    }
+}
+
+<div class="input-group" id="@controlId">
+    <span class="input-group-text">+@countryCode</span>
+    <input type="hidden" name="CountryCode" value="@countryCode" />
+    <input type="hidden" name="MaxDigits" value="@maxDigitsValue" />
+    <input type="tel" class="form-control" id="@($"{controlId}-number")" name="PhoneNumber" value="@trimmedNumber" maxlength="@maxDigitsValue" />
+</div>
+<div class="form-text">Only numeric digits are stored for the phone number body.</div>
+
+<script>
+(function () {
+    var input = document.getElementById('@($"{controlId}-number")');
+    if (!input) {
+        return;
+    }
+
+    var maxDigits = @maxDigitsValue;
+    input.addEventListener('input', function () {
+        var cleaned = (input.value || '').replace(/\D/g, '');
+        if (cleaned.length > maxDigits) {
+            cleaned = cleaned.substring(0, maxDigits);
+        }
+        input.value = cleaned;
+    });
+})();
+</script>

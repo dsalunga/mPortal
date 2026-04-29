@@ -1,0 +1,50 @@
+@{
+    var controlId = (ViewData["ControlId"] as string) ?? $"tab-control-v1-{Guid.NewGuid():N}";
+    var tabList = new System.Collections.Generic.List<string>();
+    var tabs = ViewData["Tabs"] as IEnumerable<string>;
+    if (tabs != null)
+    {
+        foreach (var tab in tabs)
+        {
+            tabList.Add(tab);
+        }
+    }
+
+    if (tabList.Count == 0)
+    {
+        tabList.Add("General");
+        tabList.Add("Manager");
+    }
+}
+
+<div id="@controlId" class="tab-control default">
+    <ul class="nav nav-tabs" role="tablist">
+        @for (var i = 0; i < tabList.Count; i++)
+        {
+            var isActive = i == 0;
+            var paneId = $"{controlId}-pane-{i}";
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @(isActive ? "active" : string.Empty)"
+                        id="@($"{controlId}-tab-{i}")"
+                        data-bs-toggle="tab"
+                        data-bs-target="#@paneId"
+                        type="button"
+                        role="tab"
+                        aria-controls="@paneId"
+                        aria-selected="@(isActive ? "true" : "false")">
+                    @tabList[i]
+                </button>
+            </li>
+        }
+    </ul>
+    <div class="tab-content border border-top-0 p-3">
+        @for (var i = 0; i < tabList.Count; i++)
+        {
+            var isActive = i == 0;
+            var paneId = $"{controlId}-pane-{i}";
+            <div class="tab-pane fade @(isActive ? "show active" : string.Empty)" id="@paneId" role="tabpanel" aria-labelledby="@($"{controlId}-tab-{i}")">
+                <p class="mb-0 text-muted">Legacy TabControlV1 behavior now runs on Bootstrap tab panes.</p>
+            </div>
+        }
+    </div>
+</div>

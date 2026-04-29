@@ -1,0 +1,5 @@
+@{
+    var objectId = 0;
+    int.TryParse(Context?.Request?.Query["ObjectId"].ToString(), out objectId);
+}
+@await Component.InvokeAsync("IncidentCategoryManager", new { objectId })

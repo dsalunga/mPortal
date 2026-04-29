@@ -15,7 +15,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             }
-            <p>Ams authentication placeholder content.</p>
+            <p class="text-muted mb-3">This panel bridges the legacy AMS authentication control to the modern Integration stack.</p>
+            <dl class="row mb-0 small">
+                <dt class="col-sm-4">Auth Token</dt>
+                <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.AuthToken) ? "Pending generation" : Model.AuthToken)</dd>
+                <dt class="col-sm-4">Redirect URL</dt>
+                <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.RedirectUrl) ? "Not configured" : Model.RedirectUrl)</dd>
+            </dl>
         </div>
     </div>
 </section>

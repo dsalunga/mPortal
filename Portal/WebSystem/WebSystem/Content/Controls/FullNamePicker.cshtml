@@ -1,0 +1,21 @@
+@{
+    var controlId = (ViewData["ControlId"] as string) ?? $"full-name-{Guid.NewGuid():N}";
+    var firstName = ViewData["FirstName"]?.ToString() ?? string.Empty;
+    var middleName = ViewData["MiddleName"]?.ToString() ?? string.Empty;
+    var lastName = ViewData["LastName"]?.ToString() ?? string.Empty;
+}
+
+<div class="row g-2" id="@controlId">
+    <div class="col-md-4">
+        <label class="form-label" for="@($"{controlId}-first")">First Name</label>
+        <input type="text" class="form-control" id="@($"{controlId}-first")" name="FirstName" value="@firstName" required />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="@($"{controlId}-middle")">Middle Name</label>
+        <input type="text" class="form-control" id="@($"{controlId}-middle")" name="MiddleName" value="@middleName" />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="@($"{controlId}-last")">Last Name</label>
+        <input type="text" class="form-control" id="@($"{controlId}-last")" name="LastName" value="@lastName" required />
+    </div>
+</div>

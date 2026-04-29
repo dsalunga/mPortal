@@ -15,7 +15,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             }
-            <p>Zimbra pre-auth placeholder content.</p>
+            <p class="text-muted mb-2">Pre-authentication bridge for Zimbra single sign-on.</p>
+            <div class="small">
+                <strong>Redirect URL:</strong>
+                <span>@(string.IsNullOrWhiteSpace(Model.RedirectUrl) ? "Not configured" : Model.RedirectUrl)</span>
+            </div>
         </div>
     </div>
 </section>

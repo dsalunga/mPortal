@@ -1,0 +1,34 @@
+@{
+    var videoUrl = ViewData["VideoUrl"]?.ToString() ?? string.Empty;
+    var audioUrl = ViewData["AudioUrl"]?.ToString() ?? string.Empty;
+}
+
+<div class="card">
+    <div class="card-header">
+        <h6 class="mb-0">Media Player</h6>
+    </div>
+    <div class="card-body">
+        @if (!string.IsNullOrWhiteSpace(videoUrl))
+        {
+            <video class="w-100 mb-3" controls preload="metadata">
+                <source src="@videoUrl" />
+                Your browser does not support HTML5 video playback.
+            </video>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(audioUrl))
+        {
+            <audio class="w-100" controls preload="metadata">
+                <source src="@audioUrl" />
+                Your browser does not support HTML5 audio playback.
+            </audio>
+        }
+
+        @if (string.IsNullOrWhiteSpace(videoUrl) && string.IsNullOrWhiteSpace(audioUrl))
+        {
+            <div class="alert alert-info mb-0">
+                No media source was provided. Set <strong>VideoUrl</strong> or <strong>AudioUrl</strong> in ViewData.
+            </div>
+        }
+    </div>
+</div>
