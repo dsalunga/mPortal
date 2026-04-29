@@ -12,7 +12,7 @@
 | Output Type | Library |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:398, Not Applicable:1025, Incomplete:0, Not Started:0. Runtime parity addendum (2026-04-16): legacy `Content/Parts` `.ascx` surfaces now resolve as modern `.cshtml` (165/165), legacy theme `.ascx` surfaces resolve as modern `.cshtml` (11/11), and legacy `User.svc` endpoint is mapped by compatibility API route. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:512, Not Applicable:911, Incomplete:0, Not Started:0. Runtime parity addendum (2026-04-16): legacy `Content/Parts` `.ascx` surfaces now resolve as modern `.cshtml` (165/165), legacy theme `.ascx` surfaces resolve as modern `.cshtml` (11/11), and legacy `User.svc` endpoint is mapped by compatibility API route. |
 | Project References | 10 |
 | Surface Artifacts | 258 |
 | Component/Class Artifacts | 216 |

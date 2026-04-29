@@ -3,9 +3,9 @@
 This document tracks migration status per Visual Studio solution (`*.sln`) discovered under `legacy/`.
 Aggregate solution status is derived from mapped `LGC-###` project statuses in `master-inventory-projects.md` (refreshed April 15, 2026).
 
-> **Program Status (2026-04-17): Completed (current migration scope closed).**  
+> **Program Status (2026-04-29): Completed (current migration scope closed).**  
 > Solution-level mapping remains: 16 `Completed`, 1 `Mixed`, 1 `Do Not Migrate As-Is` (FCKeditor replacement-only).  
-> Tracker totals are now 5,306 files: 3,878 `completed`, 1,428 `not_applicable`, 0 `incomplete`, 0 `not_started`.  
+> Tracker totals are now 5,306 files: 4,107 `completed`, 1,199 `not_applicable`, 0 `incomplete`, 0 `not_started`.  
 > See [EXECUTION_BOARD.md](../legacy-migration-v1/EXECUTION_BOARD.md) for closure history and future execution batches when new scope is added.
 
 Companion views:

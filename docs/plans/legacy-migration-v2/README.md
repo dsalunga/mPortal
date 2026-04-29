@@ -2,7 +2,7 @@
 
 This folder is the single source of truth for legacy migration tracking.
 
-Program status (`2026-04-17`): **Completed** for current migration scope. Artifact mapping is 49 `Completed` + 1 `Do Not Migrate As-Is` (FCKeditor replaced by TipTap OSS); execution history is retained in `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`.
+Program status (`2026-04-29`): **Completed** for current migration scope. Artifact mapping is 49 `Completed` + 1 `Do Not Migrate As-Is` (FCKeditor replaced by TipTap OSS); execution history is retained in `docs/plans/LEGACY_MIGRATION_PENDING_TASKS_CHECKLIST_PLAN.md`.
 
 ## Master Views
 

@@ -12,7 +12,7 @@
 | Output Type | Library |
 | Target Framework | v4.8 |
 | Migration Status | Completed |
-| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:186, Not Applicable:104, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:268, Not Applicable:22, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 8 |
 | Surface Artifacts | 145 |
 | Component/Class Artifacts | 124 |

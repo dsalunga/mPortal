@@ -7,12 +7,12 @@
 | Item ID | LGC-032 |
 | Project Type | Library |
 | Project File | `legacy/Core/WCMS.Common/WCMS.Common.csproj` |
-| Modern Project File / Evidence | `Core/WCMS.Common/WCMS.Common.csproj` |
+| Modern Project File / Evidence | `Portal/WebSystem/WCMS.Common/WCMS.Common.csproj` |
 | Project Directory | `legacy/Core/WCMS.Common` |
 | Output Type | Library |
 | Target Framework | net8.0 |
 | Migration Status | Completed |
-| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:53, Not Applicable:4, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
+| Status Basis | Inventory validation from `legacy-source-tracking-all.csv`: Completed:52, Not Applicable:5, Incomplete:0, Not Started:0. All tracked files for this project are resolved. |
 | Project References | 0 |
 | Surface Artifacts | 0 |
 | Component/Class Artifacts | 55 |
